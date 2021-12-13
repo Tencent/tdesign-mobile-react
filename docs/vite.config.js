@@ -2,7 +2,9 @@ import path from 'path';
 
 import tdocPlugin from './plugin-tdoc';
 import replace from '@rollup/plugin-replace';
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react';
+import { VitePWA } from 'vite-plugin-pwa';
+import pwaConfig from './pwaConfig';
 
 export default {
   base: process.env.NODE_ENV === 'production' ? '/react-mobile/' : './',
@@ -12,8 +14,9 @@ export default {
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '../'),
-      '@docs': path.resolve(__dirname, './docs'),
+      '@doc': path.resolve(__dirname, './doc'),
       '@components': path.resolve(__dirname, './src/components'),
+      '@examples': path.resolve(__dirname, '../examples'),
       '@common': path.resolve(__dirname, '../src/_common'),
       'tdesign-mobile-react': path.resolve(__dirname, '../src'),
     },
@@ -22,7 +25,7 @@ export default {
     outDir: '../_site',
     rollupOptions: {
       input: {
-        sites: 'index.html',
+        site: 'index.html',
         mobile: 'mobile.html',
       },
     },
@@ -30,7 +33,7 @@ export default {
   jsx: 'react',
   server: {
     host: '0.0.0.0',
-    port: 17000,
+    port: 19000,
     open: '/',
     https: false,
     fs: { strict: false },

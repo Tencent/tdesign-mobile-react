@@ -22,15 +22,10 @@ export default function renderDemo(md, container) {
         const [, demoPath, componentName = ''] = match;
         const demoPathOnlyLetters = demoPath.replace(/[^a-zA-Z\d]/g, '');
         const demoName = path.basename(demoPath).trim();
-        const demoDefName = `Demo${demoPathOnlyLetters}`;
         const demoCodeDefName = `Demo${demoPathOnlyLetters}Code`;
 
         const tpl = `
-            <td-doc-demo
-              demo-name="${demoName}"
-              code={${demoCodeDefName}}
-              component-name="${componentName.trim()}">
-            </td-doc-demo>
+            <td-doc-demo code={${demoCodeDefName}} show-code mode="open" demo-name="${demoName}" component-name="${componentName.trim()}"></td-doc-demo>
           `;
 
         // eslint-disable-next-line no-param-reassign

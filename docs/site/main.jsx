@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import '@common/style/web/index.less';
-import '@common/style/web/docs.less';
+import '@common/style/mobile/index.less';
+import '@common/style/mobile/docs.less';
 
 import 'tdesign-site-components';
 import 'tdesign-site-components/lib/styles/style.css';
@@ -14,5 +14,5 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root'),
+  document.getElementById('app'),
 );

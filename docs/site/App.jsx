@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { BrowserRouter, HashRouter, Switch, Route, Redirect } from 'react-router-dom';
-import siteConfig from '../site.config.js';
+import siteConfig from './site.config.js';
 import { getRoute } from './utils';
-// import locale from 'tdesign-react/locale/en_US';
-import { Loading, ConfigProvider } from 'tdesign-mobile-react';
 import packageJson from '@/package.json';
 
 const { docs: routerList } = JSON.parse(JSON.stringify(siteConfig).replace(/component:.+/g, ''));
@@ -39,7 +37,7 @@ function Components(props) {
 
   useEffect(() => {
     tdHeaderRef.current.framework = 'react';
-    tdDocSearch.current.docsearchInfo = { indexName: 'tdesign_doc_react' };
+    // tdDocSearch.current.docsearchInfo = { indexName: 'tdesign_doc_react' };
     tdDocAsideRef.current.routerList = routerList;
     tdDocAsideRef.current.onchange = ({ detail }) => {
       if (location.pathname === detail) return;
@@ -55,21 +53,19 @@ function Components(props) {
   }, []);
 
   return (
-    <ConfigProvider /* locale={locale} */>
-      <td-doc-layout>
-        <td-header ref={tdHeaderRef} slot="header">
-          {/* <td-doc-search slot="search" ref={tdDocSearch}></td-doc-search> */}
-        </td-header>
-        <td-doc-aside ref={tdDocAsideRef} title="React for Web"></td-doc-aside>
+    <td-doc-layout>
+      <td-header ref={tdHeaderRef} slot="header" platform="mobile">
+        {/* <td-doc-search slot="search" ref={tdDocSearch}></td-doc-search> */}
+      </td-header>
+      <td-doc-aside ref={tdDocAsideRef} title="React for Web"></td-doc-aside>
 
-        <td-doc-content ref={tdDocContentRef}>
-          <Suspense fallback={<Loading text="拼命加载中..." loading />}>
-            {renderRouter}
-          </Suspense>
-          <td-doc-footer slot="doc-footer"></td-doc-footer>
-        </td-doc-content>
-      </td-doc-layout>
-    </ConfigProvider>
+      <td-doc-content ref={tdDocContentRef} platform="mobile">
+        <Suspense fallback={<h2>loading...</h2>}>
+          {renderRouter}
+        </Suspense>
+        <td-doc-footer slot="doc-footer" platform="mobile"></td-doc-footer>
+      </td-doc-content>
+    </td-doc-layout>
   );
 }
 

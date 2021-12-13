@@ -1,11 +1,40 @@
-{
+﻿{
   "compilerOptions": {
-    "target": "es2016",
-
-    "module": "commonjs",
-
-    "forceConsistentCasingInFileNames": true,
-
-    "strict": true
-  }
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "esnext",
+    "outDir": "lib",
+    "declaration": true,
+    "sourceMap": true,
+    "lib": ["esnext", "dom"],
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "baseUrl": "./",
+    "paths": {
+      "tdesign-react": ["src"],
+      "tdesign-react/*": ["src/*"],
+      "@test/utils": ["test/utils"],
+      "@common/*": ["src/_common/*"],
+    },
+    "allowJs": true,
+    "checkJs": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true
+  },
+  "include": ["./src", "./global.d.ts"],
+  "exclude": [
+    "**/**/__tests__/*",
+    "examples/*",
+    "node_modules",
+    "src/_common",
+    "src/_type",
+    "dist",
+    "lib",
+    "esm",
+    "es"
+  ],
+  "compileOnSave": false
 }
