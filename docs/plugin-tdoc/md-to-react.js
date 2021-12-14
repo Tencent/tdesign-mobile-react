@@ -10,7 +10,7 @@ import { transformSync } from '@babel/core';
 
 export default function mdToReact(options) {
   const mdSegment = customRender(options);
-  const { demoDefsStr, demoCodesDefsStr } = options;
+  const { demoCodesDefsStr } = options;
 
   // let coverage = '';
   // if (mdSegment.isComponent) {
@@ -42,7 +42,6 @@ export default function mdToReact(options) {
 
       useEffect(() => {
         const completeUrl = window.location.origin + '${mdSegment.mobileUrl}';
-        console.log('completeUrl', completeUrl)
 
         tdDocHeader.current.docInfo = {
           title: \`${mdSegment.title}\`,
@@ -50,8 +49,8 @@ export default function mdToReact(options) {
         }
 
         if (isComponent) {
+          tdDocPhone.current.qrcodeUrl = completeUrl;
           tdDocTabs.current.tabs = ${JSON.stringify(mdSegment.tdDocTabs)};
-          tdDocPhone.current.QRCode.toCanvas(tdDocPhone.qrCanvas, completeUrl, { width: 84, height: 84 });
         }
         Prismjs.highlightAll();
 
