@@ -14,8 +14,8 @@
     "suppressImplicitAnyIndexErrors": true,
     "baseUrl": "./",
     "paths": {
-      "tdesign-react": ["src"],
-      "tdesign-react/*": ["src/*"],
+      "tdesign-mobile-react": ["src"],
+      "tdesign-mobile-react/*": ["src/*"],
       "@test/utils": ["test/utils"],
       "@common/*": ["src/_common/*"],
     },
