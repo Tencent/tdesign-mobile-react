@@ -1,3 +1,6 @@
-export default function Base() {
-  return <h2>hello world</h2>
+import React from 'react';
+import { Button } from 'tdesign-mobile-react';
+
+export default function () {
+  return <Button>test1</Button>;
 }

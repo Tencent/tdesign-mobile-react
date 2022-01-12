@@ -1,9 +1,9 @@
 import path from 'path';
 
-import tdocPlugin from './plugin-tdoc';
 import replace from '@rollup/plugin-replace';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
+import tdocPlugin from './plugin-tdoc';
 import pwaConfig from './pwaConfig';
 
 export default {
@@ -38,10 +38,5 @@ export default {
     https: false,
     fs: { strict: false },
   },
-  plugins: [
-    react(),
-    tdocPlugin(),
-    VitePWA(pwaConfig),
-    replace({ __DATE__: new Date().toISOString() }),
-  ],
+  plugins: [react(), tdocPlugin(), VitePWA(pwaConfig), replace({ __DATE__: new Date().toISOString() })],
 };
