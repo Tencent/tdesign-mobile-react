@@ -122,6 +122,7 @@
     "./docs"
   ],
   "dependencies": {
+    "classnames": "^2.3.1",
     "hoist-non-react-statics": "^3.3.2",
     "lodash": "^4.17.21"
   },
