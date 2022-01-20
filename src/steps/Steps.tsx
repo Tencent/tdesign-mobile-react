@@ -1,21 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import c from 'classnames';
-import Step from './Step';
+import { StepsPropsTypes } from './type';
+import './index.less';
 
-interface StepPropsTypes {
-  children: Array<typeof Step>;
-  current: number;
-  direction: 'horizontal' | 'vertical';
-}
-
-const Steps: FC<StepPropsTypes> = (stepProps) => {
+const Steps: FC<StepsPropsTypes> = (stepProps) => {
   const { children, current = 0, direction = 'horizontal' } = stepProps;
+  const childrenItems = [].concat(children);
   return (
     <div className={c('tdm-step', { 'tdm-step-vertical': direction === 'vertical' })}>
-      {children &&
-        children.map((child, index) => {
+      {childrenItems &&
+        React.Children.map<ReactNode, ReactNode>(childrenItems, (child, index) => {
           if (React.isValidElement(child)) {
-            return React.cloneElement(child, { active: index <= current, isLast: index === children.length });
+            return React.cloneElement(child, { active: index <= current, isLast: index === childrenItems.length });
           }
           return child;
         })}

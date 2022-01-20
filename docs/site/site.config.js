@@ -24,6 +24,12 @@ export default {
           path: '/react-mobile/components/button',
           component: () => import('@examples/button/button.md'),
         },
+        {
+          title: 'Steps 按钮',
+          name: 'Steps',
+          path: '/react-mobile/components/steps',
+          component: () => import('@examples/button/steps.md'),
+        },
       ],
     },
   ],

@@ -1,22 +1,15 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import c from 'classnames';
+import { PubStepPropsTypes } from './type';
 
-interface StepPropsTypes extends PubStepPropsTypes, InnerStepPropsTypes {}
-
-interface PubStepPropsTypes {
-  title: string | ReactNode;
-  description: string | ReactNode;
-  icon: string | ReactNode;
-  status: 'wait' | 'process' | 'finish' | 'error';
-}
-
+export interface StepPropsTypes extends PubStepPropsTypes, InnerStepPropsTypes {}
 interface InnerStepPropsTypes {
   active?: boolean;
   isLast?: boolean;
 }
 
 const Step: FC<StepPropsTypes> = (props) => {
-  const { title, description, icon, status } = props;
+  const { title = '', description = '', icon = '', status = 'normal' } = props;
 
   return (
     <div className={c('tdm-step-container', `step-stauts-${status}`)}>
