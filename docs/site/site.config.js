@@ -24,6 +24,12 @@ export default {
           path: '/react-mobile/components/button',
           component: () => import('@examples/button/button.md'),
         },
+        {
+          title: 'Input 输入框',
+          name: 'input',
+          path: '/react-mobile/components/input',
+          component: () => import('@examples/input/input.md'),
+        },
       ],
     },
   ],

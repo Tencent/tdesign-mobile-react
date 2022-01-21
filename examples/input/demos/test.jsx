@@ -1,3 +1,6 @@
+import React from 'react';
+import { Input } from 'tdesign-mobile-react';
+
 export default function Base() {
-  return <h2>hello world</h2>
+  return <Input></Input>
 }
