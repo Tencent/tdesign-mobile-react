@@ -39,5 +39,18 @@ export default {
         },
       ],
     },
+    {
+      title: '导航组件',
+      name: 'navigation',
+      type: 'component',
+      children: [
+        {
+          title: 'Navbar 导航条',
+          name: 'navbar',
+          path: '/react-mobile/components/navbar',
+          component: () => import('@examples/navbar/navbar.md'),
+        },
+      ],
+    },
   ],
 };
