@@ -26,5 +26,18 @@ export default {
         },
       ],
     },
+    {
+      title: '信息展示',
+      name: 'info',
+      type: 'component', // 组件文档
+      children: [
+        {
+          title: 'Grid 宫格',
+          name: 'grid',
+          path: '/react-mobile/components/grid',
+          component: () => import('@examples/grid/grid.md'),
+        },
+      ],
+    },
   ],
 };
