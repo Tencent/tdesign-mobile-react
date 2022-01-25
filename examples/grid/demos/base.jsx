@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, GridItem } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
+import TDemoHeader from '../../../docs/mobile/components/DemoHeader';
 import Layout from './layout';
 import Normal from './normal';
 import './style/index.less'
@@ -9,11 +10,8 @@ const imgUrl = 'https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png'
 
 export default function Base() {
   return (
-    <>
-      <div className="tdesign-mobile-demo-header">
-        <h1 className="title">Grid 宫格</h1>
-        <p className="summary">横向分割的点击单元，用作一组次级功能的入口。</p>
-      </div>
+    <div className='tdesign-mobile-demo'>
+      <TDemoHeader title="Grid 宫格" summary="横向分割的点击单元，用作一组次级功能的入口"/>
       <TDemoBlock title="01 类型" summary="一行三个（border）">
         <div className='tdesign-grid-base'>
           <Grid gutter={0} column={3} border={true} hover={true}>
@@ -105,6 +103,6 @@ export default function Base() {
           />
         </Grid>
       </TDemoBlock>
-    </>
+    </div>
   );
 }
