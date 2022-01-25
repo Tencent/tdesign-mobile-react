@@ -37,6 +37,12 @@ export default {
           path: '/react-mobile/components/grid',
           component: () => import('@examples/grid/grid.md'),
         },
+        {
+          title: 'Badge 徽标',
+          name: 'badge',
+          path: '/react-mobile/components/badge',
+          component: () => import('@examples/badge/badge.md'),
+        },
       ],
     },
   ],

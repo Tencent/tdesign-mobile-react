@@ -10,5 +10,10 @@ export default {
       name: 'grid',
       component: () => import('@examples/grid/demos/base.jsx'),
     },
+    {
+      title: 'Badge 徽标',
+      name: 'badge',
+      component: () => import('@examples/badge/demos/base.jsx'),
+    },
   ],
 };
