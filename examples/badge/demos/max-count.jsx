@@ -3,20 +3,28 @@ import { Badge } from 'tdesign-mobile-react';
 
 import './style/index.less';
 
-export default function Base() {
+export default function MaxCount() {
   return (
     <div className="base-demo">
       <div className="badge-item">
-        <Badge>消息</Badge>
+        <Badge count={16} size="small">
+          消息
+        </Badge>
       </div>
       <div className="badge-item">
-        <Badge offset={['10px', '10px']}>消息</Badge>
+        <Badge count={0} size="small">
+          消息
+        </Badge>
       </div>
       <div className="badge-item">
-        <Badge offset={[10, 10]}>消息</Badge>
+        <Badge count={0} showZero size="small">
+          消息
+        </Badge>
       </div>
       <div className="badge-item">
-        <Badge offset={['-10px', '-10px']}>消息</Badge>
+        <Badge count={100} maxCount={99} size="small">
+          消息
+        </Badge>
       </div>
     </div>
   );
