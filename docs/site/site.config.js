@@ -37,6 +37,12 @@ export default {
           path: '/react-mobile/components/grid',
           component: () => import('@examples/grid/grid.md'),
         },
+        {
+          title: 'Cell 单元格',
+          name: 'cell',
+          path: '/react-mobile/components/cell',
+          component: () => import('@examples/cell/cell.md'),
+        },
       ],
     },
   ],

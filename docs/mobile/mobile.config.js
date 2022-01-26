@@ -10,5 +10,10 @@ export default {
       name: 'grid',
       component: () => import('@examples/grid/demos/base.jsx'),
     },
+    {
+      title: 'Cell 单元格',
+      name: 'cell',
+      component: () => import('@examples/cell/demos/base.jsx'),
+    },
   ],
 };
