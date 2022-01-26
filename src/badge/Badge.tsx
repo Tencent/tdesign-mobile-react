@@ -42,6 +42,7 @@ const Badge = forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
   } = props;
   const { classPrefix } = useContext(ConfigContext);
   const hasChildren = useMemo(() => !!(content || children), [content, children]);
+  const isRibbon = useMemo(() => !dot && shape === 'ribbon', [shape, dot]);
   /**
    * 合并后的样式
    */
@@ -56,12 +57,12 @@ const Badge = forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     return mergedStyle;
   }, [style, color, offset]);
 
+  const badgeContainerClassName = cls(`${classPrefix}-badge`, isRibbon && `${classPrefix}-badge__ribbon--outer`);
+
   const badgeClassNames = cls(
     `${classPrefix}-badge__inner`,
     dot && `${classPrefix}-badge--dot`,
-    !dot && shape === 'ribbon'
-      ? [`${classPrefix}-badge--${shape}`, `${classPrefix}-badge__ribbon--outer`]
-      : `${classPrefix}-badge--${shape}`,
+    !dot && shape && `${classPrefix}-badge--${shape}`,
     size === 'small' ? `${classPrefix}-badge--${size}` : `${classPrefix}-badge--medium`,
     hasChildren && `${classPrefix}-badge--has-children`,
     className,
@@ -84,9 +85,8 @@ const Badge = forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     </div>
   );
 
-  if (!hasChildren) return renderBadge;
   return (
-    <div ref={ref} className={`${classPrefix}-badge`}>
+    <div ref={ref} className={badgeContainerClassName}>
       {content || children}
       {renderBadge}
     </div>
