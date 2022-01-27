@@ -15,5 +15,10 @@ export default {
       name: 'popup',
       component: () => import('tdesign-mobile-react/popup/_example/base.jsx'),
     },
+    {
+      title: 'Radio 单选框',
+      name: 'radio',
+      component: () => import('tdesign-mobile-react/radio/_example/index.jsx'),
+    },
   ],
 };

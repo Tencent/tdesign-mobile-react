@@ -24,6 +24,12 @@ export default {
           path: '/react-mobile/components/button',
           component: () => import('tdesign-mobile-react/button/button.md'),
         },
+        {
+          title: 'Radio 单选框',
+          name: 'radio',
+          path: '/react-mobile/components/radio',
+          component: () => import('tdesign-mobile-react/radio/radio.md'),
+        },
       ],
     },
     {
