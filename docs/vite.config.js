@@ -7,7 +7,7 @@ import tdocPlugin from './plugin-tdoc';
 import pwaConfig from './pwaConfig';
 
 export default {
-  base: process.env.NODE_ENV === 'production' ? '/react-mobile/' : './',
+  base: process.env.NODE_ENV === 'production' ? '/react-mobile/' : '/',
   define: {
     __VERSION__: JSON.stringify(process.env.npm_package_version),
   },
