@@ -32,5 +32,31 @@ export default {
         },
       ],
     },
+    {
+      title: '信息展示',
+      name: 'info',
+      type: 'component', // 组件文档
+      children: [
+        {
+          title: 'Grid 宫格',
+          name: 'grid',
+          path: '/react-mobile/components/grid',
+          component: () => import('@examples/grid/grid.md'),
+        },
+      ],
+    },
+    {
+      title: '消息提醒',
+      name: 'message',
+      type: 'component', // 组件文档
+      children: [
+        {
+          title: 'Popup 弹出层',
+          name: 'popup',
+          path: '/react-mobile/components/popup',
+          component: () => import('@examples/popup/popup.md'),
+        },
+      ],
+    },
   ],
 };

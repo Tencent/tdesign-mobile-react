@@ -57,7 +57,7 @@ function Components(props) {
       <td-header ref={tdHeaderRef} slot="header" platform="mobile">
         {/* <td-doc-search slot="search" ref={tdDocSearch}></td-doc-search> */}
       </td-header>
-      <td-doc-aside ref={tdDocAsideRef} title="React for Web"></td-doc-aside>
+      <td-doc-aside ref={tdDocAsideRef} title="React for Mobile"></td-doc-aside>
 
       <td-doc-content ref={tdDocContentRef} platform="mobile">
         <Suspense fallback={<h2>loading...</h2>}>
