@@ -10,5 +10,10 @@ export default {
       name: 'grid',
       component: () => import('@examples/grid/demos/base.jsx'),
     },
+    {
+      title: 'Popup 弹出层',
+      name: 'popup',
+      component: () => import('@examples/popup/demos/base.jsx'),
+    },
   ],
 };
