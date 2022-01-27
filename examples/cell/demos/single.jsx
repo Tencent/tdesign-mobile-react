@@ -10,6 +10,8 @@ export default function () {
         <Cell title="单行标题" arrow note="辅助信息" />
         <Cell title="单行标题" arrow />
         <Cell title="单行标题" arrow note="辅助信息" />
+        <Cell title="单行标题" arrow note="右侧badge" />
+        <Cell title="单行标题" arrow note="右侧switch" />
         <Cell title="单行标题" arrow leftIcon="app" />
       </CellGroup>
     </div>

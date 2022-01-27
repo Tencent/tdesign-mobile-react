@@ -10,11 +10,12 @@ export default function () {
     <div className="tdesign-grid-base">
       <CellGroup>
         <Cell title="多行标题" description="一段很长很长的内容文字" />
-        <Cell title="多行标题" description="一段很长很长的内容文字" arrow leftIcon="app" />
+        <Cell title="多行带图标" description="一段很长很长的内容文字" arrow leftIcon="app" />
         <Cell
-          title="多行标题"
+          title="多行带头像"
           description="一段很长很长的内容文字"
           image={<img src={imgUrl2} width={48} height={48} style={{ borderRadius: '50%' }} />}
+          arrow
         />
         <Cell
           title="多行带图片"
