@@ -39,5 +39,18 @@ export default {
         },
       ],
     },
+    {
+      title: '消息提醒',
+      name: 'message',
+      type: 'component', // 组件文档
+      children: [
+        {
+          title: 'Popup 弹出层',
+          name: 'popup',
+          path: '/react-mobile/components/popup',
+          component: () => import('@examples/popup/popup.md'),
+        },
+      ],
+    },
   ],
 };
