@@ -64,10 +64,9 @@ const Radio: FC<RadioProps> = (props) => {
     if (radioChecked && !allowUncheck) {
       return;
     }
-    console.log(e);
     setRadioChecked(!radioChecked);
     onChange?.(!radioChecked, { e });
-    context?.onChange(value, { e });
+    context?.onChange?.(value, { e });
   };
   const renderIcon = () => {
     let iconName = '';
@@ -100,7 +99,6 @@ const Radio: FC<RadioProps> = (props) => {
       name={name}
       className={c(`${cname}__former`)}
       checked={radioChecked}
-      value={value}
       onClick={(e) => {
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
