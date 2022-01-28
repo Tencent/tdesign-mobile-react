@@ -39,5 +39,18 @@ export default {
         },
       ],
     },
+    {
+      title: '信息提醒',
+      name: 'message',
+      type: 'component', // 组件文档
+      children: [
+        {
+          title: 'Message 信息提醒',
+          name: 'message',
+          path: '/react-mobile/components/message',
+          component: () => import('@examples/message/message.md'),
+        },
+      ],
+    },
   ],
 };

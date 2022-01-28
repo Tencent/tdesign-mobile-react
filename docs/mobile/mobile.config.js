@@ -10,5 +10,10 @@ export default {
       name: 'grid',
       component: () => import('@examples/grid/demos/base.jsx'),
     },
+    {
+      title: 'Message 消息通知',
+      name: 'message',
+      component: () => import('@examples/message/demos/base.jsx'),
+    },
   ],
 };
