@@ -123,7 +123,8 @@
   ],
   "dependencies": {
     "hoist-non-react-statics": "^3.3.2",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "tdesign-icons-react": "^0.0.8"
   },
   "config": {
     "commitizen": {

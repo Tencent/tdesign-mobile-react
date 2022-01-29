@@ -24,6 +24,12 @@ export default {
           path: '/react-mobile/components/button',
           component: () => import('@examples/button/button.md'),
         },
+        {
+          title: 'Checkbox 多选框',
+          name: 'checkbox',
+          path: '/react-mobile/components/checkbox',
+          component: () => import('@examples/checkbox/checkbox.md'),
+        },
       ],
     },
     {

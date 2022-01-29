@@ -10,5 +10,10 @@ export default {
       name: 'grid',
       component: () => import('@examples/grid/demos/base.jsx'),
     },
+    {
+      title: 'Checkbox 多选框',
+      name: 'checkbox',
+      component: () => import('@examples/checkbox/demos/index.jsx'),
+    },
   ],
 };
