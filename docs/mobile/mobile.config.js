@@ -17,5 +17,10 @@ export default {
       path: '/radio',
       component: () => import('@examples/radio/demos/index.jsx'),
     },
+    {
+      title: 'Popup 弹出层',
+      name: 'popup',
+      component: () => import('@examples/popup/demos/base.jsx'),
+    },
   ],
 };
