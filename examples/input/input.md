@@ -5,6 +5,11 @@ spline: base
 isComponent: true
 toc: false
 ---
+
+## 测试用例
+::: demo demos/test input
+:::
+
 ## API
 
 ### Input Props

@@ -1,32 +1,118 @@
-import React, { FC } from 'react';
+import React, { FC, forwardRef } from 'react';
+import { CloseCircleFilledIcon } from 'tdesign-icons-react';
 import { TdInputProps } from './type';
-// import { TElement } from '../common'
 
-export interface InputProps extends TdInputProps, React.InputHTMLAttributes<HTMLInputElement> {}
+const prefix = 't';
 
-// const renderIcon = (classPrefix: string, type: 'prefix' | 'suffix', icon: TElement) => {
-//   let result: React.ReactNode = null;
+export interface InputProps extends TdInputProps {
+  defaultValue: string;
+}
 
-//   if (icon) result = icon;
+const Input: FC<InputProps> = forwardRef((props, ref) => {
+  const {
+    align = 'left',
+    autofocus = false,
+    clearable = false,
+    disabled = false,
+    errorMessage = '',
+    label = '',
+    // maxcharacter = 0,
+    maxlength = 0,
+    name = '',
+    placeholder,
+    prefixIcon,
+    // size = 'small',
+    suffix,
+    suffixIcon,
+    type = 'text',
+    value,
+    defaultValue,
+    onBlur,
+    onChange,
+    onClear,
+    // onEnter,
+    onFocus,
+  } = props;
 
-//   if (typeof icon === 'function') result = icon();
+  function handleChange(e: React.ChangeEvent<HTMLInputElement> | React.CompositionEvent<HTMLInputElement>) {
+    const { value } = e.currentTarget;
+    console.log(value);
+    onChange && onChange(value, { e });
+  }
 
-//   if (result) {
-//     result = <span className={`${classPrefix}-input__${type}`}>{result}</span>;
-//   }
+  function handleBlur(e: React.FocusEvent<HTMLInputElement, Element>) {
+    const { value } = e.currentTarget;
+    onBlur && onBlur(value, { e });
+  }
 
-//   return result;
-// };
+  function handleEnter(e: React.KeyboardEvent<HTMLDivElement>) {
+    if (e.keyCode === 13 || e.key === 'Enter' || e.charCode === 13 || e.which === 13) {
+      // const { value } = e.target;
+      // onEnter && onEnter(value, { e });
+    }
+  }
 
-const Input: FC<TdInputProps> = () => 
-  // const { children } = props;
-   (
-    <div>
-      <span></span>
-      <input type="text" className='' />
-      <span></span>
+  function handleFocus(e: React.FocusEvent<HTMLInputElement, Element>) {
+    const { value } = e.currentTarget;
+    onFocus && onFocus(value, { e });
+  }
+
+  function handleClear(e: React.MouseEvent<SVGElement, MouseEvent>) {
+    onChange && onChange('');
+    onClear && onClear({ e });
+  }
+
+  const inputProps: any = {};
+  if (maxlength > 0) {
+    inputProps.maxLength = maxlength;
+  }
+  if (defaultValue !== undefined) {
+    inputProps.defaultValue = defaultValue;
+  }
+
+  return (
+    <div
+      className={`${prefix}-cell ${prefix}-cell--middle ${prefix}-cell--bordered ${prefix}-input ${
+        errorMessage ? `${prefix}-input__error` : ''
+      }`}
+    >
+      <div className={`${prefix}-cell__left-icon`}>{prefixIcon ? prefixIcon : <></>}</div>
+      {label && (
+        <div className={`${prefix}-cell__title`}>
+          <div className={`${prefix}-input--label`}>{label}</div>
+          <span className={`${prefix}-cell--required`}>&nbsp;*</span>
+        </div>
+      )}
+      <div className={`${prefix}-cell__note`}>
+        <div className={`${prefix}-input__wrap`}>
+          <input
+            style={{ textAlign: align }}
+            autoFocus={autofocus}
+            disabled={disabled}
+            name={name}
+            type={type}
+            className={`${prefix}-input__control`}
+            autoComplete="off"
+            placeholder={placeholder}
+            value={value}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            onKeyPress={handleEnter}
+            onFocus={handleFocus}
+            ref={ref}
+            {...inputProps}
+          />
+          {clearable && (
+            <div className={`${prefix}-input__wrap--icon`}>
+              <CloseCircleFilledIcon onClick={handleClear} />
+            </div>
+          )}
+          {suffix && <div className={`${prefix}-input__wrap--suffix`}>{suffix}</div>}
+        </div>
+        {errorMessage && <div className={`${prefix}-input__error-msg`}>{errorMessage}</div>}
+      </div>
+      <div className={`${prefix}-cell__right-icon`}>{suffixIcon ? suffixIcon : <></>}</div>
     </div>
-  )
-;
-
+  );
+});
 export default Input;
