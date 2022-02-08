@@ -8,17 +8,17 @@ toc: false
 
 ## 基础用法
 
-::: demo demos/normal grid
+::: demo _example/normal grid
 :::
 
 
 ### 边框
 
-::: demo demos/border grid
+::: demo _example/border grid
 :::
 
 ### 内容布局
-::: demo demos/layout grid
+::: demo _example/layout grid
 :::
 
 
