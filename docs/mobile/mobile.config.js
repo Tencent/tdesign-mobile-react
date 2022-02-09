@@ -15,5 +15,10 @@ export default {
       name: 'popup',
       component: () => import('@examples/popup/demos/base.jsx'),
     },
+    {
+      title: 'Slider 滑动选择器',
+      name: 'slider',
+      component: () => import('@examples/slider/demos/base.jsx'),
+    },
   ],
 };

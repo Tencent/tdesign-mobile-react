@@ -40,6 +40,19 @@ export default {
       ],
     },
     {
+      title: '输入类组件',
+      name: 'form',
+      type: 'component', // 组件文档
+      children: [
+        {
+          title: 'Slider 滑动选择器',
+          name: 'slider',
+          path: '/react-mobile/components/slider',
+          component: () => import('@examples/slider/slider.md'),
+        },
+      ],
+    },
+    {
       title: '消息提醒',
       name: 'message',
       type: 'component', // 组件文档
