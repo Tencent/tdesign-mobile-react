@@ -37,13 +37,12 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "prebuild": "rimraf es/* lib/* dist/* esm/* cjs/*",
+    "prebuild": "rimraf es/* lib/* dist/* esm/*",
     "build": "cross-env NODE_ENV=production rollup -c script/rollup.config.js && npm run build:tsc",
     "build:tsc": "concurrently \"npm:build:tsc-*\"",
     "build:tsc-es": "tsc --emitDeclarationOnly -d --outDir es/",
     "build:tsc-esm": "tsc --emitDeclarationOnly -d --outDir esm/",
-    "build:tsc-lib": " tsc --emitDeclarationOnly -d --outDir lib/",
-    "build:tsc-cjs": " tsc --emitDeclarationOnly -d --outDir cjs/"
+    "build:tsc-lib": "tsc --emitDeclarationOnly -d --outDir lib/"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
