@@ -2,20 +2,9 @@ import React, { forwardRef, useContext, useMemo } from 'react';
 import { ConfigContext } from 'tdesign-mobile-react/config-provider';
 import cls from 'classnames';
 import type { StyledProps } from '../common';
-
-import { TdBadgeProps } from './type';
+import type { TdBadgeProps } from './type';
 
 export interface BadgeProps extends TdBadgeProps, StyledProps {}
-
-const badgeDefaultProps: BadgeProps = {
-  color: '',
-  count: 0,
-  dot: false,
-  maxCount: 99,
-  shape: 'circle',
-  showZero: false,
-  size: 'medium',
-};
 
 function resolveOffset(ofs): number | string | undefined {
   if (typeof ofs === 'undefined') return ofs;
@@ -29,42 +18,49 @@ const Badge = forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     children,
     className,
     style,
-    color,
+    color = '',
     content,
-    count,
-    dot,
-    maxCount,
+    count = 0,
+    dot = false,
+    maxCount = 99,
     offset,
-    shape,
-    showZero,
-    size,
+    shape = 'circle',
+    showZero = false,
+    size = 'medium',
     ...resetProps
   } = props;
   const { classPrefix } = useContext(ConfigContext);
+  const name = useMemo(() => `${classPrefix}-badge`, [classPrefix]);
   const hasChildren = useMemo(() => !!(content || children), [content, children]);
   const isRibbon = useMemo(() => !dot && shape === 'ribbon', [shape, dot]);
-  /**
-   * 合并后的样式
-   */
+
+  // 徽标自定义样式
   const computedStyle = useMemo(() => {
     const mergedStyle = { ...style };
     if (color) mergedStyle.backgroundColor = color;
     if (offset && Array.isArray(offset)) {
-      const [right, marginTop] = offset;
+      const [right, top] = offset;
       mergedStyle.right = resolveOffset(right);
-      mergedStyle.marginTop = resolveOffset(marginTop);
+      mergedStyle.top = resolveOffset(top);
     }
     return mergedStyle;
   }, [style, color, offset]);
 
-  const badgeContainerClassName = cls(`${classPrefix}-badge`, isRibbon && `${classPrefix}-badge__ribbon--outer`);
+  // 徽标外层样式类
+  const badgeClasses = cls({
+    [`${name}`]: true,
+    [`${name}__ribbon--outer`]: isRibbon,
+  });
 
-  const badgeClassNames = cls(
-    `${classPrefix}-badge__inner`,
-    dot && `${classPrefix}-badge--dot`,
-    !dot && shape && `${classPrefix}-badge--${shape}`,
-    size === 'small' ? `${classPrefix}-badge--${size}` : `${classPrefix}-badge--medium`,
-    hasChildren && `${classPrefix}-badge--has-children`,
+  // 徽标内层样式类
+  const badgeInnerClasses = cls(
+    {
+      [`${name}__inner`]: true,
+      [`${name}--dot`]: dot,
+      [`${name}--${shape}`]: !dot && shape,
+      [`${classPrefix}-badge--has-children`]: hasChildren,
+    },
+    size === 'small' ? `${name}--${size}` : `${name}--medium`,
     className,
   );
 
@@ -80,20 +76,19 @@ const Badge = forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
   }, [dot, count, maxCount, showZero]);
 
   const renderBadge = (
-    <div className={badgeClassNames} style={computedStyle} {...resetProps}>
+    <div className={badgeInnerClasses} style={computedStyle}>
       {renderBadgeContent}
     </div>
   );
 
   return (
-    <div ref={ref} className={badgeContainerClassName}>
-      {content || children}
+    <div ref={ref} className={badgeClasses} {...resetProps}>
       {renderBadge}
+      {content || children}
     </div>
   );
 });
 
-Badge.defaultProps = badgeDefaultProps;
 Badge.displayName = 'Badge';
 
 export default Badge;
