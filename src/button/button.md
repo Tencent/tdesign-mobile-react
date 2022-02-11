@@ -8,13 +8,10 @@ toc: false
 
 ## 测试用例1
 
-::: demo demos/test button
+::: demo _example/test button
 :::
 
-## 测试用例2
 
-::: demo demos/test2 button
-:::
 ## API
 ### Button Props
 

@@ -22,7 +22,7 @@ export default {
           title: 'Button 按钮',
           name: 'button',
           path: '/react-mobile/components/button',
-          component: () => import('@examples/button/button.md'),
+          component: () => import('tdesign-mobile-react/button/button.md'),
         },
       ],
     },
@@ -35,7 +35,20 @@ export default {
           title: 'Grid 宫格',
           name: 'grid',
           path: '/react-mobile/components/grid',
-          component: () => import('@examples/grid/grid.md'),
+          component: () => import('tdesign-mobile-react/grid/grid.md'),
+        },
+      ],
+    },
+    {
+      title: '消息提醒',
+      name: 'message',
+      type: 'component', // 组件文档
+      children: [
+        {
+          title: 'Popup 弹出层',
+          name: 'popup',
+          path: '/react-mobile/components/popup',
+          component: () => import('tdesign-mobile-react/popup/popup.md'),
         },
         {
           title: 'Badge 徽标',
