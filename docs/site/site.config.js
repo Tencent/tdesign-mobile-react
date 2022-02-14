@@ -54,7 +54,7 @@ export default {
           title: 'Badge 徽标',
           name: 'badge',
           path: '/react-mobile/components/badge',
-          component: () => import('@examples/badge/badge.md'),
+          component: () => import('tdesign-mobile-react/badge/badge.md'),
         },
       ],
     },

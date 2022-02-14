@@ -1,15 +1,15 @@
 import React from 'react';
 import Color from './color';
 import Offset from './offset';
-import Base from './Base';
+import Dist from './dist';
 import Shape from './shape';
 import Text from './text';
 import MaxCount from './max-count';
 
-export default function Dist() {
+export default function Base() {
   return (
     <>
-      <Base />
+      <Dist />
       <MaxCount />
       <Text />
       <Shape />
