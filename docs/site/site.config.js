@@ -30,6 +30,12 @@ export default {
           path: '/react-mobile/components/radio',
           component: () => import('tdesign-mobile-react/radio/radio.md'),
         },
+        {
+          title: 'Divider 分割线',
+          name: 'divider',
+          path: '/react-mobile/components/divider',
+          component: () => import('tdesign-mobile-react/divider/divider.md'),
+        },
       ],
     },
     {

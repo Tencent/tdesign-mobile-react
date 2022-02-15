@@ -6,6 +6,11 @@ export default {
       component: () => import('tdesign-mobile-react/button/_example/base.jsx'),
     },
     {
+      title: 'Divider 分割线',
+      name: 'divider',
+      component: () => import('tdesign-mobile-react/divider/_example/base.jsx'),
+    },
+    {
       title: 'Grid 宫格',
       name: 'grid',
       component: () => import('tdesign-mobile-react/grid/_example/base.jsx'),
