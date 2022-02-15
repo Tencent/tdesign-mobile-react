@@ -2,52 +2,36 @@ import React from 'react';
 import { Icon } from 'tdesign-icons-react';
 import { Radio } from 'tdesign-mobile-react/radio';
 
+import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
+
 export default function () {
   const ICON1 = <Icon className="t-icon" name="notification-filled" />;
   const ICON2 = <Icon className="t-icon" name="notification" />;
   return (
     <>
-      <Radio>单选</Radio>
-      <div>-------------------------------------</div>
-      <Radio
-        onChange={(checked) => {
-          if (checked) return console.log('checked');
-          return console.log('unchecked');
-        }}
-      >
-        单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选选单选单选单选单选单选单选单选选单选单选单选单选单选单选单选
-      </Radio>
-      <div>-------------------------------------</div>
-      <Radio disabled>
-        单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选选单选单选单选单选单选单选单选选单选单选单选单选单选单选单选
-      </Radio>
-      <div>-------------------------------------</div>
-      <Radio contentDisabled>内容区域不可点击</Radio>
-      <div>-------------------------------------</div>
-      <Radio
-        allowUncheck
-        onChange={(checked) => {
-          if (checked) return console.log('checked');
-          return console.log('unchecked');
-        }}
-      >
-        可取消选择
-      </Radio>
-      <div>-------------------------------------</div>
-      <Radio checked>直接被选中</Radio>
-      <div>-------------------------------------</div>
-      <Radio content={<p style={{ color: 'red' }}>自定义内容</p>}></Radio>
-      <div>-------------------------------------</div>
-      <Radio>
-        <p style={{ color: 'red' }}>自定义内容2</p>
-      </Radio>
-      <div>-------------------------------------</div>
-      <Radio icon="stroke-line">stroke line</Radio>
-      <div>-------------------------------------</div>
-      <Radio icon={[ICON1, ICON2]}>自定义图标</Radio>
-      <div>-------------------------------------</div>
-      <Radio align="right">右侧选择</Radio>
-      <div>-------------------------------------</div>
+      <TDemoBlock title="基础使用" summary="单选框基础使用方法">
+        <Radio></Radio>
+        <Radio>单选</Radio>
+        <Radio>
+          单选多行显示单选多行显示单选多行显示单选多行显示单选多行显示单选多行显示单选多行显示单选多行显示单选多行显示单选多行显示单选多行显示
+        </Radio>
+        <Radio disabled>单选不可用</Radio>
+        <Radio
+          allowUncheck
+          onChange={(checked) => {
+            if (checked) return console.log('checked');
+            return console.log('unchecked');
+          }}
+        >
+          可取消选择
+        </Radio>
+        <Radio checked>直接被选中</Radio>
+        <Radio content={<p style={{ color: 'red' }}>自定义内容</p>}></Radio>
+        <Radio content={<p style={{ color: 'red' }}>内容区域不可点击</p>} contentDisabled></Radio>
+        <Radio icon="stroke-line">stroke line</Radio>
+        <Radio icon={[ICON1, ICON2]}>自定义图标</Radio>
+        <Radio align="right">右侧选择</Radio>
+      </TDemoBlock>
     </>
   );
 }

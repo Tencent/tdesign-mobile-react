@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, ReactNode, useContext, useState } from 'react';
+import React, { CSSProperties, FC, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import c from 'classnames';
 import { Icon } from 'tdesign-icons-react';
 import { TdRadioProps } from './type';
@@ -25,14 +25,14 @@ const getAlignStyle = (align): CSSProperties => ({
   flexDirection: align === ALIGN.LEFT ? 'row' : 'row-reverse',
 });
 
+// TODO: 修改为统一禁用样式
+const getDisabledStyle = (isDisabled): CSSProperties => ({
+  color: isDisabled ? '#DCDCDC' : '',
+});
+
 const Radio: FC<RadioProps> = (props) => {
   const context = useContext(RadioGroupContext);
-  let $props = props;
-  if (context) {
-    if (props.value && context.value[0] === props.value) {
-      $props = { ...$props, checked: true };
-    }
-  }
+  const inputRef = useRef();
 
   const {
     align = ALIGN.LEFT,
@@ -50,11 +50,21 @@ const Radio: FC<RadioProps> = (props) => {
     name,
     value,
     onChange,
-  } = $props;
+  } = props;
 
-  const [radioChecked, setRadioChecked] = useState<boolean>(checked || defaultChecked || false);
+  const [radioChecked, setRadioChecked] = useState<boolean>(checked || defaultChecked);
 
-  const switchRadioChecked = (e, area?: string) => {
+  useEffect(() => {
+    if (context) {
+      if (context.value[0] === value) {
+        setRadioChecked(true);
+      } else {
+        setRadioChecked(false);
+      }
+    }
+  }, [context, value]);
+
+  const switchRadioChecked = (area?: string) => {
     if (context?.disabled || disabled) {
       return;
     }
@@ -65,8 +75,8 @@ const Radio: FC<RadioProps> = (props) => {
       return;
     }
     setRadioChecked(!radioChecked);
-    onChange?.(!radioChecked, { e });
-    context?.onChange?.(value, { e });
+    onChange?.(!radioChecked, { e: inputRef.current });
+    context?.onChange?.(value, { e: inputRef.current });
   };
   const renderIcon = () => {
     let iconName = '';
@@ -92,9 +102,48 @@ const Radio: FC<RadioProps> = (props) => {
     return <Icon className="t-icon" name={iconName} />;
   };
 
+  const contentStyle = getLimitRow(maxContentRow);
+  const labelStyle = getLimitRow(maxLabelRow);
+  const alignStyle = getAlignStyle(align);
+  const disabledStyle = getDisabledStyle(context?.disabled || disabled);
+
+  const renderContent = () => {
+    let contentNode = null;
+    const contentTitle = null;
+    const contentTitleStyle = !contentTitle && { marginTop: 0 };
+    if (content) {
+      contentNode = (
+        <span
+          className={`${cname}__content-wrap`}
+          onClick={() => {
+            switchRadioChecked('content');
+          }}
+          style={disabledStyle}
+        >
+          {contentTitle && (
+            <span
+              className={c(`${cname}__content-title`, { [`${cname}__content-right-title`]: align === ALIGN.RIGHT })}
+            ></span>
+          )}
+          <span className={`${cname}__content-inner`} style={{ ...contentStyle, ...contentTitleStyle }}>
+            {content}
+          </span>
+        </span>
+      );
+    } else if (children || label) {
+      contentNode = (
+        <span className={`${cname}__label-wrap`} style={{ ...labelStyle, ...disabledStyle }}>
+          {children || label}
+        </span>
+      );
+    }
+    return contentNode;
+  };
+
   const input = (
     <input
       type="radio"
+      ref={inputRef}
       readOnly
       name={name}
       className={c(`${cname}__former`)}
@@ -106,25 +155,19 @@ const Radio: FC<RadioProps> = (props) => {
     />
   );
 
-  const contentStyle = getLimitRow(maxContentRow);
-  const labelStyle = getLimitRow(maxLabelRow);
-  const alignStyle = getAlignStyle(align);
   return (
-    <div className={c(`${cname}`, { 't-is-disabled': context?.disabled || disabled, 't-is-checked': radioChecked })}>
-      <span className={`${cname}__content-wrap`} style={alignStyle}>
-        <span onClick={(e) => switchRadioChecked(e)}>
-          {input}
-          <span className={`${cname}__icon-wrap`}>{renderIcon()}</span>
-        </span>
-        <span
-          className={c(`${cname}__label-wrap`, { 't-is-disabled': context?.disabled || disabled })}
-          style={{ color: context?.disabled || disabled ? '#DCDCDC' : '' }}
-          onClick={(e) => switchRadioChecked(e, 'content')}
-        >
-          {content && !(children || label) && <span style={contentStyle}>{content}</span>}
-          {(children || label) && <span style={labelStyle}>{children || label}</span>}
-        </span>
+    <div
+      className={c(`${cname}`, { 't-is-disabled': context?.disabled || disabled, 't-is-checked': radioChecked })}
+      style={alignStyle}
+    >
+      <span
+        className={c(`${cname}__icon-wrap`, { [`${cname}__icon-right-wrap`]: align === ALIGN.RIGHT })}
+        onClick={() => switchRadioChecked()}
+      >
+        {input}
+        {renderIcon()}
       </span>
+      {renderContent()}
     </div>
   );
 };

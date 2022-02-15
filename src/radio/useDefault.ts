@@ -19,6 +19,7 @@ export default function useDefault<T, P extends any[]>(
   return [
     internalValue,
     (newValue, ...args) => {
+      console.log('new Value: ', newValue);
       setInternalValue(newValue);
       if (typeof onChange === 'function') {
         onChange(newValue, ...args);
