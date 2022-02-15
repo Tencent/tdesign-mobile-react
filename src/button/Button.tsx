@@ -42,7 +42,7 @@ const Button = forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>
           [`${classPrefix}-size-full-width`]: block,
         },
       )}
-      onClick={!loading && !disabled && onClick}
+      onClick={!loading && !disabled ? onClick : undefined}
       disabled={disabled || loading}
     >
       {content || children || ''}
