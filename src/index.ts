@@ -5,3 +5,4 @@ export * from './mask';
 export * from './popup';
 export * from './radio';
 export * from './divider';
+export * from './switch';

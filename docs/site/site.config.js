@@ -68,6 +68,12 @@ export default {
           path: '/react-mobile/components/badge',
           component: () => import('tdesign-mobile-react/badge/badge.md'),
         },
+        {
+          title: 'Switch 开关',
+          name: 'switch',
+          path: '/react-mobile/components/switch',
+          component: () => import('tdesign-mobile-react/switch/switch.md'),
+        },
       ],
     },
   ],
