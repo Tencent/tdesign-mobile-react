@@ -25,6 +25,12 @@ export default {
           component: () => import('tdesign-mobile-react/button/button.md'),
         },
         {
+          title: 'Radio 单选框',
+          name: 'radio',
+          path: '/react-mobile/components/radio',
+          component: () => import('tdesign-mobile-react/radio/radio.md'),
+        },
+        {
           title: 'Divider 分割线',
           name: 'divider',
           path: '/react-mobile/components/divider',
