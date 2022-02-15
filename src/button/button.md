@@ -1,15 +1,4 @@
----
-title: Button 按钮
-# description: 
-spline: base
-isComponent: true
-toc: false
----
-
-## 测试用例1
-
-::: demo _example/test button
-:::
+:: BASE_DOC ::
 
 
 ## API
