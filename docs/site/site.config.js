@@ -24,6 +24,12 @@ export default {
           path: '/react-mobile/components/button',
           component: () => import('tdesign-mobile-react/button/button.md'),
         },
+        {
+          title: 'Divider 分割线',
+          name: 'divider',
+          path: '/react-mobile/components/divider',
+          component: () => import('tdesign-mobile-react/divider/divider.md'),
+        },
       ],
     },
     {
