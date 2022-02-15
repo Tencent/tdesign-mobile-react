@@ -20,5 +20,10 @@ export default {
       name: 'popup',
       component: () => import('tdesign-mobile-react/popup/_example/base.jsx'),
     },
+    {
+      title: 'Badge 徽标',
+      name: 'badge',
+      component: () => import('tdesign-mobile-react/badge/_example/base.jsx'),
+    },
   ],
 };

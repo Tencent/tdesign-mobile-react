@@ -56,6 +56,12 @@ export default {
           path: '/react-mobile/components/popup',
           component: () => import('tdesign-mobile-react/popup/popup.md'),
         },
+        {
+          title: 'Badge 徽标',
+          name: 'badge',
+          path: '/react-mobile/components/badge',
+          component: () => import('tdesign-mobile-react/badge/badge.md'),
+        },
       ],
     },
   ],
