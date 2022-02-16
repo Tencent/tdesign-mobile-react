@@ -3,7 +3,7 @@ export default {
     {
       title: 'Button 按钮',
       name: 'button',
-      component: () => import('tdesign-mobile-react/button/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/button/_example/index.jsx'),
     },
     {
       title: 'Divider 分割线',
