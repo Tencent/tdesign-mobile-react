@@ -36,6 +36,12 @@ export default {
           path: '/react-mobile/components/divider',
           component: () => import('tdesign-mobile-react/divider/divider.md'),
         },
+        {
+          title: 'Icon 图标',
+          name: 'button',
+          path: '/react-mobile/components/icon',
+          component: () => import('tdesign-mobile-react/icon/icon.md'),
+        },
       ],
     },
     {

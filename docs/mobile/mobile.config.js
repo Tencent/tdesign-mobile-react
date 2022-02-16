@@ -11,6 +11,11 @@ export default {
       component: () => import('tdesign-mobile-react/divider/_example/base.jsx'),
     },
     {
+      title: 'Icon 图标',
+      name: 'icon',
+      component: () => import('tdesign-mobile-react/icon/_example/index.jsx'),
+    },
+    {
       title: 'Grid 宫格',
       name: 'grid',
       component: () => import('tdesign-mobile-react/grid/_example/base.jsx'),
