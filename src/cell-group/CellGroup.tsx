@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { TdCellGroupProps } from './type';
 
 const prefix = 't';
 const name = `${prefix}-cell-group`;
 
-const CellGroup: FC<TdCellGroupProps> = (prop) => {
+const CellGroup: React.FC<TdCellGroupProps> = (prop) => {
   const { children, bordered = false, title = '' } = prop;
 
   return (

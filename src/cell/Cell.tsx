@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { Icon } from 'tdesign-icons-react';
 import { TdCellProps } from './type';
@@ -12,7 +12,7 @@ enum AlignType {
   BOTTOM = 'bottom',
 }
 
-const Cell: FC<TdCellProps> = (props) => {
+const Cell: React.FC<TdCellProps> = (props) => {
   const {
     align = AlignType.MIDDLE,
     arrow = false,
@@ -33,10 +33,6 @@ const Cell: FC<TdCellProps> = (props) => {
 
   const isLeft = !!leftIcon || !!image;
 
-  const cellLeftIcon = leftIcon && (typeof leftIcon === 'string' ? <Icon name={leftIcon} /> : leftIcon);
-
-  const cellRightIcon = typeof rightIcon === 'string' ? <Icon name={rightIcon} /> : rightIcon;
-
   const cellImage = typeof image === 'string' ? <img src={image} className={`${name}__image`} /> : image;
 
   const content = (
@@ -48,7 +44,7 @@ const Cell: FC<TdCellProps> = (props) => {
     >
       {isLeft && (
         <div className={`${name}__left-icon`}>
-          {cellLeftIcon}
+          {leftIcon}
           {cellImage}
         </div>
       )}
@@ -63,7 +59,7 @@ const Cell: FC<TdCellProps> = (props) => {
       </div>
       {note && <div className={`${name}__note`}>{note}</div>}
       {arrow && <Icon className={`${name}-content-arrow`} name="chevron-right" size={24} color="#0006" />}
-      {rightIcon && <div className={`${name}__right-icon`}>{cellRightIcon}</div>}
+      {rightIcon && <div className={`${name}__right-icon`}>{rightIcon}</div>}
     </div>
   );
 

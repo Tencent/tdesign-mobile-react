@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
-import { BrowserRouter, HashRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import siteConfig from './site.config.js';
 import { getRoute } from './utils';
 import packageJson from '@/package.json';
@@ -70,10 +70,8 @@ function Components(props) {
 }
 
 function App() {
-  const Router = process.env.NODE_ENV === 'preview' ? HashRouter : BrowserRouter;
-
   return (
-    <Router>
+    <BrowserRouter>
       <Switch>
         <Redirect exact from="/react-mobile" to="/react-mobile/components/button" />
         <Redirect exact from="/react-mobile/components" to="/react-mobile/components/button" />
@@ -81,7 +79,7 @@ function App() {
         <Redirect from="*" to="/react-mobile/components/button" />
         {/* TODO: 404 */}
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
 
