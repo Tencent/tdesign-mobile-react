@@ -166,12 +166,12 @@ export default {
       title: '数据展示',
       type: 'component',
       children: [
-        // {
-        //   title: 'Avatar 头像',
-        //   name: 'avatar',
-        //   path: '/mobile-react/components/avatar',
-        //   component: () => import('tdesign-mobile-react/avatar/avatar.md'),
-        // },
+        {
+          title: 'Avatar 头像',
+          name: 'avatar',
+          path: '/mobile-react/components/avatar',
+          component: () => import('tdesign-mobile-react/avatar/avatar.md'),
+        },
         {
           title: 'Badge 徽标',
           name: 'badge',
