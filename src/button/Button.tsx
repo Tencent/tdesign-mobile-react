@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import classnames from 'classnames';
+import { LoadingIcon } from 'tdesign-icons-react';
 import useConfig from '../_util/useConfig';
 import { TdButtonProps } from './type';
 import noop from '../_util/noop';
@@ -14,7 +15,7 @@ const Button = forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>
     content = '',
     disabled = false,
     ghost = false,
-    // icon,
+    icon = null,
     loading = false,
     shape = 'square',
     size = 'medium',
@@ -45,6 +46,7 @@ const Button = forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>
       onClick={!loading && !disabled ? onClick : undefined}
       disabled={disabled || loading}
     >
+      {loading ? <LoadingIcon /> : icon}
       {content || children || ''}
     </button>
   );
