@@ -24,6 +24,24 @@ export default {
           path: '/react-mobile/components/button',
           component: () => import('tdesign-mobile-react/button/button.md'),
         },
+        {
+          title: 'Radio 单选框',
+          name: 'radio',
+          path: '/react-mobile/components/radio',
+          component: () => import('tdesign-mobile-react/radio/radio.md'),
+        },
+        {
+          title: 'Divider 分割线',
+          name: 'divider',
+          path: '/react-mobile/components/divider',
+          component: () => import('tdesign-mobile-react/divider/divider.md'),
+        },
+        {
+          title: 'Icon 图标',
+          name: 'button',
+          path: '/react-mobile/components/icon',
+          component: () => import('tdesign-mobile-react/icon/icon.md'),
+        },
       ],
     },
     {
@@ -62,6 +80,12 @@ export default {
           name: 'popup',
           path: '/react-mobile/components/popup',
           component: () => import('tdesign-mobile-react/popup/popup.md'),
+        },
+        {
+          title: 'Badge 徽标',
+          name: 'badge',
+          path: '/react-mobile/components/badge',
+          component: () => import('tdesign-mobile-react/badge/badge.md'),
         },
       ],
     },
