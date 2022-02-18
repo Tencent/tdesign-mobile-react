@@ -66,7 +66,7 @@ export default {
           title: 'Slider 滑动选择器',
           name: 'slider',
           path: '/react-mobile/components/slider',
-          component: () => import('@examples/slider/slider.md'),
+          component: () => import('tdesign-mobile-react/slider/slider.md'),
         },
       ],
     },
