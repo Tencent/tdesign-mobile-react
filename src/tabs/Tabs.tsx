@@ -1,0 +1,151 @@
+import React, { FC, useContext, useEffect, useRef, useState } from 'react';
+import classnames from 'classnames';
+import { ConfigContext } from 'tdesign-mobile-react/config-provider';
+import { TdTabsProps } from './type';
+import TabPanel from './TabPanel';
+import TabContext from './context';
+
+const Tabs: FC<TdTabsProps> = (props) => {
+  const {
+    children,
+    content,
+    defaultValue = '',
+    list = [],
+    animation,
+    placement,
+    showBottomLine = true,
+    size,
+    change,
+  } = props;
+  const [activeKey, setActiveKey] = useState<number | string>('');
+  const [lineStyle, setLineStyle] = useState({});
+  const [wrapWidth, setWrapWidth] = useState(0);
+
+  const { classPrefix } = useContext(ConfigContext);
+  const horiRef = useRef(null);
+  const wrapRef = useRef(null);
+  const vetiRef = useRef(null);
+
+  const onChange = (value) => {
+    setActiveKey(value);
+    change && change(value);
+  };
+
+  useEffect(() => {
+    if (placement === 'left' || placement === 'right') {
+      const vetiIndfo = vetiRef.current?.getBoundingClientRect();
+      if (vetiIndfo) {
+        const { height } = vetiIndfo || {};
+        const offsetTop = vetiRef.current?.offsetTop;
+        const sTop = wrapRef.current?.scrollTop;
+        const linePosition = offsetTop + sTop;
+        const lStyle = {
+          width: '2px',
+          height: `${height}px`,
+          left: 0,
+          top: `${linePosition}px`,
+        };
+        const rStyle = {
+          width: '2px',
+          height: `${height}px`,
+          right: 0,
+          top: `${linePosition}px`,
+        };
+        if (placement === 'left') {
+          setLineStyle(lStyle);
+        }
+        if (placement === 'right') {
+          setLineStyle(rStyle);
+        }
+      }
+    } else {
+      const eleInfo = horiRef.current?.getBoundingClientRect();
+      if (eleInfo) {
+        const sLeft = wrapRef.current?.scrollLeft;
+        const { width, left } = eleInfo || {};
+        const linePosition = left + sLeft;
+        const warpEle = wrapRef?.current;
+        warpEle.scrollLeft = linePosition - wrapWidth / 2;
+
+        const tbStyle = {
+          width: `${width}px`,
+          left: `${linePosition}px`,
+        };
+        setLineStyle(tbStyle);
+      }
+    }
+  }, [activeKey, wrapWidth, placement, defaultValue, classPrefix]);
+
+  useEffect(() => {
+    const warapWidth = wrapRef.current?.getBoundingClientRect().width;
+    setWrapWidth(warapWidth);
+  }, []);
+
+  useEffect(() => {
+    if (activeKey) return;
+    if (defaultValue) {
+      onChange(defaultValue);
+      return;
+    }
+    if (list.length > 0) {
+      onChange(list[0]?.value);
+      return;
+    }
+    if (!children) return;
+    if (Array.isArray(children)) {
+      onChange(children[0]?.props?.value);
+    } else {
+      onChange(children?.props.value);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [classPrefix, defaultValue]);
+
+  return (
+    <div
+      className={classnames(
+        `${classPrefix}-tabs`,
+        size === 'large' && `${classPrefix}-size-l`,
+        size === 'small' && `${classPrefix}-size-s`,
+        placement && `${classPrefix}-is-${placement}`,
+      )}
+    >
+      <div ref={wrapRef} className={classnames(`${classPrefix}-tabs__nav `, `${classPrefix}-is-scrollable `)}>
+        <div className={classnames(`${classPrefix}-tabs__nav-wrap`, `${classPrefix}-tabs__nav-container`)}>
+          <TabContext.Provider value={{ activeKey, vetiRef, horiRef, onChange }}>
+            {children}
+            {list &&
+              list.length > 0 &&
+              list.map((item) => (
+                <TabPanel key={item.value} value={item.value} label={item.label} disabled={item.disabled}></TabPanel>
+              ))}
+          </TabContext.Provider>
+          {showBottomLine && (
+            <div
+              style={{
+                ...animation,
+                ...lineStyle,
+              }}
+              className={`${classPrefix}-tabs__nav-line`}
+            ></div>
+          )}
+        </div>
+      </div>
+      {(children || content) && (
+        <div
+          className={classnames(
+            `${classPrefix}-tabs__content`,
+            (placement === 'left' || placement === 'right') && `${classPrefix}-tabs__panel`,
+          )}
+        >
+          {children &&
+            Array.isArray(children) &&
+            children.map((item) => <>{activeKey === item?.props?.value && <>{item.props.children}</>}</>)}
+          {children && typeof children === 'object' && <>{children?.props?.children}</>}
+          {content}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Tabs;
