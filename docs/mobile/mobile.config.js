@@ -16,6 +16,11 @@ export default {
       component: () => import('tdesign-mobile-react/icon/_example/index.jsx'),
     },
     {
+      title: 'Tabs 选项卡',
+      name: 'tabs',
+      component: () => import('tdesign-mobile-react/tabs/_example/index.jsx'),
+    },
+    {
       title: 'Grid 宫格',
       name: 'grid',
       component: () => import('tdesign-mobile-react/grid/_example/base.jsx'),

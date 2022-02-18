@@ -45,6 +45,19 @@ export default {
       ],
     },
     {
+      title: '导航',
+      name: 'tabs',
+      type: 'navigation', // 组件文档
+      children: [
+        {
+          title: 'Tabs 选项卡',
+          name: 'tabs',
+          path: '/react-mobile/components/tabs',
+          component: () => import('tdesign-mobile-react/tabs/tabs.md'),
+        },
+      ],
+    },
+    {
       title: '信息展示',
       name: 'info',
       type: 'component', // 组件文档
