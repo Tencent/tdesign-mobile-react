@@ -18,7 +18,7 @@ export default {
     {
       title: 'Tabs 选项卡',
       name: 'tabs',
-      component: () => import('tdesign-mobile-react/tabs/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/tabs/_example/index.jsx'),
     },
     {
       title: 'Grid 宫格',

@@ -1,15 +1,14 @@
 import React, { FC, useContext } from 'react';
 import classnames from 'classnames';
-import { ConfigContext } from 'tdesign-mobile-react/config-provider';
+import useConfig from '../_util/useConfig';
 import { TdTabPanelProps } from './type';
 import TabContext from './context';
 
 const TabPanel: FC<TdTabPanelProps> = (props) => {
-  const { value, label, disabled, children } = props;
+  const { value, label, disabled } = props;
 
-  console.log('tabpannel', children);
-
-  const { classPrefix } = useContext(ConfigContext);
+  const { classPrefix } = useConfig();
+  const tabPrefix = classPrefix || '';
   const tabProps = useContext(TabContext);
   const { activeKey, horiRef, vetiRef, onChange } = tabProps;
 
@@ -25,9 +24,9 @@ const TabPanel: FC<TdTabPanelProps> = (props) => {
         }
       }}
       className={classnames(
-        `${classPrefix}-tabs__nav-item`,
-        activeKey === value && `${classPrefix}-is-active`,
-        disabled && `${classPrefix}-is-disabled`,
+        `${tabPrefix}-tabs__nav-item`,
+        activeKey === value && `${tabPrefix}-is-active`,
+        disabled && `${tabPrefix}-is-disabled`,
       )}
       key={value}
       onClick={() => change()}
@@ -38,7 +37,7 @@ const TabPanel: FC<TdTabPanelProps> = (props) => {
             horiRef.current = ref;
           }
         }}
-        className={`${classPrefix}-tabs__nav-item-btn`}
+        className={`${tabPrefix}-tabs__nav-item-btn`}
       >
         {label}
       </span>

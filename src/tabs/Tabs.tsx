@@ -1,6 +1,6 @@
-import React, { FC, useContext, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import classnames from 'classnames';
-import { ConfigContext } from 'tdesign-mobile-react/config-provider';
+import useConfig from '../_util/useConfig';
 import { TdTabsProps } from './type';
 import TabPanel from './TabPanel';
 import TabContext from './context';
@@ -21,7 +21,8 @@ const Tabs: FC<TdTabsProps> = (props) => {
   const [lineStyle, setLineStyle] = useState({});
   const [wrapWidth, setWrapWidth] = useState(0);
 
-  const { classPrefix } = useContext(ConfigContext);
+  const { classPrefix } = useConfig();
+  const tabPrefix = classPrefix || 't';
   const horiRef = useRef(null);
   const wrapRef = useRef(null);
   const vetiRef = useRef(null);
@@ -74,7 +75,7 @@ const Tabs: FC<TdTabsProps> = (props) => {
         setLineStyle(tbStyle);
       }
     }
-  }, [activeKey, wrapWidth, placement, defaultValue, classPrefix]);
+  }, [activeKey, wrapWidth, placement, defaultValue, tabPrefix]);
 
   useEffect(() => {
     const warapWidth = wrapRef.current?.getBoundingClientRect().width;
@@ -98,19 +99,19 @@ const Tabs: FC<TdTabsProps> = (props) => {
       onChange(children?.props.value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [classPrefix, defaultValue]);
+  }, [tabPrefix, defaultValue]);
 
   return (
     <div
       className={classnames(
-        `${classPrefix}-tabs`,
-        size === 'large' && `${classPrefix}-size-l`,
-        size === 'small' && `${classPrefix}-size-s`,
-        placement && `${classPrefix}-is-${placement}`,
+        `${tabPrefix}-tabs`,
+        size === 'large' && `${tabPrefix}-size-l`,
+        size === 'small' && `${tabPrefix}-size-s`,
+        placement && `${tabPrefix}-is-${placement}`,
       )}
     >
-      <div ref={wrapRef} className={classnames(`${classPrefix}-tabs__nav `, `${classPrefix}-is-scrollable `)}>
-        <div className={classnames(`${classPrefix}-tabs__nav-wrap`, `${classPrefix}-tabs__nav-container`)}>
+      <div ref={wrapRef} className={classnames(`${tabPrefix}-tabs__nav `, `${tabPrefix}-is-scrollable `)}>
+        <div className={classnames(`${tabPrefix}-tabs__nav-wrap`, `${tabPrefix}-tabs__nav-container`)}>
           <TabContext.Provider value={{ activeKey, vetiRef, horiRef, onChange }}>
             {children}
             {list &&
@@ -125,7 +126,7 @@ const Tabs: FC<TdTabsProps> = (props) => {
                 ...animation,
                 ...lineStyle,
               }}
-              className={`${classPrefix}-tabs__nav-line`}
+              className={`${tabPrefix}-tabs__nav-line`}
             ></div>
           )}
         </div>
@@ -133,8 +134,8 @@ const Tabs: FC<TdTabsProps> = (props) => {
       {(children || content) && (
         <div
           className={classnames(
-            `${classPrefix}-tabs__content`,
-            (placement === 'left' || placement === 'right') && `${classPrefix}-tabs__panel`,
+            `${tabPrefix}-tabs__content`,
+            (placement === 'left' || placement === 'right') && `${tabPrefix}-tabs__panel`,
           )}
         >
           {children &&
