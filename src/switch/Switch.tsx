@@ -4,7 +4,7 @@ import { TdSwitchProps } from './type';
 import { StyledProps } from '../common';
 import useConfig from '../_util/useConfig';
 
-interface SwitchProps extends TdSwitchProps, StyledProps {}
+export interface SwitchProps extends TdSwitchProps, StyledProps {}
 
 const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   ({ customValue = [true, false], value, defaultValue, label, onChange, disabled, className, style }, ref) => {
