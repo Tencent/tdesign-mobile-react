@@ -33,7 +33,7 @@ export default {
     {
       title: 'Message 消息通知',
       name: 'message',
-      component: () => import('@examples/message/demos/base.jsx'),
+      component: () => import('tdesign-mobile-react/message/_example/base.jsx'),
     },
   ],
 };

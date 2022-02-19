@@ -68,18 +68,11 @@ export default {
           path: '/react-mobile/components/badge',
           component: () => import('tdesign-mobile-react/badge/badge.md'),
         },
-      ],
-    },
-    {
-      title: '信息提醒',
-      name: 'message',
-      type: 'component', // 组件文档
-      children: [
         {
           title: 'Message 信息提醒',
           name: 'message',
           path: '/react-mobile/components/message',
-          component: () => import('@examples/message/message.md'),
+          component: () => import('tdesign-mobile-react/message/message.md'),
         },
       ],
     },

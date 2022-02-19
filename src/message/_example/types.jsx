@@ -1,6 +1,5 @@
 import React from 'react';
-import { Icon } from 'tdesign-icons-react';
-import { Message } from 'tdesign-mobile-react';
+import { Message, Button } from 'tdesign-mobile-react';
 
 export default function () {
   const messages = [
@@ -33,7 +32,11 @@ export default function () {
       icon: true,
     },
     {
-      closeBtn: <Icon name="call" size={24} />,
+      closeBtn: (
+        <Button theme="primary" variant="outline" size="small">
+          按钮
+        </Button>
+      ),
       duration: 5000,
       visible: true,
       zIndex: 5000,
@@ -86,12 +89,12 @@ export default function () {
   };
 
   return (
-    <>
+    <div className="container">
       {content.map((v, index) => (
-        <div className="btn" onClick={() => onClick(index)} key={index}>
+        <Button variant="outline" className="button" onClick={() => onClick(index)} key={index}>
           {v}
-        </div>
+        </Button>
       ))}
-    </>
+    </div>
   );
 }

@@ -3,10 +3,8 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import { Icon } from 'tdesign-icons-react';
+import useConfig from '../_util/useConfig';
 import { TdMessageProps } from './type';
-
-const prefix = 't';
-const name = `${prefix}-message`;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {};
@@ -39,7 +37,7 @@ interface MessageProps extends TdMessageProps {
   el: React.ReactNode;
 }
 
-function Message(props: MessageProps) {
+const Message: React.FC = (props: MessageProps) => {
   const {
     children,
     closeBtn = undefined,
@@ -56,6 +54,9 @@ function Message(props: MessageProps) {
     icon = false,
     el,
   } = props;
+
+  const { classPrefix } = useConfig();
+
   console.log('el: ', el);
   const [messageVisible, setMessageVisible] = useState<boolean>(visible);
 
@@ -90,11 +91,18 @@ function Message(props: MessageProps) {
   const mainContent = content ? content : children;
 
   const message = (
-    <div className={classNames(`${name}`, `${name}-align--center`, `${name}--${theme}`)} style={{ zIndex }}>
+    <div
+      className={classNames(
+        `${classPrefix}-message`,
+        `${classPrefix}-message-align--center`,
+        `${classPrefix}-message--${theme}`,
+      )}
+      style={{ zIndex }}
+    >
       {icon && <>{leftIcon}</>}
-      <div className={`${name}--txt`}>{mainContent}</div>
+      <div className={`${classPrefix}-message--txt`}>{mainContent}</div>
       {closeBtn && (
-        <div className={`${prefix}-icon-close`} onClick={closeMessage}>
+        <div className={`${classPrefix}-icon-close`} onClick={closeMessage}>
           {closeButton}
         </div>
       )}
@@ -105,12 +113,12 @@ function Message(props: MessageProps) {
       {message}
     </CSSTransition>
   );
-}
+};
 
 function createMessage(props, theme: MessageThemeListEnum) {
   const config = { ...defaultProps, ...props };
   const el = document.createElement('div');
-  el.classList.add(`${name}-message-container`);
+  el.classList.add('message-container-wrapper');
   document.body.appendChild(el);
   ReactDOM.render(<Message {...{ ...config, theme, el }} />, el);
 }
