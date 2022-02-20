@@ -7,7 +7,7 @@ export default function () {
     <div className="tdesign-grid-base">
       <CellGroup>
         <Cell title="单行标题" />
-        <Cell title="单行标题" required hover />
+        <Cell title="单行标题" required hover url="react-mobile/components/getting-started" />
         <Cell title="单行标题" note="辅助信息" />
         <Cell title="单行标题" arrow />
         <Cell title="单行标题" arrow note="辅助信息" />
