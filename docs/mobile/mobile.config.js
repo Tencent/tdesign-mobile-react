@@ -31,6 +31,11 @@ export default {
       component: () => import('tdesign-mobile-react/popup/_example/base.jsx'),
     },
     {
+      title: 'Slider 滑动选择器',
+      name: 'slider',
+      component: () => import('tdesign-mobile-react/slider/_example/base.jsx'),
+    },
+    {
       title: 'Radio 单选框',
       name: 'radio',
       component: () => import('tdesign-mobile-react/radio/_example/index.jsx'),
