@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
 import { TdDividerProps } from './type';
-
-const prefix = 't';
-const name = `${prefix}-divider`;
+import useConfig from '../_util/useConfig';
 
 const Divider: FC<TdDividerProps> = (props) => {
   const { children, align, dashed, layout, lineColor, content } = props;
+  const { classPrefix } = useConfig();
+  const name = `${classPrefix}-divider`;
+
   const classes = classNames(
     name,
     `${layout ? `${name}-${layout}` : ''}`,

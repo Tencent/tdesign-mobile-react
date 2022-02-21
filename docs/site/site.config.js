@@ -36,6 +36,25 @@ export default {
           path: '/react-mobile/components/divider',
           component: () => import('tdesign-mobile-react/divider/divider.md'),
         },
+        {
+          title: 'Icon 图标',
+          name: 'button',
+          path: '/react-mobile/components/icon',
+          component: () => import('tdesign-mobile-react/icon/icon.md'),
+        },
+      ],
+    },
+    {
+      title: '导航',
+      name: 'tabs',
+      type: 'navigation', // 组件文档
+      children: [
+        {
+          title: 'Tabs 选项卡',
+          name: 'tabs',
+          path: '/react-mobile/components/tabs',
+          component: () => import('tdesign-mobile-react/tabs/tabs.md'),
+        },
       ],
     },
     {
@@ -44,10 +63,29 @@ export default {
       type: 'component', // 组件文档
       children: [
         {
+          title: 'Cell 单元格',
+          name: 'cell',
+          path: '/react-mobile/components/cell',
+          component: () => import('tdesign-mobile-react/cell/cell.md'),
+        },
+        {
           title: 'Grid 宫格',
           name: 'grid',
           path: '/react-mobile/components/grid',
           component: () => import('tdesign-mobile-react/grid/grid.md'),
+        },
+      ],
+    },
+    {
+      title: '输入类组件',
+      name: 'form',
+      type: 'component', // 组件文档
+      children: [
+        {
+          title: 'Slider 滑动选择器',
+          name: 'slider',
+          path: '/react-mobile/components/slider',
+          component: () => import('tdesign-mobile-react/slider/slider.md'),
         },
       ],
     },

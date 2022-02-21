@@ -11,6 +11,16 @@ export default {
       component: () => import('tdesign-mobile-react/divider/_example/base.jsx'),
     },
     {
+      title: 'Icon 图标',
+      name: 'icon',
+      component: () => import('tdesign-mobile-react/icon/_example/index.jsx'),
+    },
+    {
+      title: 'Tabs 选项卡',
+      name: 'tabs',
+      component: () => import('tdesign-mobile-react/tabs/_example/index.jsx'),
+    },
+    {
       title: 'Grid 宫格',
       name: 'grid',
       component: () => import('tdesign-mobile-react/grid/_example/base.jsx'),
@@ -19,6 +29,11 @@ export default {
       title: 'Popup 弹出层',
       name: 'popup',
       component: () => import('tdesign-mobile-react/popup/_example/base.jsx'),
+    },
+    {
+      title: 'Slider 滑动选择器',
+      name: 'slider',
+      component: () => import('tdesign-mobile-react/slider/_example/base.jsx'),
     },
     {
       title: 'Radio 单选框',
@@ -34,6 +49,11 @@ export default {
       title: 'Message 消息通知',
       name: 'message',
       component: () => import('tdesign-mobile-react/message/_example/base.jsx'),
+    },
+    {
+      title: 'Cell 单元格',
+      name: 'cell',
+      component: () => import('tdesign-mobile-react/cell/_example/base.jsx'),
     },
   ],
 };
