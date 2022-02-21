@@ -1,11 +1,9 @@
 import React, { CSSProperties, FC, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import c from 'classnames';
 import { Icon } from 'tdesign-icons-react';
+import useConfig from '../_util/useConfig';
 import { TdRadioProps } from './type';
 import { RadioGroupContext } from './RadioGroup';
-
-const prefix = 't';
-const cname = `${prefix}-radio`;
 
 enum ALIGN {
   LEFT = 'left',
@@ -31,6 +29,8 @@ const getDisabledStyle = (isDisabled): CSSProperties => ({
 });
 
 const Radio: FC<RadioProps> = (props) => {
+  const { classPrefix } = useConfig();
+  const radioClassPrefix = `${classPrefix}-radio`;
   const context = useContext(RadioGroupContext);
   const inputRef = useRef();
 
@@ -114,7 +114,7 @@ const Radio: FC<RadioProps> = (props) => {
     if (content) {
       contentNode = (
         <span
-          className={`${cname}__content-wrap`}
+          className={`${radioClassPrefix}__content-wrap`}
           onClick={() => {
             switchRadioChecked('content');
           }}
@@ -122,17 +122,19 @@ const Radio: FC<RadioProps> = (props) => {
         >
           {contentTitle && (
             <span
-              className={c(`${cname}__content-title`, { [`${cname}__content-right-title`]: align === ALIGN.RIGHT })}
+              className={c(`${radioClassPrefix}__content-title`, {
+                [`${radioClassPrefix}__content-right-title`]: align === ALIGN.RIGHT,
+              })}
             ></span>
           )}
-          <span className={`${cname}__content-inner`} style={{ ...contentStyle, ...contentTitleStyle }}>
+          <span className={`${radioClassPrefix}__content-inner`} style={{ ...contentStyle, ...contentTitleStyle }}>
             {content}
           </span>
         </span>
       );
     } else if (children || label) {
       contentNode = (
-        <span className={`${cname}__label-wrap`} style={{ ...labelStyle, ...disabledStyle }}>
+        <span className={`${radioClassPrefix}__label-wrap`} style={{ ...labelStyle, ...disabledStyle }}>
           {children || label}
         </span>
       );
@@ -146,7 +148,7 @@ const Radio: FC<RadioProps> = (props) => {
       ref={inputRef}
       readOnly
       name={name}
-      className={c(`${cname}__former`)}
+      className={c(`${radioClassPrefix}__former`)}
       checked={radioChecked}
       onClick={(e) => {
         e.stopPropagation();
@@ -157,11 +159,16 @@ const Radio: FC<RadioProps> = (props) => {
 
   return (
     <div
-      className={c(`${cname}`, { 't-is-disabled': context?.disabled || disabled, 't-is-checked': radioChecked })}
+      className={c(`${radioClassPrefix}`, {
+        't-is-disabled': context?.disabled || disabled,
+        't-is-checked': radioChecked,
+      })}
       style={alignStyle}
     >
       <span
-        className={c(`${cname}__icon-wrap`, { [`${cname}__icon-right-wrap`]: align === ALIGN.RIGHT })}
+        className={c(`${radioClassPrefix}__icon-wrap`, {
+          [`${radioClassPrefix}__icon-right-wrap`]: align === ALIGN.RIGHT,
+        })}
         onClick={() => switchRadioChecked()}
       >
         {input}
