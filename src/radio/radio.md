@@ -1,20 +1,4 @@
----
-title: Radio 单选框
-description: 用于在预设的一组选项中执行单项选择，并呈现选择结果。
-spline: base
-isComponent: true
-toc: false
----
-
-## 单选框
-
-::: demo _example/base radio
-:::
-
-## 单选框组
-
-::: demo _example/group radio
-:::
+:: BASE_DOC ::
 
 ## API
 ### Radio Props
