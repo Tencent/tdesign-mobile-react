@@ -131,10 +131,12 @@
     "workbox-precaching": "^6.3.0"
   },
   "dependencies": {
+    "ahooks": "^3.1.9",
     "classnames": "^2.3.1",
     "hoist-non-react-statics": "^3.3.2",
     "lodash": "^4.17.21",
-    "react-transition-group": "^4.4.2"
+    "react-transition-group": "^4.4.2",
+    "tdesign-icons-react": "0.0.8"
   },
   "config": {
     "commitizen": {
