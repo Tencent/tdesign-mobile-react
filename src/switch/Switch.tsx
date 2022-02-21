@@ -10,6 +10,8 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   ({ customValue = [true, false], value, defaultValue, label, onChange, disabled, className, style }, ref) => {
     const { classPrefix } = useConfig();
 
+    const switchBaseClassName = `${classPrefix}-switch`;
+
     const [activeValue, inactiveValue] = customValue;
 
     const [checked, setChecked] = useState<boolean>(defaultValue === activeValue);
@@ -50,7 +52,7 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
       }
     }, [value, customValue]);
 
-    const switchClassName = classNames(`${classPrefix}-switch`, className, {
+    const switchClassName = classNames(switchBaseClassName, className, {
       [`${classPrefix}-is-checked`]: checked,
       [`${classPrefix}-is-disabled`]: disabled,
     });
