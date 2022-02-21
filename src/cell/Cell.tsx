@@ -1,16 +1,17 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Icon } from 'tdesign-icons-react';
+import useConfig from '../_util/useConfig';
 import { TdCellProps } from './type';
-
-const prefix = 't';
-const name = `${prefix}-cell`;
 
 enum AlignType {
   TOP = 'top',
   MIDDLE = 'middle',
   BOTTOM = 'bottom',
 }
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const noop = () => {};
 
 const Cell: React.FC<TdCellProps> = (props) => {
   const {
@@ -26,46 +27,49 @@ const Cell: React.FC<TdCellProps> = (props) => {
     rightIcon,
     title = '',
     url = '',
-    onClick,
+    onClick = noop,
   } = props;
 
-  const isUrl = !!url;
+  const { classPrefix } = useConfig();
 
   const isLeft = !!leftIcon || !!image;
 
-  const cellImage = typeof image === 'string' ? <img src={image} className={`${name}__image`} /> : image;
+  const cellImage = typeof image === 'string' ? <img src={image} className={`${classPrefix}-cell__image`} /> : image;
 
   const content = (
     <div
-      className={classNames(`${name}`, `${name}--${align}`, bordered && `${name}--bordered`, hover && `${name}--hover`)}
+      className={classNames([`${classPrefix}-cell`, `${classPrefix}-cell--${align}`], {
+        [`${classPrefix}-cell--bordered`]: bordered,
+        [`${classPrefix}-cell--hover`]: hover,
+      })}
       onClick={(e) => {
-        onClick && onClick({ e });
+        onClick({ e });
       }}
     >
       {isLeft && (
-        <div className={`${name}__left-icon`}>
+        <div className={`${classPrefix}-cell__left-icon`}>
           {leftIcon}
           {cellImage}
         </div>
       )}
-      <div className={`${name}__title`}>
+      <div className={`${classPrefix}-cell__title`}>
         {title && (
           <span>
             {title}
-            {required && <span className={`${name}--required`}>&nbsp;*</span>}
+            {required && <span className={`${classPrefix}-cell--required`}>&nbsp;*</span>}
           </span>
         )}
-        {description && <div className={`${name}__description`}>{description}</div>}
+        {description && <div className={`${classPrefix}-cell__description`}>{description}</div>}
       </div>
-      {note && <div className={`${name}__note`}>{note}</div>}
-      {arrow && <Icon className={`${name}-content-arrow`} name="chevron-right" size={24} color="#0006" />}
-      {rightIcon && <div className={`${name}__right-icon`}>{rightIcon}</div>}
+      {note && <div className={`${classPrefix}-cell__note`}>{note}</div>}
+      {arrow && <Icon className={`${classPrefix}-cell-content-arrow`} name="chevron-right" size={24} color="#0006" />}
+      {rightIcon && <div className={`${classPrefix}-cell__right-icon`}>{rightIcon}</div>}
     </div>
   );
 
   return (
     <>
-      {isUrl ? (
+      {url ? (
         <a style={{ textDecoration: 'none' }} href={url} rel="noreferrer">
           {content}
         </a>
