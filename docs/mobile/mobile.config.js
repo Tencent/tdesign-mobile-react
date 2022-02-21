@@ -45,5 +45,10 @@ export default {
       name: 'badge',
       component: () => import('tdesign-mobile-react/badge/_example/base.jsx'),
     },
+    {
+      title: 'Cell 单元格',
+      name: 'cell',
+      component: () => import('tdesign-mobile-react/cell/_example/base.jsx'),
+    },
   ],
 };

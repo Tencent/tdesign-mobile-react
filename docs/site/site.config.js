@@ -63,6 +63,12 @@ export default {
       type: 'component', // 组件文档
       children: [
         {
+          title: 'Cell 单元格',
+          name: 'cell',
+          path: '/react-mobile/components/cell',
+          component: () => import('tdesign-mobile-react/cell/cell.md'),
+        },
+        {
           title: 'Grid 宫格',
           name: 'grid',
           path: '/react-mobile/components/grid',
