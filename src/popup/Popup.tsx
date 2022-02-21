@@ -4,9 +4,7 @@ import { CSSTransition } from "react-transition-group"
 import classnames from "classnames"
 import { TdPopupProps } from "./type";
 import usePopupCssTransition from "./hooks/usePopupCssTransition";
-
-const prefix = 't';
-const name = `${prefix}-popup`;
+import useConfig from '../_util/useConfig';
 
 const DEFAULT_SHOW_OVERLAY = true;
 
@@ -33,6 +31,10 @@ const Popup: FC<TdPopupProps> = (prop) => {
         zIndex = DEFAULT_ZINDEX, 
         onVisibleChange 
     } = prop;
+
+    const { classPrefix } = useConfig();
+
+    const name = `${classPrefix}-popup`;
 
     // 判断是否受控
     const isControl = visible !== undefined;
