@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Popup } from 'tdesign-mobile-react';
+import { Popup, Button } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
 import TDemoHeader from '../../../docs/mobile/components/DemoHeader';
 import './style/index.less'
@@ -38,11 +38,11 @@ export default function Base() {
       <TDemoBlock title="类型" summary="弹出层出现为止可能为顶部、底部、中部、左侧或右侧">
         <div>
           <div className='tdesign-mobile-demo__button-group'>
-            <button className='tdesign-mobile-demo__button' onClick={() => setVisible1(true)}>顶部弹出</button>
-            <button className='tdesign-mobile-demo__button' onClick={() => setVisible2(true)}>底部弹出</button>
-            <button className='tdesign-mobile-demo__button' onClick={() => setVisible3(true)}>中部弹出</button>
-            <button className='tdesign-mobile-demo__button' onClick={() => setVisible4(true)}>左侧弹出</button>
-            <button className='tdesign-mobile-demo__button' onClick={() => setVisible5(true)}>右侧弹出</button>
+            <Button variant="outline" className='tdesign-mobile-demo__button' onClick={() => setVisible1(true)}>顶部弹出</Button>
+            <Button variant="outline" className='tdesign-mobile-demo__button' onClick={() => setVisible2(true)}>底部弹出</Button>
+            <Button variant="outline" className='tdesign-mobile-demo__button' onClick={() => setVisible3(true)}>中部弹出</Button>
+            <Button variant="outline" className='tdesign-mobile-demo__button' onClick={() => setVisible4(true)}>左侧弹出</Button>
+            <Button variant="outline" className='tdesign-mobile-demo__button' onClick={() => setVisible5(true)}>右侧弹出</Button>
           </div>
           <Popup visible={visible1} onVisibleChange={handleVisible1Change} placement="top">
             <div className="vertical"></div>

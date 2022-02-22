@@ -1,8 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
+import { Badge } from 'tdesign-mobile-react'
 import { TdGridItemProps, TdGridProps } from "./type";
-
-const prefix = 't';
-const name = `${prefix}-grid-item`;
+import useConfig from '../_util/useConfig';
 
 enum LAYOUT {
     VERTICAL = 'vertical',
@@ -21,8 +20,6 @@ const DEFAULT_ALIGN = ALIGN.CENTER;
 const DEFAULT_GUTTER = 20;
 
 const DEFAULT_LAYOUT = LAYOUT.VERTICAL;
-
-const DEFAULT_HOVER = false;
 
 const DEFAULT_BORDER = false;
 
@@ -81,13 +78,14 @@ const GridItem: FC<GridItemProp> = (prop) => {
         gutter = DEFAULT_GUTTER,
         description,
         image,
-        hover = DEFAULT_HOVER,
         layout = DEFAULT_LAYOUT, 
-        text
+        text,
+        badgeProps,
     } = prop;
 
-    console.log(align);
-    
+    const { classPrefix } = useConfig();
+
+    const name = `${classPrefix}-grid-item`;
 
     const gridItemWidth = getGridItemWidth(column);
 
@@ -99,25 +97,39 @@ const GridItem: FC<GridItemProp> = (prop) => {
 
     const gridItemTextAlign = getGridItemTextAlign(align);
 
-    console.log(gridItemTextAlign);
-
-    const gridItemImage = typeof image === 'string' ?  
-        (<img src={image} className={`${name}_image`} style={{width: '100%', height: '100%'}}/>) : image
+    const gridItemImage = useMemo(() => 
+        typeof image === 'string' ?  
+            (<img 
+                src={image} 
+                className={`${name}_image`} 
+                style={{width: '100%', height: '100%'}}
+            />) : image
+    , [image, name])
 
     return <>
-        <div className={`${name} ${hover ? `${name}--hover` : ''}`} style={{
-                width: gridItemWidth,
-                height: gridItemWidth,
-                paddingLeft: gutter, 
-                paddingRight: gutter,
-                flexDirection: gridItemLayout,
-                textAlign: gridItemTextAlign,
-                ...gridItemAlign,
-                ...gridItemBorder
-            }}>
-            <div className={`${name}__image-box`}>
-                {gridItemImage}
-            </div>
+        <div className={name} style={{
+            width: gridItemWidth,
+            height: gridItemWidth,
+            paddingLeft: gutter, 
+            paddingRight: gutter,
+            flexDirection: gridItemLayout,
+            textAlign: gridItemTextAlign,
+            ...gridItemAlign,
+            ...gridItemBorder
+        }}>
+            {
+                badgeProps ? <>
+                    <Badge {...badgeProps}>
+                        <div className={`${name}__image-box`}>
+                            {gridItemImage}
+                        </div>
+                    </Badge>
+                </> : <>
+                    <div className={`${name}__image-box`}>
+                        {gridItemImage}
+                    </div>
+                </>
+            }
             <div className={`${name}__text`}>
                 <div className={`${name}__title`}>
                     { text }
