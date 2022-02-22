@@ -74,6 +74,12 @@ export default {
           path: '/react-mobile/components/grid',
           component: () => import('tdesign-mobile-react/grid/grid.md'),
         },
+        {
+          title: 'Image 图片',
+          name: 'image',
+          path: '/react-mobile/components/image',
+          component: () => import('tdesign-mobile-react/image/image.md'),
+        },
       ],
     },
     {
