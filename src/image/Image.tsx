@@ -2,16 +2,16 @@ import React, { FC, useCallback, useMemo, useRef, useState } from 'react';
 import ClassNames from 'classnames';
 import { CloseIcon, EllipsisIcon } from 'tdesign-icons-react';
 import { useInViewport } from 'ahooks';
+import useConfig from '../_util/useConfig';
 import { TdImageProps } from './type';
 
 export interface ImageProps extends TdImageProps, React.ImgHTMLAttributes<HTMLImageElement> {}
 
-const prefix = 't-image';
 const Image: FC<ImageProps> = React.memo((props) => {
   const {
     src,
     alt,
-    fit,
+    fit = 'fill',
     onLoad,
     loading,
     onError,
@@ -27,8 +27,15 @@ const Image: FC<ImageProps> = React.memo((props) => {
   const [isLoad, setIsLoad] = useState(true);
   const [isError, setIsError] = useState(false);
   const ref = useRef<HTMLImageElement>(null);
+  const hasLoad = useRef<boolean>(false);
+
+  // 统一配置信息
+  const { classPrefix } = useConfig();
+
   // 观察元素是否在可见区域
   const [isInViewport] = useInViewport(ref);
+
+  const prefix = useMemo(() => `${classPrefix}-image`, [classPrefix]);
 
   // Loading Element
   const LoadingStatus = useMemo(() => {
@@ -45,8 +52,8 @@ const Image: FC<ImageProps> = React.memo((props) => {
   }, [isError, error]);
 
   // Image Src
-  const newSrc = useMemo(() => {
-    if (!lazy) return src;
+  const imgSrc = useMemo(() => {
+    if (!lazy || hasLoad.current) return src;
 
     if (isInViewport) return src;
 
@@ -54,7 +61,7 @@ const Image: FC<ImageProps> = React.memo((props) => {
   }, [src, lazy, isInViewport]);
 
   // Get ClassName By Prefix
-  const getClass = useCallback((cls: string) => `${prefix}__${cls}`, []);
+  const getClass = useCallback((cls: string) => `${prefix}__${cls}`, [prefix]);
 
   return (
     <div className={ClassNames(prefix, `${prefix}--${shape}`, { [className]: className })} ref={ref}>
@@ -62,15 +69,18 @@ const Image: FC<ImageProps> = React.memo((props) => {
       <img
         {...others}
         className={getClass('img')}
-        src={newSrc}
+        src={imgSrc}
         alt={alt}
         style={{ objectFit: fit, objectPosition: position, width: 'inherit', height: 'inherit', ...style }}
         onLoad={() => {
+          hasLoad.current = true;
           setIsLoad(false);
+          setIsError(false);
           onLoad && onLoad();
         }}
         onError={() => {
-          if (src) {
+          if (imgSrc) {
+            hasLoad.current = true;
             setIsLoad(false);
             setIsError(true);
             onError && onError();

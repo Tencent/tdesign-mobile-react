@@ -28,7 +28,7 @@ export default {
     {
       title: 'Image 图片',
       name: 'image',
-      component: () => import('tdesign-mobile-react/image/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/image/_example/index.jsx'),
     },
     {
       title: 'Popup 弹出层',

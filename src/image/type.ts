@@ -25,7 +25,7 @@ export interface TdImageProps {
    * 是否开启图片懒加载
    * @default false
    */
-  lazy?: string;
+  lazy?: boolean;
   /**
    * 自定义加载中状态下的图片内容
    */
