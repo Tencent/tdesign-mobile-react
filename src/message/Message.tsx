@@ -65,7 +65,7 @@ const Message: React.FC = (props: MessageProps) => {
     setMessageVisible(false);
     console.log('remove');
     ReactDOM.unmountComponentAtNode(el);
-    el.parentNode.removeChild(el);
+    (el as any)?.parentNode?.removeChild(el);
   }, [el, onClose]);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const Message: React.FC = (props: MessageProps) => {
         setMessageVisible(false);
         console.log('remove');
         ReactDOM.unmountComponentAtNode(el);
-        el.parentNode.removeChild(el);
+        (el as any)?.parentNode?.removeChild(el);
       }, duration);
     }
   }, [duration, el, onClose]);

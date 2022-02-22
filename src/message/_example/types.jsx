@@ -15,20 +15,8 @@ export default function () {
     {
       closeBtn: true,
       visible: true,
-      onClose: (e) => {
-        console.log(e);
-      },
-      onClosed: (e) => {
-        console.log(e);
-      },
       duration: 0,
       content: '这是一条带关闭的消息通知 常驻可关闭',
-      icon: true,
-    },
-    {
-      visible: true,
-      zIndex: 5000,
-      content: '这是一条滚动的通知信息',
       icon: true,
     },
     {
@@ -80,9 +68,10 @@ export default function () {
     },
   ];
 
-  const content = ['纯文字通知', '带图标通知', '带关闭通知', '滚动通知', '带按钮通知'];
+  const content = ['纯文字通知', '带图标通知', '带关闭通知', '带按钮通知'];
 
   const onClick = (index) => {
+    // @ts-ignore
     Message.info({
       ...messages[index],
     });
