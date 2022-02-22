@@ -46,6 +46,12 @@ export default {
       component: () => import('tdesign-mobile-react/badge/_example/base.jsx'),
     },
     {
+      title: 'Switch 开关',
+      name: 'switch',
+      path: '/switch',
+      component: () => import('tdesign-mobile-react/switch/_example/index.jsx'),
+    },
+    {
       title: 'Cell 单元格',
       name: 'cell',
       component: () => import('tdesign-mobile-react/cell/_example/base.jsx'),
