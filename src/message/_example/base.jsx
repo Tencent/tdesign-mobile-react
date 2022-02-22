@@ -3,7 +3,7 @@ import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
 import TDemoHeader from '../../../docs/mobile/components/DemoHeader';
 import Types from './types';
 import Status from './status';
-import './index.less';
+import './style/index.less';
 
 export default function Base() {
   return (
