@@ -74,6 +74,12 @@ export default {
           path: '/react-mobile/components/grid',
           component: () => import('tdesign-mobile-react/grid/grid.md'),
         },
+        {
+          title: 'Sticky 吸顶',
+          name: 'sticky',
+          path: '/react-mobile/components/sticky',
+          component: () => import('tdesign-mobile-react/sticky/sticky.md'),
+        },
       ],
     },
     {
