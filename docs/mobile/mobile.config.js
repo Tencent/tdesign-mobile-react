@@ -61,5 +61,10 @@ export default {
       name: 'cell',
       component: () => import('tdesign-mobile-react/cell/_example/base.jsx'),
     },
+    {
+      title: 'Sticky 吸顶',
+      name: 'sticky',
+      component: () => import('tdesign-mobile-react/sticky/_example/base.jsx'),
+    },
   ],
 };

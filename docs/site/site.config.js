@@ -75,6 +75,12 @@ export default {
           component: () => import('tdesign-mobile-react/grid/grid.md'),
         },
         {
+          title: 'Sticky 吸顶',
+          name: 'sticky',
+          path: '/react-mobile/components/sticky',
+          component: () => import('tdesign-mobile-react/sticky/sticky.md'),
+        },
+        {
           title: 'Image 图片',
           name: 'image',
           path: '/react-mobile/components/image',
