@@ -39,7 +39,9 @@ const Sticky: FC<TdStickyProps> = (prop) => {
         setContentHeight(contentHeight);
     }, [boxElement, contentElement])
 
-
+    /**
+     * 用于处理content变成fixed定位脱离文档流，导致父级box高度为0
+     */
     useLayoutEffect(() => {
         seBoxStyles({
             height: contentElement?.getBoundingClientRect()?.height,
@@ -74,6 +76,7 @@ const Sticky: FC<TdStickyProps> = (prop) => {
 
         onScroll && onScroll({scrollTop: contentTop, isFixed});
         setContentStyles(style);
+        
     // 这里只需要监听boxTop，不需要全部监听
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [boxTop])
