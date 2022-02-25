@@ -10,3 +10,4 @@ export * from './radio';
 export * from './divider';
 export * from './tabs';
 export * from './switch';
+export * from './sticky';
