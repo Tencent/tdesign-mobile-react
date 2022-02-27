@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
-import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import { Icon } from 'tdesign-icons-react';
 import useConfig from '../_util/useConfig';
 import { TdMessageProps } from './type';
 import useMessageCssTransition from './hooks/useMessageCssTransition';
-import { defaultProps, IconType, MessageThemeListEnum } from './constant';
+import { IconType, MessageThemeListEnum } from './constant';
 import noop from '../_util/noop';
 
 interface MessageProps extends TdMessageProps {
@@ -14,7 +13,7 @@ interface MessageProps extends TdMessageProps {
   el: React.ReactNode;
 }
 
-const Message: React.FC = (props: MessageProps) => {
+const Message: React.FC<TdMessageProps> = (props: MessageProps) => {
   const {
     children,
     closeBtn = undefined,
@@ -42,7 +41,6 @@ const Message: React.FC = (props: MessageProps) => {
   const cssTransitionState = useMessageCssTransition({
     contentRef,
     classPrefix: 'message',
-    el,
     onEnter: onOpen,
     onEntered: onOpened,
     onExit: onClose,
@@ -50,7 +48,7 @@ const Message: React.FC = (props: MessageProps) => {
   });
 
   useEffect(() => {
-    const isControlled = duration === 0 && visible !== undefined && closeBtn !== true;
+    const isControlled = duration === 0 && typeof visible === 'boolean' && closeBtn !== true;
     setIsControl(isControlled);
     if (!isControlled) {
       setMessageVisible(true);
@@ -84,7 +82,7 @@ const Message: React.FC = (props: MessageProps) => {
   const mainContent = content ? content : children;
 
   return (
-    <CSSTransition in={isControl ? visible : messageVisible} appear {...cssTransitionState.props}>
+    <CSSTransition in={isControl ? visible : messageVisible} appear {...cssTransitionState.props} unmountOnExit>
       <div
         className={classNames(
           `${classPrefix}-message`,
@@ -102,24 +100,4 @@ const Message: React.FC = (props: MessageProps) => {
   );
 };
 
-const createMessage = (props, theme: MessageThemeListEnum) => {
-  const config = { ...defaultProps, ...props };
-  const el = document.createElement('div');
-  document.body.appendChild(el);
-  ReactDOM.render(<Message {...{ ...config, theme, el }} />, el);
-};
-
-export default {
-  info(props: TdMessageProps) {
-    return createMessage(props, MessageThemeListEnum.info);
-  },
-  success(props: TdMessageProps) {
-    return createMessage(props, MessageThemeListEnum.success);
-  },
-  warning(props: TdMessageProps) {
-    return createMessage(props, MessageThemeListEnum.warning);
-  },
-  error(props: TdMessageProps) {
-    return createMessage(props, MessageThemeListEnum.error);
-  },
-};
+export default Message;

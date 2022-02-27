@@ -1,11 +1,9 @@
 import { useRef } from 'react';
-import ReactDOM from 'react-dom';
 import noop from '../../_util/noop';
 
 interface UseMessageCssTransitionParams {
   contentRef: React.MutableRefObject<HTMLDivElement>;
   classPrefix: String;
-  el: React.ReactNode;
   onEnter: () => void;
   onEntered: () => void;
   onExit: () => void;
@@ -15,7 +13,6 @@ interface UseMessageCssTransitionParams {
 const useMessageCssTransition = ({
   contentRef,
   classPrefix,
-  el,
   onEnter = noop,
   onEntered = noop,
   onExit = noop,
@@ -46,9 +43,8 @@ const useMessageCssTransition = ({
     // 动画结束后默认删除节点实例
     if (contentEle) {
       timerRef.current = setTimeout(() => {
-        const unmountResult = ReactDOM.unmountComponentAtNode(el);
-        if (unmountResult && (el as any)?.parentNode) {
-          (el as any).parentNode.removeChild(el);
+        if (contentEle && contentEle.style.display === 'block') {
+          contentEle.style.display = 'none';
         }
       }, 0);
       onExited();

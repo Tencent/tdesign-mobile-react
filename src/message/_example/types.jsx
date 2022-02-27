@@ -3,7 +3,8 @@ import { Icon } from 'tdesign-icons-react';
 import { Button, Message } from 'tdesign-mobile-react';
 
 export default function () {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
+  console.log('visible: ', visible);
   const messages = [
     {
       duration: 5000,
@@ -35,30 +36,12 @@ export default function () {
         console.log('onVisibleChange', e);
       },
     },
-    {
-      closeBtn: (
-        <Button
-          theme="primary"
-          variant="outline"
-          style={{ height: 26 }}
-          onClick={() => {
-            setVisible(false);
-          }}
-        >
-          按钮
-        </Button>
-      ),
-      visible,
-      duration: 0,
-      zIndex: 5000,
-      content: '这是一条带操作的消息通知',
-      icon: <Icon name="notification" size={22} />,
-    },
   ];
 
-  const content = ['纯文字通知', '带图标通知', '带关闭通知', '带按钮通知'];
+  const content = ['纯文字通知', '带图标通知', '带关闭通知'];
 
   const onClick = (index) => {
+    // @ts-ignore
     Message.info({
       ...messages[index],
     });
@@ -71,6 +54,26 @@ export default function () {
           {v}
         </Button>
       ))}
+      <Button variant="outline" className="button" onClick={() => setVisible(true)}>
+        带按钮通知
+      </Button>
+      <Message
+        closeBtn={
+          <Button
+            theme="primary"
+            variant="outline"
+            onClick={() => {
+              setVisible(false);
+            }}
+          >
+            按钮
+          </Button>
+        }
+        visible={visible}
+        duration={0}
+        content="这是一条带操作的消息通知"
+        icon={<Icon name="notification" size={22} />}
+      />
     </div>
   );
 }
