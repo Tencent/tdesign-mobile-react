@@ -66,5 +66,10 @@ export default {
       name: 'sticky',
       component: () => import('tdesign-mobile-react/sticky/_example/base.jsx'),
     },
+    {
+      title: 'BackTop 返回顶部',
+      name: 'back-top',
+      component: () => import('tdesign-mobile-react/back-top/_example/base.jsx'),
+    },
   ],
 };

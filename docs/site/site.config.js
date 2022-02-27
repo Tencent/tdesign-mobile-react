@@ -107,6 +107,12 @@ export default {
       type: 'component', // 组件文档
       children: [
         {
+          title: 'BackTop 返回顶部',
+          name: 'back-top',
+          path: '/react-mobile/components/back-top',
+          component: () => import('tdesign-mobile-react/back-top/back-top.md'),
+        },
+        {
           title: 'Popup 弹出层',
           name: 'popup',
           path: '/react-mobile/components/popup',
