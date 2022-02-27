@@ -20,7 +20,7 @@ const Message: React.FC = (props: MessageProps) => {
     closeBtn = undefined,
     duration = 3000,
     theme = MessageThemeListEnum.info,
-    visible = false,
+    visible = undefined,
     zIndex = 5000,
     onOpen = noop, // 展示Message时触发
     onOpened = noop, // 展示Message时并且动画结束后触发
@@ -34,7 +34,8 @@ const Message: React.FC = (props: MessageProps) => {
 
   const { classPrefix } = useConfig();
 
-  const [messageVisible, setMessageVisible] = useState<boolean>(visible);
+  const [messageVisible, setMessageVisible] = useState<boolean>(false);
+  const [isControl, setIsControl] = useState<boolean>(false);
 
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -48,7 +49,15 @@ const Message: React.FC = (props: MessageProps) => {
     onExited: onClosed,
   });
 
-  const closeMessage = useCallback(() => {
+  useEffect(() => {
+    const isControlled = duration === 0 && visible !== undefined && closeBtn !== true;
+    setIsControl(isControlled);
+    if (!isControlled) {
+      setMessageVisible(true);
+    }
+  }, [visible, duration, closeBtn]);
+
+  const handleClick = useCallback(() => {
     setMessageVisible(false);
   }, []);
 
@@ -65,17 +74,17 @@ const Message: React.FC = (props: MessageProps) => {
   }, [duration, el]);
 
   useEffect(() => {
-    onVisibleChange(messageVisible);
-  }, [onVisibleChange, messageVisible]);
+    onVisibleChange(isControl ? visible : messageVisible);
+  }, [onVisibleChange, isControl, visible, messageVisible]);
 
   const leftIcon = typeof icon === 'boolean' ? <Icon name={IconType[theme]} size={22} /> : icon;
 
-  const closeButton = typeof closeBtn === 'boolean' ? <Icon name="close" size={22} onClick={closeMessage} /> : closeBtn;
+  const closeButton = typeof closeBtn === 'boolean' ? <Icon name="close" size={22} onClick={handleClick} /> : closeBtn;
 
   const mainContent = content ? content : children;
 
   return (
-    <CSSTransition in={messageVisible} appear {...cssTransitionState.props}>
+    <CSSTransition in={isControl ? visible : messageVisible} appear {...cssTransitionState.props}>
       <div
         className={classNames(
           `${classPrefix}-message`,
@@ -93,17 +102,12 @@ const Message: React.FC = (props: MessageProps) => {
   );
 };
 
-function createMessage(props, theme: MessageThemeListEnum) {
+const createMessage = (props, theme: MessageThemeListEnum) => {
   const config = { ...defaultProps, ...props };
-  // const messageContainerClassName = 't-message-container-wrapper';
-  // if (document.getElementsByClassName(messageContainerClassName)[0]) {
-  //   return;
-  // }
   const el = document.createElement('div');
-  // el.classList.add(messageContainerClassName);
   document.body.appendChild(el);
   ReactDOM.render(<Message {...{ ...config, theme, el }} />, el);
-}
+};
 
 export default {
   info(props: TdMessageProps) {

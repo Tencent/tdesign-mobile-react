@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Icon } from 'tdesign-icons-react';
-import { Message, Button } from 'tdesign-mobile-react';
+import { Button, Message } from 'tdesign-mobile-react';
 
 export default function () {
+  const [visible, setVisible] = useState(true);
   const messages = [
     {
       duration: 5000,
@@ -15,20 +16,9 @@ export default function () {
     },
     {
       closeBtn: true,
-      visible: true,
       duration: 0,
       content: '这是一条带关闭的消息通知 常驻可关闭',
       icon: true,
-    },
-    {
-      closeBtn: (
-        <Button theme="primary" variant="outline" style={{ height: 26 }}>
-          按钮
-        </Button>
-      ),
-      duration: 0,
-      visible: true,
-      zIndex: 5000,
       onOpen: () => {
         console.log('onOpen');
       },
@@ -44,6 +34,23 @@ export default function () {
       onVisibleChange: (e) => {
         console.log('onVisibleChange', e);
       },
+    },
+    {
+      closeBtn: (
+        <Button
+          theme="primary"
+          variant="outline"
+          style={{ height: 26 }}
+          onClick={() => {
+            setVisible(false);
+          }}
+        >
+          按钮
+        </Button>
+      ),
+      visible,
+      duration: 0,
+      zIndex: 5000,
       content: '这是一条带操作的消息通知',
       icon: <Icon name="notification" size={22} />,
     },
