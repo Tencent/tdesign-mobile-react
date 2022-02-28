@@ -1,5 +1,5 @@
 import _Message from './Message';
-import * as methods from './show';
+import * as methods from './methods';
 
 import './style';
 
