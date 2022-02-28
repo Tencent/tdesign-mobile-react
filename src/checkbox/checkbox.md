@@ -1,16 +1,4 @@
----
-title: Checkbox 多选框
-# description: 
-spline: base
-isComponent: true
-toc: false
----
-
-
-## 测试用例1
-
-::: demo demos/base checkbox
-:::
+:: BASE_DOC ::
 
 ## API
 

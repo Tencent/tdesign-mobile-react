@@ -25,10 +25,20 @@ const getCheckboxValue = (v: CheckboxOption): string | number => {
   }
 };
 
-
 export function CheckboxGroup(props: CheckboxGroupProps) {
   const { classPrefix } = useConfig();
-  const { value, defaultValue, onChange, disabled, className, style, children, max, options = [] } = props;
+  const { 
+    value, 
+    defaultValue, 
+    disabled, 
+    className, 
+    max, 
+    options = [], 
+    name,
+    style,
+    children, 
+    onChange, 
+  } = props;
 
   const intervalOptions =
     Array.isArray(options) && options.length > 0
@@ -80,6 +90,7 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
 
       return {
         ...checkProps,
+        name,
         checked: checkProps.checkAll ? checkAllChecked : checkedSet.has(checkValue),
         indeterminate: checkProps.checkAll ? indeterminate : checkProps.indeterminate,
         disabled: checkProps.disabled || disabled || (checkedSet.size >= localMax && !checkedSet.has(checkValue)),
