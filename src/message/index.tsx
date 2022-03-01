@@ -1,3 +1,4 @@
+import { attachMethodsToComponent } from 'tdesign-mobile-react/_util/attachMethodsToComponent';
 import _Message from './Message';
 import * as methods from './methods';
 
@@ -9,11 +10,9 @@ export const Message = _Message;
 
 const { info, warning, success, error } = methods.default;
 
-Message.info = info;
-Message.warning = warning;
-Message.success = success;
-Message.error = error;
-
-export default {
-  Message,
-};
+export default attachMethodsToComponent(Message, {
+  info,
+  warning,
+  success,
+  error,
+});

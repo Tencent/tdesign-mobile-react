@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import ReactDOM from 'react-dom';
 import noop from '../../_util/noop';
 
 interface UseMessageCssTransitionParams {
@@ -8,6 +9,7 @@ interface UseMessageCssTransitionParams {
   onEntered: () => void;
   onExit: () => void;
   onExited: () => void;
+  el: React.ReactNode;
 }
 
 const useMessageCssTransition = ({
@@ -17,6 +19,7 @@ const useMessageCssTransition = ({
   onEntered = noop,
   onExit = noop,
   onExited = noop,
+  el,
 }: UseMessageCssTransitionParams) => {
   const timerRef = useRef(null);
 
@@ -45,6 +48,13 @@ const useMessageCssTransition = ({
       timerRef.current = setTimeout(() => {
         if (contentEle && contentEle.style.display === 'block') {
           contentEle.style.display = 'none';
+        }
+        // 删除createElement创建的div元素
+        if (el) {
+          const unmountResult = ReactDOM.unmountComponentAtNode(el);
+          if (unmountResult) {
+            (el as any).parentNode.removeChild(el);
+          }
         }
       }, 0);
       onExited();

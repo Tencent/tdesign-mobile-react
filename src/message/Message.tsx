@@ -16,7 +16,7 @@ interface MessageProps extends TdMessageProps {
 const Message: React.FC<TdMessageProps> = (props: MessageProps) => {
   const {
     children,
-    closeBtn = undefined,
+    closeBtn = false,
     duration = 3000,
     theme = MessageThemeListEnum.info,
     visible = undefined,
@@ -45,6 +45,7 @@ const Message: React.FC<TdMessageProps> = (props: MessageProps) => {
     onEntered: onOpened,
     onExit: onClose,
     onExited: onClosed,
+    el,
   });
 
   useEffect(() => {
@@ -61,7 +62,7 @@ const Message: React.FC<TdMessageProps> = (props: MessageProps) => {
 
   useEffect(() => {
     let timer = null;
-    if (duration && el) {
+    if (duration) {
       timer = setTimeout(() => {
         setMessageVisible(false);
       }, duration);
@@ -69,15 +70,15 @@ const Message: React.FC<TdMessageProps> = (props: MessageProps) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [duration, el]);
+  }, [duration]);
 
   useEffect(() => {
     onVisibleChange(isControl ? visible : messageVisible);
   }, [onVisibleChange, isControl, visible, messageVisible]);
 
-  const leftIcon = typeof icon === 'boolean' ? <Icon name={IconType[theme]} size={22} /> : icon;
+  const leftIcon = typeof icon === 'boolean' ? <>{icon && <Icon name={IconType[theme]} size={22} />}</> : icon;
 
-  const closeButton = typeof closeBtn === 'boolean' ? <Icon name="close" size={22} onClick={handleClick} /> : closeBtn;
+  const closeButton = closeBtn === true ? <Icon name="close" size={22} onClick={handleClick} /> : closeBtn;
 
   const mainContent = content ? content : children;
 

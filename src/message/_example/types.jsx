@@ -4,7 +4,6 @@ import { Button, Message } from 'tdesign-mobile-react';
 
 export default function () {
   const [visible, setVisible] = useState(false);
-  console.log('visible: ', visible);
   const messages = [
     {
       duration: 5000,
