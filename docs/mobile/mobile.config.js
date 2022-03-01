@@ -26,6 +26,11 @@ export default {
       component: () => import('tdesign-mobile-react/grid/_example/base.jsx'),
     },
     {
+      title: 'Image 图片',
+      name: 'image',
+      component: () => import('tdesign-mobile-react/image/_example/index.jsx'),
+    },
+    {
       title: 'Popup 弹出层',
       name: 'popup',
       component: () => import('tdesign-mobile-react/popup/_example/base.jsx'),
@@ -51,9 +56,20 @@ export default {
       component: () => import('tdesign-mobile-react/message/_example/base.jsx'),
     },
     {
+      title: 'Switch 开关',
+      name: 'switch',
+      path: '/switch',
+      component: () => import('tdesign-mobile-react/switch/_example/index.jsx'),
+    },
+    {
       title: 'Cell 单元格',
       name: 'cell',
       component: () => import('tdesign-mobile-react/cell/_example/base.jsx'),
+    },
+    {
+      title: 'Sticky 吸顶',
+      name: 'sticky',
+      component: () => import('tdesign-mobile-react/sticky/_example/base.jsx'),
     },
   ],
 };

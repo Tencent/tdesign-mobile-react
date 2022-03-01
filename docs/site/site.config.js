@@ -74,6 +74,18 @@ export default {
           path: '/react-mobile/components/grid',
           component: () => import('tdesign-mobile-react/grid/grid.md'),
         },
+        {
+          title: 'Sticky 吸顶',
+          name: 'sticky',
+          path: '/react-mobile/components/sticky',
+          component: () => import('tdesign-mobile-react/sticky/sticky.md'),
+        },
+        {
+          title: 'Image 图片',
+          name: 'image',
+          path: '/react-mobile/components/image',
+          component: () => import('tdesign-mobile-react/image/image.md'),
+        },
       ],
     },
     {
@@ -111,6 +123,12 @@ export default {
           name: 'message',
           path: '/react-mobile/components/message',
           component: () => import('tdesign-mobile-react/message/message.md'),
+        },
+        {
+          title: 'Switch 开关',
+          name: 'switch',
+          path: '/react-mobile/components/switch',
+          component: () => import('tdesign-mobile-react/switch/switch.md'),
         },
       ],
     },
