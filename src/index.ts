@@ -1,5 +1,6 @@
 export * from './button';
 export * from './grid';
+export * from './message';
 export * from './cell';
 export * from './cell-group';
 export * from './badge';

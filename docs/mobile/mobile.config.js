@@ -51,6 +51,11 @@ export default {
       component: () => import('tdesign-mobile-react/badge/_example/base.jsx'),
     },
     {
+      title: 'Message 消息通知',
+      name: 'message',
+      component: () => import('tdesign-mobile-react/message/_example/base.jsx'),
+    },
+    {
       title: 'Switch 开关',
       name: 'switch',
       path: '/switch',

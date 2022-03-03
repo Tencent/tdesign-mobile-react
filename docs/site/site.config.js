@@ -119,6 +119,12 @@ export default {
           component: () => import('tdesign-mobile-react/badge/badge.md'),
         },
         {
+          title: 'Message 信息提醒',
+          name: 'message',
+          path: '/react-mobile/components/message',
+          component: () => import('tdesign-mobile-react/message/message.md'),
+        },
+        {
           title: 'Switch 开关',
           name: 'switch',
           path: '/react-mobile/components/switch',
