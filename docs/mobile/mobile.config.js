@@ -71,5 +71,10 @@ export default {
       name: 'sticky',
       component: () => import('tdesign-mobile-react/sticky/_example/base.jsx'),
     },
+    {
+      title: 'Checkbox 多选框',
+      name: 'checkbox',
+      component: () => import('tdesign-mobile-react/checkbox/_example/index.jsx'),
+    },
   ],
 };

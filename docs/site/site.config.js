@@ -55,6 +55,12 @@ export default {
           path: '/react-mobile/components/tabs',
           component: () => import('tdesign-mobile-react/tabs/tabs.md'),
         },
+        {
+          title: 'Checkbox 多选框',
+          name: 'checkbox',
+          path: '/react-mobile/components/checkbox',
+          component: () => import('tdesign-mobile-react/checkbox/checkbox.md'),
+        },
       ],
     },
     {
