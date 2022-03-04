@@ -30,5 +30,10 @@ export default {
       name: 'badge',
       component: () => import('tdesign-mobile-react/badge/_example/base.jsx'),
     },
+    {
+      title: 'CountDown 倒计时',
+      name: 'count-down',
+      component: () => import('tdesign-mobile-react/count-down/_example/base.jsx'),
+    },
   ],
 };
