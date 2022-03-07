@@ -1,15 +1,14 @@
-import React, { Fragment, ReactNode } from 'react';
+import React, { Fragment, ReactNode, memo } from 'react';
 import cls from 'classnames';
 import useCountDown from './hooks/useCountDown';
+import useConfig from '../_util/useConfig';
 import { TdCountDownProps } from './type';
 
 import './style';
 
-const name = 't-countdown';
-
 export type CountDownProps = TdCountDownProps;
 
-const CountDown: React.FC<CountDownProps> = (props) => {
+const CountDown: React.FC<CountDownProps> = memo((props) => {
   const {
     autoStart = true,
     content,
@@ -22,6 +21,9 @@ const CountDown: React.FC<CountDownProps> = (props) => {
     onChange,
     onFinish,
   } = props;
+  const { classPrefix } = useConfig();
+  const name = `${classPrefix}-countdown`;
+
   const { timeText, timeList } = useCountDown({
     autoStart,
     millisecond,
@@ -36,18 +38,20 @@ const CountDown: React.FC<CountDownProps> = (props) => {
   let contentNode: ReactNode = null;
   if (content) {
     contentNode = content;
-  } else if (splitWithUnit) {
+  } else {
     contentNode = timeList.map(({ digit, unit, match }) => (
       <Fragment key={match}>
         <span className={`${name}-digit ${name}-digit-${match}`}>{digit}</span>
         {unit && <span className={`${name}-unit ${name}-unit-${match}`}>{unit}</span>}
       </Fragment>
     ));
-  } else {
-    contentNode = timeText;
   }
 
-  return <span className={cls(name, `${name}__${theme}`, `${name}__${size}`)}>{contentNode}</span>;
-};
+  const classNames = cls(name, `${name}__${theme}`, `${name}__${size}`, {
+    [`${name}__split-with-unit`]: splitWithUnit,
+  });
+
+  return <span className={classNames}>{contentNode}</span>;
+});
 
 export default CountDown;

@@ -49,9 +49,11 @@ export interface TdCountDownProps {
   /**
    * 时间变化时触发
    */
-  onChange?: (time) => void;
+  onChange?: (time: TimeData) => void;
   /**
    * 倒计时结束时触发
    */
   onFinish?: () => void;
 }
+
+export interface TimeData {  days: number; hours: number; minutes: number; seconds: number; milliseconds: number };

@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
-import { transformTime, TimeData, TimeItem } from './transformTime';
-import { TdCountDownProps } from '../../type';
+import { transformTime, TimeItem } from './transformTime';
+import { TdCountDownProps, TimeData } from '../../type';
 
 enum EnumCountDownStatus {
   active,
@@ -65,6 +65,7 @@ export const useCountDown = (params: UseCountdownParams) => {
   useEffect(() => {
     tick(true);
     startCountDown();
+    return clearCountDown;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time, millisecond, interval, format]);
 

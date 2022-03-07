@@ -1,10 +1,4 @@
-export interface TimeData {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-  milliseconds: number;
-}
+import { TimeData } from '../../type';
 
 export interface TimeItem {
   digit: string;
