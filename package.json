@@ -131,6 +131,7 @@
     "workbox-precaching": "^6.3.0"
   },
   "dependencies": {
+    "ahooks": "^3.1.9",
     "classnames": "^2.3.1",
     "hoist-non-react-statics": "^3.3.2",
     "lodash": "^4.17.21",
