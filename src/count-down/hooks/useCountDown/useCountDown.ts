@@ -34,6 +34,7 @@ export const useCountDown = (params: UseCountdownParams) => {
     if (currentTimerId) {
       currentTimerId && clearInterval(currentTimerId);
       ctxRef.current.timerId = 0;
+      setCountDownData((state) => ({ ...state, status: EnumCountDownStatus.inActive }));
     }
   };
 
@@ -81,9 +82,12 @@ export const useCountDown = (params: UseCountdownParams) => {
   };
 
   const reset = () => {
+    clearCountDown();
     tick(true);
     if (autoStart) {
       startCountDown();
+    } else {
+      setCountDownData((state) => ({ ...state, status: EnumCountDownStatus.inActive }));
     }
   };
 

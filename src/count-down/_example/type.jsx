@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { CountDown } from 'tdesign-mobile-react/count-down';
 import './style/type.less';
 
 export default function () {
+  const ref = useRef(null);
   return (
     <div className="t-countdown-type-demo">
+      {/* <button onClick={() => ref.current.pause()}>pause</button>
+      <button onClick={() => ref.current.start()}>start</button>
+      <button onClick={() => ref.current.reset()}>reset</button> */}
       <div className="demo-item">
         <div className="demo-item-label">时分秒</div>
-        <CountDown time={5768000} />
+        <CountDown time={5768000} ref={ref} autoStart={false} />
       </div>
       <div className="demo-item">
         <div className="demo-item-label">带毫秒</div>

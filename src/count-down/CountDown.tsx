@@ -1,4 +1,4 @@
-import React, { Fragment, ReactNode, memo } from 'react';
+import React, { Fragment, ReactNode, memo, useImperativeHandle, forwardRef, ForwardRefRenderFunction } from 'react';
 import cls from 'classnames';
 import useCountDown from './hooks/useCountDown';
 import useConfig from '../_util/useConfig';
@@ -6,10 +6,19 @@ import { TdCountDownProps } from './type';
 
 import './style';
 
-export type CountDownProps = TdCountDownProps;
+export interface CountDownProps extends TdCountDownProps {
+  className?: string;
+}
 
-const CountDown: React.FC<CountDownProps> = memo((props) => {
+export interface CountDownRef {
+  start: () => void;
+  reset: () => void;
+  pause: () => void;
+}
+
+const CountDown: ForwardRefRenderFunction<CountDownRef, CountDownProps> = (props, ref) => {
   const {
+    className,
     autoStart = true,
     content,
     millisecond,
@@ -24,7 +33,7 @@ const CountDown: React.FC<CountDownProps> = memo((props) => {
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-countdown`;
 
-  const { timeText, timeList } = useCountDown({
+  const { timeText, timeList, start, reset, pause } = useCountDown({
     autoStart,
     millisecond,
     time,
@@ -32,6 +41,8 @@ const CountDown: React.FC<CountDownProps> = memo((props) => {
     onChange,
     onFinish,
   });
+
+  useImperativeHandle(ref, () => ({ start, reset, pause }));
 
   if (!timeText) return null;
 
@@ -47,11 +58,17 @@ const CountDown: React.FC<CountDownProps> = memo((props) => {
     ));
   }
 
-  const classNames = cls(name, `${name}__${theme}`, `${name}__${size}`, {
-    [`${name}__split-with-unit`]: splitWithUnit,
-  });
+  const classNames = cls(
+    name,
+    `${name}__${theme}`,
+    `${name}__${size}`,
+    {
+      [`${name}__split-with-unit`]: splitWithUnit,
+    },
+    className,
+  );
 
   return <span className={classNames}>{contentNode}</span>;
-});
+};
 
-export default CountDown;
+export default memo(forwardRef(CountDown));
