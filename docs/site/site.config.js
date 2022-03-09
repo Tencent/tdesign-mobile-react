@@ -92,6 +92,12 @@ export default {
           path: '/react-mobile/components/image',
           component: () => import('tdesign-mobile-react/image/image.md'),
         },
+        {
+          title: 'Swiper 轮播',
+          name: 'swiper',
+          path: '/react-mobile/components/swiper',
+          component: () => import('tdesign-mobile-react/swiper/swiper.md'),
+        },
       ],
     },
     {
