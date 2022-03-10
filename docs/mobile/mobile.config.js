@@ -51,6 +51,11 @@ export default {
       component: () => import('tdesign-mobile-react/badge/_example/base.jsx'),
     },
     {
+      title: 'CountDown 倒计时',
+      name: 'count-down',
+      component: () => import('tdesign-mobile-react/count-down/_example/base.jsx'),
+    },
+    {
       title: 'Message 消息通知',
       name: 'message',
       component: () => import('tdesign-mobile-react/message/_example/base.jsx'),

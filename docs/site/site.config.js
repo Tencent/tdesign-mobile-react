@@ -81,6 +81,12 @@ export default {
           component: () => import('tdesign-mobile-react/grid/grid.md'),
         },
         {
+          title: 'CountDown 倒计时',
+          name: 'count-down',
+          path: '/react-mobile/components/count-down',
+          component: () => import('tdesign-mobile-react/count-down/count-down.md'),
+        },
+        {
           title: 'Sticky 吸顶',
           name: 'sticky',
           path: '/react-mobile/components/sticky',
