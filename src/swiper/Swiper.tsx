@@ -22,7 +22,7 @@ const Swiper: React.FC<SwiperProps> = (props) => {
     height = 180,
     interval = 5000, // 轮播间隔时间
     onChange = noop, // 轮播切换时触发
-    // loop = true,
+    loop = true,
     navigation = null, // 导航器全部配置
     className,
     style,
@@ -101,6 +101,15 @@ const Swiper: React.FC<SwiperProps> = (props) => {
   // 统一跳转处理函数
   const swiperTo = useCallback(
     (index: number, context: { source: SwiperChangeSource }) => {
+      // 若禁止循环播放
+      if (!loop) {
+        if (index === childrenLength + 1) {
+          setAnimation(true);
+          setCurrentIndex(1);
+          onChange(0, context);
+          return;
+        }
+      }
       // 事件通知
       if (index === childrenLength + 1) {
         onChange(0, context);
@@ -114,7 +123,7 @@ const Swiper: React.FC<SwiperProps> = (props) => {
       setAnimation(true);
       setCurrentIndex(index);
     },
-    [childrenLength, onChange],
+    [childrenLength, onChange, loop],
   );
 
   // 定时器
@@ -190,13 +199,27 @@ const Swiper: React.FC<SwiperProps> = (props) => {
 
       if (moveStartSite) {
         if (direction === 'vertical') {
-          setTouchMoveDistance(e.touches[0].clientY - moveStartSite);
+          const nowDistence = e.touches[0].clientY - moveStartSite;
+          if (
+            !loop &&
+            ((currentIndex === 1 && nowDistence > 0) || (currentIndex === childrenLength && nowDistence < 0))
+          ) {
+            return;
+          }
+          setTouchMoveDistance(nowDistence);
         } else {
-          setTouchMoveDistance(e.touches[0].clientX - moveStartSite);
+          const nowDistence = e.touches[0].clientX - moveStartSite;
+          if (
+            !loop &&
+            ((currentIndex === 1 && nowDistence > 0) || (currentIndex === childrenLength && nowDistence < 0))
+          ) {
+            return;
+          }
+          setTouchMoveDistance(nowDistence);
         }
       }
     },
-    [setTouchMoveDistance, moveStartSite, direction],
+    [setTouchMoveDistance, moveStartSite, direction, currentIndex, loop, childrenLength],
   );
 
   // 触摸滑动事件 - 结束
@@ -230,12 +253,14 @@ const Swiper: React.FC<SwiperProps> = (props) => {
   const clickSlideBtn = useCallback(
     (flag: 'left' | 'right') => {
       if (flag === 'left') {
+        if (!loop && currentIndex === 1) return;
         if (currentIndex === 0) {
           swiperTo(childrenLength - 1, { source: 'touch' });
         } else {
           swiperTo(currentIndex - 1, { source: 'touch' });
         }
       } else if (flag === 'right') {
+        if (!loop && currentIndex === childrenLength) return;
         if (currentIndex === childrenLength + 1) {
           swiperTo(2, { source: 'touch' });
         } else {
@@ -243,18 +268,18 @@ const Swiper: React.FC<SwiperProps> = (props) => {
         }
       }
     },
-    [currentIndex, swiperTo, childrenLength],
+    [currentIndex, swiperTo, childrenLength, loop],
   );
 
   // navigation.type === 'fraction' 时当前滚动值
   const fractionCurrent = useMemo(() => {
     if (currentIndex < 1) {
       return childrenLength;
-    } else if (currentIndex > childrenLength) {
-      return 1;
-    } else {
-      return currentIndex;
     }
+    if (currentIndex > childrenLength) {
+      return 1;
+    }
+    return currentIndex;
   }, [childrenLength, currentIndex]);
 
   // 构造 css 对象
