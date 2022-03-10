@@ -81,5 +81,10 @@ export default {
       name: 'checkbox',
       component: () => import('tdesign-mobile-react/checkbox/_example/index.jsx'),
     },
+    {
+      title: 'Swiper 轮播',
+      name: 'swiper',
+      component: () => import('tdesign-mobile-react/swiper/_example/index.jsx'),
+    },
   ],
 };
