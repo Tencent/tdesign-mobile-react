@@ -47,12 +47,12 @@ const InputUsage = React.memo(() => {
       </Button>
 
       <Dialog
-        className="test"
         visible={visible}
         title="带输入框对话框"
         confirmBtn="确定"
         cancelBtn="取消"
         content={<input placeholder="输入文案" className="t-dialog__demo-input" />}
+        destroyOnClose
         onClose={() => {
           setVisible(false);
         }}

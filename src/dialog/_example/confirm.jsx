@@ -92,6 +92,24 @@ const ConfirmUsage = React.memo(() => {
         多个按钮
       </Button>
 
+      <Button
+        theme="primary"
+        size="small"
+        onClick={() => {
+          Dialog.confirm({
+            title: '是否确认操作',
+            confirmBtn: '确认',
+            onConfirm() {
+              return new Promise((resolve) => {
+                setTimeout(resolve, 2 * 1000);
+              });
+            },
+          });
+        }}
+      >
+        异步操作
+      </Button>
+
       <Dialog
         {...alertProps}
         cancelBtn="取消"

@@ -27,8 +27,8 @@ export function show(props: DialogShowProps): DialogInstance {
     );
 
     const confirmHandle = useCallback(
-      (context) => {
-        options.onConfirm?.(context);
+      async (context) => {
+        await options.onConfirm?.(context);
         setVisible(false);
       },
       [options],

@@ -82,6 +82,11 @@ export interface TdDialogProps {
    * 如果蒙层存在，点击蒙层时触发
    */
   onOverlayClick?: (context: { e: MouseEvent<HTMLDivElement> }) => void;
+
+  /**
+   * 如果“确认”按钮存在，则点击“确认”按钮时触发
+   */
+  onConfirm?: (context: { e: MouseEvent<HTMLButtonElement> }) => void;
 }
 
 export interface DialogOptions extends Omit<TdDialogProps, 'attach'> {
@@ -118,7 +123,10 @@ export interface DialogInstance {
 
 export type DialogEventSource = 'cancel' | 'overlay';
 
-export interface DialogCloseContext { trigger: DialogEventSource; e: MouseEvent<HTMLElement> };
+export interface DialogCloseContext {
+  trigger: DialogEventSource;
+  e: MouseEvent<HTMLElement>;
+}
 
 export type DialogMethod = (options?: DialogOptions) => DialogInstance;
 

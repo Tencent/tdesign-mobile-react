@@ -2,11 +2,13 @@ import React, { CSSProperties, useCallback, useMemo, useState } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import ClassNames from 'classnames';
 import Mask from 'tdesign-mobile-react/mask';
-import Button, { ButtonProps, TdButtonProps } from 'tdesign-mobile-react/button';
+import { ButtonProps, TdButtonProps } from 'tdesign-mobile-react/button';
 import { StyledProps, TNode } from 'tdesign-mobile-react/common';
+import useUnmountedRef from 'ahooks/lib/useUnmountedRef';
 import useConfig from '../_util/useConfig';
 import widthStopPropagation, { PropagationEvent } from '../_util/widthStopPropagation';
 import { TdDialogProps } from './type';
+import DialogActionBtn from './DialogActionBtn';
 
 export interface DialogProps extends TdDialogProps, StyledProps {}
 
@@ -14,6 +16,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
   const {
     className,
     showOverlay = true,
+    destroyOnClose,
     onOverlayClick,
     closeOnOverlayClick = true,
     buttonLayout = 'horizontal',
@@ -32,6 +35,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     style,
   } = props;
   const { classPrefix } = useConfig();
+  const unmountRef = useUnmountedRef();
 
   const prefix = useMemo(() => `${classPrefix}-dialog`, [classPrefix]);
 
@@ -54,6 +58,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
       setActive(true);
     },
     onRest: () => {
+      if (unmountRef.current) return;
       setActive(visible);
 
       if (!visible && typeof onClosed === 'function') {
@@ -93,9 +98,6 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     const btnClassName = ClassNames(cls(`${btnLayout}-btn`));
     const btnCommonProps = {
       className: btnClassName,
-      block: true,
-      variant: 'text',
-      type: 'button',
     };
     // 为外部传入的按钮添加类名
     if (actions && actions.length)
@@ -182,25 +184,28 @@ export const Dialog: React.FC<DialogProps> = (props) => {
 
   // Dialog Dom
   const dialog = useMemo(
-    () => (
-      <div className={ClassNames(cls(), className)} style={style}>
-        <div className={ClassNames(cls('header'))} hidden={!title}>
-          <h3 className={ClassNames(cls('title'))}>{title}</h3>
+    () => {
+      if (destroyOnClose && !active) return <></>;
+
+      return (
+        <div className={ClassNames(cls(), className)} style={style}>
+          <div className={cls('header')} hidden={!title}>
+            <h3 className={cls('title')}>{title}</h3>
+          </div>
+          <div className={cls('body')} hidden={!content}>
+            {content}
+          </div>
+          <div
+            className={ClassNames(cls('footer'), cls(`${btnLayout}-footer`))}
+            hidden={!dialogActions || !dialogActions.length}
+          >
+            {dialogActions.map((btn, index) =>
+              typeof btn === 'object' ? <DialogActionBtn {...(btn as TdButtonProps)} key={index} /> : btn,
+            )}
+          </div>
         </div>
-        <div className={ClassNames(cls('body'))} hidden={!content}>
-          {content}
-        </div>
-        <div
-          // 按钮数量超过2个，强制垂直布局
-          className={ClassNames(cls('footer'), cls(`${btnLayout}-footer`))}
-          hidden={!dialogActions || !dialogActions.length}
-        >
-          {dialogActions.map((btn, index) =>
-            typeof btn === 'object' ? <Button {...(btn as TdButtonProps)} key={index} /> : btn,
-          )}
-        </div>
-      </div>
-    ),
+      );
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [active],
   );
