@@ -6,6 +6,10 @@ import { DialogInstance } from './type';
 export type DialogShowProps = Omit<DialogProps, 'visible'>;
 
 export function show(props: DialogShowProps): DialogInstance {
+  const ref = createRef<DialogInstance>();
+  let destroy = () => {
+    console.error('empty destroy function');
+  };
   const Wrapper = forwardRef<DialogInstance>((_, ref) => {
     const [visible, setVisible] = useState(false);
     const [options, setOptions] = useState<DialogShowProps>(props);
@@ -22,6 +26,19 @@ export function show(props: DialogShowProps): DialogInstance {
       [options],
     );
 
+    const confirmHandle = useCallback(
+      (context) => {
+        options.onConfirm?.(context);
+        setVisible(false);
+      },
+      [options],
+    );
+
+    const onClosedHandle = useCallback(() => {
+      options.onClosed?.();
+      destroy();
+    }, [options]);
+
     useImperativeHandle(ref, () => ({
       hide: () => {
         setVisible(false);
@@ -34,10 +51,18 @@ export function show(props: DialogShowProps): DialogInstance {
       },
     }));
 
-    return <Dialog {...options} visible={visible} onClose={closeHandle} />;
+    return (
+      <Dialog
+        {...options}
+        visible={visible}
+        onClose={closeHandle}
+        onConfirm={confirmHandle}
+        onClosed={onClosedHandle}
+      />
+    );
   });
-  const ref = createRef<DialogInstance>();
-  const destroy = renderToBody(<Wrapper ref={ref} />);
+
+  destroy = renderToBody(<Wrapper ref={ref} />);
 
   return {
     hide: ref.current?.hide,

@@ -118,10 +118,7 @@ export interface DialogInstance {
 
 export type DialogEventSource = 'cancel' | 'overlay';
 
-export interface DialogCloseContext {
-  trigger: DialogEventSource;
-  e: MouseEvent<HTMLElement>;
-}
+export interface DialogCloseContext { trigger: DialogEventSource; e: MouseEvent<HTMLElement> };
 
 export type DialogMethod = (options?: DialogOptions) => DialogInstance;
 

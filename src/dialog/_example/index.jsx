@@ -1,47 +1,26 @@
 import React from 'react';
 import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
 import TDemoHeader from '../../../docs/mobile/components/DemoHeader';
-import BaseUsage from './base';
-import ShapeUsage from './shape';
-import FitUsage from './fit';
-import PositionUsage from './position';
-import LazyUsage from './lazy';
-import LoadingUsage from './loading';
-import ErrorUsage from './error';
+import FeedbackUsage from './feedback';
+import ConfirmUsage from './confirm';
+import InputUsage from './input';
 import './style/index.less';
 
 export default function Base() {
   return (
     <>
-      <TDemoHeader title="Image 图片" summary="用于图片展示" />
-      <TDemoBlock
-        title="基础用法"
-      >
-        <BaseUsage />
+      <TDemoHeader title="Dialog 对话框" summary="一种打断当前操作的模态视图，用于显示重要提示或请求用户进行重要操作" />
+      <TDemoBlock title="反馈类对话框" summary="用于用户进行了一个操作，需传达重要信息，告知用户当前状况的情况。">
+        <FeedbackUsage />
       </TDemoBlock>
       <TDemoBlock
-        title="图片形状"
-        summary="通过shape属性可以设置图片形状，可选项有circle|round|square，分别代表圆形、圆角方形、方形"
+        title="确认类对话框"
+        summary="用于用户进行了一个操作，后果比较严重，需要用户二次确认的情况。 例如 退出、删除、清空等操作"
       >
-        <ShapeUsage />
+        <ConfirmUsage />
       </TDemoBlock>
-      <TDemoBlock
-        title="图片填充"
-        summary="通过fit属性可以设置图片填充模式，可选项有contain|cover|fill|none|scale-down，效果与原生的object-fit属性一致"
-      >
-        <FitUsage />
-      </TDemoBlock>
-      <TDemoBlock title="图片位置" summary="通过position属性可以设置图片位置，效果与原生的object-position属性一致">
-        <PositionUsage />
-      </TDemoBlock>
-      <TDemoBlock title="图片懒加载" summary="通过lazy属性来开启图片懒加载">
-        <LazyUsage />
-      </TDemoBlock>
-      <TDemoBlock title="加载中提示" summary="组件提供了默认的加载中提示，也支持通过loading插槽自定义提示内容">
-        <LoadingUsage />
-      </TDemoBlock>
-      <TDemoBlock title="加载失败提示" summary="组件提供了默认的加载失败提示，也支持通过error插槽自定义提示内容">
-        <ErrorUsage />
+      <TDemoBlock title="输入对话框" summary="用于用户进行了一个操作，需输入下一步操作的必要信息。 例如 输入密码">
+        <InputUsage />
       </TDemoBlock>
     </>
   );
