@@ -1,6 +1,8 @@
 import React, { FC, forwardRef } from 'react';
 import { CloseCircleFilledIcon } from 'tdesign-icons-react';
+import { isFunction } from 'lodash';
 import { TdInputProps } from './type';
+import { getCharacterLength } from '../_util/helper';
 
 const prefix = 't';
 
@@ -16,7 +18,7 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
     disabled = false,
     errorMessage = '',
     label = '',
-    // maxcharacter = 0,
+    maxcharacter = 0, // 半成品
     maxlength = 0,
     name = '',
     placeholder,
@@ -30,36 +32,38 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
     onBlur,
     onChange,
     onClear,
-    // onEnter,
+    onEnter,
     onFocus,
   } = props;
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement> | React.CompositionEvent<HTMLInputElement>) {
     const { value } = e.currentTarget;
-    console.log(value);
-    onChange && onChange(value, { e });
+    if (maxcharacter !== 0) {
+      getCharacterLength(value, maxcharacter);
+    }
+    isFunction(onChange) && onChange(value, { e });
   }
 
   function handleBlur(e: React.FocusEvent<HTMLInputElement, Element>) {
     const { value } = e.currentTarget;
-    onBlur && onBlur(value, { e });
+    isFunction(onBlur) && onBlur(value, { e });
   }
 
-  function handleEnter(e: React.KeyboardEvent<HTMLDivElement>) {
+  function handleEnter(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.keyCode === 13 || e.key === 'Enter' || e.charCode === 13 || e.which === 13) {
-      // const { value } = e.target;
-      // onEnter && onEnter(value, { e });
+      const { value } = e.currentTarget;
+      isFunction(onEnter) && onEnter(value, { e });
     }
   }
 
   function handleFocus(e: React.FocusEvent<HTMLInputElement, Element>) {
     const { value } = e.currentTarget;
-    onFocus && onFocus(value, { e });
+    isFunction(onFocus) && onFocus(value, { e });
   }
 
   function handleClear(e: React.MouseEvent<SVGElement, MouseEvent>) {
-    onChange && onChange('');
-    onClear && onClear({ e });
+    isFunction(onChange) && onChange('');
+    isFunction(onClear) && onClear({ e });
   }
 
   const inputProps: any = {};
