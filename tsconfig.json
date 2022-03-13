@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "jsx": "react",
+    "jsx": "react-jsx",
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "module": "esnext",
@@ -8,23 +8,40 @@
     "outDir": "lib",
     "declaration": true,
     "sourceMap": true,
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "importHelpers": true,
     "allowSyntheticDefaultImports": true,
     "suppressImplicitAnyIndexErrors": true,
     "baseUrl": "./",
     "paths": {
-      "tdesign-mobile-react": ["src"],
-      "tdesign-mobile-react/*": ["src/*"],
-      "@test/utils": ["test/utils"],
-      "@common/*": ["src/_common/*"],
+      "tdesign-mobile-react": [
+        "src"
+      ],
+      "tdesign-mobile-react/*": [
+        "src/*"
+      ],
+      "@test/utils": [
+        "test/utils"
+      ],
+      "@common/*": [
+        "src/_common/*"
+      ],
+      "@example/*": [
+        "examples/*"
+      ],
     },
     "allowJs": true,
     "checkJs": true,
     "downlevelIteration": true,
     "esModuleInterop": true
   },
-  "include": ["./src", "./global.d.ts"],
+  "include": [
+    "./src",
+    "./global.d.ts"
+  ],
   "exclude": [
     "**/**/__tests__/*",
     "examples/*",

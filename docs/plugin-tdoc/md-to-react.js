@@ -148,12 +148,12 @@ function customRender({ source, file, md }) {
     isComponent: false,
     tdDocHeader: true,
     tdDocTabs: DEAULT_TABS,
-    apiFlag: /#+\s*API\n/i,
+    apiFlag: /#+\s*API/i,
     ...data,
   };
 
   // md filename
-  const reg = file.match(/examples\/(\w+-?\w+)\/(\w+-?\w+)\.md/);
+  const reg = file.match(/src\/[\w-]+\/([\w-]+)\.md/);
   const componentName = reg && reg[1];
 
   // split md
