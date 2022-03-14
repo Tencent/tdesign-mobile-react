@@ -6,7 +6,7 @@
 
 import { TdButtonProps } from '../button';
 import { ButtonProps } from '../button';
-import { TNode } from '../common';
+import { TNode, Styles } from '../common';
 import { MouseEvent } from 'react';
 
 export interface TdDialogProps {
@@ -79,14 +79,13 @@ export interface TdDialogProps {
    */
   onClosed?: () => void;
   /**
-   * 如果蒙层存在，点击蒙层时触发
-   */
-  onOverlayClick?: (context: { e: MouseEvent<HTMLDivElement> }) => void;
-
-  /**
    * 如果“确认”按钮存在，则点击“确认”按钮时触发
    */
   onConfirm?: (context: { e: MouseEvent<HTMLButtonElement> }) => void;
+  /**
+   * 如果蒙层存在，点击蒙层时触发
+   */
+  onOverlayClick?: (context: { e: MouseEvent<HTMLDivElement> }) => void;
 }
 
 export interface DialogOptions extends Omit<TdDialogProps, 'attach'> {
@@ -97,9 +96,8 @@ export interface DialogOptions extends Omit<TdDialogProps, 'attach'> {
   className?: string;
   /**
    * 弹框 style 属性，输入 [CSSStyleDeclaration.cssText](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration/cssText)
-   * @default ''
    */
-  style?: string;
+  style?: Styles;
 }
 
 export interface DialogInstance {
@@ -123,10 +121,7 @@ export interface DialogInstance {
 
 export type DialogEventSource = 'cancel' | 'overlay';
 
-export interface DialogCloseContext {
-  trigger: DialogEventSource;
-  e: MouseEvent<HTMLElement>;
-}
+export interface DialogCloseContext { trigger: DialogEventSource; e: MouseEvent<HTMLElement> };
 
 export type DialogMethod = (options?: DialogOptions) => DialogInstance;
 
