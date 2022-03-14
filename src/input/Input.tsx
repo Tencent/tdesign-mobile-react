@@ -1,13 +1,13 @@
-import React, { FC, forwardRef } from 'react';
+import React, { FC, forwardRef, useRef } from 'react';
 import { CloseCircleFilledIcon } from 'tdesign-icons-react';
 import { isFunction } from 'lodash';
 import { TdInputProps } from './type';
 import { getCharacterLength } from '../_util/helper';
 
 const prefix = 't';
-
 export interface InputProps extends TdInputProps {
-  defaultValue: string;
+  required?: boolean;
+  readonly?: boolean;
 }
 
 const Input: FC<InputProps> = forwardRef((props, ref) => {
@@ -21,14 +21,16 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
     maxcharacter = 0, // 半成品
     maxlength = 0,
     name = '',
-    placeholder,
+    placeholder = '',
     prefixIcon,
     // size = 'small',
     suffix,
     suffixIcon,
     type = 'text',
-    value,
+    value = '',
     defaultValue,
+    required = false,
+    readonly = false,
     onBlur,
     onChange,
     onClear,
@@ -36,12 +38,18 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
     onFocus,
   } = props;
 
+  const compositionRef = useRef(false);
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement> | React.CompositionEvent<HTMLInputElement>) {
-    const { value } = e.currentTarget;
-    if (maxcharacter !== 0) {
-      getCharacterLength(value, maxcharacter);
+    let { value } = e.currentTarget;
+    if (maxcharacter !== 0 && !compositionRef.current) {
+      const res = getCharacterLength(value, maxcharacter) as {
+        length: number;
+        characters: string;
+      };
+      value = res.characters;
     }
-    isFunction(onChange) && onChange(value, { e });
+    isFunction(onChange) && !readonly && onChange(value, { e });
   }
 
   function handleBlur(e: React.FocusEvent<HTMLInputElement, Element>) {
@@ -62,7 +70,7 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
   }
 
   function handleClear(e: React.MouseEvent<SVGElement, MouseEvent>) {
-    isFunction(onChange) && onChange('');
+    isFunction(onChange) && !readonly && onChange('');
     isFunction(onClear) && onClear({ e });
   }
 
@@ -72,6 +80,15 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
   }
   if (defaultValue !== undefined) {
     inputProps.defaultValue = defaultValue;
+  }
+  if (isFunction(onBlur)) {
+    inputProps.onBlur = handleBlur;
+  }
+  if (isFunction(onEnter)) {
+    inputProps.onKeyPress = handleEnter;
+  }
+  if (isFunction(onFocus)) {
+    inputProps.onFocus = handleFocus;
   }
 
   return (
@@ -84,7 +101,7 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
       {label && (
         <div className={`${prefix}-cell__title`}>
           <div className={`${prefix}-input--label`}>{label}</div>
-          <span className={`${prefix}-cell--required`}>&nbsp;*</span>
+          {required && <span className={`${prefix}-cell--required`}>&nbsp;*</span>}
         </div>
       )}
       <div className={`${prefix}-cell__note`}>
@@ -99,10 +116,14 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
             autoComplete="off"
             placeholder={placeholder}
             value={value}
-            onBlur={handleBlur}
             onChange={handleChange}
-            onKeyPress={handleEnter}
-            onFocus={handleFocus}
+            onCompositionStart={() => {
+              compositionRef.current = true;
+            }}
+            onCompositionEnd={(e) => {
+              compositionRef.current = false;
+              handleChange(e);
+            }}
             ref={ref}
             {...inputProps}
           />
