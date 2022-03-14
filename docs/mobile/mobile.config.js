@@ -51,6 +51,11 @@ export default {
       component: () => import('tdesign-mobile-react/badge/_example/base.jsx'),
     },
     {
+      title: 'CountDown 倒计时',
+      name: 'count-down',
+      component: () => import('tdesign-mobile-react/count-down/_example/base.jsx'),
+    },
+    {
       title: 'Message 消息通知',
       name: 'message',
       component: () => import('tdesign-mobile-react/message/_example/base.jsx'),
@@ -77,9 +82,15 @@ export default {
       component: () => import('tdesign-mobile-react/checkbox/_example/index.jsx'),
     },
     {
+
       title: 'Dialog 对话框',
       name: 'dialog',
       component: () => import('tdesign-mobile-react/dialog/_example/index.jsx'),
+    },
+    {
+      title: 'Swiper 轮播',
+      name: 'swiper',
+      component: () => import('tdesign-mobile-react/swiper/_example/index.jsx'),
     },
   ],
 };
