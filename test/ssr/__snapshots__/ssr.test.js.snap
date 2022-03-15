@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ssr snapshot test renders ./src/icon/_example/index.jsx correctly 1`] = `"test"`;

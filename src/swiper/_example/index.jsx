@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Swiper } from 'tdesign-mobile-react';
-import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
-import TDemoHeader from '../../../docs/mobile/components/DemoHeader';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
+import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './style/index.less';
 
 export default function Base() {
