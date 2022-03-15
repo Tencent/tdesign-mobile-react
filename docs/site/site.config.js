@@ -98,6 +98,12 @@ export default {
           path: '/react-mobile/components/image',
           component: () => import('tdesign-mobile-react/image/image.md'),
         },
+        {
+          title: 'Loading 加载中',
+          name: 'loading',
+          path: '/react-mobile/components/loading',
+          component: () => import('tdesign-mobile-react/loading/loading.md'),
+        },
       ],
     },
     {

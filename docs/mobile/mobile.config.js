@@ -81,5 +81,10 @@ export default {
       name: 'checkbox',
       component: () => import('tdesign-mobile-react/checkbox/_example/index.jsx'),
     },
+    {
+      title: 'Loading 加载中',
+      name: 'loading',
+      component: () => import('tdesign-mobile-react/loading/_example/index.jsx'),
+    },
   ],
 };
