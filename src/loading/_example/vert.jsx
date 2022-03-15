@@ -1,5 +1,5 @@
 import { Loading } from 'tdesign-mobile-react';
 
 export default function () {
-  return <Loading />;
+  return <Loading text="加载中..." layout="vertical" />;
 }

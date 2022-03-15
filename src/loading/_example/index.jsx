@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef } from 'react';
 import { Loading, Button, Switch } from 'tdesign-mobile-react';
-import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
-import TDemoHeader from '../../../docs/mobile/components/DemoHeader';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
+import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './style/index.less';
 
 export default function () {
@@ -48,7 +48,7 @@ export default function () {
           className="demo-content"
           style={{
             color: 'red',
-            width: '100px',
+            width: '130px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -56,6 +56,7 @@ export default function () {
         >
           <Loading />
           <Loading theme="spinner" />
+          <div style={{ marginRight: '10px' }} />
           <Loading theme="dots" />
         </div>
       </TDemoBlock>
@@ -69,22 +70,26 @@ export default function () {
       </TDemoBlock>
       <TDemoBlock summary="图标加文字横向">
         <div className="demo-content">
+          <Loading text="加载中..." />
+          <div style={{ marginRight: '20px' }} />
           <Loading theme="spinner" text="加载中..." />
+          <div style={{ marginRight: '20px' }} />
+          <Loading>
+            <span>加载中...</span>
+          </Loading>
         </div>
       </TDemoBlock>
       <TDemoBlock summary="图标加文字竖向">
         <div className="demo-content">
-          <Loading text="加载中" layout="vertical" />
+          <Loading text="加载中..." layout="vertical" />
         </div>
       </TDemoBlock>
       <TDemoBlock summary="纯文字">
         <div className="demo-content">
           <Loading indicator={false} text="加载中..." />
-        </div>
-      </TDemoBlock>
-      <TDemoBlock summary="加载失败">
-        <div className="normal-content">
+          <div style={{ marginRight: '20px' }} />
           <Loading theme="error" />
+          <div style={{ marginRight: '20px' }} />
           <div>
             <Loading indicator={false}>
               <div class="custom-error">
@@ -98,23 +103,18 @@ export default function () {
         <div className="normal-content">
           <Switch label={['请求发起，延迟显示loading', '请求结束，隐藏loading']} onChange={clickSwitch} />
           <div>
-            <Loading delay={1500} loading={showLoading} text="加载中..." />
+            <Loading delay={1000} loading={showLoading} text="加载中..." />
           </div>
         </div>
       </TDemoBlock>
 
       <TDemoBlock title="02 规格" summary="图标加文字横向">
-        <div className="normal-content">
-          <div style={{ marginRight: '20px' }}>
-            <Loading size="large" text="加载中(大)..." />
-            <Loading size="medium" text="加载中(中)..." />
-            <Loading size="small" text="加载中(小)..." />
-          </div>
-          {/* <div>
-            <Loading size="large" theme="spinner" text="加载中(大)..." />
-            <Loading size="medium" theme="spinner" text="加载中(中)..." />
-            <Loading size="small" theme="spinner" text="加载中(小)..." />
-          </div> */}
+        <div className="normal-content" style={{ marginBottom: '30px' }}>
+          <Loading size="large" text="加载中(大)..." />
+          <div style={{ marginBottom: '10px' }} />
+          <Loading size="medium" text="加载中(中)..." />
+          <div style={{ marginBottom: '10px' }} />
+          <Loading size="small" text="加载中(小)..." />
         </div>
       </TDemoBlock>
     </>

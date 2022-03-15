@@ -101,7 +101,7 @@ export default {
         {
           title: 'Loading 加载中',
           name: 'loading',
-          path: '/react-mobile/components/loading',
+          path: '/mobile-react/components/loading',
           component: () => import('tdesign-mobile-react/loading/loading.md'),
         },
         {
