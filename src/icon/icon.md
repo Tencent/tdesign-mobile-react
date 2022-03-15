@@ -1,4 +1,6 @@
-# Icon 图标
+---
+title: Icon 图标
+---
 
 ## 安装独立 Icon 包
 

@@ -15,3 +15,4 @@ export * from './switch';
 export * from './sticky';
 export * from './checkbox';
 export * from './loading';
+export * from './swiper';

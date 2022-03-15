@@ -52,18 +52,18 @@ const CountDown: ForwardRefRenderFunction<CountDownRef, CountDownProps> = (props
   } else {
     contentNode = timeList.map(({ digit, unit, match }) => (
       <Fragment key={match}>
-        <span className={`${name}-digit ${name}-digit-${match}`}>{digit}</span>
-        {unit && <span className={`${name}-unit ${name}-unit-${match}`}>{unit}</span>}
+        <span className={`${name}__digit ${name}__digit-${match}`}>{digit}</span>
+        {unit && <span className={`${name}__unit ${name}__unit-${match}`}>{unit}</span>}
       </Fragment>
     ));
   }
 
   const classNames = cls(
     name,
-    `${name}__${theme}`,
-    `${name}__${size}`,
+    `${name}--${theme}`,
+    `${name}--${size}`,
     {
-      [`${name}__split-with-unit`]: splitWithUnit,
+      [`${name}--split-with-unit`]: splitWithUnit,
     },
     className,
   );
