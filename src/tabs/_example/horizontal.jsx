@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tabs, TabPanel } from 'tdesign-mobile-react/tabs';
-import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import './style.less';
 
 export default function () {
