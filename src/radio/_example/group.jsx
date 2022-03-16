@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { RadioGroup, Radio } from 'tdesign-mobile-react/radio';
 
-import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {
   const itemOptions = ['北京', '上海', '广州', '深圳'];

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Divider } from 'tdesign-mobile-react';
-import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
-import TDemoHeader from '../../../docs/mobile/components/DemoHeader';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
+import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import Content from './content';
 import Normal from './normal';
 import NormalDashed from './normal-dashed';

@@ -1,6 +1,6 @@
 import React from 'react';
-import TDemoHeader from '../../../docs/mobile/components/DemoHeader';
-import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
+import TDemoHeader from '../../../site/mobile/components/DemoHeader';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TypeDemo from './type';
 import SpecsDemo from './specs';
 
