@@ -33,7 +33,7 @@ export default function mdToReact(options) {
       const tdDocTabs = useRef();
       const tdDocPhone = useRef();
 
-      const isComponent  = ${mdSegment.isComponent};
+      const isComponent = ${mdSegment.isComponent};
 
       const location = useLocation();
       const navigate = useNavigate();
@@ -137,7 +137,7 @@ function customRender({ source, file, md }) {
   // md top data
   const pageData = {
     spline: '',
-    toc: true,
+    toc: false,
     title: '',
     description: '',
     isComponent: false,
