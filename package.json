@@ -35,7 +35,7 @@
     "postsite:preview": "cp _site/index.html _site/404.html",
     "lint": "eslint --ext .ts,.tsx ./ --max-warnings 0",
     "lint:fix": "eslint --ext .ts,.tsx ./ --max-warnings 0 --fix",
-    "test": "echo \"no test specified, work in progress\"",
+    "test": "npm run test:unit",
     "test:update": "npm run test:unit-update",
     "test:unit": "bash -c 'jest --coverage --config test/config/jest.unit.conf.js ${1}' -- ",
     "test:unit-update": "jest --config test/config/jest.unit.conf.js --updateSnapshot --coverage",
