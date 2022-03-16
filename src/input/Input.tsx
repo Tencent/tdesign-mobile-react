@@ -2,9 +2,9 @@ import React, { FC, forwardRef, useRef } from 'react';
 import { CloseCircleFilledIcon } from 'tdesign-icons-react';
 import { isFunction } from 'lodash';
 import { TdInputProps } from './type';
-import { getCharacterLength } from '../_util/helper';
+import { getCharacterLength } from '@common/js/utils/helper';
+import useConfig from '../_util/useConfig';
 
-const prefix = 't';
 export interface InputProps extends TdInputProps {
   required?: boolean;
   readonly?: boolean;
@@ -37,6 +37,9 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
     onEnter,
     onFocus,
   } = props;
+
+  const { classPrefix } = useConfig();
+  const prefix = classPrefix;
 
   const compositionRef = useRef(false);
 
@@ -140,4 +143,5 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
     </div>
   );
 });
+
 export default Input;
