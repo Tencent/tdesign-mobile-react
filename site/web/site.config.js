@@ -64,7 +64,7 @@ export default {
         {
           title: 'Input 输入框',
           name: 'input',
-          path: '/react-mobile/components/input',
+          path: '/mobile-react/components/input',
           component: () => import('tdesign-mobile-react/input/input.md'),
         },
       ],
