@@ -105,6 +105,12 @@ export default {
           component: () => import('tdesign-mobile-react/image/image.md'),
         },
         {
+          title: 'Loading 加载中',
+          name: 'loading',
+          path: '/mobile-react/components/loading',
+          component: () => import('tdesign-mobile-react/loading/loading.md'),
+        },
+        {
           title: 'Swiper 轮播',
           name: 'swiper',
           path: '/mobile-react/components/swiper',
@@ -135,6 +141,12 @@ export default {
           name: 'popup',
           path: '/mobile-react/components/popup',
           component: () => import('tdesign-mobile-react/popup/popup.md'),
+        },
+        {
+          title: 'Dialog 对话框',
+          name: 'dialog',
+          path: '/mobile-react/components/dialog',
+          component: () => import('tdesign-mobile-react/dialog/dialog.md'),
         },
         {
           title: 'Badge 徽标',
