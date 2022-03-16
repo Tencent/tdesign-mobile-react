@@ -82,6 +82,11 @@ export default {
       component: () => import('tdesign-mobile-react/checkbox/_example/index.jsx'),
     },
     {
+      title: 'Dialog 对话框',
+      name: 'dialog',
+      component: () => import('tdesign-mobile-react/dialog/_example/index.jsx'),
+    },
+    {
       title: 'Loading 加载中',
       name: 'loading',
       component: () => import('tdesign-mobile-react/loading/_example/index.jsx'),

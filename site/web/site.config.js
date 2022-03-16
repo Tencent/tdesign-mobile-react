@@ -137,6 +137,12 @@ export default {
           component: () => import('tdesign-mobile-react/popup/popup.md'),
         },
         {
+          title: 'Dialog 对话框',
+          name: 'dialog',
+          path: '/mobile-react/components/dialog',
+          component: () => import('tdesign-mobile-react/dialog/dialog.md'),
+        },
+        {
           title: 'Badge 徽标',
           name: 'badge',
           path: '/mobile-react/components/badge',
