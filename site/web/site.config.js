@@ -133,7 +133,7 @@ export default {
         {
           title: 'Dialog 对话框',
           name: 'dialog',
-          path: '/react-mobile/components/dialog',
+          path: '/mobile-react/components/dialog',
           component: () => import('tdesign-mobile-react/dialog/dialog.md'),
         },
         {
