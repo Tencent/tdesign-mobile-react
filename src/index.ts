@@ -1,4 +1,5 @@
 export * from './button';
+export * from './input';
 export * from './grid';
 export * from './message';
 export * from './cell';

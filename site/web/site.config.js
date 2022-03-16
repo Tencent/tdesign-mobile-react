@@ -61,6 +61,12 @@ export default {
           path: '/mobile-react/components/checkbox',
           component: () => import('tdesign-mobile-react/checkbox/checkbox.md'),
         },
+        {
+          title: 'Input 输入框',
+          name: 'input',
+          path: '/mobile-react/components/input',
+          component: () => import('tdesign-mobile-react/input/input.md'),
+        },
       ],
     },
     {

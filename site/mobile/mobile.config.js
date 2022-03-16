@@ -21,6 +21,11 @@ export default {
       component: () => import('tdesign-mobile-react/tabs/_example/index.jsx'),
     },
     {
+      title: 'Input 输入框',
+      name: 'input',
+      component: () => import('tdesign-mobile-react/input/_example/index.jsx'),
+    },
+    {
       title: 'Grid 宫格',
       name: 'grid',
       component: () => import('tdesign-mobile-react/grid/_example/base.jsx'),
