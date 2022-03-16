@@ -99,6 +99,12 @@ export default {
           component: () => import('tdesign-mobile-react/image/image.md'),
         },
         {
+          title: 'Loading 加载中',
+          name: 'loading',
+          path: '/mobile-react/components/loading',
+          component: () => import('tdesign-mobile-react/loading/loading.md'),
+        },
+        {
           title: 'Swiper 轮播',
           name: 'swiper',
           path: '/mobile-react/components/swiper',

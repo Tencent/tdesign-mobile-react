@@ -79,7 +79,7 @@ function Components() {
     };
 
     // initHistoryVersions();
-  }, []);
+  }, [location, navigate]);
 
   return (
     <td-doc-layout>
