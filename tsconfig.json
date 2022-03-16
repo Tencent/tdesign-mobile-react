@@ -17,21 +17,10 @@
     "suppressImplicitAnyIndexErrors": true,
     "baseUrl": "./",
     "paths": {
-      "tdesign-mobile-react": [
-        "src"
-      ],
-      "tdesign-mobile-react/*": [
-        "src/*"
-      ],
-      "@test/utils": [
-        "test/utils"
-      ],
-      "@common/*": [
-        "src/_common/*"
-      ],
-      "@example/*": [
-        "examples/*"
-      ],
+      "tdesign-mobile-react": ["src"],
+      "tdesign-mobile-react/*": ["src/*"],
+      "@test/utils": ["test/utils"],
+      "@common/*": ["src/_common/*"],
     },
     "allowJs": true,
     "checkJs": true,
@@ -44,10 +33,9 @@
   ],
   "exclude": [
     "**/**/__tests__/*",
-    "examples/*",
+    "**/**/_example/*",
     "node_modules",
     "src/_common",
-    "src/_type",
     "dist",
     "lib",
     "esm",

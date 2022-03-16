@@ -19,7 +19,7 @@ export default function mdToReact(options) {
 
   const reactSource = `
     import React, { useEffect, useRef, useState } from 'react';\n
-    import { useLocation } from 'react-router-dom';
+    import { useLocation, useNavigate } from 'react-router-dom';
     import Prismjs from 'prismjs';
     import 'prismjs/components/prism-bash.js';
     ${demoCodesDefsStr}
@@ -33,9 +33,10 @@ export default function mdToReact(options) {
       const tdDocTabs = useRef();
       const tdDocPhone = useRef();
 
-      const isComponent  = ${mdSegment.isComponent};
+      const isComponent = ${mdSegment.isComponent};
 
       const location = useLocation();
+      const navigate = useNavigate();
 
       const query = useQuery();
       const [tab, setTab] = useState(query.get('tab') || 'demo');
@@ -53,12 +54,6 @@ export default function mdToReact(options) {
           tdDocTabs.current.tabs = ${JSON.stringify(mdSegment.tdDocTabs)};
         }
         Prismjs.highlightAll();
-
-        document.querySelector('td-doc-content').initAnchorHighlight();
-
-        return () => {
-          document.querySelector('td-doc-content').resetAnchorHighlight();
-        };
       }, []);
 
       useEffect(() => {
@@ -73,7 +68,7 @@ export default function mdToReact(options) {
           setTab(currentTab);
           const query = new URLSearchParams(location.search);
           if (query.get('tab') === currentTab) return;
-          props.history.push({ search: '?tab=' + currentTab });
+          navigate({ search: '?tab=' + currentTab });
         }
       }, [location])
 
@@ -142,7 +137,7 @@ function customRender({ source, file, md }) {
   // md top data
   const pageData = {
     spline: '',
-    toc: true,
+    toc: false,
     title: '',
     description: '',
     isComponent: false,
@@ -161,13 +156,13 @@ function customRender({ source, file, md }) {
 
   // fix table | render error
   demoMd = demoMd.replace(/`([^`]+)`/g, (str, codeStr) => {
-    codeStr = codeStr.replace(/\|/g, '\\|');
+    codeStr = codeStr.replace(/"/g, '\'');
     return `<td-code text="${codeStr}"></td-code>`;
   });
 
   apiMd = apiMd.replace(/`([^`]+)`/g, (str, codeStr) => {
     codeStr = codeStr.replace(/\|/g, '\\|');
-    return `<td-code text="${codeStr}"></td-code>`;
+    return `\`${codeStr}\``;
   });
 
   const mdSegment = {
@@ -188,7 +183,7 @@ function customRender({ source, file, md }) {
   }
 
   // 移动端路由地址
-  const prefix = process.env.NODE_ENV === 'development' ? `/mobile.html` : `/react-mobile/mobile.html`;
+  const prefix = process.env.NODE_ENV === 'development' ? `/mobile.html` : `/mobile-react/mobile.html`;
   mdSegment.mobileUrl = `${prefix}#/${componentName}`;
 
   // 设计指南内容 不展示 design Tab 则不解析

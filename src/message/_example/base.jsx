@@ -1,6 +1,6 @@
 import React from 'react';
-import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
-import TDemoHeader from '../../../docs/mobile/components/DemoHeader';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
+import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import Types from './types';
 import Status from './status';
 import './style/index.less';
