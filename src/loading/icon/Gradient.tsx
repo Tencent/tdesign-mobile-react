@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import useConfig from '../../_util/useConfig';
-import circleAdapter from '../../_common/js/loading/circle-adapter';
+/* eslint-disable */
+import circleAdapter from '../../_common/js/loading/circle-adapter'; // @ts-ignore
 
 interface Props {
   pause: boolean;
