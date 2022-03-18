@@ -101,5 +101,10 @@ export default {
       name: 'swiper',
       component: () => import('tdesign-mobile-react/swiper/_example/index.jsx'),
     },
+    {
+      title: 'Navbar 导航栏',
+      name: 'navbar',
+      component: () => import('tdesign-mobile-react/navbar/_example/index.jsx'),
+    },
   ],
 };

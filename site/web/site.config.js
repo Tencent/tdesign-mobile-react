@@ -50,6 +50,12 @@ export default {
       type: 'navigation', // 组件文档
       children: [
         {
+          title: 'Navbar 导航栏',
+          name: 'navbar',
+          path: '/mobile-react/components/navbar',
+          component: () => import('tdesign-mobile-react/navbar/navbar.md'),
+        },
+        {
           title: 'Tabs 选项卡',
           name: 'tabs',
           path: '/mobile-react/components/tabs',
