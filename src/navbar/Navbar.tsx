@@ -18,7 +18,7 @@ export const Navbar = React.memo<NavbarProps>((props) => {
     titleMaxLength,
     onTextClick,
     onHomeClick,
-    onLeftClick,
+    // onLeftClick,
   } = props;
   const { classPrefix } = useConfig();
   const prefix = useMemo(() => `${classPrefix}-navbar`, [classPrefix]);
