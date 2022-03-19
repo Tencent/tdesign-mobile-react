@@ -1,6 +1,8 @@
-import React, { CSSProperties, ReactElement } from 'react';
+import React from 'react';
+import type { CSSProperties, ReactElement } from 'react';
 import cls from 'classnames';
-import has from 'lodash/has';
+import keys from 'lodash/keys';
+import assign from 'lodash/assign';
 
 export interface NativeProps<S extends string = never> {
   className?: string;
@@ -8,23 +10,21 @@ export interface NativeProps<S extends string = never> {
 }
 
 export default function withNativeProps<P extends NativeProps>(props: P, element: ReactElement) {
-  const p = {
-    ...element.props,
-  };
+  const elementProps = element.props;
+  const nativeProps: NativeProps & Record<string, any> = {};
   if (props.className) {
-    p.className = cls(element.props.className, props.className);
+    nativeProps.className = cls(elementProps.className, props.className);
   }
   if (props.style) {
-    p.style = {
-      ...p.style,
-      ...props.style,
-    };
+    nativeProps.style = assign({}, elementProps.style, props.style);
   }
-  for (const key in props) {
-    if (!has(props, key)) continue;
+  keys(props).forEach((key) => {
     if (key.startsWith('data-') || key.startsWith('aria-')) {
-      p[key] = props[key];
+      nativeProps[key] = props[key];
     }
+  });
+  if (keys(nativeProps).length) {
+    return React.cloneElement(element, assign({}, elementProps, nativeProps));
   }
-  return React.cloneElement(element, p);
+  return element;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import TDemoHeader from '../../../docs/mobile/components/DemoHeader';
+import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import TypeDemo from './base';
 import SpecsDemo from './specs';
 

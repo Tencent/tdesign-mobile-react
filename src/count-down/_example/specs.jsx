@@ -1,6 +1,6 @@
 import React from 'react';
 import { CountDown } from 'tdesign-mobile-react';
-import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 import './style/specs.less';
 

@@ -1,4 +1,5 @@
 export * from './button';
+export * from './input';
 export * from './grid';
 export * from './message';
 export * from './cell';
@@ -15,3 +16,6 @@ export * from './switch';
 export * from './sticky';
 export * from './checkbox';
 export * from './count-down';
+export * from './dialog';
+export * from './loading';
+export * from './swiper';
