@@ -116,6 +116,12 @@ export default {
           path: '/mobile-react/components/swiper',
           component: () => import('tdesign-mobile-react/swiper/swiper.md'),
         },
+        {
+          title: 'SwipeCell 滑动单元格',
+          name: 'swipe-cell',
+          path: '/mobile-react/components/swipe-cell',
+          component: () => import('tdesign-mobile-react/swipe-cell/swipe-cell.md'),
+        },
       ],
     },
     {

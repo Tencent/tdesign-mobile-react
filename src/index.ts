@@ -18,3 +18,4 @@ export * from './checkbox';
 export * from './dialog';
 export * from './loading';
 export * from './swiper';
+export * from './swipe-cell';
