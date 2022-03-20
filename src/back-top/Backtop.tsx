@@ -48,9 +48,10 @@ const BackTop: React.FC<TdBackTopProps> = (prop) => {
   return (
     <>
       <div
-        style={{ opacity: show ? '1' : '0' }}
         className={classNames(`${classPrefix}-back-top`, `${classPrefix}-back-top--${theme}`, {
           [`${classPrefix}-is-fixed`]: fixed,
+          'back-top-hidden': !show,
+          'back-top-show': show,
         })}
         onClick={onClick}
       >
