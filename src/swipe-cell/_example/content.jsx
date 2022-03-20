@@ -7,8 +7,13 @@ export default function Demo() {
     <TDemoBlock title="通过直接传入内容或者使用 slot#content 来渲染">
       <SwipeCell
         style={{ height: 48 }}
-        right={<Button theme="primary">编辑</Button>}
+        right={[
+          { text: '删除', theme: 'danger' },
+          { text: '确认', theme: 'primary' },
+        ]}
+        left={<Button>编辑</Button>}
         content={<div className="content-text">使用slot#content</div>}
+        threshold="33%"
       />
     </TDemoBlock>
   );

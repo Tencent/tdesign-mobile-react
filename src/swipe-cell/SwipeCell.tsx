@@ -21,6 +21,7 @@ export interface SwipeCellRef {
 export interface SwipeCellProps extends TdSwipeCellProps, NativeProps {
   closeOnClick?: boolean;
   closeOnTouchOutside?: boolean;
+  threshold?: number | string;
 }
 
 const defaultProps = {
@@ -29,12 +30,13 @@ const defaultProps = {
   right: null,
   closeOnClick: false,
   closeOnTouchOutside: true,
+  threshold: '50%',
   onChange: identity,
   onClick: identity,
 };
 
 const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((props, ref) => {
-  const { left, right, content, disabled, expanded, closeOnClick, closeOnTouchOutside } = props;
+  const { left, right, content, disabled, expanded, closeOnClick, closeOnTouchOutside, threshold } = props;
   const rootRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
@@ -97,7 +99,12 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((props, ref) => {
         }
         const boundsLeft = getSideOffsetX('right');
         const boundsRight = getSideOffsetX('left');
-        const nextX = nearest([boundsLeft, 0, boundsRight], position);
+        const nextX = nearest({
+          items: [boundsLeft, 0, boundsRight],
+          target: position,
+          threshold,
+          direction: offsetX - state.lastOffset[0] > 0 ? 1 : -1,
+        });
         if (nextX === boundsLeft) {
           expand('right');
         } else if (nextX === boundsRight) {
@@ -163,7 +170,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((props, ref) => {
       return actions.map((action, index) => {
         const { text, ...buttonProps } = action;
         return (
-          // @ts-ignore, Button没有实现style
+          // @ts-ignore, SwipeActionItem.style不应该是string
           <Button key={index} {...buttonProps} onClick={() => onActionClick(action, side)}>
             {text}
           </Button>
