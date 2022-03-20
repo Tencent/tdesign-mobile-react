@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { BackTop, Button } from 'tdesign-mobile-react';
 import TDemoHeader from '../../../docs/mobile/components/DemoHeader';
 import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
+import { BackTopTheme } from '../Backtop';
 import './style/index.less';
 
 export default function Base() {
@@ -12,22 +13,22 @@ export default function Base() {
 
   const roundTypes = [
     {
-      theme: 'round',
+      theme: BackTopTheme.ROUND,
       text: '圆白底',
       showText: true,
     },
     {
-      theme: 'round-dark',
+      theme: BackTopTheme.ROUND_DARK,
       text: '圆黑底',
       showText: true,
     },
     {
-      theme: 'round',
+      theme: BackTopTheme.ROUND,
       text: '圆白底纯图标',
       showText: false,
     },
     {
-      theme: 'round-dark',
+      theme: BackTopTheme.ROUND_DARK,
       text: '圆黑底纯图标',
       showText: false,
     },
@@ -35,11 +36,11 @@ export default function Base() {
 
   const halfRoundTypes = [
     {
-      theme: 'half-round',
+      theme: BackTopTheme.HALF_ROUND,
       text: '半圆白底',
     },
     {
-      theme: 'half-round-dark',
+      theme: BackTopTheme.HALF_ROUND_DARK,
       text: '半圆黑底',
     },
   ];
@@ -53,6 +54,12 @@ export default function Base() {
 
   return (
     <div className="tdesign-mobile-react-demo">
+      <BackTop
+        text={theme.showText ? '顶部' : ''}
+        // @ts-ignore
+        theme={theme.theme}
+        // target={() => document.getElementById('anchor')}
+      />
       <TDemoHeader
         title="Grid 宫格"
         summary="一行内容/功能的垂直排列方式。一行项目左侧为主要内容展示区域，右侧可增加更多操作内容。"
@@ -75,12 +82,17 @@ export default function Base() {
           ))}
         </div>
       </TDemoBlock>
-      <div style={{ width: '100%', height: 3700 }} />
-      <BackTop
-        text={theme.showText ? '顶部' : ''}
-        // @ts-ignore
-        theme={theme.theme}
-      />
+      <div className="content">
+        <div className="content1">1</div>
+        <div id="anchor" className="content1">
+          2
+        </div>
+        <div className="content1">3</div>
+        <div className="content1">4</div>
+        <div className="content1">5</div>
+        <div className="content1">6</div>
+        <div className="content1">7</div>
+      </div>
     </div>
   );
 }

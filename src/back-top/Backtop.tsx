@@ -1,5 +1,6 @@
-import React, { useCallback, useRef, useEffect } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import classNames from 'classnames';
+import { useScroll } from 'ahooks';
 import { Icon } from 'tdesign-icons-react';
 import useConfig from '../_util/useConfig';
 import { TdBackTopProps } from './type';
@@ -12,35 +13,34 @@ export enum BackTopTheme {
 }
 
 const BackTop: React.FC<TdBackTopProps> = (prop) => {
-  const {
-    fixed = true,
-    icon = 'backtop',
-    target = () => Window || Document,
-    text = '',
-    theme = BackTopTheme.ROUND,
-  } = prop;
+  const { fixed = true, icon = 'backtop', target = () => window, text = '', theme = BackTopTheme.ROUND } = prop;
 
-  const ref = useRef<HTMLDivElement>(null);
+  const [show, setShow] = useState(false);
 
   const { classPrefix } = useConfig();
 
-  // useEffect(() => {
-  //   ref.current = target;
-  // }, []);
+  const scroll = useScroll(document);
 
-  // const getDefaultTarget = () => (ref.current && ref.current.ownerDocument ? ref.current.ownerDocument : window);
+  const isWindow = (obj) => obj !== null && obj.window === window;
+
+  const targetHeight = useMemo(
+    () => (isWindow(target) ? 0 : (target() as unknown as HTMLElement).offsetTop || 0),
+    [target],
+  );
+
+  useEffect(() => {
+    // 当滚动条滚动到超过锚点一个屏幕后，显示回到顶部按钮
+    const screenHeight = window.innerHeight;
+    if (scroll?.top > screenHeight + targetHeight) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  }, [scroll, targetHeight]);
 
   const onClick = useCallback(() => {
-    console.log('ref.current: ', ref.current);
-    console.log('ref: ', ref);
-    console.log('window', window);
-    console.log('ref.current.offsetTop: ', ref.current.offsetTop);
-    if (ref.current) {
-      // event.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      // target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      // target.scrollTo(0, ref.current.offsetTop || 0);
-    }
-  }, [ref, target]);
+    document.documentElement.scrollTo({ top: targetHeight, behavior: 'smooth' });
+  }, [targetHeight]);
 
   const backTopIcon =
     typeof icon === 'string' ? <Icon className={`${classPrefix}-back-top__icon`} name={icon} /> : icon;
@@ -48,8 +48,8 @@ const BackTop: React.FC<TdBackTopProps> = (prop) => {
   return (
     <>
       <div
-        ref={ref}
-        className={classNames(`${classPrefix}-back-top`, `${classPrefix}-is-${theme}`, {
+        style={{ opacity: show ? '1' : '0' }}
+        className={classNames(`${classPrefix}-back-top`, `${classPrefix}-back-top--${theme}`, {
           [`${classPrefix}-is-fixed`]: fixed,
         })}
         onClick={onClick}
