@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import classNames from 'classnames';
-import { useScroll } from 'ahooks';
+import { useScroll, useMount } from 'ahooks';
+import smoothscroll from 'smoothscroll-polyfill';
 import { Icon } from 'tdesign-icons-react';
 import useConfig from '../_util/useConfig';
 import { TdBackTopProps } from './type';
@@ -20,6 +21,10 @@ const BackTop: React.FC<TdBackTopProps> = (prop) => {
   const { classPrefix } = useConfig();
 
   const scroll = useScroll(document);
+
+  useMount(() => {
+    smoothscroll.polyfill();
+  });
 
   const isWindow = (obj) => obj !== null && obj.window === window;
 
