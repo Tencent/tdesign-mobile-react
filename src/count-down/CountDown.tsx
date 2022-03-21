@@ -1,14 +1,11 @@
-import React, { Fragment, ReactNode, memo, useImperativeHandle, forwardRef, ForwardRefRenderFunction } from 'react';
+import React, { Fragment, ReactNode, memo, useImperativeHandle, forwardRef } from 'react';
 import cls from 'classnames';
 import useCountDown from './hooks/useCountDown';
 import useConfig from '../_util/useConfig';
+import widthNativeProps, { NativeProps } from '../_util/widthNativeProps';
 import { TdCountDownProps } from './type';
 
 import './style';
-
-export interface CountDownProps extends TdCountDownProps {
-  className?: string;
-}
 
 export interface CountDownRef {
   start: () => void;
@@ -16,20 +13,18 @@ export interface CountDownRef {
   pause: () => void;
 }
 
-const CountDown: ForwardRefRenderFunction<CountDownRef, CountDownProps> = (props, ref) => {
-  const {
-    className,
-    autoStart = true,
-    content,
-    millisecond,
-    size = 'small',
-    splitWithUnit = false,
-    time,
-    format = 'HH:mm:ss',
-    theme = 'default',
-    onChange,
-    onFinish,
-  } = props;
+export interface CountDownProps extends TdCountDownProps, NativeProps {}
+
+const defaultProps = {
+  autoStart: true,
+  size: 'small',
+  splitWithUnit: false,
+  format: 'HH:mm:ss',
+  theme: 'default',
+};
+
+const CountDown = forwardRef<CountDownRef, CountDownProps>((props, ref) => {
+  const { autoStart, content, millisecond, size, splitWithUnit, time, format, theme, onChange, onFinish } = props;
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-countdown`;
 
@@ -58,17 +53,14 @@ const CountDown: ForwardRefRenderFunction<CountDownRef, CountDownProps> = (props
     ));
   }
 
-  const classNames = cls(
-    name,
-    `${name}--${theme}`,
-    `${name}--${size}`,
-    {
-      [`${name}--split-with-unit`]: splitWithUnit,
-    },
-    className,
-  );
+  const classNames = cls(name, `${name}--${theme}`, `${name}--${size}`, {
+    [`${name}--split-with-unit`]: splitWithUnit,
+  });
 
-  return <span className={classNames}>{contentNode}</span>;
-};
+  return widthNativeProps(props, <span className={classNames}>{contentNode}</span>);
+});
 
-export default memo(forwardRef(CountDown));
+CountDown.defaultProps = defaultProps as CountDownProps;
+CountDown.displayName = 'CountDown';
+
+export default memo(CountDown);
