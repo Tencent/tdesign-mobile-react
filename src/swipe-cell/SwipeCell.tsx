@@ -153,11 +153,15 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((props, ref) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expanded, rootRef.current]);
 
-  useClickAway(() => {
-    if (closeOnTouchOutside && x.get() !== 0) {
-      close();
-    }
-  }, rootRef);
+  useClickAway(
+    () => {
+      if (closeOnTouchOutside && x.get() !== 0) {
+        close();
+      }
+    },
+    rootRef,
+    ['touchstart'],
+  );
 
   const onActionClick = (action: SwipeActionItem, side: SideType) => {
     if (closeOnClick) close();
