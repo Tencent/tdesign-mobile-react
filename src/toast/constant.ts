@@ -13,9 +13,8 @@ export enum IconType {
 }
 
 export const defaultProps = {
-  duration: 3000,
+  duration: 1500,
   visible: true,
-  zIndex: 5000,
   content: '',
   icon: false,
 };

@@ -13,3 +13,9 @@ message | String/TNode | -- | 弹窗显示文字 | N
 placement | String | middle | 弹窗展示位置'top' \| 'middle' \| 'bottom' | N
 preventScrollThrough | Boolean | false | 防止滚动穿透，即不允许点击和滚动 | N
 theme | String | -- | 提示类型, 可选值：loading \| success \| fail。 | -- | N
+
+### Toast Events
+
+名称 | 描述
+-- | --
+destory | 主动销毁toast,需要获取toast实例

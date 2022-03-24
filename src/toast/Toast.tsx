@@ -20,12 +20,11 @@ const Toast: FC<TdToastProps> = (props: ToastProps) => {
     icon,
     message,
     // children,
-    duration = 3000,
+    duration,
     theme,
     preventScrollThrough,
     el,
   } = props;
-  console.log('props', props);
   const { classPrefix } = useConfig();
   const cls = `${classPrefix}-overflow-hidden`;
   const TIcon = icon || (theme && <Icon className={`${classPrefix}-icon`} name={IconType[theme]} />);

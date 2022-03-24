@@ -6,7 +6,7 @@ import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {
   const onlyText = () => {
-    Toast({ message: '轻提示文字内容', duration: 11000 });
+    Toast({ message: '轻提示文字内容' });
   };
 
   const iconColumn = () => {
@@ -48,7 +48,7 @@ export default function () {
   };
 
   const loadingHori = () => {
-    Toast.loading({ message: '加载中' });
+    Toast.loading({ message: '加载中', duration: 3000 });
   };
 
   const loadingColumn = () => {
