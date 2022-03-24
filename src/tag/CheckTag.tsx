@@ -8,9 +8,6 @@ import { TdCheckTagProps } from './type';
 export interface TagCheckProps extends TdCheckTagProps {
   className?: string;
   style?: object;
-  shape?: any;
-  icon?: any;
-  closable?: any;
 }
 
 const TagCheck: React.FC<TagCheckProps> = React.memo((props) => {
@@ -79,14 +76,14 @@ const TagCheck: React.FC<TagCheckProps> = React.memo((props) => {
 
   useEffect(() => {
     if (checked !== undefined) {
-      setActive(checked);
+      setActive(!!checked);
     } else {
-      setActive(defaultChecked);
+      setActive(!!defaultChecked);
     }
   }, [checked, defaultChecked]);
 
   return (
-    <button className={checkTagClass} style={tagStyle} onClick={handleClick} {...other}>
+    <button className={checkTagClass} style={tagStyle} onClick={handleClick} disabled={disabled} {...other}>
       <span className={`${baseClass}__icon`}>{icon}</span>
       <span className={`${baseClass}__text`}>{content || children}</span>
       {closable ? <Icon name="close" className={`${baseClass}__close`} onClick={handleClose} /> : null}

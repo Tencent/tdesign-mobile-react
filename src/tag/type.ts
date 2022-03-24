@@ -70,6 +70,11 @@ export interface TdCheckTagProps {
    */
   defaultChecked?: boolean;
   /**
+   * 标签是否可关闭
+   * @default false
+   */
+  closable?: boolean;
+  /**
    * 组件子元素
    */
   content?: TNode;
@@ -78,6 +83,15 @@ export interface TdCheckTagProps {
    * @default false
    */
   disabled?: boolean;
+  /**
+   * 标签中的图标，可自定义图标呈现
+   */
+  icon?: TElement;
+  /**
+   * 标签类型，有三种：方形、圆角方形、标记型
+   * @default square
+   */
+  shape?: 'square' | 'round' | 'mark';
   /**
    * 标签尺寸
    * @default medium

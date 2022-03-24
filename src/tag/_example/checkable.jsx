@@ -35,7 +35,7 @@ const CloseItems = [
 ];
 const ClickableUse = React.memo(() => {
   const [items, setItems] = useState(CloseItems);
-  const [val, setVal] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   const handleClose = (dex) => {
     const temp = [...items];
@@ -45,6 +45,7 @@ const ClickableUse = React.memo(() => {
 
   const handleOnChange = (v) => {
     console.log(v);
+    setChecked(v);
   };
   return (
     <div className="t-tag__demo-common t-tag__demo-bg">
@@ -52,7 +53,9 @@ const ClickableUse = React.memo(() => {
         <TagCheck size="large" defaultChecked onChange={handleOnChange}>
           标签
         </TagCheck>
-        <TagCheck size="large">标签</TagCheck>
+        <TagCheck size="large" onChange={handleOnChange} checked={checked}>
+          标签
+        </TagCheck>
         <TagCheck size="large">标签</TagCheck>
         <TagCheck size="large">标签</TagCheck>
         <TagCheck size="large" disabled>

@@ -1,9 +1,9 @@
 import React from 'react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import BaseUsage from './base';
-import ClickableUse from './click-able';
+import ClickableUse from './checkable';
 import Shape from './shape';
-import ClosableDemo from './close-able';
+import ClosableDemo from './closable';
 
 import './style/index.less';
 

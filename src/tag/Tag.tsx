@@ -5,7 +5,6 @@ import { noop } from 'lodash';
 import { TdTagProps } from './type';
 import useConfig from '../_util/useConfig';
 
-
 export interface TagProps extends TdTagProps {
   className: string;
   style: object;
