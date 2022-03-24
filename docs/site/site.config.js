@@ -93,6 +93,12 @@ export default {
           path: '/react-mobile/components/slider',
           component: () => import('tdesign-mobile-react/slider/slider.md'),
         },
+        {
+          title: 'Upload 上传',
+          name: 'upload',
+          path: '/react-mobile/components/upload',
+          component: () => import('tdesign-mobile-react/upload/upload.md'),
+        },
       ],
     },
     {

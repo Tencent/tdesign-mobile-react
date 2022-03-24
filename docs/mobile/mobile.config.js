@@ -61,5 +61,11 @@ export default {
       name: 'cell',
       component: () => import('tdesign-mobile-react/cell/_example/base.jsx'),
     },
+    {
+      title: 'Upload 上传',
+      name: 'upload',
+      path: '/upload',
+      component: () => import('tdesign-mobile-react/upload/_example/index.jsx'),
+    },
   ],
 };
