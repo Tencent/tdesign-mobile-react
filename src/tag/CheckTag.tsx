@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { noop } from 'lodash';
 import classNames from 'classnames';
-import useConfig from '../_util/useConfig';
 import { Icon } from 'tdesign-icons-react';
+import useConfig from '../_util/useConfig';
 import { TdCheckTagProps } from './type';
 
 export interface TagCheckProps extends TdCheckTagProps {

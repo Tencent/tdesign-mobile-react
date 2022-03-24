@@ -1,10 +1,10 @@
 import React, { useCallback, forwardRef } from 'react';
 import classNames from 'classnames';
+import { Icon } from 'tdesign-icons-react';
+import { noop } from 'lodash';
 import { TdTagProps } from './type';
 import useConfig from '../_util/useConfig';
-import { Icon } from 'tdesign-icons-react';
 
-import { noop } from 'lodash';
 
 export interface TagProps extends TdTagProps {
   className: string;
