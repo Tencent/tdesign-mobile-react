@@ -116,6 +116,12 @@ export default {
           path: '/mobile-react/components/swiper',
           component: () => import('tdesign-mobile-react/swiper/swiper.md'),
         },
+        {
+          title: 'Tag 标签',
+          name: 'tag',
+          path: '/mobile-react/components/tag',
+          component: () => import('tdesign-mobile-react/tag/tag.md'),
+        },
       ],
     },
     {

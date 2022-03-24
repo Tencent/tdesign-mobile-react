@@ -101,5 +101,10 @@ export default {
       name: 'swiper',
       component: () => import('tdesign-mobile-react/swiper/_example/index.jsx'),
     },
+    {
+      title: 'Tag 标签',
+      name: 'tag',
+      component: () => import('tdesign-mobile-react/tag/_example/index.jsx'),
+    },
   ],
 };

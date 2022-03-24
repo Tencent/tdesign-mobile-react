@@ -1,0 +1,26 @@
+.t-tag__demo {
+  &-common {
+    padding-left: 20px;
+    .t-tag {
+      margin-bottom: 24px;
+      // transform: translate(10px, 16px);
+    }
+  }
+  &-block {
+    .t-tag:not(:last-child) {
+      margin-right: 24px;
+    }
+  }
+  &-bg {
+    & .t-tag__demo-block {
+      background-color: #ffffff;
+      margin-bottom: 16px;
+      .t-tag {
+        margin: 10px 0px 10px 6px;
+      }
+      .t-tag:not(:last-child) {
+        margin-right: 3px;
+      }
+    }
+  }
+}
