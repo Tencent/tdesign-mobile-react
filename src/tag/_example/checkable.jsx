@@ -44,7 +44,6 @@ const ClickableUse = React.memo(() => {
   };
 
   const handleOnChange = (v) => {
-    console.log(v);
     setChecked(v);
   };
   return (
