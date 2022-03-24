@@ -1,6 +1,6 @@
 import React from 'react';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
-import Horizontal from './horizontal';
+import Base from './base';
 import Scroll from './scroll';
 import Vertical from './vetical';
 import Size from './size';
@@ -12,7 +12,7 @@ export default function () {
   return (
     <div className="tdesign-mobile-demo">
       <TDemoHeader title="Tabs 选项卡" summary="用于切换不同场景" />
-      <Horizontal></Horizontal>
+      <Base></Base>
       <Vertical></Vertical>
       <Scroll></Scroll>
       <Size></Size>

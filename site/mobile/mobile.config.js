@@ -101,5 +101,10 @@ export default {
       name: 'swiper',
       component: () => import('tdesign-mobile-react/swiper/_example/index.jsx'),
     },
+    {
+      title: 'Toast 轻提示',
+      name: 'toast',
+      component: () => import('tdesign-mobile-react/toast/_example/index.jsx'),
+    },
   ],
 };
