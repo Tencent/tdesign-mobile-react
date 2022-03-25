@@ -8,7 +8,10 @@
     "outDir": "lib",
     "declaration": true,
     "sourceMap": true,
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "importHelpers": true,
     "allowSyntheticDefaultImports": true,
     "suppressImplicitAnyIndexErrors": true,
@@ -24,13 +27,15 @@
     "downlevelIteration": true,
     "esModuleInterop": true
   },
-  "include": ["./src", "./global.d.ts"],
+  "include": [
+    "./src",
+    "./global.d.ts"
+  ],
   "exclude": [
     "**/**/__tests__/*",
-    "examples/*",
+    "**/**/_example/*",
     "node_modules",
     "src/_common",
-    "src/_type",
     "dist",
     "lib",
     "esm",
