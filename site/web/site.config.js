@@ -166,6 +166,12 @@ export default {
           path: '/mobile-react/components/switch',
           component: () => import('tdesign-mobile-react/switch/switch.md'),
         },
+        {
+          title: 'Toast 轻提示',
+          name: 'toast',
+          path: '/mobile-react/components/toast',
+          component: () => import('tdesign-mobile-react/toast/toast.md'),
+        },
       ],
     },
   ],
