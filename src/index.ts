@@ -14,6 +14,7 @@ export * from './divider';
 export * from './tabs';
 export * from './switch';
 export * from './sticky';
+export * from './back-top';
 export * from './checkbox';
 export * from './count-down';
 export * from './dialog';

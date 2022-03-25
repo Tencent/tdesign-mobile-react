@@ -154,7 +154,8 @@
     "lodash": "^4.17.21",
     "react-spring": "^9.4.3",
     "react-transition-group": "^4.4.2",
-    "tdesign-icons-react": "^0.0.8"
+    "smoothscroll-polyfill": "^0.4.4",
+    "tdesign-icons-react": "0.0.8"
   },
   "config": {
     "commitizen": {
