@@ -60,7 +60,7 @@ const TagCheck: React.FC<TagCheckProps> = React.memo(
         // 受控
         onChange(!active);
       } else {
-        // 非受控
+        // 非受控  c
         onChange(!active);
         setActive(!active);
       }
