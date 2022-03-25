@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useRef } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useRef } from 'react';
 import { AddIcon, CloseIcon, RefreshIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
 import {
@@ -11,6 +11,7 @@ import {
   TdUploadProps,
   UploadFile,
 } from './type';
+// eslint-disable-next-line import/no-relative-packages
 import request from '../_common/js/upload/xhr';
 import useDefault from '../_util/useDefault';
 import { StyledProps } from '../common';
@@ -30,6 +31,7 @@ const Upload: React.FC<UploadProps> = (props) => {
   const {
     accept,
     action,
+    method,
     name,
     files,
     defaultFiles,
@@ -125,117 +127,152 @@ const Upload: React.FC<UploadProps> = (props) => {
     return true;
   };
 
-  const handleBeforeUpload = (file: TdUploadFile): Promise<boolean> => {
-    if (typeof beforeUpload === 'function') {
-      const res = beforeUpload(file);
-      if (res instanceof Promise) return res;
-      return Promise.resolve(res);
-    }
-    if (sizeLimit) {
-      const { isExceed } = handleSizeLimit(file.size, sizeLimit);
-      return Promise.resolve(isExceed);
-    }
-    return Promise.resolve(true);
-  };
+  const handleBeforeUpload = useCallback(
+    (file: TdUploadFile): Promise<boolean> => {
+      if (typeof beforeUpload === 'function') {
+        const res = beforeUpload(file);
+        if (res instanceof Promise) return res;
+        return Promise.resolve(res);
+      }
+      if (sizeLimit) {
+        const { isExceed } = handleSizeLimit(file.size, sizeLimit);
+        return Promise.resolve(isExceed);
+      }
+      return Promise.resolve(true);
+    },
+    [beforeUpload, sizeLimit],
+  );
 
-  const handleProgress = ({ e, file, percent, type = 'mock' }: ProgressContext) => {
-    const newFileList = [...fileList];
-    const currentFile = newFileList.find((item) => item.uid === (file as TdUploadFile).uid);
-    currentFile.percent = percent;
-    onProgress?.({ e, file: removeUidProperty(currentFile), percent, type });
-    onChange?.(newFileList, { trigger: 'progress' });
-  };
+  const handleProgress = useCallback(
+    ({ e, file, percent, type = 'mock' }: ProgressContext) => {
+      const newFileList = [...fileList];
+      const currentFile = newFileList.find((item) => item.uid === (file as TdUploadFile).uid);
+      currentFile.percent = percent;
+      onProgress?.({ e, file: removeUidProperty(currentFile), percent, type });
+      onChange?.(newFileList, { trigger: 'progress' });
+    },
+    [fileList, onProgress, onChange],
+  );
 
-  const handleSuccess = ({ e, file, response }: SuccessContext) => {
-    const newFileList = [...fileList];
-    const currentFile = newFileList.find((item) => item.uid === (file as TdUploadFile).uid);
-    currentFile.status = 'success';
-    if (response.url) currentFile.url = response.url;
-    onSuccess?.({
-      e,
-      file: removeUidProperty(currentFile),
-      fileList: removeUidPropertyAtArray(newFileList),
-      response,
-    });
-    onChange?.(newFileList, { trigger: 'success' });
-  };
+  const handleSuccess = useCallback(
+    ({ e, file, response }: SuccessContext) => {
+      const newFileList = [...fileList];
+      const currentFile = newFileList.find((item) => item.uid === (file as TdUploadFile).uid);
+      currentFile.status = 'success';
+      if (response.url) currentFile.url = response.url;
+      onSuccess?.({
+        e,
+        file: removeUidProperty(currentFile),
+        fileList: removeUidPropertyAtArray(newFileList),
+        response,
+      });
+      onChange?.(newFileList, { trigger: 'success' });
+    },
+    [fileList, onSuccess, onChange],
+  );
 
-  const handleFail = (options: { e?: ProgressEvent; file: UploadFile }) => {
-    const { e, file } = options;
-    const newFileList = [...fileList];
-    const currentFile = newFileList.find((item) => item.uid === (file as TdUploadFile).uid);
-    currentFile.status = 'fail';
-    onFail?.({ e, file: removeUidProperty(currentFile) });
-    onChange(newFileList, { trigger: 'fail' });
-  };
+  const handleFail = useCallback(
+    (options: { e?: ProgressEvent; file: UploadFile }) => {
+      const { e, file } = options;
+      const newFileList = [...fileList];
+      const currentFile = newFileList.find((item) => item.uid === (file as TdUploadFile).uid);
+      currentFile.status = 'fail';
+      onFail?.({ e, file: removeUidProperty(currentFile) });
+      onChange(newFileList, { trigger: 'fail' });
+    },
+    [fileList, onFail, onChange],
+  );
 
-  const handleRequestMethod = async (file: TdUploadFile) => {
-    if (typeof requestMethod !== 'function') {
-      console.error('TDesign Upload Error: `requestMethod` must be a function.');
-      return;
-    }
-    const res: RequestMethodResponse = await requestMethod(removeProperty({ ...file }, 'uid'));
-    // 验证请求结果
-    if (!res) {
-      console.error('TDesign Upload Error: `requestMethodResponse` is required.');
-      return;
-    }
-    if (!res.status) {
-      console.error(
-        'TDesign Upload Error: `requestMethodResponse.status` is missing, which value is `success` or `fail`',
-      );
-      return;
-    }
-    if (!['success', 'fail'].includes(res.status)) {
-      console.error('TDesign Upload Error: `requestMethodResponse.status` must be `success` or `fail`');
-      return;
-    }
-    if (res.status === 'success' && (!res.response || !res.response.url)) {
-      console.warn('TDesign Upload Warn: `requestMethodResponse.response.url` is required, when `status` is `success`');
-    }
-    if (res.status === 'success') {
-      handleSuccess({ file, response: res.response });
-    }
-    if (res.status === 'fail') {
-      const r = res.response || {};
-      handleFail({ file });
-    }
-  };
+  const handleRequestMethod = useCallback(
+    async (file: TdUploadFile) => {
+      if (typeof requestMethod !== 'function') {
+        console.error('TDesign Upload Error: `requestMethod` must be a function.');
+        return;
+      }
+      const res: RequestMethodResponse = await requestMethod(removeUidProperty(file));
+      // 验证请求结果
+      if (!res) {
+        console.error('TDesign Upload Error: `requestMethodResponse` is required.');
+        return;
+      }
+      if (!res.status) {
+        console.error(
+          'TDesign Upload Error: `requestMethodResponse.status` is missing, which value is `success` or `fail`',
+        );
+        return;
+      }
+      if (!['success', 'fail'].includes(res.status)) {
+        console.error('TDesign Upload Error: `requestMethodResponse.status` must be `success` or `fail`');
+        return;
+      }
+      if (res.status === 'success' && (!res.response || !res.response.url)) {
+        console.warn(
+          'TDesign Upload Warn: `requestMethodResponse.response.url` is required, when `status` is `success`',
+        );
+      }
+      if (res.status === 'success') {
+        handleSuccess({ file, response: res.response });
+      }
+      if (res.status === 'fail') {
+        handleFail({ file });
+      }
+    },
+    [requestMethod, handleSuccess, handleFail],
+  );
 
-  const handleUpload = (uploadFile: TdUploadFile): Promise<void> => {
-    const file = { ...uploadFile };
-    if (file.status !== 'waiting') return;
-    if (!action && !requestMethod) {
-      console.error('TDesign Upload Error: action or requestMethod is required.');
-      return;
-    }
-    file.status = 'progress';
-    if (requestMethod) {
-      return handleRequestMethod(file);
-    }
-    request({
+  const handleUpload = useCallback(
+    (uploadFile: TdUploadFile): Promise<void> => {
+      const file = { ...uploadFile };
+      if (file.status !== 'waiting') return;
+      if (!action && !requestMethod) {
+        console.error('TDesign Upload Error: action or requestMethod is required.');
+        return;
+      }
+      file.status = 'progress';
+      if (requestMethod) {
+        return handleRequestMethod(file);
+      }
+      request({
+        action,
+        method,
+        data,
+        file,
+        name,
+        headers,
+        withCredentials,
+        onSuccess: handleSuccess,
+        onProgress: handleProgress,
+        onError: handleFail,
+      });
+    },
+    [
+      requestMethod,
       action,
+      method,
       data,
-      file,
       name,
       headers,
       withCredentials,
-      onSuccess: handleSuccess,
-      onProgress: handleProgress,
-      onError: handleFail,
-    });
-  };
+      handleRequestMethod,
+      handleSuccess,
+      handleProgress,
+      handleFail,
+    ],
+  );
 
-  const handleUpLoadFiles = (files: TdUploadFile[]) => {
-    files.forEach((file) => {
-      handleBeforeUpload(file).then((canUpload) => {
-        if (canUpload) {
-          // 上传
-          handleUpload(file);
-        }
+  const handleUpLoadFiles = useCallback(
+    (files: TdUploadFile[]) => {
+      files.forEach((file) => {
+        handleBeforeUpload(file).then((canUpload) => {
+          if (canUpload) {
+            // 上传
+            handleUpload(file);
+          }
+        });
       });
-    });
-  };
+    },
+    [handleBeforeUpload, handleUpload],
+  );
 
   const handleUploadChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (disabled) return;
@@ -275,16 +312,16 @@ const Upload: React.FC<UploadProps> = (props) => {
         handleUpLoadFiles(fileList);
       }
     }
-  }, [fileList]);
+  }, [fileList, handleUpLoadFiles]);
 
   useEffect(() => {
     // 添加 uid
     if (fileList && fileList.length) {
-      fileList.forEach((item) => {
-        if (!item.uid) {
-          item.uid = getNewestUid();
+      for (let i = 0; i < fileList.length; i++) {
+        if (!fileList[i].uid) {
+          fileList[i].uid = getNewestUid();
         }
-      });
+      }
     }
   }, [fileList]);
 

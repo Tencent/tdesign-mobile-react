@@ -34,7 +34,11 @@ export const removePropertyAtArray = <T>(arr: T[], key: string): T[] => {
  */
 export const getIndex = (): (() => number) => {
   let index = 0;
-  return () => index++;
+  return () => {
+    const tempIndex = index;
+    index += 1;
+    return tempIndex;
+  };
 };
 
 /**
@@ -43,5 +47,9 @@ export const getIndex = (): (() => number) => {
  */
 export const getNewestUidFactory = (): (() => string) => {
   let index = 0;
-  return () => `td__upload__${Date.now()}_${index++}__`;
+  return () => {
+    const tempIndex = index;
+    index += 1;
+    return `td__upload__${Date.now()}_${tempIndex}__`;
+  };
 };

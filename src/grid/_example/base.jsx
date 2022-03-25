@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, GridItem } from 'tdesign-mobile-react';
-import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
-import TDemoHeader from '../../../docs/mobile/components/DemoHeader';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
+import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './style/index.less'
 
 const imgUrl = 'https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png'

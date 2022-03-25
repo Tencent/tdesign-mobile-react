@@ -1,5 +1,5 @@
 import { Switch } from 'tdesign-mobile-react';
-import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {
   return (
