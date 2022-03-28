@@ -7,7 +7,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react-hooks'],
+  plugins: ['@typescript-eslint', 'react-hooks', 'lodash'],
   env: {
     browser: true,
     node: true,
@@ -46,6 +46,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'import/no-cycle': 'off', // TODO: turn on this rule later
     'import/no-unresolved': 'off', // TODO: turn on this rule later
+    'import/no-relative-packages': 'off',
     'react/display-name': 'off',
     'react-hooks/exhaustive-deps': 'warn',
     'react-hooks/rules-of-hooks': 'error',
@@ -72,5 +73,6 @@ module.exports = {
     'func-names': 'off',
     'consistent-return': 'off',
     'default-case': 'off',
+    'lodash/import-scope': [2, 'method'],
   },
 };
