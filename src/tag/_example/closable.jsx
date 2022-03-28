@@ -3,10 +3,6 @@ import { Tag } from 'tdesign-mobile-react';
 
 const TagOptions = [
   {
-    size: 'large',
-    name: '标签',
-  },
-  {
     size: 'medium',
     name: '标签',
   },
@@ -23,16 +19,14 @@ const ClosableDemo = React.memo(() => {
   };
 
   return (
-    <div className="t-tag__demo-common">
-      <div className="t-tag__demo-block">
-        {tags.map((opt, dex) => {
-          return (
-            <Tag key={dex} theme="primary" closable size={opt.size} onClose={() => onClose(dex)}>
-              标签
-            </Tag>
-          );
-        })}
-      </div>
+    <div className="t-tag__demo-block">
+      {tags.map((opt, dex) => {
+        return (
+          <Tag key={dex} theme="primary" closable size={opt.size} onClose={() => onClose(dex)}>
+            标签
+          </Tag>
+        );
+      })}
     </div>
   );
 });

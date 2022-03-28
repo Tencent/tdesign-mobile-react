@@ -82,11 +82,11 @@ const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   };
 
   return (
-    <div className={tagClassNames} style={tagStyle} onClick={handleClick} ref={ref} {...other}>
+    <span className={tagClassNames} style={tagStyle} onClick={handleClick} ref={ref} {...other}>
       <span className={`${baseClass}__icon`}>{icon}</span>
       <span className={`${baseClass}__text`}>{getRenderContent() || children}</span>
       {closable ? <Icon name="close" className={`${baseClass}__close`} onClick={onClickClose} /> : null}
-    </div>
+    </span>
   );
 });
 

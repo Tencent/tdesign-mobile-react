@@ -1,9 +1,10 @@
-import React, { useEffect, useState, forwardRef } from 'react';
-import { noop } from 'lodash';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import { Icon } from 'tdesign-icons-react';
 import useConfig from '../_util/useConfig';
 import { TdCheckTagProps } from './type';
+import useDefault from '../_util/useDefault';
+import noop from '../_util/noop';
 
 export interface TagCheckProps extends TdCheckTagProps {
   className?: string;
@@ -31,7 +32,7 @@ const TagCheck: React.FC<TagCheckProps> = React.memo(
 
     const { classPrefix } = useConfig();
 
-    const [active, setActive] = useState(checked || defaultChecked || false);
+    const [innerChecked, onInnerChecked] = useDefault(checked, defaultChecked, onChange);
 
     const baseClass = `${classPrefix}-tag`;
 
@@ -43,7 +44,7 @@ const TagCheck: React.FC<TagCheckProps> = React.memo(
       {
         [`${classPrefix}-is-closable ${baseClass}--closable`]: closable,
         [`${classPrefix}-is-disabled ${baseClass}--disabled`]: disabled,
-        [`${classPrefix}-is-checked ${baseClass}--checked`]: active,
+        [`${classPrefix}-is-checked ${baseClass}--checked`]: innerChecked,
       },
       className,
     );
@@ -56,14 +57,7 @@ const TagCheck: React.FC<TagCheckProps> = React.memo(
       if (disabled || closable) {
         return;
       }
-      if (checked !== undefined) {
-        // 受控
-        onChange(!active);
-      } else {
-        // 非受控  c
-        onChange(!active);
-        setActive(!active);
-      }
+      onInnerChecked(!innerChecked);
       onClick({ e });
     };
 
@@ -74,14 +68,6 @@ const TagCheck: React.FC<TagCheckProps> = React.memo(
       e.stopPropagation();
       onClick({ e });
     };
-
-    useEffect(() => {
-      if (checked !== undefined) {
-        setActive(!!checked);
-      } else {
-        setActive(!!defaultChecked);
-      }
-    }, [checked, defaultChecked]);
 
     return (
       <button className={checkTagClass} style={tagStyle} onClick={handleClick} ref={ref} disabled={disabled} {...other}>
