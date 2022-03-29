@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { BackTop, Button } from 'tdesign-mobile-react';
-import TDemoHeader from '../../../docs/mobile/components/DemoHeader';
-import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
+import TDemoHeader from '../../../site/mobile/components/DemoHeader';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import { BackTopTheme } from '../Backtop';
 import './style/index.less';
 
@@ -60,10 +60,7 @@ export default function Base() {
         theme={theme.theme}
         // target={() => document.getElementById('anchor')}
       />
-      <TDemoHeader
-        title="Grid 宫格"
-        summary="一行内容/功能的垂直排列方式。一行项目左侧为主要内容展示区域，右侧可增加更多操作内容。"
-      />
+      <TDemoHeader title="BackTop 返回顶部" summary="用于当页面过长往下滑动时，帮助用户快速回到页面顶部" />
       <TDemoBlock title="01 类型" summary="圆型返回顶部">
         <div className="button-group">
           {roundTypes.map((v) => (

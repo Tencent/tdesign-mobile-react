@@ -13,8 +13,8 @@ const publicPathMap = {
   production: 'https://static.tdesign.tencent.com/mobile-react/',
 };
 
-export default ({ mode }) => {
-  return defineConfig({
+export default ({ mode }) =>
+  defineConfig({
     base: publicPathMap[mode],
     define: {
       __VERSION__: JSON.stringify(process.env.npm_package_version),
@@ -47,4 +47,3 @@ export default ({ mode }) => {
     },
     plugins: [react(), tdocPlugin(), VitePWA(pwaConfig), replace({ __DATE__: new Date().toISOString() })],
   });
-};
