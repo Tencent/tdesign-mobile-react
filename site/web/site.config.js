@@ -190,12 +190,6 @@ export default {
           path: '/mobile-react/components/count-down',
           component: () => import('tdesign-mobile-react/count-down/count-down.md'),
         },
-        {
-          title: 'Tag 标签',
-          name: 'tag',
-          path: '/mobile-react/components/tag',
-          component: () => import('tdesign-mobile-react/tag/tag.md'),
-        },
         // {
         //   title: 'Collapse 折叠面板',
         //   name: 'collapse',
