@@ -1,7 +1,7 @@
 import React, { useCallback, forwardRef } from 'react';
 import classNames from 'classnames';
 import { Icon } from 'tdesign-icons-react';
-import { noop } from 'lodash';
+import noop from '../_util/noop';
 import { TdTagProps } from './type';
 import useConfig from '../_util/useConfig';
 
