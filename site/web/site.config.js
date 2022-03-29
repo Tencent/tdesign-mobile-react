@@ -139,7 +139,7 @@ export default {
         {
           title: 'BackTop 返回顶部',
           name: 'back-top',
-          path: '/react-mobile/components/back-top',
+          path: '/mobile-react/components/back-top',
           component: () => import('tdesign-mobile-react/back-top/back-top.md'),
         },
         {
