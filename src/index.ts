@@ -20,4 +20,5 @@ export * from './count-down';
 export * from './dialog';
 export * from './loading';
 export * from './swiper';
+export * from './tag';
 export * from './toast';
