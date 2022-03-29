@@ -116,6 +116,12 @@ export default {
           path: '/mobile-react/components/swiper',
           component: () => import('tdesign-mobile-react/swiper/swiper.md'),
         },
+        {
+          title: 'Collapse 折叠面板',
+          name: 'collapse',
+          path: '/mobile-react/components/collapse',
+          component: () => import('tdesign-mobile-react/collapse/collapse.md'),
+        },
       ],
     },
     {
@@ -139,7 +145,7 @@ export default {
         {
           title: 'BackTop 返回顶部',
           name: 'back-top',
-          path: '/react-mobile/components/back-top',
+          path: '/mobile-react/components/back-top',
           component: () => import('tdesign-mobile-react/back-top/back-top.md'),
         },
         {
