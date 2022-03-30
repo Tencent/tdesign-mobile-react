@@ -127,5 +127,10 @@ export default {
       name: 'toast',
       component: () => import('tdesign-mobile-react/toast/_example/index.jsx'),
     },
+    {
+      title: 'Collapse 折叠面板',
+      name: 'Collapse',
+      component: () => import('tdesign-mobile-react/collapse/_example/index.jsx'),
+    },
   ],
 };

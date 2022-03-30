@@ -24,3 +24,5 @@ export * from './swiper';
 export * from './swipe-cell';
 export * from './tag';
 export * from './toast';
+export * from './collapse';
+
