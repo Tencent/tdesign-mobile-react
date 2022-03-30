@@ -184,12 +184,12 @@ export default {
           path: '/mobile-react/components/cell',
           component: () => import('tdesign-mobile-react/cell/cell.md'),
         },
-        // {
-        //   title: 'Collapse 折叠面板',
-        //   name: 'collapse',
-        //   path: '/mobile-react/components/collapse',
-        //   component: () => import('tdesign-mobile-react/collapse/collapse.md'),
-        // },
+        {
+          title: 'Collapse 折叠面板',
+          name: 'collapse',
+          path: '/mobile-react/components/collapse',
+          component: () => import('tdesign-mobile-react/collapse/collapse.md'),
+        },
         {
           title: 'CountDown 倒计时',
           name: 'count-down',
@@ -256,19 +256,6 @@ export default {
           path: '/mobile-react/components/swiper',
           component: () => import('tdesign-mobile-react/swiper/swiper.md'),
         },
-        {
-          title: 'Collapse 折叠面板',
-          name: 'collapse',
-          path: '/mobile-react/components/collapse',
-          component: () => import('tdesign-mobile-react/collapse/collapse.md'),
-        },
-      ],
-    },
-    {
-      title: '输入类组件',
-      name: 'form',
-      type: 'component', // 组件文档
-      children: [
         {
           title: 'Tag 标签',
           name: 'tag',
