@@ -82,6 +82,11 @@ export default {
       component: () => import('tdesign-mobile-react/sticky/_example/base.jsx'),
     },
     {
+      title: 'BackTop 返回顶部',
+      name: 'back-top',
+      component: () => import('tdesign-mobile-react/back-top/_example/base.jsx'),
+    },
+    {
       title: 'Checkbox 多选框',
       name: 'checkbox',
       component: () => import('tdesign-mobile-react/checkbox/_example/index.jsx'),
@@ -105,6 +110,16 @@ export default {
       title: 'SwipeCell 滑动单元格',
       name: 'swipe-cell',
       component: () => import('tdesign-mobile-react/swipe-cell/_example/base.jsx'),
+    },
+    {
+      title: 'Tag 标签',
+      name: 'tag',
+      component: () => import('tdesign-mobile-react/tag/_example/index.jsx'),
+    },
+    {
+      title: 'Toast 轻提示',
+      name: 'toast',
+      component: () => import('tdesign-mobile-react/toast/_example/index.jsx'),
     },
   ],
 };

@@ -29,16 +29,6 @@ export default function () {
       <ul className="hori-wrap">
         <li>
           <Tabs>
-            <TabPanel value={'v1'} label="标签1">
-              <div>内容内容1111....</div>
-            </TabPanel>
-            <TabPanel value={'v2'} label="标签2222">
-              <div>内容内容2222....</div>
-            </TabPanel>
-          </Tabs>
-        </li>
-        <li>
-          <Tabs>
             <TabPanel value={'v1'} label="标签一">
               <div>内容内容1111....</div>
             </TabPanel>
