@@ -262,6 +262,12 @@ export default {
           path: '/mobile-react/components/tag',
           component: () => import('tdesign-mobile-react/tag/tag.md'),
         },
+        {
+          title: 'Upload 上传',
+          name: 'upload',
+          path: '/mobile-react/components/upload',
+          component: () => import('tdesign-mobile-react/upload/upload.md'),
+        },
       ],
     },
     {

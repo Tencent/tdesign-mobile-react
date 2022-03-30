@@ -13,6 +13,7 @@ export * from './radio';
 export * from './divider';
 export * from './tabs';
 export * from './switch';
+export * from './upload';
 export * from './sticky';
 export * from './back-top';
 export * from './checkbox';

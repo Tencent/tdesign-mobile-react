@@ -77,6 +77,12 @@ export default {
       component: () => import('tdesign-mobile-react/cell/_example/base.jsx'),
     },
     {
+      title: 'Upload 上传',
+      name: 'upload',
+      path: '/upload',
+      component: () => import('tdesign-mobile-react/upload/_example/index.jsx'),
+    },
+    {
       title: 'Sticky 吸顶',
       name: 'sticky',
       component: () => import('tdesign-mobile-react/sticky/_example/base.jsx'),
