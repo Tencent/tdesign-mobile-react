@@ -257,6 +257,19 @@ export default {
           component: () => import('tdesign-mobile-react/swiper/swiper.md'),
         },
         {
+          title: 'SwipeCell 滑动单元格',
+          name: 'swipe-cell',
+          path: '/mobile-react/components/swipe-cell',
+          component: () => import('tdesign-mobile-react/swipe-cell/swipe-cell.md'),
+        },
+      ],
+    },
+    {
+      title: '输入类组件',
+      name: 'form',
+      type: 'component', // 组件文档
+      children: [
+        {
           title: 'Tag 标签',
           name: 'tag',
           path: '/mobile-react/components/tag',

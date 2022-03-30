@@ -113,6 +113,11 @@ export default {
       component: () => import('tdesign-mobile-react/swiper/_example/index.jsx'),
     },
     {
+      title: 'SwipeCell 滑动单元格',
+      name: 'swipe-cell',
+      component: () => import('tdesign-mobile-react/swipe-cell/_example/base.jsx'),
+    },
+    {
       title: 'Tag 标签',
       name: 'tag',
       component: () => import('tdesign-mobile-react/tag/_example/index.jsx'),
