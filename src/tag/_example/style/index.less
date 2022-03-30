@@ -1,0 +1,25 @@
+.t-tag__demo {
+  &-block {
+    background-color: rgba(255, 255, 255, 1);
+    padding: 16px;
+    display: flex;
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+  &-theme > span {
+    margin-right: 8px;
+  }
+
+  &-size > span,
+  &-size > button {
+    flex-direction: row;
+
+    margin-right: 48px;
+    margin-bottom: 18px;
+  }
+  &-common > button,
+  &-common > span {
+    margin-right: 16px;
+  }
+}
