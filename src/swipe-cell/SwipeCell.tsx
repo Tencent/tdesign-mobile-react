@@ -174,7 +174,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((props, ref) => {
       return actions.map((action, index) => {
         const { text, ...buttonProps } = action;
         return (
-          // @ts-ignore, SwipeActionItem.style不应该是string
+          // @ts-ignore, SwipeActionItem.style不应该是string，而是CSSProperties
           <Button key={index} {...buttonProps} onClick={() => onActionClick(action, side)}>
             {text}
           </Button>
