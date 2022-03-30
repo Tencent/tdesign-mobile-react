@@ -19,10 +19,10 @@ import useConfig from '../_util/useConfig';
 import { TdUploadFile } from '.';
 import { urlCreator, removeProperty, removePropertyAtArray, getNewestUidFactory } from './util';
 
+// upload 工具函数
 const removeUidProperty = (file: TdUploadFile) => removeProperty(file, 'uid');
 const removeUidPropertyAtArray = (fileList: TdUploadFile[]) => removePropertyAtArray(fileList, 'uid');
 const getNewestUid = getNewestUidFactory();
-
 export interface UploadProps extends TdUploadProps, StyledProps {
   name?: string;
 }
