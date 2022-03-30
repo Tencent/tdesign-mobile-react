@@ -50,6 +50,7 @@ export default function Base() {
       theme: config.theme,
       showText: config.showText,
     });
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   }, []);
 
   return (
@@ -58,7 +59,7 @@ export default function Base() {
         text={theme.showText ? '顶部' : ''}
         // @ts-ignore
         theme={theme.theme}
-        // target={() => document.getElementById('anchor')}
+        // target={() => document.getElementById('anchor')} // 滑动到目标点
       />
       <TDemoHeader title="BackTop 返回顶部" summary="用于当页面过长往下滑动时，帮助用户快速回到页面顶部" />
       <TDemoBlock title="01 类型" summary="圆型返回顶部">
