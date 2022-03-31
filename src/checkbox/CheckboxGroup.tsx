@@ -40,11 +40,11 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
     onChange, 
   } = props;
 
-  const intervalOptions =
+  const internalOptions =
     Array.isArray(options) && options.length > 0
       ? options
       : React.Children.map(children, (child) => (child as ReactElement).props);
-  const optionsWithoutCheckAll = intervalOptions.filter((t) => typeof t !== 'object' || !t.checkAll);
+  const optionsWithoutCheckAll = internalOptions.filter((t) => typeof t !== 'object' || !t.checkAll);
   const optionsWithoutCheckAllValues = [];
   optionsWithoutCheckAll.forEach((v) => {
     const vs = getCheckboxValue(v);

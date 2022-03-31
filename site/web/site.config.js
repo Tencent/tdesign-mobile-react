@@ -89,7 +89,7 @@ export default {
       type: 'component',
       children: [
         {
-          title: 'CheckBox 复选框',
+          title: 'CheckBox 多选框',
           name: 'checkbox',
           path: '/mobile-react/components/checkbox',
           component: () => import('tdesign-mobile-react/checkbox/checkbox.md'),
