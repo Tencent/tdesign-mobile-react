@@ -132,5 +132,10 @@ export default {
       name: 'Collapse',
       component: () => import('tdesign-mobile-react/collapse/_example/index.jsx'),
     },
+    {
+      title: 'PullDownRefresh 下拉刷新',
+      name: 'pull-down-refresh',
+      component: () => import('tdesign-mobile-react/pull-down-refresh/_example/index.jsx'),
+    },
   ],
 };
