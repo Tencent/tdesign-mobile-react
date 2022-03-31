@@ -336,12 +336,12 @@ export default {
         //   path: '/mobile-react/components/progress',
         //   component: () => import('tdesign-mobile-react/progress/progress.md'),
         // },
-        // {
-        //   title: 'PullDownRefresh 下拉刷新',
-        //   name: 'pull-down-refresh',
-        //   path: '/mobile-react/components/pull-down-refresh',
-        //   component: () => import('tdesign-mobile-react/pull-down-refresh/pull-down-refresh.md'),
-        // },
+        {
+          title: 'PullDownRefresh 下拉刷新',
+          name: 'pull-down-refresh',
+          path: '/mobile-react/components/pull-down-refresh',
+          component: () => import('tdesign-mobile-react/pull-down-refresh/pull-down-refresh.md'),
+        },
       ],
     },
   ],
