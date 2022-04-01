@@ -45,6 +45,7 @@ export default function Base() {
     },
   ];
 
+  // 切换主题
   const onClick = useCallback((config) => {
     setTheme({
       theme: config.theme,
