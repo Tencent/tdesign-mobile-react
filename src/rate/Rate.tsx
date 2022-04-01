@@ -61,6 +61,7 @@ const Rate: FC<RateProps> = forwardRef((props, ref: React.LegacyRef<HTMLInputEle
 
   const getCheckColor = (number) => {
     let referenceValue = value;
+
     if (Object.prototype.hasOwnProperty.call(props, 'defaultValue')) {
       referenceValue = refValue;
     }
