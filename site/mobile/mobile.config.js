@@ -51,6 +51,11 @@ export default {
       component: () => import('tdesign-mobile-react/radio/_example/index.jsx'),
     },
     {
+      title: 'Rate 评分',
+      name: 'rate',
+      component: () => import('tdesign-mobile-react/rate/_example/index.jsx'),
+    },
+    {
       title: 'Badge 徽标',
       name: 'badge',
       component: () => import('tdesign-mobile-react/badge/_example/base.jsx'),

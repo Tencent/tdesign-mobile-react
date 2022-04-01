@@ -118,12 +118,12 @@ export default {
           path: '/mobile-react/components/radio',
           component: () => import('tdesign-mobile-react/radio/radio.md'),
         },
-        // {
-        //   title: 'Rate 评分',
-        //   name: 'rate',
-        //   path: '/mobile-react/components/rate',
-        //   component: () => import('tdesign-mobile-react/rate/rate.md'),
-        // },
+        {
+          title: 'Rate 评分',
+          name: 'rate',
+          path: '/mobile-react/components/rate',
+          component: () => import('tdesign-mobile-react/rate/rate.md'),
+        },
         // {
         //   title: 'Search 搜索框',
         //   name: 'search',
