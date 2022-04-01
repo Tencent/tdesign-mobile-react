@@ -332,6 +332,7 @@ exports[`index.jsx 1`] = `
       </h2>
       <p
         class="tdesign-mobile-demo-block__summary"
+        hidden=""
         v-if="summary"
       />
       <div

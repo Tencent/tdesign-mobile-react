@@ -4,7 +4,7 @@ import { Checkbox } from 'tdesign-mobile-react/checkbox';
 export default function () {
   return (
     <>
-      <Checkbox label="多选" indeterminate />
+      <Checkbox label="多选" indeterminate defaultChecked />
     </>
   );
 }

@@ -5,8 +5,10 @@ export default function () {
   return (
     <>
       <Checkbox label="多选" />
-      <Checkbox label="多选" checked={false}/>
-      <Checkbox label="多选" content=" 多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选 多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选 多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选" defaultChecked={true}/>
+      <Checkbox label="多选" checked />
+      <Checkbox label="多选" checked />
+      <Checkbox label="多选" maxContentRow={2} content="多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选" />
+      <Checkbox label="多选" disabled maxContentRow={2} content="多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选" />
     </>
   );
 }
