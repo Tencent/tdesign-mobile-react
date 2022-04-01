@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, createContext, ReactNode, useRef } from 'react';
-import { RadioValue } from '.';
+import useConfig from '../_util/useConfig';
 import Radio from './Radio';
-import { TdRadioGroupProps } from './type';
+import { TdRadioGroupProps, RadioValue } from './type';
 import useDefault from './useDefault';
 
 export interface RadioGroupProps extends TdRadioGroupProps {
@@ -16,10 +16,8 @@ export interface RadioGroupContextProps {
 
 export const RadioGroupContext = createContext<RadioGroupContextProps | null>(null);
 
-const prefix = 't';
-const cname = `${prefix}-radio-group`;
-
 const RadioGroup: FC<RadioGroupProps> = (props) => {
+  const { classPrefix } = useConfig();
   const { disabled, options, value, defaultValue, children } = props;
   const groupRef = useRef(null);
   const [internalValue, setInternalValue] = useDefault(value, defaultValue, props.onChange);
@@ -52,7 +50,7 @@ const RadioGroup: FC<RadioGroupProps> = (props) => {
         },
       }}
     >
-      <div ref={groupRef} className={cname}>
+      <div ref={groupRef} className={`${classPrefix}-radio-group`}>
         {children || renderOptions()}
       </div>
     </RadioGroupContext.Provider>

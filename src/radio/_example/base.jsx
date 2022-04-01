@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from 'tdesign-icons-react';
 import { Radio } from 'tdesign-mobile-react/radio';
 
-import TDemoBlock from '../../../docs/mobile/components/DemoBlock';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {
   const ICON1 = <Icon className="t-icon" name="notification-filled" />;

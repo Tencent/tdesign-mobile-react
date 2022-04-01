@@ -1,0 +1,431 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`base.jsx 1`] = `
+<DocumentFragment>
+  <button
+    class="t-button t-button--base t-button--default t-button--shape-square t-m"
+    type="button"
+  >
+    默认按钮
+  </button>
+  <button
+    class="t-button t-button--base t-button--primary t-button--shape-square t-m"
+    type="button"
+  >
+    强按钮
+  </button>
+  <button
+    class="t-button t-button--outline t-button--primary t-button--shape-square t-m"
+    type="button"
+  >
+    弱按钮
+  </button>
+  <button
+    class="t-button t-button--outline t-button--default t-button--shape-square t-m"
+    type="button"
+  >
+    次按钮
+  </button>
+  <button
+    class="t-button t-button--base t-button--danger t-button--shape-square t-m"
+    type="button"
+  >
+    警告按钮
+  </button>
+  <button
+    class="t-button t-button--outline t-button--danger t-button--shape-square t-m"
+    type="button"
+  >
+    弱警告按钮
+  </button>
+  <button
+    class="t-button t-button--text t-button--primary t-button--shape-square t-m"
+    type="button"
+  >
+    文字按钮
+  </button>
+</DocumentFragment>
+`;
+
+exports[`icon.jsx 1`] = `
+<DocumentFragment>
+  <button
+    class="t-button t-button--base t-button--default t-button--shape-square t-m"
+    type="button"
+  >
+    <svg
+      class="t-icon t-icon-add"
+    >
+      <use
+        xlink:href="#t-icon-add"
+      />
+    </svg>
+    图标按钮
+  </button>
+</DocumentFragment>
+`;
+
+exports[`index.jsx 1`] = `
+<DocumentFragment>
+  <div
+    class="tdesign-mobile-demo"
+  >
+    <div
+      class="tdesign-mobile-demo-header"
+    >
+      <h1
+        class="tdesign-mobile-demo-header__title"
+      >
+        Button 按钮
+      </h1>
+      <p
+        class="tdesign-mobile-demo-header__summary"
+      >
+        按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <h2
+        class="tdesign-mobile-demo-block__title"
+        v-if="title"
+      >
+        01 基础按钮
+      </h2>
+      <p
+        class="tdesign-mobile-demo-block__summary"
+        v-if="summary"
+      >
+        基础类型分为主按钮、次按钮、文字按钮。
+      </p>
+      <div
+        class="button-demo"
+      >
+        <button
+          class="t-button t-button--base t-button--default t-button--shape-square t-m"
+          type="button"
+        >
+          默认按钮
+        </button>
+        <button
+          class="t-button t-button--base t-button--primary t-button--shape-square t-m"
+          type="button"
+        >
+          强按钮
+        </button>
+        <button
+          class="t-button t-button--outline t-button--primary t-button--shape-square t-m"
+          type="button"
+        >
+          弱按钮
+        </button>
+        <button
+          class="t-button t-button--outline t-button--default t-button--shape-square t-m"
+          type="button"
+        >
+          次按钮
+        </button>
+        <button
+          class="t-button t-button--base t-button--danger t-button--shape-square t-m"
+          type="button"
+        >
+          警告按钮
+        </button>
+        <button
+          class="t-button t-button--outline t-button--danger t-button--shape-square t-m"
+          type="button"
+        >
+          弱警告按钮
+        </button>
+        <button
+          class="t-button t-button--text t-button--primary t-button--shape-square t-m"
+          type="button"
+        >
+          文字按钮
+        </button>
+      </div>
+      <div
+        style="background: rgb(166, 166, 166); padding: 10px; margin-bottom: 10px;"
+      >
+        <button
+          class="t-button t-button--outline t-button--default t-button--shape-square t-button--ghost t-m"
+          type="button"
+        >
+          幽灵按钮
+        </button>
+      </div>
+      <button
+        class="t-button t-button--base t-button--primary t-button--shape-square t-m t-size-full-width"
+        type="button"
+      >
+        通栏按钮
+      </button>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <h2
+        class="tdesign-mobile-demo-block__title"
+        v-if="title"
+      >
+        02 图标按钮
+      </h2>
+      <p
+        class="tdesign-mobile-demo-block__summary"
+        v-if="summary"
+      >
+        图标按钮分为图标加文字形式、纯图标形式
+      </p>
+      <div
+        class="button-demo"
+      >
+        <button
+          class="t-button t-button--base t-button--default t-button--shape-square t-m"
+          type="button"
+        >
+          <svg
+            class="t-icon t-icon-add"
+          >
+            <use
+              xlink:href="#t-icon-add"
+            />
+          </svg>
+          图标按钮
+        </button>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <h2
+        class="tdesign-mobile-demo-block__title"
+        v-if="title"
+      >
+        03 按钮状态
+      </h2>
+      <p
+        class="tdesign-mobile-demo-block__summary"
+        v-if="summary"
+      >
+        按钮禁用态
+      </p>
+      <div
+        class="button-demo"
+      >
+        <button
+          class="t-button t-button--base t-button--default t-button--shape-square t-m t-is-disabled"
+          disabled=""
+          type="button"
+        >
+          默认按钮
+        </button>
+        <button
+          class="t-button t-button--base t-button--primary t-button--shape-square t-m t-is-disabled"
+          disabled=""
+          type="button"
+        >
+          强按钮
+        </button>
+        <button
+          class="t-button t-button--outline t-button--primary t-button--shape-square t-m t-is-disabled"
+          disabled=""
+          type="button"
+        >
+          弱按钮
+        </button>
+        <button
+          class="t-button t-button--outline t-button--default t-button--shape-square t-m t-is-disabled"
+          disabled=""
+          type="button"
+        >
+          次按钮
+        </button>
+        <button
+          class="t-button t-button--base t-button--danger t-button--shape-square t-m t-is-disabled"
+          disabled=""
+          type="button"
+        >
+          警告按钮
+        </button>
+        <button
+          class="t-button t-button--outline t-button--danger t-button--shape-square t-m t-is-disabled"
+          disabled=""
+          type="button"
+        >
+          弱警告按钮
+        </button>
+        <button
+          class="t-button t-button--text t-button--primary t-button--shape-square t-m t-is-disabled"
+          disabled=""
+          type="button"
+        >
+          文字按钮
+        </button>
+      </div>
+      <div
+        style="background: rgb(166, 166, 166); padding: 10px; margin-bottom: 10px;"
+      >
+        <button
+          class="t-button t-button--outline t-button--default t-button--shape-square t-button--ghost t-m t-is-disabled"
+          disabled=""
+          type="button"
+        >
+          幽灵按钮
+        </button>
+      </div>
+      <button
+        class="t-button t-button--base t-button--primary t-button--shape-square t-m t-is-disabled t-size-full-width"
+        disabled=""
+        type="button"
+      >
+        通栏按钮
+      </button>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <h2
+        class="tdesign-mobile-demo-block__title"
+        v-if="title"
+      >
+        04 尺寸
+      </h2>
+      <p
+        class="tdesign-mobile-demo-block__summary"
+        v-if="summary"
+      >
+        提供大、中、小 3 种不同大小按钮
+      </p>
+      <div
+        class="button-demo"
+      >
+        <button
+          class="t-button t-button--base t-button--primary t-button--shape-square t-l"
+          type="button"
+        >
+          按钮 44
+        </button>
+        <button
+          class="t-button t-button--base t-button--primary t-button--shape-square t-m"
+          type="button"
+        >
+          按钮 40
+        </button>
+        <br />
+        <button
+          class="t-button t-button--base t-button--primary t-button--shape-square t-s"
+          type="button"
+        >
+          按钮 36
+        </button>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <h2
+        class="tdesign-mobile-demo-block__title"
+        v-if="title"
+      >
+        05 形状
+      </h2>
+      <p
+        class="tdesign-mobile-demo-block__summary"
+        hidden=""
+        v-if="summary"
+      />
+      <div
+        class="button-demo"
+      >
+        <button
+          class="t-button t-button--base t-button--default t-m"
+          type="button"
+        >
+          圆角按钮
+        </button>
+        <button
+          class="t-button t-button--base t-button--default t-button--shape-square t-m"
+          type="button"
+        >
+          直角按钮
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`shape.jsx 1`] = `
+<DocumentFragment>
+  <button
+    class="t-button t-button--base t-button--default t-m"
+    type="button"
+  >
+    圆角按钮
+  </button>
+  <button
+    class="t-button t-button--base t-button--default t-button--shape-square t-m"
+    type="button"
+  >
+    直角按钮
+  </button>
+</DocumentFragment>
+`;
+
+exports[`size.jsx 1`] = `
+<DocumentFragment>
+  <button
+    class="t-button t-button--base t-button--primary t-button--shape-square t-l"
+    type="button"
+  >
+    按钮 44
+  </button>
+  <button
+    class="t-button t-button--base t-button--primary t-button--shape-square t-m"
+    type="button"
+  >
+    按钮 40
+  </button>
+  <br />
+  <button
+    class="t-button t-button--base t-button--primary t-button--shape-square t-s"
+    type="button"
+  >
+    按钮 36
+  </button>
+</DocumentFragment>
+`;
+
+exports[`test.jsx 1`] = `
+<DocumentFragment>
+  <div>
+    <button
+      class="t-button t-button--base t-button--primary t-button--shape-square t-m"
+      type="button"
+    >
+      主要按钮
+    </button>
+    <button
+      class="t-button t-button--outline t-button--default t-button--shape-square t-m"
+      type="button"
+    >
+      主要按钮
+    </button>
+  </div>
+  <div>
+    <button
+      class="t-button t-button--base t-button--primary t-button--shape-square t-m"
+      type="button"
+    >
+      主要按钮
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-button--shape-square t-m"
+      type="button"
+    >
+      主要按钮
+    </button>
+  </div>
+</DocumentFragment>
+`;
