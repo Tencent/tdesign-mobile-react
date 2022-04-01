@@ -1,16 +1,12 @@
-import React, { FC, useState, forwardRef } from 'react';
+import React, { FC, useState, forwardRef, useMemo } from 'react';
 import { StarFilledIcon, StarIcon } from 'tdesign-icons-react';
 import isFunction from 'lodash/isFunction';
 import isEmpty from 'lodash/isEmpty';
-import { TdRateProps } from './type';
 import useConfig from '../_util/useConfig';
+import type { TdRateProps } from './type';
+import type { StyledProps } from '../common';
 
-export interface RateProps extends TdRateProps {
-  variant?: string; // filled	形状类型，有描边类型和填充类型两种。可选项：outline/filled
-  clearable?: boolean; // false	是否允许取消选择
-  className?: string;
-  style?: React.CSSProperties;
-}
+export interface RateProps extends TdRateProps, StyledProps {}
 
 const Star = (props) => {
   const { size, style, variant } = props;
@@ -20,7 +16,7 @@ const Star = (props) => {
   return <StarFilledIcon size={size} style={{ ...style }} />;
 };
 
-const defaultUnCheck = '#999999';
+const defaultUnCheck = '#E3E6EB';
 const defaultCheck = '#ED7B2F';
 
 const Rate: FC<RateProps> = forwardRef((props, ref: React.LegacyRef<HTMLInputElement>) => {
@@ -41,6 +37,7 @@ const Rate: FC<RateProps> = forwardRef((props, ref: React.LegacyRef<HTMLInputEle
   } = props;
   const { classPrefix } = useConfig();
   const prefix = classPrefix;
+  const hasDefaultValue = useMemo(() => Object.prototype.hasOwnProperty.call(props, 'defaultValue'), [props]);
 
   const [refValue, setRefValue] = useState(props?.defaultValue ?? 0);
 
@@ -56,13 +53,13 @@ const Rate: FC<RateProps> = forwardRef((props, ref: React.LegacyRef<HTMLInputEle
 
   const starClickHandle = (number) => {
     !disabled && isFunction(onChange) && onChange(value === number ? 0 : number);
-    Object.prototype.hasOwnProperty.call(props, 'defaultValue') && setRefValue(refValue === number ? 0 : number);
+    hasDefaultValue && setRefValue(refValue === number ? 0 : number);
   };
 
   const getCheckColor = (number) => {
     let referenceValue = value;
 
-    if (Object.prototype.hasOwnProperty.call(props, 'defaultValue')) {
+    if (hasDefaultValue) {
       referenceValue = refValue;
     }
     return number <= referenceValue ? checkColor : unCheckColor;
@@ -70,7 +67,7 @@ const Rate: FC<RateProps> = forwardRef((props, ref: React.LegacyRef<HTMLInputEle
 
   const getVariant = (number) => {
     let referenceValue = value;
-    if (Object.prototype.hasOwnProperty.call(props, 'defaultValue')) {
+    if (hasDefaultValue) {
       referenceValue = refValue;
     }
     return number <= referenceValue ? 'filled' : variant;
@@ -124,7 +121,7 @@ const Rate: FC<RateProps> = forwardRef((props, ref: React.LegacyRef<HTMLInputEle
 
   const getText = () => {
     let referenceValue = value;
-    if (Object.prototype.hasOwnProperty.call(props, 'defaultValue')) {
+    if (hasDefaultValue) {
       referenceValue = refValue;
     }
     if (!referenceValue) {

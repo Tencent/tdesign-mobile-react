@@ -15,6 +15,7 @@ export default function Base() {
           alignItems: 'center',
           backgroundColor: props.title ? '#fff' : null,
           padding: '12px 16px',
+          ...props.style,
         }}
       >
         <div style={{ width: props.title ? '80px' : null, marginRight: '16px' }}>{props.title}</div>
@@ -26,7 +27,7 @@ export default function Base() {
   return (
     <>
       <TDemoBlock title="" summary="带描述评分">
-        <RenderCard title="请点击评分">
+        <RenderCard title="请点击评分" style={{ marginBottom: '16px' }}>
           <Rate
             showText={true}
             texts={['1分', '2分', '3分', '4分', '5分']}
@@ -37,7 +38,7 @@ export default function Base() {
           />
         </RenderCard>
 
-        <RenderCard title="请点击评分">
+        <RenderCard title="请点击评分" style={{ marginBottom: '16px' }}>
           <Rate
             showText={true}
             value={value2}
@@ -64,123 +65,6 @@ export default function Base() {
           <Rate
             value={value2}
             variant="outline"
-            onChange={(value) => {
-              setValue2(value);
-            }}
-          />
-        </RenderCard>
-      </TDemoBlock>
-
-      <TDemoBlock title="02 规格" summary="实心评分">
-        <RenderCard title="请点击评分">
-          <Rate
-            value={value2}
-            size={10}
-            onChange={(value) => {
-              setValue2(value);
-            }}
-          />
-        </RenderCard>
-
-        <RenderCard title="请点击评分">
-          <Rate
-            value={value2}
-            size={30}
-            onChange={(value) => {
-              setValue2(value);
-            }}
-          />
-        </RenderCard>
-      </TDemoBlock>
-
-      <TDemoBlock title="" summary="空心评分">
-        <RenderCard title="请点击评分">
-          <Rate
-            value={value2}
-            size={10}
-            variant="outline"
-            onChange={(value) => {
-              setValue2(value);
-            }}
-          />
-        </RenderCard>
-
-        <RenderCard title="请点击评分">
-          <Rate
-            value={value2}
-            size={30}
-            variant="outline"
-            onChange={(value) => {
-              setValue2(value);
-            }}
-          />
-        </RenderCard>
-      </TDemoBlock>
-
-      <TDemoBlock title="" summary="自定义数量">
-        <RenderCard title="请点击评分">
-          <Rate
-            count={4}
-            value={value3}
-            size={10}
-            variant="outline"
-            onChange={(value) => {
-              setValue3(value);
-            }}
-          />
-        </RenderCard>
-
-        <RenderCard title="请点击评分">
-          <Rate
-            value={value3}
-            count={4}
-            size={30}
-            variant="outline"
-            onChange={(value) => {
-              setValue3(value);
-            }}
-          />
-        </RenderCard>
-      </TDemoBlock>
-
-      <TDemoBlock title="" summary="半星评分">
-        <RenderCard title="请点击评分">
-          <Rate
-            allowHalf={true}
-            value={value1}
-            size={10}
-            onChange={(value) => {
-              setValue1(value);
-            }}
-          />
-        </RenderCard>
-
-        <RenderCard title="请点击评分">
-          <Rate
-            allowHalf={true}
-            value={value1}
-            size={30}
-            onChange={(value) => {
-              setValue1(value);
-            }}
-          />
-        </RenderCard>
-      </TDemoBlock>
-
-      <TDemoBlock title="" summary="展示型评分">
-        <RenderCard title="">
-          <Rate
-            value={value2}
-            size={10}
-            onChange={(value) => {
-              setValue2(value);
-            }}
-          />
-        </RenderCard>
-        <RenderCard title="">
-          <Rate
-            value={value2}
-            size={30}
             onChange={(value) => {
               setValue2(value);
             }}

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Rate } from 'tdesign-mobile-react/rate';
-import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function Base() {
   const [value, setValue] = useState(3);
@@ -13,6 +12,7 @@ export default function Base() {
           alignItems: 'center',
           backgroundColor: props.title ? '#fff' : null,
           padding: '12px 16px',
+          ...props.style,
         }}
       >
         <div style={{ width: props.title ? '80px' : null, marginRight: '16px' }}>{props.title}</div>
@@ -23,36 +23,25 @@ export default function Base() {
 
   return (
     <>
-      <TDemoBlock title="" summary="自定义颜色">
-        <RenderCard title="默认颜色">
-          <Rate
-            value={value}
-            onChange={(value) => {
-              setValue(value);
-            }}
-          />
-        </RenderCard>
+      <RenderCard title="红色选中">
+        <Rate
+          value={value}
+          color="red"
+          onChange={(value) => {
+            setValue(value);
+          }}
+        />
+      </RenderCard>
 
-        <RenderCard title="红色选中">
-          <Rate
-            value={value}
-            color="red"
-            onChange={(value) => {
-              setValue(value);
-            }}
-          />
-        </RenderCard>
-
-        <RenderCard title="绿色未选中">
-          <Rate
-            value={value}
-            color={['red', 'green']}
-            onChange={(value) => {
-              setValue(value);
-            }}
-          />
-        </RenderCard>
-      </TDemoBlock>
+      <RenderCard title="绿色未选中">
+        <Rate
+          value={value}
+          color={['red', 'green']}
+          onChange={(value) => {
+            setValue(value);
+          }}
+        />
+      </RenderCard>
     </>
   );
 }

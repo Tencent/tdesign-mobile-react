@@ -11,7 +11,7 @@ export interface TdRateProps {
    */
   allowHalf?: boolean;
   /**
-   * 评分图标的颜色，样式中默认为 #ED7B2F。一个值表示设置选中高亮的五角星颜色，两个值表示分别设置 选中高亮的五角星颜色 和 未选中暗灰的五角星颜色。示例：['#ED7B2F', '#999999']
+   * 评分图标的颜色，样式中默认为 #ED7B2F。一个值表示设置选中高亮的五角星颜色，两个值表示分别设置 选中高亮的五角星颜色 和 未选中暗灰的五角星颜色。示例：['#ED7B2F', '#E3E6EB']
    * @default '#ED7B2F'
    */
   color?: string | Array<string>;
@@ -55,6 +55,11 @@ export interface TdRateProps {
    * @default 0
    */
   defaultValue?: number;
+  /**
+   * 形状类型，有描边类型和填充类型两种
+   * @default outline
+   */
+  variant?: 'outline' | 'filled';
   /**
    * 评分数改变时触发
    */

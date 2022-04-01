@@ -17,6 +17,7 @@ export default function Base() {
           alignItems: 'center',
           backgroundColor: props.title ? '#fff' : null,
           padding: '12px 16px',
+          ...props.style,
         }}
       >
         <div style={{ width: props.title ? '80px' : null, marginRight: '16px' }}>{props.title}</div>
@@ -28,48 +29,46 @@ export default function Base() {
   return (
     <>
       <TDemoHeader
-        title="Rate 按钮"
-        summary="评分组件，对内容进行快速评级操作，或内容评价的等级展示，目前常用为五星实心评价。"
+        title="Rate 评分"
+        summary="评分组件，对内容进行快速评级操作，或内容评价的等级展示，目前常用为五星实心评价"
       />
 
-      <TDemoBlock title="01 类型" summary="基础评分">
+      <TDemoBlock title="01 类型" summary="实心评分">
         <RenderCard title="请点击评分">
           <Rate
-            size={10}
             value={value1}
             onChange={(value) => {
               setValue1(value);
             }}
           />
         </RenderCard>
-
+      </TDemoBlock>
+      <TDemoBlock title="" summary="空心评分">
         <RenderCard title="请点击评分">
           <Rate
-            value={value2}
+            variant="outline"
+            value={value1}
             onChange={(value) => {
-              setValue2(value);
+              setValue1(value);
             }}
           />
         </RenderCard>
-
-        <RenderCard title="请点击评分">
-          <Rate disabled={true} value={3} variant="outline" />
-        </RenderCard>
-
+      </TDemoBlock>
+      <TDemoBlock title="" summary="自定义数量评分">
         <RenderCard title="自定义数量">
           <Rate
-            count={4}
+            count={6}
             value={value3}
             onChange={(value) => {
               setValue3(value);
             }}
           />
         </RenderCard>
-
-        <RenderCard title="半星评分">
+      </TDemoBlock>
+      <TDemoBlock title="" summary="半星评分">
+        <RenderCard title="半星评价">
           <Rate
             allowHalf={true}
-            size={30}
             value={value4}
             onChange={(value) => {
               setValue4(value);
