@@ -1,10 +1,11 @@
-import React, { FC, useState, forwardRef, useMemo } from 'react';
+import React, { FC, forwardRef } from 'react';
 import { StarFilledIcon, StarIcon } from 'tdesign-icons-react';
-import isFunction from 'lodash/isFunction';
 import isEmpty from 'lodash/isEmpty';
 import useConfig from '../_util/useConfig';
 import type { TdRateProps } from './type';
 import type { StyledProps } from '../common';
+import useDefault from '../_util/useDefault';
+import useColor from '../_util/useColor';
 
 export interface RateProps extends TdRateProps, StyledProps {}
 
@@ -24,54 +25,30 @@ const Rate: FC<RateProps> = forwardRef((props, ref: React.LegacyRef<HTMLInputEle
     allowHalf = false,
     color = defaultCheck,
     count = 5,
-    disabled = false,
     gap = 6,
     showText = false,
     size = 20,
     texts = ['极差', '失望', '一般', '满意', '惊喜'],
-    value = 0,
+    value,
     onChange,
     variant = 'filled',
     className = '',
     style = {},
+    defaultValue,
   } = props;
   const { classPrefix } = useConfig();
   const prefix = classPrefix;
-  const hasDefaultValue = useMemo(() => Object.prototype.hasOwnProperty.call(props, 'defaultValue'), [props]);
 
-  const [refValue, setRefValue] = useState(props?.defaultValue ?? 0);
-
-  let unCheckColor = defaultUnCheck;
-  if (Array.isArray(color) && color.length > 1) {
-    unCheckColor = color?.[1] ?? defaultUnCheck;
-  }
-
-  let checkColor = typeof color === 'string' ? color : defaultCheck;
-  if (Array.isArray(color) && color.length > 0) {
-    checkColor = color?.[0] ?? defaultCheck;
-  }
-
+  const [refValue, setRefValue] = useDefault(value, defaultValue, onChange);
   const starClickHandle = (number) => {
-    !disabled && isFunction(onChange) && onChange(value === number ? 0 : number);
-    hasDefaultValue && setRefValue(refValue === number ? 0 : number);
+    setRefValue(refValue === number ? 0 : number);
   };
 
-  const getCheckColor = (number) => {
-    let referenceValue = value;
+  const [checkColor, unCheckColor] = useColor(color, defaultCheck, defaultUnCheck);
 
-    if (hasDefaultValue) {
-      referenceValue = refValue;
-    }
-    return number <= referenceValue ? checkColor : unCheckColor;
-  };
+  const getCheckColor = (number) => (number <= refValue ? checkColor : unCheckColor);
 
-  const getVariant = (number) => {
-    let referenceValue = value;
-    if (hasDefaultValue) {
-      referenceValue = refValue;
-    }
-    return number <= referenceValue ? 'filled' : variant;
-  };
+  const getVariant = (number) => (number <= refValue ? 'filled' : variant);
 
   const RateLi = (props) => {
     const { number } = props;
@@ -120,17 +97,13 @@ const Rate: FC<RateProps> = forwardRef((props, ref: React.LegacyRef<HTMLInputEle
   }
 
   const getText = () => {
-    let referenceValue = value;
-    if (hasDefaultValue) {
-      referenceValue = refValue;
-    }
-    if (!referenceValue) {
+    if (!refValue) {
       return '';
     }
     if (isEmpty(texts)) {
-      return referenceValue;
+      return refValue;
     }
-    return texts?.[Math.ceil(referenceValue) - 1] ?? 'undefined';
+    return texts?.[Math.ceil(refValue) - 1] ?? 'undefined';
   };
 
   return (

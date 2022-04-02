@@ -47,9 +47,9 @@ export default function Base() {
         <RenderCard title="请点击评分">
           <Rate
             variant="outline"
-            value={value1}
+            value={value2}
             onChange={(value) => {
-              setValue1(value);
+              setValue2(value);
             }}
           />
         </RenderCard>
