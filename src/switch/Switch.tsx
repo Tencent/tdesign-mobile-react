@@ -7,7 +7,7 @@ import useConfig from '../_util/useConfig';
 export interface SwitchProps extends TdSwitchProps, StyledProps {}
 
 const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
-  ({ customValue = [true, false], value, defaultValue, label, onChange, disabled, className, style }, ref) => {
+  ({ customValue = [true, false], value, defaultValue, label, onChange, disabled, className, colors, style }, ref) => {
     const { classPrefix } = useConfig();
 
     const switchBaseClassName = `${classPrefix}-switch`;
@@ -60,7 +60,10 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     return (
       <button ref={ref} className={switchClassName} style={style} onClick={onInternalClick}>
         <span className={`${classPrefix}-switch__text`}>{renderSwitchText(checked, label)}</span>
-        <span className={`${classPrefix}-switch__node`}></span>
+        <span
+          className={`${classPrefix}-switch__node`}
+          style={{ backgroundColor: checked ? colors?.[0] : colors?.[1] }}
+        ></span>
       </button>
     );
   },

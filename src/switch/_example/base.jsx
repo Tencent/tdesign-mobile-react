@@ -1,11 +1,11 @@
-import { Switch } from 'tdesign-mobile-react';
-import TDemoBlock from '../../../site/mobile/components/DemoBlock';
+import { Switch, Cell } from 'tdesign-mobile-react';
 
 export default function () {
   return (
-    <TDemoBlock title="基础开关">
-      <Switch />
-      <Switch defaultValue={true} />
-    </TDemoBlock>
+    <>
+      <Cell title="开关" note={<Switch />}></Cell>
+      <Cell title="开关" note={<Switch defaultValue={true} />}></Cell>
+      <Cell title="自定义颜色" note={<Switch defaultValue colors={['green', 'gray']} />}></Cell>
+    </>
   );
 }
