@@ -137,5 +137,10 @@ export default {
       name: 'pull-down-refresh',
       component: () => import('tdesign-mobile-react/pull-down-refresh/_example/index.jsx'),
     },
+    {
+      title: 'ImageViewer 图片预览',
+      name: 'image-viewer',
+      component: () => import('tdesign-mobile-react/image-viewer/_example/index.jsx'),
+    },
   ],
 };
