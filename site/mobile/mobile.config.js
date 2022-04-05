@@ -53,7 +53,7 @@ export default {
     {
       title: 'Badge 徽标',
       name: 'badge',
-      component: () => import('tdesign-mobile-react/badge/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/badge/_example/index.jsx'),
     },
     {
       title: 'CountDown 倒计时',
