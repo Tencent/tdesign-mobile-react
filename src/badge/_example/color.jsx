@@ -1,24 +1,24 @@
 import React from 'react';
-import { Badge } from 'tdesign-mobile-react';
+import { Badge, CellGroup, Button } from 'tdesign-mobile-react';
 
-import './style/index.less';
-
-export default function Color() {
+export default function BadgeColorDemo() {
   return (
-    <div className="base-demo">
-      <div className="base-demo__container">
-        <Badge>正常</Badge>
-      </div>
-      <div className="base-demo__container">
-        <Badge color="#52c41a" count={999}>
-          绿色
-        </Badge>
-      </div>
-      <div>
-        <Badge color="#f52fff" count={1}>
-          自定义颜色
-        </Badge>
-      </div>
+    <div className="tdesign-mobile-demo">
+      <CellGroup>
+        <div className="badge-demo">
+          <div className="badge-item">
+            <Badge count={12} className="badge-item">
+              <Button size="small">按钮</Button>
+            </Badge>
+            <Badge count={999} color="#52c41a" className="badge-item">
+              <Button size="small">绿色</Button>
+            </Badge>
+            <Badge count={1} color="#f52fff" className="badge-item">
+              <Button size="small">自定义颜色</Button>
+            </Badge>
+          </div>
+        </div>
+      </CellGroup>
     </div>
   );
 }
