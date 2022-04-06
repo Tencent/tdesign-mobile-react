@@ -137,5 +137,10 @@ export default {
       name: 'pull-down-refresh',
       component: () => import('tdesign-mobile-react/pull-down-refresh/_example/index.jsx'),
     },
+    {
+      title: 'Avatar 头像',
+      name: 'avatar',
+      component: () => import('tdesign-mobile-react/avatar/_example/index.jsx'),
+    },
   ],
 };
