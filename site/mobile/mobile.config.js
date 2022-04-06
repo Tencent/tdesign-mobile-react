@@ -120,7 +120,7 @@ export default {
     {
       title: 'SwipeCell 滑动单元格',
       name: 'swipe-cell',
-      component: () => import('tdesign-mobile-react/swipe-cell/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/swipe-cell/_example/index.jsx'),
     },
     {
       title: 'Tag 标签',
@@ -138,9 +138,19 @@ export default {
       component: () => import('tdesign-mobile-react/collapse/_example/index.jsx'),
     },
     {
+      title: 'Stepper 步进器',
+      name: 'Stepper',
+      component: () => import('tdesign-mobile-react/stepper/_example/index.jsx'),
+    },
+    {
       title: 'PullDownRefresh 下拉刷新',
       name: 'pull-down-refresh',
       component: () => import('tdesign-mobile-react/pull-down-refresh/_example/index.jsx'),
+    },
+    {
+      title: 'Avatar 头像',
+      name: 'avatar',
+      component: () => import('tdesign-mobile-react/avatar/_example/index.jsx'),
     },
   ],
 };
