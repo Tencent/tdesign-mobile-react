@@ -73,6 +73,10 @@ function Components() {
         navigate(detail);
       });
       requestAnimationFrame(() => {
+        const isComponent = /\/components\//.test(detail);
+        tdDocContentRef.current.mobileBodyStyle = {
+          paddingRight: isComponent ? '400px' : ""
+        };
         tdDocContentRef.current.pageStatus = 'show';
         window.scrollTo(0, 0);
       });

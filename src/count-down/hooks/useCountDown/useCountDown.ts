@@ -27,7 +27,7 @@ export const useCountDown = (params: UseCountdownParams) => {
     status: EnumCountDownStatus.inActive,
   });
   const interval = millisecond ? 30 : 1000;
-  const ctxRef = useRef({ timerId: 0, remainTime: time }) as any;
+  const ctxRef = useRef({ timerId: 0, remainTime: time });
 
   const clearCountDown = () => {
     const currentTimerId = ctxRef.current.timerId;
@@ -60,7 +60,7 @@ export const useCountDown = (params: UseCountdownParams) => {
 
   const startCountDown = () => {
     clearCountDown();
-    ctxRef.current.timerId = setInterval(() => tick(), interval);
+    (ctxRef.current as any).timerId = setInterval(() => tick(), interval);
   };
 
   useEffect(() => {
