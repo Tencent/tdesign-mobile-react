@@ -3,15 +3,15 @@ import { SwipeCell, Button, Switch, Cell } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function Demo() {
-  const [disabled, onDisabledChange] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   return (
-    <TDemoBlock summary="是否启用滑动功能">
-      <Cell title="开关" rightIcon={<Switch value={disabled} onChange={onDisabledChange} />}></Cell>
+    <TDemoBlock summary="通过 expanded 实现父子组件联动">
+      <Cell title="开关" rightIcon={<Switch value={expanded} onChange={setExpanded} />}></Cell>
       <SwipeCell
-        disabled={disabled}
+        expanded={expanded ? 'right' : undefined}
         style={{ height: 48 }}
         right={<Button theme="danger">删除</Button>}
-        content={<Cell title="是否启用滑动功能" />}
+        content={<Cell title="父子组件联动" />}
       />
     </TDemoBlock>
   );
