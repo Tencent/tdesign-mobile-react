@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import useConfig from 'tdesign-mobile-react/_util/useConfig';
 import classNames from 'classnames';
-import { TdStepperProps } from './type';
 import identity from 'lodash/identity';
+import { TdStepperProps } from './type';
 import type { StyledProps } from '../common';
 
 export interface StepperProps extends TdStepperProps, StyledProps {}
