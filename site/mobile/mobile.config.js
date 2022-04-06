@@ -132,5 +132,10 @@ export default {
       name: 'Collapse',
       component: () => import('tdesign-mobile-react/collapse/_example/index.jsx'),
     },
+    {
+      title: 'Stepper 步进器',
+      name: 'Stepper',
+      component: () => import('tdesign-mobile-react/stepper/_example/index.jsx'),
+    }
   ],
 };

@@ -25,4 +25,4 @@ export * from './swipe-cell';
 export * from './tag';
 export * from './toast';
 export * from './collapse';
-
+export * from './stepper';

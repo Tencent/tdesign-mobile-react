@@ -1,0 +1,20 @@
+:: BASE_DOC ::
+
+## API
+
+### Stepper Props
+
+名称 | 类型 | 默认值 | 说明 | 必传
+-- | -- | -- | -- | --
+className | String | - | 类名 | N
+style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
+inputWidth | Number | - | 输入框宽度 | N
+max | Number | 100 | 最大值 | N
+min | Number | 0 | 最小值 | N
+step | Number | 1 | 步长 | N
+theme | String | normal | 组件风格。可选项：normal/grey | N
+value | String / Number | 0 | 值 | N
+defaultValue | String / Number | 0 | 值。非受控属性 | N
+onBlur | Function |  | TS 类型：`(value: string | number) => void`<br/>输入框失去焦点时触发 | N
+onChange | Function |  | TS 类型：`(value: string | number) => void`<br/>数值发生变更时触发 | N
+onOverlimit | Function |  | TS 类型：`(type: 'minus' | 'plus') => void`<br/>数值超出限制时触发 | N
