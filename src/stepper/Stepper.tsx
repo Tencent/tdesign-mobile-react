@@ -61,7 +61,7 @@ const Stepper: FC<TdStepperProps> = (prop) => {
     const { value } = e.currentTarget;
     if (isNaN(value)) return;
     setCurrentValue(formatValue(value));
-    // onChange && onChange(value);
+    onChange && onChange(value);
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
