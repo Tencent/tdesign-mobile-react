@@ -133,6 +133,11 @@ export default {
       component: () => import('tdesign-mobile-react/collapse/_example/index.jsx'),
     },
     {
+      title: 'Stepper 步进器',
+      name: 'Stepper',
+      component: () => import('tdesign-mobile-react/stepper/_example/index.jsx'),
+    },
+    {
       title: 'PullDownRefresh 下拉刷新',
       name: 'pull-down-refresh',
       component: () => import('tdesign-mobile-react/pull-down-refresh/_example/index.jsx'),

@@ -136,12 +136,12 @@ export default {
           path: '/mobile-react/components/slider',
           component: () => import('tdesign-mobile-react/slider/slider.md'),
         },
-        // {
-        //   title: 'Stepper 步进器',
-        //   name: 'stepper',
-        //   path: '/mobile-react/components/stepper',
-        //   component: () => import('tdesign-mobile-react/stepper/stepper.md'),
-        // },
+        {
+          title: 'Stepper 步进器',
+          name: 'stepper',
+          path: '/mobile-react/components/stepper',
+          component: () => import('tdesign-mobile-react/stepper/stepper.md'),
+        },
         {
           title: 'Switch 开关',
           name: 'switch',
