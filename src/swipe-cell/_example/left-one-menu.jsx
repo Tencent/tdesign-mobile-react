@@ -4,17 +4,17 @@ import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function Demo() {
   return (
-    <TDemoBlock summary="右滑单操作">
+    <TDemoBlock summary="左滑单操作">
       <SwipeCell
         style={{ height: 48 }}
-        left={<Button theme="danger">删除</Button>}
-        content={<Cell title="列表-右滑单操作" note="辅助信息" />}
+        right={<Button theme="danger">删除</Button>}
+        content={<Cell title="列表-左滑单操作" note="辅助信息" />}
       />
       <SwipeCell
-        expanded="left"
+        expanded="right"
         style={{ height: 48 }}
-        left={<Button theme="danger">删除</Button>}
-        content={<Cell title="列表-右滑单操作" note="辅助信息" />}
+        right={<Button theme="danger">删除</Button>}
+        content={<Cell title="列表-左滑单操作" note="辅助信息" />}
       />
     </TDemoBlock>
   );
