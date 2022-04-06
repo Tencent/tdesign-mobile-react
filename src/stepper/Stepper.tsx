@@ -1,24 +1,37 @@
 import React, { FC, useEffect, useState } from 'react';
 import useConfig from 'tdesign-mobile-react/_util/useConfig';
 import classNames from 'classnames';
-import isFunction from 'lodash/isFunction';
 import { TdStepperProps } from './type';
+import identity from 'lodash/identity';
+import type { StyledProps } from '../common';
 
-const Stepper: FC<TdStepperProps> = (prop) => {
+export interface StepperProps extends TdStepperProps, StyledProps {}
+
+const defaultProps = {
+  max: 999,
+  min: 0,
+  step: 1,
+  defaultValue: 0,
+  onBlur: identity,
+  onChange: identity,
+  onOverlimit: identity,
+};
+
+const Stepper: FC<StepperProps> = (props) => {
   const {
     disabled,
     disableInput,
     inputWidth,
-    max = 999,
-    min = 0,
-    step = 1,
+    max,
+    min,
+    step,
     theme,
     value,
-    defaultValue = 0,
+    defaultValue,
     onBlur,
     onChange,
     onOverlimit,
-  } = prop;
+  } = props;
   const [currentValue, setCurrentValue] = useState(0);
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-stepper`;
@@ -39,12 +52,12 @@ const Stepper: FC<TdStepperProps> = (prop) => {
 
   const updateValue = (value: number) => {
     setCurrentValue(formatValue(value));
-    onChange && onChange(value);
+    onChange(value);
   };
 
   const minusValue = () => {
     if (isDisabled('minus')) {
-      isFunction(onOverlimit) && onOverlimit('minus');
+      onOverlimit('minus');
       return;
     }
     updateValue(currentValue - step);
@@ -52,7 +65,7 @@ const Stepper: FC<TdStepperProps> = (prop) => {
 
   const plusValue = () => {
     if (isDisabled('plus')) {
-      isFunction(onOverlimit) && onOverlimit('plus');
+      onOverlimit('plus');
       return;
     }
     updateValue(currentValue + step);
@@ -62,14 +75,14 @@ const Stepper: FC<TdStepperProps> = (prop) => {
     const { value } = e.currentTarget;
     if (isNaN(Number(value))) return;
     setCurrentValue(formatValue(Number(value)));
-    isFunction(onChange) && onChange(value);
+    onChange(value);
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     const { value } = e.currentTarget;
     if (isNaN(Number(value))) return;
     setCurrentValue(formatValue(Number(value)));
-    isFunction(onBlur) && onBlur(value);
+    onBlur(value);
   };
 
   useEffect(() => {
@@ -82,30 +95,37 @@ const Stepper: FC<TdStepperProps> = (prop) => {
 
   return (
     <div
-      className={classNames(
-        name,
-        `${name}__${theme === 'grey' ? 'pure' : 'normal'}`,
-        `${disabled ? `${classPrefix}-is-disabled` : ''}`,
-      )}
+      className={classNames(name, {
+        [`${classPrefix}-is-disabled`]: disabled,
+        [`${name}__pure`]: theme === 'grey',
+        [`${name}__normal`]: theme !== 'grey',
+      })}
     >
       <div
-        className={classNames(`${name}__minus`, `${currentValue <= min ? `${classPrefix}-is-disabled` : ''}`)}
+        className={classNames(`${name}__minus`, {
+          [`${classPrefix}-is-disabled`]: currentValue <= min,
+        })}
         onClick={minusValue}
       />
       <input
         className={`${name}__input`}
-        style={{ width: `${inputWidth || 100}rpx` }}
+        style={{ width: inputWidth || 50 }}
         value={currentValue}
         onChange={handleChange}
         onBlur={handleBlur}
         disabled={disabled || disableInput}
       />
       <div
-        className={classNames(`${name}__plus`, `${currentValue >= max ? `${classPrefix}-is-disabled` : ''}`)}
+        className={classNames(`${name}__plus`, {
+          [`${classPrefix}-is-disabled`]: currentValue >= max,
+        })}
         onClick={plusValue}
       />
     </div>
   );
 };
+
+Stepper.defaultProps = defaultProps;
+Stepper.displayName = 'Stepper';
 
 export default Stepper;
