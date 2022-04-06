@@ -27,12 +27,10 @@ const Handle: FC<HandleProps> = props => {
 
     const preValue = useRef(0);
 
-    const currentPosition = () => {
-        return {
+    const currentPosition = () => ({
           left: `${((value - min) / (max - min)) * 100}%`,
           right: 'auto',
-        }
-    }
+        })
 
     const bind = useDrag(
         ({first, last, xy, initial}) => {

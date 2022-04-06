@@ -1,13 +1,12 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from "react";
+import React, { FC, useMemo, useRef } from "react";
 import classnames from "classnames"
 import useConfig from "tdesign-mobile-react/_util/useConfig";
-import { SliderValue, TdSliderProps } from "./type";
 import { animated, useSpring, useSprings } from 'react-spring' 
 import { useDrag } from "@use-gesture/react";
-import { useBoolean } from "ahooks";
 import nearest from "tdesign-mobile-react/_util/nearest";
+import { SliderValue, TdSliderProps } from "./type";
 import Handle from "./Handle";
-import { usePropsValue } from "./hooks/use-props-values";
+import { usePropsValue } from "../_util/usePropsValues";
 
 const DEFAULT_DISABLED = false;
 const DEFAULT_MAX= 100;
@@ -40,42 +39,11 @@ const Slider: FC<TdSliderProps> = (props) => {
 
     // const bind = useDrag(
     //     ({ down, offset: [offsetX], direction: [directionX] }) => {
-    //         // const formatValue = format(offsetX)
-    //         // console.log('formatValue');
-    //         // console.log(formatValue);
-
-    //         // const deltaX = offsetX - touchData.startX;
-
-    //         // const nestOffsetX = nearest({
-    //         //     items: [20, 40],
-    //         //     target: offsetX,
-    //         //     threshold: '100%',
-    //         //     direction: directionX as -1 | 1,
-    //         // })
-
-    //         const rect = rootRef.current.getBoundingClientRect();
-    
-    //         const total = rect.width;
-
-    //         // const diff = (offsetX / total) * (max - min);
-    
-    //         const newValue = touchData.startValue + offsetX
-
-    //         if (newValue >= total) {
-    //             touchData.startValue = total;
-    //         }
-
-    //         if (!down) {
-    //             // console.log('setHandleLeft');
-    //             touchData.startValue = newValue;
-    //         }
-            
     //         api.start({
     //             offsetX: newValue,
     //         })
     //     },
     // )
-
     // const [{ offsetX, trackWidth }, api] = useSpring(
     //     () => {
     //         return {
@@ -96,7 +64,7 @@ const Slider: FC<TdSliderProps> = (props) => {
         onChange
     });
 
-      // 计算要显示的点
+    // 计算要显示的点
     const pointList = useMemo(() => {
         if (marks) {
             return Object.keys(marks).map(parseFloat).sort((a, b) => a - b);
@@ -167,6 +135,10 @@ const Slider: FC<TdSliderProps> = (props) => {
     const sliderValue = sortValue(convertValue(rawValue));
     
     const trackSize = `${(100 * (sliderValue[1] - sliderValue[0])) / (max - min)}%`;
+    console.log(sliderValue);
+    22 / 70
+    console.log(trackSize);
+    
     
     const trackStart = `${(100 * (sliderValue[0] - min)) / (max - min)}%`;
 
@@ -178,8 +150,7 @@ const Slider: FC<TdSliderProps> = (props) => {
       setRawValue(reverseValue(next));
     }
 
-    const renderHandle = (index: number) => {
-        return (
+    const renderHandle = (index: number) => (
             <Handle    
                 key={index}
                 value={sliderValue[index]}
@@ -200,7 +171,6 @@ const Slider: FC<TdSliderProps> = (props) => {
                 }}
             />
         )
-    }
 
     return <>
         <div 
