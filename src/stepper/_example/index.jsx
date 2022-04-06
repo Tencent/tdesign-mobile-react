@@ -6,15 +6,18 @@ import './style/index.less';
 
 export default function StepperDemo() {
   const [controlValue, setControlValue] = useState(999);
+
   const onValueChange = (v) => {
     setControlValue(v);
   };
+
   return (
     <div className="stepper-container">
       <TDemoHeader
         title="Stepper 步进器"
         summary="用户通过调整“+”按钮、“-”按钮、数字输入框来调整具体需要的数值，可设置最大值和最小值"
       />
+
       <TDemoBlock title="01 类型" summary="基本步进器">
         <Cell title="文字标题" rightIcon={<Stepper></Stepper>}></Cell>
       </TDemoBlock>

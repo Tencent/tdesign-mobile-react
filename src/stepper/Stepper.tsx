@@ -34,16 +34,17 @@ const Stepper: FC<TdStepperProps> = (prop) => {
     return false;
   };
 
-  const formatValue = (value) => Math.max(Math.min(max, value, Number.MAX_SAFE_INTEGER), min, Number.MIN_SAFE_INTEGER);
+  const formatValue = (value: number) =>
+    Math.max(Math.min(max, value, Number.MAX_SAFE_INTEGER), min, Number.MIN_SAFE_INTEGER);
 
-  const updateValue = (value) => {
+  const updateValue = (value: number) => {
     setCurrentValue(formatValue(value));
     onChange && onChange(value);
   };
 
   const minusValue = () => {
     if (isDisabled('minus')) {
-      onOverlimit && onOverlimit('minus');
+      isFunction(onOverlimit) && onOverlimit('minus');
       return;
     }
     updateValue(currentValue - step);
@@ -51,22 +52,23 @@ const Stepper: FC<TdStepperProps> = (prop) => {
 
   const plusValue = () => {
     if (isDisabled('plus')) {
-      onOverlimit && onOverlimit('plus');
+      isFunction(onOverlimit) && onOverlimit('plus');
       return;
     }
     updateValue(currentValue + step);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     const { value } = e.currentTarget;
-    if (isNaN(value)) return;
-    setCurrentValue(formatValue(value));
-    onChange && onChange(value);
+    if (isNaN(Number(value))) return;
+    setCurrentValue(formatValue(Number(value)));
+    isFunction(onChange) && onChange(value);
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     const { value } = e.currentTarget;
-    setCurrentValue(formatValue(value));
+    if (isNaN(Number(value))) return;
+    setCurrentValue(formatValue(Number(value)));
     isFunction(onBlur) && onBlur(value);
   };
 
@@ -105,4 +107,5 @@ const Stepper: FC<TdStepperProps> = (prop) => {
     </div>
   );
 };
+
 export default Stepper;

@@ -3,9 +3,11 @@ import { Stepper, Cell } from 'tdesign-mobile-react';
 
 export default function Event() {
   const [controlValue, setControlValue] = useState(999);
+
   const onValueChange = (v) => {
     setControlValue(v);
   };
+
   return (
     <div className="cell-container">
       <Cell
