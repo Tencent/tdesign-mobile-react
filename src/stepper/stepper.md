@@ -1,13 +1,14 @@
 :: BASE_DOC ::
 
 ## API
-
 ### Stepper Props
 
 名称 | 类型 | 默认值 | 说明 | 必传
 -- | -- | -- | -- | --
 className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
+disabled | Boolean | false | 禁用全部操作 | N
+disableInput | Boolean | false | 禁用输入框 | N
 inputWidth | Number | - | 输入框宽度 | N
 max | Number | 100 | 最大值 | N
 min | Number | 0 | 最小值 | N

@@ -6,6 +6,16 @@
 
 export interface TdStepperProps {
   /**
+   * 禁用全部操作
+   * @default false
+   */
+  disabled?: boolean;
+  /**
+   * 禁用输入框
+   * @default false
+   */
+  disableInput?: boolean;
+  /**
    * 输入框宽度
    */
   inputWidth?: number;

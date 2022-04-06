@@ -6,6 +6,8 @@ import { TdStepperProps } from './type';
 
 const Stepper: FC<TdStepperProps> = (prop) => {
   const {
+    disabled,
+    disableInput,
     inputWidth,
     max = 999,
     min = 0,
@@ -22,6 +24,7 @@ const Stepper: FC<TdStepperProps> = (prop) => {
   const name = `${classPrefix}-stepper`;
 
   const isDisabled = (type: string) => {
+    if (disabled) return true;
     if (type === 'minus' && currentValue <= min) {
       return true;
     }
@@ -39,16 +42,16 @@ const Stepper: FC<TdStepperProps> = (prop) => {
   };
 
   const minusValue = () => {
-    if (isDisabled('minus') && onOverlimit) {
-      onOverlimit('minus');
+    if (isDisabled('minus')) {
+      onOverlimit && onOverlimit('minus');
       return;
     }
     updateValue(currentValue - step);
   };
 
   const plusValue = () => {
-    if (isDisabled('plus') && onOverlimit) {
-      onOverlimit('plus');
+    if (isDisabled('plus')) {
+      onOverlimit && onOverlimit('plus');
       return;
     }
     updateValue(currentValue + step);
@@ -76,7 +79,13 @@ const Stepper: FC<TdStepperProps> = (prop) => {
   }, [value, defaultValue]);
 
   return (
-    <div className={classNames(name, `${name}__${theme === 'grey' ? 'pure' : 'normal'}`)}>
+    <div
+      className={classNames(
+        name,
+        `${name}__${theme === 'grey' ? 'pure' : 'normal'}`,
+        `${disabled ? `${classPrefix}-is-disabled` : ''}`,
+      )}
+    >
       <div
         className={classNames(`${name}__minus`, `${currentValue <= min ? `${classPrefix}-is-disabled` : ''}`)}
         onClick={minusValue}
@@ -87,6 +96,7 @@ const Stepper: FC<TdStepperProps> = (prop) => {
         value={currentValue}
         onChange={handleChange}
         onBlur={handleBlur}
+        disabled={disabled || disableInput}
       />
       <div
         className={classNames(`${name}__plus`, `${currentValue >= max ? `${classPrefix}-is-disabled` : ''}`)}
