@@ -37,7 +37,6 @@ const Rate: FC<RateProps> = forwardRef((props, ref: React.LegacyRef<HTMLInputEle
     defaultValue,
   } = props;
   const { classPrefix } = useConfig();
-  const prefix = classPrefix;
 
   const [refValue, setRefValue] = useDefault(value, defaultValue, onChange);
   const starClickHandle = (number) => {
@@ -56,9 +55,9 @@ const Rate: FC<RateProps> = forwardRef((props, ref: React.LegacyRef<HTMLInputEle
       const leftStarNumber = number - 0.5;
       return (
         <>
-          <li className={`${prefix}-rate--item ${prefix}-rate-half`} style={{ marginRight: `${gap - 2}px` }}>
+          <li className={`${classPrefix}-rate--item ${classPrefix}-rate-half`} style={{ marginRight: `${gap - 2}px` }}>
             <span
-              className={`${prefix}-rate--icon-left`}
+              className={`${classPrefix}-rate--icon-left`}
               onClick={() => {
                 starClickHandle(leftStarNumber);
               }}
@@ -66,7 +65,7 @@ const Rate: FC<RateProps> = forwardRef((props, ref: React.LegacyRef<HTMLInputEle
               <Star size={size} variant={getVariant(leftStarNumber)} style={{ color: getCheckColor(leftStarNumber) }} />
             </span>
             <span
-              className={`${prefix}-rate--icon-right`}
+              className={`${classPrefix}-rate--icon-right`}
               onClick={() => {
                 starClickHandle(number);
               }}
@@ -78,9 +77,9 @@ const Rate: FC<RateProps> = forwardRef((props, ref: React.LegacyRef<HTMLInputEle
       );
     }
     return (
-      <li className={`${prefix}-rate--item ${prefix}-rate-full`} style={{ marginRight: `${gap - 2}px` }}>
+      <li className={`${classPrefix}-rate--item ${classPrefix}-rate-full`} style={{ marginRight: `${gap - 2}px` }}>
         <span
-          className={`${prefix}-rate--icon`}
+          className={`${classPrefix}-rate--icon`}
           onClick={() => {
             starClickHandle(number);
           }}
@@ -107,10 +106,10 @@ const Rate: FC<RateProps> = forwardRef((props, ref: React.LegacyRef<HTMLInputEle
   };
 
   return (
-    <div className={`${prefix}-rate ${className}`} style={{ ...style }}>
+    <div className={`${classPrefix}-rate ${className}`} style={{ ...style }}>
       <input type="hidden" ref={ref} defaultValue={refValue} />
-      <ul className={`${prefix}-rate--list`}>{starList}</ul>
-      {showText && <span className={`${prefix}-rate--text`}>{getText()}</span>}
+      <ul className={`${classPrefix}-rate--list`}>{starList}</ul>
+      {showText && <span className={`${classPrefix}-rate--text`}>{getText()}</span>}
     </div>
   );
 });
