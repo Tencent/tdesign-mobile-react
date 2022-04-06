@@ -4,14 +4,13 @@ import { LoadingIcon } from 'tdesign-icons-react';
 
 const LoadingUsage = React.memo(() => (
   <div className="t-image__demo-status">
-    <div className="t-image__demo-wrap">
-      <h5>加载默认提示</h5>
-      <Image src="" />
-    </div>
-    <div className="t-image__demo-wrap">
-      <h5>加载自定义提示</h5>
-      <Image src="" loading={<LoadingIcon size="1.5em" />} />
-    </div>
+    <Image style={{ width: 72, height: 72 }} src="https://tdesign.gtimg.com/site/upload1.png" />
+
+    <Image
+      style={{ width: 72, height: 72 }}
+      src="https://tdesign.gtimg.com/site/upload1.png"
+      loading={<LoadingIcon size="1.5em" />}
+    />
   </div>
 ));
 
