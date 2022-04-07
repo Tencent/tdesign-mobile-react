@@ -1,22 +1,34 @@
 import React from 'react';
-import { Badge } from 'tdesign-mobile-react';
+import { Badge, Button } from 'tdesign-mobile-react';
 
-import './style/index.less';
-
-export default function Base() {
+export default function BadgeOffsetDemo() {
   return (
-    <div className="base-demo">
-      <div className="base-demo__container">
-        <Badge>消息</Badge>
-      </div>
-      <div className="base-demo__container">
-        <Badge offset={['10px', '10px']}>消息</Badge>
-      </div>
-      <div className="base-demo__container">
-        <Badge offset={[10, 10]}>消息</Badge>
-      </div>
-      <div className="base-demo__container">
-        <Badge offset={['-10px', '-10px']}>消息</Badge>
+    <div className="tdesign-mobile-demo">
+      <div className="badge-demo">
+        <div className="badge-line">
+          <span>offset: [10, 10]</span>
+          <Badge count={12} offset={[10, 10]} className="badge-item">
+            <Button size="small">按钮</Button>
+          </Badge>
+        </div>
+        <div className="badge-line">
+          <span>offset: [-10, 10]</span>
+          <Badge count={12} offset={[-10, 10]} className="badge-item">
+            <Button size="small">按钮</Button>
+          </Badge>
+        </div>
+        <div className="badge-line">
+          <span>offset: [-10, -10]</span>
+          <Badge count={12} offset={[-10, -10]} className="badge-item">
+            <Button size="small">按钮</Button>
+          </Badge>
+        </div>
+        <div className="badge-line">
+          <span>offset: [10, -10]</span>
+          <Badge count={12} offset={[10, -10]} className="badge-item">
+            <Button size="small">按钮</Button>
+          </Badge>
+        </div>
       </div>
     </div>
   );

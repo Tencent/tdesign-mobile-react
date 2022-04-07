@@ -1,25 +1,24 @@
 import React from 'react';
-import { Badge } from 'tdesign-mobile-react';
+import { Badge, Button, CellGroup, Cell } from 'tdesign-mobile-react';
 
-import './style/index.less';
-
-export default function Color() {
+export default function BadgeShapeDemo() {
   return (
-    <div className="base-demo">
-      <div className="base-demo__container">
-        <Badge shape="round" count="NEW">
-          round
+    <div className="tdesign-mobile-demo">
+      <div className="badge-demo">
+        <Badge count={12} className="badge-item">
+          <Button size="small">circle</Button>
         </Badge>
-      </div>
-      <div className="base-demo__container">
-        <Badge shape="ribbon" count="NEW" size="small">
-          ribbon
+        <Badge count={12} shape="round" className="badge-item">
+          <Button size="small">round</Button>
         </Badge>
-      </div>
-      <div className="base-demo__container">
-        <Badge shape="circle" count="NEW">
-          circle
-        </Badge>
+        <CellGroup title="列表带徽标">
+          <Cell label="单行标题">
+            <Badge dot />
+          </Cell>
+          <Cell label="单行标题">
+            <Badge content="NEW" offset={[5, 0]} shape="ribbon" />
+          </Cell>
+        </CellGroup>
       </div>
     </div>
   );
