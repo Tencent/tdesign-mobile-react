@@ -89,7 +89,7 @@ export default {
       type: 'component',
       children: [
         {
-          title: 'CheckBox 复选框',
+          title: 'CheckBox 多选框',
           name: 'checkbox',
           path: '/mobile-react/components/checkbox',
           component: () => import('tdesign-mobile-react/checkbox/checkbox.md'),
@@ -136,12 +136,12 @@ export default {
           path: '/mobile-react/components/slider',
           component: () => import('tdesign-mobile-react/slider/slider.md'),
         },
-        // {
-        //   title: 'Stepper 步进器',
-        //   name: 'stepper',
-        //   path: '/mobile-react/components/stepper',
-        //   component: () => import('tdesign-mobile-react/stepper/stepper.md'),
-        // },
+        {
+          title: 'Stepper 步进器',
+          name: 'stepper',
+          path: '/mobile-react/components/stepper',
+          component: () => import('tdesign-mobile-react/stepper/stepper.md'),
+        },
         {
           title: 'Switch 开关',
           name: 'switch',
@@ -166,12 +166,12 @@ export default {
       title: '数据展示',
       type: 'component',
       children: [
-        // {
-        //   title: 'Avatar 头像',
-        //   name: 'avatar',
-        //   path: '/mobile-react/components/avatar',
-        //   component: () => import('tdesign-mobile-react/avatar/avatar.md'),
-        // },
+        {
+          title: 'Avatar 头像',
+          name: 'avatar',
+          path: '/mobile-react/components/avatar',
+          component: () => import('tdesign-mobile-react/avatar/avatar.md'),
+        },
         {
           title: 'Badge 徽标',
           name: 'badge',
@@ -184,12 +184,12 @@ export default {
           path: '/mobile-react/components/cell',
           component: () => import('tdesign-mobile-react/cell/cell.md'),
         },
-        // {
-        //   title: 'Collapse 折叠面板',
-        //   name: 'collapse',
-        //   path: '/mobile-react/components/collapse',
-        //   component: () => import('tdesign-mobile-react/collapse/collapse.md'),
-        // },
+        {
+          title: 'Collapse 折叠面板',
+          name: 'collapse',
+          path: '/mobile-react/components/collapse',
+          component: () => import('tdesign-mobile-react/collapse/collapse.md'),
+        },
         {
           title: 'CountDown 倒计时',
           name: 'count-down',
@@ -257,10 +257,29 @@ export default {
           component: () => import('tdesign-mobile-react/swiper/swiper.md'),
         },
         {
+          title: 'SwipeCell 滑动单元格',
+          name: 'swipe-cell',
+          path: '/mobile-react/components/swipe-cell',
+          component: () => import('tdesign-mobile-react/swipe-cell/swipe-cell.md'),
+        },
+      ],
+    },
+    {
+      title: '输入类组件',
+      name: 'form',
+      type: 'component', // 组件文档
+      children: [
+        {
           title: 'Tag 标签',
           name: 'tag',
           path: '/mobile-react/components/tag',
           component: () => import('tdesign-mobile-react/tag/tag.md'),
+        },
+        {
+          title: 'Upload 上传',
+          name: 'upload',
+          path: '/mobile-react/components/upload',
+          component: () => import('tdesign-mobile-react/upload/upload.md'),
         },
       ],
     },
@@ -317,12 +336,12 @@ export default {
         //   path: '/mobile-react/components/progress',
         //   component: () => import('tdesign-mobile-react/progress/progress.md'),
         // },
-        // {
-        //   title: 'PullDownRefresh 下拉刷新',
-        //   name: 'pull-down-refresh',
-        //   path: '/mobile-react/components/pull-down-refresh',
-        //   component: () => import('tdesign-mobile-react/pull-down-refresh/pull-down-refresh.md'),
-        // },
+        {
+          title: 'PullDownRefresh 下拉刷新',
+          name: 'pull-down-refresh',
+          path: '/mobile-react/components/pull-down-refresh',
+          component: () => import('tdesign-mobile-react/pull-down-refresh/pull-down-refresh.md'),
+        },
       ],
     },
   ],

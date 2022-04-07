@@ -2,7 +2,7 @@ import React, { Fragment, ReactNode, memo, useImperativeHandle, forwardRef } fro
 import cls from 'classnames';
 import useCountDown from './hooks/useCountDown';
 import useConfig from '../_util/useConfig';
-import widthNativeProps, { NativeProps } from '../_util/widthNativeProps';
+import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import { TdCountDownProps } from './type';
 
 import './style';
@@ -57,7 +57,7 @@ const CountDown = forwardRef<CountDownRef, CountDownProps>((props, ref) => {
     [`${name}--split-with-unit`]: splitWithUnit,
   });
 
-  return widthNativeProps(props, <span className={classNames}>{contentNode}</span>);
+  return withNativeProps(props, <span className={classNames}>{contentNode}</span>);
 });
 
 CountDown.defaultProps = defaultProps as CountDownProps;

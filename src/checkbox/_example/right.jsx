@@ -6,7 +6,8 @@ export default function () {
     <>
       <Checkbox label="多选" align="right" />
       <Checkbox label="多选" align="right" checked />
-      <Checkbox label="多选" align="right" content="多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选 多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选 多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选" />
+      <Checkbox label="多选" align="right" checked />
+      <Checkbox label="多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选多选" align="right" maxLabelRow={1} />
     </>
   );
 }

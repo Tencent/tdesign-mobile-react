@@ -53,7 +53,7 @@ export default {
     {
       title: 'Badge 徽标',
       name: 'badge',
-      component: () => import('tdesign-mobile-react/badge/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/badge/_example/index.jsx'),
     },
     {
       title: 'CountDown 倒计时',
@@ -75,6 +75,12 @@ export default {
       title: 'Cell 单元格',
       name: 'cell',
       component: () => import('tdesign-mobile-react/cell/_example/base.jsx'),
+    },
+    {
+      title: 'Upload 上传',
+      name: 'upload',
+      path: '/upload',
+      component: () => import('tdesign-mobile-react/upload/_example/index.jsx'),
     },
     {
       title: 'Sticky 吸顶',
@@ -107,6 +113,11 @@ export default {
       component: () => import('tdesign-mobile-react/swiper/_example/index.jsx'),
     },
     {
+      title: 'SwipeCell 滑动单元格',
+      name: 'swipe-cell',
+      component: () => import('tdesign-mobile-react/swipe-cell/_example/index.jsx'),
+    },
+    {
       title: 'Tag 标签',
       name: 'tag',
       component: () => import('tdesign-mobile-react/tag/_example/index.jsx'),
@@ -115,6 +126,26 @@ export default {
       title: 'Toast 轻提示',
       name: 'toast',
       component: () => import('tdesign-mobile-react/toast/_example/index.jsx'),
+    },
+    {
+      title: 'Collapse 折叠面板',
+      name: 'Collapse',
+      component: () => import('tdesign-mobile-react/collapse/_example/index.jsx'),
+    },
+    {
+      title: 'Stepper 步进器',
+      name: 'Stepper',
+      component: () => import('tdesign-mobile-react/stepper/_example/index.jsx'),
+    },
+    {
+      title: 'PullDownRefresh 下拉刷新',
+      name: 'pull-down-refresh',
+      component: () => import('tdesign-mobile-react/pull-down-refresh/_example/index.jsx'),
+    },
+    {
+      title: 'Avatar 头像',
+      name: 'avatar',
+      component: () => import('tdesign-mobile-react/avatar/_example/index.jsx'),
     },
   ],
 };
