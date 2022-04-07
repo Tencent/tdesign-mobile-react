@@ -17,7 +17,7 @@ const defaultProps = {
   value: undefined,
   defaultValue: undefined,
   marks: undefined,
-  label: false,
+  label: true,
   showExtremeValue: false,
   onChange: identity,
   onDragstart: identity,
@@ -69,9 +69,11 @@ const Slider: FC<TdSliderProps> = (props) => {
   // 计算要显示的点
   const pointList = useMemo(() => {
     if (marks) {
-      return Object.keys(marks)
-        .map(parseFloat)
-        .sort((a, b) => a - b);
+      return Array.isArray(marks)
+        ? marks.sort((a, b) => a - b)
+        : Object.keys(marks)
+            .map(parseFloat)
+            .sort((a, b) => a - b);
     }
     const points: number[] = [];
     for (let i = min; i <= max; i += step) {

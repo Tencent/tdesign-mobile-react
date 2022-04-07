@@ -1,5 +1,5 @@
 import { useMemoizedFn, useUpdate } from "ahooks";
-import { isNil } from "lodash";
+import isNil from "lodash/isNil";
 import { SetStateAction, useRef } from "react";
 
 interface Options<T> {

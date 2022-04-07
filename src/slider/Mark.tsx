@@ -20,34 +20,29 @@ const Mark: FC<TMarkProps> = (props) => {
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-slider`;
 
+  // 渲染单个刻度
+  const renderMark = (item, index, renderIndex = false) => (
+    <div
+      className={`${name}__mark-text`}
+      key={index}
+      style={{
+        left: `${renderIndex ? index : item}%`,
+      }}
+    >
+      {item}
+    </div>
+  );
+
   return range ? (
     <div className={`${name}__mark`}>
-      {value.map((item, index) => (
-        <div
-          className={`${name}__mark-text`}
-          key={index}
-          style={{
-            left: `${item}%`,
-          }}
-        >
-          {item}
-        </div>
-      ))}
+      {value.map((item, index) => renderMark(item, index))}
     </div>
   ) : (
     marks && (
       <div className={`${name}__mark`}>
-        {Object.keys(marks).map((key) => (
-          <div
-            className={`${name}__mark-text`}
-            key={key}
-            style={{
-              left: `${key}%`,
-            }}
-          >
-            {marks[key]}
-          </div>
-        ))}
+        {Array.isArray(marks)
+          ? marks.map((item, index) => renderMark(item, index))
+          : Object.keys(marks).map((key) => renderMark(marks[key], key, true))}
       </div>
     )
   );
