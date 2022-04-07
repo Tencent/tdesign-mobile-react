@@ -1,3 +1,4 @@
+import React from 'react';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import Base from './base';
