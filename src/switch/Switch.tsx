@@ -1,13 +1,14 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import classNames from 'classnames';
 import { TdSwitchProps } from './type';
 import { StyledProps } from '../common';
 import useConfig from '../_util/useConfig';
+import useDefault from '../_util/useDefault';
 
 export interface SwitchProps extends TdSwitchProps, StyledProps {}
 
 const Switch = forwardRef<HTMLButtonElement, SwitchProps>((props, ref) => {
-  const { customValue, value, defaultValue, label, onChange, disabled, className, colors, style } = props;
+  const { customValue, label, disabled, className, colors, style } = props;
 
   const { classPrefix } = useConfig();
 
@@ -15,12 +16,19 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>((props, ref) => {
 
   const [activeValue, inactiveValue] = customValue;
 
-  const [checked, setChecked] = useState<boolean>(defaultValue === activeValue);
+  const [value, onChange] = useDefault(props.value, props.defaultValue, props.onChange);
+
+  const checked = useMemo(() => {
+    if (typeof value !== 'undefined') {
+      if (Array.isArray(customValue) && !customValue.includes(value)) {
+        throw `${value} is not in customValue: ${JSON.stringify(customValue)}`;
+      }
+      return value === customValue[0];
+    }
+  }, [value, customValue]);
 
   const onInternalClick = () => {
     if (disabled) return;
-
-    setChecked(!checked);
 
     onChange?.(!checked ? activeValue : inactiveValue);
   };
@@ -43,15 +51,6 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>((props, ref) => {
 
     return null;
   };
-
-  useEffect(() => {
-    if (typeof value !== 'undefined') {
-      if (Array.isArray(customValue) && !customValue.includes(value)) {
-        throw `${value} is not in customValue: ${JSON.stringify(customValue)}`;
-      }
-      setChecked(value === customValue[0]);
-    }
-  }, [value, customValue]);
 
   const switchClassName = classNames(switchBaseClassName, className, {
     [`${classPrefix}-is-checked`]: checked,
