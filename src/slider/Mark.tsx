@@ -4,7 +4,7 @@ import { SliderMarks } from "./type";
 
 interface TMarkProps {
   range: boolean;
-  value?: number | [number, number];
+  value?: [number, number];
   marks?: Array<number> | SliderMarks;
 }
 
@@ -35,23 +35,21 @@ const Mark: FC<TMarkProps> = (props) => {
       ))}
     </div>
   ) : (
-    <>
-      {marks && (
-        <div className={`${name}__mark`}>
-          {Object.keys(marks).map((key) => (
-            <div
-              className={`${name}__mark-text`}
-              key={key}
-              style={{
-                left: `${key}%`,
-              }}
-            >
-              {marks[key]}
-            </div>
-          ))}
-        </div>
-      )}
-    </>
+    marks && (
+      <div className={`${name}__mark`}>
+        {Object.keys(marks).map((key) => (
+          <div
+            className={`${name}__mark-text`}
+            key={key}
+            style={{
+              left: `${key}%`,
+            }}
+          >
+            {marks[key]}
+          </div>
+        ))}
+      </div>
+    )
   );
 };
 

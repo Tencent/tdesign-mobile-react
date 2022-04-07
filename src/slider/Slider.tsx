@@ -47,12 +47,24 @@ const Slider: FC<TdSliderProps> = (props) => {
   const barRef = useRef<HTMLDivElement>(null);
   const handleRef = useRef<HTMLDivElement>(null);
   const firstValueRef = useRef<[number, number]>();
+  const dragLockRef = useRef(0);
 
   const [rawValue, setRawValue] = usePropsValue<SliderValue>({
     value,
-    defaultValue,
+    defaultValue: defaultValue || (range ? [min, min] : min),
     onChange,
   });
+
+  // 排序
+  const sortValue = (val: [number, number]): [number, number] =>
+    val.sort((a, b) => a - b);
+
+  // 统一单/双游标滑块value结构
+  const convertValue = (value: SliderValue): [number, number] =>
+    (range ? value : [min, value]) as [number, number];
+
+  const reverseValue = (value: [number, number]): SliderValue =>
+    range ? value : value[1];
 
   // 计算要显示的点
   const pointList = useMemo(() => {
@@ -61,7 +73,12 @@ const Slider: FC<TdSliderProps> = (props) => {
         .map(parseFloat)
         .sort((a, b) => a - b);
     }
-  }, [marks]);
+    const points: number[] = [];
+    for (let i = min; i <= max; i += step) {
+      points.push(i);
+    }
+    return points;
+  }, [marks, max, min, step]);
 
   const sliderValue = sortValue(convertValue(rawValue));
 
@@ -71,7 +88,40 @@ const Slider: FC<TdSliderProps> = (props) => {
 
   const trackStart = `${(100 * (sliderValue[0] - min)) / (max - min)}%`;
 
+  const getValueByPosition = (position: number) => {
+    let newPosition = position;
+    if (position < min) {
+      newPosition = min;
+    } else if (position > max) {
+      newPosition = max;
+    }
+
+    let value = min;
+
+    // 如果有显示刻度点，就移动到刻度点上
+    if (pointList?.length) {
+      value = nearest({
+        items: pointList,
+        target: newPosition,
+      });
+    } else {
+      const lengthPerStep = 100 / ((max - min) / step);
+      const steps = Math.round(newPosition / lengthPerStep);
+      value = lengthPerStep * steps * (max - min) * 0.01 + min;
+    }
+    return value;
+  };
+
+  // 更新滑块value
+  const updateSliderValue = (value: [number, number]) => {
+    const next = sortValue(value);
+    const current = sliderValue;
+    if (next[0] === current[0] && next[1] === current[1]) return;
+    setRawValue(reverseValue(next));
+  };
+
   const handleClick = (e) => {
+    if (dragLockRef.current > 0) return;
     if (disabled) return;
 
     e.stopPropagation();
@@ -99,54 +149,9 @@ const Slider: FC<TdSliderProps> = (props) => {
     } else {
       next = [min, targetValue];
     }
+
     updateSliderValue(next);
   };
-
-  function getValueByPosition(position: number) {
-    let newPosition = position;
-    if (position < min) {
-      newPosition = min;
-    } else if (position > max) {
-      newPosition = max;
-    }
-
-    let value = min;
-
-    // 如果有显示刻度点，就移动到刻度点上
-    if (pointList?.length) {
-      value = nearest({
-        items: pointList,
-        target: newPosition,
-      });
-    } else {
-      const lengthPerStep = 100 / ((max - min) / step);
-      const steps = Math.round(newPosition / lengthPerStep);
-      value = steps * lengthPerStep * (max - min) * 0.01 + min;
-    }
-    return value;
-  }
-
-  // 排序
-  function sortValue(val: [number, number]): [number, number] {
-    return val.sort((a, b) => a - b);
-  }
-
-  // 统一单/双游标滑块value结构
-  function convertValue(value: SliderValue): [number, number] {
-    return (range ? value : [min, value]) as [number, number];
-  }
-
-  function reverseValue(value: [number, number]): SliderValue {
-    return range ? value : value[1];
-  }
-
-  // 更新滑块value
-  function updateSliderValue(value: [number, number]) {
-    const next = sortValue(value);
-    const current = sliderValue;
-    if (next[0] === current[0] && next[1] === current[1]) return;
-    setRawValue(reverseValue(next));
-  }
 
   // 游标滑块
   const renderHandle = (index: number) => (
@@ -159,6 +164,7 @@ const Slider: FC<TdSliderProps> = (props) => {
       barRef={barRef}
       onDrag={(position, first, last) => {
         if (first) {
+          dragLockRef.current = 1;
           firstValueRef.current = sliderValue;
           onDragstart();
         }
@@ -170,6 +176,9 @@ const Slider: FC<TdSliderProps> = (props) => {
         updateSliderValue(next);
         if (last) {
           onDragend();
+          window.setTimeout(() => {
+            dragLockRef.current = 0;
+          }, 100);
         }
       }}
     />

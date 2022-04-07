@@ -19,10 +19,6 @@ const Handle: FC<THandleProps> = (props) => {
 
   const preValue = useRef(0);
 
-  const currentPosition = () => ({
-    left: `${((value - min) / (max - min)) * 100}%`,
-  });
-
   const bind = useDrag(
     ({ first, last, xy, initial }) => {
       if (disabled) return;
@@ -42,7 +38,9 @@ const Handle: FC<THandleProps> = (props) => {
   );
 
   return (
-    <div className={`${name}__handle`} style={currentPosition()} {...bind()} />
+    <div className={`${name}__handle`} style={{
+        left: `${((value - min) / (max - min)) * 100}%`,
+    }} {...bind()} />
   );
 };
 
