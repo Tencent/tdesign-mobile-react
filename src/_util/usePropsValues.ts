@@ -1,4 +1,5 @@
 import { useMemoizedFn, useUpdate } from "ahooks";
+import { isNil } from "lodash";
 import { SetStateAction, useRef } from "react";
 
 interface Options<T> {
@@ -17,9 +18,9 @@ export function usePropsValue<T> (options: Options<T>) {
 
     const update = useUpdate();
 
-    const stateRef = useRef<T>(value !== undefined ? value : defaultValue);
+    const stateRef = useRef<T>(!isNil(value) ? value : defaultValue);
 
-    if (value !== undefined) {
+    if (!isNil(value)) {
         stateRef.current = value;
     }
 
@@ -29,7 +30,7 @@ export function usePropsValue<T> (options: Options<T>) {
         const nextValue = typeof v === 'function' ? (v as (prevState: T) => T)(stateRef.current) : v;
 
         // 非受控模式
-        if (value === undefined) {
+        if (isNil(value)) {
             stateRef.current = nextValue;
             // 强制组件更新
             update();
