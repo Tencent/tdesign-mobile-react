@@ -3,6 +3,9 @@ import classnames from "classnames";
 import useConfig from "tdesign-mobile-react/_util/useConfig";
 import identity from "lodash/identity";
 import nearest from "tdesign-mobile-react/_util/nearest";
+import withNativeProps, {
+  NativeProps,
+} from "tdesign-mobile-react/_util/withNativeProps";
 import { SliderValue, TdSliderProps } from "./type";
 import Handle from "./Handle";
 import { usePropsValue } from "../_util/usePropsValues";
@@ -24,7 +27,9 @@ const defaultProps = {
   onDragend: identity,
 };
 
-const Slider: FC<TdSliderProps> = (props) => {
+export interface SliderProps extends TdSliderProps, NativeProps {}
+
+const Slider: FC<SliderProps> = (props) => {
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-slider`;
 
@@ -186,7 +191,8 @@ const Slider: FC<TdSliderProps> = (props) => {
     />
   );
 
-  return (
+  return withNativeProps(
+    props,
     <div
       className={classnames([
         `${name}-wrap`,
