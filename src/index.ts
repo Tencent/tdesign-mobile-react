@@ -25,4 +25,7 @@ export * from './swipe-cell';
 export * from './tag';
 export * from './toast';
 export * from './collapse';
+export * from './stepper';
 export * from './pull-down-refresh';
+export * from './avatar';
+export * from './avatar-group';
