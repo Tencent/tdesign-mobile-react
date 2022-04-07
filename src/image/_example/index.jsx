@@ -1,8 +1,8 @@
 import React from 'react';
-import TDemoBlock from '../../../site/mobile/components/DemoBlock';
-import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import { Image } from 'tdesign-mobile-react';
 import { LoadingIcon } from 'tdesign-icons-react';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
+import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './style/index.less';
 
 export default function Base() {
@@ -55,6 +55,7 @@ export default function Base() {
           </div>
         </div>
       </TDemoBlock>
+
       <TDemoBlock summary="加载失败提示">
         <div className="t-image__demo-base">
           <div className="t-image__demo-wrap">
