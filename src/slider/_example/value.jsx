@@ -16,4 +16,5 @@ export default function Base() {
         </div>
     </div>
   );
+  
 }
