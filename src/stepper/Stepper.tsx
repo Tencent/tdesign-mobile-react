@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import identity from 'lodash/identity';
 import useDefault from 'tdesign-mobile-react/_util/useDefault';
 import { TdStepperProps } from './type';
-import type { StyledProps } from '../common';
+import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 
-export interface StepperProps extends TdStepperProps, StyledProps {}
+export interface StepperProps extends TdStepperProps, NativeProps {}
 
-const defaultProps: StepperProps = {
+const defaultProps = {
   disabled: false,
   disableInput: false,
   max: 100,
@@ -91,7 +91,8 @@ const Stepper: FC<StepperProps> = (props) => {
     onBlur(formattedValue);
   };
 
-  return (
+  return withNativeProps(
+    props,
     <div
       className={classNames(name, {
         [`${classPrefix}-is-disabled`]: disabled,
@@ -119,11 +120,11 @@ const Stepper: FC<StepperProps> = (props) => {
         })}
         onClick={plusValue}
       />
-    </div>
+    </div>,
   );
 };
 
-Stepper.defaultProps = defaultProps;
+Stepper.defaultProps = defaultProps as StepperProps;
 Stepper.displayName = 'Stepper';
 
 export default Stepper;
