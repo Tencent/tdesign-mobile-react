@@ -8,10 +8,13 @@ import type { StyledProps } from '../common';
 
 export interface StepperProps extends TdStepperProps, StyledProps {}
 
-const defaultProps = {
-  max: 999,
+const defaultProps: StepperProps = {
+  disabled: false,
+  disableInput: false,
+  max: 100,
   min: 0,
   step: 1,
+  theme: 'normal',
   defaultValue: 0,
   onBlur: identity,
   onChange: identity,
@@ -37,7 +40,7 @@ const Stepper: FC<StepperProps> = (props) => {
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-stepper`;
 
-  const isDisabled = (type: string) => {
+  const isDisabled = (type: 'minus' | 'plus') => {
     if (disabled) return true;
     if (type === 'minus' && currentValue <= min) {
       return true;
