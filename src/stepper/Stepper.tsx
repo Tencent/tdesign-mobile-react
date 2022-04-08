@@ -1,7 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import useConfig from 'tdesign-mobile-react/_util/useConfig';
 import classNames from 'classnames';
 import identity from 'lodash/identity';
+import useDefault from 'tdesign-mobile-react/_util/useDefault';
 import { TdStepperProps } from './type';
 import type { StyledProps } from '../common';
 
@@ -32,7 +33,7 @@ const Stepper: FC<StepperProps> = (props) => {
     onChange,
     onOverlimit,
   } = props;
-  const [currentValue, setCurrentValue] = useState(0);
+  const [currentValue, setCurrentValue] = useDefault(value, defaultValue, onChange);
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-stepper`;
 
@@ -60,7 +61,7 @@ const Stepper: FC<StepperProps> = (props) => {
       onOverlimit('minus');
       return;
     }
-    updateValue(currentValue - step);
+    updateValue(Number(currentValue) - step);
   };
 
   const plusValue = () => {
@@ -68,7 +69,7 @@ const Stepper: FC<StepperProps> = (props) => {
       onOverlimit('plus');
       return;
     }
-    updateValue(currentValue + step);
+    updateValue(Number(currentValue) + step);
   };
 
   const handleChange = (e: React.FocusEvent<HTMLInputElement, Element>) => {
@@ -84,14 +85,6 @@ const Stepper: FC<StepperProps> = (props) => {
     setCurrentValue(formatValue(Number(value)));
     onBlur(value);
   };
-
-  useEffect(() => {
-    if (typeof value !== 'undefined') {
-      setCurrentValue(Number(value));
-    } else {
-      setCurrentValue(Number(defaultValue));
-    }
-  }, [value, defaultValue]);
 
   return (
     <div
