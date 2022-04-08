@@ -1,15 +1,16 @@
-import React, { FC, useMemo, useRef } from "react";
+import React, { FC, useCallback, useMemo, useRef } from "react";
 import classnames from "classnames";
 import useConfig from "tdesign-mobile-react/_util/useConfig";
 import identity from "lodash/identity";
 import nearest from "tdesign-mobile-react/_util/nearest";
+import isArray from "lodash/isArray";
 import withNativeProps, {
   NativeProps,
 } from "tdesign-mobile-react/_util/withNativeProps";
+import useDefault from "tdesign-mobile-react/_util/useDefault";
 import { SliderValue, TdSliderProps } from "./type";
 import Handle from "./Handle";
-import { usePropsValue } from "../_util/usePropsValues";
-import Mark from "./Mark";
+import Marks from "./Marks";
 
 const defaultProps = {
   disabled: false,
@@ -17,9 +18,6 @@ const defaultProps = {
   min: 0,
   range: false,
   step: 1,
-  value: undefined,
-  defaultValue: undefined,
-  marks: undefined,
   label: true,
   showExtremeValue: false,
   onChange: identity,
@@ -52,29 +50,36 @@ const Slider: FC<SliderProps> = (props) => {
   const barRef = useRef<HTMLDivElement>(null);
   const handleRef = useRef<HTMLDivElement>(null);
   const firstValueRef = useRef<[number, number]>();
-  const dragLockRef = useRef(0);
+  const dragLockRef = useRef(false);
 
-  const [rawValue, setRawValue] = usePropsValue<SliderValue>({
+  const [rawValue, setRawValue] = useDefault<SliderValue, any>(
     value,
-    defaultValue: defaultValue || (range ? [min, min] : min),
-    onChange,
-  });
+    defaultValue || (range ? [min, min] : min),
+    onChange
+  );
 
   // 排序
-  const sortValue = (val: [number, number]): [number, number] =>
-    val.sort((a, b) => a - b);
+  const sortValue = useCallback(
+    (val: [number, number]): [number, number] => val.sort((a, b) => a - b),
+    []
+  );
 
   // 统一单/双游标滑块value结构
-  const convertValue = (value: SliderValue): [number, number] =>
-    (range ? value : [min, value]) as [number, number];
+  const convertValue = useCallback(
+    (value: SliderValue): [number, number] =>
+      (range ? value : [min, value]) as [number, number],
+    [min, range]
+  );
 
-  const reverseValue = (value: [number, number]): SliderValue =>
-    range ? value : value[1];
+  const reverseValue = useCallback(
+    (value: [number, number]): SliderValue => (range ? value : value[1]),
+    [range]
+  );
 
   // 计算要显示的点
   const pointList = useMemo(() => {
     if (marks) {
-      return Array.isArray(marks)
+      return isArray(marks)
         ? marks.sort((a, b) => a - b)
         : Object.keys(marks)
             .map(parseFloat)
@@ -87,7 +92,7 @@ const Slider: FC<SliderProps> = (props) => {
     return points;
   }, [marks, max, min, step]);
 
-  const sliderValue = sortValue(convertValue(rawValue));
+  const sliderValue = useMemo(() => sortValue(convertValue(rawValue)), [rawValue, convertValue, sortValue]);
 
   const trackSize = `${
     (100 * (sliderValue[1] - sliderValue[0])) / (max - min)
@@ -128,7 +133,7 @@ const Slider: FC<SliderProps> = (props) => {
   };
 
   const handleClick = (e) => {
-    if (dragLockRef.current > 0) return;
+    if (!dragLockRef.current) return;
     if (disabled) return;
 
     e.stopPropagation();
@@ -171,7 +176,7 @@ const Slider: FC<SliderProps> = (props) => {
       barRef={barRef}
       onDrag={(position, first, last) => {
         if (first) {
-          dragLockRef.current = 1;
+          dragLockRef.current = true;
           firstValueRef.current = sliderValue;
           onDragstart();
         }
@@ -184,7 +189,7 @@ const Slider: FC<SliderProps> = (props) => {
         if (last) {
           onDragend();
           window.setTimeout(() => {
-            dragLockRef.current = 0;
+            dragLockRef.current = false;
           }, 100);
         }
       }}
@@ -194,16 +199,13 @@ const Slider: FC<SliderProps> = (props) => {
   return withNativeProps(
     props,
     <div
-      className={classnames([
-        `${name}-wrap`,
-        disabled ? `${classPrefix}-is-disabled` : "",
-      ])}
+      className={classnames(`${name}-wrap`, {
+        [`${classPrefix}-is-disabled`]: disabled,
+      })}
     >
-      <>
-        {showExtremeValue && (
-          <div className={`${name}-wrap__value-left`}>{min}</div>
-        )}
-      </>
+      {showExtremeValue && (
+        <div className={`${name}-wrap__value-left`}>{min}</div>
+      )}
       <div className={name} onClick={handleClick}>
         {/* 总长度 */}
         <div ref={barRef} className={`${name}__bar`}></div>
@@ -221,16 +223,12 @@ const Slider: FC<SliderProps> = (props) => {
         {/* 单游标滑块操作 */}
         {renderHandle(1)}
         {/* 刻度内容 */}
-        <Mark marks={marks} range={range} value={sliderValue} />
+        <Marks marks={marks} range={range} value={sliderValue} />
       </div>
-      <>
-        {!range && label && (
-          <div className={`${name}-wrap__value`}>{sliderValue[1]}</div>
-        )}
-      </>
-      <>
-        {showExtremeValue && <div className={`${name}-wrap__value`}>{max}</div>}
-      </>
+      {!range && label && (
+        <div className={`${name}-wrap__value`}>{sliderValue[1]}</div>
+      )}
+      {showExtremeValue && <div className={`${name}-wrap__value`}>{max}</div>}
     </div>
   );
 };

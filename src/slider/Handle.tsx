@@ -2,7 +2,7 @@ import { useDrag } from "@use-gesture/react";
 import React, { FC, RefObject, useRef } from "react";
 import useConfig from "tdesign-mobile-react/_util/useConfig";
 
-interface THandleProps {
+interface HandleProps {
   value: number;
   min: number;
   max: number;
@@ -11,7 +11,7 @@ interface THandleProps {
   barRef: RefObject<HTMLDivElement>;
 }
 
-const Handle: FC<THandleProps> = (props) => {
+const Handle: FC<HandleProps> = (props) => {
   const { value, min, max, disabled, onDrag, barRef } = props;
 
   const { classPrefix } = useConfig();
@@ -43,5 +43,7 @@ const Handle: FC<THandleProps> = (props) => {
     }} {...bind()} />
   );
 };
+
+Handle.displayName = 'Handle'
 
 export default Handle;
