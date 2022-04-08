@@ -1,4 +1,5 @@
-import React, { Switch, Cell } from 'tdesign-mobile-react';
+import React from 'react';
+import { Switch, Cell } from 'tdesign-mobile-react';
 
 export default function () {
   return (
