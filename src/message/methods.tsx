@@ -6,9 +6,9 @@ import Message from './Message';
 
 const createMessage = (props, theme: MessageThemeListEnum) => {
   const config = { ...defaultProps, ...props };
-  const el = document.createElement('div');
-  document.body.appendChild(el);
-  ReactDOM.render(<Message {...{ ...config, theme, el }} />, el);
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+  ReactDOM.createPortal(<Message {...{ ...config, theme, container }} />, document.body);
 };
 
 export default {
