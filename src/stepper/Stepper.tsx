@@ -75,15 +75,17 @@ const Stepper: FC<StepperProps> = (props) => {
   const handleChange = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     const { value } = e.currentTarget;
     if (isNaN(Number(value))) return;
-    setCurrentValue(formatValue(Number(value)));
-    onChange(value);
+    const formattedValue = formatValue(Number(value));
+    setCurrentValue(formattedValue);
+    onChange(formattedValue);
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     const { value } = e.currentTarget;
     if (isNaN(Number(value))) return;
-    setCurrentValue(formatValue(Number(value)));
-    onBlur(value);
+    const formattedValue = formatValue(Number(value));
+    setCurrentValue(formattedValue);
+    onBlur(formattedValue);
   };
 
   return (
