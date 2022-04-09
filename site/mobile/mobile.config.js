@@ -147,5 +147,10 @@ export default {
       name: 'avatar',
       component: () => import('tdesign-mobile-react/avatar/_example/index.jsx'),
     },
+    {
+      title: 'Picker 选择器',
+      name: 'picker',
+      component: () => import('tdesign-mobile-react/picker/_example/index.jsx'),
+    },
   ],
 };
