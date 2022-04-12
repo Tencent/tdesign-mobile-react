@@ -1,16 +1,16 @@
 import React, { FC, useCallback, useMemo, useRef } from "react";
 import classnames from "classnames";
-import useConfig from "tdesign-mobile-react/_util/useConfig";
 import identity from "lodash/identity";
-import nearest from "tdesign-mobile-react/_util/nearest";
 import isArray from "lodash/isArray";
+import useConfig from "tdesign-mobile-react/_util/useConfig";
+import nearest from "tdesign-mobile-react/_util/nearest";
+import useDefault from "tdesign-mobile-react/_util/useDefault";
 import withNativeProps, {
   NativeProps,
 } from "tdesign-mobile-react/_util/withNativeProps";
-import useDefault from "tdesign-mobile-react/_util/useDefault";
-import { SliderValue, TdSliderProps } from "./type";
 import Handle from "./Handle";
 import Marks from "./Marks";
+import { SliderValue, TdSliderProps } from "./type";
 
 const defaultProps = {
   disabled: false,
