@@ -17,19 +17,18 @@ const Handle: FC<HandleProps> = (props) => {
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-slider`;
 
-  const preValue = useRef(0);
-
   const bind = useDrag(
-    ({ first, last, xy, initial }) => {
+    ({ first, last, xy, initial, memo }) => {
       if (disabled) return;
       if (first) {
-        preValue.current = value;
+        memo = value;
       }
       const x = xy[0] - initial[0];
       const sliderOffsetWidth = barRef.current?.offsetWidth;
       if (!sliderOffsetWidth) return;
       const diff = (x / Math.ceil(sliderOffsetWidth)) * (max - min);
-      onDrag(preValue.current + diff, first, last);
+      onDrag(memo + diff, first, last);
+      return memo;
     },
     {
       axis: "x",
