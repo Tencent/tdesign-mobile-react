@@ -274,10 +274,11 @@ const Upload: React.FC<UploadProps> = (props) => {
     [handleBeforeUpload, handleUpload],
   );
 
-  const handleUploadChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleUploadChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (disabled) return;
-    const { files } = event.target;
+    const { files } = e.target;
     const uploadFiles = generateUploadFiles(files);
+    e.target.value = '';
     onChange?.(uploadFiles, { trigger: 'upload' });
   };
 
