@@ -1,0 +1,87 @@
+@import "../../base.less";
+
+@import "./_var.less";
+
+.@{prefix}-swiper {
+  box-sizing: border-box;
+  font-weight: normal;
+  border-radius: @swiper-border-radius;
+
+  &__btn {
+    display: inline-block;
+    width: @swiper-page-btn-size;
+    height: @swiper-page-btn-size;
+    background-color: @text-level-2-color;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: @gray-color-1;
+    line-height: @swiper-page-btn-size;
+    text-align: center;
+
+    & > .t-icon {
+      position: relative;
+      top: -2px;
+    }
+
+    &.btn-prev {
+      left: 10px;
+    }
+
+    &.btn-next {
+      right: 10px;
+    }
+  }
+
+  // 分页
+  &__pagination {
+    display: inline-block;
+    position: absolute;
+    bottom: 8px;
+    font-size: 0;
+
+    &-dots-bar,
+    &-dots {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &-fraction {
+      height: @swiper-page-fraction-height;
+      line-height: @swiper-page-fraction-height;
+      bottom: 12px;
+      right: 12px;
+      background-color: @text-level-3-color;
+      color: @gray-color-1;
+      padding: 0 12px;
+      border-radius: @swiper-page-fraction-radius;
+      font-size: 12px;
+    }
+
+    .@{prefix}-swiper-dot {
+      display: inline-block;
+      width: @swiper-page-dot-size;
+      height: @swiper-page-dot-size;
+      border-radius: 3px;
+      background: @mask-disabled;
+      margin: 0 4px;
+
+      &--active {
+        background-color: @gray-color-1;
+      }
+    }
+
+    &-dots-bar .@{prefix}-swiper-dot--active {
+      width: @swiper-page-dot-active-width;
+    }
+  }
+
+  // 主要容器
+  &__container {
+    height: 100%;
+    width: auto;
+    position: relative;
+    display: flex;
+  }
+}

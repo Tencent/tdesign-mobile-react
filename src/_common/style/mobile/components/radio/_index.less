@@ -1,0 +1,88 @@
+@import "../../base.less";
+
+@import "./_var.less";
+
+.@{prefix}-radio {
+  display: flex;
+  align-items: center;
+
+  &.@{prefix}-is-checked {
+    .@{prefix}-icon {
+      color: @radio-selected-color;
+    }
+  }
+
+  &.@{prefix}-is-disabled {
+    .@{prefix}-icon {
+      color: @radio-disable-color;
+    }
+  }
+
+  &__former {
+    display: none;
+    position: absolute;
+  }
+
+  &__content-wrap {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__label-wrap {
+    width: 100%;
+    display: block;
+  }
+
+  &__icon-wrap {
+    width: @radio-icon-wrap-width;
+    height: @radio-icon-wrap-height;
+    font-size: @radio-icon-wrap-font-size;
+    margin-right: @radio-icon-wrap-margin-right;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: @gray-color-4;
+  }
+
+  &__icon-right-wrap {
+    margin-left: @radio-icon-wrap-margin-left;
+  }
+
+  &__content-title {
+    font-size: @radio-title-font-size;
+    color: @radio-title-font-color;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+
+    &.@{prefix}-is-disabled {
+      color: @radio-content-color;
+    }
+  }
+
+  &__content-right-title {
+    padding-right: @radio-content-title-padding-right;
+  }
+
+  &__content-inner {
+    display: block;
+    font-size: @radio-content-font-size;
+    color: @radio-content-color;
+    margin-top: @radio-content-inner-margin-top;
+    position: relative;
+  }
+
+  &__original-left,
+  &__original-right {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

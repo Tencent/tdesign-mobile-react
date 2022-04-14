@@ -1,0 +1,152 @@
+// 组件允许单个组件打包，因此默认引入公共基础样式
+
+@import "../../base.less";
+
+@import "./_var.less";
+
+@import "./_mixin.less";
+
+.@{prefix}-form {
+  font-size: @form-font-size;
+
+  &:not(.@{prefix}-form-inline) {
+
+    .@{prefix}-form__item {
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+  }
+
+  &__item {
+    margin-bottom: @form-item-margin-bottom;
+  }
+
+  &__item-with-help,
+  &__item-with-extra {
+    margin-bottom: 0;
+  }
+
+  &__label {
+    float: left;
+    padding-right: @form-label-padding-right;
+    vertical-align: middle;
+    line-height: @form-item-height;
+    color: @form-color-label;
+    box-sizing: border-box;
+    white-space: nowrap;
+
+    &--top {
+      float: none;
+      min-height: @form-item-height;
+    }
+
+    &--left {
+      text-align: left;
+    }
+
+    &--right {
+      text-align: right;
+    }
+
+    &--required {
+      label::before {
+        display: inline-block;
+        margin-right: @form-label-margin-right-required;
+        color: @form-color-error;
+        line-height: @form-label-line-height;
+        content: "*";
+      }
+    }
+
+    &--colon {
+      label::after {
+        content: ":";
+        position: relative;
+        margin: @form-label-margin-colon;
+      }
+    }
+  }
+
+  &__controls {
+    min-height: @form-item-height;
+    display: flow-root;
+
+    &-content {
+      display: flex;
+      align-items: center;
+      min-height: @form-item-height;
+    }
+
+    // formItem 嵌套情况无间距
+    .@{prefix}-form__item {
+      margin: 0 @form-item-margin-right-inline 0 0;
+    }
+  }
+
+  &__controls.@{prefix}-is-success {
+    .input-status-icon(success);
+    .input-status-extra(success);
+  }
+
+  &__controls.@{prefix}-form--success-border {
+    // 输入框状态
+    .input-status(success);
+  }
+
+  &__help {
+    height: auto;
+    min-height: @form-item-margin-bottom;
+    line-height: @form-item-help-line-height;
+    font-size: @form-item-help-font-size;
+    display: inline-block;
+    color: @@fontColor;
+    @fontColor: "form-color-help";
+  }
+
+  &__status {
+    display: flex;
+    margin-left: @form-status-margin-left;
+    > .@{prefix}-icon {
+      font-size: 20px;
+    }
+
+    &-without-icon {
+      width: 25px;
+      height: 25px;
+    }
+
+    button {
+      width: @form-status-button-width;
+    }
+
+    button + button {
+      margin-left: @form-status-margin-left;
+    }
+  }
+}
+
+.@{prefix}-form-inline {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: @form-item-row-gap;
+
+  .@{prefix}-form__item {
+    margin: 0;
+    min-width: 200px;
+    display: inline-block;
+    margin-right: @form-item-margin-right-inline;
+  }
+}
+
+.@{prefix}-input__extra {
+  height: auto;
+  min-height: @form-item-margin-bottom;
+  line-height: @form-item-help-line-height;
+  font-size: @form-item-help-font-size;
+  display: inline-block;
+}
+
+// 输入框状态
+.input-status(warning);
+.input-status(error);

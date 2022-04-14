@@ -1,0 +1,301 @@
+// 组件允许单个组件打包，因此默认引入公共基础样式
+
+@import "../../base.less";
+
+@import "./_var.less";
+
+@import "./_mixin.less";
+
+// <name> 替换为组件名
+.@{prefix}-tree {
+  line-height: @tree-node-item-line-height;
+  font-size: @tree-font-size;
+  color: @tree-node-text-color;
+  will-change: height;
+
+  // 禁用态颜色处理
+  &.@{prefix}-is-disabled {
+    color: @tree-disabled-color;
+
+    .@{prefix}-icon {
+      color: @tree-disabled-color;
+    }
+
+    .@{prefix}-tree__item {
+
+      &.@{prefix}-is-active {
+        background-color: @tree-node-bg-color-hover;
+        color: @tree-disabled-color;
+      }
+
+      .@{prefix}-icon {
+        color: @tree-icon-color-disabled;
+      }
+    }
+  }
+
+  &__empty {
+    color: @tree-node-empty-text-color;
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 4px 0 4px @tree-node-item-padding-left;
+    height: @tree-node-item-height;
+    margin-bottom: @tree-node-item-margin-bottom;
+    cursor: default;
+    transform: translateZ(0); // 开启硬件加速
+    backface-visibility: hidden; // 防止Chrome、Safari中，使用 transforms/animations，可能造成的页面闪烁
+    perspective: 1000; // 防止Chrome、Safari中，使用 transforms/animations，可能造成的页面闪烁
+
+    & + .@{prefix}-tree__item {
+      margin-top: @tree-node-item-spacer;
+    }
+
+    .@{prefix}-icon,
+    .@{prefix}-loading {
+      display: inline-block;
+      position: relative;
+      z-index: 2;
+      font-size: @font-size-l;
+    }
+
+    .@{prefix}-icon {
+      color: @tree-node-icon-color;
+    }
+
+    .@{prefix}-checkbox {
+      font-size: 0;
+    }
+
+    .@{prefix}-tree__icon--default {
+
+      .@{prefix}-icon {
+        transition: color, transform @anim-time-fn-easing @anim-duration-base;
+        transform: rotate(0);
+      }
+    }
+
+    &--open {
+
+      .@{prefix}-icon {
+        color: @tree-node-icon-color-active;
+      }
+
+      .@{prefix}-tree__icon--default {
+
+        .@{prefix}-icon {
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    &--clickable {
+      cursor: pointer;
+    }
+
+    --level: 0;
+  }
+
+  &--block-node &__label {
+    flex: 1;
+  }
+
+  &--hoverable &__label:not(.@{prefix}-is-active):not(.@{prefix}-is-checked):hover {
+    background-color: @tree-node-bg-color-hover;
+  }
+
+  &__line {
+    position: absolute;
+    left: @tree-line-position-left;
+    bottom: @tree-line-position-bottom;
+    width: @tree-line-width;
+    height: 40px;
+    pointer-events: none;
+
+    --level: 0;
+    --color: @tree-node-icon-line-color;
+    --space: @tree-node-padding-basic;
+    --iconSize: @icon-default;
+  }
+
+  &__line::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    height: 36px;
+    width: @tree-line-width-before;
+    border-left: 1px solid var(--color);
+    border-bottom: 1px solid var(--color);
+  }
+
+  &__line--first::before {
+    height: @tree-line-height-first;
+  }
+
+  &__line--leaf::before {
+    width: 14px;
+  }
+
+  &--fx {
+
+    .@{prefix}-icon-chevron-right {
+      transition: color, transform @tree-node-animation-time;
+    }
+  }
+
+  // 默认图标
+  &__icon {
+    width: @tree-node-icon-size;
+    height: @tree-node-icon-size;
+    line-height: @tree-node-icon-size;
+    font-size: 0; // 当子元素只有一个且为image类型时，会有隐藏占位，因此将font-size设0
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+    border-radius: @border-radius;
+    transition: color, transform @anim-duration-moderate @anim-time-fn-easing;
+
+    &:not(:empty):hover {
+      background-color: @tree-node-bg-color-hover;
+    }
+
+    .t-icon-loading-blue {
+      color: @tree-node-icon-color-active;
+    }
+  }
+
+  &__icon:empty {
+    cursor: initial;
+  }
+
+  &__label {
+    flex: auto;
+    line-height: @tree-node-item-label-height;
+    flex-wrap: nowrap;
+    margin-left: 4px;
+    padding: 0 4px;
+    border-radius: @border-radius;
+    cursor: pointer;
+    transition: background-color @anim-duration-moderate @anim-time-fn-easing;
+
+    &.@{prefix}-is-checked,
+    &.@{prefix}-is-active {
+      font-weight: 500;
+      color: @tree-node-text-color-active;
+      background-color: @tree-node-bg-color-active;
+    }
+
+    &::selection {
+      background-color: transparent;
+    }
+
+    &--strictly {
+      flex: none;
+    }
+
+    --ripple-color: @bg-color-container-active;
+  }
+
+  &__space {
+    display: block;
+    flex: 1 0 auto;
+  }
+
+  &__operations {
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  &__operations .@{prefix}-icon {
+    cursor: pointer;
+  }
+
+  &__item.t-is-disabled {
+    color: @tree-disabled-color;
+    cursor: default;
+
+    .@{prefix}-checkbox {
+      cursor: default;
+    }
+  }
+}
+
+.@{prefix}-tree {
+  &__item--visible {
+    opacity: 1;
+    height: @tree-node-item-height;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  &__item + &__item--hidden {
+    margin-top: 0;
+  }
+
+  &__item--hidden {
+    opacity: 0;
+    height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+}
+
+.@{prefix}-tree--transition {
+  // 节点插入动画
+  .@{prefix}-tree__item--enter-active {
+    animation: t-tree-toggle @tree-node-animation-time linear;
+  }
+
+  // 节点移除动画
+  .@{prefix}-tree__item--leave-active {
+    animation: t-tree-toggle @tree-node-animation-time reverse linear forwards;
+  }
+
+  // 节点展示动画
+  .@{prefix}-tree__item--visible {
+    transition:
+      opacity @tree-node-transition-time linear @tree-node-transition-time,
+      height @tree-node-transition-time linear 0s,
+      padding-top @tree-node-transition-time linear 0s,
+      padding-bottom @tree-node-transition-time linear 0s,
+      margin-top @tree-node-transition-time linear 0s;
+  }
+
+  // 节点隐藏动画
+  .@{prefix}-tree__item--hidden {
+    animation: none;
+    transition:
+      opacity @tree-node-transition-time linear 0s,
+      height @tree-node-transition-time linear @tree-node-transition-time,
+      padding-top @tree-node-transition-time linear @tree-node-transition-time,
+      padding-bottom @tree-node-transition-time linear @tree-node-transition-time,
+      margin-top @tree-node-transition-time linear @tree-node-transition-time;
+  }
+}
+
+@keyframes t-tree-toggle {
+  0% {
+    opacity: 0;
+    height: 0;
+  }
+
+  50% {
+    opacity: 0;
+    height: @tree-node-item-height;
+  }
+
+  100% {
+    opacity: 1;
+    height: @tree-node-item-height;
+  }
+}

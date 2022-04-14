@@ -1,0 +1,106 @@
+// 组件允许单个组件打包，因此默认引入公共基础样式
+
+@import "../../base.less";
+
+@import "./_var.less";
+
+@import "./_mixin.less";
+
+@import "../../mixins/_layout.less";
+
+.@{prefix}-popup {
+  color: @popup-text-color;
+  display: inline-block;
+  z-index: 5500;
+
+  &__content {
+    position: relative;
+    background: @popup-bg;
+    box-shadow: @popup-shadow;
+    border-radius: @border-radius;
+    padding: @popup-padding;
+    font-size: @popup-content-font-size;
+    line-height: @popup-content-line-height;
+  }
+
+  &__reference {
+    display: inline-block;
+  }
+}
+
+.@{prefix}-popup__arrow {
+  position: absolute;
+  z-index: 1;
+  width: @popup-arrow-width;
+  height: @popup-arrow-height;
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: @popup-arrow-width;
+    height: @popup-arrow-height;
+    transform: rotate(45deg);
+    background: @arrow-bg;
+  }
+}
+
+.@{prefix}-popup[data-popper-placement^="bottom"],
+.@{prefix}-popup[data-popper-placement^="top"] {
+  .@{prefix}-popup__content {
+    margin: @popup-content-margin 0;
+
+    &--arrow {
+      margin: @popup-content-arrow-spacer 0;
+    }
+  }
+}
+
+.@{prefix}-popup[data-popper-placement^="left"],
+.@{prefix}-popup[data-popper-placement^="right"] {
+  .@{prefix}-popup__content {
+    margin: 0 @popup-content-margin;
+
+    &--arrow {
+      margin: 0 @popup-content-arrow-spacer;
+    }
+
+    &--text {
+      max-width: 480px;
+    }
+  }
+}
+
+.arrow-placement-top();
+.arrow-placement-bottom();
+.arrow-placement-left();
+.arrow-placement-right();
+
+// animation
+.@{popup-flow}-enter,
+.@{popup-flow}-enter-from,
+.@{popup-flow}-exiting,
+.@{popup-flow}-leave-to {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.@{popup-flow}-enter-to,
+.@{popup-flow}-entering,
+.@{popup-flow}-leave-from,
+.@{popup-flow}-leave {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.@{popup-flow}-enter-active {
+  transition: @popup-flow-transition-enter;
+}
+
+.@{popup-flow}-leave-active {
+  transition: @popup-flow-transition-leave;
+}
+
+.expand-animation(top, expand, ~"[data-popper-placement^=top]");
+.expand-animation(bottom, expand, ~"[data-popper-placement^=bottom]");
+// .expand-animation(right, expand-right);

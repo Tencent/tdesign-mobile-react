@@ -1,0 +1,459 @@
+@import "../../base.less";
+
+@import "./_var.less";
+
+@import "../../mixins/_text.less";
+
+// select
+.@{prefix}-select__wrap {
+  width: 100%;
+}
+
+.@{prefix}-select-polyfill {
+  border: 1px solid @select-border-color;
+  border-radius: @select-border-radius;
+  padding: @select-padding;
+}
+
+.@{prefix}-select {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  box-sizing: border-box;
+  vertical-align: middle;
+  line-height: (@select-height-default - 2px);
+  background: @select-bg-color;
+  transition: border-color @anim-duration-base @anim-time-fn-easing;
+  flex-wrap: wrap;
+
+  &:hover:not(.@{prefix}-is-disabled),
+  :active:not(.@{prefix}-is-disabled) {
+    cursor: pointer;
+    border-color: @select-border-color-active;
+
+    & > .@{prefix}-select__right-icon:not(.@{prefix}-select__right-icon-clear) {
+      color: @select-right-icon-hover;
+      opacity: 1;
+    }
+  }
+
+  &.@{prefix}-no-border {
+    line-height: @select-height-default;
+  }
+
+  .@{prefix}-select__placeholder {
+    margin-left: @select-placeholder-margin;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &:not(.@{prefix}-is-disabled) .@{prefix}-select__placeholder {
+    color: @select-placeholder-color;
+  }
+
+  & .@{prefix}-select__single {
+    margin-left: @select-placeholder-margin;
+    display: block;
+    color: @select-input-color;
+    .text-ellipsis();
+  }
+
+  & .@{prefix}-select__right-icon {
+    transition: color @anim-duration-base @anim-time-fn-easing;
+  }
+
+  // TODO 基于select-input改造时需要移除，polyfill代码
+  & .@{prefix}-select__right-icon-polyfill {
+    position: absolute;
+    height: 100%;
+    margin: @select-icon-margin;
+    right: 0;
+    top: 0;
+    color: @select-icon-color;
+  }
+
+  .@{prefix}-select__active-icon {
+    color: @select-border-color-active;
+  }
+
+  .@{prefix}-select__right-icon.@{prefix}-is-visible {
+    transform: scaleY(-1);
+    transition: transform @anim-duration-base @anim-time-fn-easing;
+
+    /* IE */
+    filter: flipv;
+  }
+
+  & .@{prefix}-select__left-icon {
+    position: absolute;
+    height: 100%;
+    margin: @select-icon-margin;
+    left: 0;
+    top: 0;
+    color: @select-icon-color;
+    transition: color @anim-duration-base @anim-time-fn-easing;
+    display: flex;
+    align-items: center;
+  }
+
+  // input 层级调整
+  .@{prefix}-input__wrap {
+    flex: 1;
+  }
+
+  // TODO: select_input 重构后可删除
+  .@{prefix}-tag + .@{prefix}-input__wrap {
+    margin-left: @select-placeholder-margin;
+  }
+
+  // TODO: select_input 重构后可删除
+  .@{prefix}-select__input {
+
+    .@{prefix}-input {
+      height: auto;
+      border: 0;
+      padding: 0;
+
+      &--focused {
+        box-shadow: none;
+        border-color: transparent;
+      }
+    }
+
+    &:focus,
+    :hover {
+      border: 0;
+    }
+
+    input {
+      height: @select-input-height;
+      line-height: @select-input-height;
+    }
+  }
+
+  .@{prefix}-tag,
+  + .@{prefix}-tag {
+    margin: @select-tag-margin;
+  }
+
+  .@{prefix}-tag {
+    height: @select-tag-height-default;
+    line-height: (@select-tag-height-default - 2px);
+  }
+}
+
+.@{prefix}-select.@{prefix}-is-active:not(.@{prefix}-is-disabled) {
+  border-color: @select-border-color-active;
+
+  &:not(.@{prefix}-no-border) {
+    box-shadow: @select-input-shadow; // 无边框选择器没有阴影
+  }
+
+  .@{prefix}-select__right-icon:not(.@{prefix}-select__right-icon-clear) {
+    color: @select-border-color-active;
+    opacity: 1;
+  }
+}
+
+.@{prefix}-select.@{prefix}-has-prefix {
+  padding-left: @select-padding-prefix;
+}
+
+.@{prefix}-select.@{prefix}-no-border {
+  border: 0;
+  width: auto;
+  transition: background-color @anim-duration-base linear;
+
+  &:hover {
+    background-color: @select-option-bg-color-hover;
+  }
+
+  &:active {
+    background-color: @select-option-bg-color-active;
+  }
+
+  > .@{prefix}-select__single {
+    margin-right: @select-no-border-margin-right;
+  }
+}
+
+.@{prefix}-select.@{prefix}-size-l {
+  line-height: (@select-height-l - 2px);
+  font-size: @select-font-size-l;
+
+  .@{prefix}-select__input {
+    line-height: (@select-height-l - 2px);
+    height: (@select-height-l - 2px);
+
+    .@{prefix}-input__inner {
+      height: (@select-height-l - 2px);
+      line-height: (@select-height-l - 2px);
+    }
+  }
+
+  .@{prefix}-tag.@{prefix}-size-l {
+    height: @select-tag-height-l;
+    line-height: (@select-tag-height-l - 2px);
+  }
+}
+
+.@{prefix}-select.@{prefix}-size-s {
+  line-height: (@select-height-s - 2px);
+  font-size: @select-font-size-s;
+
+  .@{prefix}-select__input {
+    line-height: (@select-height-s - 2px);
+    height: (@select-height-s - 2px);
+
+    .@{prefix}-input__inner {
+      height: (@select-height-s - 2px);
+      line-height: (@select-height-s - 2px);
+    }
+  }
+
+  .@{prefix}-tag.@{prefix}-size-s {
+    height: @select-tag-height-s;
+    line-height: (@select-tag-height-s - 2px);
+  }
+}
+
+.@{prefix}-select.@{prefix}-is-disabled {
+  cursor: not-allowed;
+  background-color: @select-bg-color-disabled;
+  color: @select-placeholder-color-disabled;
+  border-color: @select-border-color;
+
+  & > .@{prefix}-select__right-icon {
+    color: @select-icon-color-disabled;
+  }
+
+  & > .@{prefix}-select__left-icon {
+    color: @select-icon-color-disabled;
+  }
+
+  & > .@{prefix}-select__single {
+    color: @select-color-disabled;
+  }
+}
+
+.@{prefix}-select__popup-reference {
+  width: 100%;
+}
+// dropdown
+.@{prefix}-select__dropdown {
+  margin: @select-dropdown-margin;
+  padding: 0; // 展开动画 如果有padding会直接生长 需要移动到内部
+  max-height: @select-dropdown-max-height;
+  overflow-y: auto;
+  box-shadow: @select-dropdown-shadow;
+  border-radius: @select-border-radius;
+
+  &-inner {
+    padding: @select-dropdown-padding;
+
+    &--size-s {
+      padding: @select-dropdown-padding-s;
+    }
+
+    &--size-l {
+      padding: @select-dropdown-padding-l;
+    }
+  }
+}
+
+// 抹平 ul li 自带样式
+.@{prefix}-select__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.@{prefix}-select__dropdown.@{prefix}-popup {
+  padding: @select-dropdown-popup-padding;
+}
+// empty
+.@{prefix}-select__empty.@{prefix}-size-s {
+  line-height: @select-height-s;
+}
+
+.@{prefix}-select__empty {
+  text-align: center;
+  color: @select-color-empty;
+  line-height: @select-height-default;
+}
+
+.@{prefix}-select__empty.@{prefix}-size-l {
+  line-height: @select-height-l;
+}
+
+// loading tips
+.@{prefix}-select__loading-tips.@{prefix}-size-s {
+  line-height: @select-height-s;
+}
+
+.@{prefix}-select__loading-tips {
+  text-align: center;
+  line-height: @select-height-default;
+  color: @select-color-empty;
+}
+
+.@{prefix}-select__loading-tips.@{prefix}-size-l {
+  line-height: @select-height-l;
+}
+
+// option group
+.@{prefix}-select-option-group + .@{prefix}-select-option-group {
+  padding-top: @select-optiongroup-border-padding;
+  margin-top: @select-optiongroup-border-margin;
+}
+
+.@{prefix}-select-option-group__divider + .@{prefix}-select-option-group__divider {
+  border-top: 1px @select-optiongroup-border-color solid;
+}
+
+.@{prefix}-select-option-group__header {
+  ul&,
+  & {
+    color: @select-option-group-header-color;
+    display: block;
+    height: @select-option-height-default;
+    line-height: @select-option-line-height;
+    padding: @select-option-padding-default;
+    .text-ellipsis();
+  }
+}
+
+.@{prefix}-select-option-group__header.@{prefix}-size-l {
+  height: @select-option-height-l;
+  padding: @select-option-padding-l;
+}
+
+.@{prefix}-select-option-group__header.@{prefix}-size-s {
+  height: @select-option-height-s;
+  padding: @select-option-padding-s;
+}
+
+// option
+.@{prefix}-select-option {
+  display: block;
+  border-radius: @select-option-border-radius;
+  height: @select-option-height-default;
+  line-height: @select-option-line-height;
+  cursor: pointer;
+  padding: @select-option-padding-default;
+  color: @select-option-color;
+  transition: background-color @anim-duration-base @anim-time-fn-easing;
+  .text-ellipsis();
+
+  span {
+    position: relative;
+  }
+
+  &:not(.@{prefix}-is-disabled):hover {
+    background-color: @select-option-bg-color-hover;
+
+    .@{prefix}-checkbox__label {
+      color: @select-option-checkbox-label-color-hover;
+    }
+
+    .@{prefix}-checkbox__input {
+      border-color: @select-option-checkbox-input-color-hover;
+    }
+  }
+
+  .@{prefix}-checkbox__label {
+    color: @select-option-color;
+    flex: 1;
+    .text-ellipsis();
+  }
+
+  .@{prefix}-checkbox {
+    width: 100%;
+  }
+
+  --ripple-color: @bg-color-container-active;
+}
+
+.@{prefix}-select-option.@{prefix}-is-disabled {
+  cursor: not-allowed;
+  color: @select-color-disabled;
+  background: @select-bg-color;
+
+  &:hover,
+  :active {
+    background: @select-bg-color;
+  }
+}
+
+.@{prefix}-select-option.@{prefix}-size-l {
+  height: @select-option-height-l;
+  padding: @select-option-padding-l;
+  font-size: @select-font-size-l;
+}
+
+.@{prefix}-select-option.@{prefix}-size-s {
+  height: @select-option-height-s;
+  padding: @select-option-padding-s;
+  font-size: @select-font-size-s;
+}
+
+.@{prefix}-select-option.@{prefix}-is-selected {
+  color: @select-selected-color;
+  background-color: @select-selected-bg-color;
+  transition: all @anim-duration-base linear;
+
+  .@{prefix}-checkbox__label {
+    color: @select-selected-color;
+  }
+
+  &:hover {
+    background-color: @select-selected-bg-color-hover;
+  }
+}
+
+.@{prefix}-select-option.@{prefix}-select-option__hover {
+  &:not(.@{prefix}-is-disabled)&:not(.@{prefix}-is-selected) {
+    background-color: @select-option-bg-color-hover;
+    .@{prefix}-checkbox__input {
+      border-color: @select-option-checkbox-input-color-hover;
+    }
+  }
+  .@{prefix}-checkbox__label {
+    color: @select-option-checkbox-label-color-hover;
+  }
+}
+
+.@{prefix}-select-option + .@{prefix}-select-option {
+  margin-top: @select-options-margin;
+}
+
+.@{prefix}-select {
+
+  &.@{prefix}-select-input--borderless {
+    .@{prefix}-select__right-icon {
+      position: relative;
+      margin: 0;
+    }
+  }
+
+  .@{prefix}-fake-arrow {
+    color: @select-placeholder-color;
+
+    &--active {
+      color: @select-border-color-active;
+    }
+  }
+
+  .@{prefix}-input {
+    &:hover:not(.@{prefix}-is-disabled),
+    :active:not(.@{prefix}-is-disabled) {
+      cursor: pointer;
+      border-color: @select-border-color-active;
+
+      .@{prefix}-fake-arrow {
+        color: @select-border-color-active;
+      }
+    }
+  }
+}

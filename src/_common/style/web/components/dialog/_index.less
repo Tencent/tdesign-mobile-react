@@ -1,0 +1,199 @@
+// 组件允许单个组件打包，因此默认引入公共基础样式
+
+@import "../../base.less";
+
+@import "./_var.less";
+
+@import "./_animate.less";
+
+@import "./_mixin.less";
+
+// <name> 替换为组件名
+.@{prefix}-dialog {
+  width: @dialog-width;
+  background-color: @dialog-bg-color;
+  position: relative;
+  border-radius: @dialog-border-radius;
+  max-height: 100%;
+  overflow: auto;
+
+  // icon theme
+  .@{prefix}-icon.t-is-info {
+    color: @dialog-info-icon-color;
+  }
+
+  .@{prefix}-icon.t-is-success {
+    color: @dialog-success-icon-color;
+  }
+
+  .@{prefix}-icon.t-is-warning {
+    color: @dialog-warning-icon-color;
+  }
+
+  .@{prefix}-icon.t-is-error {
+    color: @dialog-error-icon-color;
+  }
+
+  &--lock {
+    overflow: hidden;
+  }
+
+  &__header {
+    color: @dialog-header-text-color;
+    font-size: @dialog-header-font-size;
+    font-weight: @dialog-header-font-weight;
+    display: flex;
+    align-items: center;
+    word-break: break-word;
+
+    >h5 {
+      padding: 0;
+      margin: 0;
+      font-weight: normal;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: @dialog-header-line-height;
+    }
+
+    .@{prefix}-icon {
+      font-size: @dialog-icon-size;
+      margin-right: @dialog-header-icon-margin-right;
+    }
+  }
+
+  &__body {
+    color: @dialog-body-text-color;
+    font-size: @dialog-body-text-font-size;
+    line-height: @dialog-body-line-height;
+    overflow: auto;
+    padding: @dialog-body-padding;
+    word-break: break-word;
+
+    &__icon {
+      padding: @dialog-body-icon-padding;
+    }
+  }
+
+  &__footer {
+    width: 100%;
+    text-align: right;
+    // remove space between inline-block elements.
+    word-spacing: @dialog-word-spacing;
+
+    .t-button + .t-button {
+      margin-left: @dialog-footer-button-margin-left;
+    }
+  }
+
+  &--default {
+    padding: @dialog-default-spacer;
+
+    .@{prefix}-dialog__body {
+      max-height: calc(100% - (@dialog-header-height + @dialog-default-padding * 2));
+    }
+  }
+
+  &--primary {
+    padding: @dialog-primary-spacer;
+
+    .@{prefix}-dialog__body {
+      padding: @dialog-parimary-body-spacer;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: @dialog-close-position-top;
+    right: @dialog-close-position-right;
+    font-size: @dialog-close-icon-size;
+    color: @dialog-close-color;
+    display: flex;
+    width: @dialog-close-icon-size;
+    height: @dialog-close-icon-size;
+    align-items: center;
+    justify-content: center;
+    border-radius: @dialog-close-border-radius;
+    background: @dialog-bg-color;
+    transition: all @anim-duration-base linear;
+
+    &:hover {
+      cursor: pointer;
+      background: @dialog-close-icon-hover;
+    }
+
+    &:active {
+      background: @dialog-close-icon-active;
+    }
+  }
+}
+
+// t-dialog 组件本身
+.@{prefix}-dialog__ctx {
+  pointer-events: none;
+  outline: none;
+
+  &.@{prefix}-dialog__ctx--fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: @z-index-dialog;
+  }
+
+  &.t-is-visable {
+    visibility: visible;
+  }
+
+  &.t-is-hidden {
+    visibility: hidden;
+  }
+
+  &.t-is-display {
+    display: block;
+  }
+
+  &.t-not-display {
+    display: none;
+  }
+
+  .@{prefix}-dialog__mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: @dialog-mask-bg-color;
+    pointer-events: auto;
+  }
+
+  .t-is-hidden {
+    background: none;
+  }
+
+  .@{prefix}-dialog {
+    pointer-events: auto;
+    z-index: 5;
+    border: @dialog-border;
+
+    &.@{prefix}-dialog--fixed {
+      position: fixed;
+      z-index: @z-index-dialog;
+    }
+
+    &--top {
+      top: @dialog-top-position-top;
+      left: 50%;
+      transform-origin: -25% 25%;
+      transform: translate(-50%, 0);
+    }
+
+    &--center {
+      top: 50%;
+      left: 50%;
+      transform-origin: -25% -25%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

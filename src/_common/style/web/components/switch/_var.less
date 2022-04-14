@@ -1,0 +1,58 @@
+// 组件变量
+// 名称可按如下规则定义：
+// <component>-[type]-[attrtype]-<attr>-[status]
+
+// component:组件名，如button，
+// type: 组件类型，如 button 的次要按钮（line）
+// attrtype: 属性的具体应用场景。如颜色，用于背景（bg）、文本（text）、边框（border）等
+// attr: 属性名称，如color、height、radius等
+// status: 表示组件状态或尺寸，如 hover、disabled、s、l 等
+
+// 如：@button-line-bg-color-hover
+// 如：@button-line-height-s
+
+// 颜色
+@switch-checked-bg-color: @brand-color;
+@switch-checked-bg-color-loading: @brand-color-2;
+@switch-checked-bg-color-disabled: @brand-color-disabled;
+
+@switch-unchecked-bg-color: @gray-color-5;
+@switch-unchecked-bg-color-loading: @bg-color-page;
+@switch-unchecked-bg-color-disabled: @bg-color-component-disabled;
+
+@switch-handle-bg-color: @text-color-anti;
+@switch-content-color-checked: @text-color-anti;
+@switch-content-color-unchecked: @text-color-anti;
+
+// 尺寸
+@switch-height-l: 24px;
+@switch-height-default: 20px;
+@switch-height-s: 16px;
+
+@switch-min-width-l: 44px;
+@switch-min-width-default: 36px;
+@switch-min-width-s: 28px;
+
+@switch-width-border-l: 2px;
+@switch-width-border-default: 2px;
+@switch-width-border-s: 2px;
+
+// 字体
+@switch-content-font-size-l: @font-size-l;
+@switch-content-font-size-default: @font-size-s;
+@switch-content-font-size-s: 9px;
+
+// 间距
+@switch-content-margin-left-l: (@switch-min-width-l / 2 + 2px);
+@switch-content-margin-right-l: 8px;
+
+@switch-content-margin-left-default: (@switch-min-width-default / 2 + 2px);
+@switch-content-margin-right-default: 6px;
+
+@switch-content-margin-left-s: (@switch-min-width-s / 2 + 2px);
+@switch-content-margin-right-s: 5px;
+
+// 动画
+@switch-transition: all @anim-duration-base @anim-time-fn-ease-out;
+@switch-handle-transition: all @anim-duration-base @anim-time-fn-easing;
+@switch-content-transition: padding @anim-duration-base @anim-time-fn-easing, opacity @anim-duration-base linear;

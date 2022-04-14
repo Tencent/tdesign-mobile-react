@@ -1,0 +1,363 @@
+.step-item-basic() {
+
+  .@{prefix}-steps-item {
+    flex: 1;
+    overflow: hidden;
+    vertical-align: top;
+    margin-right: @steps-item-margin-right;
+    position: relative;
+
+    &:last-child {
+      flex: none;
+    }
+
+    &__inner {
+      width: fit-content;
+      position: relative;
+      display: flex;
+
+      &.@{prefix}-steps-item--clickable {
+        cursor: pointer;
+      }
+    }
+
+    &--finish {
+      .default-anchor-status(finish);
+    }
+
+    &--process {
+      .default-anchor-status(process);
+    }
+
+    &--error {
+      .default-anchor-status(error);
+    }
+
+    &__icon {
+      vertical-align: top;
+      font-size: @steps-item-icon-font-size;
+      margin-right: @steps-item-icon-margin-right;
+      color: @steps-item-icon-color;
+
+      &--number {
+        color: @steps-item-icon-number-color-default;
+        border: @step-stroke-width solid @steps-item-icon-border-color-default;
+        .default-step-icon;
+      }
+
+      &--finish {
+        border: @step-stroke-width solid @steps-item-icon-border-color-finish;
+        .default-step-icon;
+      }
+
+      &--error {
+        border: @step-stroke-width solid @steps-item-icon-border-color-error;
+        color: @steps-item-icon-number-color-error;
+        .default-step-icon;
+      }
+
+      & > .t-icon {
+        font-size: @steps-item-t-icon-font-size-default;
+      }
+    }
+
+    &__title {
+      position: relative;
+      padding-right: @steps-title-padding-right;
+      color: @steps-title-color-default;
+      font-size: @steps-title-font-size-anchor;
+      line-height: @steps-title-line-height;
+    }
+
+    &__description {
+      color: @steps-description-color-default;
+      font-size: @steps-description-font-size;
+      margin-bottom: @steps-item-description-margin;
+      line-height: @steps-description-line-height;
+    }
+  }
+}
+
+.default-step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: @steps-circle-width;
+  height: @steps-circle-height;
+  text-align: center;
+  border-radius: 50%;
+  margin-top: @steps-item-default-icon-margin-top;
+  font-size: @steps-default-step-icon-font-size;
+}
+
+// anchor 状态
+@anchor-status: wait;
+.default-anchor-status(@anchor-status) {
+  & when(@anchor-status = finish) {
+
+    .@{prefix}-steps-item__icon {
+      .t-icon {
+        color: @steps-item-icon-anchor-color;
+      }
+
+      &--number {
+        border-color: @brand-color;
+      }
+    }
+
+    .@{prefix}-steps-item__title {
+      color: @steps-title-color-finish;
+      font-weight: @steps-title-font-weight;
+    }
+
+    .@{prefix}-steps-item__description {
+      color: @steps-description-color-finish;
+    }
+  };
+  & when(@anchor-status = process) {
+
+    .@{prefix}-steps-item__icon {
+      .t-icon {
+        color: @steps-item-icon-anchor-color;
+      }
+
+      &--number {
+        border-color: @steps-item-icon-number-border-color-process;
+        background-color: @steps-item-icon-number-bg-color-process;
+        color: @steps-item-icon-number-color-process;
+        font-weight: bold;
+      }
+    }
+
+    .@{prefix}-steps-item__title {
+      color: @steps-title-color-process;
+      font-weight: bold;
+    }
+
+    .@{prefix}-steps-item__description {
+      color: @steps-description-color-process;
+    }
+  };
+  & when(@anchor-status = error) {
+
+    .@{prefix}-steps-item__icon {
+      .t-icon {
+        color: @steps-item-icon-anchor-color-error;
+      }
+
+      &--number {
+        color: @steps-item-icon-anchor-number-color-error;
+        border-color: @steps-item-icon-anchor-number-border-color-error;
+      }
+    }
+
+    .@{prefix}-steps-item__title {
+      color: @steps-title-color-error;
+    }
+
+    .@{prefix}-steps-item__description {
+      color: @steps-description-color-error;
+    }
+  };
+};
+
+.dot-anchor-status(@anchor-status) {
+  & when(@anchor-status = finish) {
+
+    .@{prefix}-steps-item__icon {
+      border-color: @steps-item-icon-dot-border-color-finish;
+    }
+  };
+  & when(@anchor-status = process) {
+
+    .@{prefix}-steps-item__icon {
+      background: @steps-item-icon-dot-bg-color-process;
+      border-color: @steps-item-icon-dot-border-color-process;
+    }
+  };
+  & when(@anchor-status = error) {
+
+    .@{prefix}-steps-item__icon {
+      background: @steps-item-icon-dot-bg-color-error;
+      border-color: @steps-item-icon-dot-border-color-error;
+    }
+  };
+}
+
+// icon 和 内容
+@item-direction: horizontal;
+.dot-icon(@item-direction) {
+
+  .@{prefix}-steps-item__icon {
+    display: block;
+    width: @steps-dot-item-icon-width;
+    height: @steps-dot-item-icon-height;
+    border: 2px solid @steps-item-icon-dot-border-color-default;
+    border-radius: 50%;
+    margin-bottom: @steps-dot-item-icon-margin-bottom;
+    position: relative;
+    & when(@item-direction = vertical) {
+      top: @steps-dot-anchor-position-top;
+    }
+  }
+
+  .@{prefix}-steps-item__content {
+    & when(@item-direction = horizontal) {
+      text-align: @steps-item-content-text-align-horizontal;
+      width: @steps-dot-content-width;
+    }
+  }
+}
+
+// 连接线
+.connector-default(@direction; @isReverse:false) {
+  & when (@direction = horizontal) {
+
+    .@{prefix}-steps-item:not(:last-child) {
+
+      .@{prefix}-steps-item__title:after {
+        content: "";
+        display: block;
+        width: 9999px;
+        height: @step-stroke-width;
+        background: @steps-line-bg-color-horizontal-default;
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .@{prefix}-steps-item--finish:not(:last-child) {
+
+      .@{prefix}-steps-item__title:after {
+        background: @steps-line-bg-color-horizontal-finish;
+        height: @steps-line-height;
+      }
+    }
+  }
+
+  & when (@direction = vertical) {
+
+    .@{prefix}-steps-item {
+      padding-bottom: @steps-item-padding-bottom-vertical;
+      margin-bottom: @steps-item-margin-bottom-vertical;
+
+      & when(@isReverse = false) {
+        &:not(:last-child)::before {
+          content: "";
+          display: block;
+          height: 100%;
+          width: @steps-item-icon-number-line-width;
+          background: @steps-line-bg-color-vertical-default;
+          position: absolute;
+          top: @steps-item-icon-number-line-top;
+          left: @steps-item-icon-number-line-left;
+        }
+
+        &--finish {
+          &:not(:last-child)::before {
+            background: @steps-line-bg-color-vertical-finish;
+            width: @steps-line-width;
+          }
+        }
+      }
+      & when(@isReverse = true) {
+        &:not(:first-child)::before {
+          content: "";
+          display: block;
+          height: 100%;
+          width: @steps-item-icon-number-line-width;
+          background: @steps-line-bg-color-vertical-default;
+          position: absolute;
+          top: @steps-item-icon-number-line-top;
+          left: @steps-item-icon-number-line-left;
+        }
+
+        &--process,
+        &--finish {
+          &:not(:first-child)::before {
+            width: @steps-line-width;
+            background: @steps-line-bg-color-vertical-process;
+          }
+        }
+      }
+    }
+  }
+}
+
+.connector-dot(@direction; @isReverse:false) {
+  & when(@direction = horizontal) {
+
+    .@{prefix}-steps-item:not(:last-child) {
+      &::after {
+        content: "";
+        display: block;
+        width: @steps-item-connector-line-width;
+        height: @steps-item-icon-number-line-height;
+        background: @steps-line-dot-bg-color-vertical-default;
+        position: absolute;
+        left: @steps-dot-connector-position-left-horizontal;
+        top: @steps-dot-connector-position-top-horizontal;
+      }
+    }
+
+    .@{prefix}-steps-item--finish:not(:last-child) {
+      &::after {
+        background: @steps-line-dot-bg-color-vertical-finish;
+        height: @steps-line-height;
+      }
+    }
+  }
+  & when(@direction = vertical) {
+
+    .@{prefix}-steps-item {
+
+      & when(@isReverse = false) {
+        &:not(:last-child)::before {
+          content: "";
+          display: block;
+          height: 100%;
+          width: @steps-item-icon-number-line-height;
+          background: @steps-line-dot-bg-color-vertical-default;
+          position: absolute;
+          left: @steps-dot-connector-position-left-vertical;
+          top: @steps-dot-connector-position-top-vertical;
+        }
+
+        &--finish {
+          &:not(:last-child)::before {
+            background: @steps-line-dot-bg-color-vertical-finish;
+            width: @steps-line-width;
+          }
+        }
+      }
+      & when(@isReverse = true) {
+        margin-bottom: 0;
+
+        &:not(:first-child)::before {
+          content: "";
+          display: block;
+          height: 100%;
+          width: @steps-item-icon-number-line-height;
+          background: @steps-line-dot-bg-color-vertical-default;
+          position: absolute;
+          left: @steps-dot-connector-position-left-vertical-reverse;
+          top: @steps-dot-connector-position-top-vertical;
+        }
+
+        &:first-child::before {
+          display: none;
+        }
+
+        &--process,
+        &--finish {
+          &:not(:first-child)::before {
+            width: @steps-line-width;
+            background: @steps-line-dot-bg-color-vertical-process;
+          }
+        }
+      }
+    }
+  }
+}
