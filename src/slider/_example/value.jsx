@@ -12,8 +12,9 @@ export default function Base() {
   return (
     <div className='tdesign-mobile-demo'>
         <div className='tdesign-demo-block-wrap'>
-          <Slider showValue value={value} onChange={onChange}/>
+          <Slider label value={value} onChange={onChange}/>
         </div>
     </div>
   );
+  
 }
