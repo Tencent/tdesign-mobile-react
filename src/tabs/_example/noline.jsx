@@ -23,11 +23,11 @@ export default function () {
       value: 'tab4',
     },
     {
-      label: '标签页四',
+      label: '标签页五',
       value: 'tab5',
     },
     {
-      label: '标签页四',
+      label: '标签页六',
       value: 'tab6',
     },
   ];

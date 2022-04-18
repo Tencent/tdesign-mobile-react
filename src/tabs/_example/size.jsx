@@ -15,11 +15,11 @@ export default function () {
             <TabPanel value={'v2'} label="标签页二">
               <div className="tab-content">标签二内容</div>
             </TabPanel>
-            <TabPanel value={'v3'} label="禁用状态">
+            <TabPanel value={'v3'} label="标签页三">
               <div className="tab-content">标签三内容</div>
             </TabPanel>
-            <TabPanel value={'v3'} label="禁用状态">
-              <div className="tab-content">标签三内容</div>
+            <TabPanel value={'v3'} label="标签页四">
+              <div className="tab-content">标签四内容</div>
             </TabPanel>
           </Tabs>
         </li>
@@ -31,11 +31,11 @@ export default function () {
             <TabPanel value={'v2'} label="标签页二">
               <div className="tab-content">标签二内容</div>
             </TabPanel>
-            <TabPanel value={'v3'} label="禁用状态">
+            <TabPanel value={'v3'} label="标签页三">
               <div className="tab-content">标签三内容</div>
             </TabPanel>
-            <TabPanel value={'v3'} label="禁用状态">
-              <div className="tab-content">标签三内容</div>
+            <TabPanel value={'v3'} label="标签页四">
+              <div className="tab-content">标签四内容</div>
             </TabPanel>
           </Tabs>
         </li>
