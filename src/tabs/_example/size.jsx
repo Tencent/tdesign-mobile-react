@@ -18,7 +18,7 @@ export default function () {
             <TabPanel value={'v3'} label="标签页三">
               <div className="tab-content">标签三内容</div>
             </TabPanel>
-            <TabPanel value={'v3'} label="标签页四">
+            <TabPanel value={'v4'} label="标签页四">
               <div className="tab-content">标签四内容</div>
             </TabPanel>
           </Tabs>
@@ -34,7 +34,7 @@ export default function () {
             <TabPanel value={'v3'} label="标签页三">
               <div className="tab-content">标签三内容</div>
             </TabPanel>
-            <TabPanel value={'v3'} label="标签页四">
+            <TabPanel value={'v4'} label="标签页四">
               <div className="tab-content">标签四内容</div>
             </TabPanel>
           </Tabs>
