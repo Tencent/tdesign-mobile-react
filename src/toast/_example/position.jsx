@@ -5,7 +5,7 @@ import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {
   const showTop = () => {
-    Toast({ message: '轻提示文字内容', placement: 'top' });
+    Toast({ message: '轻提示文字内容', placement: 'top', duration: 1000 });
   };
   const showMiddle = () => {
     Toast({ message: '轻提示文字内容', placement: 'middle' });
@@ -19,17 +19,17 @@ export default function () {
         <ul className="toast-container">
           <li>
             <Button className="toast-btn" theme="primary" variant="outline" onClick={showTop}>
-              顶部Top
+              顶部展示1秒
             </Button>
           </li>
           <li>
             <Button className="toast-btn" theme="primary" variant="outline" onClick={showMiddle}>
-              中间Middle
+              中间展示2秒
             </Button>
           </li>
           <li>
             <Button className="toast-btn" theme="primary" variant="outline" onClick={showBottom}>
-              底部Bottom
+              底部展示2秒
             </Button>
           </li>
         </ul>

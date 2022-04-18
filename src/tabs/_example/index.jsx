@@ -14,12 +14,12 @@ export default function () {
     <div className="tdesign-mobile-demo">
       <TDemoHeader title="Tabs 选项卡" summary="用于切换不同场景" />
       <Base />
+      <Scroll></Scroll>
+      <NoLine></NoLine>
       <Horizontal></Horizontal>
       <Vertical></Vertical>
-      <Scroll></Scroll>
-      <Size></Size>
-      <NoLine></NoLine>
       <Bottom></Bottom>
+      <Size></Size>
     </div>
   );
 }
