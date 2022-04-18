@@ -232,12 +232,12 @@ export default {
         //   path: '/mobile-react/components/image-viewer',
         //   component: () => import('tdesign-mobile-react/image-viewer/image-viewer.md'),
         // },
-        // {
-        //   title: 'Skeleton 骨架屏',
-        //   name: 'skeleton',
-        //   path: '/mobile-react/components/skeleton',
-        //   component: () => import('tdesign-mobile-react/skeleton/skeleton.md'),
-        // },
+        {
+          title: 'Skeleton 骨架屏',
+          name: 'skeleton',
+          path: '/mobile-react/components/skeleton',
+          component: () => import('tdesign-mobile-react/skeleton/skeleton.md'),
+        },
         {
           title: 'Sticky 吸顶容器',
           name: 'sticky',
