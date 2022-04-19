@@ -1,22 +1,21 @@
 import React from 'react';
-import { Badge } from 'tdesign-mobile-react';
+import { Badge, CellGroup, Cell, Button } from 'tdesign-mobile-react';
 
-import './style/index.less';
-
-export default function Base() {
+export default function BadgeDistDemo() {
   return (
-    <div className="base-demo">
-      <div className="base-demo__container">
-        <Badge dot>消息</Badge>
+    <div className="tdesign-mobile-demo">
+      <div className="badge-wrap">
+        <Badge dot className="badge-item">
+          <Button size="small">按钮</Button>
+        </Badge>
       </div>
-      <div className="base-demo__container">
-        <Badge count={16}>消息</Badge>
-      </div>
-      <div className="base-demo__container">
-        <Badge count="NEW">消息</Badge>
-      </div>
-      <div className="base-demo__container">
-        <Badge count="···">消息</Badge>
+      <div className="badge-wrap">
+        <CellGroup>
+          <Cell align="left">
+            <span>单行标题</span>
+            <Badge dot offset={[10, 0]} className="list-item-badge" />
+          </Cell>
+        </CellGroup>
       </div>
     </div>
   );

@@ -1,352 +1,239 @@
-import React, { FC, useEffect, useRef, useState } from "react";
-import classnames from "classnames"
+import React, { FC, useCallback, useMemo, useRef } from "react";
+import classnames from "classnames";
+import identity from "lodash/identity";
+import isArray from "lodash/isArray";
 import useConfig from "tdesign-mobile-react/_util/useConfig";
-import { TdSliderProps } from "./type";
+import nearest from "tdesign-mobile-react/_util/nearest";
+import useDefault from "tdesign-mobile-react/_util/useDefault";
+import withNativeProps, {
+  NativeProps,
+} from "tdesign-mobile-react/_util/withNativeProps";
+import Handle from "./Handle";
+import Marks from "./Marks";
+import { SliderValue, TdSliderProps } from "./type";
 
-export interface TouchData {
-    startValue?: number;
-    newValue?: number;
-    startX?: number;
-    deltaX?: number; // 拖动的距离
-    offsetX?: number; // 拖动的距离，绝对值
-}
+const defaultProps = {
+  disabled: false,
+  max: 100,
+  min: 0,
+  range: false,
+  step: 1,
+  label: true,
+  showExtremeValue: false,
+  onChange: identity,
+  onDragstart: identity,
+  onDragend: identity,
+};
 
-const DFAULT_TOUCH_DATA = {
-    startValue: 0,
-    newValue: 0,
-    startX: 0,
-    deltaX: 0, 
-    offsetX: 0, 
-}
+export interface SliderProps extends TdSliderProps, NativeProps {}
 
-const DEFAULT_DISABLED = false;
-const DEFAULT_MAX= 100;
-const DEFAULT_MIN= 0;
-const DEFAULT_RANGE= false;
-const DEFAULT_STEP= 1;
-const DEFAULT_TITLE = '';
+const Slider: FC<SliderProps> = (props) => {
+  const { classPrefix } = useConfig();
+  const name = `${classPrefix}-slider`;
 
-const getSliderValue = (value: number | number[]): number[] => {
-    if (typeof value === 'number') {
-        return [value];
-    } 
+  const {
+    disabled,
+    max,
+    min,
+    range,
+    step,
+    value,
+    defaultValue,
+    marks,
+    showExtremeValue,
+    label,
+    onChange,
+    onDragstart,
+    onDragend,
+  } = props;
+
+  const barRef = useRef<HTMLDivElement>(null);
+  const handleRef = useRef<HTMLDivElement>(null);
+  const firstValueRef = useRef<[number, number]>();
+  const dragLockRef = useRef(false);
+
+  const [rawValue, setRawValue] = useDefault<SliderValue, any>(
+    value,
+    defaultValue || (range ? [min, min] : min),
+    onChange
+  );
+
+  // 排序
+  const sortValue = useCallback(
+    (val: [number, number]): [number, number] => val.sort((a, b) => a - b),
+    []
+  );
+
+  // 统一单/双游标滑块value结构
+  const convertValue = useCallback(
+    (value: SliderValue): [number, number] =>
+      (range ? value : [min, value]) as [number, number],
+    [min, range]
+  );
+
+  const reverseValue = useCallback(
+    (value: [number, number]): SliderValue => (range ? value : value[1]),
+    [range]
+  );
+
+  // 计算要显示的点
+  const pointList = useMemo(() => {
+    if (marks) {
+      return isArray(marks)
+        ? marks.sort((a, b) => a - b)
+        : Object.keys(marks)
+            .map(parseFloat)
+            .sort((a, b) => a - b);
+    }
+    const points: number[] = [];
+    for (let i = min; i <= max; i += step) {
+      points.push(i);
+    }
+    return points;
+  }, [marks, max, min, step]);
+
+  const sliderValue = useMemo(() => sortValue(convertValue(rawValue)), [rawValue, convertValue, sortValue]);
+
+  const trackSize = `${
+    (100 * (sliderValue[1] - sliderValue[0])) / (max - min)
+  }%`;
+
+  const trackStart = `${(100 * (sliderValue[0] - min)) / (max - min)}%`;
+
+  const getValueByPosition = (position: number) => {
+    let newPosition = position;
+    if (position < min) {
+      newPosition = min;
+    } else if (position > max) {
+      newPosition = max;
+    }
+
+    let value = min;
+
+    // 如果有显示刻度点，就移动到刻度点上
+    if (pointList?.length) {
+      value = nearest({
+        items: pointList,
+        target: newPosition,
+      });
+    } else {
+      const lengthPerStep = 100 / ((max - min) / step);
+      const steps = Math.round(newPosition / lengthPerStep);
+      value = lengthPerStep * steps * (max - min) * 0.01 + min;
+    }
     return value;
-}
+  };
 
-const getMarksData = (marks, range) => {
-    const arr: number[] = [];
-    if (!range && marks) {
-        Object.keys(marks).forEach(key => {
-            arr.push(parseInt(key, 10))
-        })
+  // 更新滑块value
+  const updateSliderValue = (value: [number, number]) => {
+    const next = sortValue(value);
+    const current = sliderValue;
+    if (next[0] === current[0] && next[1] === current[1]) return;
+    setRawValue(reverseValue(next));
+  };
+
+  const handleClick = (e) => {
+    if (!dragLockRef.current) return;
+    if (disabled) return;
+
+    e.stopPropagation();
+
+    const bar = barRef.current;
+    if (!bar) return;
+
+    const sliderOffsetLeft = bar.getBoundingClientRect().left;
+    const position =
+      ((e.clientX - sliderOffsetLeft) / Math.ceil(bar.offsetWidth)) *
+        (max - min) +
+      min;
+
+    const targetValue = getValueByPosition(position);
+    let next: [number, number];
+    if (range) {
+      if (
+        Math.abs(targetValue - sliderValue[0]) >
+        Math.abs(targetValue - sliderValue[1])
+      ) {
+        next = [sliderValue[0], targetValue];
+      } else {
+        next = [targetValue, sliderValue[1]];
+      }
+    } else {
+      next = [min, targetValue];
     }
-    return arr.sort((a, b) => a - b);
-}
 
-const Slider: FC<TdSliderProps> = (prop) => {
-    const { classPrefix } = useConfig();
-    const name = `${classPrefix}-slider`;
+    updateSliderValue(next);
+  };
 
-    const { 
-        disabled = DEFAULT_DISABLED,
-        max = DEFAULT_MAX,
-        min = DEFAULT_MIN,
-        range = DEFAULT_RANGE,
-        step = DEFAULT_STEP,
-        value,
-        defaultValue,
-        title = DEFAULT_TITLE, // @TODOS 缺api
-        showValue = false, // @TODOS 缺api
-        marks, // @TODOS 缺api
-        onChange
-    } = prop;
-
-    // 判断是否受控
-    const isControl = value !== undefined;
-
-    const rootRef = useRef<HTMLDivElement>(null);
-    const barRef = useRef<HTMLDivElement>(null);
-
-    const [touchData, setTouchData] = useState<TouchData>(DFAULT_TOUCH_DATA);
-
-    const [sliderValue, setSliderValue] = useState(getSliderValue(isControl ? value : defaultValue));
-
-    const [marksData] = useState(getMarksData(marks, range))
-
-    const [handleLeft, setHandleLeft] = useState([0]);
-
-    const [trackWidth, setTrackWidth] = useState(0);
-
-    const [trackLeft, setTrackLeft] = useState(0);
-
-    useEffect(() => {
-        // @TODOS 缺value校验
-        if (range) {
-            setTrackLeft((sliderValue[0]  - min) / (max - min ) * 100)
-            setTrackWidth((sliderValue[1] - sliderValue[0]  - min) / (max - min ) * 100)
-            setHandleLeft([(sliderValue[0]  - min) / (max - min ) * 100, (sliderValue[1]  - min) / (max - min ) * 100])
-        } else {
-            setHandleLeft([(sliderValue[0]  - min) / (max - min ) * 100])
-            setTrackWidth((sliderValue[0]  - min) / (max - min ) * 100)
-        } 
-    }, [sliderValue, max, min, setHandleLeft, setTrackLeft, setTrackWidth, range]);
-
-    const format = (value: number) => {
-        let current = value;
-        if (!range && marks) {   
-            if (marksData.length) {
-                let min = marksData[0];
-              
-                marksData.forEach((marksDataItemValue) => {
-                    if (Math.abs(marksDataItemValue - value) < Math.abs(min - value)) {
-                        min = marksDataItemValue;
-                    }
-                });
-
-                current = min;
-            }
+  // 游标滑块
+  const renderHandle = (index: number) => (
+    <Handle
+      key={index}
+      value={sliderValue[index]}
+      min={min}
+      max={max}
+      disabled={disabled}
+      barRef={barRef}
+      onDrag={(position, first, last) => {
+        if (first) {
+          dragLockRef.current = true;
+          firstValueRef.current = sliderValue;
+          onDragstart();
         }
-        return Math.round(Math.max(min, Math.min(current, max)) / step) * step;
-    }
-
-    const updateValue = (newValue, index) => {
-        if (isControl) {
-            // 受控模式才能更新内部状态
-            const formatValue = format(newValue)
-            if (range) {
-                // 双游标
-                sliderValue[index] = formatValue;
-                setSliderValue([...sliderValue]);
-                onChange && onChange(sliderValue);
-            } else if (formatValue !== touchData.startValue) {
-                // 单游标
-                setSliderValue([formatValue]);
-                onChange && onChange(sliderValue);
-            } 
+        const val = getValueByPosition(position);
+        const firstValue = firstValueRef.current;
+        if (!firstValue) return;
+        const next = [...firstValue] as [number, number];
+        next[index] = val;
+        updateSliderValue(next);
+        if (last) {
+          onDragend();
+          window.setTimeout(() => {
+            dragLockRef.current = false;
+          }, 100);
         }
-    }
+      }}
+    />
+  );
 
-    const handleTouchStart = (e) => {
-        if (disabled) return;
-        e.stopPropagation();
+  return withNativeProps(
+    props,
+    <div
+      className={classnames(`${name}-wrap`, {
+        [`${classPrefix}-is-disabled`]: disabled,
+      })}
+    >
+      {showExtremeValue && (
+        <div className={`${name}-wrap__value-left`}>{min}</div>
+      )}
+      <div className={name} onClick={handleClick}>
+        {/* 总长度 */}
+        <div ref={barRef} className={`${name}__bar`}></div>
+        {/* 滑块长度 */}
+        <div
+          className={`${name}__track`}
+          style={{
+            width: trackSize,
+            left: trackStart,
+          }}
+          ref={handleRef}
+        />
+        {/* 双游标滑块操作 */}
+        {range && renderHandle(0)}
+        {/* 单游标滑块操作 */}
+        {renderHandle(1)}
+        {/* 刻度内容 */}
+        <Marks marks={marks} range={range} value={sliderValue} />
+      </div>
+      {!range && label && (
+        <div className={`${name}-wrap__value`}>{sliderValue[1]}</div>
+      )}
+      {showExtremeValue && <div className={`${name}-wrap__value`}>{max}</div>}
+    </div>
+  );
+};
 
-        const { dataset: { index } = { index: 0} } = e.target as any;
-
-        setTouchData({
-            ...touchData,
-            deltaX: 0,
-            offsetX: 0,
-            startX: e.touches[0].clientX,
-            startValue: format(sliderValue[index]),
-        })
-    }
-
-    const handleTouchMove = (e) => {
-        if (disabled) return;
-        e.stopPropagation();
-
-        const touch = e.touches[0];
-
-        const deltaX = touch.clientX - touchData.startX;
-
-        const rect = rootRef.current.getBoundingClientRect();
-
-        const total = rect.width;
-
-        const diff = (deltaX / total) * (max - min);
-
-        const newValue = touchData.startValue + diff
-        
-        const { dataset: { index } = { index: 0} } = e.target as any;
-
-        setTouchData({
-            ...touchData,
-            deltaX,
-            offsetX: Math.abs(deltaX),
-            newValue,
-        })
-
-        updateValue(newValue, index)
-    }
-
-    const handleTouchEnd = (e) => {
-        if (disabled) return;
-        
-        e.stopPropagation();
-        e.preventDefault();
-
-        const { dataset: { index } = { index: 0} } = e.target as any;
-
-        updateValue(touchData.newValue, index);
-    }
-
-    const handleClick = (e) => {
-        if (disabled) return;
-        e.stopPropagation();
-
-        const rect = barRef.current.getBoundingClientRect();
-
-        const deltaX = e.clientX - rect.left;
-
-        const total = rect.width;
-
-        const current = (deltaX / total) * (max - min) + min;
-
-        let index = 0;
-
-        if (range) {
-            if (Math.abs(current - sliderValue[0]) > Math.abs(current - sliderValue[1])) {
-              index = 1;
-            }
-        }
-
-        setTouchData({
-            ...touchData,
-            startValue: sliderValue[index],
-        })
-
-        updateValue(current, index);
-    }
-
-    useEffect(() => {
-        setSliderValue(getSliderValue(isControl ? value : defaultValue));
-    }, [value, defaultValue, isControl])
-
-    return <>
-        <div 
-            ref={rootRef} 
-            className={classnames([
-                `${name}-wrap`,
-                disabled ? `${classPrefix}-is-disabled` : ''
-            ])}
-        >
-           {
-               !range ?
-               (<>
-                    <>
-                        {
-                            title ? <>
-                                <div className={`${name}-wrap__title`}>
-                                    { title }
-                                </div>
-                            </> : null
-                        }
-                    </>
-                    <div className={name} onClick={handleClick}>
-                        {/* 总长度 */}
-                        <div ref={barRef} className={`${name}__bar`}></div>
-                        {/* 滑块长度 */}
-                        <div className={`${name}__track`} style={{
-                            width: `${trackWidth}%`
-                        }}></div>
-                        {/* 滑块操作 */}
-                        {
-                            sliderValue.map((item, index) => (
-                                <div 
-                                    key={index + 1} 
-                                    className={`${name}__handle`} 
-                                    style={{
-                                    left: `${handleLeft[index]}%`
-                                    }}
-                                    data-index={index}
-                                    onTouchStart={handleTouchStart}
-                                    onTouchMove={handleTouchMove}
-                                    onTouchEnd={handleTouchEnd}
-                                />
-                            ))
-                        } 
-                        {/* 刻度内容 */}
-                        {
-                            marks && (<div className={`${name}__mark`}>
-                                {
-                                    Object.keys(marks).map((key) => (
-                                        <div 
-                                            className={`${name}__mark-text`}
-                                            key={key}
-                                            style={{
-                                                left: `${key}%`
-                                            }}
-                                            >
-                                            { marks[key] }
-                                        </div>
-                                    ))
-                                }
-                            </div>)
-                        }
-                    </div>
-                    <>
-                        {
-                            showValue && sliderValue.map((item, index) => (
-                                <div className={`${name}-wrap__value`} key={index}>
-                                    { item }
-                                </div>
-                            ))
-                        }
-                    </>
-                </>) :
-               (<>
-                    <>
-                        {
-                            <div className={`${name}-wrap__value-left`}>
-                                { min }
-                            </div>
-                        }
-                    </>
-                    <div className={name} onClick={handleClick}>
-                        {/* 总长度 */}
-                        <div ref={barRef} className={`${name}__bar`}></div>
-                        {/* 滑块长度 */}
-                        <div className={`${name}__track`} style={{
-                            left: `${trackLeft}%`,
-                            width: `${trackWidth}%`
-                        }} />
-                        {/* 滑块操作 */}
-                        {
-                            sliderValue.map((item, index) => (
-                                <div 
-                                    key={index + 1} 
-                                    className={`${name}__handle`} 
-                                    style={{
-                                        left: `${handleLeft[index]}%`
-                                    }}
-                                    data-index={index}
-                                    onTouchStart={handleTouchStart}
-                                    onTouchMove={handleTouchMove}
-                                    onTouchEnd={handleTouchEnd}
-                                />
-                            ))
-                        } 
-                        {/* 刻度内容 */}
-                        {
-                            <div className={`${name}__mark`}>
-                                {
-                                    sliderValue.map((item, index) => (
-                                        <div 
-                                            className={`${name}__mark-text`}
-                                            key={index}
-                                            style={{
-                                                left: `${item}%`
-                                            }}
-                                            >
-                                                { item }
-                                        </div>
-                                    ))
-                                }
-                            </div>
-                        }
-                    </div>
-                    <>
-                        {
-                            <div className={`${name}-wrap__value`}>
-                                { max }
-                            </div>
-                        }
-                    </>
-               </>)
-           }
-             
-        </div>
-    </>
-}
+Slider.defaultProps = defaultProps;
+Slider.displayName = "Slider";
 
 export default Slider;

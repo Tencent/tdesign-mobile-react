@@ -2,27 +2,38 @@ import React, { FC } from 'react';
 import classNames from 'classnames';
 import { TdDividerProps } from './type';
 import useConfig from '../_util/useConfig';
+import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 
-const Divider: FC<TdDividerProps> = (props) => {
+export interface DividerProps extends TdDividerProps, NativeProps {}
+
+const defaultProps = {
+  align: 'center',
+  dashed: false,
+  layout: 'horizontal',
+  lineColor: '',
+};
+
+const Divider: FC<DividerProps> = (props) => {
   const { children, align, dashed, layout, lineColor, content } = props;
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-divider`;
+  const contentNode = content || children;
 
-  const classes = classNames(
-    name,
-    `${layout ? `${name}-${layout}` : ''}`,
-    `${align ? `${name}--content-${align}` : ''}`,
-    `${dashed ? `${name}--dashed` : ''}`,
-  );
+  const classes = classNames(name, {
+    [`${name}-${layout}`]: layout,
+    [`${name}--content-${align}`]: align && contentNode,
+    [`${name}--dashed`]: dashed,
+  });
 
-  const contentClass = classNames(`${name}__content`);
-  const contentInfo = content || children;
-
-  return (
-    <div className={classes} style={lineColor ? { borderColor: lineColor } : {}}>
-      {contentInfo ? <span className={contentClass}>{contentInfo}</span> : null}
-    </div>
+  return withNativeProps(
+    props,
+    <div className={classes} style={lineColor ? { borderColor: lineColor } : undefined}>
+      {contentNode && <span className={`${name}__content`}>{contentNode}</span>}
+    </div>,
   );
 };
+
+Divider.defaultProps = defaultProps as DividerProps;
+Divider.displayName = 'Divider';
 
 export default Divider;
