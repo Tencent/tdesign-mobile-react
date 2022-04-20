@@ -24,8 +24,8 @@ export default function PicText() {
   return (
     <>
       <div className="pic-compose">
-        {Array.from(Array(2), (i) => (
-          <div className="item" key={i}>
+        {Array.from(Array(2), (item, key) => (
+          <div className="item" key={key}>
             <Skeleton theme="text" rowCol={rowCols} />
           </div>
         ))}

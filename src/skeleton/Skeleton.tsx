@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import isNumber from 'lodash/isNumber';
 import { SkeletonRowCol, SkeletonRowColObj, TdSkeletonProps } from './type';
 import { StyledProps, Styles } from '../common';
 import useConfig from '../_util/useConfig';
@@ -28,7 +29,6 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
     [`${name}--animation-${animation}`]: animation,
   });
 
-  const isNumber = (x: unknown): boolean => Object.prototype.toString.call(x) === '[object Number]';
   const getColItemStyle = (obj: SkeletonRowColObj): Styles => {
     const styleName = [
       'width',
@@ -40,18 +40,18 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
       'background',
       'backgroundColor',
     ];
-    const style: Styles = {};
-    styleName.forEach((name) => {
-      if (name in obj) {
-        const px = isNumber(obj[name]) ? `${obj[name]}px` : obj[name];
-        if (name === 'size') {
-          [style.width, style.height] = [px, px];
-        } else {
-          style[name] = px;
+
+    return styleName.reduce((style, currentStyle) => {
+      const accStyle = style;
+      if (currentStyle in obj) {
+        const px = isNumber(obj[currentStyle]) ? `${obj[currentStyle]}px` : obj[currentStyle];
+        if (currentStyle === 'size') {
+          [accStyle.width, accStyle.height] = [px, px];
         }
+        accStyle[currentStyle] = px;
       }
-    });
-    return style;
+      return accStyle;
+    }, {} as Styles);
   };
 
   const parsedRowcols = rowCols.map((item) => {
@@ -82,7 +82,7 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
   return (
     <>
       <div className={rootClasses}>
-        {!loading && <>{completeContent}</>}
+        {!loading && completeContent}
 
         {loading && theme === 'avatar-text' && (
           <>
