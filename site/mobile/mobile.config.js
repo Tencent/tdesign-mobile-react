@@ -56,6 +56,11 @@ export default {
       component: () => import('tdesign-mobile-react/rate/_example/index.jsx'),
     },
     {
+      title: 'Search 搜索框',
+      name: 'search',
+      component: () => import('tdesign-mobile-react/search/_example/index.jsx'),
+    },
+    {
       title: 'Badge 徽标',
       name: 'badge',
       component: () => import('tdesign-mobile-react/badge/_example/index.jsx'),
