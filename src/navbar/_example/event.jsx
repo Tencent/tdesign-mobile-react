@@ -8,9 +8,14 @@ const EventUsage = () => (
         content: '点击标题',
       });
     }}
-    onHomeClick={() => {
+    onLeftClick={() => {
       Message.success({
         content: '点击返回',
+      });
+    }}
+    onHomeClick={() => {
+      Message.success({
+        content: '点击主页',
       });
     }}
   >

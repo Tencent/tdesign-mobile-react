@@ -1,18 +1,10 @@
 import React from 'react';
 import { Navbar } from 'tdesign-mobile-react';
-import { ChevronLeftIcon, CloseIcon, EllipsisIcon, NotificationIcon } from 'tdesign-icons-react';
+import { EllipsisIcon, NotificationIcon } from 'tdesign-icons-react';
 
 const IconUsage = () => (
   <>
-    <Navbar
-      leftIcon={
-        <>
-          <ChevronLeftIcon style={{ marginRight: 8 }} />
-          <CloseIcon />
-        </>
-      }
-      rightIcon={<EllipsisIcon />}
-    >
+    <Navbar leftIcon homeIcon>
       标题
     </Navbar>
     <br />
