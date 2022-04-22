@@ -16,11 +16,11 @@ const Search: FC<SearchProps> = (props) => {
     center = false,
     disabled = false,
     focus = false,
-    // label = '',
+    label = '',
     leftIcon,
     placeholder = '',
     rightIcon,
-    // shape = 'square',
+    shape = 'square',
     value = '',
     onActionClick,
     onBlur,
@@ -70,12 +70,27 @@ const Search: FC<SearchProps> = (props) => {
     setSearchActive(true);
   }
 
+  const shapeStyle = { borderRadius: shape === 'square' ? null : '50px' };
+
   return (
     <div
       className={`${classPrefix}-search ${searchActive ? `${classPrefix}-is-focused` : ''} ${className}`}
       style={{ ...style }}
     >
-      <div className={`${classPrefix}-search__form`}>
+      {label && (
+        <div
+          className={`${classPrefix}-search__label-text`}
+          style={{
+            marginLeft: '0px',
+            paddingRight: '8px',
+            color: 'rgba(0,0,0,0.9)',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {label}
+        </div>
+      )}
+      <div className={`${classPrefix}-search__form`} style={{ ...shapeStyle }}>
         <div className={`${classPrefix}-search__box`}>
           <div className={`${classPrefix}-search__icon-search`}>{leftIcon}</div>
           <input
@@ -97,7 +112,7 @@ const Search: FC<SearchProps> = (props) => {
             {rightIcon}
           </div>
         </div>
-        <label className={`${classPrefix}-search__label`} onClick={handleClick}>
+        <label className={`${classPrefix}-search__label`} style={{ ...shapeStyle }} onClick={handleClick}>
           <div className={`${classPrefix}-search__label-icon-search`}>{leftIcon}</div>
           <span className={`${classPrefix}-search__label-text`}>{placeholder}</span>
         </label>

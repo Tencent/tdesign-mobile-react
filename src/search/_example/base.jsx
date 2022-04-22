@@ -21,7 +21,6 @@ export default function Base() {
           value={value1}
           onChange={(value) => setValue1(value)}
           action="取消"
-          label="搜"
           leftIcon={<SearchIcon />}
         ></Search>
       </TDemoBlock>
