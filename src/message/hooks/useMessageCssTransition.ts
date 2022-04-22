@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import ReactDOM from 'react-dom';
 import identity from 'lodash/identity';
 
 interface UseMessageCssTransitionParams {
@@ -9,7 +8,6 @@ interface UseMessageCssTransitionParams {
   onEntered: () => void;
   onExit: () => void;
   onExited: () => void;
-  containerDom: React.ReactNode;
 }
 
 const useMessageCssTransition = ({
@@ -19,7 +17,6 @@ const useMessageCssTransition = ({
   onEntered = identity,
   onExit = identity,
   onExited = identity,
-  containerDom,
 }: UseMessageCssTransitionParams) => {
   const timerRef = useRef(null);
 
@@ -48,13 +45,6 @@ const useMessageCssTransition = ({
       timerRef.current = setTimeout(() => {
         if (contentEle && contentEle.style.display === 'block') {
           contentEle.style.display = 'none';
-        }
-        // 删除createElement创建的div元素
-        if (containerDom) {
-          const unmountResult = ReactDOM.unmountComponentAtNode(containerDom);
-          if (unmountResult) {
-            (containerDom as any).parentNode.removeChild(containerDom);
-          }
         }
       }, 0);
       onExited();
