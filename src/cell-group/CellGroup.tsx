@@ -2,23 +2,34 @@ import React from 'react';
 import classNames from 'classnames';
 import useConfig from '../_util/useConfig';
 import { TdCellGroupProps } from './type';
+import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 
-const CellGroup: React.FC<TdCellGroupProps> = (prop) => {
-  const { children, bordered = false, title = '' } = prop;
+export type CellGroupProps = TdCellGroupProps & NativeProps;
+
+const defaultProps = {
+  bordered: false,
+  title: '',
+};
+
+const CellGroup: React.FC<CellGroupProps> = (props) => {
+  const { children, bordered, title } = props;
   const { classPrefix } = useConfig();
+  const name = `${classPrefix}-cell-group`;
 
-  return (
-    <>
-      <div
-        className={classNames(`${classPrefix}-cell-group`, `${classPrefix}-cell-group__container`, {
-          'border--top-bottom': bordered,
-        })}
-      >
-        {title && <div className={`${classPrefix}-cell-group__title`}>{title}</div>}
-        <div className={`${classPrefix}-cell-group-body`}>{children}</div>
-      </div>
-    </>
+  return withNativeProps(
+    props,
+    <div
+      className={classNames(`${name}`, `${name}__container`, {
+        'border--top-bottom': bordered,
+      })}
+    >
+      {title && <div className={`${name}__title`}>{title}</div>}
+      <div className={`${name}-body`}>{children}</div>
+    </div>,
   );
 };
+
+CellGroup.defaultProps = defaultProps;
+CellGroup.displayName = 'CellGroup';
 
 export default CellGroup;
