@@ -1,69 +1,75 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import classNames from 'classnames';
 import { TdSwitchProps } from './type';
 import { StyledProps } from '../common';
 import useConfig from '../_util/useConfig';
+import useDefault from '../_util/useDefault';
 
 export interface SwitchProps extends TdSwitchProps, StyledProps {}
 
-const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
-  ({ customValue = [true, false], value, defaultValue, label, onChange, disabled, className, style }, ref) => {
-    const { classPrefix } = useConfig();
+const Switch = forwardRef<HTMLButtonElement, SwitchProps>((props, ref) => {
+  const { customValue, label, disabled, className, colors, style } = props;
 
-    const switchBaseClassName = `${classPrefix}-switch`;
+  const { classPrefix } = useConfig();
 
-    const [activeValue, inactiveValue] = customValue;
+  const switchBaseClassName = `${classPrefix}-switch`;
 
-    const [checked, setChecked] = useState<boolean>(defaultValue === activeValue);
+  const [activeValue, inactiveValue] = customValue;
 
-    const onInternalClick = () => {
-      if (disabled) return;
+  const [value, onChange] = useDefault(props.value, props.defaultValue, props.onChange);
 
-      setChecked(!checked);
-
-      onChange?.(!checked ? activeValue : inactiveValue);
-    };
-
-    const renderSwitchText = (checked: boolean, label: SwitchProps['label']) => {
-      if (typeof label === 'function') {
-        return label({ value: checked ? activeValue : inactiveValue });
+  const checked = useMemo(() => {
+    if (typeof value !== 'undefined') {
+      if (Array.isArray(customValue) && !customValue.includes(value)) {
+        throw `${value} is not in customValue: ${JSON.stringify(customValue)}`;
       }
+      return value === customValue[0];
+    }
+  }, [value, customValue]);
 
-      if (typeof label === 'string') return label;
+  const onInternalClick = () => {
+    if (disabled) return;
 
-      if (Array.isArray(label)) {
-        const [activeContent, inactiveContent] = label;
-        const content = checked ? activeContent : inactiveContent;
+    onChange?.(!checked ? activeValue : inactiveValue);
+  };
 
-        if (typeof content === 'function') return content();
+  const renderSwitchText = (checked: boolean, label: SwitchProps['label']) => {
+    if (typeof label === 'function') {
+      return label({ value: checked ? activeValue : inactiveValue });
+    }
 
-        return content;
-      }
+    if (typeof label === 'string') return label;
 
-      return null;
-    };
+    if (Array.isArray(label)) {
+      const [activeContent, inactiveContent] = label;
+      const content = checked ? activeContent : inactiveContent;
 
-    useEffect(() => {
-      if (typeof value !== 'undefined') {
-        if (Array.isArray(customValue) && !customValue.includes(value)) {
-          throw `${value} is not in customValue: ${JSON.stringify(customValue)}`;
-        }
-        setChecked(value === customValue[0]);
-      }
-    }, [value, customValue]);
+      if (typeof content === 'function') return content();
 
-    const switchClassName = classNames(switchBaseClassName, className, {
-      [`${classPrefix}-is-checked`]: checked,
-      [`${classPrefix}-is-disabled`]: disabled,
-    });
+      return content;
+    }
 
-    return (
-      <button ref={ref} className={switchClassName} style={style} onClick={onInternalClick}>
-        <span className={`${classPrefix}-switch__text`}>{renderSwitchText(checked, label)}</span>
-        <span className={`${classPrefix}-switch__node`}></span>
-      </button>
-    );
-  },
-);
+    return null;
+  };
+
+  const switchClassName = classNames(switchBaseClassName, className, {
+    [`${classPrefix}-is-checked`]: checked,
+    [`${classPrefix}-is-disabled`]: disabled,
+  });
+
+  return (
+    <button ref={ref} className={switchClassName} style={style} onClick={onInternalClick}>
+      <span className={`${classPrefix}-switch__text`}>{renderSwitchText(checked, label)}</span>
+      <span
+        className={`${classPrefix}-switch__node`}
+        style={{ backgroundColor: checked ? colors?.[0] : colors?.[1] }}
+      ></span>
+    </button>
+  );
+});
+
+Switch.defaultProps = {
+  customValue: [true, false],
+};
 
 export default Switch;

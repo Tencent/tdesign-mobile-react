@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tabs } from 'tdesign-mobile-react/tabs';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import './style.less';
@@ -23,11 +23,32 @@ export default function () {
       value: 'tab4',
     },
   ];
+  const content = {
+    tab1: '标签一内容',
+    tab2: '标签二内容',
+    tab3: '标签三内容',
+    tab4: '标签四内容',
+    tab5: '标签五内容',
+    tab6: '标签六内容',
+  };
+  const [key, setKey] = useState('tab1');
+  const onChange = (value) => {
+    setKey(value);
+  };
 
   return (
     <div className='className="tdesign-mobile-demo"'>
-      <TDemoBlock title="底部选项卡">
-        <Tabs list={list2} placement="bottom" content={'内容内容'}></Tabs>
+      <TDemoBlock summary="底部选项卡">
+        <ul className="hori-wrap">
+          <li>
+            <Tabs
+              list={list2}
+              placement="bottom"
+              content={<div className="tab-content">{content[key]}</div>}
+              change={onChange}
+            ></Tabs>
+          </li>
+        </ul>
       </TDemoBlock>
     </div>
   );

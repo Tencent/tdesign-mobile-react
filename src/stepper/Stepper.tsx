@@ -1,16 +1,20 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import useConfig from 'tdesign-mobile-react/_util/useConfig';
 import classNames from 'classnames';
 import identity from 'lodash/identity';
+import useDefault from 'tdesign-mobile-react/_util/useDefault';
 import { TdStepperProps } from './type';
-import type { StyledProps } from '../common';
+import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 
-export interface StepperProps extends TdStepperProps, StyledProps {}
+export interface StepperProps extends TdStepperProps, NativeProps {}
 
 const defaultProps = {
-  max: 999,
+  disabled: false,
+  disableInput: false,
+  max: 100,
   min: 0,
   step: 1,
+  theme: 'normal',
   defaultValue: 0,
   onBlur: identity,
   onChange: identity,
@@ -32,11 +36,11 @@ const Stepper: FC<StepperProps> = (props) => {
     onChange,
     onOverlimit,
   } = props;
-  const [currentValue, setCurrentValue] = useState(0);
+  const [currentValue, setCurrentValue] = useDefault(value, defaultValue, onChange);
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-stepper`;
 
-  const isDisabled = (type: string) => {
+  const isDisabled = (type: 'minus' | 'plus') => {
     if (disabled) return true;
     if (type === 'minus' && currentValue <= min) {
       return true;
@@ -60,7 +64,7 @@ const Stepper: FC<StepperProps> = (props) => {
       onOverlimit('minus');
       return;
     }
-    updateValue(currentValue - step);
+    updateValue(Number(currentValue) - step);
   };
 
   const plusValue = () => {
@@ -68,32 +72,27 @@ const Stepper: FC<StepperProps> = (props) => {
       onOverlimit('plus');
       return;
     }
-    updateValue(currentValue + step);
+    updateValue(Number(currentValue) + step);
   };
 
   const handleChange = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     const { value } = e.currentTarget;
     if (isNaN(Number(value))) return;
-    setCurrentValue(formatValue(Number(value)));
-    onChange(value);
+    const formattedValue = formatValue(Number(value));
+    setCurrentValue(formattedValue);
+    onChange(formattedValue);
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     const { value } = e.currentTarget;
     if (isNaN(Number(value))) return;
-    setCurrentValue(formatValue(Number(value)));
-    onBlur(value);
+    const formattedValue = formatValue(Number(value));
+    setCurrentValue(formattedValue);
+    onBlur(formattedValue);
   };
 
-  useEffect(() => {
-    if (typeof value !== 'undefined') {
-      setCurrentValue(Number(value));
-    } else {
-      setCurrentValue(Number(defaultValue));
-    }
-  }, [value, defaultValue]);
-
-  return (
+  return withNativeProps(
+    props,
     <div
       className={classNames(name, {
         [`${classPrefix}-is-disabled`]: disabled,
@@ -121,11 +120,11 @@ const Stepper: FC<StepperProps> = (props) => {
         })}
         onClick={plusValue}
       />
-    </div>
+    </div>,
   );
 };
 
-Stepper.defaultProps = defaultProps;
+Stepper.defaultProps = defaultProps as StepperProps;
 Stepper.displayName = 'Stepper';
 
 export default Stepper;

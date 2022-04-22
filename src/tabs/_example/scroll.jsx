@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tabs } from 'tdesign-mobile-react/tabs';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import './style.less';
 
 export default function () {
+  const [key, setKey] = useState('tab1');
   const list4 = [
     {
       label: '标签页一',
@@ -31,13 +32,27 @@ export default function () {
     },
   ];
 
+  const content = {
+    tab1: '标签一内容',
+    tab2: '标签二内容',
+    tab3: '标签三内容',
+    tab4: '标签四内容',
+    tab5: '标签五内容',
+    tab6: '标签六内容',
+  };
+
   const onChange = (value) => {
-    console.log('值', value);
+    setKey(value);
   };
 
   return (
-    <TDemoBlock title="可滚动的选项卡" summary="元素过多时可滚动，点击可自动调整滚动位置">
-      <Tabs list={list4} change={onChange}></Tabs>
+    <TDemoBlock summary="超过屏幕滚动">
+      <ul className="hori-wrap">
+        <li>
+          <Tabs list={list4} change={onChange}></Tabs>
+          <div className="tab-content">{content[key]}</div>
+        </li>
+      </ul>
     </TDemoBlock>
   );
 }
