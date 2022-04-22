@@ -1,24 +1,33 @@
-import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import classNames from 'classnames';
-import { useScroll, useMount } from 'ahooks';
+import { useScroll, useMount, useBoolean } from 'ahooks';
 import smoothscroll from 'smoothscroll-polyfill';
+import isString from 'lodash/isString';
 import { Icon } from 'tdesign-icons-react';
+import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import useConfig from '../_util/useConfig';
 import { TdBackTopProps } from './type';
 
-export enum BackTopTheme {
-  ROUND = 'round',
-  HALF_ROUND = 'half-round',
-  ROUND_DARK = 'round-dark',
-  HALF_ROUND_DARK = 'half-round-dark',
-}
+export type ThemeList = 'round' | 'half-round' | 'round-dark' | 'half-round-dark';
 
-const BackTop: React.FC<TdBackTopProps> = (prop) => {
-  const { fixed = true, icon = 'backtop', target = () => window, text = '', theme = BackTopTheme.ROUND } = prop;
+export type BackTopProps = TdBackTopProps & NativeProps;
 
-  const [show, setShow] = useState(false);
+export const defaultProps = {
+  fixed: true,
+  icon: 'backtop',
+  target: (() => window) as any,
+  text: '',
+  theme: 'round' as ThemeList,
+};
+
+const BackTop: React.FC<BackTopProps> = (props) => {
+  const { fixed, icon, target, text, theme } = props;
+
+  const [show, { setTrue, setFalse }] = useBoolean(false);
 
   const { classPrefix } = useConfig();
+
+  const name = `${classPrefix}-back-top`;
 
   const scroll = useScroll(document);
 
@@ -37,34 +46,33 @@ const BackTop: React.FC<TdBackTopProps> = (prop) => {
     // 当滚动条滚动到超过锚点一个屏幕后，显示回到顶部按钮
     const screenHeight = window.innerHeight;
     if (scroll?.top > screenHeight + targetHeight) {
-      setShow(true);
+      setTrue();
     } else {
-      setShow(false);
+      setFalse();
     }
-  }, [scroll, targetHeight]);
+  }, [scroll, targetHeight, setTrue, setFalse]);
 
   const onClick = useCallback(() => {
     document.documentElement.scrollTo({ top: targetHeight, behavior: 'smooth' });
   }, [targetHeight]);
 
-  const backTopIcon =
-    typeof icon === 'string' ? <Icon className={`${classPrefix}-back-top__icon`} name={icon} /> : icon;
-
-  return (
-    <>
-      <div
-        className={classNames(`${classPrefix}-back-top`, `${classPrefix}-back-top--${theme}`, {
-          [`${classPrefix}-is-fixed`]: fixed,
-          'back-top-hidden': !show,
-          'back-top-show': show,
-        })}
-        onClick={onClick}
-      >
-        {backTopIcon}
-        {text && <div className={classNames(`${classPrefix}-back-top__text`, `${classPrefix}-class-text`)}>{text}</div>}
-      </div>
-    </>
+  return withNativeProps(
+    props,
+    <div
+      className={classNames(`${name}`, `${name}--${theme}`, {
+        [`${classPrefix}-is-fixed`]: fixed,
+        'back-top-hidden': !show,
+        'back-top-show': show,
+      })}
+      onClick={onClick}
+    >
+      {isString(icon) ? <Icon className={`${name}__icon`} name={icon} /> : icon}
+      {text && <div className={classNames(`${name}__text`, `${classPrefix}-class-text`)}>{text}</div>}
+    </div>,
   );
 };
+
+BackTop.defaultProps = defaultProps;
+BackTop.displayName = 'BackTop';
 
 export default BackTop;
