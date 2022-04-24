@@ -88,6 +88,11 @@ export default {
       component: () => import('tdesign-mobile-react/upload/_example/index.jsx'),
     },
     {
+      title: 'Skeleton 骨架屏',
+      name: 'skeleton',
+      component: () => import('tdesign-mobile-react/skeleton/_example/index.jsx'),
+    },
+    {
       title: 'Sticky 吸顶',
       name: 'sticky',
       component: () => import('tdesign-mobile-react/sticky/_example/base.jsx'),
