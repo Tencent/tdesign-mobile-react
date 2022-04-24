@@ -137,5 +137,10 @@ export default {
       name: 'pull-down-refresh',
       component: () => import('tdesign-mobile-react/pull-down-refresh/_example/index.jsx'),
     },
+    {
+      title: 'Indexes 索引',
+      name: 'indexes',
+      component: () => import('tdesign-mobile-react/indexes/_example/index.tsx'),
+    },
   ],
 };

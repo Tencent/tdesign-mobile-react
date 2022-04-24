@@ -82,6 +82,12 @@ export default {
           path: '/mobile-react/components/tabs',
           component: () => import('tdesign-mobile-react/tabs/tabs.md'),
         },
+        {
+          title: 'Indexes 索引',
+          name: 'indexes',
+          path: '/mobile-react/components/indexes',
+          component: () => import('tdesign-mobile-react/indexes/indexes.md'),
+        },
       ],
     },
     {
