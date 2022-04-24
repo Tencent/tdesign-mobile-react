@@ -124,12 +124,12 @@ export default {
           path: '/mobile-react/components/radio',
           component: () => import('tdesign-mobile-react/radio/radio.md'),
         },
-        // {
-        //   title: 'Rate 评分',
-        //   name: 'rate',
-        //   path: '/mobile-react/components/rate',
-        //   component: () => import('tdesign-mobile-react/rate/rate.md'),
-        // },
+        {
+          title: 'Rate 评分',
+          name: 'rate',
+          path: '/mobile-react/components/rate',
+          component: () => import('tdesign-mobile-react/rate/rate.md'),
+        },
         // {
         //   title: 'Search 搜索框',
         //   name: 'search',
@@ -142,12 +142,12 @@ export default {
           path: '/mobile-react/components/slider',
           component: () => import('tdesign-mobile-react/slider/slider.md'),
         },
-        // {
-        //   title: 'Stepper 步进器',
-        //   name: 'stepper',
-        //   path: '/mobile-react/components/stepper',
-        //   component: () => import('tdesign-mobile-react/stepper/stepper.md'),
-        // },
+        {
+          title: 'Stepper 步进器',
+          name: 'stepper',
+          path: '/mobile-react/components/stepper',
+          component: () => import('tdesign-mobile-react/stepper/stepper.md'),
+        },
         {
           title: 'Switch 开关',
           name: 'switch',
@@ -172,12 +172,12 @@ export default {
       title: '数据展示',
       type: 'component',
       children: [
-        // {
-        //   title: 'Avatar 头像',
-        //   name: 'avatar',
-        //   path: '/mobile-react/components/avatar',
-        //   component: () => import('tdesign-mobile-react/avatar/avatar.md'),
-        // },
+        {
+          title: 'Avatar 头像',
+          name: 'avatar',
+          path: '/mobile-react/components/avatar',
+          component: () => import('tdesign-mobile-react/avatar/avatar.md'),
+        },
         {
           title: 'Badge 徽标',
           name: 'badge',
@@ -238,12 +238,12 @@ export default {
         //   path: '/mobile-react/components/image-viewer',
         //   component: () => import('tdesign-mobile-react/image-viewer/image-viewer.md'),
         // },
-        // {
-        //   title: 'Skeleton 骨架屏',
-        //   name: 'skeleton',
-        //   path: '/mobile-react/components/skeleton',
-        //   component: () => import('tdesign-mobile-react/skeleton/skeleton.md'),
-        // },
+        {
+          title: 'Skeleton 骨架屏',
+          name: 'skeleton',
+          path: '/mobile-react/components/skeleton',
+          component: () => import('tdesign-mobile-react/skeleton/skeleton.md'),
+        },
         {
           title: 'Sticky 吸顶容器',
           name: 'sticky',

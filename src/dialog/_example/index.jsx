@@ -1,4 +1,5 @@
 import React from 'react';
+import { Dialog, Button } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import FeedbackUsage from './feedback';
@@ -9,18 +10,53 @@ import './style/index.less';
 export default function Base() {
   return (
     <>
-      <TDemoHeader title="Dialog 对话框" summary="一种打断当前操作的模态视图，用于显示重要提示或请求用户进行重要操作" />
-      <TDemoBlock title="反馈类对话框" summary="用于用户进行了一个操作，需传达重要信息，告知用户当前状况的情况。">
+      <TDemoHeader
+        title="Dialog 对话框"
+        summary="用于显示重要提示或请求用户进行重要操作，一种打断当前操作的模态视图。"
+      />
+      <TDemoBlock title="01 类型" summary="反馈类对话框">
         <FeedbackUsage />
       </TDemoBlock>
-      <TDemoBlock
-        title="确认类对话框"
-        summary="用于用户进行了一个操作，后果比较严重，需要用户二次确认的情况。 例如 退出、删除、清空等操作"
-      >
+      <TDemoBlock summary="确认类对话框">
         <ConfirmUsage />
       </TDemoBlock>
-      <TDemoBlock title="输入对话框" summary="用于用户进行了一个操作，需输入下一步操作的必要信息。 例如 输入密码">
+      <TDemoBlock summary="输入类对话框">
         <InputUsage />
+      </TDemoBlock>
+      <TDemoBlock summary="命令调用">
+        <div className="t-dialog__demo-wrap">
+          <Button
+            variant="outline"
+            shape="round"
+            block
+            onClick={() => {
+              Dialog.confirm({
+                visible: true,
+                title: '对话框标题',
+                content: '告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内',
+                confirmBtn: '确认按钮',
+                cancelBtn: '取消按钮',
+              });
+            }}
+          >
+            带取消按钮
+          </Button>
+          <Button
+            variant="outline"
+            shape="round"
+            block
+            onClick={() => {
+              Dialog.alert({
+                visible: true,
+                title: '对话框标题',
+                content: '告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内',
+                confirmBtn: '确认按钮',
+              });
+            }}
+          >
+            无取消按钮
+          </Button>
+        </div>
       </TDemoBlock>
     </>
   );

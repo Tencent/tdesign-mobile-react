@@ -7,18 +7,20 @@ const InputUsage = React.memo(() => {
   return (
     <div className="t-dialog__demo-wrap">
       <Button
-        theme="primary"
-        size="small"
+        variant="outline"
+        shape="round"
+        block
         onClick={() => {
           setVisible(true);
         }}
       >
-        带输入框
+        单行标题
       </Button>
 
       <Button
-        theme="primary"
-        size="small"
+        variant="outline"
+        shape="round"
+        block
         onClick={() => {
           const confirm = Dialog.confirm({
             title: '带输入框对话框',
@@ -27,7 +29,7 @@ const InputUsage = React.memo(() => {
             content: (
               <>
                 <p className="t-dialog__demo-tips">
-                  请输入相关文案请输入相关文案请输入相关文案请输入相关文案请输入相关文案请输入相关
+                  对话框标题告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内
                 </p>
                 <input placeholder="输入文案" className="t-dialog__demo-input" />
               </>
@@ -43,7 +45,7 @@ const InputUsage = React.memo(() => {
           });
         }}
       >
-        带输入框
+        带说明文本
       </Button>
 
       <Dialog

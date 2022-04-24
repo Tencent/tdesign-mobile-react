@@ -1,31 +1,47 @@
-import React, { ChangeEvent, FC, createContext, ReactNode, useRef } from 'react';
+import React, { FC, ReactNode, useRef } from 'react';
 import useConfig from '../_util/useConfig';
-import Radio from './Radio';
-import { TdRadioGroupProps, RadioValue } from './type';
-import useDefault from './useDefault';
+import Radio, { RadioContext, RadioContextValue, RadioProps } from './Radio';
+import { TdRadioGroupProps } from './type';
+import useDefault from '../_util/useDefault';
 
 export interface RadioGroupProps extends TdRadioGroupProps {
   children?: ReactNode;
 }
 
-export interface RadioGroupContextProps {
-  value: RadioValue[];
-  disabled: boolean;
-  onChange?: (value: RadioValue, context: { e: ChangeEvent<HTMLInputElement> }) => void;
-}
-
-export const RadioGroupContext = createContext<RadioGroupContextProps | null>(null);
-
 const RadioGroup: FC<RadioGroupProps> = (props) => {
   const { classPrefix } = useConfig();
-  const { disabled, options, value, defaultValue, children } = props;
+  const { disabled, options, value, defaultValue, children, onChange } = props;
   const groupRef = useRef(null);
-  const [internalValue, setInternalValue] = useDefault(value, defaultValue, props.onChange);
+  const [internalValue, setInternalValue] = useDefault(value, defaultValue, onChange);
+
+  const context: RadioContextValue = {
+    inject: (radioProps: RadioProps) => {
+      if (typeof radioProps.checked !== 'undefined') {
+        return radioProps;
+      }
+      return {
+        ...radioProps,
+        checked:
+          typeof internalValue !== 'undefined' &&
+          typeof radioProps.value !== 'undefined' &&
+          internalValue === radioProps.value,
+        disabled: radioProps.disabled || disabled,
+        onChange: (checked, { e }) => {
+          if (typeof radioProps.onChange === 'function') {
+            radioProps.onChange(checked, { e });
+          }
+          // @ts-ignore
+          setInternalValue(radioProps.value, { e });
+        },
+      };
+    },
+  };
+
   const renderOptions = () =>
     options.map((option) => {
       if (typeof option === 'number' || typeof option === 'string') {
         return (
-          <Radio value={option} key={option}>
+          <Radio value={option} key={option} label={option}>
             {option}
           </Radio>
         );
@@ -37,24 +53,15 @@ const RadioGroup: FC<RadioGroupProps> = (props) => {
       );
     });
   return (
-    <RadioGroupContext.Provider
-      value={{
-        value: internalValue ? [internalValue] : [],
-        disabled,
-        onChange: (value, { e }) => {
-          console.log('value: ', value);
-          if (typeof props.onChange === 'function') {
-            props.onChange(value, { e });
-          }
-          setInternalValue(value, { e });
-        },
-      }}
-    >
-      <div ref={groupRef} className={`${classPrefix}-radio-group`}>
-        {children || renderOptions()}
+    <div ref={groupRef} className={`${classPrefix}-radio-group`}>
+      <div className={`${classPrefix}-cell-group`}>
+        <div className={`${classPrefix}cell-group__container`}>
+          <RadioContext.Provider value={context}>{options?.length ? renderOptions() : children}</RadioContext.Provider>
+        </div>
       </div>
-    </RadioGroupContext.Provider>
+    </div>
   );
 };
 
+RadioGroup.displayName = 'RadioGroup';
 export default RadioGroup;
