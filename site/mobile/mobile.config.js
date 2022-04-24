@@ -157,5 +157,10 @@ export default {
       name: 'avatar',
       component: () => import('tdesign-mobile-react/avatar/_example/index.jsx'),
     },
+    {
+      title: 'Indexes 索引',
+      name: 'indexes',
+      component: () => import('tdesign-mobile-react/indexes/_example/index.tsx'),
+    },
   ],
 };

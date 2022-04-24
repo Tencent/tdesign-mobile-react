@@ -1,0 +1,146 @@
+import React, { FC, forwardRef, useState, MouseEvent, TouchEvent, useRef, useEffect } from 'react';
+import isFunction from 'lodash/isFunction';
+import throttle from 'lodash/throttle';
+import { Cell } from 'tdesign-mobile-react/cell';
+import { CellGroup } from 'tdesign-mobile-react/cell-group';
+import { TdIndexesProps, ListItem } from './type';
+import { StyledProps } from '../common';
+import useConfig from '../_util/useConfig';
+import './style/index';
+
+const topOffset = 40; // 滑动选中高亮的顶部偏移(px)
+
+export interface IndexesProps extends TdIndexesProps, StyledProps {}
+
+const Indexes: FC<IndexesProps> = forwardRef((props) => {
+  const { height, list, onSelect, style } = props;
+
+  const { classPrefix } = useConfig();
+  const prefix = classPrefix;
+  // 当前高亮index
+  const [currentGroup, setCurrentGroup] = useState<ListItem | null>(null);
+  // 是否展示index高亮提示
+  const [showScrollTip, setShowScrollTip] = useState<boolean>(false);
+
+  // 索引主列表的ref
+  const indexesRef = useRef<HTMLDivElement>(null);
+  // 存放tip消失的定时器
+  const tipTimer = useRef(null);
+  // 存放index组的scrollTop
+  const groupTop = useRef([]);
+
+  const handleSelect = (argv: { groupIndex: string; childrenIndex: number }) => {
+    if (!isFunction(onSelect)) {
+      return;
+    }
+
+    onSelect(argv);
+  };
+
+  const showCurrent = () => {
+    setShowScrollTip(true);
+    clearInterval(tipTimer.current);
+    tipTimer.current = null;
+    tipTimer.current = setTimeout(() => {
+      setShowScrollTip(false);
+    }, 2000);
+  };
+
+  const getCurrentTitleNode = (current?: ListItem) =>
+    Array.from(document.getElementsByClassName(`${prefix}-indexes__index-${(current || currentGroup)?.index}`)).find(
+      (x): x is HTMLElement => x instanceof HTMLElement,
+    );
+
+  const handleSideBarItemClick = (e: MouseEvent<HTMLDivElement>, listItem: ListItem) => {
+    setCurrentGroup(listItem);
+    showCurrent();
+    getCurrentTitleNode(listItem).scrollIntoView();
+  };
+
+  const handleSideBarTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+    const { touches } = e;
+    const { clientX, clientY } = touches[0];
+    const target = document.elementFromPoint(clientX, clientY);
+
+    // 触摸侧边index sidebar
+    if (target && target.className.match(`${prefix}-indexes__sidebar-item`) && target instanceof HTMLElement) {
+      const { index } = target.dataset;
+      const listItem = list.find((element) => element.index === index);
+      if (index !== undefined && currentGroup.index !== index) {
+        setCurrentGroup(listItem);
+        showCurrent();
+        getCurrentTitleNode(listItem).scrollIntoView();
+      }
+    }
+  };
+
+  const handleScroll = () => {
+    // 滑动列表
+    const { scrollTop } = indexesRef.current;
+
+    const curIndex = groupTop.current.findIndex((element) => element - topOffset > scrollTop);
+
+    if (curIndex > -1) {
+      setCurrentGroup(list[curIndex]);
+    }
+  };
+
+  const getDomInfo = () => {
+    const groupItemDom = document.querySelectorAll('.t-indexes .t-cell-group__container');
+    groupTop.current = Array.from(groupItemDom).map((element) => element.clientHeight);
+    groupTop.current.reduce((acc, cur, index) => {
+      const amount = acc + cur;
+      groupTop.current[index] = amount;
+
+      return amount;
+    });
+  };
+
+  useEffect(() => {
+    getDomInfo();
+  }, []);
+
+  return (
+    <div
+      className={`${prefix}-indexes`}
+      onScroll={throttle(handleScroll, 100)}
+      style={{ height: height || window.innerHeight, ...style }}
+      ref={indexesRef}
+    >
+      {list.map((listItem) => (
+        <div className={`${prefix}-indexes__anchor ${prefix}-indexes__index-${listItem.index}`} key={listItem.index}>
+          <CellGroup title={listItem.title}>
+            {listItem.children.map((element, index) => (
+              <Cell
+                title={element.title}
+                key={element.title}
+                onClick={() => handleSelect({ groupIndex: listItem.index, childrenIndex: index })}
+              ></Cell>
+            ))}
+          </CellGroup>
+        </div>
+      ))}
+      <div className={`${prefix}-indexes__sidebar`} onTouchMove={throttle(handleSideBarTouchMove, 100)}>
+        {list.map((listItem) => (
+          <div
+            className={`${prefix}-indexes__sidebar-item ${
+              currentGroup?.index === listItem.index ? `${prefix}-indexes__sidebar-item--active` : ''
+            }`}
+            data-index={listItem.index}
+            key={listItem.index}
+            onClick={(e) => handleSideBarItemClick(e, listItem)}
+          >
+            {listItem.index}
+          </div>
+        ))}
+      </div>
+      {showScrollTip && (
+        <div className={`${prefix}-indexes__current`}>
+          <div>{currentGroup?.index}</div>
+        </div>
+      )}
+    </div>
+  );
+});
+
+export default Indexes;
