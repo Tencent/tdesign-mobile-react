@@ -157,5 +157,10 @@ export default {
       name: 'avatar',
       component: () => import('tdesign-mobile-react/avatar/_example/index.jsx'),
     },
+    {
+      title: 'Textarea 多行文本框',
+      name: 'textarea',
+      component: () => import('tdesign-mobile-react/textarea/_example/index.jsx'),
+    },
   ],
 };
