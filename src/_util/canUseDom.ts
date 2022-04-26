@@ -1,6 +1,8 @@
+import isUndefined from 'lodash/isUndefined';
+
 export const canUseDom = !!(
-  typeof window !== 'undefined' &&
-  typeof document !== 'undefined' &&
+  !isUndefined(window) &&
+  !isUndefined(document) &&
   window.document &&
   window.document.createElement
 );
