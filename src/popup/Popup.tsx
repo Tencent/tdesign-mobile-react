@@ -78,7 +78,7 @@ const Popup: FC<TdPopupProps> = (prop) => {
       <div className={`${name}`} style={rootStyles}>
         <CSSTransition in={currentVisible} appear {...maskCssTransitionState.props}>
           <div ref={maskRef} style={{ display: 'none' }}>
-            <Mask visible={showOverlay} onMaskClick={handleMaskClick} />
+            <Mask visible={showOverlay && visible} onMaskClick={handleMaskClick} />
           </div>
         </CSSTransition>
         <CSSTransition in={currentVisible} appear {...cssTransitionState.props}>
