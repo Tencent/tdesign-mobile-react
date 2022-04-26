@@ -148,12 +148,12 @@ export default {
           path: '/mobile-react/components/switch',
           component: () => import('tdesign-mobile-react/switch/switch.md'),
         },
-        // {
-        //   title: 'Textarea 多行输入框',
-        //   name: 'textarea',
-        //   path: '/mobile-react/components/textarea',
-        //   component: () => import('tdesign-mobile-react/textarea/textarea.md'),
-        // },
+        {
+          title: 'Textarea 多行输入框',
+          name: 'textarea',
+          path: '/mobile-react/components/textarea',
+          component: () => import('tdesign-mobile-react/textarea/textarea.md'),
+        },
         // {
         //   title: 'Upload 上传',
         //   name: 'upload',
