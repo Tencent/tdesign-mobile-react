@@ -6,11 +6,9 @@ import { useLockScroll } from 'tdesign-mobile-react/_util/useLockScroll';
 import { useUnmountedRef } from 'ahooks';
 import { useSpring, animated } from '@react-spring/web';
 import { useShouldRender } from 'tdesign-mobile-react/_util/useShouldRender';
+import useConfig from '../_util/useConfig';
 
-const prefix = 't';
-const name = `${prefix}-mask`;
-
-export interface TdMaskProps extends NativeProps {
+export interface MaskProps extends NativeProps {
   visible?: boolean;
   onMaskClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   destroyOnClose?: boolean;
@@ -40,11 +38,13 @@ const defaultProps = {
   disableBodyScroll: true,
   getContainer: null,
   stopPropagation: ['click'],
-} as TdMaskProps;
+} as MaskProps;
 
-const Mask: FC<TdMaskProps> = (props) => {
+const Mask: FC<MaskProps> = (props) => {
   const ref = useRef<HTMLDivElement>(null);
   useLockScroll(ref, props.visible && props.disableBodyScroll);
+  const { classPrefix } = useConfig();
+  const name = `${classPrefix}-mask`;
 
   const background = useMemo(() => {
     const opacity = opacityRecord[props.opacity] ?? props.opacity;
@@ -97,8 +97,10 @@ const Mask: FC<TdMaskProps> = (props) => {
           }
         }}
       >
-        {props.onMaskClick && <div className={`${prefix}-aria-button`} role="button" onClick={props.onMaskClick} />}
-        <div className={`${prefix}-content`}>{shouldRender && props.children}</div>
+        {props.onMaskClick && (
+          <div className={`${classPrefix}-aria-button`} role="button" onClick={props.onMaskClick} />
+        )}
+        <div className={`${classPrefix}-content`}>{shouldRender && props.children}</div>
       </animated.div>,
     ),
   );

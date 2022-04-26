@@ -1,8 +1,7 @@
-import _Mask from './Mask';
+import Mask from './Mask';
 
 import './style';
 
-export const Mask = _Mask;
+export * from './Mask';
 
 export default Mask;
-  
