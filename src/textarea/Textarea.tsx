@@ -14,9 +14,9 @@ export interface TextareaRefInterface extends React.RefObject<unknown> {
 }
 
 const Textarea = forwardRef((props: TextareaProps, ref: TextareaRefInterface) => {
-  const { disabled, maxlength, maxcharacter, autofocus, defaultValue, autosize = false, ...otherProps } = props;
+  const { disabled, maxlength, maxcharacter, autofocus, defaultValue, autosize = false, label, ...otherProps } = props;
   const { classPrefix } = useConfig();
-  const textareaClassName = classNames(`${classPrefix}-textarea`);
+  const baseClass = `${classPrefix}-textarea`;
 
   const [value = '', setValue] = useDefault(props.value, defaultValue, props.onChange);
   const [textareaStyle, setTextareaStyle] = useState({});
@@ -50,6 +50,10 @@ const Textarea = forwardRef((props: TextareaProps, ref: TextareaRefInterface) =>
     return eventProps;
   }, {});
 
+  const textareaClassNames = classNames(`${baseClass}__wrapper`, {
+    [`${baseClass}-is-disabled`]: disabled,
+  });
+
   const adjustTextareaHeight = useCallback(() => {
     if (autosize === true) {
       setTextareaStyle(calcTextareaHeight(textareaRef.current as HTMLTextAreaElement));
@@ -57,7 +61,7 @@ const Textarea = forwardRef((props: TextareaProps, ref: TextareaRefInterface) =>
       const { minRows, maxRows } = autosize;
       setTextareaStyle(calcTextareaHeight(textareaRef.current as HTMLTextAreaElement, minRows, maxRows));
     } else if (autosize === false) {
-      setTextareaStyle({ height: 'auto', minHeight: 'auto' });
+      setTextareaStyle({ height: 'auto', minHeight: '96px' });
     }
   }, [autosize]);
 
@@ -81,21 +85,24 @@ const Textarea = forwardRef((props: TextareaProps, ref: TextareaRefInterface) =>
   }));
 
   return (
-    <div ref={wrapperRef} className={textareaClassName}>
-      <textarea
-        {...textareaProps}
-        {...eventProps}
-        value={value}
-        style={textareaStyle}
-        autoFocus={autofocus}
-        disabled={disabled}
-        maxLength={maxlength}
-        onChange={inputValueChangeHandle}
-        ref={textareaRef}
-      />
-      {(maxcharacter || maxlength) && (
-        <div className={`${textareaClassName}__count`}> {`${textareaLength}/${maxcharacter || maxlength}`}</div>
-      )}
+    <div ref={wrapperRef} className={baseClass}>
+      {label && <div className={`${baseClass}__name`}> {label} </div>}
+      <div className={textareaClassNames}>
+        <textarea
+          {...textareaProps}
+          {...eventProps}
+          value={value}
+          style={textareaStyle}
+          autoFocus={autofocus}
+          disabled={disabled}
+          maxLength={maxlength}
+          onChange={inputValueChangeHandle}
+          ref={textareaRef}
+        />
+        {(maxcharacter || maxlength) && (
+          <div className={`${baseClass}__count`}> {`${textareaLength}/${maxcharacter || maxlength}`} </div>
+        )}
+      </div>
     </div>
   );
 });

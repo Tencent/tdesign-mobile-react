@@ -2,5 +2,5 @@ import React from 'react';
 import { Textarea } from 'tdesign-mobile-react';
 
 export default function Maxlength() {
-  return <Textarea placeholder="请输入内容" maxlength={20} />;
+  return <Textarea placeholder="请输入文字" maxlength={20} label="标签文字" />;
 }

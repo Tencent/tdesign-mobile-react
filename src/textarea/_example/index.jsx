@@ -2,6 +2,7 @@ import React from 'react';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import Base from './base';
+import Label from './label';
 import Autosize from './autosize';
 import Events from './events';
 import Type from './type';
@@ -15,10 +16,13 @@ export default function () {
       <TDemoBlock title="01 类型" summary="基础多行文本框">
         <Base />
       </TDemoBlock>
+      <TDemoBlock summary="带标题多行文本框">
+        <Label />
+      </TDemoBlock>
       <TDemoBlock summary="自动增高多行文本框">
         <Autosize />
       </TDemoBlock>
-      <TDemoBlock title="02 类型" summary="禁用多行文本框">
+      <TDemoBlock title="02 状态" summary="禁用多行文本框">
         <Type />
       </TDemoBlock>
       <TDemoBlock title="03 字符限制" summary="设置最大字符个数">

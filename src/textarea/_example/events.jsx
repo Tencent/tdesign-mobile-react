@@ -13,7 +13,8 @@ export default function Events() {
 
   return (
     <Textarea
-      placeholder="请输入内容"
+      label="标签文字"
+      placeholder="请输入文字"
       value={value}
       onFocus={onFocus}
       onBlur={onBlur}
