@@ -1,0 +1,25 @@
+@import '../vars.less';
+@import './demo.less';
+
+body {
+  background-color: #f5f5f5;
+}
+
+.tdesign-demo-topnav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  background-color: #fff;
+  box-shadow: @shadow-level-1;
+  &-title {
+    font-size: 18px;
+  }
+  &__back {
+    position: absolute;
+    left: 16px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+}
