@@ -106,12 +106,12 @@ export default {
           path: '/mobile-react/components/input',
           component: () => import('tdesign-mobile-react/input/input.md'),
         },
-        // {
-        //   title: 'Picker 选择器',
-        //   name: 'picker',
-        //   path: '/mobile-react/components/picker',
-        //   component: () => import('tdesign-mobile-react/picker/picker.md'),
-        // },
+        {
+          title: 'Picker 选择器',
+          name: 'picker',
+          path: '/mobile-react/components/picker',
+          component: () => import('tdesign-mobile-react/picker/picker.md'),
+        },
         {
           title: 'Radio 单选框',
           name: 'radio',

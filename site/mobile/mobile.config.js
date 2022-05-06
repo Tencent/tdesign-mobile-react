@@ -158,6 +158,11 @@ export default {
       component: () => import('tdesign-mobile-react/avatar/_example/index.jsx'),
     },
     {
+      title: 'Picker 选择器',
+      name: 'picker',
+      component: () => import('tdesign-mobile-react/picker/_example/index.jsx'),
+    },
+    {
       title: 'Textarea 多行文本框',
       name: 'textarea',
       component: () => import('tdesign-mobile-react/textarea/_example/index.jsx'),
