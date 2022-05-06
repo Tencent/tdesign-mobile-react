@@ -3,11 +3,11 @@ import { Search } from 'tdesign-mobile-react/search';
 import { SearchIcon } from 'tdesign-icons-react';
 
 export default function Base() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('搜索预设文案');
 
   return (
     <Search
-      focus={false}
+      focus={true}
       placeholder="搜索预设文案"
       value={value}
       onChange={(value) => setValue(value)}

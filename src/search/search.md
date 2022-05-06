@@ -1,5 +1,17 @@
 :: BASE_DOC ::
 
+### 默认状态
+
+{{ default }}
+
+### 点击状态
+
+{{ click }}
+
+### 输入状态
+
+{{ state }}
+
 ## API
 ### Search Props
 
