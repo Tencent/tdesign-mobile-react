@@ -5,15 +5,44 @@ import './style.less';
 
 export default function () {
   return (
-    <TDemoBlock title="横向选项卡" summary="">
+    <TDemoBlock title="01 类型" summary="横向选项卡">
       <ul className="hori-wrap">
-        <li>
+        <li key="li1">
           <Tabs>
-            <TabPanel value={'v1'} label="标签1">
-              <div>内容内容1111....</div>
+            <TabPanel value={'v1'} label="标签页一">
+              <div className="tab-content">标签一内容</div>
             </TabPanel>
-            <TabPanel value={'v2'} label="标签2222">
-              <div>内容内容2222....</div>
+            <TabPanel value={'v2'} label="标签页二">
+              <div className="tab-content">标签二内容</div>
+            </TabPanel>
+          </Tabs>
+        </li>
+        <li key="li2">
+          <Tabs>
+            <TabPanel value={'v1'} label="标签页一">
+              <div className="tab-content">标签一内容</div>
+            </TabPanel>
+            <TabPanel value={'v2'} label="标签页二">
+              <div className="tab-content">标签二内容</div>
+            </TabPanel>
+            <TabPanel value={'v3'} label="标签页三">
+              <div className="tab-content">标签三内容</div>
+            </TabPanel>
+          </Tabs>
+        </li>
+        <li key="li3">
+          <Tabs>
+            <TabPanel value={'v1'} label="标签页一">
+              <div className="tab-content">标签页一内容</div>
+            </TabPanel>
+            <TabPanel value={'v2'} label="标签页二">
+              <div className="tab-content">标签二内容</div>
+            </TabPanel>
+            <TabPanel value={'v3'} label="标签页三">
+              <div className="tab-content">标签三内容</div>
+            </TabPanel>
+            <TabPanel value={'v4'} label="标签页四">
+              <div className="tab-content">标签四内容</div>
             </TabPanel>
           </Tabs>
         </li>
