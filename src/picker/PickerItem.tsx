@@ -8,7 +8,7 @@ import nearest from '../_util/nearest';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import PickerContext from './picker-context';
 import { pickerItemDefaultProps } from './defaultProps';
-import { TdPickerItemProps, PickerValue, PickerItemOption } from './type';
+import { TdPickerItemProps, PickerValue } from './type';
 
 export interface PickerItemProps extends TdPickerItemProps, NativeProps {
   value?: PickerValue;
@@ -155,7 +155,7 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
       <animated.div ref={controlRef} className={`${name}__wrapper`} style={{ y: y.to((y) => -y) }}>
         {options.map((item) => (
           <div key={item.value} className={`${name}__item`}>
-            {formatter(item)}
+            {(formatter && formatter(item)) || item.label}
           </div>
         ))}
       </animated.div>
@@ -163,10 +163,7 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
   );
 });
 
-PickerItem.defaultProps = {
-  ...pickerItemDefaultProps,
-  formatter: (option: PickerItemOption) => option.label,
-};
+PickerItem.defaultProps = pickerItemDefaultProps;
 PickerItem.displayName = 'PickerItem';
 
 export default PickerItem;

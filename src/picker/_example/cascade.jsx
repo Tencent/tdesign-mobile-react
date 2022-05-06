@@ -82,7 +82,7 @@ export default function Demo() {
   }, [selectedValues]);
 
   return (
-    <TDemoBlock title="01 联动" summary="数据联动选择器">
+    <TDemoBlock title="02 联动" summary="数据联动选择器">
       <Cell arrow title="英雄" note={selectedText || '选择英雄'} onClick={() => setVisible(true)} />
       <Picker
         value={values}
