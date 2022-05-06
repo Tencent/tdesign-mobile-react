@@ -93,6 +93,11 @@ export default {
       component: () => import('tdesign-mobile-react/upload/_example/index.jsx'),
     },
     {
+      title: 'Skeleton 骨架屏',
+      name: 'skeleton',
+      component: () => import('tdesign-mobile-react/skeleton/_example/index.jsx'),
+    },
+    {
       title: 'Sticky 吸顶',
       name: 'sticky',
       component: () => import('tdesign-mobile-react/sticky/_example/base.jsx'),
@@ -156,6 +161,11 @@ export default {
       title: 'Avatar 头像',
       name: 'avatar',
       component: () => import('tdesign-mobile-react/avatar/_example/index.jsx'),
+    },
+    {
+      title: 'Textarea 多行文本框',
+      name: 'textarea',
+      component: () => import('tdesign-mobile-react/textarea/_example/index.jsx'),
     },
   ],
 };
