@@ -73,7 +73,7 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
     [api, getOffsetYList],
   );
 
-  const hanldChange = (value: number | string) => {
+  const hanldeChange = (value: number | string) => {
     const pickerValue = pickerContext.value?.slice(0) || [];
     pickerValue[itemIndex] = value;
     pickerContext.onChange?.(pickerValue, itemIndex);
@@ -111,12 +111,12 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
           api.start({
             to: async (next) => {
               await next({ y: nextOffsetY });
-              hanldChange(options[nextIndex].value);
+              hanldeChange(options[nextIndex].value);
             },
           });
         } else {
           // 受控模式,onChange回调后等待value更新，如果不更新回退到原处
-          hanldChange(options[nextIndex].value);
+          hanldeChange(options[nextIndex].value);
           setTimeout(() => {
             if (lastIndex === lastIndexRef.current) {
               api.start({ y: offsetYList[lastIndex] || 0 });
@@ -135,6 +135,7 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
       filterTaps: true,
       pointer: { touch: true },
       rubberband: true,
+      preventDefault: true,
       bounds: () => {
         const controlYCompensation = getControlYCompensation();
         let bottom: undefined | number;
