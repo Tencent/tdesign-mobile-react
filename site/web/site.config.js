@@ -124,12 +124,12 @@ export default {
           path: '/mobile-react/components/rate',
           component: () => import('tdesign-mobile-react/rate/rate.md'),
         },
-        // {
-        //   title: 'Search 搜索框',
-        //   name: 'search',
-        //   path: '/mobile-react/components/search',
-        //   component: () => import('tdesign-mobile-react/search/search.md'),
-        // },
+        {
+          title: 'Search 搜索框',
+          name: 'search',
+          path: '/mobile-react/components/search',
+          component: () => import('tdesign-mobile-react/search/search.md'),
+        },
         {
           title: 'Slider 滑动选择器',
           name: 'slider',
