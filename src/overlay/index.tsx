@@ -1,7 +1,8 @@
-import Overlay from './Overlay';
+import _Overlay from './Overlay';
 
 import './style';
 
-export * from './Overlay';
+export const Overlay = _Overlay;
+export type { OverlayProps } from './Overlay';
 
 export default Overlay;
