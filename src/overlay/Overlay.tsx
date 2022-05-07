@@ -9,9 +9,9 @@ import { useShouldRender } from 'tdesign-mobile-react/_util/useShouldRender';
 import identity from 'lodash/identity';
 import useConfig from '../_util/useConfig';
 
-export interface MaskProps extends NativeProps {
+export interface OverlayProps extends NativeProps {
   visible?: boolean;
-  onMaskClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onOverlayClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   destroyOnClose?: boolean;
   forceRender?: boolean;
   disableBodyScroll?: boolean;
@@ -41,13 +41,13 @@ const defaultProps = {
   stopPropagation: ['click'],
   afterShow: identity,
   afterClose: identity,
-} as MaskProps;
+} as OverlayProps;
 
-const Mask: FC<MaskProps> = (props) => {
+const Overlay: FC<OverlayProps> = (props) => {
   const ref = useRef<HTMLDivElement>(null);
   useLockScroll(ref, props.visible && props.disableBodyScroll);
   const { classPrefix } = useConfig();
-  const name = `${classPrefix}-mask`;
+  const name = `${classPrefix}-overlay`;
 
   const background = useMemo(() => {
     const opacity = opacityRecord[props.opacity] ?? props.opacity;
@@ -96,12 +96,12 @@ const Mask: FC<MaskProps> = (props) => {
         }}
         onClick={(e) => {
           if (e.target === e.currentTarget) {
-            props.onMaskClick?.(e);
+            props.onOverlayClick?.(e);
           }
         }}
       >
-        {props.onMaskClick && (
-          <div className={`${classPrefix}-aria-button`} role="button" onClick={props.onMaskClick} />
+        {props.onOverlayClick && (
+          <div className={`${classPrefix}-aria-button`} role="button" onClick={props.onOverlayClick} />
         )}
         <div className={`${classPrefix}-content`}>{shouldRender && props.children}</div>
       </animated.div>,
@@ -111,7 +111,7 @@ const Mask: FC<MaskProps> = (props) => {
   return renderToContainer(props.getContainer, node);
 };
 
-Mask.defaultProps = defaultProps;
-Mask.displayName = 'Mask';
+Overlay.defaultProps = defaultProps;
+Overlay.displayName = 'Overlay';
 
-export default Mask;
+export default Overlay;
