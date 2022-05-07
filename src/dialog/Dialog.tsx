@@ -1,7 +1,7 @@
 import React, { CSSProperties, useCallback, useMemo, useState } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import ClassNames from 'classnames';
-import Mask from 'tdesign-mobile-react/mask';
+import Overlay from 'tdesign-mobile-react/overlay';
 import { ButtonProps, TdButtonProps } from 'tdesign-mobile-react/button';
 import { StyledProps, TNode } from 'tdesign-mobile-react/common';
 import useUnmountedRef from 'ahooks/lib/useUnmountedRef';
@@ -229,7 +229,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     >
       {showOverlay ? (
         <animated.div style={maskSpring}>
-          <Mask click={onOverlayClickHandle} />
+          <Overlay onOverlayClick={onOverlayClickHandle} disableBodyScroll={false} />
         </animated.div>
       ) : null}
       <div className="wrap" style={wrapStyle}>
