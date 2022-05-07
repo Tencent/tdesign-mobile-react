@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-import Mask from 'tdesign-mobile-react/mask';
+import Overlay from 'tdesign-mobile-react/overlay';
 import { CSSTransition } from 'react-transition-group';
 import classnames from 'classnames';
 import { TdPopupProps } from './type';
@@ -55,7 +55,7 @@ const Popup: FC<TdPopupProps> = (prop) => {
     zIndex,
   };
 
-  const handleMaskClick = () => {
+  const handleOverlayClick = () => {
     if (!isControl) return;
     setCurrentVisible(false);
   };
@@ -78,7 +78,7 @@ const Popup: FC<TdPopupProps> = (prop) => {
       <div className={`${name}`} style={rootStyles}>
         <CSSTransition in={currentVisible} appear {...maskCssTransitionState.props}>
           <div ref={maskRef} style={{ display: 'none' }}>
-            <Mask visible={showOverlay && visible} onMaskClick={handleMaskClick} />
+            <Overlay visible={showOverlay && visible} onOverlayClick={handleOverlayClick} />
           </div>
         </CSSTransition>
         <CSSTransition in={currentVisible} appear {...cssTransitionState.props}>
