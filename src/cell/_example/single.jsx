@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cell, CellGroup, Badge } from 'tdesign-mobile-react';
+import { Cell, CellGroup, Badge, Switch } from 'tdesign-mobile-react';
 import { Icon } from 'tdesign-icons-react';
 
 export default function () {
@@ -12,7 +12,7 @@ export default function () {
         <Cell title="单行标题" arrow />
         <Cell title="单行标题" arrow note="辅助信息" />
         <Cell title="单行标题" arrow note={<Badge count={8} />} />
-        <Cell title="单行标题" arrow note="右侧switch" />
+        <Cell title="单行标题" arrow note={<Switch />} />
         <Cell title="单行标题" leftIcon={<Icon name="app" />} />
       </CellGroup>
     </div>

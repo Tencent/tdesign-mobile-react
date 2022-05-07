@@ -340,7 +340,7 @@ const Upload: React.FC<UploadProps> = (props) => {
                 className={`${uploadBaseClassNames}__card-delete-item`}
                 onClick={(e) => handleDeleteFile(file, e)}
               >
-                <CloseIcon />
+                <CloseIcon className="close-icon" />
               </span>
               <img src={file.url} className={`${uploadBaseClassNames}__card-image`} alt={file.name} />
               {file.status === 'fail' && (

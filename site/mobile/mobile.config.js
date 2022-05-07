@@ -56,6 +56,11 @@ export default {
       component: () => import('tdesign-mobile-react/rate/_example/index.jsx'),
     },
     {
+      title: 'Search 搜索框',
+      name: 'search',
+      component: () => import('tdesign-mobile-react/search/_example/index.jsx'),
+    },
+    {
       title: 'Badge 徽标',
       name: 'badge',
       component: () => import('tdesign-mobile-react/badge/_example/index.jsx'),
@@ -86,6 +91,11 @@ export default {
       name: 'upload',
       path: '/upload',
       component: () => import('tdesign-mobile-react/upload/_example/index.jsx'),
+    },
+    {
+      title: 'Skeleton 骨架屏',
+      name: 'skeleton',
+      component: () => import('tdesign-mobile-react/skeleton/_example/index.jsx'),
     },
     {
       title: 'Sticky 吸顶',
@@ -151,6 +161,16 @@ export default {
       title: 'Avatar 头像',
       name: 'avatar',
       component: () => import('tdesign-mobile-react/avatar/_example/index.jsx'),
+    },
+    {
+      title: 'Picker 选择器',
+      name: 'picker',
+      component: () => import('tdesign-mobile-react/picker/_example/index.jsx'),
+    },
+    {
+      title: 'Textarea 多行文本框',
+      name: 'textarea',
+      component: () => import('tdesign-mobile-react/textarea/_example/index.jsx'),
     },
   ],
 };
