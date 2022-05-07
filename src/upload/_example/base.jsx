@@ -1,11 +1,16 @@
 // @ts-ignore
-import { Upload } from 'tdesign-mobile-react';
-import TDemoBlock from '../../../site/mobile/components/DemoBlock';
+import React from 'react';
+import { Upload, Cell } from 'tdesign-mobile-react';
 
 export default () => {
   return (
-    <TDemoBlock title="基础上传">
-      <Upload action="//service-bv448zsw-1257786608.gz.apigw.tencentcs.com/api/upload-demo" />
-    </TDemoBlock>
+    <>
+      <Cell
+        title="上传图片"
+        description={
+          <Upload accept="image/png" action="//service-bv448zsw-1257786608.gz.apigw.tencentcs.com/api/upload-demo" />
+        }
+      />
+    </>
   );
 };
