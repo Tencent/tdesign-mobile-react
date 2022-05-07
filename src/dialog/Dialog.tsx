@@ -6,7 +6,7 @@ import { ButtonProps, TdButtonProps } from 'tdesign-mobile-react/button';
 import { StyledProps, TNode } from 'tdesign-mobile-react/common';
 import useUnmountedRef from 'ahooks/lib/useUnmountedRef';
 import useConfig from '../_util/useConfig';
-import widthStopPropagation, { PropagationEvent } from '../_util/widthStopPropagation';
+import withStopPropagation, { PropagationEvent } from '../_util/withStopPropagation';
 import { TdDialogProps } from './type';
 import DialogActionBtn from './DialogActionBtn';
 
@@ -238,7 +238,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     </div>
   );
 
-  return widthStopPropagation(preventScrollThrough ? [PropagationEvent.SCROLL] : [], node);
+  return withStopPropagation(preventScrollThrough ? [PropagationEvent.SCROLL] : [], node);
 };
 
 export default Dialog;
