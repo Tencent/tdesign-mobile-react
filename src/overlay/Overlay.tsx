@@ -6,7 +6,6 @@ import { useLockScroll } from 'tdesign-mobile-react/_util/useLockScroll';
 import { useUnmountedRef } from 'ahooks';
 import { useSpring, animated } from '@react-spring/web';
 import { useShouldRender } from 'tdesign-mobile-react/_util/useShouldRender';
-import identity from 'lodash/identity';
 import useConfig from '../_util/useConfig';
 
 export interface OverlayProps extends NativeProps {
@@ -39,8 +38,6 @@ const defaultProps = {
   disableBodyScroll: true,
   getContainer: null,
   stopPropagation: ['click'],
-  afterShow: identity,
-  afterClose: identity,
 } as OverlayProps;
 
 const Overlay: FC<OverlayProps> = (props) => {
@@ -73,9 +70,9 @@ const Overlay: FC<OverlayProps> = (props) => {
       if (unmountedRef.current) return;
       setActive(props.visible);
       if (props.visible) {
-        props.afterShow();
+        props.afterShow?.();
       } else {
-        props.afterClose();
+        props.afterClose?.();
       }
     },
   });
