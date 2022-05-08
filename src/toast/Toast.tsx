@@ -2,7 +2,7 @@ import React, { FC, useRef, useState, useEffect } from 'react';
 import { Icon } from 'tdesign-icons-react';
 import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
-import Mask from '../mask';
+import Overlay from '../overlay';
 import useMessageCssTransition from './hooks/useMessageCssTransition';
 import useConfig from '../_util/useConfig';
 import { TdToastProps } from './type';
@@ -65,7 +65,7 @@ const Toast: FC<TdToastProps> = (props: ToastProps) => {
 
   return (
     <>
-      {preventScrollThrough && <Mask />}
+      {preventScrollThrough && <Overlay />}
       <CSSTransition in={toastVisible} appear {...cssTransitionState.props} unmountOnExit>
         <div className={classNames(`${classPrefix}-toast`, [...containerClass])} ref={contentRef}>
           {TIcon && TIcon}

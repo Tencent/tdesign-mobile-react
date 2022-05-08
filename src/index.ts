@@ -5,7 +5,7 @@ export * from './message';
 export * from './cell';
 export * from './cell-group';
 export * from './badge';
-export * from './mask';
+export * from './overlay';
 export * from './popup';
 export * from './image';
 export * from './slider';
