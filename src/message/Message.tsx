@@ -36,6 +36,13 @@ const Message: React.FC<MessageProps> = (props) => {
   const name = `${classPrefix}-message`;
 
   /**
+   * 获取visibleChange函数引用
+   */
+  const handler = useRef<any>(null);
+
+  handler.current = onVisibleChange;
+
+  /**
    * 判断是否受控，如果是受控，则直接使用使用props中的visible，否则使用messageVisible
    */
   const [isControl] = useState<boolean>(duration === 0 && isBoolean(visible) && closeBtn !== true);
@@ -69,7 +76,7 @@ const Message: React.FC<MessageProps> = (props) => {
   }, messageDuration);
 
   useEffect(() => {
-    onVisibleChange(isControl ? visible : messageVisible);
+    handler.current(isControl ? visible : messageVisible);
   }, [isControl, visible, messageVisible]);
 
   const leftIcon = isBoolean(icon) ? (
