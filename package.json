@@ -154,7 +154,7 @@
     "classnames": "^2.3.1",
     "hoist-non-react-statics": "^3.3.2",
     "lodash": "^4.17.21",
-    "react-spring": "^9.4.3",
+    "react-spring": "^9.4.4",
     "react-transition-group": "^4.4.2",
     "smoothscroll-polyfill": "^0.4.4",
     "tdesign-icons-react": "0.0.9"

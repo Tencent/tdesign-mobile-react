@@ -1,73 +1,86 @@
 import React from 'react';
 import classNames from 'classnames';
+import identity from 'lodash/identity';
+import isString from 'lodash/isString';
 import { Icon } from 'tdesign-icons-react';
 import useConfig from '../_util/useConfig';
+import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import { TdCellProps } from './type';
 
-enum AlignType {
-  TOP = 'top',
-  MIDDLE = 'middle',
-  BOTTOM = 'bottom',
-}
+export type CellProps = TdCellProps & NativeProps;
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const noop = () => {};
+export type AlignType = 'top' | 'middle' | 'bottom';
 
-const Cell: React.FC<TdCellProps> = (props) => {
+export const defaultProps = {
+  align: 'middle' as AlignType,
+  arrow: false,
+  bordered: true,
+  description: '',
+  hover: false,
+  image: '',
+  leftIcon: null,
+  note: '',
+  required: false,
+  rightIcon: null,
+  title: '',
+  url: '',
+  onClick: identity,
+};
+
+const Cell: React.FC<CellProps> = (props) => {
   const {
-    align = AlignType.MIDDLE,
-    arrow = false,
-    bordered = true,
+    align,
+    arrow,
+    bordered,
     description,
-    hover = false,
+    hover,
     image,
     leftIcon,
     note,
-    required = false,
+    required,
     rightIcon,
-    title = '',
-    url = '',
-    onClick = noop,
+    title,
+    url,
+    onClick,
   } = props;
 
   const { classPrefix } = useConfig();
 
-  const isLeft = !!leftIcon || !!image;
-
-  const cellImage = typeof image === 'string' ? <img src={image} className={`${classPrefix}-cell__image`} /> : image;
+  const name = `${classPrefix}-cell`;
 
   const content = (
     <div
-      className={classNames([`${classPrefix}-cell`, `${classPrefix}-cell--${align}`], {
-        [`${classPrefix}-cell--bordered`]: bordered,
-        [`${classPrefix}-cell--hover`]: hover,
+      className={classNames([`${name}`, `${name}--${align}`], {
+        [`${name}--bordered`]: bordered,
+        [`${name}--hover`]: hover,
       })}
       onClick={(e) => {
         onClick({ e });
       }}
     >
-      {isLeft && (
-        <div className={`${classPrefix}-cell__left-icon`}>
+      {(leftIcon || image) && (
+        <div className={`${name}__left-icon`}>
           {leftIcon}
-          {cellImage}
+          {isString(image) ? <img src={image} className={`${name}__image`} /> : image}
         </div>
       )}
-      <div className={`${classPrefix}-cell__title`}>
+      <div className={`${name}__title`}>
         {title && (
           <span>
             {title}
-            {required && <span className={`${classPrefix}-cell--required`}>&nbsp;*</span>}
+            {required && <span className={`${name}--required`}>&nbsp;*</span>}
           </span>
         )}
-        {description && <div className={`${classPrefix}-cell__description`}>{description}</div>}
+        {description && <div className={`${name}__description`}>{description}</div>}
       </div>
-      {note && <div className={`${classPrefix}-cell__note`}>{note}</div>}
-      {arrow && <Icon className={`${classPrefix}-cell-content-arrow`} name="chevron-right" size={24} color="#0006" />}
-      {rightIcon && <div className={`${classPrefix}-cell__right-icon`}>{rightIcon}</div>}
+      {note && <div className={`${name}__note`}>{note}</div>}
+      {arrow && <Icon className={`${name}-content-arrow`} name="chevron-right" size={24} color="#0006" />}
+      {rightIcon && <div className={`${name}__right-icon`}>{rightIcon}</div>}
     </div>
   );
 
-  return (
+  return withNativeProps(
+    props,
     <>
       {url ? (
         <a style={{ textDecoration: 'none' }} href={url} rel="noreferrer">
@@ -76,8 +89,11 @@ const Cell: React.FC<TdCellProps> = (props) => {
       ) : (
         <>{content}</>
       )}
-    </>
+    </>,
   );
 };
+
+Cell.defaultProps = defaultProps;
+Cell.displayName = 'Cell';
 
 export default Cell;

@@ -106,12 +106,12 @@ export default {
           path: '/mobile-react/components/input',
           component: () => import('tdesign-mobile-react/input/input.md'),
         },
-        // {
-        //   title: 'Picker 选择器',
-        //   name: 'picker',
-        //   path: '/mobile-react/components/picker',
-        //   component: () => import('tdesign-mobile-react/picker/picker.md'),
-        // },
+        {
+          title: 'Picker 选择器',
+          name: 'picker',
+          path: '/mobile-react/components/picker',
+          component: () => import('tdesign-mobile-react/picker/picker.md'),
+        },
         {
           title: 'Radio 单选框',
           name: 'radio',
@@ -124,12 +124,12 @@ export default {
           path: '/mobile-react/components/rate',
           component: () => import('tdesign-mobile-react/rate/rate.md'),
         },
-        // {
-        //   title: 'Search 搜索框',
-        //   name: 'search',
-        //   path: '/mobile-react/components/search',
-        //   component: () => import('tdesign-mobile-react/search/search.md'),
-        // },
+        {
+          title: 'Search 搜索框',
+          name: 'search',
+          path: '/mobile-react/components/search',
+          component: () => import('tdesign-mobile-react/search/search.md'),
+        },
         {
           title: 'Slider 滑动选择器',
           name: 'slider',
@@ -148,12 +148,12 @@ export default {
           path: '/mobile-react/components/switch',
           component: () => import('tdesign-mobile-react/switch/switch.md'),
         },
-        // {
-        //   title: 'Textarea 多行输入框',
-        //   name: 'textarea',
-        //   path: '/mobile-react/components/textarea',
-        //   component: () => import('tdesign-mobile-react/textarea/textarea.md'),
-        // },
+        {
+          title: 'Textarea 多行输入框',
+          name: 'textarea',
+          path: '/mobile-react/components/textarea',
+          component: () => import('tdesign-mobile-react/textarea/textarea.md'),
+        },
         // {
         //   title: 'Upload 上传',
         //   name: 'upload',
@@ -232,12 +232,12 @@ export default {
         //   path: '/mobile-react/components/image-viewer',
         //   component: () => import('tdesign-mobile-react/image-viewer/image-viewer.md'),
         // },
-        // {
-        //   title: 'Skeleton 骨架屏',
-        //   name: 'skeleton',
-        //   path: '/mobile-react/components/skeleton',
-        //   component: () => import('tdesign-mobile-react/skeleton/skeleton.md'),
-        // },
+        {
+          title: 'Skeleton 骨架屏',
+          name: 'skeleton',
+          path: '/mobile-react/components/skeleton',
+          component: () => import('tdesign-mobile-react/skeleton/skeleton.md'),
+        },
         {
           title: 'Sticky 吸顶容器',
           name: 'sticky',
