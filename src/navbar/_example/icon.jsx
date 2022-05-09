@@ -7,7 +7,7 @@ const IconUsage = () => (
     <Navbar leftIcon homeIcon>
       标题
     </Navbar>
-    <br />
+
     <Navbar
       rightIcon={
         <>

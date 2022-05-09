@@ -13,6 +13,11 @@ export interface TdNavbarProps {
    */
   animation?: boolean;
   /**
+   * 背景
+   * @default ''
+   */
+  background?: string;
+  /**
    * 是否固定在顶部
    * @default true
    */
@@ -43,4 +48,12 @@ export interface TdNavbarProps {
    * @default true
    */
   visible?: boolean;
+  /**
+   * 点击 home 图标时触发
+   */
+  onHomeClick?: () => void;
+  /**
+   * 点击左边按钮时触发
+   */
+  onLeftClick?: () => void;
 }

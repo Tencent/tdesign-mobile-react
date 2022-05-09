@@ -20,7 +20,6 @@ export const Navbar = React.memo<NavbarProps>((props) => {
     animation = true,
     rightIcon,
     titleMaxLength,
-    onTextClick,
     onHomeClick,
     style,
     className,
@@ -55,12 +54,8 @@ export const Navbar = React.memo<NavbarProps>((props) => {
       titleNode = `${titleNode.slice(0, titleMaxLength)}...`;
     }
 
-    return (
-      <div className={cls('text')} onClick={onTextClick}>
-        {titleNode}
-      </div>
-    );
-  }, [children, cls, onTextClick, title, titleMaxLength]);
+    return <div className={cls('text')}>{titleNode}</div>;
+  }, [children, cls, title, titleMaxLength]);
 
   // 返回icon点击
   const onLeftClickHandle = useCallback(() => {
