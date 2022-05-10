@@ -38,7 +38,7 @@ const Message: React.FC<MessageProps> = (props) => {
   /**
    * 获取visibleChange函数引用
    */
-  const handler = useRef<any>(null);
+  const handler = useRef<Function>(null);
 
   handler.current = onVisibleChange;
 
@@ -85,6 +85,8 @@ const Message: React.FC<MessageProps> = (props) => {
     icon
   );
 
+  const closeButton = closeBtn === true ? <Icon name="close" size={22} onClick={setFalse} /> : closeBtn;
+
   return withNativeProps(
     props,
     <CSSTransition in={isControl ? visible : messageVisible} appear {...cssTransitionState.props} unmountOnExit>
@@ -95,7 +97,7 @@ const Message: React.FC<MessageProps> = (props) => {
       >
         {leftIcon}
         <div className={`${name}--txt`}>{content || children}</div>
-        {closeBtn === true ? <Icon name="close" size={22} onClick={setFalse} /> : closeBtn}
+        {closeButton}
       </div>
     </CSSTransition>,
   );
