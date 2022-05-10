@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { BackTop, Button } from 'tdesign-mobile-react';
+import { BackTop, Button, Skeleton } from 'tdesign-mobile-react';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import './style/index.less';
@@ -53,6 +53,25 @@ export default function Base() {
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   }, []);
 
+  const rowCols = [
+    {
+      height: '171px',
+      borderRadius: '16px',
+    },
+    1,
+    {
+      width: '80%',
+    },
+    [
+      {
+        width: '60%',
+      },
+      {
+        width: '20%',
+      },
+    ],
+  ];
+
   return (
     <div className="tdesign-mobile-react-demo">
       <BackTop
@@ -80,16 +99,17 @@ export default function Base() {
           ))}
         </div>
       </TDemoBlock>
+
       <div className="content">
-        <div className="content1">1</div>
-        <div id="anchor" className="content1">
-          2
-        </div>
-        <div className="content1">3</div>
-        <div className="content1">4</div>
-        <div className="content1">5</div>
-        <div className="content1">6</div>
-        <div className="content1">7</div>
+        {Array.from(Array(4), (item, index) => (
+          <div className="row" key={index}>
+            {Array.from(Array(2), (v, key) => (
+              <div className="item" key={key}>
+                <Skeleton theme="text" rowCol={rowCols} />
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   );
