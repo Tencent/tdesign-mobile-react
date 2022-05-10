@@ -6,7 +6,7 @@ const BaseUsage = React.memo(() => (
     <Image
       src="https://cdn-we-retail.ym.tencent.com/retail-ui/components-exp/image/image-2.jpg?imageMogr2/thumbnail/1000x"
       alt="这是一张图片"
-      className="t-image-custom"
+      style={{ width: 72, height: 72 }}
     />
   </div>
 ));

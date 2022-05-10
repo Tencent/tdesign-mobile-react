@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react';
 import { BackTop, Button } from 'tdesign-mobile-react';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
-import { BackTopTheme } from '../Backtop';
 import './style/index.less';
 
 export default function Base() {
@@ -13,22 +12,22 @@ export default function Base() {
 
   const roundTypes = [
     {
-      theme: BackTopTheme.ROUND,
+      theme: 'round',
       text: '圆白底',
       showText: true,
     },
     {
-      theme: BackTopTheme.ROUND_DARK,
+      theme: 'round-dark',
       text: '圆黑底',
       showText: true,
     },
     {
-      theme: BackTopTheme.ROUND,
+      theme: 'round',
       text: '圆白底纯图标',
       showText: false,
     },
     {
-      theme: BackTopTheme.ROUND_DARK,
+      theme: 'round-dark',
       text: '圆黑底纯图标',
       showText: false,
     },
@@ -36,11 +35,11 @@ export default function Base() {
 
   const halfRoundTypes = [
     {
-      theme: BackTopTheme.HALF_ROUND,
+      theme: 'half-round',
       text: '半圆白底',
     },
     {
-      theme: BackTopTheme.HALF_ROUND_DARK,
+      theme: 'half-round-dark',
       text: '半圆黑底',
     },
   ];

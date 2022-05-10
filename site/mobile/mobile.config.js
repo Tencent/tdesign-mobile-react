@@ -51,9 +51,19 @@ export default {
       component: () => import('tdesign-mobile-react/radio/_example/index.jsx'),
     },
     {
+      title: 'Rate 评分',
+      name: 'rate',
+      component: () => import('tdesign-mobile-react/rate/_example/index.jsx'),
+    },
+    {
+      title: 'Search 搜索框',
+      name: 'search',
+      component: () => import('tdesign-mobile-react/search/_example/index.jsx'),
+    },
+    {
       title: 'Badge 徽标',
       name: 'badge',
-      component: () => import('tdesign-mobile-react/badge/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/badge/_example/index.jsx'),
     },
     {
       title: 'CountDown 倒计时',
@@ -81,6 +91,11 @@ export default {
       name: 'upload',
       path: '/upload',
       component: () => import('tdesign-mobile-react/upload/_example/index.jsx'),
+    },
+    {
+      title: 'Skeleton 骨架屏',
+      name: 'skeleton',
+      component: () => import('tdesign-mobile-react/skeleton/_example/index.jsx'),
     },
     {
       title: 'Sticky 吸顶',
@@ -115,7 +130,7 @@ export default {
     {
       title: 'SwipeCell 滑动单元格',
       name: 'swipe-cell',
-      component: () => import('tdesign-mobile-react/swipe-cell/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/swipe-cell/_example/index.jsx'),
     },
     {
       title: 'Tag 标签',
@@ -133,9 +148,29 @@ export default {
       component: () => import('tdesign-mobile-react/collapse/_example/index.jsx'),
     },
     {
+      title: 'Stepper 步进器',
+      name: 'Stepper',
+      component: () => import('tdesign-mobile-react/stepper/_example/index.jsx'),
+    },
+    {
       title: 'PullDownRefresh 下拉刷新',
       name: 'pull-down-refresh',
       component: () => import('tdesign-mobile-react/pull-down-refresh/_example/index.jsx'),
+    },
+    {
+      title: 'Avatar 头像',
+      name: 'avatar',
+      component: () => import('tdesign-mobile-react/avatar/_example/index.jsx'),
+    },
+    {
+      title: 'Picker 选择器',
+      name: 'picker',
+      component: () => import('tdesign-mobile-react/picker/_example/index.jsx'),
+    },
+    {
+      title: 'Textarea 多行文本框',
+      name: 'textarea',
+      component: () => import('tdesign-mobile-react/textarea/_example/index.jsx'),
     },
   ],
 };
