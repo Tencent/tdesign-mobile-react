@@ -3,16 +3,11 @@ import Overlay from 'tdesign-mobile-react/overlay';
 import { CSSTransition } from 'react-transition-group';
 import classnames from 'classnames';
 import { TdPopupProps } from './type';
+import  {useSpring } from 'react-spring'
 import usePopupCssTransition from './hooks/usePopupCssTransition';
 import useConfig from '../_util/useConfig';
-
-const DEFAULT_SHOW_OVERLAY = true;
-
-const DEFAULT_ZINDEX = 1500;
-
-const DEFAULT_PLACEMENT = 'top';
-
-const DEFAULT_VISIBLE = false;
+import useDefault from 'tdesign-mobile-react/_util/useDefault';
+import withNativeProps from 'tdesign-mobile-react/_util/withNativeProps';
 
 const getContentTransitionClassName = (placement) => {
   if (placement === 'center') {
@@ -21,16 +16,24 @@ const getContentTransitionClassName = (placement) => {
   return `slide-${placement}`;
 };
 
-const Popup: FC<TdPopupProps> = (prop) => {
+const defaultProps = {
+  placement: 'top',
+  showOverlay: true,
+  defaultVisible: false,
+  zIndex: 1500,
+}
+
+const Popup: FC<TdPopupProps> = (props) => {
+
   const {
     children,
-    placement = DEFAULT_PLACEMENT,
-    showOverlay = DEFAULT_SHOW_OVERLAY,
+    placement,
+    showOverlay,
     visible,
-    defaultVisible = DEFAULT_VISIBLE,
-    zIndex = DEFAULT_ZINDEX,
+    defaultVisible,
+    zIndex,
     onVisibleChange,
-  } = prop;
+  } = props;
 
   const { classPrefix } = useConfig();
 
@@ -39,9 +42,14 @@ const Popup: FC<TdPopupProps> = (prop) => {
   // 判断是否受控
   const isControl = visible !== undefined;
 
-  const contentTransitionClassName = getContentTransitionClassName(placement);
+  const [show, setShow] = useDefault<boolean, any>(
+    visible,
+    defaultVisible,
+    onVisibleChange
+  )
+console.log(show);
 
-  const [currentVisible, setCurrentVisible] = useState(visible);
+  const contentTransitionClassName = getContentTransitionClassName(placement);
 
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -56,45 +64,57 @@ const Popup: FC<TdPopupProps> = (prop) => {
   };
 
   const handleOverlayClick = () => {
-    if (!isControl) return;
-    setCurrentVisible(false);
+    setShow(false);
   };
 
-  useEffect(() => {
-    visible && setCurrentVisible(visible);
-  }, [visible]);
+  const {} = useSpring({
+    opacity: show ? 0 : 100,
+    config: {
 
-  useEffect(() => {
-    defaultVisible && setCurrentVisible(defaultVisible);
-  }, [defaultVisible]);
+    },
+    onStart: () => {
 
-  useEffect(() => {
-    // 非受控属性禁止触发onVisibleChange
-    isControl && onVisibleChange && onVisibleChange(currentVisible);
-  }, [currentVisible, onVisibleChange, isControl]);
+    },
+    onRest: () => {
+      
+    }
+  })
 
-  return (
-    <>
-      <div className={`${name}`} style={rootStyles}>
-        <CSSTransition in={currentVisible} appear {...maskCssTransitionState.props}>
-          <div ref={maskRef} style={{ display: 'none' }}>
-            <Overlay visible={showOverlay && visible} onOverlayClick={handleOverlayClick} />
-          </div>
-        </CSSTransition>
-        <CSSTransition in={currentVisible} appear {...cssTransitionState.props}>
-          <div
-            ref={contentRef}
-            className={classnames([`${name}--content`, `${name}--content-${placement}`])}
-            style={{
-              display: 'none',
-            }}
-          >
-            {children}
-          </div>
-        </CSSTransition>
+  // useEffect(() => {
+  //   visible && setCurrentVisible(visible);
+  // }, [visible]);
+
+  // useEffect(() => {
+  //   defaultVisible && setCurrentVisible(defaultVisible);
+  // }, [defaultVisible]);
+
+  // useEffect(() => {
+  //   // 非受控属性禁止触发onVisibleChange
+  //   isControl && onVisibleChange && onVisibleChange(currentVisible);
+  // }, [currentVisible, onVisibleChange, isControl]);
+
+  return withNativeProps(props,
+    <div className={`${name}`} style={rootStyles}>
+      {
+        showOverlay && (
+          <Overlay 
+            visible={show} 
+            onOverlayClick={handleOverlayClick} 
+            disableBodyScroll={false}
+          />
+        )
+      }
+      <div
+        ref={contentRef}
+          className={classnames([`${name}--content`, `${name}--content-${placement}`])}
+      >
+        {children}
       </div>
-    </>
+    </div>
   );
 };
+
+Popup.displayName = 'Popup'
+Popup.defaultProps = defaultProps
 
 export default Popup;
