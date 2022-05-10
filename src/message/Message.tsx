@@ -29,6 +29,7 @@ const Message: React.FC<MessageProps> = (props) => {
     onVisibleChange,
     content,
     icon,
+    container,
   } = props;
 
   const { classPrefix } = useConfig();
@@ -63,6 +64,7 @@ const Message: React.FC<MessageProps> = (props) => {
     onEntered: onOpened,
     onExit: onClose,
     onExited: onClosed,
+    container: container as HTMLElement,
   });
 
   useEffect(() => {

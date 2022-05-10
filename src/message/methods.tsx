@@ -8,15 +8,10 @@ const createMessage = (props, theme?: MessageThemeList) => {
   const config = { ...defaultProps, ...props };
   const container = document.createElement('div');
   document.body.appendChild(container);
-  ReactDOM.render(<Message {...{ ...config, theme, container }} />, container as HTMLElement);
-  const destroy = () => {
-    document.body.removeChild(container);
-  };
-  return { destroy };
+  ReactDOM.render(<Message {...{ ...config, theme, container }} />, container);
 };
 
 export default {
-  createMessage,
   info: (props: TdMessageProps) => createMessage(props, 'info'),
   success: (props: TdMessageProps) => createMessage(props, 'success'),
   warning: (props: TdMessageProps) => createMessage(props, 'warning'),

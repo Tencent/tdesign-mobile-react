@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import identity from 'lodash/identity';
+import ReactDOM from 'react-dom';
 
 interface UseMessageCssTransitionParams {
   contentRef: React.MutableRefObject<HTMLDivElement>;
@@ -8,6 +9,7 @@ interface UseMessageCssTransitionParams {
   onEntered: () => void;
   onExit: () => void;
   onExited: () => void;
+  container: HTMLElement;
 }
 
 const useMessageCssTransition = ({
@@ -17,6 +19,7 @@ const useMessageCssTransition = ({
   onEntered = identity,
   onExit = identity,
   onExited = identity,
+  container,
 }: UseMessageCssTransitionParams) => {
   const timerRef = useRef(null);
 
@@ -40,11 +43,16 @@ const useMessageCssTransition = ({
   }
 
   function handleExited() {
-    // 动画结束后默认删除节点实例
+    /**
+     * 动画结束后默认删除节点实例
+     */
     if (contentEle) {
       timerRef.current = setTimeout(() => {
         if (contentEle && contentEle.style.display === 'block') {
           contentEle.style.display = 'none';
+        }
+        if (container && ReactDOM.unmountComponentAtNode(container)) {
+          container.parentNode.removeChild(container);
         }
       }, 0);
       onExited();
