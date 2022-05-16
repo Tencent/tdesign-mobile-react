@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import Overlay from 'tdesign-mobile-react/overlay';
 import classnames from 'classnames';
-import  {useSpring } from 'react-spring'
+import  {useSpring, animated } from 'react-spring'
 import useDefault from 'tdesign-mobile-react/_util/useDefault';
 import withNativeProps, { NativeProps } from 'tdesign-mobile-react/_util/withNativeProps';
 import { TdPopupProps } from './type';
@@ -45,9 +45,10 @@ const Popup: FC<PopupProps> = (props) => {
     defaultVisible,
     onVisibleChange
   )
-console.log(show);
 
   const contentTransitionClassName = getContentTransitionClassName(placement);
+  console.log(contentTransitionClassName);
+  
 
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -55,6 +56,7 @@ console.log(show);
 
   const rootStyles = {
     zIndex,
+    display: show ? 'unset' : 'none'
   };
 
   const handleOverlayClick = () => {
@@ -67,10 +69,10 @@ console.log(show);
 
     },
     onStart: () => {
-
+      setShow(true)
     },
     onRest: () => {
-      
+      setShow(visible);
     }
   })
 
@@ -87,6 +89,24 @@ console.log(show);
   //   isControl && onVisibleChange && onVisibleChange(currentVisible);
   // }, [currentVisible, onVisibleChange, isControl]);
 
+  const contentStyle = {
+    transform: opacity.to(o => {
+      if (placement === 'bottom') {
+        return `translateY(${o}%)`;
+      } 
+      if (placement === 'top') {
+        return `translateY(-${o}%)`;
+      } 
+      if (placement === 'left') {
+        return `translateX(-${o}%)`;
+      } 
+      if (placement === 'right') {
+        return `translateX(${o}%)`;
+      }
+      return 'none';
+    })
+  }
+
   return withNativeProps(
     props,
     <div className={`${name}`} style={rootStyles}>
@@ -94,17 +114,24 @@ console.log(show);
         showOverlay && (
           <Overlay 
             visible={show} 
-            onOverlayClick={handleOverlayClick} 
+            // onOverlayClick={handleOverlayClick} 
             disableBodyScroll={false}
           />
         )
       }
-      <div
+      <animated.div
         ref={contentRef}
-          className={classnames([`${name}--content`, `${name}--content-${placement}`])}
+        className={classnames([`${name}--content`, `${name}--content-${placement}`])}
+        style={contentStyle}
       >
         {children}
-      </div>
+      </animated.div>
+      {/* <div
+        ref={contentRef}
+        className={classnames([`${name}--content`, `${name}--content-${placement}`])}
+      >
+        {children}
+      </div> */}
     </div>
   );
 };
