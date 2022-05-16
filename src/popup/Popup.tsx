@@ -1,13 +1,12 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import Overlay from 'tdesign-mobile-react/overlay';
-import { CSSTransition } from 'react-transition-group';
 import classnames from 'classnames';
-import { TdPopupProps } from './type';
 import  {useSpring } from 'react-spring'
+import useDefault from 'tdesign-mobile-react/_util/useDefault';
+import withNativeProps, { NativeProps } from 'tdesign-mobile-react/_util/withNativeProps';
+import { TdPopupProps } from './type';
 import usePopupCssTransition from './hooks/usePopupCssTransition';
 import useConfig from '../_util/useConfig';
-import useDefault from 'tdesign-mobile-react/_util/useDefault';
-import withNativeProps from 'tdesign-mobile-react/_util/withNativeProps';
 
 const getContentTransitionClassName = (placement) => {
   if (placement === 'center') {
@@ -23,7 +22,9 @@ const defaultProps = {
   zIndex: 1500,
 }
 
-const Popup: FC<TdPopupProps> = (props) => {
+export interface PopupProps extends TdPopupProps, NativeProps {}
+
+const Popup: FC<PopupProps> = (props) => {
 
   const {
     children,
@@ -39,9 +40,6 @@ const Popup: FC<TdPopupProps> = (props) => {
 
   const name = `${classPrefix}-popup`;
 
-  // 判断是否受控
-  const isControl = visible !== undefined;
-
   const [show, setShow] = useDefault<boolean, any>(
     visible,
     defaultVisible,
@@ -55,10 +53,6 @@ console.log(show);
 
   const maskRef = useRef<HTMLDivElement>(null);
 
-  const maskCssTransitionState = usePopupCssTransition({ contentRef: maskRef, classPrefix: 'fade' });
-
-  const cssTransitionState = usePopupCssTransition({ contentRef, classPrefix: contentTransitionClassName });
-
   const rootStyles = {
     zIndex,
   };
@@ -67,7 +61,7 @@ console.log(show);
     setShow(false);
   };
 
-  const {} = useSpring({
+  const { opacity } = useSpring({
     opacity: show ? 0 : 100,
     config: {
 
@@ -93,7 +87,8 @@ console.log(show);
   //   isControl && onVisibleChange && onVisibleChange(currentVisible);
   // }, [currentVisible, onVisibleChange, isControl]);
 
-  return withNativeProps(props,
+  return withNativeProps(
+    props,
     <div className={`${name}`} style={rootStyles}>
       {
         showOverlay && (

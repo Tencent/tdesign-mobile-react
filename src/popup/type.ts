@@ -38,5 +38,7 @@ export interface TdPopupProps {
   /**
    * 当浮层隐藏或显示时触发
    */
-  onVisibleChange?: (visible: boolean) => void;
+  onVisibleChange?: (visible: boolean, trigger: PopupSource) => void;
 }
+
+export type PopupSource = 'close-btn' | 'overlay';
