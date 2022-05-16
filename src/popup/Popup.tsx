@@ -103,6 +103,9 @@ const Popup: FC<PopupProps> = (props) => {
       if (placement === 'right') {
         return `translateX(${o}%)`;
       }
+      if (placement === 'center') {
+        return `translateZ(${o}%)`;
+      }
       return 'none';
     })
   }
