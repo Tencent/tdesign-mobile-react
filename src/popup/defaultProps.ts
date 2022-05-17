@@ -4,4 +4,4 @@
 
 import { TdPopupProps } from './type';
 
-export const popupDefaultProps: TdPopupProps = { placement: 'top', showOverlay: true, visible: false };
+export const popupDefaultProps: TdPopupProps = { placement: 'top', showOverlay: true, visible: undefined };

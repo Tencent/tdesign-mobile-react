@@ -7,6 +7,9 @@ import withNativeProps, { NativeProps } from 'tdesign-mobile-react/_util/withNat
 import { TdPopupProps } from './type';
 import usePopupCssTransition from './hooks/usePopupCssTransition';
 import useConfig from '../_util/useConfig';
+import { useUnmountedRef } from 'ahooks';
+import { popupDefaultProps } from './defaultProps';
+import { LogoGithubIcon } from 'tdesign-icons-react';
 
 const getContentTransitionClassName = (placement) => {
   if (placement === 'center') {
@@ -14,13 +17,6 @@ const getContentTransitionClassName = (placement) => {
   }
   return `slide-${placement}`;
 };
-
-const defaultProps = {
-  placement: 'top',
-  showOverlay: true,
-  defaultVisible: false,
-  zIndex: 1500,
-}
 
 export interface PopupProps extends TdPopupProps, NativeProps {}
 
@@ -46,18 +42,9 @@ const Popup: FC<PopupProps> = (props) => {
     onVisibleChange
   )
 
-  const contentTransitionClassName = getContentTransitionClassName(placement);
-  console.log(contentTransitionClassName);
-  
+  const [active, setActive] = useState(show);
 
   const contentRef = useRef<HTMLDivElement>(null);
-
-  const maskRef = useRef<HTMLDivElement>(null);
-
-  const rootStyles = {
-    zIndex,
-    display: show ? 'unset' : 'none'
-  };
 
   const handleOverlayClick = () => {
     setShow(false);
@@ -65,29 +52,17 @@ const Popup: FC<PopupProps> = (props) => {
 
   const { opacity } = useSpring({
     opacity: show ? 0 : 100,
-    config: {
-
-    },
     onStart: () => {
-      setShow(true)
+      // setShow(true)
+      setActive(true)
     },
     onRest: () => {
-      setShow(visible);
+      console.log(show);
+      
+      setActive(show);
+      // console.log(visible);
     }
   })
-
-  // useEffect(() => {
-  //   visible && setCurrentVisible(visible);
-  // }, [visible]);
-
-  // useEffect(() => {
-  //   defaultVisible && setCurrentVisible(defaultVisible);
-  // }, [defaultVisible]);
-
-  // useEffect(() => {
-  //   // 非受控属性禁止触发onVisibleChange
-  //   isControl && onVisibleChange && onVisibleChange(currentVisible);
-  // }, [currentVisible, onVisibleChange, isControl]);
 
   const contentStyle = {
     transform: opacity.to(o => {
@@ -110,6 +85,11 @@ const Popup: FC<PopupProps> = (props) => {
     })
   }
 
+  const rootStyles = {
+    zIndex,
+    display: active ? 'block' : 'none'
+  };
+
   return withNativeProps(
     props,
     <div className={`${name}`} style={rootStyles}>
@@ -117,29 +97,23 @@ const Popup: FC<PopupProps> = (props) => {
         showOverlay && (
           <Overlay 
             visible={show} 
-            // onOverlayClick={handleOverlayClick} 
+            onOverlayClick={handleOverlayClick} 
             disableBodyScroll={false}
           />
         )
       }
       <animated.div
-        ref={contentRef}
+        // ref={contentRef}
         className={classnames([`${name}--content`, `${name}--content-${placement}`])}
         style={contentStyle}
       >
         {children}
       </animated.div>
-      {/* <div
-        ref={contentRef}
-        className={classnames([`${name}--content`, `${name}--content-${placement}`])}
-      >
-        {children}
-      </div> */}
     </div>
   );
 };
 
 Popup.displayName = 'Popup'
-Popup.defaultProps = defaultProps
+Popup.defaultProps = popupDefaultProps;
 
 export default Popup;
