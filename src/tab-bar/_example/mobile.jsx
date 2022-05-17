@@ -110,6 +110,8 @@ const demoList1 = [list1, list2, list3];
 const demoList2 = [list1, list2, list3, list4, list6];
 const demoList3 = [list1, list2, list3, list4];
 
+const defaultValue = 'label_1';
+
 function TabBarMobileDemo() {
   const [value, setValue] = useState(1);
 
@@ -123,9 +125,9 @@ function TabBarMobileDemo() {
       <TDemoHeader title="TabBar 标签栏" summary="移动端的主导航，用做功能模块之间的切换"></TDemoHeader>
       <TDemoBlock title="01 类型" summary="单层级纯文本标签栏">
         {demoList1.map((demo, index) => (
-          <TabBar key={index} defaultValue={0} onChange={change}>
+          <TabBar key={index} defaultValue={defaultValue} onChange={change}>
             {demo.map((item, idx) => (
-              <TabBarItem name={item.name} key={item.name || idx}>
+              <TabBarItem name={item.name} key={item.name || idx} value={item.name}>
                 {item.text}
               </TabBarItem>
             ))}
@@ -134,9 +136,15 @@ function TabBarMobileDemo() {
       </TDemoBlock>
       <TDemoBlock summary="文本加图标标签栏">
         {demoList2.map((demo, index) => (
-          <TabBar key={index} defaultValue={0} onChange={change}>
+          <TabBar key={index} defaultValue={defaultValue} onChange={change}>
             {demo.map((item, idx) => (
-              <TabBarItem name={item.name} key={item.name || idx} badgeProps={item.badge} icon={<AppIcon />}>
+              <TabBarItem
+                name={item.name}
+                key={item.name || idx}
+                badgeProps={item.badge}
+                icon={<AppIcon />}
+                value={item.name}
+              >
                 {item.text}
               </TabBarItem>
             ))}
@@ -145,9 +153,9 @@ function TabBarMobileDemo() {
       </TDemoBlock>
       <TDemoBlock summary="纯图标标签栏">
         {demoList3.map((demo, index) => (
-          <TabBar key={index} defaultValue={0} onChange={change}>
+          <TabBar key={index} defaultValue={defaultValue} onChange={change}>
             {demo.map((item, idx) => (
-              <TabBarItem name={item.name} key={item.name || idx} icon={<AppIcon />}></TabBarItem>
+              <TabBarItem name={item.name} key={item.name || idx} icon={<AppIcon />} value={item.name}></TabBarItem>
             ))}
           </TabBar>
         ))}
