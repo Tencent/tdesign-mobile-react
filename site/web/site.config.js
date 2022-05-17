@@ -70,12 +70,12 @@ export default {
         //   path: '/mobile-react/components/steps',
         //   component: () => import('tdesign-mobile-react/steps/steps.md'),
         // },
-        // {
-        //   title: 'TabBar 标签栏',
-        //   name: 'tab-bar',
-        //   path: '/mobile-react/components/tabbar',
-        //   component: () => import('tdesign-mobile-react/tab-bar/tab-bar.md'),
-        // },
+        {
+          title: 'TabBar 标签栏',
+          name: 'tab-bar',
+          path: '/mobile-react/components/tabbar',
+          component: () => import('tdesign-mobile-react/tab-bar/tab-bar.md'),
+        },
         {
           title: 'Tabs 选项卡',
           name: 'tabs',
