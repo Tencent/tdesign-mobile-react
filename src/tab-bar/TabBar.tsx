@@ -9,7 +9,7 @@ import { TabBarProvider } from './TabBarContext';
 export interface TabBarProps extends TdTabBarProps, StyledProps {}
 
 const TabBar = forwardRef<HTMLDivElement, TabBarProps>((props, ref) => {
-  const { bordered = true, fixed = true, onChange, value, defaultValue } = props;
+  const { bordered, fixed, onChange, value, defaultValue } = props;
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-tab-bar`;
   const [activeValue, onToggleActiveValue] = useDefault(value, defaultValue, onChange);
@@ -38,5 +38,10 @@ const TabBar = forwardRef<HTMLDivElement, TabBarProps>((props, ref) => {
     </div>
   );
 });
+
+TabBar.defaultProps = {
+  bordered: true,
+  fixed: true,
+};
 
 export default memo(TabBar);
