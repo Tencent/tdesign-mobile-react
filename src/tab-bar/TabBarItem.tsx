@@ -40,6 +40,15 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
     return currentName === activeValue;
   }, [currentName, activeValue, hasSubTabBar]);
 
+  const mergedBadgeProps = useMemo(
+    () => ({
+      offset: defaultBadgeOffset,
+      maxCount: defaultBadgeMaxCount,
+      ...badgeProps,
+    }),
+    [badgeProps],
+  );
+
   useEffect(() => {
     if (!isChecked) {
       setIsSpread(() => false);
@@ -104,12 +113,7 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
         {icon && (
           <div className={tabItemIconCls}>
             {badgeProps && (badgeProps?.dot || badgeProps?.count) ? (
-              <Badge
-                content={icon}
-                {...badgeProps}
-                maxCount={badgeProps.maxCount || defaultBadgeMaxCount}
-                offset={badgeProps.offset || defaultBadgeOffset}
-              />
+              <Badge content={icon} {...mergedBadgeProps} />
             ) : (
               icon
             )}
