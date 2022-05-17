@@ -1,40 +1,59 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import classNames from 'classnames';
+import isBoolean from 'lodash/isBoolean';
+import { useBoolean, useTimeout } from 'ahooks';
 import { CSSTransition } from 'react-transition-group';
 import { Icon } from 'tdesign-icons-react';
 import useConfig from '../_util/useConfig';
 import { TdMessageProps } from './type';
 import useMessageCssTransition from './hooks/useMessageCssTransition';
-import { IconType, MessageThemeListEnum } from './constant';
-import noop from '../_util/noop';
+import withNativeProps, { NativeProps } from '../_util/withNativeProps';
+import { defaultProps } from './constant';
 
-interface MessageProps extends TdMessageProps {
-  children?: React.ReactNode;
-  el: React.ReactNode;
+export interface MessageProps extends TdMessageProps, NativeProps {
+  container?: Element;
 }
 
-const Message: React.FC<TdMessageProps> = (props: MessageProps) => {
+const Message: React.FC<MessageProps> = (props) => {
   const {
     children,
-    closeBtn = false,
-    duration = 3000,
-    theme = MessageThemeListEnum.info,
-    visible = undefined,
-    zIndex = 5000,
-    onOpen = noop, // 展示Message时触发
-    onOpened = noop, // 展示Message时并且动画结束后触发
-    onClose = noop, // 关闭Message时触发
-    onClosed = noop, // 关闭Message时并且动画结束后触发
-    onVisibleChange = noop, // 可见性变化时触发
-    content = '',
-    icon = false,
-    el,
+    closeBtn,
+    duration,
+    theme,
+    visible,
+    zIndex,
+    onOpen,
+    onOpened,
+    onClose,
+    onClosed,
+    onVisibleChange,
+    content,
+    icon,
+    container,
   } = props;
 
   const { classPrefix } = useConfig();
 
-  const [messageVisible, setMessageVisible] = useState<boolean>(false);
-  const [isControl, setIsControl] = useState<boolean>(false);
+  const name = `${classPrefix}-message`;
+
+  /**
+   * 获取visibleChange函数引用
+   */
+  const handler = useRef<Function>(null);
+
+  handler.current = onVisibleChange;
+
+  /**
+   * 判断是否受控，如果是受控，则直接使用使用props中的visible，否则使用messageVisible
+   */
+  const [isControl] = useState<boolean>(duration === 0 && isBoolean(visible) && closeBtn !== true);
+
+  /**
+   * duration为0时，取消倒计时
+   */
+  const [messageDuration] = useState<number | null>(duration || null);
+
+  const [messageVisible, { setTrue, setFalse }] = useBoolean(false);
 
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -45,60 +64,48 @@ const Message: React.FC<TdMessageProps> = (props: MessageProps) => {
     onEntered: onOpened,
     onExit: onClose,
     onExited: onClosed,
-    el,
+    container: container as HTMLElement,
   });
 
   useEffect(() => {
-    const isControlled = duration === 0 && typeof visible === 'boolean' && closeBtn !== true;
-    setIsControl(isControlled);
-    if (!isControlled) {
-      setMessageVisible(true);
+    if (!isControl) {
+      setTrue();
     }
-  }, [visible, duration, closeBtn]);
+  }, [isControl, setTrue]);
 
-  const handleClick = useCallback(() => {
-    setMessageVisible(false);
-  }, []);
+  useTimeout(() => {
+    setFalse();
+  }, messageDuration);
 
   useEffect(() => {
-    let timer = null;
-    if (duration) {
-      timer = setTimeout(() => {
-        setMessageVisible(false);
-      }, duration);
-    }
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [duration]);
+    handler.current(isControl ? visible : messageVisible);
+  }, [isControl, visible, messageVisible]);
 
-  useEffect(() => {
-    onVisibleChange(isControl ? visible : messageVisible);
-  }, [onVisibleChange, isControl, visible, messageVisible]);
+  const leftIcon = isBoolean(icon) ? (
+    <>{icon && <Icon name={`${theme === 'success' ? 'check' : 'error'}-circle-filled`} size={22} />}</>
+  ) : (
+    icon
+  );
 
-  const leftIcon = typeof icon === 'boolean' ? <>{icon && <Icon name={IconType[theme]} size={22} />}</> : icon;
+  const closeButton = closeBtn === true ? <Icon name="close" size={22} onClick={setFalse} /> : closeBtn;
 
-  const closeButton = closeBtn === true ? <Icon name="close" size={22} onClick={handleClick} /> : closeBtn;
-
-  const mainContent = content ? content : children;
-
-  return (
+  return withNativeProps(
+    props,
     <CSSTransition in={isControl ? visible : messageVisible} appear {...cssTransitionState.props} unmountOnExit>
       <div
-        className={classNames(
-          `${classPrefix}-message`,
-          `${classPrefix}-message-align--center`,
-          `${classPrefix}-message--${theme}`,
-        )}
+        className={classNames(`${name}`, `${name}-align--center`, `${name}--${theme}`)}
         ref={contentRef}
         style={{ zIndex }}
       >
         {leftIcon}
-        <div className={`${classPrefix}-message--txt`}>{mainContent}</div>
+        <div className={`${name}--txt`}>{content || children}</div>
         {closeButton}
       </div>
-    </CSSTransition>
+    </CSSTransition>,
   );
 };
+
+Message.defaultProps = defaultProps;
+Message.displayName = 'Message';
 
 export default Message;

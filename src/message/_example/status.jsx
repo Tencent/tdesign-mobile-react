@@ -1,6 +1,5 @@
 import React from 'react';
 import { Message, Button } from 'tdesign-mobile-react';
-import { MessageThemeListEnum } from '../constant';
 
 export default function () {
   const contents = ['普通通知', '警示提示通知', '成功提示通知', '错误提示通知'];
@@ -12,17 +11,17 @@ export default function () {
       icon: true,
     },
     {
-      theme: MessageThemeListEnum.warning,
+      theme: 'warning',
       content: '这是一条需要用户关注到的警示通知',
       icon: true,
     },
     {
-      theme: MessageThemeListEnum.success,
+      theme: 'success',
       content: '这是一条需要成功的提示消息',
       icon: true,
     },
     {
-      theme: MessageThemeListEnum.error,
+      theme: 'error',
       content: '这是一条错误提示通知',
       icon: true,
     },
