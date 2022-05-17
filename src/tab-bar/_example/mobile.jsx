@@ -5,8 +5,6 @@ import { AppIcon } from 'tdesign-icons-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 
-import TabBarBaseDemo from './icon-text.jsx';
-
 import './style/index.less';
 
 const list1 = [
@@ -122,7 +120,6 @@ function TabBarMobileDemo() {
 
   return (
     <div className="tdesign-mobile-demo">
-      <TabBarBaseDemo />
       <TDemoHeader title="TabBar 标签栏" summary="移动端的主导航，用做功能模块之间的切换"></TDemoHeader>
       <TDemoBlock title="01 类型" summary="单层级纯文本标签栏">
         {demoList1.map((demo, index) => (
