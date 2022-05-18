@@ -12,9 +12,7 @@ export default function Base() {
   const [visible4, setVisible4] = useState(false)
   const [visible5, setVisible5] = useState(false)
 
-  const handleVisible1Change = (visible) => {
-    console.log('waibu');
-    console.log(visible);
+  const handleVisible1Change = (visible, e) => {
     setVisible1(visible);
   }
   const handleVisible2Change = (visible) => {
@@ -45,7 +43,7 @@ export default function Base() {
             <Button variant="outline" className='tdesign-mobile-demo__button' onClick={() => setVisible4(true)}>左侧弹出</Button>
             <Button variant="outline" className='tdesign-mobile-demo__button' onClick={() => setVisible5(true)}>右侧弹出</Button>
           </div>
-          <Popup defaultVisible={true}  placement="top">
+          <Popup visible={visible1} onVisibleChange={handleVisible1Change} placement="top">
             <div className="vertical"></div>
           </Popup>
           <Popup visible={visible2} onVisibleChange={handleVisible2Change} placement="bottom">

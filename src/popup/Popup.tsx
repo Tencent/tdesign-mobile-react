@@ -1,24 +1,27 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useState } from 'react';
 import Overlay from 'tdesign-mobile-react/overlay';
 import classnames from 'classnames';
 import  {useSpring, animated } from 'react-spring'
 import useDefault from 'tdesign-mobile-react/_util/useDefault';
+import { PropagationEvent } from 'tdesign-mobile-react/_util/withStopPropagation';
 import withNativeProps, { NativeProps } from 'tdesign-mobile-react/_util/withNativeProps';
 import { TdPopupProps } from './type';
-import usePopupCssTransition from './hooks/usePopupCssTransition';
 import useConfig from '../_util/useConfig';
-import { useUnmountedRef } from 'ahooks';
 import { popupDefaultProps } from './defaultProps';
-import { LogoGithubIcon } from 'tdesign-icons-react';
-
-const getContentTransitionClassName = (placement) => {
-  if (placement === 'center') {
-    return `slide-zoom`;
-  }
-  return `slide-${placement}`;
-};
 
 export interface PopupProps extends TdPopupProps, NativeProps {}
+
+enum PopupSourceEnum {
+  OVERLAY = 'overlay',
+}
+
+enum PlacementEnum {
+  TOP = 'top',
+  BOTTOM = 'bottom',
+  LEFT = 'left',
+  RIGHT = 'right',
+  CENTER = 'center'
+}
 
 const Popup: FC<PopupProps> = (props) => {
 
@@ -44,44 +47,40 @@ const Popup: FC<PopupProps> = (props) => {
 
   const [active, setActive] = useState(show);
 
-  const contentRef = useRef<HTMLDivElement>(null);
-
   const handleOverlayClick = () => {
-    setShow(false);
+    setShow(false, PopupSourceEnum.OVERLAY);
   };
 
-  const { opacity } = useSpring({
-    opacity: show ? 0 : 100,
+  const { progress, opacity } = useSpring({
+    progress: show ? 0 : 100,
+    opacity: show ? 1 : 0,
     onStart: () => {
-      // setShow(true)
       setActive(true)
     },
     onRest: () => {
-      console.log(show);
-      
       setActive(show);
-      // console.log(visible);
     }
   })
 
   const contentStyle = {
-    transform: opacity.to(o => {
-      if (placement === 'bottom') {
-        return `translateY(${o}%)`;
+    transform: progress.to(p => {
+      if (placement === PlacementEnum.BOTTOM) {
+        return `translateY(${p}%)`;
       } 
-      if (placement === 'top') {
-        return `translateY(-${o}%)`;
+      if (placement === PlacementEnum.TOP) {
+        return `translateY(-${p}%)`;
       } 
-      if (placement === 'left') {
-        return `translateX(-${o}%)`;
+      if (placement === PlacementEnum.LEFT) {
+        return `translateX(-${p}%)`;
       } 
-      if (placement === 'right') {
-        return `translateX(${o}%)`;
+      if (placement === PlacementEnum.RIGHT) {
+        return `translateX(${p}%)`;
       }
-      if (placement === 'center') {
-        return `translateZ(${o}%)`;
+    }),
+    opacity: opacity.to(o => {
+      if (placement === PlacementEnum.CENTER) {
+        return o;
       }
-      return 'none';
     })
   }
 
@@ -99,15 +98,15 @@ const Popup: FC<PopupProps> = (props) => {
             visible={show} 
             onOverlayClick={handleOverlayClick} 
             disableBodyScroll={false}
+            stopPropagation={[PropagationEvent.CLICK, PropagationEvent.SCROLL]}
           />
         )
       }
       <animated.div
-        // ref={contentRef}
         className={classnames([`${name}--content`, `${name}--content-${placement}`])}
         style={contentStyle}
       >
-        {children}
+        {active && children}
       </animated.div>
     </div>
   );
