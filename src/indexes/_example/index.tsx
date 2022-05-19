@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Button } from 'tdesign-mobile-react/button';
-import { Message } from 'tdesign-mobile-react/message';
-import { Icon } from 'tdesign-icons-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
-import Indexes from '../Indexes';
-import { letter, number } from './data';
+import Base from './base';
+import Number from './number';
 import './style/index.less';
 
 export default function IndexesDemo() {
@@ -32,31 +30,17 @@ export default function IndexesDemo() {
     );
   }
 
-  const list = {
-    1: letter,
-    2: number,
+  const PageComponent = {
+    1: Base,
+    2: Number,
   }[page];
 
   return (
-    <div style={{ position: 'relative' }}>
-      <Icon name="arrow-left" className="return-indexes" onClick={() => setPage(0)} />
-      <Indexes
-        style={{ position: 'absolute', width: '100%' }}
-        list={list}
-        height={window.innerHeight - document.querySelector('.tdesign-demo-topnav').clientHeight}
-        onSelect={({ groupIndex, childrenIndex }) => {
-          Message.info({
-            content: `您选择了${groupIndex}->${
-              list.find((element) => element.index === groupIndex)?.children[childrenIndex]?.title
-            }`,
-          });
-          console.log(
-            `您选择了${groupIndex}->${
-              list.find((element) => element.index === groupIndex)?.children[childrenIndex]?.title
-            }`,
-          );
-        }}
-      />
-    </div>
+    <PageComponent
+      goHome={() => {
+        setPage(0);
+        console.log(1111);
+      }}
+    />
   );
 }

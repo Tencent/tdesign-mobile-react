@@ -37,7 +37,7 @@ const Indexes: FC<IndexesProps> = forwardRef((props) => {
     onSelect(argv);
   };
 
-  const showCurrent = () => {
+  const showTips = () => {
     setShowScrollTip(true);
     clearInterval(tipTimer.current);
     tipTimer.current = null;
@@ -53,7 +53,7 @@ const Indexes: FC<IndexesProps> = forwardRef((props) => {
 
   const handleSideBarItemClick = (e: MouseEvent<HTMLDivElement>, listItem: ListItem) => {
     setCurrentGroup(listItem);
-    showCurrent();
+    showTips();
     getCurrentTitleNode(listItem).scrollIntoView();
   };
 
@@ -66,9 +66,9 @@ const Indexes: FC<IndexesProps> = forwardRef((props) => {
     if (target && target.className.match(`${prefix}-indexes__sidebar-item`) && target instanceof HTMLElement) {
       const { index } = target.dataset;
       const listItem = list.find((element) => element.index === index);
-      if (index !== undefined && currentGroup.index !== index) {
+      if (index !== undefined && currentGroup?.index !== index) {
         setCurrentGroup(listItem);
-        showCurrent();
+        showTips();
         getCurrentTitleNode(listItem).scrollIntoView();
       }
     }
@@ -87,7 +87,7 @@ const Indexes: FC<IndexesProps> = forwardRef((props) => {
 
   const getDomInfo = () => {
     const groupItemDom = document.querySelectorAll('.t-indexes .t-cell-group__container');
-    groupTop.current = Array.from(groupItemDom).map((element) => element.clientHeight);
+    groupTop.current = Array.from(groupItemDom, (element) => element.clientHeight);
     groupTop.current.reduce((acc, cur, index) => {
       const amount = acc + cur;
       groupTop.current[index] = amount;
@@ -131,14 +131,14 @@ const Indexes: FC<IndexesProps> = forwardRef((props) => {
             onClick={(e) => handleSideBarItemClick(e, listItem)}
           >
             {listItem.index}
+            {showScrollTip && currentGroup?.index === listItem.index && (
+              <div className={`${prefix}-indexes__sidebar-tip`}>
+                <div className={`${prefix}-indexes__sidebar-tip-text`}>{currentGroup?.index}</div>
+              </div>
+            )}
           </div>
         ))}
       </div>
-      {showScrollTip && (
-        <div className={`${prefix}-indexes__current`}>
-          <div>{currentGroup?.index}</div>
-        </div>
-      )}
     </div>
   );
 });
