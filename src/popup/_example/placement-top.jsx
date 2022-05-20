@@ -13,7 +13,7 @@ export default function Base() {
   return (
     <div className='tdesign-mobile-demo'>
         <div className='tdesign-mobile-demo__button-group'>
-            <Button variant="outline" className='tdesign-mobile-demo__button' onClick={() => setVisible(true)}>底部弹出</Button>
+            <Button variant="outline" className='tdesign-mobile-demo__button' onClick={() => setVisible(true)}>顶部弹出</Button>
         </div>
         <Popup visible={visible} onVisibleChange={handleVisibleChange} placement="top">
             <div className="vertical"></div>

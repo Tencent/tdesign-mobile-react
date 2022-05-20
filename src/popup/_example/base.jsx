@@ -12,8 +12,7 @@ export default function Base() {
   const [visible4, setVisible4] = useState(false)
   const [visible5, setVisible5] = useState(false)
 
-  const handleVisible1Change = (visible) => {
-    console.log(visible);
+  const handleVisible1Change = (visible, e) => {
     setVisible1(visible);
   }
   const handleVisible2Change = (visible) => {

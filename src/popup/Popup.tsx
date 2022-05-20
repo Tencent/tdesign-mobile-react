@@ -1,100 +1,118 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useState } from 'react';
 import Overlay from 'tdesign-mobile-react/overlay';
-import { CSSTransition } from 'react-transition-group';
 import classnames from 'classnames';
+import  {useSpring, animated } from 'react-spring'
+import useDefault from 'tdesign-mobile-react/_util/useDefault';
+import { PropagationEvent } from 'tdesign-mobile-react/_util/withStopPropagation';
+import withNativeProps, { NativeProps } from 'tdesign-mobile-react/_util/withNativeProps';
 import { TdPopupProps } from './type';
-import usePopupCssTransition from './hooks/usePopupCssTransition';
 import useConfig from '../_util/useConfig';
+import { popupDefaultProps } from './defaultProps';
 
-const DEFAULT_SHOW_OVERLAY = true;
+export interface PopupProps extends TdPopupProps, NativeProps {}
 
-const DEFAULT_ZINDEX = 1500;
+enum PopupSourceEnum {
+  OVERLAY = 'overlay',
+}
 
-const DEFAULT_PLACEMENT = 'top';
+enum PlacementEnum {
+  TOP = 'top',
+  BOTTOM = 'bottom',
+  LEFT = 'left',
+  RIGHT = 'right',
+  CENTER = 'center'
+}
 
-const DEFAULT_VISIBLE = false;
+const Popup: FC<PopupProps> = (props) => {
 
-const getContentTransitionClassName = (placement) => {
-  if (placement === 'center') {
-    return `slide-zoom`;
-  }
-  return `slide-${placement}`;
-};
-
-const Popup: FC<TdPopupProps> = (prop) => {
   const {
     children,
-    placement = DEFAULT_PLACEMENT,
-    showOverlay = DEFAULT_SHOW_OVERLAY,
+    placement,
+    showOverlay,
     visible,
-    defaultVisible = DEFAULT_VISIBLE,
-    zIndex = DEFAULT_ZINDEX,
+    defaultVisible,
+    zIndex,
     onVisibleChange,
-  } = prop;
+  } = props;
 
   const { classPrefix } = useConfig();
 
   const name = `${classPrefix}-popup`;
 
-  // 判断是否受控
-  const isControl = visible !== undefined;
+  const [show, setShow] = useDefault<boolean, any>(
+    visible,
+    defaultVisible,
+    onVisibleChange
+  )
 
-  const contentTransitionClassName = getContentTransitionClassName(placement);
+  const [active, setActive] = useState(show);
 
-  const [currentVisible, setCurrentVisible] = useState(visible);
+  const handleOverlayClick = () => {
+    setShow(false, PopupSourceEnum.OVERLAY);
+  };
 
-  const contentRef = useRef<HTMLDivElement>(null);
+  const { progress, opacity } = useSpring({
+    progress: show ? 0 : 100,
+    opacity: show ? 1 : 0,
+    onStart: () => {
+      setActive(true)
+    },
+    onRest: () => {
+      setActive(show);
+    }
+  })
 
-  const maskRef = useRef<HTMLDivElement>(null);
-
-  const maskCssTransitionState = usePopupCssTransition({ contentRef: maskRef, classPrefix: 'fade' });
-
-  const cssTransitionState = usePopupCssTransition({ contentRef, classPrefix: contentTransitionClassName });
+  const contentStyle = {
+    transform: progress.to(p => {
+      if (placement === PlacementEnum.BOTTOM) {
+        return `translateY(${p}%)`;
+      } 
+      if (placement === PlacementEnum.TOP) {
+        return `translateY(-${p}%)`;
+      } 
+      if (placement === PlacementEnum.LEFT) {
+        return `translateX(-${p}%)`;
+      } 
+      if (placement === PlacementEnum.RIGHT) {
+        return `translateX(${p}%)`;
+      }
+    }),
+    opacity: opacity.to(o => {
+      if (placement === PlacementEnum.CENTER) {
+        return o;
+      }
+    })
+  }
 
   const rootStyles = {
     zIndex,
+    display: active ? 'block' : 'none'
   };
 
-  const handleOverlayClick = () => {
-    if (!isControl) return;
-    setCurrentVisible(false);
-  };
-
-  useEffect(() => {
-    visible && setCurrentVisible(visible);
-  }, [visible]);
-
-  useEffect(() => {
-    defaultVisible && setCurrentVisible(defaultVisible);
-  }, [defaultVisible]);
-
-  useEffect(() => {
-    // 非受控属性禁止触发onVisibleChange
-    isControl && onVisibleChange && onVisibleChange(currentVisible);
-  }, [currentVisible, onVisibleChange, isControl]);
-
-  return (
-    <>
-      <div className={`${name}`} style={rootStyles}>
-        <CSSTransition in={currentVisible} appear {...maskCssTransitionState.props}>
-          <div ref={maskRef} style={{ display: 'none' }}>
-            <Overlay visible={showOverlay && visible} onOverlayClick={handleOverlayClick} />
-          </div>
-        </CSSTransition>
-        <CSSTransition in={currentVisible} appear {...cssTransitionState.props}>
-          <div
-            ref={contentRef}
-            className={classnames([`${name}--content`, `${name}--content-${placement}`])}
-            style={{
-              display: 'none',
-            }}
-          >
-            {children}
-          </div>
-        </CSSTransition>
-      </div>
-    </>
+  return withNativeProps(
+    props,
+    <div className={`${name}`} style={rootStyles}>
+      {
+        showOverlay && (
+          <Overlay 
+            visible={show} 
+            onOverlayClick={handleOverlayClick} 
+            disableBodyScroll={false}
+            stopPropagation={[PropagationEvent.CLICK, PropagationEvent.SCROLL]}
+          />
+        )
+      }
+      <animated.div
+        className={classnames([`${name}--content`, `${name}--content-${placement}`])}
+        style={contentStyle}
+      >
+        {active && children}
+      </animated.div>
+    </div>
   );
 };
+
+Popup.displayName = 'Popup'
+Popup.defaultProps = popupDefaultProps;
 
 export default Popup;
