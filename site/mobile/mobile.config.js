@@ -172,5 +172,10 @@ export default {
       name: 'textarea',
       component: () => import('tdesign-mobile-react/textarea/_example/index.jsx'),
     },
+    {
+      title: 'Steps 步骤条',
+      name: 'steps',
+      component: () => import('tdesign-mobile-react/steps/_example/index.jsx'),
+    },
   ],
 };

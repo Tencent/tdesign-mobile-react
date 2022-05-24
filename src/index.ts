@@ -32,3 +32,4 @@ export * from './avatar-group';
 export * from './picker';
 export * from './skeleton';
 export * from './textarea';
+export * from './steps';
