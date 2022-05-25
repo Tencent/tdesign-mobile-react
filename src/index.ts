@@ -20,3 +20,4 @@ export * from './dialog';
 export * from './loading';
 export * from './swiper';
 export * from './toast';
+export * from './drawer';

@@ -116,6 +116,12 @@ export default {
           path: '/mobile-react/components/swiper',
           component: () => import('tdesign-mobile-react/swiper/swiper.md'),
         },
+        {
+          title: 'Drawer 抽屉',
+          name: 'drawer',
+          path: '/mobile-react/components/drawer',
+          component: () => import('tdesign-mobile-react/drawer/drawer.md'),
+        },
       ],
     },
     {

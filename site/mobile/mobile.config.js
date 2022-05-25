@@ -106,5 +106,10 @@ export default {
       name: 'toast',
       component: () => import('tdesign-mobile-react/toast/_example/index.jsx'),
     },
+    {
+      title: 'Drawer 抽屉',
+      name: 'drawer',
+      component: () => import('tdesign-mobile-react/drawer/_example/index.jsx'),
+    },
   ],
 };
