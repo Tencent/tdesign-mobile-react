@@ -1,6 +1,6 @@
 import React, { FC, forwardRef, useRef } from 'react';
 import { CloseCircleFilledIcon } from 'tdesign-icons-react';
-import { isFunction } from 'lodash';
+import isFunction from 'lodash/isFunction';
 import { getCharacterLength } from '@common/js/utils/helper';
 import { TdInputProps } from './type';
 import useConfig from '../_util/useConfig';

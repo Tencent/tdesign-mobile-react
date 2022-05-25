@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Slider } from 'tdesign-mobile-react';
 import './style/index.less'
 
@@ -9,17 +9,11 @@ const marks = {
 };
 
 export default function Base() {
-
-  const [value, setValue] = useState(50)
-  const onChange = (value) => {
-    setValue(value)
-  }
-
   return (
     <div className='tdesign-mobile-demo'>
       <div className='tdesign-demo-block-wrap tdesign-demo-block-wrap__block'>
-        <Slider marks={marks} value={value} onChange={onChange}/>
-      </div>
+          <Slider marks={marks} defaultValue={50}/>
+        </div>
     </div>
   );
 }

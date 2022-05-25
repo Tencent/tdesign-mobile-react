@@ -1,27 +1,6 @@
 .t-image {
-  &__demo-fit,
-  &__demo-status,
-  &__demo-base,
-  &__demo-position {
+  &__demo-base {
     padding: 0 10px;
-    .t-image {
-      width: 72px;
-      height: 72px;
-
-      &-custom {
-        width: 100%;
-        height: auto;
-      }
-    }
-  }
-
-  &__demo-position {
-    .t-image {
-      width: 98px;
-      height: 98px;
-      border: 1px solid red;
-      box-sizing: border-box;
-    }
   }
 
   &__demo-size {
@@ -29,15 +8,20 @@
   }
 
   &__demo-wrap {
-    margin: 10px;
+    margin: 0 10px;
     display: inline-block;
     vertical-align: top;
-    text-align: left;
+    text-align: center;
 
     h5 {
       margin-bottom: 5px;
       font-size: 12px;
       color: #999;
+    }
+
+    .t-image__demo-size & {
+      margin-bottom: 10px;
+      vertical-align: bottom;
     }
   }
 }

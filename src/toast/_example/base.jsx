@@ -22,7 +22,7 @@ export default function () {
 
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoBlock title="" summary="默认提示">
+      <TDemoBlock title="" summary="默认提示-竖向">
         <ul className="toast-container">
           <li>
             <Button className="toast-btn" theme="primary" variant="outline" onClick={successColumn}>

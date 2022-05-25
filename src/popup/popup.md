@@ -13,4 +13,4 @@ showOverlay | Boolean | true | 是否显示遮罩层 | N
 visible | Boolean | false | 是否显示浮层。TS 类型：`boolean` | N
 defaultVisible | Boolean | false | 是否显示浮层。非受控属性。TS 类型：`boolean` | N
 zIndex | Number | - | 组件层级，Web 侧样式默认为 5500，移动端和小程序样式默认为 1500 | N
-onVisibleChange | Function |  | TS 类型：`(visible: boolean) => void`<br/>当浮层隐藏或显示时触发 | N
+onVisibleChange | Function |  | TS 类型：`(visible: boolean, trigger: PopupSource)  => void`<br/>当浮层隐藏或显示时触发。[详细类型定义](https://github.com/TDesignOteam/tdesign-mobile-react/tree/develop/src/popup/type.ts)。<br/>`type PopupSource = 'close-btn' | 'overlay'`<br/> | N

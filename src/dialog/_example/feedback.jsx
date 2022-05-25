@@ -8,8 +8,9 @@ const FeedbackUsage = React.memo(() => {
     <div className="t-dialog__demo-wrap">
       {/* 普通调用 */}
       <Button
-        theme="primary"
-        size="small"
+        variant="outline"
+        shape="round"
+        block
         onClick={() => {
           setAlertProps({
             visible: true,
@@ -18,25 +19,28 @@ const FeedbackUsage = React.memo(() => {
           });
         }}
       >
-        对话框(仅标题)
+        单行标题
       </Button>
-      {/* 命令调用 */}
+
       <Button
-        theme="primary"
-        size="small"
+        variant="outline"
+        shape="round"
+        block
         onClick={() => {
-          Dialog.alert({
+          setAlertProps({
+            visible: true,
             title: '对话框标题告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内',
             confirmBtn: '知道了',
           });
         }}
       >
-        对话框(仅标题)
+        多行标题最大高度
       </Button>
-      {/* 普通调用 */}
+
       <Button
-        theme="primary"
-        size="small"
+        variant="outline"
+        shape="round"
+        block
         onClick={() => {
           setAlertProps({
             visible: true,
@@ -46,23 +50,24 @@ const FeedbackUsage = React.memo(() => {
           });
         }}
       >
-        对话框(标题和内容)
+        带说明文本
       </Button>
 
-      {/* 命令调用 */}
       <Button
-        theme="primary"
-        size="small"
+        variant="outline"
+        shape="round"
+        block
         onClick={() => {
-          Dialog.alert({
+          setAlertProps({
+            visible: true,
             title: '对话框标题',
             content:
-              '告知当前状态、信息和解决方法，等内容。描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很多描述文案很',
+              '告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内。告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内。告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内。告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内。告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内。告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内。告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内。告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内。告知当前状态、信息和解决方法，等内容。描述文案尽可能控制在三行内。',
             confirmBtn: '知道了',
           });
         }}
       >
-        对话框(标题和内容)
+        带说明文本最大高度
       </Button>
 
       <Dialog
