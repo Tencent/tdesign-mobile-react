@@ -32,6 +32,7 @@ const Popup: FC<PopupProps> = (props) => {
     visible,
     defaultVisible,
     zIndex,
+    overlayProps,
     onVisibleChange,
   } = props;
 
@@ -99,6 +100,7 @@ const Popup: FC<PopupProps> = (props) => {
             onOverlayClick={handleOverlayClick} 
             disableBodyScroll={false}
             stopPropagation={[PropagationEvent.CLICK, PropagationEvent.SCROLL]}
+            {...overlayProps}
           />
         )
       }
