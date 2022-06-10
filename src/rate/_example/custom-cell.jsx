@@ -4,7 +4,7 @@ import './style/customCell.less';
 export default function CustomCell(props) {
   return (
     <div
-      className="customCell"
+      className="custom-cell"
       style={{
         backgroundColor: props.title ? '#fff' : null,
         marginBottom: props.showBottom ? '16px' : null,
