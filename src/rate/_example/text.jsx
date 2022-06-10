@@ -9,38 +9,39 @@ export default function Base() {
   return (
     <>
       <TDemoBlock title="" summary="带描述评分">
-        <CustomCell title="请点击评分" showBottom>
+        <CustomCell title="请点击评分">
           <Rate
             showText={true}
             size="16"
             texts={['1分', '2分', '3分', '4分', '5分']}
             value={value2}
-            color={['#ED7B2F', 'rgba(0,0,0,0.26)']}
+            color={['#ED7B2F', '#E7E7E7']}
             variant="filled"
-            gap={10}
+            gap={9.7}
             onChange={(value) => {
               setValue2(value);
             }}
           />
         </CustomCell>
-        <CustomCell title="请点击评分" showBottom>
+        <CustomCell title="请点击评分">
           <Rate
             showText={true}
             value={value2}
-            color={['#ED7B2F', 'rgba(0,0,0,0.26)']}
+            color={['#ED7B2F', '#E7E7E7']}
             variant="filled"
-            gap={10.5}
+            gap={10.2}
             onChange={(value) => {
               setValue2(value);
             }}
           />
         </CustomCell>
-        <CustomCell title="请点击评分" showBottom>
+        <CustomCell title="请点击评分">
           <Rate
             showText={true}
             value={value2}
-            color={['#ED7B2F', 'rgba(0,0,0,0.26)']}
-            gap={10.5}
+            color={['#ED7B2F', '#E7E7E7']}
+            gap={10.2}
+            variant="filled"
             onChange={(value) => {
               setValue2(value);
             }}
@@ -48,7 +49,9 @@ export default function Base() {
         </CustomCell>
       </TDemoBlock>
       <TDemoBlock title="" summary="展示型评分">
-        <Rate value={3} variant="filled" color={['#ED7B2F', 'rgba(0,0,0,0.26)']} gap={10.5} disabled />
+        <CustomCell>
+          <Rate value={3} variant="filled" color={['#ED7B2F', '#E7E7E7']} gap={10.2} disabled />
+        </CustomCell>
       </TDemoBlock>
     </>
   );

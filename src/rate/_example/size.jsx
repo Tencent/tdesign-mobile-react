@@ -5,30 +5,118 @@ import CustomCell from './custom-cell';
 
 export default function Base() {
   const [value, setValue] = useState(3);
+  const [value1, setValue1] = useState(3.5);
 
   return (
     <>
-      <TDemoBlock title="02 规格" summary="评价规格">
-        <CustomCell title="评分 20">
+      <TDemoBlock title="02 规格" summary="实心评分">
+        <CustomCell title="请点击评分">
           <Rate
             value={value}
+            gap={9.7}
+            size={16}
+            color={['#ED7B2F', '#E7E7E7']}
+            variant="filled"
             onChange={(value) => {
               setValue(value);
             }}
-            color={['#ED7B2F', 'rgba(0,0,0,0.26)']}
-            gap={10.5}
           />
         </CustomCell>
-        <CustomCell title="评分 16">
+        <CustomCell title="请点击评分">
           <Rate
             value={value}
-            size="16"
-            color={['#ED7B2F', 'rgba(0,0,0,0.26)']}
+            gap={10.2}
+            color={['#ED7B2F', '#E7E7E7']}
+            variant="filled"
             onChange={(value) => {
               setValue(value);
             }}
-            gap={10}
           />
+        </CustomCell>
+      </TDemoBlock>
+      <TDemoBlock title="" summary="空心评分">
+        <CustomCell title="请点击评分">
+          <Rate
+            value={value}
+            gap={9.7}
+            size={16}
+            color={['#ED7B2F', '#ED7B2F']}
+            onChange={(value) => {
+              setValue(value);
+            }}
+          />
+        </CustomCell>
+        <CustomCell title="请点击评分">
+          <Rate
+            value={value}
+            gap={10.2}
+            color={['#ED7B2F', '#ED7B2F']}
+            onChange={(value) => {
+              setValue(value);
+            }}
+          />
+        </CustomCell>
+      </TDemoBlock>
+      <TDemoBlock title="" summary="自定义数量评分">
+        <CustomCell title="自定义数量">
+          <Rate
+            value={value}
+            gap={9.7}
+            count={4}
+            size={16}
+            variant="filled"
+            color={['#ED7B2F', '#E7E7E7']}
+            onChange={(value) => {
+              setValue(value);
+            }}
+          />
+        </CustomCell>
+        <CustomCell title="自定义数量">
+          <Rate
+            value={value}
+            gap={10.2}
+            count={4}
+            variant="filled"
+            color={['#ED7B2F', '#E7E7E7']}
+            onChange={(value) => {
+              setValue(value);
+            }}
+          />
+        </CustomCell>
+      </TDemoBlock>
+      <TDemoBlock title="" summary="半星评分">
+        <CustomCell title="半星评价">
+          <Rate
+            value={value1}
+            gap={10.2}
+            size={16}
+            allowHalf
+            color={['#ED7B2F', '#E7E7E7']}
+            variant="filled"
+            onChange={(value) => {
+              setValue1(value);
+            }}
+          />
+        </CustomCell>
+        <CustomCell title="半星评价">
+          <Rate
+            value={value1}
+            gap={10.2}
+            allowHalf
+            color={['#ED7B2F', '#E7E7E7']}
+            variant="filled"
+            onChange={(value) => {
+              setValue1(value);
+            }}
+          />
+        </CustomCell>
+      </TDemoBlock>
+      <TDemoBlock title="" summary="展示型评分">
+        <CustomCell>
+          <Rate value={3} variant="filled" size={16} color={['#ED7B2F', '#E7E7E7']} gap={9.7} disabled />
+        </CustomCell>
+        <CustomCell>
+          <Rate value={3} variant="filled" color={['#ED7B2F', '#E7E7E7']} gap={10.2} disabled />
         </CustomCell>
       </TDemoBlock>
     </>
