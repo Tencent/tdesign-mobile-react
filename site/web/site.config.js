@@ -77,6 +77,12 @@ export default {
           component: () => import('tdesign-mobile-react/tab-bar/tab-bar.md'),
         },
         {
+          title: 'Navbar 导航栏',
+          name: 'navbar',
+          path: '/mobile-react/components/navbar',
+          component: () => import('tdesign-mobile-react/navbar/navbar.md'),
+        },
+        {
           title: 'Tabs 选项卡',
           name: 'tabs',
           path: '/mobile-react/components/tabs',

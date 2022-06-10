@@ -128,6 +128,11 @@ export default {
       component: () => import('tdesign-mobile-react/swiper/_example/index.jsx'),
     },
     {
+      title: 'Navbar 导航栏',
+      name: 'navbar',
+      component: () => import('tdesign-mobile-react/navbar/_example/index.jsx'),
+    },
+    {
       title: 'SwipeCell 滑动单元格',
       name: 'swipe-cell',
       component: () => import('tdesign-mobile-react/swipe-cell/_example/index.jsx'),
