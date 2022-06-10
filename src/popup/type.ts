@@ -12,6 +12,11 @@ export interface TdPopupProps {
    */
   children?: TNode;
   /**
+   * 遮罩层的属性，透传至 overlay
+   * @default {}
+   */
+  overlayProps?: object;
+  /**
    * 浮层出现位置
    * @default top
    */
