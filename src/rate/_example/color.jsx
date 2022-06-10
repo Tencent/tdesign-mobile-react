@@ -1,29 +1,13 @@
 import React, { useState } from 'react';
-import { Rate } from 'tdesign-mobile-react/rate';
+import { Rate } from 'tdesign-mobile-react';
+import CustomCell from './custom-cell';
 
 export default function Base() {
   const [value, setValue] = useState(3);
 
-  const RenderCard = (props) => {
-    return (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          backgroundColor: props.title ? '#fff' : null,
-          padding: '12px 16px',
-          ...props.style,
-        }}
-      >
-        <div style={{ width: props.title ? '80px' : null, marginRight: '16px' }}>{props.title}</div>
-        {props.children}
-      </div>
-    );
-  };
-
   return (
     <>
-      <RenderCard title="红色选中">
+      <CustomCell title="红色选中">
         <Rate
           value={value}
           color="red"
@@ -31,9 +15,9 @@ export default function Base() {
             setValue(value);
           }}
         />
-      </RenderCard>
+      </CustomCell>
 
-      <RenderCard title="绿色未选中">
+      <CustomCell title="绿色未选中">
         <Rate
           value={value}
           color={['red', 'green']}
@@ -41,7 +25,7 @@ export default function Base() {
             setValue(value);
           }}
         />
-      </RenderCard>
+      </CustomCell>
     </>
   );
 }
