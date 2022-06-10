@@ -172,5 +172,10 @@ export default {
       name: 'textarea',
       component: () => import('tdesign-mobile-react/textarea/_example/index.jsx'),
     },
+    {
+      title: 'TabBar 标签栏',
+      name: 'tab-bar',
+      component: () => import('tdesign-mobile-react/tab-bar/_example/mobile.jsx'),
+    },
   ],
 };
