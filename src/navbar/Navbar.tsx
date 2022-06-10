@@ -1,23 +1,24 @@
 import React, { CSSProperties, useCallback, useMemo, useState } from 'react';
-import { StyledProps } from 'tdesign-mobile-react/common';
 import { ChevronLeftIcon, IconFont, HomeIcon } from 'tdesign-icons-react';
-import useConfig from 'tdesign-mobile-react/_util/useConfig';
 import ClassNames from 'classnames';
 import { useSpring, animated } from '@react-spring/web';
 import useUnmountedRef from 'ahooks/lib/useUnmountedRef';
+import useConfig from '../_util/useConfig';
+import { StyledProps } from '../common';
 import { TdNavbarProps } from './type';
+import { navbarDefaultProps } from './defaultProps';
 
 export interface NavbarProps extends TdNavbarProps, StyledProps {}
 
-export const Navbar = React.memo<NavbarProps>((props) => {
+export const Navbar: React.FC<NavbarProps> = (props) => {
   const {
-    visible = true,
+    visible,
     title,
     children,
-    leftIcon = false,
+    leftIcon,
     homeIcon,
-    fixed = true,
-    animation = true,
+    fixed,
+    animation,
     rightIcon,
     titleMaxLength,
     onHomeClick,
@@ -138,6 +139,8 @@ export const Navbar = React.memo<NavbarProps>((props) => {
   );
 
   return animation ? <animated.div style={navbarSpring}>{navBar}</animated.div> : navBar;
-});
+};
+
+Navbar.defaultProps = navbarDefaultProps;
 
 export default Navbar;
