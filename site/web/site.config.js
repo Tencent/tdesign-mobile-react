@@ -154,12 +154,12 @@ export default {
           path: '/mobile-react/components/textarea',
           component: () => import('tdesign-mobile-react/textarea/textarea.md'),
         },
-        // {
-        //   title: 'Upload 上传',
-        //   name: 'upload',
-        //   path: '/mobile-react/components/upload',
-        //   component: () => import('tdesign-mobile-react/upload/upload.md'),
-        // },
+        {
+          title: 'Upload 上传',
+          name: 'upload',
+          path: '/mobile-react/components/upload',
+          component: () => import('tdesign-mobile-react/upload/upload.md'),
+        },
       ],
     },
     {
@@ -220,12 +220,6 @@ export default {
         //   path: '/mobile-react/components/list',
         //   component: () => import('tdesign-mobile-react/list/list.md'),
         // },
-        {
-          title: 'Loading 加载中',
-          name: 'loading',
-          path: '/mobile-react/components/loading',
-          component: () => import('tdesign-mobile-react/loading/loading.md'),
-        },
         // {
         //   title: 'ImageViewer 图片预览',
         //   name: 'image-viewer',
@@ -262,24 +256,11 @@ export default {
           path: '/mobile-react/components/swipe-cell',
           component: () => import('tdesign-mobile-react/swipe-cell/swipe-cell.md'),
         },
-      ],
-    },
-    {
-      title: '输入类组件',
-      name: 'form',
-      type: 'component', // 组件文档
-      children: [
         {
           title: 'Tag 标签',
           name: 'tag',
           path: '/mobile-react/components/tag',
           component: () => import('tdesign-mobile-react/tag/tag.md'),
-        },
-        {
-          title: 'Upload 上传',
-          name: 'upload',
-          path: '/mobile-react/components/upload',
-          component: () => import('tdesign-mobile-react/upload/upload.md'),
         },
       ],
     },
@@ -313,16 +294,16 @@ export default {
         //   component: () => import('tdesign-mobile-react/fab/fab.md'),
         // },
         {
-          title: 'Message 消息',
+          title: 'Loading 加载',
+          name: 'loading',
+          path: '/mobile-react/components/loading',
+          component: () => import('tdesign-mobile-react/loading/loading.md'),
+        },
+        {
+          title: 'Message 消息通知',
           name: 'message',
           path: '/mobile-react/components/message',
           component: () => import('tdesign-mobile-react/message/message.md'),
-        },
-        {
-          title: 'Toast 轻提示',
-          name: 'toast',
-          path: '/mobile-react/components/toast',
-          component: () => import('tdesign-mobile-react/toast/toast.md'),
         },
         {
           title: 'Popup 弹出层',
@@ -341,6 +322,12 @@ export default {
           name: 'pull-down-refresh',
           path: '/mobile-react/components/pull-down-refresh',
           component: () => import('tdesign-mobile-react/pull-down-refresh/pull-down-refresh.md'),
+        },
+        {
+          title: 'Toast 轻提示',
+          name: 'toast',
+          path: '/mobile-react/components/toast',
+          component: () => import('tdesign-mobile-react/toast/toast.md'),
         },
       ],
     },
