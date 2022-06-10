@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Rate } from 'tdesign-mobile-react/rate';
+import { Rate } from 'tdesign-mobile-react';
 
 export default function Base() {
   const [value, setValue] = useState(3);
@@ -7,10 +7,11 @@ export default function Base() {
   return (
     <Rate
       value={value}
-      disabled={true}
+      disabled
       onChange={(value) => {
         setValue(value);
       }}
+      gap={10}
     />
   );
 }
