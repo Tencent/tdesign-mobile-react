@@ -178,6 +178,11 @@ export default {
       component: () => import('tdesign-mobile-react/textarea/_example/index.jsx'),
     },
     {
+      title: 'Steps 步骤条',
+      name: 'steps',
+      component: () => import('tdesign-mobile-react/steps/_example/index.jsx'),
+    },
+    {
       title: 'TabBar 标签栏',
       name: 'tab-bar',
       component: () => import('tdesign-mobile-react/tab-bar/_example/mobile.jsx'),

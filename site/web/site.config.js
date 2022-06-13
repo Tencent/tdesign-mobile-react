@@ -64,12 +64,13 @@ export default {
         //   path: '/mobile-react/components/navbar',
         //   component: () => import('tdesign-mobile-react/navbar/navbar.md'),
         // },
-        // {
-        //   title: 'Steps 步骤条',
-        //   name: 'steps',
-        //   path: '/mobile-react/components/steps',
-        //   component: () => import('tdesign-mobile-react/steps/steps.md'),
-        // },
+        {
+          title: 'Steps 步骤条',
+          name: 'steps',
+          path: '/mobile-react/components/steps',
+          component: () => import('tdesign-mobile-react/steps/steps.md'),
+        },
+
         {
           title: 'TabBar 标签栏',
           name: 'tab-bar',
