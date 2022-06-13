@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tag } from 'tdesign-mobile-react';
 
-const Variant = React.memo(() => (
+const Variant = () => (
   <div className="t-tag__demo-block t-tag__demo-common">
     <Tag theme="primary" variant="outline">
       镂空标签
@@ -13,6 +13,6 @@ const Variant = React.memo(() => (
       标签
     </Tag>
   </div>
-));
+);
 
 export default Variant;

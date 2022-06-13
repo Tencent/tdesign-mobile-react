@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'tdesign-mobile-react/button';
 import { Link, useLocation } from 'react-router-dom';
 
-export const demoFiles = import.meta.globEager('../../../src/**/_example/*.jsx');
+export const demoFiles = import.meta.globEager('../../src/**/_example/*.jsx');
 
 const demoObject = {};
 Object.keys(demoFiles).forEach((key) => {
@@ -11,7 +11,7 @@ Object.keys(demoFiles).forEach((key) => {
 
   demoObject[`${componentName}/${demoName}`] = demoFiles[key].default;
   if (demoObject[componentName]) {
-    demoObject[componentName].push(demoName)
+    demoObject[componentName].push(demoName);
   } else {
     demoObject[componentName] = [demoName];
   }
