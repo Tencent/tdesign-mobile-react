@@ -33,6 +33,7 @@ export * from './avatar';
 export * from './avatar-group';
 export * from './picker';
 export * from './skeleton';
+export * from './indexes';
 export * from './textarea';
 export * from './steps';
 export * from './tab-bar';
