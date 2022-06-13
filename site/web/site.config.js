@@ -70,12 +70,18 @@ export default {
         //   path: '/mobile-react/components/steps',
         //   component: () => import('tdesign-mobile-react/steps/steps.md'),
         // },
-        // {
-        //   title: 'TabBar 标签栏',
-        //   name: 'tab-bar',
-        //   path: '/mobile-react/components/tabbar',
-        //   component: () => import('tdesign-mobile-react/tab-bar/tab-bar.md'),
-        // },
+        {
+          title: 'TabBar 标签栏',
+          name: 'tab-bar',
+          path: '/mobile-react/components/tabbar',
+          component: () => import('tdesign-mobile-react/tab-bar/tab-bar.md'),
+        },
+        {
+          title: 'Navbar 导航栏',
+          name: 'navbar',
+          path: '/mobile-react/components/navbar',
+          component: () => import('tdesign-mobile-react/navbar/navbar.md'),
+        },
         {
           title: 'Tabs 选项卡',
           name: 'tabs',
@@ -112,12 +118,12 @@ export default {
           path: '/mobile-react/components/input',
           component: () => import('tdesign-mobile-react/input/input.md'),
         },
-        // {
-        //   title: 'Picker 选择器',
-        //   name: 'picker',
-        //   path: '/mobile-react/components/picker',
-        //   component: () => import('tdesign-mobile-react/picker/picker.md'),
-        // },
+        {
+          title: 'Picker 选择器',
+          name: 'picker',
+          path: '/mobile-react/components/picker',
+          component: () => import('tdesign-mobile-react/picker/picker.md'),
+        },
         {
           title: 'Radio 单选框',
           name: 'radio',
@@ -130,12 +136,12 @@ export default {
           path: '/mobile-react/components/rate',
           component: () => import('tdesign-mobile-react/rate/rate.md'),
         },
-        // {
-        //   title: 'Search 搜索框',
-        //   name: 'search',
-        //   path: '/mobile-react/components/search',
-        //   component: () => import('tdesign-mobile-react/search/search.md'),
-        // },
+        {
+          title: 'Search 搜索框',
+          name: 'search',
+          path: '/mobile-react/components/search',
+          component: () => import('tdesign-mobile-react/search/search.md'),
+        },
         {
           title: 'Slider 滑动选择器',
           name: 'slider',
@@ -154,18 +160,18 @@ export default {
           path: '/mobile-react/components/switch',
           component: () => import('tdesign-mobile-react/switch/switch.md'),
         },
-        // {
-        //   title: 'Textarea 多行输入框',
-        //   name: 'textarea',
-        //   path: '/mobile-react/components/textarea',
-        //   component: () => import('tdesign-mobile-react/textarea/textarea.md'),
-        // },
-        // {
-        //   title: 'Upload 上传',
-        //   name: 'upload',
-        //   path: '/mobile-react/components/upload',
-        //   component: () => import('tdesign-mobile-react/upload/upload.md'),
-        // },
+        {
+          title: 'Textarea 多行输入框',
+          name: 'textarea',
+          path: '/mobile-react/components/textarea',
+          component: () => import('tdesign-mobile-react/textarea/textarea.md'),
+        },
+        {
+          title: 'Upload 上传',
+          name: 'upload',
+          path: '/mobile-react/components/upload',
+          component: () => import('tdesign-mobile-react/upload/upload.md'),
+        },
       ],
     },
     {
@@ -226,12 +232,6 @@ export default {
         //   path: '/mobile-react/components/list',
         //   component: () => import('tdesign-mobile-react/list/list.md'),
         // },
-        {
-          title: 'Loading 加载中',
-          name: 'loading',
-          path: '/mobile-react/components/loading',
-          component: () => import('tdesign-mobile-react/loading/loading.md'),
-        },
         // {
         //   title: 'ImageViewer 图片预览',
         //   name: 'image-viewer',
@@ -268,24 +268,11 @@ export default {
           path: '/mobile-react/components/swipe-cell',
           component: () => import('tdesign-mobile-react/swipe-cell/swipe-cell.md'),
         },
-      ],
-    },
-    {
-      title: '输入类组件',
-      name: 'form',
-      type: 'component', // 组件文档
-      children: [
         {
           title: 'Tag 标签',
           name: 'tag',
           path: '/mobile-react/components/tag',
           component: () => import('tdesign-mobile-react/tag/tag.md'),
-        },
-        {
-          title: 'Upload 上传',
-          name: 'upload',
-          path: '/mobile-react/components/upload',
-          component: () => import('tdesign-mobile-react/upload/upload.md'),
         },
       ],
     },
@@ -319,16 +306,16 @@ export default {
         //   component: () => import('tdesign-mobile-react/fab/fab.md'),
         // },
         {
-          title: 'Message 消息',
+          title: 'Loading 加载',
+          name: 'loading',
+          path: '/mobile-react/components/loading',
+          component: () => import('tdesign-mobile-react/loading/loading.md'),
+        },
+        {
+          title: 'Message 消息通知',
           name: 'message',
           path: '/mobile-react/components/message',
           component: () => import('tdesign-mobile-react/message/message.md'),
-        },
-        {
-          title: 'Toast 轻提示',
-          name: 'toast',
-          path: '/mobile-react/components/toast',
-          component: () => import('tdesign-mobile-react/toast/toast.md'),
         },
         {
           title: 'Popup 弹出层',
@@ -347,6 +334,12 @@ export default {
           name: 'pull-down-refresh',
           path: '/mobile-react/components/pull-down-refresh',
           component: () => import('tdesign-mobile-react/pull-down-refresh/pull-down-refresh.md'),
+        },
+        {
+          title: 'Toast 轻提示',
+          name: 'toast',
+          path: '/mobile-react/components/toast',
+          component: () => import('tdesign-mobile-react/toast/toast.md'),
         },
       ],
     },

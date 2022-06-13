@@ -1,6 +1,6 @@
 import { useRef } from 'react';
+import identity from 'lodash/identity';
 import ReactDOM from 'react-dom';
-import noop from '../../_util/noop';
 
 interface UseMessageCssTransitionParams {
   contentRef: React.MutableRefObject<HTMLDivElement>;
@@ -9,17 +9,17 @@ interface UseMessageCssTransitionParams {
   onEntered: () => void;
   onExit: () => void;
   onExited: () => void;
-  el: React.ReactNode;
+  container: HTMLElement;
 }
 
 const useMessageCssTransition = ({
   contentRef,
   classPrefix,
-  onEnter = noop,
-  onEntered = noop,
-  onExit = noop,
-  onExited = noop,
-  el,
+  onEnter = identity,
+  onEntered = identity,
+  onExit = identity,
+  onExited = identity,
+  container,
 }: UseMessageCssTransitionParams) => {
   const timerRef = useRef(null);
 
@@ -43,18 +43,16 @@ const useMessageCssTransition = ({
   }
 
   function handleExited() {
-    // 动画结束后默认删除节点实例
+    /**
+     * 动画结束后默认删除节点实例
+     */
     if (contentEle) {
       timerRef.current = setTimeout(() => {
         if (contentEle && contentEle.style.display === 'block') {
           contentEle.style.display = 'none';
         }
-        // 删除createElement创建的div元素
-        if (el) {
-          const unmountResult = ReactDOM.unmountComponentAtNode(el);
-          if (unmountResult) {
-            (el as any).parentNode.removeChild(el);
-          }
+        if (container && ReactDOM.unmountComponentAtNode(container)) {
+          container.parentNode.removeChild(container);
         }
       }, 0);
       onExited();

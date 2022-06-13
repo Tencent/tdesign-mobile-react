@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import { useScroll, useMount, useBoolean } from 'ahooks';
 import smoothscroll from 'smoothscroll-polyfill';
@@ -25,6 +25,10 @@ const BackTop: React.FC<BackTopProps> = (props) => {
 
   const [show, { setTrue, setFalse }] = useBoolean(false);
 
+  const backTopDom = useRef<HTMLElement>(null);
+
+  backTopDom.current = target();
+
   const { classPrefix } = useConfig();
 
   const name = `${classPrefix}-back-top`;
@@ -37,24 +41,19 @@ const BackTop: React.FC<BackTopProps> = (props) => {
 
   const isWindow = (obj) => obj !== null && obj.window === window;
 
-  const targetHeight = useMemo(
-    () => (isWindow(target) ? 0 : (target() as unknown as HTMLElement).offsetTop || 0),
-    [target],
-  );
+  const targetHeight = isWindow(backTopDom.current) ? 0 : backTopDom.current?.offsetTop || 0;
 
   useEffect(() => {
-    // 当滚动条滚动到超过锚点一个屏幕后，显示回到顶部按钮
+    // 当滚动条滚动到超过锚点二分之一个屏幕后，显示回到顶部按钮
     const screenHeight = window.innerHeight;
-    if (scroll?.top > screenHeight + targetHeight) {
+    if (scroll?.top > screenHeight / 2 + targetHeight) {
       setTrue();
     } else {
       setFalse();
     }
-  }, [scroll, targetHeight, setTrue, setFalse]);
+  }, [scroll, setTrue, setFalse, targetHeight]);
 
-  const onClick = useCallback(() => {
-    document.documentElement.scrollTo({ top: targetHeight, behavior: 'smooth' });
-  }, [targetHeight]);
+  const onClick = () => document.documentElement.scrollTo({ top: targetHeight, behavior: 'smooth' });
 
   return withNativeProps(
     props,

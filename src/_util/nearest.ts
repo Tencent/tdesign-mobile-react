@@ -1,5 +1,4 @@
 import isNumber from 'lodash/isNumber';
-import last from 'lodash/last';
 
 export interface nearestParams {
   items: number[]; // 一组数字
@@ -16,13 +15,18 @@ export default function nearest(params: nearestParams) {
   const { target, direction } = params;
   let { items, threshold = '50%' } = params;
   items = params.items.sort((a, b) => a - b);
+  const count = items.length;
+  const firstitem = items[0];
+  const lastItem = items[count - 1];
+  if (target <= firstitem) return firstitem;
+  if (target >= lastItem) return lastItem;
   const smallerIndex = items.findIndex((_, index) => target <= items[index + 1]);
   const largerIndex = smallerIndex + 1;
   const smallerItem = items[smallerIndex];
   const largerItem = items[largerIndex];
   if (smallerItem === target) return target;
-  if (smallerIndex === -1) return items[0];
-  if (smallerIndex === items.length - 1) return last(items);
+  if (smallerIndex === -1) return firstitem;
+  if (smallerIndex === count - 1) return lastItem;
   if (![-1, 1].includes(direction)) {
     return largerItem - target >= target - smallerItem ? smallerItem : largerItem;
   }
