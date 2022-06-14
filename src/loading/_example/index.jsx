@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { React, useState, useCallback, useRef } from 'react';
 import { Loading, Button, Switch } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
@@ -7,7 +7,7 @@ import './style/index.less';
 export default function () {
   const [progress, setProgress] = useState(0);
   const [showLoading, setShowLoading] = useState(false);
-  let timer = useRef(null);
+  const timer = useRef(null);
 
   const onPageLoading = useCallback(() => {
     if (timer.current) {
@@ -60,14 +60,6 @@ export default function () {
           <Loading theme="dots" />
         </div>
       </TDemoBlock>
-      <TDemoBlock summary="页面进度条加载">
-        <div className="demo-content">
-          <Loading theme="bar" progress={progress} />
-          <Button variant="outline" onClick={onPageLoading}>
-            {progress > 0 && progress <= 1 ? '页面加载中...' : '页面进度条加载'}
-          </Button>
-        </div>
-      </TDemoBlock>
       <TDemoBlock summary="图标加文字横向">
         <div className="demo-content">
           <Loading text="加载中..." />
@@ -87,16 +79,23 @@ export default function () {
       <TDemoBlock summary="纯文字">
         <div className="demo-content">
           <Loading indicator={false} text="加载中..." />
-          <div style={{ marginRight: '20px' }} />
-          <Loading theme="error" />
-          <div style={{ marginRight: '20px' }} />
-          <div>
-            <Loading indicator={false}>
-              <div class="custom-error">
-                加载失败 <span>刷新</span>
-              </div>
-            </Loading>
-          </div>
+        </div>
+      </TDemoBlock>
+      <TDemoBlock summary="加载失败">
+        <div className="demo-content">
+          <Loading indicator={false}>
+            <div className="custom-error">
+              加载失败 <span>刷新</span>
+            </div>
+          </Loading>
+        </div>
+      </TDemoBlock>
+      <TDemoBlock summary="进度条加载">
+        <div className="demo-content">
+          <Loading theme="bar" progress={progress} />
+          <Button block variant="outline" onClick={onPageLoading}>
+            {progress > 0 && progress <= 1 ? '页面加载中...' : '页面进度条加载'}
+          </Button>
         </div>
       </TDemoBlock>
       <TDemoBlock summary="延迟加载">
@@ -109,7 +108,7 @@ export default function () {
       </TDemoBlock>
 
       <TDemoBlock title="02 规格" summary="图标加文字横向">
-        <div className="normal-content" style={{ marginBottom: '30px' }}>
+        <div className="normal-content" style={{ paddingBottom: '30px' }}>
           <Loading size="large" text="加载中(大)..." />
           <div style={{ marginBottom: '10px' }} />
           <Loading size="medium" text="加载中(中)..." />
