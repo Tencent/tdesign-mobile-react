@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tag } from 'tdesign-mobile-react';
 
-const Theme = React.memo(() => (
+const Theme = () => (
   <div className="t-tag__demo-block t-tag__demo-theme">
     <Tag theme="primary">标签</Tag>
     <Tag theme="success">成功</Tag>
@@ -9,6 +9,6 @@ const Theme = React.memo(() => (
     <Tag theme="danger">危险</Tag>
     <Tag theme="default">信息</Tag>
   </div>
-));
+);
 
 export default Theme;

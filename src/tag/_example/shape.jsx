@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tag } from 'tdesign-mobile-react';
 
-const Shape = React.memo(() => (
+const Shape = () => (
   <div className="t-tag__demo-block t-tag__demo-common">
     <Tag theme="primary" shape="round">
       圆角标签
@@ -10,6 +10,6 @@ const Shape = React.memo(() => (
       半圆角标签
     </Tag>
   </div>
-));
+);
 
 export default Shape;

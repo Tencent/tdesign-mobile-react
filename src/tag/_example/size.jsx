@@ -2,7 +2,7 @@ import React from 'react';
 import { Tag } from 'tdesign-mobile-react';
 import { TagCheck } from 'tdesign-mobile-react';
 
-const Size = React.memo(() => (
+const Size =() => (
   <div className="t-tag__demo-block">
     <div className="t-tag__demo-size">
       <Tag theme="primary" size="large">
@@ -20,6 +20,6 @@ const Size = React.memo(() => (
       <TagCheck size="middle">点击标签中号</TagCheck>
     </div>
   </div>
-));
+);
 
 export default Size;
