@@ -24,7 +24,7 @@ const imageList = [
 export default function () {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="Toast 轻提示" summary="用于展示用户头像信息，除了纯展示也可点击进入个人详情等操作。" />
+      <TDemoHeader title="Avatar 头像" summary="用于展示用户头像信息，除了纯展示也可点击进入个人详情等操作。" />
       <TDemoBlock title="01 头像类型" summary="头像样式可为默认头像、微信头像圆形、方形、自定义文字">
         <div className="avatar-demo">
           <Avatar icon={<UserIcon />} />
@@ -45,14 +45,14 @@ export default function () {
           </Avatar.Group>
         </div>
         <div className="avatar-group-demo">
-          <Avatar.Group cascading="right-up" max={5} size="40px">
+          <Avatar.Group cascading="right-up" max={5} size="medium">
             {imageList.map((url, idx) => (
               <Avatar key={idx} shape="circle" image={url} />
             ))}
           </Avatar.Group>
         </div>
         <div className="avatar-group-demo">
-          <Avatar.Group cascading="right-up" max={5}>
+          <Avatar.Group cascading="right-up" max={5} size="large">
             {imageList.map((url, idx) => (
               <Avatar key={idx} shape="circle" image={url} />
             ))}
@@ -61,7 +61,12 @@ export default function () {
       </TDemoBlock>
       <TDemoBlock summary="带操作 从下往上">
         <div className="avatar-group-demo">
-          <Avatar.Group cascading="left-up" max={5} size="small" collapseAvatar={<UserAddIcon />}>
+          <Avatar.Group
+            cascading="left-up"
+            max={5}
+            size="small"
+            collapseAvatar={<UserAddIcon style={{ fontSize: '16px' }} />}
+          >
             {imageList.map((url, idx) => (
               <Avatar key={idx} shape="circle" image={url} />
             ))}
@@ -80,7 +85,7 @@ export default function () {
           </Avatar.Group>
         </div>
         <div className="avatar-group-demo">
-          <Avatar.Group cascading="left-up" max={5} collapseAvatar={<UserAddIcon style={{ fontSize: '24x' }} />}>
+          <Avatar.Group cascading="left-up" max={5} collapseAvatar={<UserAddIcon style={{ fontSize: '24px' }} />}>
             {imageList.map((url, idx) => (
               <Avatar key={idx} shape="circle" image={url} />
             ))}
