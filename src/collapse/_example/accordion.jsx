@@ -6,21 +6,21 @@ export default function () {
     <>
       <Collapse expandMutex onChange={(value) => console.log('value change: ', value)}>
         <Collapse.Panel header="面板标题1">
-          <ul>
+          <ul className='t-collapse-demo-list'>
             <li>面板内容</li>
             <li>面板内容</li>
             <li>面板内容</li>
           </ul>
         </Collapse.Panel>
         <Collapse.Panel header="面板标题2">
-          <ul>
+          <ul className='t-collapse-demo-list'>
             <li>面板内容</li>
             <li>面板内容</li>
             <li>面板内容</li>
           </ul>
         </Collapse.Panel>
         <Collapse.Panel header="面板标题3">
-          <ul>
+          <ul className='t-collapse-demo-list'>
             <li>面板内容</li>
             <li>面板内容</li>
             <li>面板内容</li>

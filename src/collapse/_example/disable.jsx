@@ -6,7 +6,7 @@ export default function () {
     <>
       <Collapse defaultValue={[0]}>
         <Collapse.Panel header="面板标题" disabled>
-          <ul>
+          <ul className='t-collapse-demo-list'>
             <li>面板内容</li>
             <li>面板内容</li>
             <li>面板内容</li>
