@@ -1,12 +1,10 @@
 import cls from 'classnames';
 import React, { forwardRef, Ref, useContext, useEffect, useMemo, useState } from 'react';
-import { ShapeEnum } from '../avatar/type';
+import { ShapeEnum, TdAvatarGroupProps } from './type';
 import { StyledProps } from '../common';
 import { ConfigContext } from '../config-provider';
-import Avatar from '../avatar/Avatar';
+import Avatar from './Avatar';
 import { AvatarGroupContextProvider } from './AvatarGroupContext';
-
-import type { TdAvatarGroupProps } from '../avatar/type';
 
 export interface AvatarGroupProps extends TdAvatarGroupProps, StyledProps {
   children?: React.ReactNode;
