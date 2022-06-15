@@ -10,14 +10,14 @@ export default function () {
     <>
       <Collapse expandIcon={expandIcon}>
         <Collapse.Panel header="面板标题1">
-          <ul className='t-collapse-demo-list'>
+          <ul>
             <li>面板内容</li>
             <li>面板内容</li>
             <li>面板内容</li>
           </ul>
         </Collapse.Panel>
         <Collapse.Panel header="面板标题2">
-          <ul className='t-collapse-demo-list'>
+          <ul>
             <li>面板内容</li>
             <li>面板内容</li>
             <li>面板内容</li>

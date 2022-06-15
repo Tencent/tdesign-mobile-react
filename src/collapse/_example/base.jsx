@@ -6,7 +6,7 @@ export default function () {
     <>
       <Collapse expandIcon>
         <Collapse.Panel header="面板标题">
-          <ul className='t-collapse-demo-list'>
+          <ul>
             <li>面板内容</li>
             <li>面板内容</li>
             <li>面板内容</li>

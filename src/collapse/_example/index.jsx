@@ -8,7 +8,6 @@ import ExpandIcon from './expandIcon';
 import Accordion from './accordion';
 import Control from './control';
 import Destroy from './destroy';
-import './style/index.less'
 
 export default function CheckboxDemo() {
   return (

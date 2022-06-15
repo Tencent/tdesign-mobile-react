@@ -6,14 +6,14 @@ export default function () {
     <>
       <Collapse>
         <Collapse.Panel header="收起不销毁面板内容" headerRightContent="展开" expandIcon>
-          <ul className='t-collapse-demo-list'>
+          <ul>
             <li>面板内容</li>
             <li>面板内容</li>
             <li>面板内容</li>
           </ul>
         </Collapse.Panel>
         <Collapse.Panel header="收起销毁面板内容" headerRightContent="展开" expandIcon destroyOnCollapse>
-          <ul className='t-collapse-demo-list'>
+          <ul>
             <li>面板内容</li>
             <li>面板内容</li>
             <li>面板内容</li>
