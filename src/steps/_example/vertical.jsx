@@ -22,13 +22,11 @@ export default function Vertical(props) {
     );
   }
   // 竖向简化只读步骤条
-  if (type === 2) {
-    return (
-      <Steps defaultCurrent={current} theme="dot" layout="vertical">
-        <Steps.StepItem title="事件描述" />
-        <Steps.StepItem title="事件描述" />
-        <Steps.StepItem title="事件描述" />
-      </Steps>
-    );
-  }
+  return (
+    <Steps defaultCurrent={current} theme="dot" layout="vertical">
+      <Steps.StepItem title="事件描述" />
+      <Steps.StepItem title="事件描述" />
+      <Steps.StepItem title="事件描述" />
+    </Steps>
+  );
 }
