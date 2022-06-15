@@ -24,7 +24,7 @@ export default function () {
           </Tabs>
         </li>
         <li key="k2">
-          <Tabs size="large">
+          <Tabs>
             <TabPanel value={'v1'} label="小尺寸">
               <div className="tab-content">标签一内容</div>
             </TabPanel>
