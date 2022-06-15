@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Tabs } from 'tdesign-mobile-react/tabs';
-import TDemoBlock from '../../../site/mobile/components/DemoBlock';
+import { Tabs } from 'tdesign-mobile-react';
 import './style.less';
 
 export default function () {
@@ -46,13 +45,11 @@ export default function () {
   };
 
   return (
-    <TDemoBlock summary="超过屏幕滚动">
-      <ul className="hori-wrap">
-        <li>
-          <Tabs list={list4} change={onChange}></Tabs>
-          <div className="tab-content">{content[key]}</div>
-        </li>
-      </ul>
-    </TDemoBlock>
+    <ul className="hori-wrap">
+      <li>
+        <Tabs list={list4} change={onChange}></Tabs>
+        <div className="tab-content">{content[key]}</div>
+      </li>
+    </ul>
   );
 }
