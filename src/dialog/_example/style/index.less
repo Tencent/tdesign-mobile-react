@@ -10,17 +10,23 @@
 .t-dialog__demo-input {
   margin: 0 auto;
   padding: 12px;
-  width: 95%;
+  width: 100%;
   border: none;
   border-radius: 4px;
   background-color: #f3f3f3;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1;
   display: block;
+  margin-top: 8px;
+  color: rgba(0, 0, 0, .9);
+  box-sizing: border-box;
+
+  &::placeholder {
+    line-height: 24px;
+    color: rgba(0, 0, 0, .4);
+  }
 }
 
 .t-dialog__demo-tips {
-  margin: 0 auto 20px;
-  width: 95%;
-  font-size: 14px;
+  margin: 0 auto 16px;
 }
