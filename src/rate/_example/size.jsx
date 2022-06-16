@@ -13,7 +13,6 @@ export default function Base() {
         <CustomCell title="请点击评分">
           <Rate
             value={value}
-            gap={9.7}
             size={16}
             color={['#ED7B2F', '#E7E7E7']}
             variant="filled"
@@ -25,7 +24,6 @@ export default function Base() {
         <CustomCell title="请点击评分">
           <Rate
             value={value}
-            gap={10.2}
             color={['#ED7B2F', '#E7E7E7']}
             variant="filled"
             onChange={(value) => {
@@ -38,7 +36,6 @@ export default function Base() {
         <CustomCell title="请点击评分">
           <Rate
             value={value}
-            gap={9.7}
             size={16}
             color={['#ED7B2F', '#ED7B2F']}
             onChange={(value) => {
@@ -49,7 +46,6 @@ export default function Base() {
         <CustomCell title="请点击评分">
           <Rate
             value={value}
-            gap={10.2}
             color={['#ED7B2F', '#ED7B2F']}
             onChange={(value) => {
               setValue(value);
@@ -61,7 +57,6 @@ export default function Base() {
         <CustomCell title="自定义数量">
           <Rate
             value={value}
-            gap={9.7}
             count={4}
             size={16}
             variant="filled"
@@ -74,7 +69,6 @@ export default function Base() {
         <CustomCell title="自定义数量">
           <Rate
             value={value}
-            gap={10.2}
             count={4}
             variant="filled"
             color={['#ED7B2F', '#E7E7E7']}
@@ -88,7 +82,6 @@ export default function Base() {
         <CustomCell title="半星评价">
           <Rate
             value={value1}
-            gap={10.2}
             size={16}
             allowHalf
             color={['#ED7B2F', '#E7E7E7']}
@@ -101,7 +94,6 @@ export default function Base() {
         <CustomCell title="半星评价">
           <Rate
             value={value1}
-            gap={10.2}
             allowHalf
             color={['#ED7B2F', '#E7E7E7']}
             variant="filled"
@@ -113,10 +105,10 @@ export default function Base() {
       </TDemoBlock>
       <TDemoBlock title="" summary="展示型评分">
         <CustomCell>
-          <Rate value={3} variant="filled" size={16} color={['#ED7B2F', '#E7E7E7']} gap={9.7} disabled />
+          <Rate value={3} variant="filled" size={16} color={['#ED7B2F', '#E7E7E7']} disabled />
         </CustomCell>
         <CustomCell>
-          <Rate value={3} variant="filled" color={['#ED7B2F', '#E7E7E7']} gap={10.2} disabled />
+          <Rate value={3} variant="filled" color={['#ED7B2F', '#E7E7E7']} disabled />
         </CustomCell>
       </TDemoBlock>
     </>
