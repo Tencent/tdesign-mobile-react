@@ -17,7 +17,6 @@ export default function Base() {
             value={value2}
             color={['#ED7B2F', '#E7E7E7']}
             variant="filled"
-            gap={9.7}
             onChange={(value) => {
               setValue2(value);
             }}
@@ -29,7 +28,6 @@ export default function Base() {
             value={value2}
             color={['#ED7B2F', '#E7E7E7']}
             variant="filled"
-            gap={10.2}
             onChange={(value) => {
               setValue2(value);
             }}
@@ -40,7 +38,6 @@ export default function Base() {
             showText={true}
             value={value2}
             color={['#ED7B2F', '#E7E7E7']}
-            gap={10.2}
             variant="filled"
             onChange={(value) => {
               setValue2(value);
@@ -50,7 +47,7 @@ export default function Base() {
       </TDemoBlock>
       <TDemoBlock title="" summary="展示型评分">
         <CustomCell>
-          <Rate value={3} variant="filled" color={['#ED7B2F', '#E7E7E7']} gap={10.2} disabled />
+          <Rate value={3} variant="filled" color={['#ED7B2F', '#E7E7E7']} disabled />
         </CustomCell>
       </TDemoBlock>
     </>
