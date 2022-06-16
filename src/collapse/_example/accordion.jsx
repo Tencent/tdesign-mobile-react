@@ -4,27 +4,15 @@ import { Collapse } from 'tdesign-mobile-react/collapse';
 export default function () {
   return (
     <>
-      <Collapse expandMutex onChange={(value) => console.log('value change: ', value)}>
-        <Collapse.Panel header="面板标题1">
-          <ul>
-            <li>面板内容</li>
-            <li>面板内容</li>
-            <li>面板内容</li>
-          </ul>
+      <Collapse expandIcon expandMutex onChange={(value) => console.log('value change: ', value)}>
+        <Collapse.Panel header="折叠面板标题">
+          此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容可自定义内容
         </Collapse.Panel>
-        <Collapse.Panel header="面板标题2">
-          <ul>
-            <li>面板内容</li>
-            <li>面板内容</li>
-            <li>面板内容</li>
-          </ul>
+        <Collapse.Panel header="折叠面板标题">
+          此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容可自定义内容
         </Collapse.Panel>
-        <Collapse.Panel header="面板标题3">
-          <ul>
-            <li>面板内容</li>
-            <li>面板内容</li>
-            <li>面板内容</li>
-          </ul>
+        <Collapse.Panel header="折叠面板标题">
+          此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容可自定义内容
         </Collapse.Panel>
       </Collapse>
     </>
