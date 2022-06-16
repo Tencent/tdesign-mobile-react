@@ -95,7 +95,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
   // 弹窗按钮
   const dialogActions = useMemo<Array<ButtonProps | TNode>>(() => {
     // 按钮类名
-    const btnClassName = ClassNames(cls(`${btnLayout}-btn`));
+    const btnClassName = ClassNames(cls('btn'), cls(`${btnLayout}-btn`));
     const btnCommonProps = {
       className: btnClassName,
     };
