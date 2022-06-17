@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TagCheck } from 'tdesign-mobile-react';
 
-const ClickableUse = React.memo(() => {
+const ClickableUse = () => {
   const [checked, setChecked] = useState(false);
 
   const handleOnChange = (v) => {
@@ -22,6 +22,6 @@ const ClickableUse = React.memo(() => {
       <TagCheck disabled> 不可点击</TagCheck>
     </div>
   );
-});
+};
 
 export default ClickableUse;

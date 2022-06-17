@@ -8,6 +8,7 @@
 className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
 children | TNode | - | 触发元素，同 triggerElement。TS 类型：`string | TNode`。[通用类型定义](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts) | N
+overlayProps | Object | {} | 遮罩层的属性，透传至 overlay | N
 placement | String | top | 浮层出现位置。可选项：top/left/right/bottom/center | N
 showOverlay | Boolean | true | 是否显示遮罩层 | N
 visible | Boolean | false | 是否显示浮层。TS 类型：`boolean` | N

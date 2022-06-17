@@ -7,7 +7,7 @@ process.env.TZ = 'Asia/Shanghai';
 module.exports = {
   rootDir: path.resolve(__dirname, '../../'),
   setupFilesAfterEnv: ['./test/scripts/setup-framework.js'],
-  testEnvironment: 'jest-environment-jsdom',
+  testEnvironment: 'jsdom',
   preset: 'ts-jest',
   transform: {
     '^.+\\.(j|t)sx?$': 'babel-jest',
@@ -21,6 +21,8 @@ module.exports = {
   testURL: 'http://localhost/',
   testPathIgnorePatterns: ['/node_modules/', '.history', '<rootDir>/src/_common'],
   globals: {
+    window: {},
+    document: {},
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.json',
       babelConfig: true,
@@ -40,7 +42,7 @@ module.exports = {
     // 组件 alias
     '^tdesign-mobile-react(.*)': '<rootDir>/src$1',
     // common
-    "^@common/(.*)": "<rootDir>/src/_common/$1",
+    '^@common/(.*)': '<rootDir>/src/_common/$1',
   },
   watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
 };

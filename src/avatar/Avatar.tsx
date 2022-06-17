@@ -5,9 +5,9 @@ import Badge from '../badge/index';
 import { StyledProps } from '../common';
 import { ConfigContext } from '../config-provider';
 import useSizeHook from './hooks/useSizeHooks';
-import AvatarGroup from '../avatar-group/AvatarGroup';
+import AvatarGroup from './AvatarGroup';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
-import { AvatarGroupContext } from '../avatar-group/AvatarGroupContext';
+import { AvatarGroupContext } from './AvatarGroupContext';
 
 export interface AvatarProps extends TdAvatarProps, StyledProps {
   children?: React.ReactNode;

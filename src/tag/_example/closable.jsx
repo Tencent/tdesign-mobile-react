@@ -7,7 +7,7 @@ const TagOptions = [
     name: '标签',
   },
 ];
-const ClosableDemo = React.memo(() => {
+const ClosableDemo = () => {
   const [tags, setTags] = useState(TagOptions);
 
   const onClose = (dex) => {
@@ -29,6 +29,6 @@ const ClosableDemo = React.memo(() => {
       })}
     </div>
   );
-});
+};
 
 export default ClosableDemo;

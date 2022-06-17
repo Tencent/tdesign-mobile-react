@@ -3,6 +3,7 @@ import { Stepper, Cell } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './style/index.less';
+import Base from './base';
 
 export default function StepperDemo() {
   const [controlValue, setControlValue] = useState(999);
@@ -19,14 +20,14 @@ export default function StepperDemo() {
       />
 
       <TDemoBlock title="01 类型" summary="基本步进器">
-        <Cell title="文字标题" rightIcon={<Stepper></Stepper>}></Cell>
+        <Base />
       </TDemoBlock>
       <TDemoBlock summary="带单位步进器">
         <Cell title="标题文字（单位）" rightIcon={<Stepper></Stepper>}></Cell>
       </TDemoBlock>
       <TDemoBlock summary="纯步进器">
         <div className="pure-stepper-container">
-          <Stepper theme="grey"></Stepper>
+          <Stepper theme="grey" defaultValue={3}></Stepper>
         </div>
       </TDemoBlock>
 

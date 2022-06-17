@@ -9,7 +9,7 @@ const actionButtons = [
   },
   {
     text: '编辑',
-    className: 'swipe-cell-action-warning-button',
+    theme: 'warning',
   },
   {
     text: '删除',
