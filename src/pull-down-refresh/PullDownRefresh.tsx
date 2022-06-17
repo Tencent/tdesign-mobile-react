@@ -1,4 +1,5 @@
 import React, { useRef, useState, ReactNode } from 'react';
+import classNames from 'classnames';
 import identity from 'lodash/identity';
 import uniqueId from 'lodash/uniqueId';
 import { useDrag } from '@use-gesture/react';
@@ -142,14 +143,23 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
   const statusText = getStatusText(status, loadingTexts);
   let statusNode: ReactNode = statusText;
   if (status === PullStatusEnum.loading) {
-    statusNode = <Loading {...loadingProps} text={statusText} className={`${name}__loading-icon`} />;
+    statusNode = (
+      <Loading
+        className={`${name}__loading`}
+        text={<span className={`${name}__loading-icon`}>{statusText}</span>}
+        {...loadingProps}
+      />
+    );
   }
 
   return withNativeProps(
     props,
     <div className={name} ref={rootRef}>
       <animated.div className={`${name}__track`} style={{ y }}>
-        <div className={`${name}__tips`} style={{ height: loadingBarHeight }}>
+        <div
+          className={classNames(`${name}__loading`, `${name}__loading-icon`, `${name}__max`)}
+          style={{ height: loadingBarHeight }}
+        >
           {statusNode}
         </div>
         {children}
