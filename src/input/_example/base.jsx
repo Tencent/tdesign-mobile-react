@@ -144,7 +144,7 @@ export default function Base() {
         <Input
           placeholder="请输入手机号码"
           suffix={
-            <Button theme="primary" variant="text" size="small">
+            <Button theme="primary" variant="text" size="large">
               发送验证码
             </Button>
           }
@@ -157,6 +157,7 @@ export default function Base() {
           label={'价格'}
           placeholder="0.00"
           suffix="元"
+          suffixSeperate={false}
           align="right"
           value={value13}
           onChange={(value) => {
@@ -167,6 +168,7 @@ export default function Base() {
           label={'个数'}
           placeholder="请输入个数"
           suffix="个"
+          suffixSeperate={false}
           align="right"
           value={value14}
           onChange={(value) => {

@@ -26,6 +26,7 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
     // size = 'small',
     suffix,
     suffixIcon,
+    suffixSeperate = true,
     type = 'text',
     value = '',
     defaultValue,
@@ -135,7 +136,12 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
               <CloseCircleFilledIcon onClick={handleClear} />
             </div>
           )}
-          {suffix && <div className={`${prefix}-input__wrap--suffix`}>{suffix}</div>}
+          {suffix && (
+            <div className={`${prefix}-input__wrap--suffix`}>
+              {suffixSeperate && <div className={`${prefix}-input__wrap--suffixSeperate`} />}
+              {suffix}
+            </div>
+          )}
         </div>
         {errorMessage && <div className={`${prefix}-input__error-msg`}>{errorMessage}</div>}
       </div>

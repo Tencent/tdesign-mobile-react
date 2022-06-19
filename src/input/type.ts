@@ -68,6 +68,10 @@ export interface TdInputProps {
    */
   suffix?: TNode;
   /**
+   * 后置内容 前的分隔符是否显示
+   */
+  suffixSeperate?: boolean;
+  /**
    * 组件后置图标
    */
   suffixIcon?: TElement;
@@ -91,7 +95,10 @@ export interface TdInputProps {
   /**
    * 输入框值发生变化时触发
    */
-  onChange?: (value: InputValue, context?: { e?: FormEvent<HTMLDivElement> | MouseEvent<HTMLElement | SVGElement> }) => void;
+  onChange?: (
+    value: InputValue,
+    context?: { e?: FormEvent<HTMLDivElement> | MouseEvent<HTMLElement | SVGElement> },
+  ) => void;
   /**
    * 清空按钮点击时触发
    */
