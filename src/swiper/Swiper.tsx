@@ -10,19 +10,7 @@ import SwiperItem from './SwiperItem';
 export interface SwiperProps extends TdSwiperProps, StyledProps {
   children?: React.ReactNode;
 }
-const rate = 343 / 154; // 长宽比;
-const computeInnerWidthHeight = (width: number, height: number) => {
-  let innerwidth = width;
-  let innerheigth = height;
-  // 高度优先保证
-  if (height * rate < width) {
-    innerwidth = height * rate;
-  } else {
-    innerheigth = width / rate;
-  }
 
-  return [innerwidth, innerheigth];
-};
 const Swiper: React.FC<SwiperProps> = (props) => {
   const {
     // animation = 'slide', // 轮播切换动画效果类型（暂时没用）
@@ -88,28 +76,15 @@ const Swiper: React.FC<SwiperProps> = (props) => {
 
   const childrenLength = childrenList.length;
 
-  // 计算出卡片的内置高度
-  const [innerwidth, innerheigth] = computeInnerWidthHeight(containerWidth, height);
-
   //   // 创建渲染用的节点列表
-  const swiperItemList = childrenList.map((child: JSX.Element, index: number) => (
-    <div
-      style={{
-        height: `${height}px`,
-        width: `${containerWidth}px`,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-      key={index}
-    >
-      {React.cloneElement(child, {
-        value: index,
-        style: { height: `${innerheigth}px`, width: `${innerwidth}px`, borderRadius: '8px', overflow: 'hidden' },
-        ...child.props,
-      })}
-    </div>
-  ));
+  const swiperItemList = childrenList.map((child: JSX.Element, index: number) =>
+    React.cloneElement(child, {
+      value: index,
+      style: { height: `${height}px`, width: `${containerWidth}px` },
+      className: `${classPrefix}-swiper__item`,
+      ...child.props,
+    }),
+  );
 
   // 子节点不为空时，复制第一个子节点到列表最后，复制最后一个节点到列表最前（为了滑动创建的占位元素）
   if (childrenLength > 0) {
