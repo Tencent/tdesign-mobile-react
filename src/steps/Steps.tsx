@@ -16,7 +16,7 @@ const Steps: FC<StepsProps> = (props) => {
     layout,
     readonly,
     theme,
-    // separator,
+    separator,
     current,
     defaultCurrent,
     onChange: onCurrentChange,
@@ -44,9 +44,15 @@ const Steps: FC<StepsProps> = (props) => {
     props,
     <StepsContext.Provider value={{ value, readonly, theme, layout, onChange }}>
       <div
-        className={classnames(name, `${name}--${layout}`, `${name}--${theme}-anchor`, {
-          [`${name}--readonly`]: readonly,
-        })}
+        className={classnames(
+          name,
+          `${name}--${layout}`,
+          `${name}--${theme}-anchor`,
+          `${name}--${separator}-separator`,
+          {
+            [`${name}--readonly`]: readonly,
+          },
+        )}
       >
         {stepItemList}
       </div>
