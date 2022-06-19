@@ -69,6 +69,7 @@ export interface TdInputProps {
   suffix?: TNode;
   /**
    * 后置内容 前的分隔符是否显示
+   * @default true
    */
   suffixSeperate?: boolean;
   /**
@@ -80,6 +81,12 @@ export interface TdInputProps {
    * @default text
    */
   type?: 'text' | 'number' | 'url' | 'tel' | 'password' | 'search' | 'submit' | 'hidden';
+  /**
+   * 是否显示两行
+   * @default false
+   */
+  twoLines?: boolean;
+
   /**
    * 输入框的值
    */

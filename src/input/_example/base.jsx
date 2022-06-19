@@ -22,6 +22,7 @@ export default function Base() {
   const [value14, setValue14] = useState('');
   const [value15, setValue15] = useState('');
   const [value16, setValue16] = useState('');
+  const [value17, setValue17] = useState('');
 
   return (
     <>
@@ -72,6 +73,7 @@ export default function Base() {
         <Input
           label={'标准五个字'}
           placeholder="请输入文字"
+          twoLines={true}
           suffixIcon={<InfoCircleFilledIcon />}
           value={value5}
           onChange={(value) => {
@@ -79,7 +81,17 @@ export default function Base() {
           }}
         />
       </TDemoBlock>
-
+      <TDemoBlock summary="两行样式文本框">
+        <Input
+          label={'标准五个字'}
+          placeholder="请输入文字请输入文字"
+          twoLines={true}
+          value={value17}
+          onChange={(value) => {
+            setValue17(value);
+          }}
+        />
+      </TDemoBlock>
       <TDemoBlock summary="长标题文本框">
         <Input
           label={'超长需换行的标签'}
@@ -140,6 +152,7 @@ export default function Base() {
           onChange={(value) => {
             setValue11(value);
           }}
+          suffixIcon={<InfoCircleFilledIcon />}
         />
         <Input
           placeholder="请输入手机号码"
