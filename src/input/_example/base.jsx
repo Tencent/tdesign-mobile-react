@@ -73,7 +73,6 @@ export default function Base() {
         <Input
           label={'标准五个字'}
           placeholder="请输入文字"
-          twoLines={true}
           suffixIcon={<InfoCircleFilledIcon />}
           value={value5}
           onChange={(value) => {
@@ -85,7 +84,7 @@ export default function Base() {
         <Input
           label={'标准五个字'}
           placeholder="请输入文字请输入文字"
-          twoLines={true}
+          vertical={true}
           value={value17}
           onChange={(value) => {
             setValue17(value);

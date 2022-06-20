@@ -82,10 +82,10 @@ export interface TdInputProps {
    */
   type?: 'text' | 'number' | 'url' | 'tel' | 'password' | 'search' | 'submit' | 'hidden';
   /**
-   * 是否显示两行
+   * 是否垂直显示
    * @default false
    */
-  twoLines?: boolean;
+  vertical?: boolean;
 
   /**
    * 输入框的值

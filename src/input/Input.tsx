@@ -21,7 +21,7 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
     label = '',
     maxcharacter = 0, // 半成品
     maxlength = 0,
-    twoLines = false,
+    vertical = false,
     name = '',
     placeholder = '',
     prefixIcon,
@@ -105,13 +105,13 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
         [`${prefix}-cell--bordered ${prefix}-input`],
         {
           [`${prefix}-input__error`]: errorMessage,
-          [`${prefix}-input__twoLines`]: twoLines,
+          [`${prefix}-input__vertical`]: vertical,
         },
       )}
     >
       <div
         className={classNames([`${prefix}-input__left`], {
-          [`${prefix}-input__twoLines__left`]: twoLines,
+          [`${prefix}-input__vertical__left`]: vertical,
         })}
       >
         <div className={classNames({ [`${prefix}-cell__left-icon`]: prefixIcon })}>
@@ -126,7 +126,7 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
       </div>
       <div
         className={classNames([`${prefix}-input__right`], {
-          [`${prefix}-input__twoLines__right`]: twoLines,
+          [`${prefix}-input__vertical__right`]: vertical,
         })}
       >
         <div className={`${prefix}-cell__note`}>
