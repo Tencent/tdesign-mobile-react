@@ -4,11 +4,14 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
+import { ScrollContainer } from '../common';
+
 export interface TdStickyProps {
   /**
-   * 指定容器对应的NodesRef节点为组件的外部容器，滚动时组件会始终保持在容器范围内，当组件即将超出容器底部时，会返回原位置。
+   * 指定滚动的容器。数据类型为 String 时，会被当作选择器处理，进行节点查询。示例：'body' 或 () => document.body
+   * @default body
    */
-  container?: Element;
+  container?: ScrollContainer;
   /**
    * 是否禁用组件
    * @default false
@@ -27,5 +30,5 @@ export interface TdStickyProps {
   /**
    * 滚动时触发，scrollTop: 距离顶部位置，isFixed: 是否吸顶
    */
-  onScroll?: (context: { scrollTop: number, isFixed: boolean }) => void;
+  onScroll?: (context: { scrollTop: number; isFixed: boolean }) => void;
 }
