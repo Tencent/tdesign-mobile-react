@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import isEmpty from 'lodash/isEmpty';
 import { Picker, PickerItem, Cell } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
-
+import './style/index.less';
 const formatOptions = (labels) => labels.map((label, index) => ({ label, value: index }));
 const cityOptions = formatOptions(['北京', '上海', '广州', '深圳', '杭州', '成都', '长沙']);
 const currentYear = new Date().getFullYear();
@@ -14,6 +14,7 @@ const optionsListMap = {
   city: [cityOptions],
   yearAndSeason: [yearOptions, seasonOptions],
   date: [yearOptions, monthOptions, dayOptions],
+  titleCity: [cityOptions],
 };
 
 const getSelectedLabelText = (optionsList, values) => {
@@ -27,7 +28,7 @@ const getSelectedLabelText = (optionsList, values) => {
       if (option) acc.push(option.label);
       return acc;
     }, [])
-    .join(',');
+    .join('-');
 };
 
 export default function Demo() {
@@ -35,6 +36,7 @@ export default function Demo() {
     city: { visible: false, values: [], labelText: '' },
     yearAndSeason: { visible: false, values: [], labelText: '' },
     date: { visible: false, values: [], labelText: '' },
+    titleCity: { visible: false, values: [], labelText: '' },
   });
 
   const togglePicker = (name, visible) => {
@@ -52,10 +54,12 @@ export default function Demo() {
       [name]: { ...state[name], values, labelText, visible: false },
     });
   };
-
-  return (
+  const NotePanel = (value, title)=>{
+    return <div className={`note-panel ${value ? '': 'empty'}`}>{value || title}</div>;
+  }
+  return <>
     <TDemoBlock title="01 类型" summary="基础选择器">
-      <Cell arrow title="城市" note={state.city.labelText || '选择城市'} onClick={() => togglePicker('city', true)} />
+      <Cell arrow title="城市" note={NotePanel(state.city.labelText, '选择城市')} onClick={() => togglePicker('city', true)} />
       <Picker
         visible={state.city.visible}
         defaultValue={state.city.values}
@@ -64,12 +68,14 @@ export default function Demo() {
       >
         <PickerItem options={cityOptions} />
       </Picker>
-      <Cell
-        arrow
-        title="年份和季节"
-        note={state.yearAndSeason.labelText || '选择城年份和季节'}
-        onClick={() => togglePicker('yearAndSeason', true)}
-      />
+      <div className='cell-container'>
+        <Cell
+          arrow
+          title="年份和季节"
+          note={NotePanel(state.yearAndSeason.labelText, '选择城年份和季节')}
+          onClick={() => togglePicker('yearAndSeason', true)}
+        />
+      </div>
       <Picker
         visible={state.yearAndSeason.visible}
         defaultValue={state.yearAndSeason.values}
@@ -79,7 +85,9 @@ export default function Demo() {
         <PickerItem options={yearOptions} />
         <PickerItem options={seasonOptions} />
       </Picker>
-      <Cell arrow title="日期" note={state.date.labelText || '选择日期'} onClick={() => togglePicker('date', true)} />
+      <div className='cell-container'>
+        <Cell arrow title="日期" note={NotePanel(state.date.labelText, '选择日期')} onClick={() => togglePicker('date', true)} />
+      </div>
       <Picker
         visible={state.date.visible}
         defaultValue={state.date.values}
@@ -91,5 +99,17 @@ export default function Demo() {
         <PickerItem options={dayOptions} />
       </Picker>
     </TDemoBlock>
-  );
+    <TDemoBlock title="" summary="带标题选择器">
+        <Cell arrow title="城市" note={NotePanel(state.titleCity.labelText, '选择城市')} onClick={() => togglePicker('titleCity', true)} />
+        <Picker
+            visible={state.titleCity.visible}
+            defaultValue={state.titleCity.values}
+            onConfirm={(values) => handleSelect('titleCity', values)}
+            onCancel={() => togglePicker('titleCity', false)}
+            title='选中城市'
+        >
+            <PickerItem options={cityOptions} />
+        </Picker>
+    </TDemoBlock>
+  </>;
 }
