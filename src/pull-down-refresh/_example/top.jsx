@@ -3,7 +3,11 @@ import { PullDownRefresh, Skeleton } from 'tdesign-mobile-react';
 import './style/index.less';
 
 export default function Demo() {
-  const [count, setCount] = useState(0);
+  const [value, setValue] = useState(false);
+
+  const onChange = (val) => {
+    console.log('val: ', val);
+  };
 
   const rowCols = [
     {
@@ -31,21 +35,27 @@ export default function Demo() {
       },
     ],
   ];
+
   return (
     <div className="tdesign-mobile-wrapper">
       <PullDownRefresh
         loadingProps={{
           layout: 'vertical',
         }}
+        value={value}
+        onChange={onChange}
         loadingBarHeight={80}
-        onRefresh={() =>
-          new Promise((resolve) => {
-            setCount(count + 1);
+        onRefresh={() => {
+          setValue(true);
+          const p = new Promise((resolve) => {
             setTimeout(() => {
               resolve();
             }, 1000);
-          })
-        }
+          });
+          p.then(() => {
+            setValue(false);
+          });
+        }}
       >
         <div className="tdesign-mobile-block">拖拽该区域演示 中间下拉刷新</div>
         <div style={{ display: 'flex' }}>

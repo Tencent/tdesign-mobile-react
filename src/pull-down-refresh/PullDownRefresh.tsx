@@ -1,9 +1,10 @@
-import React, { useRef, useState, ReactNode } from 'react';
+import React, { useRef, useState, ReactNode, useEffect } from 'react';
 import classNames from 'classnames';
 import identity from 'lodash/identity';
 import uniqueId from 'lodash/uniqueId';
 import { useDrag } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
+import isBoolean from 'lodash/isBoolean';
 import { Loading } from 'tdesign-mobile-react';
 import useConfig from '../_util/useConfig';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
@@ -63,6 +64,8 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
     refreshTimeout,
     onRefresh,
     onTimeout,
+    value,
+    onChange,
   } = props;
   const [status, originalSetStatus] = useState(PullStatusEnum.normal);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -80,6 +83,20 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
     }),
     [],
   );
+
+  useEffect(() => {
+    if (onChange) {
+      onChange(value);
+    }
+    if (isBoolean(value) && !value) {
+      setStatus(PullStatusEnum.success);
+      api.start({ y: 0 });
+    } else if (value) {
+      setStatus(PullStatusEnum.loading);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
   const doRefresh = async () => {
     setStatus(PullStatusEnum.loading);
@@ -110,6 +127,13 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
     }
   };
 
+  const handleRefresh = () => {
+    if (!isBoolean(value)) {
+      doRefresh();
+    }
+    onRefresh();
+  };
+
   useDrag(
     (state) => {
       const [, offsetY] = state.offset;
@@ -120,7 +144,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
       if (!scrollParentRef.current) return;
       if (state.last) {
         if (status === PullStatusEnum.loosing) {
-          doRefresh();
+          handleRefresh();
         } else {
           setStatus(PullStatusEnum.normal);
           api.start({ y: 0 });
