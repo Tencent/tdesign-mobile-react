@@ -28,9 +28,9 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
     // size = 'small',
     suffix,
     suffixIcon,
-    suffixSeperate = true,
     type = 'text',
     value = '',
+    className = '',
     defaultValue,
     required = false,
     readonly = false,
@@ -107,6 +107,7 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
           [`${prefix}-input__error`]: errorMessage,
           [`${prefix}-input__vertical`]: vertical,
         },
+        className,
       )}
     >
       <div
@@ -157,16 +158,13 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
                 <CloseCircleFilledIcon onClick={handleClear} />
               </div>
             )}
-            {suffix && (
-              <div className={`${prefix}-input__wrap--suffix`}>
-                {suffixSeperate && <div className={`${prefix}-input__wrap--suffixSeperate`} />}
-                {suffix}
-              </div>
-            )}
+            {suffix && <div className={`${prefix}-input__wrap--suffix`}>{suffix}</div>}
           </div>
           {errorMessage && <div className={`${prefix}-input__error-msg`}>{errorMessage}</div>}
         </div>
-        <div className={`${prefix}-cell__right-icon`}>{suffixIcon ? suffixIcon : <></>}</div>
+        <div className={classNames({ [`${prefix}-cell__right-icon`]: suffixIcon })}>
+          {suffixIcon ? suffixIcon : <></>}
+        </div>
       </div>
     </div>
   );

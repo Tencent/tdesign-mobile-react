@@ -4,7 +4,7 @@ import { Button } from 'tdesign-mobile-react/button';
 import { InfoCircleFilledIcon } from 'tdesign-icons-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
-
+import './index.less';
 export default function Base() {
   const [value1, setValue1] = useState('');
   const [value2, setValue2] = useState('');
@@ -175,6 +175,7 @@ export default function Base() {
           onChange={(value) => {
             setValue13(value);
           }}
+          className="t-input-suffix-noseperate"
         />
         <Input
           label={'个数'}
@@ -186,6 +187,7 @@ export default function Base() {
           onChange={(value) => {
             setValue14(value);
           }}
+          className="t-input-suffix-noseperate"
         />
       </TDemoBlock>
 

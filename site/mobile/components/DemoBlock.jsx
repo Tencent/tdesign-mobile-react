@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../../style/mobile/index.less';
 const TDemoBlock = (prop) => {
   const { children, title, summary } = prop;
   return (

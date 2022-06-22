@@ -68,11 +68,6 @@ export interface TdInputProps {
    */
   suffix?: TNode;
   /**
-   * 后置内容 前的分隔符是否显示
-   * @default true
-   */
-  suffixSeperate?: boolean;
-  /**
    * 组件后置图标
    */
   suffixIcon?: TElement;
@@ -95,6 +90,11 @@ export interface TdInputProps {
    * 输入框的值，非受控属性
    */
   defaultValue?: InputValue;
+  /**
+   * 传入的class
+   * @default ""
+   */
+  className?: string;
   /**
    * 失去焦点时触发
    */
