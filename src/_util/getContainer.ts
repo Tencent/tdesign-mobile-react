@@ -1,6 +1,14 @@
 import isFunction from 'lodash/isFunction';
+import isString from 'lodash/isString';
 
-export function resolveContainer(getContainer: HTMLElement | (() => HTMLElement) | undefined | null) {
-  const container = isFunction(getContainer) ? getContainer() : getContainer;
-  return container || document.body;
+import { ScrollContainerElement, ScrollContainer } from '../common'
+
+export function resolveContainer(getContainer: ScrollContainerElement | ScrollContainer): ScrollContainerElement {
+  if (isString(getContainer)) {
+    return getContainer ? (document.querySelector(getContainer) as HTMLElement) : window;
+  }
+  if (isFunction(getContainer)) {
+    return getContainer();
+  }
+  return getContainer;
 }
