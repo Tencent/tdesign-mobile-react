@@ -81,6 +81,7 @@ const Swiper: React.FC<SwiperProps> = (props) => {
     React.cloneElement(child, {
       value: index,
       style: { height: `${height}px`, width: `${containerWidth}px` },
+      className: `${classPrefix}-swiper__item`,
       ...child.props,
     }),
   );
@@ -343,10 +344,10 @@ const Swiper: React.FC<SwiperProps> = (props) => {
           {(direction === 'horizontal' && navigation && navigation.showSlideBtn && (
             <span>
               <span className={`${classPrefix}-swiper__btn btn-prev`} onClick={() => clickSlideBtn('left')}>
-                <Icon name="chevron-left" size={20} />
+                <Icon name="chevron-left" size={16} />
               </span>
               <span className={`${classPrefix}-swiper__btn btn-next`} onClick={() => clickSlideBtn('right')}>
-                <Icon name="chevron-right" size={20} />
+                <Icon name="chevron-right" size={16} />
               </span>
             </span>
           )) ||

@@ -18,7 +18,6 @@ export default function Base() {
         <CustomCell title="请点击评分">
           <Rate
             value={value1}
-            gap={9.7}
             size={16}
             color={['#ED7B2F', '#E7E7E7']}
             variant="filled"
@@ -30,7 +29,6 @@ export default function Base() {
         <CustomCell title="请点击评分">
           <Rate
             value={value1}
-            gap={10.2}
             color={['#ED7B2F', '#E7E7E7']}
             variant="filled"
             onChange={(value) => {
@@ -41,7 +39,6 @@ export default function Base() {
         <CustomCell title="请点击评分">
           <Rate
             value={value1}
-            gap={10.2}
             color={['#ED7B2F', '#ED7B2F']}
             onChange={(value) => {
               setValue1(value);
@@ -51,7 +48,6 @@ export default function Base() {
         <CustomCell title="自定义数量">
           <Rate
             value={value1}
-            gap={10.2}
             count={4}
             color={['#ED7B2F', '#E7E7E7']}
             variant="filled"
@@ -63,7 +59,6 @@ export default function Base() {
         <CustomCell title="半星评价">
           <Rate
             value={value2}
-            gap={10.2}
             allowHalf
             color={['#ED7B2F', '#E7E7E7']}
             variant="filled"

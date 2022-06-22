@@ -1,24 +1,29 @@
-import React, { FC } from "react";
-import { TdGridProps } from "./type";
+import React, { forwardRef } from 'react';
+import { TdGridProps } from './type';
 import useConfig from '../_util/useConfig';
 
-const Grid: FC<TdGridProps> = (prop) => {
-    const { children, align, border, column, gutter } = prop;
+import { GirdProvider } from './GridContext';
+import { gridDefaultProps } from './defaultProps';
 
-    const { classPrefix } = useConfig();
-    const name = `${classPrefix}-grid`;
-
-    return <>
-        <div className={name} style={{paddingRight: gutter}}>
-            {
-                React.Children.map(children, (child: React.ReactElement) => React.cloneElement(child, {
-                    border,
-                    align,
-                    column,
-                }))
-            }
-        </div>
-    </>
+export interface GridProps extends TdGridProps {
+  children: React.ReactNode;
 }
+
+const Grid = forwardRef<HTMLDivElement, GridProps>((props, ref) => {
+  const { children, align, border, column, gutter } = props;
+  const { classPrefix } = useConfig();
+  const name = `${classPrefix}-grid`;
+
+  return (
+    <GirdProvider gutter={gutter} border={border} column={column} align={align}>
+      <div ref={ref} className={name}>
+        {children}
+      </div>
+    </GirdProvider>
+  );
+});
+
+Grid.displayName = 'Grid';
+Grid.defaultProps = gridDefaultProps;
 
 export default Grid;

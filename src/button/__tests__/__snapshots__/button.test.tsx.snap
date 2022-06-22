@@ -89,13 +89,11 @@ exports[`index.jsx 1`] = `
     >
       <h2
         class="tdesign-mobile-demo-block__title"
-        v-if="title"
       >
         01 基础按钮
       </h2>
       <p
         class="tdesign-mobile-demo-block__summary"
-        v-if="summary"
       >
         基础类型分为主按钮、次按钮、文字按钮。
       </p>
@@ -167,13 +165,11 @@ exports[`index.jsx 1`] = `
     >
       <h2
         class="tdesign-mobile-demo-block__title"
-        v-if="title"
       >
         02 图标按钮
       </h2>
       <p
         class="tdesign-mobile-demo-block__summary"
-        v-if="summary"
       >
         图标按钮分为图标加文字形式、纯图标形式
       </p>
@@ -200,13 +196,11 @@ exports[`index.jsx 1`] = `
     >
       <h2
         class="tdesign-mobile-demo-block__title"
-        v-if="title"
       >
         03 按钮状态
       </h2>
       <p
         class="tdesign-mobile-demo-block__summary"
-        v-if="summary"
       >
         按钮禁用态
       </p>
@@ -287,13 +281,11 @@ exports[`index.jsx 1`] = `
     >
       <h2
         class="tdesign-mobile-demo-block__title"
-        v-if="title"
       >
         04 尺寸
       </h2>
       <p
         class="tdesign-mobile-demo-block__summary"
-        v-if="summary"
       >
         提供大、中、小 3 种不同大小按钮
       </p>
@@ -326,15 +318,9 @@ exports[`index.jsx 1`] = `
     >
       <h2
         class="tdesign-mobile-demo-block__title"
-        v-if="title"
       >
         05 形状
       </h2>
-      <p
-        class="tdesign-mobile-demo-block__summary"
-        hidden=""
-        v-if="summary"
-      />
       <div
         class="button-demo"
       >

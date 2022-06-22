@@ -11,7 +11,6 @@ export default function Base() {
       onChange={(value) => {
         setValue(value);
       }}
-      gap={10}
     />
   );
 }

@@ -4,7 +4,7 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TdBadgeProps } from '../badge';
+import { BadgeProps } from '../badge';
 import { TNode } from '../common';
 
 export interface TdGridProps {
@@ -17,7 +17,13 @@ export interface TdGridProps {
    * 边框，默认不显示。值为 true 则显示默认边框，值类型为 object 则表示自定义边框样式
    * @default false
    */
-  border?: boolean | { color?: string; width?: string; style?: 'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'inset' | 'outset' };
+  border?:
+    | boolean
+    | {
+        color?: string;
+        width?: string;
+        style?: 'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'inset' | 'outset';
+      };
   /**
    * 每一行的列数量
    * @default 4
@@ -33,7 +39,7 @@ export interface TdGridItemProps {
   /**
    * 头像右上角提示信息，继承 Badge 组件的全部特性。如：小红点，或者数字
    */
-  badgeProps?: TdBadgeProps;
+  badgeProps?: BadgeProps;
   /**
    * 文本以外的更多描述，辅助信息。可以通过 Props 传入文本，也可以自定义标题节点
    */

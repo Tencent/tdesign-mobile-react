@@ -9,3 +9,7 @@ title: Icon 图标
 ```
 npm i tdesign-icons-react
 ```
+
+### 全部图标
+
+<td-icons-view />

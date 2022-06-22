@@ -15,7 +15,7 @@ children | TNode | - | 单选内容，同 label。TS 类型：`string | TNode`�
 content | TNode | - | 单选内容。TS 类型：`string | TNode`。[通用类型定义](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts) | N
 contentDisabled | Boolean | - | 是否禁用组件内容（content）触发选中 | N
 disabled | Boolean | undefined | 是否为禁用态 | N
-icon | String / Array | 'fill-circle' | 自定义选中图标和非选中图标。示例：[选中态图标地址，非选中态图标地址]。值为 fill-circle 表示图标为填充型图标，值为 stroke-line 表示图标为描边型图标。TS 类型：`'fill-circle' | 'stroke-line' | Array<TNode>`。[通用类型定义](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts) | N
+icon | Array | - | 自定义选中图标和非选中图标。示例：[选中态图标，非选中态图标]。TS 类型：`Array<TNode>`。[通用类型定义](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts) | N
 label | TNode | - | 主文案。TS 类型：`string | TNode`。[通用类型定义](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts) | N
 maxContentRow | Number | 5 | 内容最大行数限制 | N
 maxLabelRow | Number | 3 | 主文案最大行数限制 | N

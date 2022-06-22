@@ -46,7 +46,7 @@ export interface TdRadioProps {
    * 自定义选中图标和非选中图标。示例：[选中态图标地址，非选中态图标地址]。值为 fill-circle 表示图标为填充型图标，值为 stroke-line 表示图标为描边型图标
    * @default 'fill-circle'
    */
-  icon?: 'fill-circle' | 'stroke-line' | Array<TNode>;
+  icon?: Array<TNode>;
   /**
    * 主文案
    */
@@ -108,4 +108,8 @@ export type RadioValue = string | number | boolean;
 
 export type RadioOption = string | number | RadioOptionObj;
 
-export interface RadioOptionObj { label?: string | TNode; value?: string | number; disabled?: boolean };
+export interface RadioOptionObj {
+  label?: string | TNode;
+  value?: string | number;
+  disabled?: boolean;
+}
