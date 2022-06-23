@@ -57,6 +57,11 @@ export interface TdSearchProps {
    */
   value?: string;
   /**
+   * 值，非受控属性
+   * @default ''
+   */
+  defaultValue?: string;
+  /**
    * 点击右侧操作按钮文字时触发时触发
    * @default ''
    */
@@ -65,12 +70,12 @@ export interface TdSearchProps {
    * 失去焦点时触发
    * @default ''
    */
-  onBlur?: (value: InputValue, context: { e: FocusEvent<HTMLDivElement> }) => void;
+  onBlur?: (value: string, context: { e: FocusEvent<HTMLDivElement> }) => void;
   /**
    * 值发生变化时触发
    * @default ''
    */
-  onChange?: (value: InputValue, context?: { e?: FormEvent<HTMLDivElement> | MouseEvent<HTMLDivElement> }) => void;
+  onChange?: (value: string, context?: { e?: FormEvent<HTMLDivElement> | MouseEvent<HTMLDivElement> }) => void;
   /**
    * 点击清除时触发
    * @default ''
@@ -80,10 +85,10 @@ export interface TdSearchProps {
    * 获得焦点时触发
    * @default ''
    */
-  onFocus?: (value: InputValue, context: { e: FocusEvent<HTMLDivElement> }) => void;
+  onFocus?: (value: string, context: { e: FocusEvent<HTMLDivElement> }) => void;
   /**
    * 提交时触发
    * @default ''
    */
-  onSubmit?: (value: InputValue, context: { e: KeyboardEvent<HTMLDivElement> }) => void;
+  onSubmit?: (value: string, context: { e: KeyboardEvent<HTMLDivElement> }) => void;
 }

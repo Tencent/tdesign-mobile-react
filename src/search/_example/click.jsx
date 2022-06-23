@@ -7,7 +7,7 @@ export default function Base() {
 
   return (
     <Search
-      focus={false}
+      focus={true}
       placeholder="搜索预设文案"
       value={value}
       onChange={(value) => setValue(value)}
