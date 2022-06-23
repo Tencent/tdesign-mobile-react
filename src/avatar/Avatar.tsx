@@ -62,7 +62,7 @@ const Avatar = forwardRefWithStatics(
 
     const renderIcon = <div className={iconCls}>{icon}</div>;
     const renderImage = <img style={customSize} alt={alt} src={image} onError={onError}></img>;
-    const renderContent = <span>{children}</span>;
+    const renderContent = <>{children}</>;
     const renderBadge = <Badge {...badgeProps}></Badge>;
 
     const isShowImage = image && !hideOnLoadFailed;
