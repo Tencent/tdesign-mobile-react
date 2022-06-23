@@ -37,10 +37,12 @@ export default function Base() {
     {
       theme: 'half-round',
       text: '半圆白底',
+      showText: true,
     },
     {
       theme: 'half-round-dark',
       text: '半圆黑底',
+      showText: true,
     },
   ];
 
@@ -75,7 +77,8 @@ export default function Base() {
   return (
     <div className="tdesign-mobile-react-demo">
       <BackTop
-        text={theme.showText ? '顶部' : ''}
+        // eslint-disable-next-line no-nested-ternary
+        text={['half-round', 'half-round-dark'].includes(theme.theme) ? '返回顶部' : theme.showText ? '顶部' : ''}
         // @ts-ignore
         theme={theme.theme}
         // target={() => document.getElementById('anchor')} // 滑动到目标点
