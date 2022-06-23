@@ -12,12 +12,13 @@ export default () => {
       type: 'image',
     },
   ];
+
   return (
     <div className="demo-section">
       <h3 className="demo-section__title">上传图片</h3>
       <Upload
         accept="image/png"
-        files={files}
+        defaultFiles={files}
         action="//service-bv448zsw-1257786608.gz.apigw.tencentcs.com/api/upload-demo"
       />
     </div>
