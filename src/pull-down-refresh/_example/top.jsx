@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PullDownRefresh, Skeleton } from 'tdesign-mobile-react';
 import './style/index.less';
 
 export default function Demo() {
+  const [value, setValue] = useState(false);
+
+  const onChange = (val) => {
+    console.log('val: ', val);
+  };
+
   const rowCols = [
     {
       height: '171px',
@@ -29,31 +35,37 @@ export default function Demo() {
       },
     ],
   ];
+
   return (
     <div className="tdesign-mobile-wrapper">
-      <div style={{ display: 'flex' }}>
-        <div className="tdesign-mobile-item">
-          <Skeleton theme="text" rowCol={rowCols} />
-        </div>
-        <div className="tdesign-mobile-item">
-          <Skeleton theme="text" rowCol={rowCols} />
-        </div>
-      </div>
-
       <PullDownRefresh
-        loadingBarHeight={80}
         loadingProps={{
           layout: 'vertical',
         }}
-        onRefresh={() =>
-          new Promise((resolve) => {
+        value={value}
+        onChange={onChange}
+        loadingBarHeight={80}
+        onRefresh={() => {
+          setValue(true);
+          const p = new Promise((resolve) => {
             setTimeout(() => {
               resolve();
-            }, 2000);
-          })
-        }
+            }, 1000);
+          });
+          p.then(() => {
+            setValue(false);
+          });
+        }}
       >
         <div className="tdesign-mobile-block">拖拽该区域演示 中间下拉刷新</div>
+        <div style={{ display: 'flex' }}>
+          <div className="tdesign-mobile-item">
+            <Skeleton theme="text" rowCol={rowCols} />
+          </div>
+          <div className="tdesign-mobile-item">
+            <Skeleton theme="text" rowCol={rowCols} />
+          </div>
+        </div>
       </PullDownRefresh>
     </div>
   );

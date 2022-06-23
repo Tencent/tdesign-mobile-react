@@ -1,22 +1,22 @@
 import React from 'react';
-import { Tabs, TabPanel } from 'tdesign-mobile-react/tabs';
 import BaseDemo from './base';
-import TimieoutDemo from './timeout';
-import LoadingTextsDemo from './loading-texts';
-import './style/index.less';
+import TopDemo from './top';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
+import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 
 export default function Demo() {
   return (
-    <Tabs>
-      <TabPanel value={'1'} label="基础用法">
+    <div className="tdesign-mobile-demo">
+      <TDemoHeader
+        title="PullDownRefresh 下拉刷新"
+        summary="用于快速刷新页面信息，刷新可以是整页刷新也可以是页面的局部刷新。"
+      />
+      <TDemoBlock title="01 类型" summary="下拉刷新大致分为顶部下拉和中间下拉">
         <BaseDemo />
-      </TabPanel>
-      <TabPanel value={'2'} label="自定义文案">
-        <LoadingTextsDemo />
-      </TabPanel>
-      <TabPanel value={'3'} label="超时事件">
-        <TimieoutDemo />
-      </TabPanel>
-    </Tabs>
+      </TDemoBlock>
+      <TDemoBlock summary="顶部下拉刷新">
+        <TopDemo />
+      </TDemoBlock>
+    </div>
   );
 }
