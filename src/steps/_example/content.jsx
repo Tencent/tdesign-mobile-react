@@ -11,7 +11,7 @@ export default function Content() {
           content={
             <div>
               可自定义此处内容，可自定义此处内容，可自定义此处内容可自定义此处内容可自定义此处内容。
-              <img src="https://0729-75822.gzc.vod.tencent-cloud.com/site_doc/tdesign-logo.png" alt="" />
+              <img style={{marginTop: '8px'}} src="https://oteam-tdesign-1258344706.cos.ap-guangzhou.myqcloud.com/mobile/%E5%9B%BE%E7%89%871.png" alt="" />
             </div>
           }
         />

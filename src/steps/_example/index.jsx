@@ -23,10 +23,8 @@ export default function StepsDemo() {
           <Icon />
         </div>
       </TDemoBlock>
-      <TDemoBlock title="" summary="横向只读步骤条">
-        <div className="tdesign-mobile-block">
-          <Horizontal />
-        </div>
+      <TDemoBlock title="" summary="横向只读步骤条"> 
+        <Horizontal />
       </TDemoBlock>
       <TDemoBlock title="" summary="竖向只读步骤条">
         <div className="tdesign-mobile-block">
