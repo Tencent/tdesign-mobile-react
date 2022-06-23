@@ -35,9 +35,9 @@ const Button = forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>
         {
           [`${classPrefix}-button--shape-${shape}`]: shape !== 'round',
           [`${classPrefix}-button--ghost`]: ghost,
-          [`${classPrefix}-s`]: size === 'small',
-          [`${classPrefix}-m`]: size === 'medium',
-          [`${classPrefix}-l`]: size === 'large',
+          [`${classPrefix}-size-s`]: size === 'small',
+          [`${classPrefix}-size-default`]: size === 'medium',
+          [`${classPrefix}-size-l`]: size === 'large',
           [`${classPrefix}-is-loading`]: loading,
           [`${classPrefix}-is-disabled`]: disabled,
           [`${classPrefix}-size-full-width`]: block,

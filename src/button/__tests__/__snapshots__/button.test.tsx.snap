@@ -3,43 +3,43 @@
 exports[`base.jsx 1`] = `
 <DocumentFragment>
   <button
-    class="t-button t-button--base t-button--default t-button--shape-square t-m"
+    class="t-button t-button--base t-button--default t-button--shape-square t-size-default"
     type="button"
   >
     默认按钮
   </button>
   <button
-    class="t-button t-button--base t-button--primary t-button--shape-square t-m"
+    class="t-button t-button--base t-button--primary t-button--shape-square t-size-default"
     type="button"
   >
     强按钮
   </button>
   <button
-    class="t-button t-button--outline t-button--primary t-button--shape-square t-m"
+    class="t-button t-button--outline t-button--primary t-button--shape-square t-size-default"
     type="button"
   >
     弱按钮
   </button>
   <button
-    class="t-button t-button--outline t-button--default t-button--shape-square t-m"
+    class="t-button t-button--outline t-button--default t-button--shape-square t-size-default"
     type="button"
   >
     次按钮
   </button>
   <button
-    class="t-button t-button--base t-button--danger t-button--shape-square t-m"
+    class="t-button t-button--base t-button--danger t-button--shape-square t-size-default"
     type="button"
   >
     警告按钮
   </button>
   <button
-    class="t-button t-button--outline t-button--danger t-button--shape-square t-m"
+    class="t-button t-button--outline t-button--danger t-button--shape-square t-size-default"
     type="button"
   >
     弱警告按钮
   </button>
   <button
-    class="t-button t-button--text t-button--primary t-button--shape-square t-m"
+    class="t-button t-button--text t-button--primary t-button--shape-square t-size-default"
     type="button"
   >
     文字按钮
@@ -50,7 +50,7 @@ exports[`base.jsx 1`] = `
 exports[`icon.jsx 1`] = `
 <DocumentFragment>
   <button
-    class="t-button t-button--base t-button--default t-button--shape-square t-m"
+    class="t-button t-button--base t-button--default t-button--shape-square t-size-default"
     type="button"
   >
     <svg
@@ -101,43 +101,43 @@ exports[`index.jsx 1`] = `
         class="button-demo"
       >
         <button
-          class="t-button t-button--base t-button--default t-button--shape-square t-m"
+          class="t-button t-button--base t-button--default t-button--shape-square t-size-default"
           type="button"
         >
           默认按钮
         </button>
         <button
-          class="t-button t-button--base t-button--primary t-button--shape-square t-m"
+          class="t-button t-button--base t-button--primary t-button--shape-square t-size-default"
           type="button"
         >
           强按钮
         </button>
         <button
-          class="t-button t-button--outline t-button--primary t-button--shape-square t-m"
+          class="t-button t-button--outline t-button--primary t-button--shape-square t-size-default"
           type="button"
         >
           弱按钮
         </button>
         <button
-          class="t-button t-button--outline t-button--default t-button--shape-square t-m"
+          class="t-button t-button--outline t-button--default t-button--shape-square t-size-default"
           type="button"
         >
           次按钮
         </button>
         <button
-          class="t-button t-button--base t-button--danger t-button--shape-square t-m"
+          class="t-button t-button--base t-button--danger t-button--shape-square t-size-default"
           type="button"
         >
           警告按钮
         </button>
         <button
-          class="t-button t-button--outline t-button--danger t-button--shape-square t-m"
+          class="t-button t-button--outline t-button--danger t-button--shape-square t-size-default"
           type="button"
         >
           弱警告按钮
         </button>
         <button
-          class="t-button t-button--text t-button--primary t-button--shape-square t-m"
+          class="t-button t-button--text t-button--primary t-button--shape-square t-size-default"
           type="button"
         >
           文字按钮
@@ -147,14 +147,14 @@ exports[`index.jsx 1`] = `
         style="background: rgb(166, 166, 166); padding: 10px; margin-bottom: 10px;"
       >
         <button
-          class="t-button t-button--outline t-button--default t-button--shape-square t-button--ghost t-m"
+          class="t-button t-button--outline t-button--default t-button--shape-square t-button--ghost t-size-default"
           type="button"
         >
           幽灵按钮
         </button>
       </div>
       <button
-        class="t-button t-button--base t-button--primary t-button--shape-square t-m t-size-full-width"
+        class="t-button t-button--base t-button--primary t-button--shape-square t-size-default t-size-full-width"
         type="button"
       >
         通栏按钮
@@ -177,7 +177,7 @@ exports[`index.jsx 1`] = `
         class="button-demo"
       >
         <button
-          class="t-button t-button--base t-button--default t-button--shape-square t-m"
+          class="t-button t-button--base t-button--default t-button--shape-square t-size-default"
           type="button"
         >
           <svg
@@ -208,49 +208,49 @@ exports[`index.jsx 1`] = `
         class="button-demo"
       >
         <button
-          class="t-button t-button--base t-button--default t-button--shape-square t-m t-is-disabled"
+          class="t-button t-button--base t-button--default t-button--shape-square t-size-default t-is-disabled"
           disabled=""
           type="button"
         >
           默认按钮
         </button>
         <button
-          class="t-button t-button--base t-button--primary t-button--shape-square t-m t-is-disabled"
+          class="t-button t-button--base t-button--primary t-button--shape-square t-size-default t-is-disabled"
           disabled=""
           type="button"
         >
           强按钮
         </button>
         <button
-          class="t-button t-button--outline t-button--primary t-button--shape-square t-m t-is-disabled"
+          class="t-button t-button--outline t-button--primary t-button--shape-square t-size-default t-is-disabled"
           disabled=""
           type="button"
         >
           弱按钮
         </button>
         <button
-          class="t-button t-button--outline t-button--default t-button--shape-square t-m t-is-disabled"
+          class="t-button t-button--outline t-button--default t-button--shape-square t-size-default t-is-disabled"
           disabled=""
           type="button"
         >
           次按钮
         </button>
         <button
-          class="t-button t-button--base t-button--danger t-button--shape-square t-m t-is-disabled"
+          class="t-button t-button--base t-button--danger t-button--shape-square t-size-default t-is-disabled"
           disabled=""
           type="button"
         >
           警告按钮
         </button>
         <button
-          class="t-button t-button--outline t-button--danger t-button--shape-square t-m t-is-disabled"
+          class="t-button t-button--outline t-button--danger t-button--shape-square t-size-default t-is-disabled"
           disabled=""
           type="button"
         >
           弱警告按钮
         </button>
         <button
-          class="t-button t-button--text t-button--primary t-button--shape-square t-m t-is-disabled"
+          class="t-button t-button--text t-button--primary t-button--shape-square t-size-default t-is-disabled"
           disabled=""
           type="button"
         >
@@ -261,7 +261,7 @@ exports[`index.jsx 1`] = `
         style="background: rgb(166, 166, 166); padding: 10px; margin-bottom: 10px;"
       >
         <button
-          class="t-button t-button--outline t-button--default t-button--shape-square t-button--ghost t-m t-is-disabled"
+          class="t-button t-button--outline t-button--default t-button--shape-square t-button--ghost t-size-default t-is-disabled"
           disabled=""
           type="button"
         >
@@ -269,7 +269,7 @@ exports[`index.jsx 1`] = `
         </button>
       </div>
       <button
-        class="t-button t-button--base t-button--primary t-button--shape-square t-m t-is-disabled t-size-full-width"
+        class="t-button t-button--base t-button--primary t-button--shape-square t-size-default t-is-disabled t-size-full-width"
         disabled=""
         type="button"
       >
@@ -293,20 +293,20 @@ exports[`index.jsx 1`] = `
         class="button-demo"
       >
         <button
-          class="t-button t-button--base t-button--primary t-button--shape-square t-l"
+          class="t-button t-button--base t-button--primary t-button--shape-square t-size-l"
           type="button"
         >
           按钮 44
         </button>
         <button
-          class="t-button t-button--base t-button--primary t-button--shape-square t-m"
+          class="t-button t-button--base t-button--primary t-button--shape-square t-size-default"
           type="button"
         >
           按钮 40
         </button>
         <br />
         <button
-          class="t-button t-button--base t-button--primary t-button--shape-square t-s"
+          class="t-button t-button--base t-button--primary t-button--shape-square t-size-s"
           type="button"
         >
           按钮 36
@@ -325,13 +325,13 @@ exports[`index.jsx 1`] = `
         class="button-demo"
       >
         <button
-          class="t-button t-button--base t-button--default t-m"
+          class="t-button t-button--base t-button--default t-size-default"
           type="button"
         >
           圆角按钮
         </button>
         <button
-          class="t-button t-button--base t-button--default t-button--shape-square t-m"
+          class="t-button t-button--base t-button--default t-button--shape-square t-size-default"
           type="button"
         >
           直角按钮
@@ -345,13 +345,13 @@ exports[`index.jsx 1`] = `
 exports[`shape.jsx 1`] = `
 <DocumentFragment>
   <button
-    class="t-button t-button--base t-button--default t-m"
+    class="t-button t-button--base t-button--default t-size-default"
     type="button"
   >
     圆角按钮
   </button>
   <button
-    class="t-button t-button--base t-button--default t-button--shape-square t-m"
+    class="t-button t-button--base t-button--default t-button--shape-square t-size-default"
     type="button"
   >
     直角按钮
@@ -362,20 +362,20 @@ exports[`shape.jsx 1`] = `
 exports[`size.jsx 1`] = `
 <DocumentFragment>
   <button
-    class="t-button t-button--base t-button--primary t-button--shape-square t-l"
+    class="t-button t-button--base t-button--primary t-button--shape-square t-size-l"
     type="button"
   >
     按钮 44
   </button>
   <button
-    class="t-button t-button--base t-button--primary t-button--shape-square t-m"
+    class="t-button t-button--base t-button--primary t-button--shape-square t-size-default"
     type="button"
   >
     按钮 40
   </button>
   <br />
   <button
-    class="t-button t-button--base t-button--primary t-button--shape-square t-s"
+    class="t-button t-button--base t-button--primary t-button--shape-square t-size-s"
     type="button"
   >
     按钮 36
@@ -387,13 +387,13 @@ exports[`test.jsx 1`] = `
 <DocumentFragment>
   <div>
     <button
-      class="t-button t-button--base t-button--primary t-button--shape-square t-m"
+      class="t-button t-button--base t-button--primary t-button--shape-square t-size-default"
       type="button"
     >
       主要按钮
     </button>
     <button
-      class="t-button t-button--outline t-button--default t-button--shape-square t-m"
+      class="t-button t-button--outline t-button--default t-button--shape-square t-size-default"
       type="button"
     >
       主要按钮
@@ -401,13 +401,13 @@ exports[`test.jsx 1`] = `
   </div>
   <div>
     <button
-      class="t-button t-button--base t-button--primary t-button--shape-square t-m"
+      class="t-button t-button--base t-button--primary t-button--shape-square t-size-default"
       type="button"
     >
       主要按钮
     </button>
     <button
-      class="t-button t-button--base t-button--primary t-button--shape-square t-m"
+      class="t-button t-button--base t-button--primary t-button--shape-square t-size-default"
       type="button"
     >
       主要按钮

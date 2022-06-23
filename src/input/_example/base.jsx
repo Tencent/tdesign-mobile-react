@@ -4,7 +4,7 @@ import { Button } from 'tdesign-mobile-react/button';
 import { InfoCircleFilledIcon } from 'tdesign-icons-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
-
+import './index.less';
 export default function Base() {
   const [value1, setValue1] = useState('');
   const [value2, setValue2] = useState('');
@@ -22,6 +22,7 @@ export default function Base() {
   const [value14, setValue14] = useState('');
   const [value15, setValue15] = useState('');
   const [value16, setValue16] = useState('');
+  const [value17, setValue17] = useState('');
 
   return (
     <>
@@ -79,7 +80,17 @@ export default function Base() {
           }}
         />
       </TDemoBlock>
-
+      <TDemoBlock summary="两行样式文本框">
+        <Input
+          label={'标准五个字'}
+          placeholder="请输入文字请输入文字"
+          vertical={true}
+          value={value17}
+          onChange={(value) => {
+            setValue17(value);
+          }}
+        />
+      </TDemoBlock>
       <TDemoBlock summary="长标题文本框">
         <Input
           label={'超长需换行的标签'}
@@ -140,11 +151,12 @@ export default function Base() {
           onChange={(value) => {
             setValue11(value);
           }}
+          suffixIcon={<InfoCircleFilledIcon />}
         />
         <Input
           placeholder="请输入手机号码"
           suffix={
-            <Button theme="primary" variant="text" size="small">
+            <Button theme="primary" variant="text" size="large">
               发送验证码
             </Button>
           }
@@ -157,21 +169,25 @@ export default function Base() {
           label={'价格'}
           placeholder="0.00"
           suffix="元"
+          suffixSeperate={false}
           align="right"
           value={value13}
           onChange={(value) => {
             setValue13(value);
           }}
+          className="t-input-suffix-noseperate"
         />
         <Input
           label={'个数'}
           placeholder="请输入个数"
           suffix="个"
+          suffixSeperate={false}
           align="right"
           value={value14}
           onChange={(value) => {
             setValue14(value);
           }}
+          className="t-input-suffix-noseperate"
         />
       </TDemoBlock>
 
