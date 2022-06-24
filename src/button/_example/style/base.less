@@ -1,0 +1,36 @@
+.t-button-base {
+    &:first-child {
+        padding-top: 10px;
+    }
+
+    .t-button {
+        width: 100%;
+    }
+
+    &&__padding {
+        padding: 0 10px;
+
+        .t-button {
+            margin-bottom: 10px;
+        }
+    }
+
+    &&__background-ghost {
+        padding: 10px;
+        background: #a6a6a6;
+        margin-bottom: 10px;
+        .t-button {
+            margin-bottom: 0px;
+        }
+    }
+
+    &&__group {
+        & > .t-button {
+            width: 50%;
+            display: inline-block;
+        }
+        & > .t-button__theme-white {
+            background-color: #fff;
+        }   
+    }
+}
