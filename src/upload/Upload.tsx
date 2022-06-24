@@ -345,13 +345,10 @@ const Upload: React.FC<UploadProps> = (props) => {
               <img src={file.url} className={`${uploadBaseClassNames}__card-image`} alt={file.name} />
               {file.status === 'fail' && (
                 <div className={`${uploadBaseClassNames}__card-mask`}>
-                  <span
-                    key="refresh-icon"
-                    className={`${uploadBaseClassNames}__card-mask-item`}
-                    onClick={() => handleReloadFile(file)}
-                  >
-                    <RefreshIcon />
-                  </span>
+                    <RefreshIcon
+                      key="refresh-icon"
+                      size={24}
+                      onClick={() => handleReloadFile(file)} />
                 </div>
               )}
             </div>
