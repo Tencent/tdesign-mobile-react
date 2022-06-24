@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from 'tdesign-mobile-react/button';
+import { Button } from '../../button';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import Base from './base';
@@ -16,12 +16,12 @@ export default function IndexesDemo() {
 
         <TDemoBlock title="01 类型" summary="基础索引类型">
           <p style={{ marginBottom: 20, padding: '0 16px' }}>
-            <Button block onClick={() => setPage(1)}>
+            <Button variant="outline" block onClick={() => setPage(1)}>
               字母索引
             </Button>
           </p>
           <p style={{ marginBottom: 20, padding: '0 16px' }}>
-            <Button block onClick={() => setPage(2)}>
+            <Button variant="outline" block onClick={() => setPage(2)}>
               数字索引
             </Button>
           </p>
