@@ -1,6 +1,6 @@
 const letter = [
   {
-    title: 'A开头',
+    title: 'A',
     index: 'A',
     children: [
       { title: '阿坝' },
@@ -15,7 +15,7 @@ const letter = [
     ],
   },
   {
-    title: 'B开头',
+    title: 'B',
     index: 'B',
     children: [
       { title: '北京' },
@@ -35,7 +35,7 @@ const letter = [
     ],
   },
   {
-    title: 'C开头',
+    title: 'C',
     index: 'C',
     children: [
       { title: '重庆' },
@@ -60,7 +60,7 @@ const letter = [
     ],
   },
   {
-    title: 'D开头',
+    title: 'D',
     index: 'D',
     children: [
       { title: '大连' },
@@ -79,12 +79,12 @@ const letter = [
     ],
   },
   {
-    title: 'E开头',
+    title: 'E',
     index: 'E',
     children: [{ title: '鄂尔多斯' }, { title: '恩施' }, { title: '鄂州' }],
   },
   {
-    title: 'F开头',
+    title: 'F',
     index: 'F',
     children: [
       { title: '福州' },
@@ -97,7 +97,7 @@ const letter = [
     ],
   },
   {
-    title: 'G开头',
+    title: 'G',
     index: 'G',
     children: [
       { title: '广州' },

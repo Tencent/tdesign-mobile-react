@@ -109,12 +109,16 @@ const Indexes: FC<IndexesProps> = forwardRef((props) => {
     >
       {list.map((listItem) => (
         <div className={`${prefix}-indexes__anchor ${prefix}-indexes__index-${listItem.index}`} key={listItem.index}>
-          <CellGroup title={listItem.title}>
+          <div className={`${prefix}-indexes__title`}>
+            {listItem.title}
+          </div>
+          <CellGroup>
             {listItem.children.map((element, index) => (
               <Cell
                 title={element.title}
                 key={element.title}
                 onClick={() => handleSelect({ groupIndex: listItem.index, childrenIndex: index })}
+                bordered={false}
               ></Cell>
             ))}
           </CellGroup>
