@@ -3,7 +3,7 @@ import { Button } from 'tdesign-mobile-react';
 
 export default function () {
   return (
-    <>
+    <div className="button-demo">
       <Button theme="primary" size="large">
         按钮 44
       </Button>
@@ -12,6 +12,6 @@ export default function () {
       <Button theme="primary" size="small">
         按钮 36
       </Button>
-    </>
+    </div>
   );
 }
