@@ -3,65 +3,143 @@
 exports[`base.jsx 1`] = `
 <DocumentFragment>
   <button
-    class="t-button t-button--base t-button--default t-button--shape-square t-size-default"
+    class="t-button t-button--base t-button--primary t-size-l t-is-block t-button--shape-rectangle"
     type="button"
   >
-    默认按钮
+    <span
+      class="t-button__text"
+    >
+       强按钮
+    </span>
   </button>
   <button
-    class="t-button t-button--base t-button--primary t-button--shape-square t-size-default"
+    class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
     type="button"
   >
-    强按钮
+    <span
+      class="t-button__text"
+    >
+       弱按钮
+    </span>
   </button>
   <button
-    class="t-button t-button--outline t-button--primary t-button--shape-square t-size-default"
+    class="t-button t-button--outline t-button--default t-size-l t-is-block t-button--shape-rectangle"
     type="button"
   >
-    弱按钮
+    <span
+      class="t-button__text"
+    >
+       次按钮
+    </span>
   </button>
   <button
-    class="t-button t-button--outline t-button--default t-button--shape-square t-size-default"
+    class="t-button t-button--base t-button--primary t-size-default t-is-block t-button--shape-rectangle"
     type="button"
   >
-    次按钮
+    <svg
+      class="t-icon t-icon-app"
+    >
+      <use
+        xlink:href="#t-icon-app"
+      />
+    </svg>
+    <span
+      class="t-button__text"
+    >
+       带图标按钮
+    </span>
   </button>
   <button
-    class="t-button t-button--base t-button--danger t-button--shape-square t-size-default"
+    class="t-button t-button--base t-button--danger t-size-l t-is-block t-button--shape-rectangle"
     type="button"
   >
-    警告按钮
+    <span
+      class="t-button__text"
+    >
+       强警告按钮
+    </span>
   </button>
   <button
-    class="t-button t-button--outline t-button--danger t-button--shape-square t-size-default"
+    class="t-button t-button--outline t-button--danger t-size-l t-is-block t-button--shape-rectangle"
     type="button"
   >
-    弱警告按钮
-  </button>
-  <button
-    class="t-button t-button--text t-button--primary t-button--shape-square t-size-default"
-    type="button"
-  >
-    文字按钮
+    <span
+      class="t-button__text"
+    >
+       弱警告按钮
+    </span>
   </button>
 </DocumentFragment>
 `;
 
 exports[`icon.jsx 1`] = `
 <DocumentFragment>
-  <button
-    class="t-button t-button--base t-button--default t-button--shape-square t-size-default"
-    type="button"
+  <div
+    class="flex align-center margin-right"
   >
-    <svg
-      class="t-icon t-icon-add"
+    <button
+      class="t-button t-button--base t-button--primary t-size-l t-button--shape-rectangle"
+      type="button"
     >
-      <use
-        xlink:href="#t-icon-add"
-      />
-    </svg>
-    图标按钮
-  </button>
+      <svg
+        class="t-icon t-icon-app"
+      >
+        <use
+          xlink:href="#t-icon-app"
+        />
+      </svg>
+      <span
+        class="t-button__text"
+      >
+         图标按钮
+      </span>
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-l t-button--shape-round"
+      type="button"
+    >
+      <svg
+        class="t-icon t-icon-app"
+      >
+        <use
+          xlink:href="#t-icon-app"
+        />
+      </svg>
+      <span
+        class="t-button__text"
+      >
+         图标按钮
+      </span>
+    </button>
+  </div>
+  <div
+    class="flex align-center margin-right"
+  >
+    <button
+      class="t-button t-button--base t-button--primary t-size-l t-button--shape-square"
+      type="button"
+    >
+      <svg
+        class="t-icon t-icon-app"
+      >
+        <use
+          xlink:href="#t-icon-app"
+        />
+      </svg>
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-l t-button--shape-circle"
+      type="button"
+    >
+      <svg
+        class="t-icon t-icon-app"
+      >
+        <use
+          xlink:href="#t-icon-app"
+        />
+      </svg>
+    </button>
+  </div>
 </DocumentFragment>
 `;
 
@@ -101,94 +179,269 @@ exports[`index.jsx 1`] = `
         class="button-demo"
       >
         <button
-          class="t-button t-button--base t-button--default t-button--shape-square t-size-default"
+          class="t-button t-button--base t-button--primary t-size-l t-is-block t-button--shape-rectangle"
           type="button"
         >
-          默认按钮
+          <span
+            class="t-button__text"
+          >
+             强按钮
+          </span>
         </button>
         <button
-          class="t-button t-button--base t-button--primary t-button--shape-square t-size-default"
+          class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
           type="button"
         >
-          强按钮
+          <span
+            class="t-button__text"
+          >
+             弱按钮
+          </span>
         </button>
         <button
-          class="t-button t-button--outline t-button--primary t-button--shape-square t-size-default"
+          class="t-button t-button--outline t-button--default t-size-l t-is-block t-button--shape-rectangle"
           type="button"
         >
-          弱按钮
+          <span
+            class="t-button__text"
+          >
+             次按钮
+          </span>
         </button>
         <button
-          class="t-button t-button--outline t-button--default t-button--shape-square t-size-default"
-          type="button"
-        >
-          次按钮
-        </button>
-        <button
-          class="t-button t-button--base t-button--danger t-button--shape-square t-size-default"
-          type="button"
-        >
-          警告按钮
-        </button>
-        <button
-          class="t-button t-button--outline t-button--danger t-button--shape-square t-size-default"
-          type="button"
-        >
-          弱警告按钮
-        </button>
-        <button
-          class="t-button t-button--text t-button--primary t-button--shape-square t-size-default"
-          type="button"
-        >
-          文字按钮
-        </button>
-      </div>
-      <div
-        style="background: rgb(166, 166, 166); padding: 10px; margin-bottom: 10px;"
-      >
-        <button
-          class="t-button t-button--outline t-button--default t-button--shape-square t-button--ghost t-size-default"
-          type="button"
-        >
-          幽灵按钮
-        </button>
-      </div>
-      <button
-        class="t-button t-button--base t-button--primary t-button--shape-square t-size-default t-size-full-width"
-        type="button"
-      >
-        通栏按钮
-      </button>
-    </div>
-    <div
-      class="tdesign-mobile-demo-block"
-    >
-      <h2
-        class="tdesign-mobile-demo-block__title"
-      >
-        02 图标按钮
-      </h2>
-      <p
-        class="tdesign-mobile-demo-block__summary"
-      >
-        图标按钮分为图标加文字形式、纯图标形式
-      </p>
-      <div
-        class="button-demo"
-      >
-        <button
-          class="t-button t-button--base t-button--default t-button--shape-square t-size-default"
+          class="t-button t-button--base t-button--primary t-size-default t-is-block t-button--shape-rectangle"
           type="button"
         >
           <svg
-            class="t-icon t-icon-add"
+            class="t-icon t-icon-app"
           >
             <use
-              xlink:href="#t-icon-add"
+              xlink:href="#t-icon-app"
             />
           </svg>
-          图标按钮
+          <span
+            class="t-button__text"
+          >
+             带图标按钮
+          </span>
         </button>
+        <button
+          class="t-button t-button--base t-button--danger t-size-l t-is-block t-button--shape-rectangle"
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             强警告按钮
+          </span>
+        </button>
+        <button
+          class="t-button t-button--outline t-button--danger t-size-l t-is-block t-button--shape-rectangle"
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             弱警告按钮
+          </span>
+        </button>
+      </div>
+      <div
+        style="background: rgb(166, 166, 166); padding: 8px 16px; margin-bottom: 16px;"
+      >
+        <button
+          class="t-button t-button--outline t-button--default t-button--ghost t-size-l t-is-block t-button--shape-rectangle"
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             幽灵按钮
+          </span>
+        </button>
+      </div>
+      <div
+        class="margin-button"
+      >
+        <button
+          class="t-button t-button--text t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             文字按钮
+          </span>
+        </button>
+      </div>
+      <div
+        class="no-border-radius margin-button"
+      >
+        <button
+          class="t-button t-button--base t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             通栏按钮
+          </span>
+        </button>
+      </div>
+      <div
+        class="no-border-radius no-border flex margin-button"
+      >
+        <button
+          class="t-button t-button--outline t-button--default t-size-l t-is-block t-button--shape-rectangle"
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             次按钮
+          </span>
+        </button>
+        <button
+          class="t-button t-button--base t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             主按钮
+          </span>
+        </button>
+      </div>
+      <div
+        class="button-demo align-center margin-right"
+      >
+        <div
+          class="flex align-center margin-right"
+        >
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-button--shape-rectangle"
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+            <span
+              class="t-button__text"
+            >
+               图标按钮
+            </span>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-button--shape-round"
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+            <span
+              class="t-button__text"
+            >
+               图标按钮
+            </span>
+          </button>
+        </div>
+        <div
+          class="flex align-center margin-right"
+        >
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-button--shape-square"
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-button--shape-circle"
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div
+        class="flex align-center margin-right button-demo-loading"
+      >
+        <div
+          class="button-demo flex"
+        >
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-is-loading t-button--shape-square"
+            disabled=""
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-loading"
+              fill="none"
+              height="1em"
+              viewBox="0 0 16 16"
+              width="1em"
+            >
+              <path
+                d="M8 1.5a6.5 6.5 0 000 13v-1.63A4.87 4.87 0 1112.88 8h1.62A6.5 6.5 0 008 1.5z"
+                fill="currentColor"
+                fill-opacity="0.9"
+              />
+            </svg>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-is-loading t-button--shape-rectangle"
+            disabled=""
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-loading"
+              fill="none"
+              height="1em"
+              viewBox="0 0 16 16"
+              width="1em"
+            >
+              <path
+                d="M8 1.5a6.5 6.5 0 000 13v-1.63A4.87 4.87 0 1112.88 8h1.62A6.5 6.5 0 008 1.5z"
+                fill="currentColor"
+                fill-opacity="0.9"
+              />
+            </svg>
+            <span
+              class="t-button__text"
+            >
+               加载中...
+            </span>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-button--shape-rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__text"
+            >
+               Click me!
+            </span>
+          </button>
+        </div>
       </div>
     </div>
     <div
@@ -197,7 +450,7 @@ exports[`index.jsx 1`] = `
       <h2
         class="tdesign-mobile-demo-block__title"
       >
-        03 按钮状态
+        02 状态
       </h2>
       <p
         class="tdesign-mobile-demo-block__summary"
@@ -208,73 +461,286 @@ exports[`index.jsx 1`] = `
         class="button-demo"
       >
         <button
-          class="t-button t-button--base t-button--default t-button--shape-square t-size-default t-is-disabled"
+          class="t-button t-button--base t-button--primary t-size-l t-is-disabled t-is-block t-button--shape-rectangle"
           disabled=""
           type="button"
         >
-          默认按钮
+          <span
+            class="t-button__text"
+          >
+             强按钮
+          </span>
         </button>
         <button
-          class="t-button t-button--base t-button--primary t-button--shape-square t-size-default t-is-disabled"
+          class="t-button t-button--outline t-button--primary t-size-l t-is-disabled t-is-block t-button--shape-rectangle"
           disabled=""
           type="button"
         >
-          强按钮
+          <span
+            class="t-button__text"
+          >
+             弱按钮
+          </span>
         </button>
         <button
-          class="t-button t-button--outline t-button--primary t-button--shape-square t-size-default t-is-disabled"
+          class="t-button t-button--outline t-button--default t-size-l t-is-disabled t-is-block t-button--shape-rectangle"
           disabled=""
           type="button"
         >
-          弱按钮
+          <span
+            class="t-button__text"
+          >
+             次按钮
+          </span>
         </button>
         <button
-          class="t-button t-button--outline t-button--default t-button--shape-square t-size-default t-is-disabled"
+          class="t-button t-button--base t-button--primary t-size-default t-is-disabled t-is-block t-button--shape-rectangle"
           disabled=""
           type="button"
         >
-          次按钮
+          <svg
+            class="t-icon t-icon-app"
+          >
+            <use
+              xlink:href="#t-icon-app"
+            />
+          </svg>
+          <span
+            class="t-button__text"
+          >
+             带图标按钮
+          </span>
         </button>
         <button
-          class="t-button t-button--base t-button--danger t-button--shape-square t-size-default t-is-disabled"
+          class="t-button t-button--base t-button--danger t-size-l t-is-disabled t-is-block t-button--shape-rectangle"
           disabled=""
           type="button"
         >
-          警告按钮
+          <span
+            class="t-button__text"
+          >
+             强警告按钮
+          </span>
         </button>
         <button
-          class="t-button t-button--outline t-button--danger t-button--shape-square t-size-default t-is-disabled"
+          class="t-button t-button--outline t-button--danger t-size-l t-is-disabled t-is-block t-button--shape-rectangle"
           disabled=""
           type="button"
         >
-          弱警告按钮
-        </button>
-        <button
-          class="t-button t-button--text t-button--primary t-button--shape-square t-size-default t-is-disabled"
-          disabled=""
-          type="button"
-        >
-          文字按钮
+          <span
+            class="t-button__text"
+          >
+             弱警告按钮
+          </span>
         </button>
       </div>
       <div
-        style="background: rgb(166, 166, 166); padding: 10px; margin-bottom: 10px;"
+        style="background: rgb(166, 166, 166); padding: 8px 16px; margin-bottom: 16px;"
       >
         <button
-          class="t-button t-button--outline t-button--default t-button--shape-square t-button--ghost t-size-default t-is-disabled"
+          class="t-button t-button--outline t-button--default t-button--ghost t-size-l t-is-disabled t-is-block t-button--shape-rectangle"
           disabled=""
           type="button"
         >
-          幽灵按钮
+          <span
+            class="t-button__text"
+          >
+             幽灵按钮
+          </span>
         </button>
       </div>
-      <button
-        class="t-button t-button--base t-button--primary t-button--shape-square t-size-default t-is-disabled t-size-full-width"
-        disabled=""
-        type="button"
+      <div
+        class="margin-button"
       >
-        通栏按钮
-      </button>
+        <button
+          class="t-button t-button--text t-button--primary t-size-l t-is-disabled t-is-block t-button--shape-rectangle"
+          disabled=""
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             文字按钮
+          </span>
+        </button>
+      </div>
+      <div
+        class="no-border-radius margin-button"
+      >
+        <button
+          class="t-button t-button--base t-button--primary t-size-l t-is-disabled t-is-block t-button--shape-rectangle"
+          disabled=""
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             通栏按钮
+          </span>
+        </button>
+      </div>
+      <div
+        class="no-border-radius no-border flex margin-button"
+      >
+        <button
+          class="t-button t-button--outline t-button--default t-size-l t-is-disabled t-is-block t-button--shape-rectangle"
+          disabled=""
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             次按钮
+          </span>
+        </button>
+        <button
+          class="t-button t-button--base t-button--primary t-size-l t-is-disabled t-is-block t-button--shape-rectangle"
+          disabled=""
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             主按钮
+          </span>
+        </button>
+      </div>
+      <div
+        class="button-demo align-center margin-right"
+      >
+        <div
+          class="flex align-center margin-right"
+        >
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-is-disabled t-button--shape-rectangle"
+            disabled=""
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+            <span
+              class="t-button__text"
+            >
+               图标按钮
+            </span>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-is-disabled t-button--shape-round"
+            disabled=""
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+            <span
+              class="t-button__text"
+            >
+               图标按钮
+            </span>
+          </button>
+        </div>
+        <div
+          class="flex align-center margin-right"
+        >
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-is-disabled t-button--shape-square"
+            disabled=""
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-is-disabled t-button--shape-circle"
+            disabled=""
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div
+        class="flex align-center margin-right button-demo-loading"
+      >
+        <div
+          class="button-demo flex"
+        >
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-is-loading t-is-disabled t-button--shape-square"
+            disabled=""
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-loading"
+              fill="none"
+              height="1em"
+              viewBox="0 0 16 16"
+              width="1em"
+            >
+              <path
+                d="M8 1.5a6.5 6.5 0 000 13v-1.63A4.87 4.87 0 1112.88 8h1.62A6.5 6.5 0 008 1.5z"
+                fill="currentColor"
+                fill-opacity="0.9"
+              />
+            </svg>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-is-loading t-is-disabled t-button--shape-rectangle"
+            disabled=""
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-loading"
+              fill="none"
+              height="1em"
+              viewBox="0 0 16 16"
+              width="1em"
+            >
+              <path
+                d="M8 1.5a6.5 6.5 0 000 13v-1.63A4.87 4.87 0 1112.88 8h1.62A6.5 6.5 0 008 1.5z"
+                fill="currentColor"
+                fill-opacity="0.9"
+              />
+            </svg>
+            <span
+              class="t-button__text"
+            >
+               加载中...
+            </span>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-is-disabled t-button--shape-rectangle"
+            disabled=""
+            type="button"
+          >
+            <span
+              class="t-button__text"
+            >
+               Click me!
+            </span>
+          </button>
+        </div>
+      </div>
     </div>
     <div
       class="tdesign-mobile-demo-block"
@@ -282,62 +748,320 @@ exports[`index.jsx 1`] = `
       <h2
         class="tdesign-mobile-demo-block__title"
       >
-        04 尺寸
+        03 规格
       </h2>
       <p
         class="tdesign-mobile-demo-block__summary"
       >
-        提供大、中、小 3 种不同大小按钮
+        按钮尺寸
       </p>
       <div
         class="button-demo"
       >
-        <button
-          class="t-button t-button--base t-button--primary t-button--shape-square t-size-l"
-          type="button"
+        <div
+          class="flex align-center margin-right"
         >
-          按钮 44
-        </button>
-        <button
-          class="t-button t-button--base t-button--primary t-button--shape-square t-size-default"
-          type="button"
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-button--shape-rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__text"
+            >
+               按钮 44
+            </span>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-default t-button--shape-rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__text"
+            >
+               按钮 40
+            </span>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-s t-button--shape-rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__text"
+            >
+               按钮 36
+            </span>
+          </button>
+        </div>
+        <div
+          class="flex align-center margin-right"
         >
-          按钮 40
-        </button>
-        <br />
-        <button
-          class="t-button t-button--base t-button--primary t-button--shape-square t-size-s"
-          type="button"
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-button--shape-round"
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+            <span
+              class="t-button__text"
+            >
+               按钮
+            </span>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-default t-button--shape-round"
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+            <span
+              class="t-button__text"
+            >
+               按钮
+            </span>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-s t-button--shape-round"
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+            <span
+              class="t-button__text"
+            >
+               按钮
+            </span>
+          </button>
+        </div>
+        <div
+          class="flex align-center margin-right"
         >
-          按钮 36
-        </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-button--shape-square"
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-default t-button--shape-square"
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-s t-button--shape-square"
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="flex align-center margin-right"
+        >
+          <button
+            class="t-button t-button--base t-button--primary t-size-l t-button--shape-circle"
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-default t-button--shape-circle"
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+          </button>
+          <button
+            class="t-button t-button--base t-button--primary t-size-s t-button--shape-circle"
+            type="button"
+          >
+            <svg
+              class="t-icon t-icon-app"
+            >
+              <use
+                xlink:href="#t-icon-app"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
-    <div
-      class="tdesign-mobile-demo-block"
+  </div>
+</DocumentFragment>
+`;
+
+exports[`loading.jsx 1`] = `
+<DocumentFragment>
+  <div
+    class="button-demo flex"
+  >
+    <button
+      class="t-button t-button--base t-button--primary t-size-l t-is-loading t-button--shape-square"
+      disabled=""
+      type="button"
     >
-      <h2
-        class="tdesign-mobile-demo-block__title"
+      <svg
+        class="t-icon t-icon-loading"
+        fill="none"
+        height="1em"
+        viewBox="0 0 16 16"
+        width="1em"
       >
-        05 形状
-      </h2>
-      <div
-        class="button-demo"
+        <path
+          d="M8 1.5a6.5 6.5 0 000 13v-1.63A4.87 4.87 0 1112.88 8h1.62A6.5 6.5 0 008 1.5z"
+          fill="currentColor"
+          fill-opacity="0.9"
+        />
+      </svg>
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-l t-is-loading t-button--shape-rectangle"
+      disabled=""
+      type="button"
+    >
+      <svg
+        class="t-icon t-icon-loading"
+        fill="none"
+        height="1em"
+        viewBox="0 0 16 16"
+        width="1em"
       >
-        <button
-          class="t-button t-button--base t-button--default t-size-default"
-          type="button"
-        >
-          圆角按钮
-        </button>
-        <button
-          class="t-button t-button--base t-button--default t-button--shape-square t-size-default"
-          type="button"
-        >
-          直角按钮
-        </button>
-      </div>
-    </div>
+        <path
+          d="M8 1.5a6.5 6.5 0 000 13v-1.63A4.87 4.87 0 1112.88 8h1.62A6.5 6.5 0 008 1.5z"
+          fill="currentColor"
+          fill-opacity="0.9"
+        />
+      </svg>
+      <span
+        class="t-button__text"
+      >
+         加载中...
+      </span>
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-l t-button--shape-rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         Click me!
+      </span>
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`other.jsx 1`] = `
+<DocumentFragment>
+  <div
+    style="background: rgb(166, 166, 166); padding: 8px 16px; margin-bottom: 16px;"
+  >
+    <button
+      class="t-button t-button--outline t-button--default t-button--ghost t-size-l t-is-block t-button--shape-rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         幽灵按钮
+      </span>
+    </button>
+  </div>
+  <div
+    class="margin-button"
+  >
+    <button
+      class="t-button t-button--text t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         文字按钮
+      </span>
+    </button>
+  </div>
+  <div
+    class="no-border-radius margin-button"
+  >
+    <button
+      class="t-button t-button--base t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         通栏按钮
+      </span>
+    </button>
+  </div>
+  <div
+    class="no-border-radius no-border flex margin-button"
+  >
+    <button
+      class="t-button t-button--outline t-button--default t-size-l t-is-block t-button--shape-rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         次按钮
+      </span>
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         主按钮
+      </span>
+    </button>
   </div>
 </DocumentFragment>
 `;
@@ -345,41 +1069,219 @@ exports[`index.jsx 1`] = `
 exports[`shape.jsx 1`] = `
 <DocumentFragment>
   <button
-    class="t-button t-button--base t-button--default t-size-default"
+    class="t-button t-button--base t-button--default t-size-default t-button--shape-rectangle"
     type="button"
   >
-    圆角按钮
+    <span
+      class="t-button__text"
+    >
+       长方形按钮
+    </span>
   </button>
   <button
-    class="t-button t-button--base t-button--default t-button--shape-square t-size-default"
+    class="t-button t-button--base t-button--default t-size-default t-button--shape-square"
     type="button"
   >
-    直角按钮
+    <span
+      class="t-button__text"
+    >
+       正方形按钮
+    </span>
+  </button>
+  <button
+    class="t-button t-button--base t-button--default t-size-default t-button--shape-round"
+    type="button"
+  >
+    <span
+      class="t-button__text"
+    >
+       圆角长方形按钮
+    </span>
+  </button>
+  <button
+    class="t-button t-button--base t-button--default t-size-default t-button--shape-circle"
+    type="button"
+  >
+    <span
+      class="t-button__text"
+    >
+       圆形按钮
+    </span>
   </button>
 </DocumentFragment>
 `;
 
 exports[`size.jsx 1`] = `
 <DocumentFragment>
-  <button
-    class="t-button t-button--base t-button--primary t-button--shape-square t-size-l"
-    type="button"
+  <div
+    class="flex align-center margin-right"
   >
-    按钮 44
-  </button>
-  <button
-    class="t-button t-button--base t-button--primary t-button--shape-square t-size-default"
-    type="button"
+    <button
+      class="t-button t-button--base t-button--primary t-size-l t-button--shape-rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         按钮 44
+      </span>
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-default t-button--shape-rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         按钮 40
+      </span>
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-s t-button--shape-rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         按钮 36
+      </span>
+    </button>
+  </div>
+  <div
+    class="flex align-center margin-right"
   >
-    按钮 40
-  </button>
-  <br />
-  <button
-    class="t-button t-button--base t-button--primary t-button--shape-square t-size-s"
-    type="button"
+    <button
+      class="t-button t-button--base t-button--primary t-size-l t-button--shape-round"
+      type="button"
+    >
+      <svg
+        class="t-icon t-icon-app"
+      >
+        <use
+          xlink:href="#t-icon-app"
+        />
+      </svg>
+      <span
+        class="t-button__text"
+      >
+         按钮
+      </span>
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-default t-button--shape-round"
+      type="button"
+    >
+      <svg
+        class="t-icon t-icon-app"
+      >
+        <use
+          xlink:href="#t-icon-app"
+        />
+      </svg>
+      <span
+        class="t-button__text"
+      >
+         按钮
+      </span>
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-s t-button--shape-round"
+      type="button"
+    >
+      <svg
+        class="t-icon t-icon-app"
+      >
+        <use
+          xlink:href="#t-icon-app"
+        />
+      </svg>
+      <span
+        class="t-button__text"
+      >
+         按钮
+      </span>
+    </button>
+  </div>
+  <div
+    class="flex align-center margin-right"
   >
-    按钮 36
-  </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-l t-button--shape-square"
+      type="button"
+    >
+      <svg
+        class="t-icon t-icon-app"
+      >
+        <use
+          xlink:href="#t-icon-app"
+        />
+      </svg>
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-default t-button--shape-square"
+      type="button"
+    >
+      <svg
+        class="t-icon t-icon-app"
+      >
+        <use
+          xlink:href="#t-icon-app"
+        />
+      </svg>
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-s t-button--shape-square"
+      type="button"
+    >
+      <svg
+        class="t-icon t-icon-app"
+      >
+        <use
+          xlink:href="#t-icon-app"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="flex align-center margin-right"
+  >
+    <button
+      class="t-button t-button--base t-button--primary t-size-l t-button--shape-circle"
+      type="button"
+    >
+      <svg
+        class="t-icon t-icon-app"
+      >
+        <use
+          xlink:href="#t-icon-app"
+        />
+      </svg>
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-default t-button--shape-circle"
+      type="button"
+    >
+      <svg
+        class="t-icon t-icon-app"
+      >
+        <use
+          xlink:href="#t-icon-app"
+        />
+      </svg>
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-s t-button--shape-circle"
+      type="button"
+    >
+      <svg
+        class="t-icon t-icon-app"
+      >
+        <use
+          xlink:href="#t-icon-app"
+        />
+      </svg>
+    </button>
+  </div>
 </DocumentFragment>
 `;
 
@@ -387,30 +1289,85 @@ exports[`test.jsx 1`] = `
 <DocumentFragment>
   <div>
     <button
-      class="t-button t-button--base t-button--primary t-button--shape-square t-size-default"
+      class="t-button t-button--base t-button--primary t-size-default t-button--shape-square"
       type="button"
     >
-      主要按钮
+      <span
+        class="t-button__text"
+      >
+         主要按钮
+      </span>
     </button>
     <button
-      class="t-button t-button--outline t-button--default t-button--shape-square t-size-default"
+      class="t-button t-button--outline t-button--default t-size-default t-button--shape-square"
       type="button"
     >
-      主要按钮
+      <span
+        class="t-button__text"
+      >
+         主要按钮
+      </span>
     </button>
   </div>
   <div>
     <button
-      class="t-button t-button--base t-button--primary t-button--shape-square t-size-default"
+      class="t-button t-button--base t-button--primary t-size-default t-button--shape-square"
       type="button"
     >
-      主要按钮
+      <span
+        class="t-button__text"
+      >
+         主要按钮
+      </span>
     </button>
     <button
-      class="t-button t-button--base t-button--primary t-button--shape-square t-size-default"
+      class="t-button t-button--base t-button--primary t-size-default t-button--shape-square"
       type="button"
     >
-      主要按钮
+      <span
+        class="t-button__text"
+      >
+         主要按钮
+      </span>
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`type.jsx 1`] = `
+<DocumentFragment>
+  <div
+    class="button-demo"
+  >
+    <button
+      class="t-button t-button--outline t-button--danger t-size-default t-button--shape-square"
+      type="reset"
+    >
+      <span
+        class="t-button__text"
+      >
+         Reset
+      </span>
+    </button>
+    <button
+      class="t-button t-button--base t-button--danger t-size-default t-button--shape-square"
+      type="submit"
+    >
+      <span
+        class="t-button__text"
+      >
+         Submit
+      </span>
+    </button>
+    <button
+      class="t-button t-button--base t-button--primary t-size-default t-button--shape-square"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         Button
+      </span>
     </button>
   </div>
 </DocumentFragment>
