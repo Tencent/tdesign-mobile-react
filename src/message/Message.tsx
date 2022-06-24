@@ -82,12 +82,13 @@ const Message: React.FC<MessageProps> = (props) => {
   }, [isControl, visible, messageVisible]);
 
   const leftIcon = isBoolean(icon) ? (
-    <>{icon && <Icon name={`${theme === 'success' ? 'check' : 'error'}-circle-filled`} size={22} />}</>
+    <>{icon && <Icon name={`${theme === 'success' ? 'check' : 'error'}-circle`} size={22} />}</>
   ) : (
     icon
   );
 
-  const closeButton = closeBtn === true ? <Icon name="close" size={22} onClick={setFalse} /> : closeBtn;
+  const closeButton =
+    closeBtn === true ? <Icon className={`${name}--close-btn`} name="close" size={22} onClick={setFalse} /> : closeBtn;
 
   return withNativeProps(
     props,

@@ -6,7 +6,12 @@ import Message from './Message';
 
 const createMessage = (props, theme?: MessageThemeList) => {
   const config = { ...defaultProps, ...props };
-  const container = document.createElement('div');
+  let container = document.getElementById('#t-message');
+  if (container && ReactDOM.unmountComponentAtNode(container)) {
+    container.parentNode.removeChild(container);
+  }
+  container = document.createElement('div');
+  container.id = '#t-message';
   document.body.appendChild(container);
   ReactDOM.render(<Message {...{ ...config, theme, container }} />, container);
 };

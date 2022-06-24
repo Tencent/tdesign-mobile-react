@@ -61,6 +61,7 @@ export default function () {
           <Button
             theme="primary"
             variant="outline"
+            className="close-button"
             onClick={() => {
               setVisible(false);
             }}
