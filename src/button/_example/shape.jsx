@@ -3,9 +3,11 @@ import { Button } from 'tdesign-mobile-react';
 
 export default function () {
   return (
-    <div className="button-demo">
-      <Button shape="rectangle" theme="primary">长方形</Button>
-      <Button shape="square" theme="primary">正方形</Button>
-    </div>
+    <>
+      <Button shape="rectangle">长方形按钮</Button>
+      <Button shape="square">正方形按钮</Button>
+      <Button shape="round">圆角长方形按钮</Button>
+      <Button shape="circle">圆形按钮</Button>
+    </>
   );
 }

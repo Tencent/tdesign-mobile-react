@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Button } from 'tdesign-mobile-react';
 
 export default () => (

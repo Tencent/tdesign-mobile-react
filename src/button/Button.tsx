@@ -33,21 +33,21 @@ const Button = forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>
       className={classnames(
         [`${classPrefix}-button`, `${classPrefix}-button--${variant}`, `${classPrefix}-button--${theme}`, className],
         {
-          [`${classPrefix}-button--shape-${shape}`]: shape !== 'round',
           [`${classPrefix}-button--ghost`]: ghost,
           [`${classPrefix}-size-s`]: size === 'small',
           [`${classPrefix}-size-default`]: size === 'medium',
           [`${classPrefix}-size-l`]: size === 'large',
           [`${classPrefix}-is-loading`]: loading,
           [`${classPrefix}-is-disabled`]: disabled,
-          [`${classPrefix}-size-full-width`]: block,
+          [`${classPrefix}-is-block`]: block,
         },
+        [`${classPrefix}-button--shape-${shape}`],
       )}
       onClick={!loading && !disabled ? onClick : undefined}
       disabled={disabled || loading}
     >
       {loading ? <LoadingIcon /> : icon}
-      {content || children || ''}
+      { content || children ? <span className={`${classPrefix}-button__text`}> {content || children }</span>: ''}
     </button>
   );
 });

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Button } from 'tdesign-mobile-react';
 
-export default () => {
+export default function ({ disabled }) {
     const [loading, setLoading] = useState(false)
 
     const mockSubmit = () => {
@@ -12,17 +12,10 @@ export default () => {
     }
 
     return (
-        <div className="button-demo">
-            <Button loading theme="primary" disabled />
-            <Button loading theme="primary" disabled >
-                Loading
-            </Button>
-            <Button 
-                block
-                theme="primary"
-                loading={loading} 
-                onClick={mockSubmit}
-            >
+        <div className="button-demo flex">
+            <Button size="large" shape="square" theme="primary" loading disabled={disabled}></Button>
+            <Button size="large" shape="rectangle" theme="primary" loading disabled={disabled}>加载中...</Button>
+            <Button size="large" theme="primary" loading={loading} shape="rectangle" disabled={disabled} onClick={mockSubmit} >
                 {loading ? 'loading' : 'Click me!'}
             </Button>
         </div>
