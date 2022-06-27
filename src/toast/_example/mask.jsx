@@ -12,7 +12,7 @@ export default function () {
       <TDemoBlock title="03 展示遮罩" summary="弹窗可显示遮罩，禁止滑动和点击">
         <ul className="toast-container">
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={showMssk}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={showMssk}>
               禁止滑动和点击
             </Button>
           </li>

@@ -6,7 +6,7 @@ import IconText from './iconText';
 import Position from './position';
 import Mask from './mask';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
-import './style.less';
+import './style/index.less';
 
 export default function () {
   return (

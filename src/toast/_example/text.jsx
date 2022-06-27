@@ -17,12 +17,12 @@ export default function () {
       <TDemoBlock title="01 类型" summary="基础提示">
         <ul className="toast-container">
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={onlyText}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={onlyText}>
               纯文本
             </Button>
           </li>
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={iconHori}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={iconHori}>
               带图标-横向
             </Button>
           </li>

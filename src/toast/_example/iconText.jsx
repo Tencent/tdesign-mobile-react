@@ -24,22 +24,22 @@ export default function () {
       <TDemoBlock title="" summary="默认提示-横向">
         <ul className="toast-container">
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={successHori}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={successHori}>
               成功-横向
             </Button>
           </li>
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={failHori}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={failHori}>
               失败-横向
             </Button>
           </li>
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={warningHori}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={warningHori}>
               警告-横向
             </Button>
           </li>
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={loadingHori}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={loadingHori}>
               加载-横向
             </Button>
           </li>
