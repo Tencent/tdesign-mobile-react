@@ -11,11 +11,6 @@ export interface CheckProps extends TdCheckboxProps {
   ref: Ref<HTMLLabelElement>;
 }
 
-enum ALIGN {
-  LEFT = 'left',
-  RIGHT = 'right',
-}
-
 export interface CheckContextValue {
   inject: (props: CheckProps) => CheckProps;
 }
@@ -50,21 +45,10 @@ const Checkbox = forwardRef((_props: CheckProps, ref: Ref<HTMLInputElement>) => 
     maxContentRow = 5,
     icon,
     contentDisabled,
+    borderless = false,
   } = props;
   const [internalChecked, setInternalChecked] = useDefault(checked, defaultChecked, onChange);
-  const containerClassName = classNames(
-    `${classPrefix}-cell`,
-    `${classPrefix}-cell--middle`,
-    `${classPrefix}-cell--bordered`,
-  );
-  const alignStyle: CSSProperties = {
-    flexDirection: align === ALIGN.LEFT ? 'row' : 'row-reverse',
-  };
-  const iconClassName = classNames(
-    { [`${classPrefix}-cell__left-icon`]: align === ALIGN.LEFT },
-    { [`${classPrefix}-cell__right-icon`]: align === ALIGN.RIGHT },
-    `${classPrefix}-checkbox__wrap`,
-  );
+
   const checkboxClassName = classNames(`${classPrefix}-checkbox`, {
     [`${classPrefix}-is-checked`]: internalChecked || indeterminate,
     [`${classPrefix}-is-disabled`]: disabled,
@@ -104,38 +88,57 @@ const Checkbox = forwardRef((_props: CheckProps, ref: Ref<HTMLInputElement>) => 
     }
   };
   return (
-    <label className={`${containerClassName}`} style={alignStyle} onClick={handleClick}>
-      <div className={iconClassName}>
-        <div className={checkboxClassName}>
-          <div className={`${classPrefix}-checkbox__content-wrap`}>
-            <span className={`${classPrefix}-checkbox__icon-left`}>
-              <input
-                readOnly={readonly}
-                value={value}
-                ref={ref}
-                type="checkbox"
-                name={name}
-                className={`${classPrefix}-checkbox__original-left`}
-                disabled={disabled}
-                checked={internalChecked}
-                onClick={(e) => e.stopPropagation()}
-                onChange={(e) => {
-                  setInternalChecked(e.currentTarget.checked, { e });
-                }}
-              />
-              {renderIcon()}
+    <>
+      <div className={checkboxClassName}>
+        <div className={`${classPrefix}-checkbox__content-wrap`}>
+         { align ==='left' && <span className={`${classPrefix}-checkbox__icon-left`}>
+            <input
+              readOnly={readonly}
+              value={value}
+              ref={ref}
+              type="checkbox"
+              name={name}
+              className={`${classPrefix}-checkbox__original-left`}
+              disabled={disabled}
+              checked={internalChecked}
+              onClick={(e) => e.stopPropagation()}
+              onChange={(e) => {
+                setInternalChecked(e.currentTarget.checked, { e });
+              }}
+            />
+            {renderIcon()}
+          </span>}
+          <span className={ `${classPrefix}-checkbox__label ${classPrefix}-checkbox__label-left`} >
+            <span style={labelStyle}>
+              {label}
             </span>
-            <span className={`${classPrefix}-checkbox__label-wrap`}></span>
-          </div>
+            <span className={`${classPrefix}-checkbox__description`} style={getLimitRowStyle(maxContentRow)} onClick={handleClick}>
+              {children || content}
+            </span>
+          </span>
+
+          { align ==='right' && <span className={`${classPrefix}-checkbox__icon-right`}>
+            <input
+              readOnly={readonly}
+              value={value}
+              ref={ref}
+              type="checkbox"
+              name={name}
+              className={`${classPrefix}-checkbox__original-right`}
+              disabled={disabled}
+              checked={internalChecked}
+              onClick={(e) => e.stopPropagation()}
+              onChange={(e) => {
+                setInternalChecked(e.currentTarget.checked, { e });
+              }}
+            />
+            {renderIcon()}
+          </span>}
         </div>
+        {/* 下边框 */}
+        { !borderless && <div className={`${classPrefix}-checkbox__border ${classPrefix}-checkbox__border--${align}`}></div>}
       </div>
-      <div className={`${classPrefix}-cell__title`}>
-        <span style={labelStyle}>{label}</span>
-        <div className={`${classPrefix}-cell__description`} style={getLimitRowStyle(maxContentRow)}>
-          {children || content}
-        </div>
-      </div>
-    </label>
+    </>
   );
 });
 
