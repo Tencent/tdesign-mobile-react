@@ -41,7 +41,7 @@ export interface TdButtonProps {
    */
   loading?: boolean;
   /**
-   * 按钮形状，有二种：方形、圆角方形
+   * 按钮形状，有 4 种：长方形、正方形、圆角长方形、圆形
    * @default rectangle
    */
   shape?: 'rectangle' | 'square' | 'round' | 'circle';

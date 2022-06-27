@@ -4,24 +4,25 @@ import { LoadingIcon } from 'tdesign-icons-react';
 import useConfig from '../_util/useConfig';
 import { TdButtonProps } from './type';
 import noop from '../_util/noop';
+import { buttonDefaultProps } from './defaultProps'
 
 export interface ButtonProps extends TdButtonProps, React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 const Button = forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>) => {
   const {
     className = '',
-    block = false,
+    block,
     children,
     content = '',
-    disabled = false,
-    ghost = false,
+    disabled,
+    ghost,
     icon = null,
-    loading = false,
-    shape = 'square',
-    size = 'medium',
-    theme = 'default',
-    type = 'button',
-    variant = 'base',
+    loading,
+    shape,
+    size,
+    theme,
+    type,
+    variant,
     onClick = noop,
   } = props;
   const { classPrefix } = useConfig();
@@ -53,5 +54,6 @@ const Button = forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>
 });
 
 Button.displayName = 'Button';
+Button.defaultProps = buttonDefaultProps;
 
 export default Button;
