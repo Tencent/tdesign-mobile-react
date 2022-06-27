@@ -1289,7 +1289,7 @@ exports[`test.jsx 1`] = `
 <DocumentFragment>
   <div>
     <button
-      class="t-button t-button--base t-button--primary t-size-default t-button--shape-square"
+      class="t-button t-button--base t-button--primary t-size-default t-button--shape-rectangle"
       type="button"
     >
       <span
@@ -1299,7 +1299,7 @@ exports[`test.jsx 1`] = `
       </span>
     </button>
     <button
-      class="t-button t-button--outline t-button--default t-size-default t-button--shape-square"
+      class="t-button t-button--outline t-button--default t-size-default t-button--shape-rectangle"
       type="button"
     >
       <span
@@ -1311,7 +1311,7 @@ exports[`test.jsx 1`] = `
   </div>
   <div>
     <button
-      class="t-button t-button--base t-button--primary t-size-default t-button--shape-square"
+      class="t-button t-button--base t-button--primary t-size-default t-button--shape-rectangle"
       type="button"
     >
       <span
@@ -1321,7 +1321,7 @@ exports[`test.jsx 1`] = `
       </span>
     </button>
     <button
-      class="t-button t-button--base t-button--primary t-size-default t-button--shape-square"
+      class="t-button t-button--base t-button--primary t-size-default t-button--shape-rectangle"
       type="button"
     >
       <span
@@ -1340,7 +1340,7 @@ exports[`type.jsx 1`] = `
     class="button-demo"
   >
     <button
-      class="t-button t-button--outline t-button--danger t-size-default t-button--shape-square"
+      class="t-button t-button--outline t-button--danger t-size-default t-button--shape-rectangle"
       type="reset"
     >
       <span
@@ -1350,7 +1350,7 @@ exports[`type.jsx 1`] = `
       </span>
     </button>
     <button
-      class="t-button t-button--base t-button--danger t-size-default t-button--shape-square"
+      class="t-button t-button--base t-button--danger t-size-default t-button--shape-rectangle"
       type="submit"
     >
       <span
@@ -1360,7 +1360,7 @@ exports[`type.jsx 1`] = `
       </span>
     </button>
     <button
-      class="t-button t-button--base t-button--primary t-size-default t-button--shape-square"
+      class="t-button t-button--base t-button--primary t-size-default t-button--shape-rectangle"
       type="button"
     >
       <span
