@@ -74,7 +74,7 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
           `${classPrefix}__icon`, {
             [`${classPrefix}__icon--checked`]: radioChecked,
             [`${classPrefix}__icon--disabled`]: disabled,
-            [`${classPrefix}__icon--strock`]: icon === 'stroke-line',
+            // [`${classPrefix}__icon--strock`]: icon === 'stroke-line',
             [`${classPrefix}__icon--custom`]: Array.isArray(icon),
         })}
       >
@@ -123,9 +123,9 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
   );
 
   return (
-    <div className={radioClassName} ref={ref}>
+    <div className={radioClassName} ref={ref} onClick={() => switchRadioChecked()}>
       <span className={`${classPrefix}__content-wrap`}>
-        {align === 'left' &&<span className={ `${classPrefix}__icon-wrap ${classPrefix}__icon-left-wrap`} onClick={() => switchRadioChecked()}>
+        {align === 'left' &&<span className={ `${classPrefix}__icon-wrap ${classPrefix}__icon-left-wrap`}>
           {input}
           {renderIcon()}
         </span>}
@@ -137,7 +137,7 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
             </div>
           )}
         </span>
-        {align === 'right' &&<span className={ `${classPrefix}__icon-wrap ${classPrefix}__icon-right-wrap`} onClick={() => switchRadioChecked()}>
+        {align === 'right' &&<span className={ `${classPrefix}__icon-wrap ${classPrefix}__icon-right-wrap`}>
           {input}
           {renderIcon()}
         </span>}

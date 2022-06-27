@@ -70,6 +70,7 @@ export interface TdRadioProps {
    * 单选按钮的值
    */
   value?: RadioValue;
+  borderless: boolean;
   /**
    * 选中状态变化时触发
    */
