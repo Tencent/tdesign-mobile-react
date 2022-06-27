@@ -9,7 +9,7 @@ const ConfirmUsage = React.memo(() => {
       {/* 普通调用 */}
       <Button
         variant="outline"
-        shape="round"
+        size="large"
         block
         onClick={() => {
           setAlertProps({
@@ -25,7 +25,7 @@ const ConfirmUsage = React.memo(() => {
 
       <Button
         variant="outline"
-        shape="round"
+        size="large"
         block
         onClick={() => {
           setAlertProps({
@@ -44,7 +44,7 @@ const ConfirmUsage = React.memo(() => {
 
       <Button
         variant="outline"
-        shape="round"
+        size="large"
         block
         onClick={() => {
           setAlertProps({
@@ -61,7 +61,7 @@ const ConfirmUsage = React.memo(() => {
 
       <Button
         variant="outline"
-        shape="round"
+        size="large"
         block
         onClick={() => {
           setAlertProps({

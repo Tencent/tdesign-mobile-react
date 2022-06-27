@@ -27,8 +27,8 @@ export default function Base() {
         <div className="t-dialog__demo-wrap">
           <Button
             variant="outline"
-            shape="round"
             block
+            size="large"
             onClick={() => {
               Dialog.confirm({
                 visible: true,
@@ -43,8 +43,8 @@ export default function Base() {
           </Button>
           <Button
             variant="outline"
-            shape="round"
             block
+            size="large"
             onClick={() => {
               Dialog.alert({
                 visible: true,
