@@ -13,8 +13,8 @@ export default function Base() {
         <div className="t-navbar-demo">
           <Button
             variant="outline"
-            shape="round"
             block
+            size="large"
             onClick={() => {
               setProps({
                 leftIcon: false,
@@ -25,8 +25,8 @@ export default function Base() {
           </Button>
           <Button
             variant="outline"
-            shape="round"
             block
+            size="large"
             onClick={() => {
               setProps({
                 leftIcon: true,
@@ -37,8 +37,8 @@ export default function Base() {
           </Button>
           <Button
             variant="outline"
-            shape="round"
             block
+            size="large"
             onClick={() => {
               setProps({
                 leftIcon: true,
@@ -50,8 +50,8 @@ export default function Base() {
           </Button>
           <Button
             variant="outline"
-            shape="round"
             block
+            size="large"
             onClick={() => {
               setProps({
                 title: '',
@@ -63,8 +63,8 @@ export default function Base() {
           </Button>
           <Button
             variant="outline"
-            shape="round"
             block
+            size="large"
             onClick={() => {
               setProps({
                 title: '',
@@ -87,8 +87,8 @@ export default function Base() {
         <div className="t-navbar-demo">
           <Button
             variant="outline"
-            shape="round"
             block
+            size="large"
             onClick={() => {
               setProps({
                 leftIcon: <div className='brand'>品牌名称超长超长超长超长超长超长超长超长超长超长超长超长</div>,
