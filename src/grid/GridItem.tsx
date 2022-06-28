@@ -29,7 +29,10 @@ const GridItem: FC<GridItemProp> = (prop) => {
 
   const name = `${classPrefix}-grid-item`;
 
-  const rootClass = useMemo(() => cls(name, { [`${name}--bordered`]: border }), [border, name]);
+  const rootClass = useMemo(() => cls(name, {
+    [`${name}--bordered`]: border,
+    [`${classPrefix}-is-large`]: column <= 3,
+  }), [border, name, column, classPrefix]);
 
   const isHorizontal = useMemo(() => layout === 'horizontal', [layout]);
 

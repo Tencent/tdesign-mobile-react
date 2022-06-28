@@ -39,7 +39,7 @@ export default function Base() {
       </TDemoBlock>
 
       <TDemoBlock title=" " summary="一行二个带说明宫格">
-          <Grid column={2}>
+          <Grid column={2} align="left">
             <GridItem image={imgUrl} layout="horizontal" text="标题文字" description="说明文字" />
             <GridItem image={imgUrl} layout="horizontal" text="标题最多六字" description="说明文字最多八字" />
           </Grid>
@@ -56,8 +56,8 @@ export default function Base() {
       <TDemoBlock title=" " summary="带徽标宫格">
         <div className="grid-demo">
           <Grid>
+            <GridItem image={imgUrl} text="标题文字" badgeProps={{ count: 16 }} />
             <GridItem image={imgUrl} text="标题文字" badgeProps={{ dot: true }} />
-            <GridItem image={imgUrl} text="标题文字" badgeProps={{ count: 8 }} />
             <GridItem image={imgUrl} text="标题五字内" badgeProps={{ count: 'New' }} />
             <GridItem image={imgUrl} text="标题五字内" badgeProps={{ count: '···' }} />
           </Grid>
