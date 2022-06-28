@@ -1,5 +1,5 @@
 import React from 'react';
-import { Radio, RadioGroup } from 'tdesign-mobile-react/radio';
+import { Radio, RadioGroup } from '../index';
 
 export default function () {
   return (

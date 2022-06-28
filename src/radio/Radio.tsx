@@ -1,7 +1,7 @@
 import React, { createContext, CSSProperties, forwardRef, Ref, useContext, useRef } from 'react';
 import classNames from 'classnames';
 import { CheckIcon } from 'tdesign-icons-react';
-import forwardRefWithStatics from 'tdesign-mobile-react/_util/forwardRefWithStatics';
+import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
 import { TdRadioProps } from './type';

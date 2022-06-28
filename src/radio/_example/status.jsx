@@ -1,6 +1,6 @@
 import React from 'react';
-import { Radio, RadioGroup } from 'tdesign-mobile-react/radio';
 import { CheckIcon } from 'tdesign-icons-react';
+import { Radio, RadioGroup } from '../index';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {

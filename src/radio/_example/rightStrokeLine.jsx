@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Radio, RadioGroup } from 'tdesign-mobile-react/radio';
+import { Radio, RadioGroup } from '../index';
 import { CheckIcon } from 'tdesign-icons-react';
 
 export default function () {
