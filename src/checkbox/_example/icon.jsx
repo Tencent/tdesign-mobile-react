@@ -1,6 +1,6 @@
 import React from 'react';
-import { Checkbox } from 'tdesign-mobile-react/checkbox';
 import { Icon } from 'tdesign-icons-react';
+import { Checkbox } from '../index';
 
 export default function () {
   return (

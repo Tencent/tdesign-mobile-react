@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox } from 'tdesign-mobile-react/checkbox';
+import { Checkbox } from '../index';
 
 export default function () {
   return (

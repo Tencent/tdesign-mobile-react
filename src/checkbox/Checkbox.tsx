@@ -7,12 +7,12 @@ import CheckboxGroup from './CheckboxGroup';
 import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
 
-export interface CheckProps extends TdCheckboxProps {
+export interface CheckBoxProps extends TdCheckboxProps {
   ref: Ref<HTMLLabelElement>;
 }
 
 export interface CheckContextValue {
-  inject: (props: CheckProps) => CheckProps;
+  inject: (props: CheckBoxProps) => CheckBoxProps;
 }
 
 export const CheckContext = React.createContext<CheckContextValue>(null);
@@ -24,7 +24,7 @@ const getLimitRowStyle = (row: number): CSSProperties => ({
   WebkitLineClamp: row,
 });
 
-const Checkbox = forwardRef((_props: CheckProps, ref: Ref<HTMLInputElement>) => {
+const Checkbox = forwardRef((_props: CheckBoxProps, ref: Ref<HTMLInputElement>) => {
   const context = useContext(CheckContext);
   const props = context ? context.inject(_props) : _props;
   const { classPrefix } = useConfig();

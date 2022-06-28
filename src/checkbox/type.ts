@@ -81,6 +81,7 @@ export interface TdCheckboxProps {
    * 多选框的值
    */
   value?: string | number;
+  borderless: boolean;
   /**
    * 值变化时触发
    */
