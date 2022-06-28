@@ -1,6 +1,6 @@
 import { useDrag } from "@use-gesture/react";
 import React, { FC, RefObject, useRef } from "react";
-import useConfig from "tdesign-mobile-react/_util/useConfig";
+import useConfig from "../_util/useConfig";
 
 interface HandleProps {
   value: number;

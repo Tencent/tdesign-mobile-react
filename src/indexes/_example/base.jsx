@@ -1,6 +1,6 @@
 import React from 'react';
-import { Message } from 'tdesign-mobile-react/message';
 import { Icon } from 'tdesign-icons-react';
+import { Message } from '../../message';
 import Indexes from '../Indexes';
 import { letter } from './data';
 import './style/index.less';

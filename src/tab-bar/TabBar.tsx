@@ -1,7 +1,7 @@
 import React, { forwardRef, memo, useMemo, useRef } from 'react';
-import useConfig from 'tdesign-mobile-react/_util/useConfig';
-import useDefault from 'tdesign-mobile-react/_util/useDefault';
 import cls from 'classnames';
+import useConfig from '../_util/useConfig';
+import useDefault from '../_util/useDefault';
 import type { StyledProps } from '../common';
 import type { TdTabBarProps } from './type';
 import { TabBarProvider } from './TabBarContext';

@@ -1,7 +1,7 @@
 import React, { FC, useState, useRef } from 'react';
 import { CloseCircleFilledIcon } from 'tdesign-icons-react';
-import { Button } from 'tdesign-mobile-react/button';
 import isFunction from 'lodash/isFunction';
+import { Button } from '../button';
 import useConfig from '../_util/useConfig';
 import type { TdSearchProps } from './type';
 import type { StyledProps } from '../common';

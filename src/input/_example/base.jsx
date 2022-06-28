@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Input } from 'tdesign-mobile-react/input';
-import { Button } from 'tdesign-mobile-react/button';
 import { InfoCircleFilledIcon } from 'tdesign-icons-react';
+import { Input } from '../index';
+import { Button } from '../../button';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './index.less';
+
 export default function Base() {
   const [value1, setValue1] = useState('');
   const [value2, setValue2] = useState('');

@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import useConfig from 'tdesign-mobile-react/_util/useConfig';
 import classNames from 'classnames';
 import identity from 'lodash/identity';
 import { AddIcon, RemoveIcon } from 'tdesign-icons-react';
-import useDefault from 'tdesign-mobile-react/_util/useDefault';
+import useConfig from '../_util/useConfig';
+import useDefault from '../_util/useDefault';
 import { TdStepperProps } from './type';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 

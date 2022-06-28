@@ -1,5 +1,5 @@
-import cls from 'classnames';
 import React, { forwardRef, Ref, useContext, useEffect, useMemo, useState } from 'react';
+import cls from 'classnames';
 import { ShapeEnum, TdAvatarGroupProps } from './type';
 import { StyledProps } from '../common';
 import { ConfigContext } from '../config-provider';

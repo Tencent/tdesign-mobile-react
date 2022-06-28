@@ -1,6 +1,6 @@
 import React, { forwardRef, useContext, useMemo } from 'react';
-import { ConfigContext } from 'tdesign-mobile-react/config-provider';
 import cls from 'classnames';
+import { ConfigContext } from '../config-provider';
 import type { StyledProps } from '../common';
 import type { TdBadgeProps } from './type';
 

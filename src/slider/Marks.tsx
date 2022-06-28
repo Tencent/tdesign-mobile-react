@@ -1,7 +1,7 @@
 import isArray from 'lodash/isArray';
 import React, { FC } from 'react';
 import cls from 'classnames';
-import useConfig from 'tdesign-mobile-react/_util/useConfig';
+import useConfig from '../_util/useConfig';
 import { SliderMarks } from './type';
 
 interface MarkProps {

@@ -1,4 +1,4 @@
-import { attachMethodsToComponent } from 'tdesign-mobile-react/_util/attachMethodsToComponent';
+import { attachMethodsToComponent } from '../_util/attachMethodsToComponent';
 import { TdToastProps } from './type';
 import * as methods from './methods';
 

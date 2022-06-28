@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react';
-import Overlay from 'tdesign-mobile-react/overlay';
 import classnames from 'classnames';
 import  {useSpring, animated } from 'react-spring'
-import useDefault from 'tdesign-mobile-react/_util/useDefault';
-import { PropagationEvent } from 'tdesign-mobile-react/_util/withStopPropagation';
-import withNativeProps, { NativeProps } from 'tdesign-mobile-react/_util/withNativeProps';
+import Overlay from '../overlay';
+import useDefault from '../_util/useDefault';
+import { PropagationEvent } from '../_util/withStopPropagation';
+import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import { TdPopupProps } from './type';
 import useConfig from '../_util/useConfig';
 import { popupDefaultProps } from './defaultProps';

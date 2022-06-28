@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import useConfig from "tdesign-mobile-react/_util/useConfig";
+import useConfig from "../_util/useConfig";
 import { TdStickyProps } from "./type";
 import { stickyDefaultProps } from './defaultProps';
 import { resolveContainer } from '../_util/getContainer'

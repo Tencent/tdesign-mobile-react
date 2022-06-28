@@ -1,7 +1,7 @@
 import React, { FC, useContext, useMemo } from 'react';
 import classnames from 'classnames';
-import withNativeProps, { NativeProps } from 'tdesign-mobile-react/_util/withNativeProps';
 import { Icon } from 'tdesign-icons-react';
+import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import { TdStepItemProps } from './type';
 import useConfig from '../_util/useConfig';
 import { stepItemDefaultProps } from './defaultProps';

@@ -1,12 +1,11 @@
 import React, { FC, forwardRef, useState, MouseEvent, TouchEvent, useRef, useEffect } from 'react';
 import isFunction from 'lodash/isFunction';
 import throttle from 'lodash/throttle';
-import { Cell } from 'tdesign-mobile-react/cell';
-import { CellGroup } from 'tdesign-mobile-react/cell-group';
+import { Cell } from '../cell';
+import { CellGroup } from '../cell-group';
 import { TdIndexesProps, ListItem } from './type';
 import { StyledProps } from '../common';
 import useConfig from '../_util/useConfig';
-import './style/index';
 
 const topOffset = 40; // 滑动选中高亮的顶部偏移(px)
 

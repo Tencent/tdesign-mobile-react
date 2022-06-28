@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'tdesign-mobile-react/button';
+import { Button } from '../../button';
 import { Toast } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 

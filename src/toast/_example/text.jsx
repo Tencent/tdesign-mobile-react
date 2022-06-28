@@ -1,7 +1,7 @@
 import React from 'react';
 import { LocationIcon } from 'tdesign-icons-react';
-import { Button } from 'tdesign-mobile-react/button';
-import { Toast } from 'tdesign-mobile-react';
+import { Button } from '../../button';
+import { Toast } from '../index';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {
