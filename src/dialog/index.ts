@@ -1,5 +1,5 @@
 import './style';
-import { attachMethodsToComponent } from 'tdesign-mobile-react/_util/attachMethodsToComponent';
+import { attachMethodsToComponent } from '../_util/attachMethodsToComponent';
 import { alert } from './alert';
 import { confirm } from './confirm';
 import _Dialog, { DialogProps } from './Dialog';

@@ -1,10 +1,10 @@
 import React, { CSSProperties, useCallback, useMemo, useState } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import ClassNames from 'classnames';
-import Overlay from 'tdesign-mobile-react/overlay';
-import { ButtonProps, TdButtonProps } from 'tdesign-mobile-react/button';
-import { StyledProps, TNode } from 'tdesign-mobile-react/common';
 import useUnmountedRef from 'ahooks/lib/useUnmountedRef';
+import Overlay from '../overlay';
+import { ButtonProps, TdButtonProps } from '../button';
+import { StyledProps, TNode } from '../common';
 import useConfig from '../_util/useConfig';
 import withStopPropagation, { PropagationEvent } from '../_util/withStopPropagation';
 import { TdDialogProps } from './type';

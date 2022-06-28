@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react';
-import { TNode } from 'tdesign-mobile-react/common';
+import { TNode } from '../common';
 import { show } from './show';
 import { DialogProps } from './index';
 

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import Button, { ButtonProps } from 'tdesign-mobile-react/button';
+import Button, { ButtonProps } from '../button';
 
 export const DialogActionBtn = React.memo<ButtonProps>((props) => {
   const [loading, setLoading] = useState(false);
