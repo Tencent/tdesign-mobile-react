@@ -45,7 +45,7 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
     maxLabelRow = 3,
     name,
     value,
-    borderless = false,
+    // borderless = false,
     onChange,
   } = props;
 
@@ -143,7 +143,8 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
         </span>}
       </span>
       {/* 下边框 */}
-      { !borderless && <div className={`${classPrefix}__border ${classPrefix}__border--${align}`}></div>}
+      { <div className={`${classPrefix}__border ${classPrefix}__border--${align}`}></div>}
+      {/* { !borderless && <div className={`${classPrefix}__border ${classPrefix}__border--${align}`}></div>} */}
       <div ></div>
     </div>
   );

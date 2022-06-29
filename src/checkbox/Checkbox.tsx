@@ -45,7 +45,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps, ref: Ref<HTMLInputElement>) 
     maxContentRow = 5,
     icon,
     contentDisabled,
-    borderless = false,
+    // borderless = false,
   } = props;
   const [internalChecked, setInternalChecked] = useDefault(checked, defaultChecked, onChange);
 
@@ -136,7 +136,8 @@ const Checkbox = forwardRef((_props: CheckBoxProps, ref: Ref<HTMLInputElement>) 
           </span>}
         </div>
         {/* 下边框 */}
-        { !borderless && <div className={`${classPrefix}-checkbox__border ${classPrefix}-checkbox__border--${align}`}></div>}
+        {/* { !borderless && <div className={`${classPrefix}-checkbox__border ${classPrefix}-checkbox__border--${align}`}></div>} */}
+        { <div className={`${classPrefix}-checkbox__border ${classPrefix}-checkbox__border--${align}`}></div> }
       </div>
     </>
   );

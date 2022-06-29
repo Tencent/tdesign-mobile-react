@@ -54,7 +54,7 @@ export interface TdSwiperProps {
   /**
    * 导航器全部配置
    */
-  navigation?: SwiperNavigation | TNode;
+  navigation?: SwiperNavigation;
   /**
    * 轮播切换时触发
    */

@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, Ref } from 'react';
 import classNames from 'classnames';
 import { Icon } from 'tdesign-icons-react';
 import useConfig from '../_util/useConfig';
@@ -12,7 +12,7 @@ export interface TagCheckProps extends TdCheckTagProps {
 }
 
 const TagCheck: React.FC<TagCheckProps> = React.memo(
-  forwardRef((props, ref) => {
+  forwardRef((props, ref: Ref<HTMLButtonElement>) => {
     const {
       checked = undefined,
       defaultChecked = undefined,
