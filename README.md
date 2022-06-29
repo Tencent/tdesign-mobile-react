@@ -27,7 +27,7 @@ TDesign 适配移动端的组件库，适合在 React 16.x 技术栈项目中使
 - 支持按需加载
 
 # 其他技术栈实现
-- 桌面端 React 实现： [web-react](https://github.com/Tencent/tdesign-vue)
+- 桌面端 React 实现： [web-react](https://github.com/Tencent/tdesign-react)
 - 移动端 Vue 实现： [mobile-vue](https://github.com/Tencent/tdesign-mobile-vue)
 - 移动端 小程序 实现： [微信小程序](https://github.com/Tencent/tdesign-miniprogram)
 
