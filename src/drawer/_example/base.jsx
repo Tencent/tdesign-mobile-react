@@ -12,7 +12,7 @@ export default function Base() {
         variant="outline"
         shape="round"
         onClick={() => {
-          setOpenBase(true);
+          setOpenBase(!openBase);
         }}
       >
         基础抽屉
