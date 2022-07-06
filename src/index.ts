@@ -1,8 +1,9 @@
 /**
- * 基础组件（除icon，2个）
+ * 基础组件（除icon，3个）
  */
 export * from './button';
 export * from './divider';
+export * from './fab';
 
 /**
  * 导航（5个）

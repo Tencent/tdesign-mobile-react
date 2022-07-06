@@ -300,12 +300,12 @@ export default {
           path: '/mobile-react/components/dialog',
           component: () => import('tdesign-mobile-react/dialog/dialog.md'),
         },
-        // {
-        //   title: 'Fab 悬浮按钮',
-        //   name: 'fab',
-        //   path: '/mobile-react/components/fab',
-        //   component: () => import('tdesign-mobile-react/fab/fab.md'),
-        // },
+        {
+          title: 'Fab 悬浮按钮',
+          name: 'fab',
+          path: '/mobile-react/components/fab',
+          component: () => import('tdesign-mobile-react/fab/fab.md'),
+        },
         {
           title: 'Loading 加载',
           name: 'loading',
