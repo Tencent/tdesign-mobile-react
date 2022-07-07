@@ -1,6 +1,6 @@
 {
   "name": "tdesign-mobile-react",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "TDesign Component for Mobile React",
   "title": "tdesign-mobile-react",
   "main": "cjs/index.js",
@@ -140,7 +140,8 @@
     "rollup-plugin-styles": "^3.14.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.2",
-    "tdesign-site-components": "^0.7.3",
+    "tdesign-icons-view": "^0.1.0",
+    "tdesign-site-components": "^0.10.4",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.3",
     "vite": "^2.7.0",
@@ -157,7 +158,7 @@
     "react-spring": "^9.4.4",
     "react-transition-group": "^4.4.2",
     "smoothscroll-polyfill": "^0.4.4",
-    "tdesign-icons-react": "0.0.9"
+    "tdesign-icons-react": "^0.1.1"
   },
   "config": {
     "commitizen": {

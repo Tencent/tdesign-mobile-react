@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from 'tdesign-mobile-react/button';
 import { Toast } from 'tdesign-mobile-react';
+import { Button } from '../../button';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {
@@ -18,17 +18,17 @@ export default function () {
       <TDemoBlock title="02 展示位置和展示时间" summary="展示位置为顶部、中部、底部三种，展示时间自定义">
         <ul className="toast-container">
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={showTop}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={showTop}>
               顶部展示1秒
             </Button>
           </li>
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={showMiddle}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={showMiddle}>
               中间展示2秒
             </Button>
           </li>
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={showBottom}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={showBottom}>
               底部展示2秒
             </Button>
           </li>

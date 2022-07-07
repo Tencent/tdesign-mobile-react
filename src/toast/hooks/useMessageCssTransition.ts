@@ -34,7 +34,7 @@ const useMessageCssTransition = ({ contentRef, classPrefix, el }: UseMessageCssT
           contentEle.style.display = 'none';
         }
         // 删除createElement创建的div元素
-        if (el) {
+        if (el instanceof Element) {
           const unmountResult = ReactDOM.unmountComponentAtNode(el);
           if (unmountResult) {
             (el as any).parentNode.removeChild(el);

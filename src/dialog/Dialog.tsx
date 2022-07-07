@@ -1,10 +1,10 @@
 import React, { CSSProperties, useCallback, useMemo, useState } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import ClassNames from 'classnames';
-import Overlay from 'tdesign-mobile-react/overlay';
-import { ButtonProps, TdButtonProps } from 'tdesign-mobile-react/button';
-import { StyledProps, TNode } from 'tdesign-mobile-react/common';
 import useUnmountedRef from 'ahooks/lib/useUnmountedRef';
+import Overlay from '../overlay';
+import { ButtonProps, TdButtonProps } from '../button';
+import { StyledProps, TNode } from '../common';
 import useConfig from '../_util/useConfig';
 import withStopPropagation, { PropagationEvent } from '../_util/withStopPropagation';
 import { TdDialogProps } from './type';
@@ -95,7 +95,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
   // 弹窗按钮
   const dialogActions = useMemo<Array<ButtonProps | TNode>>(() => {
     // 按钮类名
-    const btnClassName = ClassNames(cls(`${btnLayout}-btn`));
+    const btnClassName = ClassNames(cls('btn'), cls(`${btnLayout}-btn`));
     const btnCommonProps = {
       className: btnClassName,
     };

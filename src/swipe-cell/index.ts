@@ -1,4 +1,5 @@
 import _SwipeCell from './SwipeCell';
+import './style';
 
 export type { SwipeCellProps, SwipeCellRef } from './SwipeCell';
 export * from './type';

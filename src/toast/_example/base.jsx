@@ -1,6 +1,5 @@
 import React from 'react';
-import { Button } from 'tdesign-mobile-react/button';
-import { Toast } from 'tdesign-mobile-react';
+import { Toast, Button } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {
@@ -25,22 +24,22 @@ export default function () {
       <TDemoBlock title="" summary="默认提示-竖向">
         <ul className="toast-container">
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={successColumn}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={successColumn}>
               成功-竖向
             </Button>
           </li>
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={failColumn}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={failColumn}>
               失败-竖向
             </Button>
           </li>
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={warningColumn}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={warningColumn}>
               警告-竖向
             </Button>
           </li>
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={loadingColumn}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={loadingColumn}>
               加载-竖向
             </Button>
           </li>

@@ -8,7 +8,7 @@ const InputUsage = React.memo(() => {
     <div className="t-dialog__demo-wrap">
       <Button
         variant="outline"
-        shape="round"
+        size="large"
         block
         onClick={() => {
           setVisible(true);
@@ -19,7 +19,7 @@ const InputUsage = React.memo(() => {
 
       <Button
         variant="outline"
-        shape="round"
+        size="large"
         block
         onClick={() => {
           const confirm = Dialog.confirm({

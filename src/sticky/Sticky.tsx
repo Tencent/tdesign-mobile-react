@@ -1,16 +1,19 @@
 import React, { FC, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import useConfig from "tdesign-mobile-react/_util/useConfig";
+import useConfig from "../_util/useConfig";
 import { TdStickyProps } from "./type";
+import { stickyDefaultProps } from './defaultProps';
+import { resolveContainer } from '../_util/getContainer'
 
 const Sticky: FC<TdStickyProps> = (prop) => {
     const {
         children,
         container,
-        disabled = false,
-        offsetTop = 0,
-        zIndex = 99,
+        disabled,
+        offsetTop,
+        zIndex,
         onScroll,
     } = prop;
+
 
     const { classPrefix } = useConfig();
     const name = `${classPrefix}-sticky`;
@@ -28,6 +31,8 @@ const Sticky: FC<TdStickyProps> = (prop) => {
     const [contentHeight, setContentHeight] = useState(0);
 
     const [boxTop ,setBoxTop] = useState(undefined);
+
+    const containerRef = useRef(null);
 
     // 滚动监听器
     const scrollhandler = useCallback(() => {
@@ -48,10 +53,11 @@ const Sticky: FC<TdStickyProps> = (prop) => {
         });
     }, [contentElement]);
 
-    useLayoutEffect(() => {
-        const containerTop = container?.getBoundingClientRect()?.top;
-        const containerHeight = container?.getBoundingClientRect()?.height;
+    useEffect(() => {
+        containerRef.current = resolveContainer(container);
+    }, [container])
 
+    useLayoutEffect(() => {
         const style: any = {
             zIndex,
         };
@@ -60,7 +66,10 @@ const Sticky: FC<TdStickyProps> = (prop) => {
         if (disabled) return style;
         const offsetTopNum = Number(offsetTop);
 
-        if (container) {
+        if (containerRef.current) {
+            const containerTop = containerRef.current?.getBoundingClientRect()?.top;
+            const containerHeight = containerRef.current?.getBoundingClientRect()?.height;
+            
             if (containerHeight + containerTop < offsetTopNum + contentHeight) {
                 style.transform = `translate3d(0, ${containerHeight - contentHeight}px, 0)`
             } else if (boxTop <= offsetTopNum) {
@@ -98,5 +107,6 @@ const Sticky: FC<TdStickyProps> = (prop) => {
 }
 
 Sticky.displayName = 'Sticky';
+Sticky.defaultProps = stickyDefaultProps;
 
 export default Sticky;

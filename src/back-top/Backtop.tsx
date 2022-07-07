@@ -63,10 +63,15 @@ const BackTop: React.FC<BackTopProps> = (props) => {
         'back-top-hidden': !show,
         'back-top-show': show,
       })}
+      style={{ zIndex: 99999 }}
       onClick={onClick}
     >
       {isString(icon) ? <Icon className={`${name}__icon`} name={icon} /> : icon}
-      {text && <div className={classNames(`${name}__text`, `${classPrefix}-class-text`)}>{text}</div>}
+      {text && (
+        <div className={classNames(`${name}__text`)} style={{ width: 'auto', minWidth: 12, maxWidth: 24 }}>
+          {text}
+        </div>
+      )}
     </div>,
   );
 };

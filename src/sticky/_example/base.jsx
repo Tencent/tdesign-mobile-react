@@ -1,12 +1,10 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Sticky, Button } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './style/index.less'
 
 export default function Base() {
-
-  const container = useRef(null);
 
   return (
     <div className='tdesign-mobile-demo'>
@@ -27,8 +25,8 @@ export default function Base() {
           </div>
         </TDemoBlock>
         <TDemoBlock title="" summary="指定容器">
-          <div className='tdesign-demo-block-3' ref={container}>
-            <Sticky container={container.current}>
+          <div className='tdesign-demo-block-3' id="container">
+            <Sticky container="#container">
               <Button className='custom-button custom-common-button'>指定容器</Button>
             </Sticky>
           </div>

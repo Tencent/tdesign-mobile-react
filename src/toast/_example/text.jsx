@@ -1,7 +1,7 @@
 import React from 'react';
 import { LocationIcon } from 'tdesign-icons-react';
-import { Button } from 'tdesign-mobile-react/button';
-import { Toast } from 'tdesign-mobile-react';
+import { Button } from '../../button';
+import { Toast } from '../index';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {
@@ -17,12 +17,12 @@ export default function () {
       <TDemoBlock title="01 类型" summary="基础提示">
         <ul className="toast-container">
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={onlyText}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={onlyText}>
               纯文本
             </Button>
           </li>
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" onClick={iconHori}>
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={iconHori}>
               带图标-横向
             </Button>
           </li>

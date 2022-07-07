@@ -12,14 +12,13 @@ toc: false
 :::
 
 ## API
-
 ### Sticky Props
 
 名称 | 类型 | 默认值 | 说明 | 必传
 -- | -- | -- | -- | --
 className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
-container | Object | - | 指定容器对应的NodesRef节点为组件的外部容器，滚动时组件会始终保持在容器范围内，当组件即将超出容器底部时，会返回原位置。。TS 类型：`Element` | N
+container | String / Function | body | 指定滚动的容器。数据类型为 String 时，会被当作选择器处理，进行节点查询。示例：'body' 或 () => document.body。TS 类型：`ScrollContainer` | N
 disabled | Boolean | false | 是否禁用组件 | N
 offsetTop | String / Number | 0 | 吸顶时与顶部的距离，单位`px` | N
 zIndex | Number | 99 | 吸顶时的 z-index | N

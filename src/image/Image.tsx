@@ -5,7 +5,7 @@ import { useInViewport } from 'ahooks';
 import useConfig from '../_util/useConfig';
 import { TdImageProps } from './type';
 
-export interface ImageProps extends TdImageProps, React.ImgHTMLAttributes<HTMLImageElement> {}
+export interface ImageProps extends TdImageProps, Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'loading' | 'onError' | 'onLoad'> {}
 
 const Image: FC<ImageProps> = React.memo((props) => {
   const {

@@ -1,9 +1,47 @@
 .button-demo {
-  padding: 10px;
+  padding: 0 16px;
 
   .t-button {
-    width: 100%;
-    margin-bottom: 10px;
-    // margin: 0 10px 10px 0;
+    margin-bottom: 16px;
   }
+
+}
+
+.margin-button {
+  .t-button {
+    margin-bottom: 16px;
+  }
+}
+
+.margin-right {
+  .t-button:not(:last-child) {
+    margin-right: 16px;
+  }
+}
+
+.no-border-radius {
+  .t-button {
+    border-radius: 0;
+  }
+}
+
+.no-border {
+  .t-button {
+    border: 0 ;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.align-center {
+  flex-direction: row;
+  align-items: center;
+}
+
+.align-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
 }

@@ -21,6 +21,8 @@
 ```bash
 git clone fork仓库代码
 cd tdesign-mobile-react
+修改.gitmodules子仓库为自己fork的仓库，分支main
+git submodule sync
 git submodule init
 git submodule update
 

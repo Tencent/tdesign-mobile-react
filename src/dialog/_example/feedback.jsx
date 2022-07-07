@@ -9,7 +9,7 @@ const FeedbackUsage = React.memo(() => {
       {/* 普通调用 */}
       <Button
         variant="outline"
-        shape="round"
+        size="large"
         block
         onClick={() => {
           setAlertProps({
@@ -24,7 +24,7 @@ const FeedbackUsage = React.memo(() => {
 
       <Button
         variant="outline"
-        shape="round"
+        size="large"
         block
         onClick={() => {
           setAlertProps({
@@ -39,7 +39,7 @@ const FeedbackUsage = React.memo(() => {
 
       <Button
         variant="outline"
-        shape="round"
+        size="large"
         block
         onClick={() => {
           setAlertProps({
@@ -55,7 +55,7 @@ const FeedbackUsage = React.memo(() => {
 
       <Button
         variant="outline"
-        shape="round"
+        size="large"
         block
         onClick={() => {
           setAlertProps({

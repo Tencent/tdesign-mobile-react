@@ -1,6 +1,6 @@
 import React, { forwardRef, useContext, useMemo } from 'react';
-import { ConfigContext } from 'tdesign-mobile-react/config-provider';
 import cls from 'classnames';
+import { ConfigContext } from '../config-provider';
 import type { StyledProps } from '../common';
 import type { TdBadgeProps } from './type';
 
@@ -32,7 +32,7 @@ const Badge = forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
   const { classPrefix } = useContext(ConfigContext);
   const name = useMemo(() => `${classPrefix}-badge`, [classPrefix]);
   const hasChildren = useMemo(() => !!(content || children), [content, children]);
-  const isRibbon = useMemo(() => !dot && shape === 'ribbon', [shape, dot]);
+  // const isRibbon = useMemo(() => !dot && shape === 'ribbon', [shape, dot]);
 
   // 徽标自定义样式
   const computedStyle = useMemo(() => {
@@ -49,7 +49,7 @@ const Badge = forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
   // 徽标外层样式类
   const badgeClasses = cls({
     [`${name}`]: true,
-    [`${name}__ribbon--outer`]: isRibbon,
+    // [`${name}__ribbon--outer`]: isRibbon,
   });
 
   // 徽标内层样式类

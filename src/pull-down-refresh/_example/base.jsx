@@ -1,21 +1,59 @@
-import React, { useState } from 'react';
-import { PullDownRefresh } from 'tdesign-mobile-react';
+import React from 'react';
+import { PullDownRefresh, Skeleton } from 'tdesign-mobile-react';
+import './style/index.less';
 
 export default function Demo() {
-  const [count, setCount] = useState(0);
+  const rowCols = [
+    {
+      height: '171px',
+      borderRadius: '8px',
+    },
+    [
+      {
+        width: '50%',
+        type: 'circle',
+      },
+      {
+        width: '50%',
+        type: 'circle',
+      },
+    ],
+    [
+      {
+        width: '30%',
+        type: 'circle',
+      },
+      {
+        width: '30%',
+        type: 'circle',
+      },
+    ],
+  ];
   return (
-    <div>
+    <div className="tdesign-mobile-wrapper">
+      <div style={{ display: 'flex' }}>
+        <div className="tdesign-mobile-item">
+          <Skeleton theme="text" rowCol={rowCols} />
+        </div>
+        <div className="tdesign-mobile-item">
+          <Skeleton theme="text" rowCol={rowCols} />
+        </div>
+      </div>
+
       <PullDownRefresh
+        loadingBarHeight={80}
+        loadingProps={{
+          layout: 'vertical',
+        }}
         onRefresh={() =>
           new Promise((resolve) => {
-            setCount(count + 1);
             setTimeout(() => {
               resolve();
-            }, 1000);
+            }, 2000);
           })
         }
       >
-        <div className="pull-down-refresh-content">已下拉{count}次</div>
+        <div className="tdesign-mobile-block">拖拽该区域演示 中间下拉刷新</div>
       </PullDownRefresh>
     </div>
   );

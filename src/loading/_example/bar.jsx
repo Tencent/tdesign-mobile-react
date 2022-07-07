@@ -1,9 +1,9 @@
-import { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { Loading, Button } from 'tdesign-mobile-react';
 
 export default function () {
   const [progress, setProgress] = useState(0);
-  let timer = useRef(null);
+  const timer = useRef(null);
 
   const onPageLoading = useCallback(() => {
     if (timer.current) {

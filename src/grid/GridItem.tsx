@@ -1,145 +1,114 @@
-import React, { FC, useMemo } from "react";
-import { Badge } from 'tdesign-mobile-react'
-import { TdGridItemProps, TdGridProps } from "./type";
+import React, { FC, useContext, useMemo } from 'react';
+import cls from 'classnames';
+import { Badge } from 'tdesign-mobile-react';
+import { TdGridItemProps, TdGridProps } from './type';
 import useConfig from '../_util/useConfig';
+import { GridContext } from './GridContext';
+
+import { gridItemDefaultProps } from './defaultProps';
 
 enum LAYOUT {
-    VERTICAL = 'vertical',
-    HORIZONTAL = 'horizontal'
+  VERTICAL = 'vertical',
+  HORIZONTAL = 'horizontal',
 }
 
-enum ALIGN {
-    CENTER = 'center',
-    LEFT = 'left',
-}
+const LAYOUT_MAP = {
+  [LAYOUT.VERTICAL]: 'column',
+  [LAYOUT.HORIZONTAL]: 'row',
+} as const;
 
-const DEFAULT_COLUMN = 4; 
-
-const DEFAULT_ALIGN = ALIGN.CENTER;
-
-const DEFAULT_GUTTER = 20;
-
-const DEFAULT_LAYOUT = LAYOUT.VERTICAL;
-
-const DEFAULT_BORDER = false;
-
-const getGridItemWidth = (column) => `${100 / column}%`;
-
-const getBorderStyle = (border) => {
-    if (typeof border === 'boolean') {
-        if (border) {
-            return {
-                borderColor: '#f6f6f6',
-                borderWidth: '1px',
-                borderStyle: 'solid'
-            };
-        } 
-        
-        return {}
-    }
-    const {color, width, style} = border;
-    return {
-        borderColor: color || '#f6f6f6',
-        borderWidth: width || '1px',
-        borderStyle: style || 'solid',
-    };
-}
-
-const getLayout = (layout) => {
-    const layoutMap = {
-        [LAYOUT.VERTICAL] : 'column',
-        [LAYOUT.HORIZONTAL]: 'row',
-    }
-    return layoutMap[layout];
-}
-
-const getGridItemTextAlign = (align) => align ===  ALIGN.LEFT ? ALIGN.LEFT : ALIGN.CENTER;
-
-const getGridItemAlign = (align, layout) => {
-    const contentAlign =  getGridItemTextAlign(align);
-    if (layout === LAYOUT.HORIZONTAL) {
-        return {
-            justifyContent: contentAlign,
-        }
-    } 
-    return {
-        alignItems: contentAlign
-    }
-};
-
+const getGridItemWidth = (column: number) => `${100 / column}%`;
 
 export interface GridItemProp extends TdGridItemProps, TdGridProps {}
 
 const GridItem: FC<GridItemProp> = (prop) => {
-    const {
-        border = DEFAULT_BORDER, 
-        align = DEFAULT_ALIGN, 
-        column = DEFAULT_COLUMN, 
-        gutter = DEFAULT_GUTTER,
-        description,
-        image,
-        layout = DEFAULT_LAYOUT, 
-        text,
-        badgeProps,
-    } = prop;
+  const { description, image, layout, text, badgeProps } = prop;
 
-    const { classPrefix } = useConfig();
+  const { classPrefix } = useConfig();
+  const { align, gutter, column, border } = useContext(GridContext);
 
-    const name = `${classPrefix}-grid-item`;
+  const name = `${classPrefix}-grid-item`;
 
-    const gridItemWidth = getGridItemWidth(column);
+  const rootClass = useMemo(() => cls(name, {
+    [`${name}--bordered`]: border,
+    [`${classPrefix}-is-large`]: column <= 3,
+  }), [border, name, column, classPrefix]);
 
-    const gridItemBorder = getBorderStyle(border);
+  const isHorizontal = useMemo(() => layout === 'horizontal', [layout]);
 
-    const gridItemLayout = getLayout(layout);
+  const rootStyle = useMemo(() => {
+    const percent = getGridItemWidth(column);
 
-    const gridItemAlign = getGridItemAlign(align, layout);
+    if (border && typeof border !== 'boolean') {
+      const { color, width, style } = border;
+      return {
+        borderColor: color,
+        borderWidth: width,
+        borderStyle: style,
+      };
+    }
 
-    const gridItemTextAlign = getGridItemTextAlign(align);
+    const flexDirection = isHorizontal ? LAYOUT_MAP.horizontal : LAYOUT_MAP.vertical;
+    const gutterSize = gutter ? `${gutter}px` : 0;
 
-    const gridItemImage = useMemo(() => 
-        typeof image === 'string' ?  
-            (<img 
-                src={image} 
-                className={`${name}_image`} 
-                style={{width: '100%', height: '100%'}}
-            />) : image
-    , [image, name])
+    const style = {
+      flexBasis: percent,
+      flexDirection,
+      paddingLeft: gutterSize,
+      paddingRight: gutterSize,
+      alignItems: 'center' as const,
+      justifyContent: 'center' as const,
+      textAlign: align,
+    };
 
-    return <>
-        <div className={name} style={{
-            width: gridItemWidth,
-            height: gridItemWidth,
-            paddingLeft: gutter, 
-            paddingRight: gutter,
-            flexDirection: gridItemLayout,
-            textAlign: gridItemTextAlign,
-            ...gridItemAlign,
-            ...gridItemBorder
-        }}>
-            {
-                badgeProps ? <>
-                    <Badge {...badgeProps}>
-                        <div className={`${name}__image-box`}>
-                            {gridItemImage}
-                        </div>
-                    </Badge>
-                </> : <>
-                    <div className={`${name}__image-box`}>
-                        {gridItemImage}
-                    </div>
-                </>
-            }
-            <div className={`${name}__text`}>
-                <div className={`${name}__title`}>
-                    { text }
-                </div>
-                <div className={`${name}__description`}>
-                    { description }
-                </div>
-            </div>
+    return style;
+  }, [column, border, gutter, align, isHorizontal]);
+
+  const imgStyle = useMemo(() => {
+    let imgSize = 32;
+    if (column >= 5) {
+      imgSize = 28;
+    } else if (column <= 3) {
+      imgSize = 48;
+    }
+    return {
+      width: `${imgSize}px`,
+      height: `${imgSize}px`,
+    };
+  }, [column]);
+
+  const gridItemImage = useMemo(() => {
+    if (!image) {
+      return null;
+    }
+
+    return typeof image === 'string' ? <img src={image} className={`${name}__image`} style={imgStyle} /> : image;
+  }, [image, name, imgStyle]);
+
+  const textStyle = useMemo(() => ({ paddingLeft: isHorizontal ? '12px' : 0 }), [isHorizontal]);
+
+  const titleStyle = useMemo(
+    () => ({
+      paddingTop: isHorizontal ? 0 : '8px',
+      marginBottom: '4px',
+    }),
+    [isHorizontal],
+  );
+
+  return (
+    <div className={rootClass} style={rootStyle}>
+      {badgeProps ? <Badge {...badgeProps}>{gridItemImage}</Badge> : gridItemImage}
+      <div className={`${name}__text`} style={textStyle}>
+        <div className={`${name}__title`} style={titleStyle}>
+          {text}
         </div>
-    </>
-}
+        <div className={`${name}__description`}>{description}</div>
+      </div>
+    </div>
+  );
+};
+
+GridItem.displayName = 'GridItem';
+GridItem.defaultProps = gridItemDefaultProps;
 
 export default GridItem;

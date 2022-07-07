@@ -1,9 +1,12 @@
 import React from 'react';
-import { Radio, RadioGroup } from 'tdesign-mobile-react/radio';
+import { CheckIcon } from 'tdesign-icons-react';
+import { Radio, RadioGroup } from '../index';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {
-  const defaultVaule = 'idx1';
+  const defaultVaule = 'idx2';
+  const icon = <CheckIcon key="1"/>;
+  
   return (
     <>
       <div style={{ marginTop: '10px' }}>
@@ -16,9 +19,9 @@ export default function () {
       </div>
       <div style={{ marginTop: '10px' }}>
         <TDemoBlock>
-          <RadioGroup disabledvalue={defaultVaule}>
-            <Radio label="单选" value="idx1" icon="stroke-line"></Radio>
-            <Radio label="单选" value="idx2" icon="stroke-line"></Radio>
+          <RadioGroup disabled value={defaultVaule}>
+            <Radio label="单选" value="idx1" icon={[icon]}></Radio>
+            <Radio label="单选" value="idx2" icon={[icon]}></Radio>
           </RadioGroup>
         </TDemoBlock>
       </div>
@@ -33,8 +36,8 @@ export default function () {
       <div style={{ marginTop: '10px' }}>
         <TDemoBlock>
           <RadioGroup disabled value={defaultVaule}>
-            <Radio label="单选" value="idx1" icon="stroke-line" align="right"></Radio>
-            <Radio label="单选" value="idx2" icon="stroke-line" align="right"></Radio>
+            <Radio label="单选" value="idx1" icon={[icon]} align="right"></Radio>
+            <Radio label="单选" value="idx2" icon={[icon]} align="right"></Radio>
           </RadioGroup>
         </TDemoBlock>
       </div>

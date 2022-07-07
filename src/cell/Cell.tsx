@@ -1,31 +1,14 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import classNames from 'classnames';
-import identity from 'lodash/identity';
 import isString from 'lodash/isString';
-import { Icon } from 'tdesign-icons-react';
-import useConfig from '../_util/useConfig';
-import withNativeProps, { NativeProps } from '../_util/withNativeProps';
+import { ChevronRightIcon } from 'tdesign-icons-react';
+
 import { TdCellProps } from './type';
+import { cellDefaultProps } from './defaultProps';
+import withNativeProps, { NativeProps } from '../_util/withNativeProps';
+import useConfig from '../_util/useConfig';
 
-export type CellProps = TdCellProps & NativeProps;
-
-export type AlignType = 'top' | 'middle' | 'bottom';
-
-export const defaultProps = {
-  align: 'middle' as AlignType,
-  arrow: false,
-  bordered: true,
-  description: '',
-  hover: false,
-  image: '',
-  leftIcon: null,
-  note: '',
-  required: false,
-  rightIcon: null,
-  title: '',
-  url: '',
-  onClick: identity,
-};
+export interface CellProps extends TdCellProps, NativeProps {}
 
 const Cell: React.FC<CellProps> = (props) => {
   const {
@@ -42,11 +25,34 @@ const Cell: React.FC<CellProps> = (props) => {
     title,
     url,
     onClick,
+    children,
   } = props;
 
   const { classPrefix } = useConfig();
 
   const name = `${classPrefix}-cell`;
+
+  const renderIcon = useMemo(() => {
+    let content: React.ReactNode | null = null;
+    if (arrow) {
+      content = <ChevronRightIcon size={24} />;
+    } else if (rightIcon) {
+      content = rightIcon;
+    }
+
+    if (content === null) {
+      return content;
+    }
+
+    return <div className={`${name}__right-icon`}>{content}</div>;
+  }, [arrow, rightIcon, name]);
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      onClick && onClick({ e });
+    },
+    [onClick],
+  );
 
   const content = (
     <div
@@ -54,9 +60,7 @@ const Cell: React.FC<CellProps> = (props) => {
         [`${name}--bordered`]: bordered,
         [`${name}--hover`]: hover,
       })}
-      onClick={(e) => {
-        onClick({ e });
-      }}
+      onClick={handleClick}
     >
       {(leftIcon || image) && (
         <div className={`${name}__left-icon`}>
@@ -64,36 +68,31 @@ const Cell: React.FC<CellProps> = (props) => {
           {isString(image) ? <img src={image} className={`${name}__image`} /> : image}
         </div>
       )}
-      <div className={`${name}__title`}>
-        {title && (
-          <span>
-            {title}
-            {required && <span className={`${name}--required`}>&nbsp;*</span>}
-          </span>
-        )}
-        {description && <div className={`${name}__description`}>{description}</div>}
-      </div>
-      {note && <div className={`${name}__note`}>{note}</div>}
-      {arrow && <Icon className={`${name}-content-arrow`} name="chevron-right" size={24} color="#0006" />}
-      {rightIcon && <div className={`${name}__right-icon`}>{rightIcon}</div>}
+      {title && (
+        <div className={`${name}__title`}>
+          {title}
+          {required && <span className={`${name}--required`}>&nbsp;*</span>}
+          {description && <div className={`${name}__description`}>{description}</div>}
+        </div>
+      )}
+      {(note || children) && <div className={`${name}__note`}>{children ? children : note}</div>}
+      {renderIcon}
     </div>
   );
 
   return withNativeProps(
     props,
-    <>
-      {url ? (
-        <a style={{ textDecoration: 'none' }} href={url} rel="noreferrer">
-          {content}
-        </a>
-      ) : (
-        <>{content}</>
-      )}
-    </>,
+    url ? (
+      <a style={{ textDecoration: 'none' }} href={url} rel="noreferrer">
+        {content}
+      </a>
+    ) : (
+      content
+    ),
   );
 };
 
-Cell.defaultProps = defaultProps;
+Cell.defaultProps = cellDefaultProps;
 Cell.displayName = 'Cell';
 
 export default Cell;

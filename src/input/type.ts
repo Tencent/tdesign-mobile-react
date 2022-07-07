@@ -77,6 +77,12 @@ export interface TdInputProps {
    */
   type?: 'text' | 'number' | 'url' | 'tel' | 'password' | 'search' | 'submit' | 'hidden';
   /**
+   * 是否垂直显示
+   * @default false
+   */
+  vertical?: boolean;
+
+  /**
    * 输入框的值
    */
   value?: InputValue;
@@ -85,13 +91,21 @@ export interface TdInputProps {
    */
   defaultValue?: InputValue;
   /**
+   * 传入的class
+   * @default ""
+   */
+  className?: string;
+  /**
    * 失去焦点时触发
    */
   onBlur?: (value: InputValue, context: { e: FocusEvent<HTMLInputElement> }) => void;
   /**
    * 输入框值发生变化时触发
    */
-  onChange?: (value: InputValue, context?: { e?: FormEvent<HTMLDivElement> | MouseEvent<HTMLElement | SVGElement> }) => void;
+  onChange?: (
+    value: InputValue,
+    context?: { e?: FormEvent<HTMLDivElement> | MouseEvent<HTMLElement | SVGElement> },
+  ) => void;
   /**
    * 清空按钮点击时触发
    */

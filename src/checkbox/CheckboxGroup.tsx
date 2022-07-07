@@ -114,7 +114,7 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
             checkedSet.delete(checkValue);
           }
 
-          setInternalValue(Array.from(checkedSet), { e });
+          setInternalValue(Array.from(checkedSet), { e, current: e.target, type: checked ? 'check' : 'uncheck' });
         },
       };
     },
@@ -144,9 +144,9 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
                     const vs = v as CheckboxOptionObj;
                     // CheckAll 的 checkBox 不存在 value,故用 checkAll_index 来保证尽量不和用户的 value 冲突.
                     return vs.checkAll ? (
-                      <Checkbox {...v} key={`checkAll_${index}`} indeterminate={indeterminate} />
+                      <Checkbox {...v as Object} key={`checkAll_${index}`} indeterminate={indeterminate} />
                     ) : (
-                      <Checkbox {...v} key={vs.value} disabled={vs.disabled || disabled} />
+                      <Checkbox {...v as Object} key={vs.value} disabled={vs.disabled || disabled} />
                     );
                   }
                   default:

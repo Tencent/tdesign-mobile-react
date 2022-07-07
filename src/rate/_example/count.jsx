@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Rate } from 'tdesign-mobile-react/rate';
+import { Rate } from 'tdesign-mobile-react';
 
 export default function Base() {
   const [value, setValue] = useState(3);

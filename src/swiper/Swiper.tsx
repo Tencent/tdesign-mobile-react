@@ -6,12 +6,13 @@ import { StyledProps } from '../common';
 import noop from '../_util/noop';
 import useConfig from '../_util/useConfig';
 import SwiperItem from './SwiperItem';
+import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 
 export interface SwiperProps extends TdSwiperProps, StyledProps {
   children?: React.ReactNode;
 }
 
-const Swiper: React.FC<SwiperProps> = (props) => {
+const Swiper = forwardRefWithStatics((props: SwiperProps) => {
   const {
     // animation = 'slide', // 轮播切换动画效果类型（暂时没用）
     autoplay = true, // 是否自动播放
@@ -81,6 +82,7 @@ const Swiper: React.FC<SwiperProps> = (props) => {
     React.cloneElement(child, {
       value: index,
       style: { height: `${height}px`, width: `${containerWidth}px` },
+      className: `${classPrefix}-swiper__item`,
       ...child.props,
     }),
   );
@@ -181,7 +183,7 @@ const Swiper: React.FC<SwiperProps> = (props) => {
    * 触摸事件处理方法
    */
   // 触摸滑动事件 - 开始
-  const handleTouchStart = (e: TouchEvent) => {
+  const handleTouchStart = (e: React.TouchEvent) => {
     e.stopPropagation();
     isHovering.current = true;
     clearTimer();
@@ -194,7 +196,7 @@ const Swiper: React.FC<SwiperProps> = (props) => {
 
   // 触摸滑动事件 - 滑动中
   const handleTouchMove = useCallback(
-    (e: TouchEvent) => {
+    (e: React.TouchEvent) => {
       e.stopPropagation();
 
       if (moveStartSite) {
@@ -223,7 +225,7 @@ const Swiper: React.FC<SwiperProps> = (props) => {
   );
 
   // 触摸滑动事件 - 结束
-  const handleTouchEnd = (e: TouchEvent) => {
+  const handleTouchEnd = (e: React.TouchEvent) => {
     e.stopPropagation();
     if (touchMoveDistance / swiperOuterWidth <= -0.3) {
       // swiperTo(currentIndex + 1, { source: 'touch' });
@@ -308,13 +310,13 @@ const Swiper: React.FC<SwiperProps> = (props) => {
         ref={wrapperRef}
         className={`${classPrefix}-swiper__container`}
         style={wrapperStyle}
-        onTouchStart={(e) => handleTouchStart(e)}
-        onTouchMove={(e) => handleTouchMove(e)}
-        onTouchEnd={(e) => handleTouchEnd(e)}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         {swiperItemList}
       </div>
-      {navigation && 'minShowNum' in navigation && childrenLength < navigation.minShowNum ? null : (
+      {navigation && childrenLength < navigation?.minShowNum ? null : (
         <>
           {/* 渲染底部导航 */}
           {navigation && 'type' in navigation && (
@@ -343,10 +345,10 @@ const Swiper: React.FC<SwiperProps> = (props) => {
           {(direction === 'horizontal' && navigation && navigation.showSlideBtn && (
             <span>
               <span className={`${classPrefix}-swiper__btn btn-prev`} onClick={() => clickSlideBtn('left')}>
-                <Icon name="chevron-left" size={20} />
+                <Icon name="chevron-left" size={16} />
               </span>
               <span className={`${classPrefix}-swiper__btn btn-next`} onClick={() => clickSlideBtn('right')}>
-                <Icon name="chevron-right" size={20} />
+                <Icon name="chevron-right" size={16} />
               </span>
             </span>
           )) ||
@@ -355,9 +357,10 @@ const Swiper: React.FC<SwiperProps> = (props) => {
       )}
     </div>
   );
-};
+}, {
+  SwiperItem
+});
 
-Swiper.SwiperItem = SwiperItem;
 Swiper.displayName = 'Swiper';
 
 export default Swiper;

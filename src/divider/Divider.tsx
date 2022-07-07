@@ -21,6 +21,7 @@ const Divider: FC<DividerProps> = (props) => {
 
   const classes = classNames(name, {
     [`${name}-${layout}`]: layout,
+    [`${name}--hairline`]: true,
     [`${name}--content-${align}`]: align && contentNode,
     [`${name}--dashed`]: dashed,
   });

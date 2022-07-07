@@ -128,6 +128,11 @@ export default {
       component: () => import('tdesign-mobile-react/swiper/_example/index.jsx'),
     },
     {
+      title: 'Navbar 导航栏',
+      name: 'navbar',
+      component: () => import('tdesign-mobile-react/navbar/_example/index.jsx'),
+    },
+    {
       title: 'SwipeCell 滑动单元格',
       name: 'swipe-cell',
       component: () => import('tdesign-mobile-react/swipe-cell/_example/index.jsx'),
@@ -168,6 +173,11 @@ export default {
       component: () => import('tdesign-mobile-react/avatar/_example/index.jsx'),
     },
     {
+      title: 'Indexes 索引',
+      name: 'indexes',
+      component: () => import('tdesign-mobile-react/indexes/_example/index.tsx'),
+    },
+    {
       title: 'Picker 选择器',
       name: 'picker',
       component: () => import('tdesign-mobile-react/picker/_example/index.jsx'),
@@ -176,6 +186,16 @@ export default {
       title: 'Textarea 多行文本框',
       name: 'textarea',
       component: () => import('tdesign-mobile-react/textarea/_example/index.jsx'),
+    },
+    {
+      title: 'Steps 步骤条',
+      name: 'steps',
+      component: () => import('tdesign-mobile-react/steps/_example/index.jsx'),
+    },
+    {
+      title: 'TabBar 标签栏',
+      name: 'tab-bar',
+      component: () => import('tdesign-mobile-react/tab-bar/_example/mobile.jsx'),
     },
   ],
 };

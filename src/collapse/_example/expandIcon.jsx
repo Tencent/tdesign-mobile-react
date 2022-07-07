@@ -1,5 +1,5 @@
 import React from 'react';
-import { Collapse } from 'tdesign-mobile-react/collapse';
+import { Collapse } from '../index';
 import { Icon } from 'tdesign-icons-react';
 
 export default function () {

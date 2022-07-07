@@ -39,4 +39,12 @@ export interface TdPullDownRefreshProps {
    * 刷新超时触发
    */
   onTimeout?: () => void;
+  /**
+   * 控制是否正在加载
+   */
+  value?: boolean | undefined;
+  /**
+   * 刷新过程中加载状态的更改
+   */
+  onChange?: (value: boolean) => void;
 }

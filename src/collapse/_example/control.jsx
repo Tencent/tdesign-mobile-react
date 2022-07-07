@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Collapse } from 'tdesign-mobile-react/collapse';
-import { Checkbox } from 'tdesign-mobile-react/checkbox';
+import { Collapse } from '../index';
+import { Checkbox } from '../../checkbox';
 
 export default function () {
   const [value, setValue] = useState([]);

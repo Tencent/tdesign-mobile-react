@@ -1,16 +1,12 @@
 import React from 'react';
-import { Collapse } from 'tdesign-mobile-react/collapse';
+import { Collapse } from '../index';
 
 export default function () {
   return (
     <>
-      <Collapse expandIcon>
-        <Collapse.Panel header="面板标题">
-          <ul>
-            <li>面板内容</li>
-            <li>面板内容</li>
-            <li>面板内容</li>
-          </ul>
+      <Collapse value={1} expandIcon>
+        <Collapse.Panel value={1} header="折叠面板标题">
+          此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容可自定义内容
         </Collapse.Panel>
       </Collapse>
     </>

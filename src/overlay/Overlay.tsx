@@ -1,11 +1,11 @@
 import React, { FC, useRef, useMemo, useState } from 'react';
 import { useUnmountedRef } from 'ahooks';
 import { useSpring, animated } from '@react-spring/web';
-import withNativeProps, { NativeProps } from 'tdesign-mobile-react/_util/withNativeProps';
-import { PropagationEvent, withStopPropagation } from 'tdesign-mobile-react/_util/withStopPropagation';
-import { GetContainer, renderToContainer } from 'tdesign-mobile-react/_util/renderToContainer';
-import { useLockScroll } from 'tdesign-mobile-react/_util/useLockScroll';
-import { useShouldRender } from 'tdesign-mobile-react/_util/useShouldRender';
+import withNativeProps, { NativeProps } from '../_util/withNativeProps';
+import { PropagationEvent, withStopPropagation } from '../_util/withStopPropagation';
+import { GetContainer, renderToContainer } from '../_util/renderToContainer';
+import { useLockScroll } from '../_util/useLockScroll';
+import { useShouldRender } from '../_util/useShouldRender';
 import useConfig from '../_util/useConfig';
 
 export interface OverlayProps extends NativeProps {

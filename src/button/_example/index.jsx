@@ -1,13 +1,12 @@
 import React from 'react';
-import { Button } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './style/index.less';
-
 import BaseButtonDemo from './base';
 import IconButtonDemo from './icon';
 import SizeButtonDemo from './size';
-import ShapButtonDemo from './shape';
+import LoadingButtonDemo from './loading';
+import OtherButtonDemo from './other'
 
 export default function Base() {
   return (
@@ -17,67 +16,31 @@ export default function Base() {
         <div className="button-demo">
           <BaseButtonDemo />
         </div>
-
-        <div style={{ background: '#a6a6a6', padding: '10px', marginBottom: '10px' }}>
-          <Button variant="outline" ghost>
-            幽灵按钮
-          </Button>
-        </div>
-
-        <Button theme="primary" block>
-          通栏按钮
-        </Button>
-      </TDemoBlock>
-
-      <TDemoBlock title="02 图标按钮" summary="图标按钮分为图标加文字形式、纯图标形式">
-        <div className="button-demo">
+        <OtherButtonDemo />
+        <div className='button-demo align-center margin-right'>
           <IconButtonDemo />
         </div>
+        <div className="flex align-center margin-right button-demo-loading">
+          <LoadingButtonDemo />
+        </div>
       </TDemoBlock>
 
-      <TDemoBlock title="03 按钮状态" summary="按钮禁用态">
+      <TDemoBlock title="02 状态" summary="按钮禁用态">
         <div className="button-demo">
-          <Button disabled>默认按钮</Button>
-          <Button theme="primary" disabled>
-            强按钮
-          </Button>
-          <Button theme="primary" variant="outline" disabled>
-            弱按钮
-          </Button>
-          <Button variant="outline" disabled>
-            次按钮
-          </Button>
-          <Button theme="danger" disabled>
-            警告按钮
-          </Button>
-          <Button theme="danger" variant="outline" disabled>
-            弱警告按钮
-          </Button>
-          <Button theme="primary" variant="text" disabled>
-            文字按钮
-          </Button>
+          <BaseButtonDemo disabled/>
         </div>
-
-        <div style={{ background: '#a6a6a6', padding: '10px', marginBottom: '10px' }}>
-          <Button variant="outline" ghost disabled>
-            幽灵按钮
-          </Button>
+        <OtherButtonDemo disabled/>
+        <div className='button-demo align-center margin-right'>
+          <IconButtonDemo disabled/>
         </div>
-
-        <Button theme="primary" block disabled>
-          通栏按钮
-        </Button>
+        <div className="flex align-center margin-right button-demo-loading">
+          <LoadingButtonDemo disabled/>
+        </div>
       </TDemoBlock>
 
-      <TDemoBlock title="04 尺寸" summary="提供大、中、小 3 种不同大小按钮">
+      <TDemoBlock title="03 规格" summary="按钮尺寸">
         <div className="button-demo">
           <SizeButtonDemo />
-        </div>
-      </TDemoBlock>
-
-      <TDemoBlock title="05 形状">
-        <div className="button-demo">
-          <ShapButtonDemo />
         </div>
       </TDemoBlock>
     </div>

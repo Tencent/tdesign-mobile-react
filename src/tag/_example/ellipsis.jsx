@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tag } from 'tdesign-mobile-react';
 
-const Ellipsis = React.memo(() => (
+const Ellipsis = () => (
   <div className="t-tag__demo-common">
     <div className="t-tag__demo-block">
       <Tag theme="primary" maxWidth="80px">
@@ -15,6 +15,6 @@ const Ellipsis = React.memo(() => (
       </Tag>
     </div>
   </div>
-));
+);
 
 export default Ellipsis;

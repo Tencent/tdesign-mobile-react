@@ -1,10 +1,11 @@
 import React, { FC, useState, useRef } from 'react';
 import { CloseCircleFilledIcon } from 'tdesign-icons-react';
-import { Button } from 'tdesign-mobile-react/button';
 import isFunction from 'lodash/isFunction';
+import { Button } from '../button';
 import useConfig from '../_util/useConfig';
 import type { TdSearchProps } from './type';
 import type { StyledProps } from '../common';
+import { searchDefaultProps } from './defaultProps'
 
 export interface SearchProps extends TdSearchProps, StyledProps {}
 
@@ -13,12 +14,12 @@ const Search: FC<SearchProps> = (props) => {
     className = '',
     style = {},
     action = '',
-    center = false,
-    disabled = false,
-    focus = false,
-    label = '',
+    center,
+    disabled,
+    focus,
+    label,
     leftIcon,
-    placeholder = '',
+    placeholder,
     rightIcon,
     shape = 'square',
     value = '',
@@ -32,10 +33,10 @@ const Search: FC<SearchProps> = (props) => {
   const { classPrefix } = useConfig();
 
   const inputRef = useRef(null);
-  const [searchActive, setSearchActive] = useState(focus);
+  const [focusState, setFocus] = useState(focus);
 
   function handleBlur(e: React.FocusEvent<HTMLInputElement, Element>) {
-    setSearchActive(false);
+    setFocus(false);
     inputRef.current.blur();
     const { value } = e.currentTarget;
     isFunction(onBlur) && onBlur(value, { e });
@@ -67,14 +68,14 @@ const Search: FC<SearchProps> = (props) => {
 
   function handleClick() {
     inputRef.current.focus();
-    setSearchActive(true);
+    setFocus(true);
   }
 
   const shapeStyle = { borderRadius: shape === 'square' ? null : '50px' };
 
   return (
     <div
-      className={`${classPrefix}-search ${searchActive ? `${classPrefix}-is-focused` : ''} ${className}`}
+      className={`${classPrefix}-search ${focusState ? `${classPrefix}-is-focused` : ''} ${className}`}
       style={{ ...style }}
     >
       {label && (
@@ -97,7 +98,7 @@ const Search: FC<SearchProps> = (props) => {
             style={{ textAlign: center ? 'center' : null }}
             ref={inputRef}
             type="text"
-            autoFocus={focus}
+            autoFocus={focusState}
             disabled={disabled}
             value={value}
             placeholder={placeholder}
@@ -117,7 +118,7 @@ const Search: FC<SearchProps> = (props) => {
           <span className={`${classPrefix}-search__label-text`}>{placeholder}</span>
         </label>
       </div>
-      {searchActive && (
+      {focusState && (
         <Button
           className={`${classPrefix}-search__cancel-button`}
           variant="text"
@@ -130,5 +131,7 @@ const Search: FC<SearchProps> = (props) => {
     </div>
   );
 };
+
+Search.defaultProps = searchDefaultProps;
 
 export default Search;

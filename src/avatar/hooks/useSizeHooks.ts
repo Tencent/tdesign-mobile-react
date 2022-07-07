@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react';
-import { ConfigContext } from 'tdesign-mobile-react/config-provider';
+import { ConfigContext } from '../../config-provider';
 
 export const SIZE_CLASSNAMES = {
   small: `-size-s`,

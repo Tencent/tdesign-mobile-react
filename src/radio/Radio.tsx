@@ -1,16 +1,11 @@
-import React, { createContext, CSSProperties, forwardRef, ReactNode, Ref, useContext, useRef } from 'react';
+import React, { createContext, CSSProperties, forwardRef, Ref, useContext, useRef } from 'react';
 import classNames from 'classnames';
-import { Icon } from 'tdesign-icons-react';
-import forwardRefWithStatics from 'tdesign-mobile-react/_util/forwardRefWithStatics';
+import { CheckIcon } from 'tdesign-icons-react';
+import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
 import { TdRadioProps } from './type';
 import RadioGroup from './RadioGroup';
-
-enum ALIGN {
-  LEFT = 'left',
-  RIGHT = 'right',
-}
 
 export interface RadioProps extends TdRadioProps {
   ref?: Ref<HTMLDivElement>;
@@ -28,18 +23,15 @@ const getLimitRow = (row: number): CSSProperties => ({
   WebkitLineClamp: row,
 });
 
-const getAlignStyle = (align): CSSProperties => ({
-  flexDirection: align === ALIGN.LEFT ? 'row' : 'row-reverse',
-});
-
 const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
-  const { classPrefix } = useConfig();
+  const { classPrefix: prefix } = useConfig();
+  const classPrefix = `${prefix}-radio`;
   const inputRef = useRef();
   const context = useContext(RadioContext);
   const props = context ? context.inject(_props) : _props;
 
   const {
-    align = ALIGN.LEFT,
+    align = 'left',
     allowUncheck = false,
     checked = false,
     defaultChecked = false,
@@ -47,12 +39,13 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
     content,
     contentDisabled,
     disabled,
-    icon = 'fill-circle',
+    icon,
     label,
     maxContentRow = 5,
     maxLabelRow = 3,
     name,
     value,
+    // borderless = false,
     onChange,
   } = props;
 
@@ -72,33 +65,21 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
   };
 
   const renderIcon = () => {
-    let iconName = '';
-    let iconNode: ReactNode;
-    if (icon === 'fill-circle') {
-      if (radioChecked) {
-        iconName = 'check-circle-filled';
-      } else {
-        iconName = 'circle';
-      }
-    } else if (icon === 'stroke-line') {
-      if (radioChecked) {
-        iconName = 'check';
-      }
-    } else if (Array.isArray(icon)) {
-      if (radioChecked) {
-        [iconNode] = icon;
-      } else {
-        [, iconNode] = icon;
-      }
+    if (Array.isArray(icon)) {
+      return radioChecked ? icon[0] : icon[1] ?? null;
     }
-    if (iconNode) return <>{iconNode}</>;
     return (
-      <Icon
-        className={classNames(`${classPrefix}-icon`, {
-          [`${classPrefix}-radio__checked__disable-icon`]: disabled,
+      <div
+        className={classNames(
+          `${classPrefix}__icon`, {
+            [`${classPrefix}__icon--checked`]: radioChecked,
+            [`${classPrefix}__icon--disabled`]: disabled,
+            // [`${classPrefix}__icon--strock`]: icon === 'stroke-line',
+            [`${classPrefix}__icon--custom`]: Array.isArray(icon),
         })}
-        name={iconName}
-      />
+      >
+        <CheckIcon size={16} />
+      </div>
     );
   };
 
@@ -106,22 +87,19 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
     ...getLimitRow(maxLabelRow),
     color: disabled ? '#dcdcdc' : 'inherit',
   };
-  const alignStyle = getAlignStyle(align);
-  const containerClassName = classNames(
-    `${classPrefix}-cell`,
-    `${classPrefix}-cell--middle`,
-    `${classPrefix}-cell--bordered`,
-  );
-  const iconClassName = classNames(
-    { [`${classPrefix}-cell__left-icon`]: align === ALIGN.LEFT },
-    { [`${classPrefix}-cell__right-icon`]: align === ALIGN.RIGHT },
-    `${classPrefix}-radio__wrap`,
-  );
+
   const radioClassName = classNames(
-    { [`${classPrefix}-is-checked`]: radioChecked },
-    { [`${classPrefix}-is-disabled`]: disabled },
-    `${classPrefix}-radio`,
+    `${classPrefix}`,
+    { [`${prefix}-is-checked`]: radioChecked },
+    { [`${prefix}-is-disabled`]: disabled },
+
   );
+
+  const titleClassName = classNames(
+    `${prefix}__content-title`,
+    { [`${prefix}-is-disabled`]: disabled },
+    { [`${prefix}__content-right-title`]: align === 'right' },
+  )
 
   const input = (
     <input
@@ -132,7 +110,7 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
       // @ts-ignore
       value={value}
       disabled={disabled}
-      className={classNames(`${classPrefix}-radio__former`)}
+      className={classNames(`${classPrefix}__original-${align}`)}
       checked={radioChecked}
       onClick={(e) => {
         e.stopPropagation();
@@ -145,31 +123,29 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
   );
 
   return (
-    <div className={`${containerClassName}`} style={alignStyle} ref={ref}>
-      <div className={iconClassName}>
-        <div className={radioClassName}>
-          <div className={`${classPrefix}-radio__content-wrap`}>
-            <span className={`${classPrefix}-radio__icon-left`} onClick={() => switchRadioChecked()}>
-              {input}
-              {renderIcon()}
-            </span>
-            <span className={`${classPrefix}-radio__label-wrap`}></span>
-          </div>
-        </div>
-      </div>
-      <div
-        className={`${classPrefix}-cell__title`}
-        onClick={() => {
-          switchRadioChecked('content');
-        }}
-      >
-        <span style={labelStyle}>{label}</span>
-        {(children || content) && (
-          <div className={`${classPrefix}-cell__description`} style={getLimitRow(maxContentRow)}>
-            {children || content}
-          </div>
-        )}
-      </div>
+    <div className={radioClassName} ref={ref} onClick={() => switchRadioChecked()}>
+      <span className={`${classPrefix}__content-wrap`}>
+        {align === 'left' &&<span className={ `${classPrefix}__icon-wrap ${classPrefix}__icon-left-wrap`}>
+          {input}
+          {renderIcon()}
+        </span>}
+        <span className={`${classPrefix}__label-wrap`}>
+          {label && <span className={titleClassName} style={labelStyle}>{label}</span>}
+          {(children || content) && (
+            <div className={`${classPrefix}__content-inner`}  style={getLimitRow(maxContentRow)}>
+              {children || content}
+            </div>
+          )}
+        </span>
+        {align === 'right' &&<span className={ `${classPrefix}__icon-wrap ${classPrefix}__icon-right-wrap`}>
+          {input}
+          {renderIcon()}
+        </span>}
+      </span>
+      {/* 下边框 */}
+      { <div className={`${classPrefix}__border ${classPrefix}__border--${align}`}></div>}
+      {/* { !borderless && <div className={`${classPrefix}__border ${classPrefix}__border--${align}`}></div>} */}
+      <div ></div>
     </div>
   );
 });
