@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SearchIcon } from 'tdesign-icons-react';
-import { Search } from '../index';
+import { Search } from 'tdesign-mobile-react';
 
 export default function Base() {
   const [value, setValue] = useState('搜索预设文案');
