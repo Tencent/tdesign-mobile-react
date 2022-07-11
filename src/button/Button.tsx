@@ -4,13 +4,14 @@ import { LoadingIcon } from 'tdesign-icons-react';
 import useConfig from '../_util/useConfig';
 import { TdButtonProps } from './type';
 import noop from '../_util/noop';
-import { buttonDefaultProps } from './defaultProps'
+import { buttonDefaultProps } from './defaultProps';
 
 export interface ButtonProps extends TdButtonProps, React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 const Button = forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>) => {
   const {
     className = '',
+    style,
     block,
     children,
     content = '',
@@ -44,11 +45,12 @@ const Button = forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>
         },
         [`${classPrefix}-button--shape-${shape}`],
       )}
+      style={style}
       onClick={!loading && !disabled ? onClick : undefined}
       disabled={disabled || loading}
     >
       {loading ? <LoadingIcon /> : icon}
-      { content || children ? <span className={`${classPrefix}-button__text`}> {content || children }</span>: ''}
+      {content || children ? <span className={`${classPrefix}-button__text`}> {content || children}</span> : ''}
     </button>
   );
 });

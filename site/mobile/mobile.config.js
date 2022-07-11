@@ -192,5 +192,10 @@ export default {
       name: 'tab-bar',
       component: () => import('tdesign-mobile-react/tab-bar/_example/mobile.jsx'),
     },
+    {
+      title: 'Fab 悬浮按钮',
+      name: 'fab',
+      component: () => import('tdesign-mobile-react/fab/_example/index.jsx'),
+    },
   ],
 };
