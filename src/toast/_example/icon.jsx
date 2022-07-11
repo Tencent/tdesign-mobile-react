@@ -1,7 +1,6 @@
 import React from 'react';
 import { LocationIcon } from 'tdesign-icons-react';
-import { Toast } from 'tdesign-mobile-react';
-import { Button } from '../../button';
+import { Toast, Button } from 'tdesign-mobile-react';
 
 export default function () {
   const iconColumn = () => {

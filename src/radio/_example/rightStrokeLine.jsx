@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Radio, RadioGroup } from '../index';
+import { Radio, RadioGroup } from 'tdesign-mobile-react';
 import { CheckIcon } from 'tdesign-icons-react';
 
 export default function () {
   const [defaultVaule, setDefaultValue] = useState('idx1');
-  const CheckedIcon = <CheckIcon key="1" color='#0052d9' />;
+  const CheckedIcon = <CheckIcon key="1" color="#0052d9" />;
 
   return (
     <RadioGroup value={defaultVaule} onChange={setDefaultValue}>

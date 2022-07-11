@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Collapse } from '../index';
-import { Checkbox } from '../../checkbox';
+import { Collapse, Checkbox } from 'tdesign-mobile-react';
 
 export default function () {
   const [value, setValue] = useState([]);
@@ -22,7 +21,7 @@ export default function () {
           </ul>
         </Collapse.Panel>
       </Collapse>
-      <br/>
+      <br />
       <Checkbox label="全部选中" onChange={(value) => setValue(value ? [0, 1] : [])} />
     </>
   );

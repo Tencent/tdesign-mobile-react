@@ -1,7 +1,6 @@
 import React from 'react';
 import { Icon } from 'tdesign-icons-react';
-import { Message } from '../../message';
-import Indexes from '../Indexes';
+import { Message, Indexes } from 'tdesign-mobile-react';
 import { number } from './data';
 import './style/index.less';
 

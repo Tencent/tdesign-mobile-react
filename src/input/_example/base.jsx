@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { InfoCircleFilledIcon } from 'tdesign-icons-react';
-import { Input } from '../index';
-import { Button } from '../../button';
+import { Input, Button } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './index.less';

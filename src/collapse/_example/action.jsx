@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Collapse } from '../index';
+import { Collapse } from 'tdesign-mobile-react';
 
 export default function () {
   const [val, setVal] = useState(0);
-  console.log(val);
   return (
     <>
       <Collapse value={val} onChange={(val) => setVal(val)} expandIcon>
