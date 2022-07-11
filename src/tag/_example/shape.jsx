@@ -1,15 +1,15 @@
 import React from 'react';
 import { Tag } from 'tdesign-mobile-react';
 
-const Shape = () => (
-  <div className="t-tag__demo-block t-tag__demo-common">
+const ShapeDemo = () => (
+  <div className="tag-demo">
     <Tag theme="primary" shape="round">
-      圆角标签
+      圆弧
     </Tag>
     <Tag theme="primary" shape="mark">
-      半圆角标签
+      半圆弧
     </Tag>
   </div>
 );
 
-export default Shape;
+export default ShapeDemo;

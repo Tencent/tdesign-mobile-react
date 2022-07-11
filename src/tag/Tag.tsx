@@ -18,7 +18,7 @@ const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     content = null,
     disabled = false,
     icon = undefined,
-    maxWidth = '',
+    maxWidth,
     children = '',
     shape = 'square',
     size = 'medium',
@@ -30,19 +30,15 @@ const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   } = props;
 
   const { classPrefix } = useConfig();
-
   const baseClass = `${classPrefix}-tag`;
 
   const tagClassNames = classNames(
     `${baseClass}`,
-    `${baseClass}-${theme}`,
-    `${baseClass}--${shape}`,
-    `${baseClass}-${variant}`,
+    `${baseClass}--theme-${theme}`,
+    `${baseClass}--shape-${shape}`,
+    `${baseClass}--variant-${variant}`,
     `${baseClass}--size-${size}`,
     {
-      [`${classPrefix}-is-error`]: theme === 'danger',
-      [`${classPrefix}-is-success`]: theme === 'success',
-      [`${classPrefix}-is-warning`]: theme === 'warning',
       [`${classPrefix}-is-closable ${baseClass}--closable`]: closable,
       [`${classPrefix}-is-disabled ${baseClass}--disabled`]: disabled,
     },
@@ -51,7 +47,7 @@ const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
 
   const tagStyle = {
     ...style,
-    maxWidth,
+    maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
   };
 
   const getRenderContent = useCallback(() => {
@@ -85,7 +81,11 @@ const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     <span className={tagClassNames} style={tagStyle} onClick={handleClick} ref={ref} {...other}>
       <span className={`${baseClass}__icon`}>{icon}</span>
       <span className={`${baseClass}__text`}>{getRenderContent() || children}</span>
-      {closable ? <Icon name="close" className={`${baseClass}__close`} onClick={onClickClose} /> : null}
+      {closable ? (
+        <span className={`${baseClass}__icon-close`} onClick={onClickClose}>
+          <Icon name="close" />
+        </span>
+      ) : null}
     </span>
   );
 });

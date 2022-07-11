@@ -39,7 +39,7 @@ const TagCheck: React.FC<TagCheckProps> = React.memo(
     const checkTagClass = classNames(
       `${baseClass}`,
       `${baseClass}--checkable`,
-      `${baseClass}--${shape}`,
+      `${baseClass}--shape-${shape}`,
       `${baseClass}--size-${size}`,
       {
         [`${classPrefix}-is-closable ${baseClass}--closable`]: closable,
@@ -70,11 +70,15 @@ const TagCheck: React.FC<TagCheckProps> = React.memo(
     };
 
     return (
-      <button className={checkTagClass} style={tagStyle} onClick={handleClick} ref={ref} disabled={disabled} {...other}>
+      <span className={checkTagClass} style={tagStyle} onClick={handleClick} ref={ref} {...other}>
         <span className={`${baseClass}__icon`}>{icon}</span>
         <span className={`${baseClass}__text`}>{content || children}</span>
-        {closable ? <Icon name="close" className={`${baseClass}__close`} onClick={handleClose} /> : null}
-      </button>
+        {closable ? (
+          <span className={`${baseClass}__icon-close`} onClick={handleClose}>
+            <Icon name="close" />
+          </span>
+        ) : null}
+      </span>
     );
   }),
 );

@@ -1,18 +1,21 @@
 import React from 'react';
 import { Tag } from 'tdesign-mobile-react';
 
-const Variant = () => (
-  <div className="t-tag__demo-block t-tag__demo-common">
-    <Tag theme="primary" variant="outline">
-      镂空标签
+const VariantDemo = () => (
+  <div className="tag-demo">
+    <Tag theme="primary" variant="dark">
+      深色
     </Tag>
     <Tag theme="primary" variant="light">
-      浅底标签
+      浅色
+    </Tag>
+    <Tag theme="primary" variant="outline">
+      描边
     </Tag>
     <Tag theme="primary" variant="light-outline">
-      标签
+      浅色描边
     </Tag>
   </div>
 );
 
-export default Variant;
+export default VariantDemo;

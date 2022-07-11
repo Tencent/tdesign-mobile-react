@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import { Tag } from 'tdesign-mobile-react';
+import { Icon } from 'tdesign-icons-react';
 
 const TagOptions = [
   {
     size: 'medium',
     name: '标签',
+  },
+  {
+    name: '标签',
+    size: 'medium',
+    icon: <Icon name="app" />,
   },
 ];
 const ClosableDemo = () => {
@@ -19,14 +25,12 @@ const ClosableDemo = () => {
   };
 
   return (
-    <div className="t-tag__demo-block">
-      {tags.map((opt, dex) => {
-        return (
-          <Tag key={dex} theme="primary" closable size={opt.size} onClose={() => onClose(dex)}>
-            标签
-          </Tag>
-        );
-      })}
+    <div className="tag-demo">
+      {tags.map((item, index) => (
+        <Tag key={index} theme="primary" closable size={item.size} icon={item.icon} onClose={() => onClose(index)}>
+          标签
+        </Tag>
+      ))}
     </div>
   );
 };
