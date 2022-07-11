@@ -1,38 +1,66 @@
+/**
+ * 基础组件（除icon，2个）
+ */
 export * from './button';
-export * from './input';
-export * from './grid';
-export * from './message';
-export * from './cell';
-export * from './cell-group';
-export * from './badge';
-export * from './overlay';
-export * from './popup';
-export * from './image';
-export * from './slider';
-export * from './radio';
 export * from './divider';
-export * from './tabs';
-export * from './switch';
-export * from './upload';
-export * from './rate';
-export * from './sticky';
-export * from './back-top';
-export * from './checkbox';
-export * from './count-down';
-export * from './dialog';
-export * from './loading';
-export * from './swiper';
-export * from './navbar';
-export * from './swipe-cell';
-export * from './tag';
-export * from './toast';
-export * from './collapse';
-export * from './stepper';
-export * from './pull-down-refresh';
-export * from './avatar';
-export * from './picker';
-export * from './skeleton';
-export * from './indexes';
-export * from './textarea';
+
+/**
+ * 导航（5个）
+ */
 export * from './steps';
 export * from './tab-bar';
+export * from './navbar';
+export * from './tabs';
+export * from './indexes';
+
+/**
+ * 输入（11个）
+ */
+export * from './checkbox';
+export * from './input';
+export * from './picker';
+export * from './radio';
+export * from './rate';
+export * from './search';
+export * from './slider';
+export * from './stepper';
+export * from './switch';
+export * from './textarea';
+export * from './upload';
+
+/**
+ * 数据展示（11个）
+ */
+export * from './avatar';
+export * from './badge';
+export * from './cell';
+export * from './cell-group';
+export * from './count-down';
+export * from './grid';
+export * from './image';
+export * from './skeleton';
+export * from './sticky';
+export * from './swiper';
+export * from './swipe-cell';
+export * from './tag';
+
+/**
+ * 消息提醒（7个）
+ */
+export * from './back-top';
+export * from './dialog';
+export * from './loading';
+export * from './message';
+export * from './popup';
+export * from './pull-down-refresh';
+export * from './toast';
+
+/**
+ * 二期组件
+ */
+export * from './collapse';
+
+/**
+ * 辅助功能组件
+ */
+export * from './overlay';

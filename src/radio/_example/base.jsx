@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Radio, RadioGroup } from '../index';
+import { Radio, RadioGroup } from 'tdesign-mobile-react';
 
 export default function Base() {
   const [defaultVaule, setDefaultValue] = useState('idx0');

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Checkbox } from '../index';
+import { Checkbox } from 'tdesign-mobile-react';
 
 export default function CheckboxExample() {
   const [value, setValue] = useState([]);
@@ -29,7 +29,7 @@ export default function CheckboxExample() {
           setValue(v);
         }}
         options={options}
-      />      
+      />
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, TabPanel } from '../index';
+import { Tabs, TabPanel } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import './style.less';
 

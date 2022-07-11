@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CheckRectangleFilledIcon, RectangleIcon } from 'tdesign-icons-react';
-import { Radio, RadioGroup } from '../index';
+import { Radio, RadioGroup } from 'tdesign-mobile-react';
 
 export default function () {
   const [defaultValue, setDefaultValue] = useState('idx2');

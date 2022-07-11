@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { SearchIcon } from 'tdesign-icons-react';
 import { Search } from 'tdesign-mobile-react';
 
-export default function Base() {
-  const [value, setValue] = useState('搜索预设文案');
+export default function Color() {
+  const [value, setValue] = useState('');
 
   return (
     <Search
-      focus={true}
+      focus={false}
       placeholder="搜索预设文案"
       value={value}
       onChange={(value) => setValue(value)}
       action="取消"
-      leftIcon={<SearchIcon />}
-    ></Search>
+      leftIcon={<SearchIcon color="red" />}
+    />
   );
 }

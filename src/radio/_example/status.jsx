@@ -1,12 +1,12 @@
 import React from 'react';
 import { CheckIcon } from 'tdesign-icons-react';
-import { Radio, RadioGroup } from '../index';
+import { Radio, RadioGroup } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {
   const defaultVaule = 'idx2';
-  const icon = <CheckIcon key="1"/>;
-  
+  const icon = <CheckIcon key="1" />;
+
   return (
     <>
       <div style={{ marginTop: '10px' }}>

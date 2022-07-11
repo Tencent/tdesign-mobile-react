@@ -1,11 +1,9 @@
 import React from 'react';
-import { Collapse } from '../index';
+import { Collapse } from 'tdesign-mobile-react';
 import { Icon } from 'tdesign-icons-react';
 
 export default function () {
-  const expandIcon = (
-    <Icon name="add-circle" size="1em" className="t-collapse-panel__header-icon" />
-  );
+  const expandIcon = <Icon name="add-circle" size="1em" className="t-collapse-panel__header-icon" />;
   return (
     <>
       <Collapse expandIcon={expandIcon}>
