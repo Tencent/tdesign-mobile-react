@@ -1,24 +1,57 @@
-import React from 'react';
-import TDemoBlock from '../../../site/mobile/components/DemoBlock';
-import TDemoHeader from '../../../site/mobile/components/DemoHeader';
+import React, { useState } from 'react';
+import { Drawer, Button } from 'tdesign-mobile-react';
+import { Icon } from 'tdesign-icons-react';
 import './style/index.less';
 
-import Single from './single';
-import Multiple from './multiple';
+export default function IconPage() {
+  const [openBase, setOpenBase] = useState(false);
 
-export default function Base() {
+  const onClose = (e) => {
+    console.log(e, 'e');
+    setOpenBase(false);
+  };
+
+  const iconName = 'app';
+  const baseSidebar = [
+    {
+      title: '菜单一',
+      icon: <Icon name={iconName} />,
+    },
+    {
+      title: '菜单二',
+      icon: <Icon name={iconName} />,
+    },
+    {
+      title: '菜单三',
+      icon: <Icon name={iconName} />,
+    },
+    {
+      title: '菜单四',
+      icon: <Icon name={iconName} />,
+    },
+    {
+      title: '菜单五',
+      icon: <Icon name={iconName} />,
+    },
+    {
+      title: '菜单六',
+      icon: <Icon name={iconName} />,
+    },
+  ];
+
   return (
-    <div className="tdesign-mobile-demo">
-      <TDemoHeader
-        title="Grid 宫格"
-        summary="一行内容/功能的垂直排列方式。一行项目左侧为主要内容展示区域，右侧可增加更多操作内容。"
-      />
-      <TDemoBlock title="01 类型" summary="单行单元格">
-        <Single />
-      </TDemoBlock>
-      <TDemoBlock title="" summary="多行单元格">
-        <Multiple />
-      </TDemoBlock>
+    <div className="button-demo">
+      <Button
+        size="large"
+        variant="outline"
+        // shape="round"
+        onClick={() => {
+          setOpenBase(!openBase);
+        }}
+      >
+        带图标抽屉
+      </Button>
+      <Drawer visible={openBase} items={baseSidebar} placement="left" closeOnOverlayClick onClose={onClose} />
     </div>
   );
 }

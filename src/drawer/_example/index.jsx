@@ -1,9 +1,8 @@
 import React from 'react';
-// import { Drawer, Button } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import Base from './base';
-// import './style/index.less';
+import Icon from './icon';
 
 export default function Demo() {
   return (
@@ -14,21 +13,12 @@ export default function Demo() {
       />
 
       <TDemoBlock title="01 类型" summary="基础抽屉">
-        {/* <div className="button-demo">
-          <Button size="large" variant="outline" shape="round">
-            基础抽屉
-          </Button>
-        </div> */}
         <Base />
       </TDemoBlock>
 
-      {/* <TDemoBlock summary="带图标抽屉">
-        <div className="button-demo">
-          <Button size="large" variant="outline" shape="round">
-            带图标抽屉
-          </Button>
-        </div>
-      </TDemoBlock> */}
+      <TDemoBlock summary="带图标抽屉">
+        <Icon />
+      </TDemoBlock>
     </>
   );
 }

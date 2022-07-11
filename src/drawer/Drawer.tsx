@@ -1,33 +1,85 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Popup } from 'tdesign-mobile-react';
-import { TdDrawerProps } from './type';
+import { TdDrawerProps, DrawerCloseContext, DrawerItem } from './type';
+import useConfig from '../_util/useConfig';
+
+enum PopupSourceEnum {
+  OVERLAY = 'overlay',
+}
 
 const Drawer: React.FC<TdDrawerProps> = (props) => {
-  const { visible } = props;
-  console.log(props, 'props');
+  const {
+    items,
+    visible,
+    showOverlay,
+    zIndex,
+    closeOnOverlayClick,
+    destroyOnClose,
+    placement,
+    onClose,
+    onItemClick,
+    onOverlayClick,
+  } = props;
 
-  const clickPop = (e: React.MouseEvent) => {
-    console.log(e, 'e');
+  const { classPrefix } = useConfig();
+  const name = `${classPrefix}-drawer`;
+
+  const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
+    const event: DrawerCloseContext = {
+      trigger: PopupSourceEnum.OVERLAY,
+      e,
+    };
+    onClose?.(event);
   };
 
-  const visibleChange = (visible: boolean) => {
-    console.log(visible, 'visibleChange');
-    // if(!visible){
-    //   const event:DrawerCloseContext = {
-    //     trigger: 'esc',
-    //     e: new React
-    //   }
-    //   onClose?.()
-    // }
+  const [show, setShow] = useState(visible);
+
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const context = { e };
+    onOverlayClick?.(context);
+    if (closeOnOverlayClick) {
+      setShow(false);
+      handleClose(e);
+    }
   };
+
+  const handleItemClick = (index: number, item: DrawerItem, e: React.MouseEvent<HTMLDivElement>) => {
+    const context = { e };
+    onItemClick?.(index, item, context);
+  };
+
+  useEffect(() => {
+    setShow(visible);
+  }, [visible]);
+
   return (
-    <Popup visible={visible} onVisibleChange={visibleChange} placement="left">
-      <div onClick={clickPop} className="vertical">
-        2333
-      </div>
-    </Popup>
-    // <div onClick={clickPop}>
-    // </div>
+    <div className={`${name}`}>
+      <Popup
+        visible={show}
+        placement={placement}
+        overlayProps={{ onOverlayClick: handleOverlayClick, destroyOnClose }}
+        showOverlay={showOverlay}
+        zIndex={zIndex}
+      >
+        <div className={`${name}__sidebar`}>
+          {items?.map((item, index) => {
+            const { title, icon } = item;
+            return (
+              <div
+                key={title}
+                className={`${name}__sidebar-item`}
+                onClick={(e) => {
+                  handleItemClick(index, item, e);
+                }}
+              >
+                {!!icon && <span className={`${name}__sidebar-item-icon`}>{icon}</span>}
+                <div className={`${name}__sidebar-item-title`}>{title}</div>
+              </div>
+            );
+          })}
+        </div>
+      </Popup>
+    </div>
   );
 };
 

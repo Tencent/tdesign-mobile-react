@@ -25,7 +25,6 @@ export interface TdDrawerProps {
   closeBtn?: TNode;
   /**
    * 点击蒙层时是否触发抽屉关闭事件
-   * @default true
    */
   closeOnOverlayClick?: boolean;
   /**
@@ -39,6 +38,10 @@ export interface TdDrawerProps {
    */
   destroyOnClose?: boolean;
   /**
+   * 抽屉里的列表项
+   */
+  items?: DrawerItem[];
+  /**
    * 展开方式，有两种：直接展示在内容上方 和 推开内容区域
    * @default overlay
    */
@@ -49,18 +52,12 @@ export interface TdDrawerProps {
    */
   placement?: 'left' | 'right' | 'top' | 'bottom';
   /**
-   * 仅在挂载元素中显示抽屉，默认在浏览器可视区域显示。父元素需要有定位属性，如：position: relative
-   * @default false
-   */
-  showInAttachedElement?: boolean;
-  /**
    * 是否显示遮罩层
    * @default true
    */
   showOverlay?: boolean;
   /**
    * 尺寸，支持 'small', 'medium', 'large'，'35px', '30%',  '3em' 等。纵向抽屉调整的是抽屉宽度，横向抽屉调整的是抽屉高度
-   * @default small
    */
   size?: string;
   /**
@@ -77,6 +74,10 @@ export interface TdDrawerProps {
    */
   onClose?: (context: DrawerCloseContext) => void;
   /**
+   * 点击抽屉里的列表项
+   */
+  onItemClick?: (index: number, item: DrawerItem, context: { e: MouseEvent<HTMLDivElement> }) => void;
+  /**
    * 如果蒙层存在，点击蒙层时触发
    */
   onOverlayClick?: (context: { e: MouseEvent<HTMLDivElement> }) => void;
@@ -84,6 +85,14 @@ export interface TdDrawerProps {
 
 export type FooterButton = string | ButtonProps | TNode;
 
+export interface DrawerItem {
+  title: string;
+  icon: TNode;
+}
+
 export type DrawerEventSource = 'esc' | 'close-btn' | 'cancel' | 'overlay';
 
-export interface DrawerCloseContext { trigger: DrawerEventSource; e: MouseEvent<HTMLDivElement | HTMLButtonElement> | KeyboardEvent<HTMLDivElement> };
+export interface DrawerCloseContext {
+  trigger: DrawerEventSource;
+  e: MouseEvent<HTMLDivElement | HTMLButtonElement> | KeyboardEvent<HTMLDivElement>;
+}
