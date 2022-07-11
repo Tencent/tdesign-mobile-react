@@ -20,7 +20,7 @@ const Fab: React.FC<FabProps> = forwardRef((props, ref: Ref<HTMLButtonElement>) 
   // 外层样式类
   const FabClasses = classNames({
     [`${name}`]: true,
-    [`${name}--icononly`]: icon && !text,
+    [`${name}--icon-only`]: icon && !text,
   });
 
   const onClickHandle = (e) => {
