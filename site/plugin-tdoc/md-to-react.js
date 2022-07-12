@@ -105,6 +105,9 @@ export default function mdToReact(options) {
               </>
             ) : <div name="DOC" className="${mdSegment.docClass}">${mdSegment.docMd.replace(/class=/g, 'className=')}</div>
           }
+          <div style={{ marginTop: 48 }}>
+            <td-doc-history time="${mdSegment.lastUpdated}"></td-doc-history>
+          </div>
         </>
       )
     }
