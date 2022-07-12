@@ -1,25 +1,33 @@
-.t-tag__demo {
-  &-block {
-    background-color: rgba(255, 255, 255, 1);
-    padding: 16px;
+.tag-demo {
+  background-color: #fff;
+  padding: 16px;
+  display: flex;
+
+  .t-tag + .t-tag {
+    margin-left: 16px;
+  }
+}
+
+.tag-demo + .tag-demo {
+  margin-top: 16px;
+}
+
+.group {
+  padding: 16px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+
+  &.d-flex {
     display: flex;
-    &:not(:last-child) {
-      margin-bottom: 16px;
-    }
-  }
-  &-theme > span {
-    margin-right: 8px;
+    align-items: flex-start;
   }
 
-  &-size > span,
-  &-size > button {
-    flex-direction: row;
-
-    margin-right: 48px;
-    margin-bottom: 18px;
+  &.padding-bottom {
+    padding: 16px 16px 0;
   }
-  &-common > button,
-  &-common > span {
+
+  .t-tag {
     margin-right: 16px;
   }
 }

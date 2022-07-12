@@ -1,20 +1,10 @@
 import React from 'react';
 import { Tag } from 'tdesign-mobile-react';
 
-const Ellipsis = () => (
-  <div className="t-tag__demo-common">
-    <div className="t-tag__demo-block">
-      <Tag theme="primary" maxWidth="80px">
-        标签标签标签标签标签标签标签标签标签标签标签
-      </Tag>
-      <Tag theme="primary" size="middle" maxWidth="80px">
-        标签标签标签标签标签标签标签标签标签标签
-      </Tag>
-      <Tag theme="primary" size="small" maxWidth="80px">
-        标签标签标签标签标签标签标签标签标签
-      </Tag>
-    </div>
-  </div>
+const EllipsisDemo = () => (
+  <>
+    <Tag maxWidth={130}>听说超长可以省略听说超长</Tag>
+  </>
 );
 
-export default Ellipsis;
+export default EllipsisDemo;

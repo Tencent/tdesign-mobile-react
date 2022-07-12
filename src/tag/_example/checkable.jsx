@@ -1,27 +1,40 @@
 import React, { useState } from 'react';
 import { TagCheck } from 'tdesign-mobile-react';
 
-const ClickableUse = () => {
-  const [checked, setChecked] = useState(false);
+const TagChecksOptions = [
+  {
+    name: '选中',
+    checked: true,
+  },
+  {
+    name: '未选中',
+    checked: false,
+  },
+  {
+    name: '不可选',
+    checked: false,
+    disabled: true,
+  },
+];
 
-  const handleOnChange = (v) => {
-    console.log('on checked', v);
+const CheckeableDemo = () => {
+  const [tagChecks, setTagChecks] = useState(TagChecksOptions);
+
+  const onClick = (tagCheckIndex) => {
+    const shallowClone = [...tagChecks];
+    shallowClone[tagCheckIndex].checked = !shallowClone[tagCheckIndex].checked;
+    setTagChecks([...shallowClone]);
   };
-  const handleChange = (v) => {
-    console.log('to checked', v);
-    setChecked(v);
-  };
+
   return (
-    <div className="t-tag__demo-block t-tag__demo-common">
-      <TagCheck defaultChecked onChange={handleOnChange}>
-        已点击
-      </TagCheck>
-      <TagCheck onChange={handleChange} checked={checked}>
-        未点击
-      </TagCheck>
-      <TagCheck disabled> 不可点击</TagCheck>
-    </div>
+    <>
+      {tagChecks.map((item, index) => (
+        <TagCheck key={index} checked={item.checked} disabled={item.disabled} onClick={() => onClick(index)}>
+          {item.name}
+        </TagCheck>
+      ))}
+    </>
   );
 };
 
-export default ClickableUse;
+export default CheckeableDemo;
