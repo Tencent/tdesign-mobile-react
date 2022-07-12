@@ -4,6 +4,7 @@
 export * from './button';
 export * from './divider';
 export * from './fab';
+export * from './progress';
 
 /**
  * 导航（5个）

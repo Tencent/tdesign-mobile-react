@@ -324,12 +324,12 @@ export default {
           path: '/mobile-react/components/popup',
           component: () => import('tdesign-mobile-react/popup/popup.md'),
         },
-        // {
-        //   title: 'Progress 进度条',
-        //   name: 'progress',
-        //   path: '/mobile-react/components/progress',
-        //   component: () => import('tdesign-mobile-react/progress/progress.md'),
-        // },
+        {
+          title: 'Progress 进度条',
+          name: 'progress',
+          path: '/mobile-react/components/progress',
+          component: () => import('tdesign-mobile-react/progress/progress.md'),
+        },
         {
           title: 'PullDownRefresh 下拉刷新',
           name: 'pull-down-refresh',

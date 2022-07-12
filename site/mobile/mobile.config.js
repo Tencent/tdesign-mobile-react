@@ -41,6 +41,11 @@ export default {
       component: () => import('tdesign-mobile-react/popup/_example/base.jsx'),
     },
     {
+      title: 'Progress 进度条',
+      name: 'progress',
+      component: () => import('tdesign-mobile-react/progress/_example/index.jsx'),
+    },
+    {
       title: 'Slider 滑动选择器',
       name: 'slider',
       component: () => import('tdesign-mobile-react/slider/_example/base.jsx'),
