@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<!-- <p align="center">
+<p align="center">
    <a href="https://www.npmjs.com/package/tdesign-mobile-react">
     <img src="https://img.shields.io/npm/l/tdesign-mobile-react.svg?sanitize=true" alt="License" />
   </a>
@@ -14,7 +14,7 @@
   <a href="https://www.npmjs.com/package/tdesign-mobile-react">
     <img src="https://img.shields.io/npm/dt/tdesign-mobile-react.svg?sanitize=true" alt="Downloads" />
   </a>
-</p> -->
+</p>
 
 TDesign 适配移动端的组件库，适合在 React 16.x 技术栈项目中使用。
 
@@ -27,16 +27,16 @@ TDesign 适配移动端的组件库，适合在 React 16.x 技术栈项目中使
 - 支持按需加载
 
 # 其他技术栈实现
-- 桌面端 Vue 3 实现：[web-vue-next](https://github.com/Tencent/tdesign-vue-next)
-- 桌面端 Vue 实现： [web-vue](https://github.com/Tencent/tdesign-vue)
-- 移动端小程序实现： [小程序](https://github.com/Tencent/tdesign-miniprogram)
+- 桌面端 React 实现： [web-react](https://github.com/Tencent/tdesign-react)
+- 移动端 Vue 实现： [mobile-vue](https://github.com/Tencent/tdesign-mobile-vue)
+- 移动端 小程序 实现： [微信小程序](https://github.com/Tencent/tdesign-miniprogram)
 
 
 # 浏览器兼容性
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Safari |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IE11, Edge                                                                                                                                                                                                      | last 3 versions                                                                                                                                                                                                   | last 3 versions                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                               |
+| -- | -- | -- | -- |
+| IE11, Edge | last 3 versions | last 3 versions | last 2 versions |
 
 # 开源协议
 
