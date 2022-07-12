@@ -27,13 +27,13 @@ const CheckeableDemo = () => {
   };
 
   return (
-    <div className="tag-demo">
+    <>
       {tagChecks.map((item, index) => (
         <TagCheck key={index} checked={item.checked} disabled={item.disabled} onClick={() => onClick(index)}>
           {item.name}
         </TagCheck>
       ))}
-    </div>
+    </>
   );
 };
 

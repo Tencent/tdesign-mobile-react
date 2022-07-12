@@ -25,13 +25,13 @@ const ClosableDemo = () => {
   };
 
   return (
-    <div className="tag-demo">
+    <>
       {tags.map((item, index) => (
         <Tag key={index} theme="primary" closable size={item.size} icon={item.icon} onClose={() => onClose(index)}>
           标签
         </Tag>
       ))}
-    </div>
+    </>
   );
 };
 
