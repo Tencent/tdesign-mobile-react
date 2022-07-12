@@ -103,7 +103,7 @@ export default function mdToReact(options) {
                 <div style={isShow('api')} name="API" dangerouslySetInnerHTML={{ __html: \`${mdSegment.apiMd}\` }}></div>
                 <div style={isShow('design')} name="DESIGN" dangerouslySetInnerHTML={{ __html: \`${mdSegment.designMd}\` }}></div>
               </>
-            ) : <div name="DOC">${mdSegment.docMd.replace(/class=/g, 'className=')}</div>
+            ) : <div name="DOC" className="${mdSegment.docClass}">${mdSegment.docMd.replace(/class=/g, 'className=')}</div>
           }
         </>
       )
@@ -144,6 +144,8 @@ function customRender({ source, file, md }) {
     tdDocHeader: true,
     tdDocTabs: DEAULT_TABS,
     apiFlag: /#+\s*API/i,
+    docClass: '',
+    lastUpdated: Math.round(fs.statSync(file).mtimeMs),
     ...data,
   };
 
