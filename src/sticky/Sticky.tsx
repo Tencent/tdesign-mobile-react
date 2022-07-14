@@ -99,7 +99,7 @@ const Sticky: FC<TdStickyProps> = (prop) => {
        
     return <>
         <div ref={boxRef} className={name} style={boxStyles}>
-            <div ref={contentRef} style={contentStyles}>
+            <div ref={contentRef} className={`${name}__content`} style={contentStyles}>
                 {children}
             </div>
         </div>
