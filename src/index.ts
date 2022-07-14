@@ -45,7 +45,6 @@ export * from './sticky';
 export * from './swiper';
 export * from './swipe-cell';
 export * from './tag';
-export * from './drawer';
 
 /**
  * 消息提醒（7个）
