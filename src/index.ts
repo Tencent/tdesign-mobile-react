@@ -38,7 +38,6 @@ export * from './badge';
 export * from './cell';
 export * from './cell-group';
 export * from './count-down';
-export * from './drawer';
 export * from './grid';
 export * from './image';
 export * from './skeleton';
@@ -46,6 +45,7 @@ export * from './sticky';
 export * from './swiper';
 export * from './swipe-cell';
 export * from './tag';
+export * from './drawer';
 
 /**
  * 消息提醒（7个）
