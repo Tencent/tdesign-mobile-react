@@ -5,6 +5,12 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.1.2 `2022-07-18` 
+### 🐞 Bug Fixes
+- `Sticky`: 修复 fixed 状态下丢失宽度的问题 @LeeJim ([#277](https://github.com/Tencent/tdesign-mobile-react/pull/277))
+### 🚧 Others
+- chore: 优化更新日志文档样式 @HQ-Lin ([#276](https://github.com/Tencent/tdesign-mobile-react/pull/276))
+
 ## 🌈 0.1.1 `2022-07-12` 
 ### 🚀 Features
 - `Tag`: 视觉升级以及新增支持左图标 @anlyyao ([#270](https://github.com/Tencent/tdesign-mobile-react/pull/270))
