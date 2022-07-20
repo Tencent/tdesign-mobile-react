@@ -6,6 +6,8 @@
 
 import { TNode } from '../common';
 
+import { OverlayProps } from '../overlay';
+
 export interface TdPopupProps {
   /**
    * 触发元素，同 triggerElement
@@ -15,7 +17,7 @@ export interface TdPopupProps {
    * 遮罩层的属性，透传至 overlay
    * @default {}
    */
-  overlayProps?: object;
+  overlayProps?: OverlayProps;
   /**
    * 浮层出现位置
    * @default top

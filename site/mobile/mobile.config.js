@@ -153,6 +153,11 @@ export default {
       component: () => import('tdesign-mobile-react/toast/_example/index.jsx'),
     },
     {
+      title: 'Drawer 抽屉',
+      name: 'drawer',
+      component: () => import('tdesign-mobile-react/drawer/_example/index.jsx'),
+    },
+    {
       title: 'Collapse 折叠面板',
       name: 'Collapse',
       component: () => import('tdesign-mobile-react/collapse/_example/index.jsx'),
