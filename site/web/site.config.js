@@ -40,7 +40,7 @@ export default {
           path: '/mobile-react/components/fab',
           component: () => import('tdesign-mobile-react/fab/fab.md'),
         },
-        
+
         {
           title: 'Icon 图标',
           name: 'icon',
@@ -71,7 +71,7 @@ export default {
           path: '/mobile-react/components/grid',
           component: () => import('tdesign-mobile-react/grid/grid.md'),
         },
-      ]
+      ],
     },
     {
       title: '导航',
@@ -233,13 +233,6 @@ export default {
           path: '/mobile-react/components/count-down',
           component: () => import('tdesign-mobile-react/count-down/count-down.md'),
         },
-        // {
-        //   title: 'Drawer 抽屉',
-        //   name: 'drawer',
-        //   path: '/mobile-react/components/drawer',
-        //   component: () => import('tdesign-mobile-react/drawer/drawer.md'),
-        // },
-        
         {
           title: 'Image 图片',
           name: 'image',
@@ -269,12 +262,6 @@ export default {
           name: 'swiper',
           path: '/mobile-react/components/swiper',
           component: () => import('tdesign-mobile-react/swiper/swiper.md'),
-        },
-        {
-          title: 'Drawer 抽屉',
-          name: 'drawer',
-          path: '/mobile-react/components/drawer',
-          component: () => import('tdesign-mobile-react/drawer/drawer.md'),
         },
         {
           title: 'SwipeCell 滑动单元格',
@@ -312,6 +299,12 @@ export default {
           name: 'dialog',
           path: '/mobile-react/components/dialog',
           component: () => import('tdesign-mobile-react/dialog/dialog.md'),
+        },
+        {
+          title: 'Drawer 抽屉',
+          name: 'drawer',
+          path: '/mobile-react/components/drawer',
+          component: () => import('tdesign-mobile-react/drawer/drawer.md'),
         },
         {
           title: 'Loading 加载',
