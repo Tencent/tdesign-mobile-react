@@ -5,6 +5,12 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.2.0 `2022-07-25` 
+### 🚀 Features
+- `Drawer`: 新增抽屉组件 @APlanckFish ([#271](https://github.com/Tencent/tdesign-mobile-react/pull/271))
+### 🚧 Others
+- 官网更新组件分类 @LeeJim ([#279](https://github.com/Tencent/tdesign-mobile-react/pull/279))
+
 ## 🌈 0.1.2 `2022-07-18` 
 ### 🐞 Bug Fixes
 - `Sticky`: 修复 fixed 状态下丢失宽度的问题 @LeeJim ([#277](https://github.com/Tencent/tdesign-mobile-react/pull/277))
