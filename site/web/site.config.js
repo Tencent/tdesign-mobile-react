@@ -35,11 +35,12 @@ export default {
           component: () => import('tdesign-mobile-react/button/button.md'),
         },
         {
-          title: 'Divider 分割符',
-          name: 'divider',
-          path: '/mobile-react/components/divider',
-          component: () => import('tdesign-mobile-react/divider/divider.md'),
+          title: 'Fab 悬浮按钮',
+          name: 'fab',
+          path: '/mobile-react/components/fab',
+          component: () => import('tdesign-mobile-react/fab/fab.md'),
         },
+        
         {
           title: 'Icon 图标',
           name: 'icon',
@@ -47,6 +48,30 @@ export default {
           component: () => import('tdesign-mobile-react/icon/icon.md'),
         },
       ],
+    },
+    {
+      title: '布局',
+      type: 'component', // 组件文档
+      children: [
+        {
+          title: 'Cell 单元格',
+          name: 'cell',
+          path: '/mobile-react/components/cell',
+          component: () => import('tdesign-mobile-react/cell/cell.md'),
+        },
+        {
+          title: 'Divider 分割符',
+          name: 'divider',
+          path: '/mobile-react/components/divider',
+          component: () => import('tdesign-mobile-react/divider/divider.md'),
+        },
+        {
+          title: 'Grid 宫格',
+          name: 'grid',
+          path: '/mobile-react/components/grid',
+          component: () => import('tdesign-mobile-react/grid/grid.md'),
+        },
+      ]
     },
     {
       title: '导航',
@@ -70,7 +95,12 @@ export default {
           path: '/mobile-react/components/steps',
           component: () => import('tdesign-mobile-react/steps/steps.md'),
         },
-
+        {
+          title: 'Sticky 吸顶容器',
+          name: 'sticky',
+          path: '/mobile-react/components/sticky',
+          component: () => import('tdesign-mobile-react/sticky/sticky.md'),
+        },
         {
           title: 'TabBar 标签栏',
           name: 'tab-bar',
@@ -191,12 +221,6 @@ export default {
           path: '/mobile-react/components/badge',
           component: () => import('tdesign-mobile-react/badge/badge.md'),
         },
-        {
-          title: 'Cell 单元格',
-          name: 'cell',
-          path: '/mobile-react/components/cell',
-          component: () => import('tdesign-mobile-react/cell/cell.md'),
-        },
         // {
         //   title: 'Collapse 折叠面板',
         //   name: 'collapse',
@@ -215,12 +239,7 @@ export default {
         //   path: '/mobile-react/components/drawer',
         //   component: () => import('tdesign-mobile-react/drawer/drawer.md'),
         // },
-        {
-          title: 'Grid 宫格',
-          name: 'grid',
-          path: '/mobile-react/components/grid',
-          component: () => import('tdesign-mobile-react/grid/grid.md'),
-        },
+        
         {
           title: 'Image 图片',
           name: 'image',
@@ -245,18 +264,6 @@ export default {
           path: '/mobile-react/components/skeleton',
           component: () => import('tdesign-mobile-react/skeleton/skeleton.md'),
         },
-        {
-          title: 'Sticky 吸顶容器',
-          name: 'sticky',
-          path: '/mobile-react/components/sticky',
-          component: () => import('tdesign-mobile-react/sticky/sticky.md'),
-        },
-        // {
-        //   title: 'SwipeCell 滑动单元格',
-        //   name: 'swipe-cell',
-        //   path: '/mobile-react/components/swipe-cell',
-        //   component: () => import('tdesign-mobile-react/swipe-cell/swipe-cell.md'),
-        // },
         {
           title: 'Swiper 轮播',
           name: 'swiper',
@@ -299,12 +306,6 @@ export default {
           name: 'dialog',
           path: '/mobile-react/components/dialog',
           component: () => import('tdesign-mobile-react/dialog/dialog.md'),
-        },
-        {
-          title: 'Fab 悬浮按钮',
-          name: 'fab',
-          path: '/mobile-react/components/fab',
-          component: () => import('tdesign-mobile-react/fab/fab.md'),
         },
         {
           title: 'Loading 加载',
