@@ -271,6 +271,12 @@ export default {
           component: () => import('tdesign-mobile-react/swiper/swiper.md'),
         },
         {
+          title: 'Drawer 抽屉',
+          name: 'drawer',
+          path: '/mobile-react/components/drawer',
+          component: () => import('tdesign-mobile-react/drawer/drawer.md'),
+        },
+        {
           title: 'SwipeCell 滑动单元格',
           name: 'swipe-cell',
           path: '/mobile-react/components/swipe-cell',
