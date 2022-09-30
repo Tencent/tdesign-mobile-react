@@ -63,6 +63,8 @@ export * from './drawer';
  */
 export * from './collapse';
 
+export * from './notice-bar';
+
 /**
  * 辅助功能组件
  */
