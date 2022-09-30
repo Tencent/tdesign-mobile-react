@@ -342,6 +342,12 @@ export default {
           path: '/mobile-react/components/toast',
           component: () => import('tdesign-mobile-react/toast/toast.md'),
         },
+        {
+          title: 'NoticeBar 公告栏',
+          name: 'notice-bar',
+          path: '/mobile-react/components/notice-bar',
+          component: () => import('tdesign-mobile-react/notice-bar/notice-bar.md'),
+        },
       ],
     },
   ],
