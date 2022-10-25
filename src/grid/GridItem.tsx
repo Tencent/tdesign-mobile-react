@@ -22,17 +22,21 @@ const getGridItemWidth = (column: number) => `${100 / column}%`;
 export interface GridItemProp extends TdGridItemProps, TdGridProps {}
 
 const GridItem: FC<GridItemProp> = (prop) => {
-  const { description, image, layout, text, badgeProps } = prop;
+  const { description, image, layout, text, badgeProps, ...resetProps } = prop;
 
   const { classPrefix } = useConfig();
   const { align, gutter, column, border } = useContext(GridContext);
 
   const name = `${classPrefix}-grid-item`;
 
-  const rootClass = useMemo(() => cls(name, {
-    [`${name}--bordered`]: border,
-    [`${classPrefix}-is-large`]: column <= 3,
-  }), [border, name, column, classPrefix]);
+  const rootClass = useMemo(
+    () =>
+      cls(name, {
+        [`${name}--bordered`]: border,
+        [`${classPrefix}-is-large`]: column <= 3,
+      }),
+    [border, name, column, classPrefix],
+  );
 
   const isHorizontal = useMemo(() => layout === 'horizontal', [layout]);
 
@@ -96,7 +100,7 @@ const GridItem: FC<GridItemProp> = (prop) => {
   );
 
   return (
-    <div className={rootClass} style={rootStyle}>
+    <div {...resetProps} className={rootClass} style={rootStyle}>
       {badgeProps ? <Badge {...badgeProps}>{gridItemImage}</Badge> : gridItemImage}
       <div className={`${name}__text`} style={textStyle}>
         <div className={`${name}__title`} style={titleStyle}>
