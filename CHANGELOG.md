@@ -5,6 +5,13 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.3.0 `2022-10-25` 
+### 🚀 Features
+- `NoticeBar`: 新增公告栏组件 @ZWkang ([#292](https://github.com/Tencent/tdesign-mobile-react/pull/292))
+- `Grid`: 透传所有非定义的 props 至根元素 @ZWkang ([#293](https://github.com/Tencent/tdesign-mobile-react/pull/293))
+### 🚧 Others
+- `Avatar`: 更新示例代码 @anlyyao ([#296](https://github.com/Tencent/tdesign-mobile-react/pull/296))
+
 ## 🌈 0.2.0 `2022-07-25` 
 ### 🚀 Features
 - `Drawer`: 新增抽屉组件 @APlanckFish ([#271](https://github.com/Tencent/tdesign-mobile-react/pull/271))
