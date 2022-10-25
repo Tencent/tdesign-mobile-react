@@ -11,16 +11,16 @@ export default function () {
     Toast.fail({ message: '失败' });
   };
 
-  const warningHori = () => {
-    Toast.warning({ message: '警告' });
-  };
-  const loadingHori = () => {
-    Toast.loading({ message: '加载中', duration: 3000 });
+  const warningColumn = () => {
+    Toast.warning({ message: '警告', direction: 'column' });
   };
 
+  const loadingColumn = () => {
+    Toast.loading({ message: '加载中', direction: 'column', duration: 3000 });
+  };
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoBlock title="" summary="默认提示-横向">
+      <TDemoBlock title="" summary="默认提示">
         <ul className="toast-container">
           <li>
             <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={successHori}>
@@ -33,13 +33,13 @@ export default function () {
             </Button>
           </li>
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={warningHori}>
-              警告-横向
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={warningColumn}>
+              警告-竖向
             </Button>
           </li>
           <li>
-            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={loadingHori}>
-              加载-横向
+            <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={loadingColumn}>
+              加载-竖向
             </Button>
           </li>
         </ul>
