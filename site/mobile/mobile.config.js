@@ -207,5 +207,10 @@ export default {
       name: 'fab',
       component: () => import('tdesign-mobile-react/fab/_example/index.jsx'),
     },
+    {
+      title: 'NoticeBar 公告栏',
+      name: 'notice-bar',
+      component: () => import('tdesign-mobile-react/notice-bar/_example/mobile.jsx'),
+    },
   ],
 };
