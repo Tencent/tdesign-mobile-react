@@ -99,7 +99,8 @@ const Collapse = function(props: CollapseProps) {
           if (!React.isValidElement(child)) {
             return child;
           }
-          return React.cloneElement(child, {value: index})
+          const childProps = { value: index }
+          return React.cloneElement(child, childProps)
         })}
       </CollapseContext.Provider>
     </div>

@@ -17,7 +17,7 @@ export interface TdTextareaProps {
    * 是否自动增高，值为 autosize 时，style.height 不生效
    * @default false
    */
-  autosize?: boolean;
+  autosize?: boolean | { minRows?: number; maxRows?: number };
   /**
    * 是否禁用文本框
    * @default false
