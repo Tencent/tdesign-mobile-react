@@ -11,6 +11,8 @@ export default function BadgeMaxCountDemo() {
         <Badge count={109} className="badge-item">
           <Button size="small">默认max:99</Button>
         </Badge>
+      </div>
+      <div className="badge-demo">
         <Badge count={45} maxCount={44} className="badge-item">
           <Button size="small">max:44</Button>
         </Badge>
