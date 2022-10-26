@@ -34,11 +34,12 @@ const PickerView: FC<PickerViewProps> = (props) => {
     if (isUndefined(innerValue[index])) {
       innerValue[index] = innerDefaultValue[index];
     }
-    return React.cloneElement(child, {
+    const childProps = {
       value: value && value[index],
       defaultValue: innerDefaultValue[index],
       itemIndex: index,
-    });
+    };
+    return React.cloneElement(child, childProps);
   });
 
   const [internalValue, setInternalValue] = useDefault(innerValue, innerDefaultValue, onChange);
