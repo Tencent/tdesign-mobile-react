@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge } from 'tdesign-mobile-react';
 
-export default function BadgeNormalDemo() {
+export default function BadgeBaseDemo() {
   return (
     <div className="tdesign-mobile-demo">
       <div className="badge-demo">

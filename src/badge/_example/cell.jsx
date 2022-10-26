@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge, CellGroup, Cell } from 'tdesign-mobile-react';
 
-export default function BadgeSingleLineDemo() {
+export default function BadgeCellDemo() {
   return (
     <div className="tdesign-mobile-demo" style={{ paddingTop: 10 }}>
       <CellGroup style={{ overflow: 'hidden' }}>
