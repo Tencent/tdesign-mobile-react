@@ -9,8 +9,8 @@ export default function () {
   return (
     <>
       <Fab
-        icon={<Icon name="call" />}
-        text="获取手机号"
+        icon={<Icon name="add" />}
+        text="按钮文字"
         style={{ right: '16px', bottom: '32px' }}
         buttonProps={{ variant: 'outline' }}
         onClick={onClick}
