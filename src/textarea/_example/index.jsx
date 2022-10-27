@@ -5,7 +5,7 @@ import Base from './base';
 import Label from './label';
 import Autosize from './autosize';
 import Events from './events';
-import Type from './type';
+import Status from './status';
 import Maxlength from './maxlength';
 import Maxcharacter from './maxcharacter';
 
@@ -23,7 +23,7 @@ export default function () {
         <Autosize />
       </TDemoBlock>
       <TDemoBlock title="02 状态" summary="禁用多行文本框">
-        <Type />
+        <Status />
       </TDemoBlock>
       <TDemoBlock title="03 字符限制" summary="设置最大字符个数">
         <Maxlength />
