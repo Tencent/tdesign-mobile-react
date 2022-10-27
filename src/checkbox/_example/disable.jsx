@@ -8,7 +8,7 @@ export default function () {
       <Checkbox label="多选" checked disabled />
       <Checkbox label="多选" align="right" disabled />
       <Checkbox label="多选" align="right" checked disabled />
-      <Checkbox label="半选" indeterminate defaultChecked />
+      <Checkbox label="半选" indeterminate defaultChecked disabled />
     </>
   );
 }
