@@ -6,11 +6,9 @@ export default function Base() {
   const [value, setValue] = useState(3);
 
   return (
-    <CustomCell title="自定义数量">
+    <CustomCell title="请点击评分">
       <Rate
         value={value}
-        count={4}
-        variant="filled"
         onChange={(value) => {
           setValue(value);
         }}
