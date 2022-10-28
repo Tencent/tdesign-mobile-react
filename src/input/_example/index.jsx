@@ -7,7 +7,7 @@ import AlignDemo from './align';
 import LimitDemo from './limit';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
-import './index.less';
+import './style/index.less';
 
 export default function RadioDemo() {
   return (
