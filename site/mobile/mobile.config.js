@@ -6,9 +6,9 @@ export default {
       component: () => import('tdesign-mobile-react/button/_example/index.jsx'),
     },
     {
-      title: 'Divider 分割线',
+      title: 'Divider 分割符',
       name: 'divider',
-      component: () => import('tdesign-mobile-react/divider/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/divider/_example/index.jsx'),
     },
     {
       title: 'Icon 图标',
