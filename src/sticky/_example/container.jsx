@@ -4,11 +4,9 @@ import './style/index.less';
 
 export default function Base() {
   return (
-    <div className="tdesign-demo-block-1">
-      <Sticky>
-        <Button className="custom-common-button" theme="primary">
-          基础吸顶
-        </Button>
+    <div className="tdesign-demo-block-3" id="container">
+      <Sticky container="#container">
+        <Button className="custom-button custom-common-button">指定容器</Button>
       </Sticky>
     </div>
   );
