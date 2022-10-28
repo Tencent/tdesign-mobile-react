@@ -9,7 +9,6 @@ export default function Base() {
   const [value4, setValue4] = useState('');
   const [value5, setValue5] = useState('');
   const [value6, setValue6] = useState('');
-  const [value7, setValue7] = useState('');
 
   return (
     <div className="demo-group">
@@ -56,7 +55,7 @@ export default function Base() {
 
       <CellGroup title="带提示信息文本框">
         <Input
-          label={'标准五个字'}
+          label={'标签文字'}
           placeholder="请输入文字"
           suffixIcon={<InfoCircleFilledIcon />}
           value={value5}
@@ -66,26 +65,13 @@ export default function Base() {
         />
       </CellGroup>
 
-      <CellGroup title="两行样式文本框">
-        <Input
-          label={'标准五个字'}
-          placeholder="请输入文字请输入文字"
-          vertical={true}
-          value={value6}
-          onChange={(value) => {
-            setValue6(value);
-          }}
-        />
-      </CellGroup>
-
       <CellGroup title="长标题文本框">
         <Input
           label={'超长需换行的标签'}
           placeholder="预设文本"
-          suffixIcon={<InfoCircleFilledIcon />}
-          value={value7}
+          value={value6}
           onChange={(value) => {
-            setValue7(value);
+            setValue6(value);
           }}
         />
       </CellGroup>

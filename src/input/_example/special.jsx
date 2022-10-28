@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { InfoCircleFilledIcon } from 'tdesign-icons-react';
 import { Input, Button, CellGroup } from 'tdesign-mobile-react';
 
 export default function Base() {
@@ -32,7 +31,6 @@ export default function Base() {
           onChange={(value) => {
             setValue2(value);
           }}
-          suffixIcon={<InfoCircleFilledIcon />}
         />
       </CellGroup>
       <CellGroup>
