@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Rate } from 'tdesign-mobile-react';
 import CustomCell from './custom-cell';
+import './style/index.less';
 
 export default function Base() {
   const [value2, setValue2] = useState(3);
 
   return (
     <>
-      <CustomCell title="请点击评分">
+      <CustomCell title="请点击评分" showBottom>
         <Rate
           showText={true}
           size="16"
@@ -20,7 +21,7 @@ export default function Base() {
           }}
         />
       </CustomCell>
-      <CustomCell title="请点击评分">
+      <CustomCell title="请点击评分" showBottom>
         <Rate
           showText={true}
           value={value2}
@@ -31,7 +32,7 @@ export default function Base() {
           }}
         />
       </CustomCell>
-      <CustomCell title="请点击评分">
+      <CustomCell title="请点击评分" showBottom>
         <Rate
           showText={true}
           value={value2}
