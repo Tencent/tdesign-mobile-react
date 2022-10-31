@@ -1,15 +1,4 @@
----
-title: Sticky 吸顶
-description: 用于常驻页面顶部的信息，操作展示
-spline: base
-isComponent: true
-toc: false
----
-
-## 基础用法
-
-::: demo _example/base sticky
-:::
+:: BASE_DOC ::
 
 ## API
 ### Sticky Props
