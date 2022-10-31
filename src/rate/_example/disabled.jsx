@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Rate } from 'tdesign-mobile-react';
+import CustomCell from './custom-cell';
 
 export default function Base() {
-  const [value, setValue] = useState(3);
-
   return (
-    <Rate
-      value={value}
-      disabled
-      onChange={(value) => {
-        setValue(value);
-      }}
-    />
+    <CustomCell title="仅展示">
+      <Rate value={3} variant="filled" disabled />
+    </CustomCell>
   );
 }
