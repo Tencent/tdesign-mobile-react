@@ -7,7 +7,7 @@ export default function Base() {
 
   return (
     <>
-      <CustomCell title="规格20">
+      <CustomCell title="规格20" showBottom>
         <Rate
           value={value}
           variant="filled"
@@ -16,7 +16,7 @@ export default function Base() {
           }}
         />
       </CustomCell>
-      <CustomCell title="规格16">
+      <CustomCell title="规格16" showBottom>
         <Rate
           value={value}
           size={16}

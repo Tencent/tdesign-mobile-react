@@ -8,7 +8,7 @@ export default function Base() {
 
   return (
     <>
-      <CustomCell title="空心评分">
+      <CustomCell title="空心评分" showBottom>
         <Rate
           value={value}
           color={['#FFC51C', '#E8E8E8']}
@@ -18,7 +18,7 @@ export default function Base() {
         />
       </CustomCell>
 
-      <CustomCell title="实心评分">
+      <CustomCell title="实心评分" showBottom>
         <Rate
           value={value1}
           variant="filled"
