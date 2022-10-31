@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Stepper, Cell } from 'tdesign-mobile-react';
 
-export default function PureStepper() {
+export default function StatusStepper() {
   const [controlValue, setControlValue] = useState(999);
 
   const onValueChange = (v) => {
