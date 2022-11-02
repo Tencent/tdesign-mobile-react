@@ -9,10 +9,8 @@ export default function StatusStepper() {
   };
 
   return (
-    <div>
-      <div className="cell-container">
-        <Cell title="禁用" rightIcon={<Stepper disabled></Stepper>}></Cell>
-      </div>
+    <>
+      <Cell title="禁用" rightIcon={<Stepper disabled></Stepper>}></Cell>
       <div className="cell-container">
         <Cell title="禁用(单位)" rightIcon={<Stepper disableInput step={2} disabled></Stepper>}></Cell>
       </div>
@@ -30,6 +28,6 @@ export default function StatusStepper() {
         <Stepper theme="grey"></Stepper>
         <Stepper theme="grey" defaultValue={999} max={999}></Stepper>
       </div>
-    </div>
+    </>
   );
 }
