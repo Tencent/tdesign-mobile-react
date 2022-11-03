@@ -1,6 +1,5 @@
 import React from 'react';
 import { Slider } from 'tdesign-mobile-react';
-import './style/index.less';
 
 const marks = {
   0: '小',
@@ -8,12 +7,6 @@ const marks = {
   100: '大',
 };
 
-export default function Base() {
-  return (
-    <div className="tdesign-mobile-demo">
-      <div className="tdesign-demo-block-wrap">
-        <Slider marks={marks} defaultValue={50} />
-      </div>
-    </div>
-  );
+export default function MarkDemo() {
+  return <Slider marks={marks} defaultValue={50} label={false} step={50} />;
 }
