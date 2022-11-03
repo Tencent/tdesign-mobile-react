@@ -10,7 +10,7 @@ export default () => {
       type: 'image',
     },
     {
-      url: 'https://tdesign.gtimg.com/site/upload1.png',
+      url: 'https://tdesign.gtimg.com/site/upload2.png',
       name: 'uploaded2.png',
       type: 'image',
     },
@@ -22,7 +22,7 @@ export default () => {
     },
   ]);
   const handleRemove = ({ index }) => {
-    setFiles(files.filter((item, idx) => index !== idx))
+    setFiles(files.filter((item, idx) => index !== idx));
   };
 
   return (
