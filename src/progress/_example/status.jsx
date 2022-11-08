@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { Progress, Button } from 'tdesign-mobile-react';
-import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import './style/index.less';
-import Type from './type';
 
-export default function Color() {
+export default function Status() {
   const [percentage, setPercentage] = useState(88);
 
   const clickReduce = () => {
@@ -18,7 +16,7 @@ export default function Color() {
   return (
     <div className="tdesign-mobile-demo progress">
       <div className="progress-demo progress-demo--margin">
-        <Progress percentage="88" />
+        <Progress percentage="88" status="active" />
       </div>
       <div className="progress-demo progress-demo--margin">
         <Progress percentage="88" status="error" />
@@ -27,7 +25,7 @@ export default function Color() {
         <Progress percentage="88" status="warning" />
       </div>
       <div className="progress-demo progress-demo--margin">
-        <Progress percentage="100" />
+        <Progress percentage="100" status="success"/>
       </div>
       <div className="progress-demo progress-demo--margin">
         <Progress percentage={percentage} />

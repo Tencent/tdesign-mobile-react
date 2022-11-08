@@ -3,7 +3,7 @@ import { Progress, Button } from 'tdesign-mobile-react';
 
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
-import Type from './type';
+import Custom from './custom';
 
 import './style/index.less';
 
@@ -34,25 +34,38 @@ export default function ProgressDemo() {
           </div>
         </div>
       </TDemoBlock>
+      <TDemoBlock summary="隐藏数值进度条">
+        <div className="progress-demo">
+          <Progress percentage="88" label={false} />
+        </div>
+      </TDemoBlock>
+      <TDemoBlock summary="自定义样式">
+        <Custom />
+      </TDemoBlock>
+      <TDemoBlock summary="自定义线宽">
+        <div className="progress-demo">
+          <Progress percentage="88" strokeWidth={20} />
+        </div>
+      </TDemoBlock>
       <TDemoBlock title="02 状态" summary="">
         <TDemoBlock summary="默认状态">
           <div className="progress-demo">
             <Progress percentage="88" />
           </div>
         </TDemoBlock>
-        <TDemoBlock summary="进度状态发生重大错误">
+        <TDemoBlock summary="错误状态">
           <div className="progress-demo">
             <Progress percentage="88" status="error" />
           </div>
         </TDemoBlock>
-        <TDemoBlock summary="进度中止">
+        <TDemoBlock summary="警告状态">
           <div className="progress-demo">
             <Progress percentage="88" status="warning" />
           </div>
         </TDemoBlock>
-        <TDemoBlock summary="进度完成">
+        <TDemoBlock summary="成功状态">
           <div className="progress-demo">
-            <Progress percentage="100" />
+            <Progress percentage="88" status="success" />
           </div>
         </TDemoBlock>
         <TDemoBlock summary="过渡样式">
@@ -67,21 +80,6 @@ export default function ProgressDemo() {
                 增加
               </Button>
             </div>
-          </div>
-        </TDemoBlock>
-        <TDemoBlock summary="自定义颜色">
-          <Type />
-        </TDemoBlock>
-      </TDemoBlock>
-      <TDemoBlock title="03 规格" summary="">
-        <TDemoBlock summary="带数值进度条">
-          <div class="progress-demo">
-            <Progress percentage="88" />
-          </div>
-        </TDemoBlock>
-        <TDemoBlock summary="无数值进度条">
-          <div class="progress-demo">
-            <Progress percentage="88" label={false} />
           </div>
         </TDemoBlock>
       </TDemoBlock>
