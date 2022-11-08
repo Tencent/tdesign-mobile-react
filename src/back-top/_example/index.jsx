@@ -22,21 +22,14 @@ export default function Base() {
 
   const rowCols = [
     {
-      height: '171px',
-      borderRadius: '16px',
+      width: '165.5px',
+      height: '165.5px',
+      borderRadius: '12px',
     },
     1,
     {
-      width: '80%',
+      width: '100px',
     },
-    [
-      {
-        width: '60%',
-      },
-      {
-        width: '20%',
-      },
-    ],
   ];
 
   return (
@@ -52,14 +45,10 @@ export default function Base() {
         <HalfRoundDemo visible={visible1} onClose={onClose1} />
       </TDemoBlock>
 
-      <div className="content">
-        {Array.from(Array(4), (item, index) => (
-          <div className="row" key={index}>
-            {Array.from(Array(2), (v, key) => (
-              <div className="item" key={key}>
-                <Skeleton theme="text" rowCol={rowCols} />
-              </div>
-            ))}
+      <div className="group">
+        {Array.from(Array(4), (item, key) => (
+          <div className="item" key={key}>
+            <Skeleton theme="text" rowCol={rowCols} />
           </div>
         ))}
       </div>
