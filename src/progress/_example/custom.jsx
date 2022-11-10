@@ -2,7 +2,7 @@ import React from 'react';
 import { Progress } from 'tdesign-mobile-react';
 import './style/index.less';
 
-export default function Base() {
+export default function Custom() {
   const customPercentage = 88;
   return (
     <div className="tdesign-mobile-demo progress">
