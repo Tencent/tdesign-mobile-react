@@ -26,14 +26,14 @@ export default function () {
       progressValue += 0.01;
       setProgress((pre) => pre + 0.01);
     }, 100);
-  }, [progress, timer]);
+  }, [timer]);
 
   return (
-    <>
+    <div className="demo-content">
       <Loading theme="bar" progress={progress} />
-      <Button variant="outline" onClick={onPageLoading}>
+      <Button block variant="outline" onClick={onPageLoading}>
         {progress > 0 && progress <= 1 ? '页面加载中...' : '页面进度条加载'}
       </Button>
-    </>
+    </div>
   );
 }
