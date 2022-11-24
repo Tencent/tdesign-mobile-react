@@ -1,38 +1,4 @@
----
-title: Divider 分割线
-description: 用于分割、组织、细化有一定逻辑的组织元素内容和页面结构。
-spline: base
-isComponent: true
-toc: false
----
-
-## 用法
-
-### 直线分割线
-
-::: demo _example/normal
-:::
-
-### 虚线分割线
-
-::: demo _example/normal-dashed
-:::
-
-### 垂直分割线
-
-::: demo _example/vertical
-:::
-
-### 带文字分割线
-
-::: demo _example/content
-:::
-
-### 纯文字分割线
-
-::: demo _example/pure-content
-:::
-
+:: BASE_DOC ::
 ## API
 ### Divider Props
 

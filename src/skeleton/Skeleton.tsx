@@ -39,6 +39,7 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
       'size',
       'background',
       'backgroundColor',
+      'borderRadius',
     ];
 
     return styleName.reduce((style, currentStyle) => {

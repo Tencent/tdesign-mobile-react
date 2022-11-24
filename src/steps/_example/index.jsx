@@ -8,6 +8,7 @@ import Content from './content';
 
 import './style/index.less';
 import Vertical from './vertical';
+import VerticalReadonly from './vertical-readonly';
 
 export default function StepsDemo() {
   return (
@@ -23,17 +24,17 @@ export default function StepsDemo() {
           <Icon />
         </div>
       </TDemoBlock>
-      <TDemoBlock title="" summary="横向只读步骤条"> 
+      <TDemoBlock title="" summary="横向只读步骤条">
         <Horizontal />
       </TDemoBlock>
       <TDemoBlock title="" summary="竖向只读步骤条">
         <div className="tdesign-mobile-block">
-          <Vertical type={1} />
+          <VerticalReadonly />
         </div>
       </TDemoBlock>
       <TDemoBlock title="" summary="竖向简化只读步骤条">
         <div className="tdesign-mobile-block">
-          <Vertical type={2} />
+          <Vertical />
         </div>
       </TDemoBlock>
       <TDemoBlock title="" summary="自定义内容步骤条">

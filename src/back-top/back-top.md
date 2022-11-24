@@ -1,15 +1,4 @@
----
-title: BackTop 返回顶部
-description: 用于当页面过长往下滑动时，帮助用户快速回到页面顶部。
-spline: base
-isComponent: true
-toc: false
----
-
-## 示例
-
-::: demo _example/base back-top
-:::
+:: BASE_DOC ::
 
 ## API
 

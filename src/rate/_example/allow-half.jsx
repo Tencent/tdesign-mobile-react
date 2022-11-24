@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { Rate } from 'tdesign-mobile-react';
+import CustomCell from './custom-cell';
 
 export default function Base() {
-  const [value1, setValue1] = useState(3.5);
+  const [value, setValue] = useState(3.5);
 
   return (
-    <Rate
-      allowHalf={true}
-      value={value1}
-      onChange={(value) => {
-        setValue1(value);
-      }}
-      gap={10}
-    />
+    <CustomCell title="半星评价">
+      <Rate
+        value={value}
+        allowHalf
+        variant="filled"
+        onChange={(value) => {
+          setValue(value);
+        }}
+      />
+    </CustomCell>
   );
 }

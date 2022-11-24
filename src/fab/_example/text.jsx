@@ -8,7 +8,13 @@ export default function () {
   };
   return (
     <>
-      <Fab icon={<Icon name="add" />} text="按钮文字" style={{ right: '16px', bottom: '32px' }} onClick={onClick} />
+      <Fab
+        icon={<Icon name="add" />}
+        text="按钮文字"
+        style={{ right: '16px', bottom: '32px' }}
+        buttonProps={{ variant: 'outline' }}
+        onClick={onClick}
+      />
     </>
   );
 }
