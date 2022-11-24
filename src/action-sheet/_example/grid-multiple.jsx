@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {ActionSheet, Button} from 'tdesign-mobile-react';
 import './style/index.less'
 
-export default function GridDemo() {
+export default function GridMultipleDemo() {
     const [open, setOpen] = useState(false);
 
     const handleSelected = (selected, selectedIndex) => {

@@ -30,7 +30,7 @@ export default function ListDemo() {
             >
                 列表型
             </Button>
-            <ActionSheet visible={open} type='list' items={items} count={8} onSelected={handleSelected}
+            <ActionSheet visible={open} type='list' items={items} onSelected={handleSelected}
                          onClose={handleClose}/>
         </div>
     );
