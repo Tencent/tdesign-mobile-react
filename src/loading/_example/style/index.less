@@ -2,6 +2,31 @@
   padding: 0 16px;
   display: flex;
   // flex-direction: column;
+  &--column {
+    flex-direction: column;
+  }
+  .demo-loading {
+    margin-top: 20px;
+  }
+  .demo-loading-speed-slider {
+    width: 100%;
+    margin-top: 20px;
+    display: grid;
+    align-items: center;
+    grid-gap: 24px;
+    grid-template-columns: auto 1fr;
+  }
+  &.pure-text-demo-box {
+    display: grid;
+    align-items: center;
+    grid-gap: 40px;
+    grid-template-columns: repeat(3, auto);
+  }
+  &.demo-content-size {
+    .t-loading {
+      margin-bottom: 20px;
+    }
+  }
 }
 
 .normal-content {
@@ -10,8 +35,11 @@
 
 .custom-error {
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.9);
+  .t-loading {
+    color: rgba(0, 0, 0, 0.9);
+  }
   span {
+    margin-left: 10px;
     color: rgba(0, 82, 217, 1);
     cursor: pointer;
   }

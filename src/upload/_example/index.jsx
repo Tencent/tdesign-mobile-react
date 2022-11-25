@@ -6,8 +6,8 @@ import Multiple from './multiple';
 
 export default function () {
   return (
-    <div className="tdesign-mobile-demo">
-      <TDemoHeader title="Upload 上传" summary="用于上传一个媒体资源，包含图片及视频，点击可以进行图片或视频预览" />
+    <div className="tdesign-mobile-demo" style={{ marginBottom: 16 }}>
+      <TDemoHeader title="Upload 上传" summary="用于相册读取或拉起拍照的图片上传功能。" />
       <TDemoBlock title="01 类型" summary="单选上传图片">
         <Base />
       </TDemoBlock>

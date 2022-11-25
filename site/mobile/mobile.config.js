@@ -6,9 +6,9 @@ export default {
       component: () => import('tdesign-mobile-react/button/_example/index.jsx'),
     },
     {
-      title: 'Divider 分割线',
+      title: 'Divider 分割符',
       name: 'divider',
-      component: () => import('tdesign-mobile-react/divider/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/divider/_example/index.jsx'),
     },
     {
       title: 'Icon 图标',
@@ -48,7 +48,7 @@ export default {
     {
       title: 'Slider 滑动选择器',
       name: 'slider',
-      component: () => import('tdesign-mobile-react/slider/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/slider/_example/index.jsx'),
     },
     {
       title: 'Radio 单选框',
@@ -105,12 +105,12 @@ export default {
     {
       title: 'Sticky 吸顶',
       name: 'sticky',
-      component: () => import('tdesign-mobile-react/sticky/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/sticky/_example/index.jsx'),
     },
     {
       title: 'BackTop 返回顶部',
       name: 'back-top',
-      component: () => import('tdesign-mobile-react/back-top/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/back-top/_example/index.jsx'),
     },
     {
       title: 'Checkbox 多选框',
