@@ -5,7 +5,7 @@
  * */
 
 import { TNode } from '../common';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, MouseEvent } from 'react';
 
 export interface TdCheckboxProps {
   /**
@@ -84,7 +84,7 @@ export interface TdCheckboxProps {
   /**
    * 值变化时触发
    */
-  onChange?: (checked: boolean, context: { e: ChangeEvent<HTMLInputElement> }) => void;
+  onChange?: (checked: boolean, context: { e: ChangeEvent<HTMLDivElement> | MouseEvent<HTMLDivElement> }) => void;
 }
 
 export interface TdCheckboxGroupProps {
