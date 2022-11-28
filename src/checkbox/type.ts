@@ -129,4 +129,4 @@ export interface CheckboxOptionObj { label?: string | TNode; value?: string | nu
 
 export type CheckboxGroupValue = Array<string | number>;
 
-export interface CheckboxGroupChangeContext { e: ChangeEvent<HTMLDivElement>; current: CheckboxOption | TdCheckboxProps; type: 'check' | 'uncheck' };
+export interface CheckboxGroupChangeContext { e: ChangeEvent<HTMLDivElement> | MouseEvent<HTMLDivElement>; current:    | TdCheckboxProps; type: 'check' | 'uncheck' };
