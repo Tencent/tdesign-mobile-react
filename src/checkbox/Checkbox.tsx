@@ -44,7 +44,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps, ref: Ref<HTMLInputElement>) 
     maxLabelRow = 3,
     maxContentRow = 5,
     icon,
-    contentDisabled,
+    contentDisabled = false,
     // borderless = false,
   } = props;
   const [internalChecked, setInternalChecked] = useDefault(checked, defaultChecked, onChange);
@@ -86,6 +86,8 @@ const Checkbox = forwardRef((_props: CheckBoxProps, ref: Ref<HTMLInputElement>) 
     if (contentDisabled) {
       e.preventDefault();
     }
+
+    setInternalChecked(!internalChecked, { e })
   };
   return (
     <>
@@ -102,17 +104,15 @@ const Checkbox = forwardRef((_props: CheckBoxProps, ref: Ref<HTMLInputElement>) 
               disabled={disabled}
               checked={internalChecked}
               onClick={(e) => e.stopPropagation()}
-              onChange={(e) => {
-                setInternalChecked(e.currentTarget.checked, { e });
-              }}
+              onChange={(e) => setInternalChecked(e.currentTarget.checked, { e })}
             />
             {renderIcon()}
           </span>}
-          <span className={ `${classPrefix}-checkbox__label ${classPrefix}-checkbox__label-left`} >
+          <span className={ `${classPrefix}-checkbox__label ${classPrefix}-checkbox__label-left`} onClick={handleClick}>
             <span style={labelStyle}>
               {label}
             </span>
-            <span className={`${classPrefix}-checkbox__description`} style={getLimitRowStyle(maxContentRow)} onClick={handleClick}>
+            <span className={`${classPrefix}-checkbox__description`} style={getLimitRowStyle(maxContentRow)}>
               {children || content}
             </span>
           </span>
@@ -128,9 +128,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps, ref: Ref<HTMLInputElement>) 
               disabled={disabled}
               checked={internalChecked}
               onClick={(e) => e.stopPropagation()}
-              onChange={(e) => {
-                setInternalChecked(e.currentTarget.checked, { e });
-              }}
+              onChange={(e) => setInternalChecked(e.currentTarget.checked, { e })}
             />
             {renderIcon()}
           </span>}

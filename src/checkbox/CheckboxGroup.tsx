@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useMemo, useState } from 'react';
 import isNumber from 'lodash/isNumber';
 import classNames from 'classnames';
-import { CheckboxOption, CheckboxOptionObj, TdCheckboxGroupProps } from './type';
+import { CheckboxOption, CheckboxOptionObj, TdCheckboxProps, TdCheckboxGroupProps } from './type';
 import { StyledProps } from '../common';
 import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
@@ -114,7 +114,11 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
             checkedSet.delete(checkValue);
           }
 
-          setInternalValue(Array.from(checkedSet), { e, current: e.target, type: checked ? 'check' : 'uncheck' });
+          setInternalValue(Array.from(checkedSet), {
+            e,
+            current: checkProps.checkAll ? undefined : (checkValue as TdCheckboxProps), 
+            type: checked ? 'check' : 'uncheck' 
+          });
         },
       };
     },
