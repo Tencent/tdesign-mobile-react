@@ -67,17 +67,6 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     },
   });
 
-  // 蒙层动画
-  const maskSpring = useSpring({
-    opacity: visible ? 1 : 0,
-    onStart: () => {
-      setActive(true);
-    },
-    onRest: () => {
-      setActive(visible);
-    },
-  });
-
   // 蒙层点击事件
   const onOverlayClickHandle = useCallback(
     (e) => {
@@ -228,9 +217,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
       }}
     >
       {showOverlay ? (
-        <animated.div style={maskSpring}>
-          <Overlay onOverlayClick={onOverlayClickHandle} disableBodyScroll={false} />
-        </animated.div>
+        <Overlay visible={visible} onOverlayClick={onOverlayClickHandle} disableBodyScroll={false} />
       ) : null}
       <div className="wrap" style={wrapStyle}>
         <animated.div style={dialogSpring}>{dialog}</animated.div>
