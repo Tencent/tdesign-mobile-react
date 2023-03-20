@@ -4,7 +4,7 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TdBadgeProps } from '../badge';
+import { BadgeProps } from '../badge';
 import { TNode, TElement } from '../common';
 
 export interface TdAvatarProps {
@@ -16,7 +16,7 @@ export interface TdAvatarProps {
   /**
    * 头像右上角提示信息，继承 Badge 组件的全部特性。如：小红点，或者数字
    */
-  badgeProps?: TdBadgeProps;
+  badgeProps?: BadgeProps;
   /**
    * 加载失败时隐藏图片
    * @default false
@@ -32,10 +32,14 @@ export interface TdAvatarProps {
    */
   image?: string;
   /**
+   * 透传至 Image 组件
+   */
+  imageProps?: object;
+  /**
    * 形状
    * @default circle
    */
-  shape?: ShapeEnum ;
+  shape?: ShapeEnum;
   /**
    * 尺寸，示例值：small/medium/large/24px/38px 等，默认为 large
    * @default ''

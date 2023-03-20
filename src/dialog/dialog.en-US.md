@@ -1,0 +1,65 @@
+:: BASE_DOC ::
+
+## API
+
+### Dialog Props
+
+name | type | default | description | required
+-- | -- | -- | -- | --
+className | String | - | 类名 | N
+style | Object | - | 样式，Typescript：`React.CSSProperties` | N
+actions | TNode | - | Typescript：`Array<ButtonProps>`，[Button API Documents](./button?tab=api)。[see more ts definition](https://github.com/TDesignOteam/tdesign-mobile-react/tree/develop/src/dialog/type.ts) | N
+buttonLayout | String | horizontal | options：horizontal/vertical | N
+cancelBtn | TNode | - | Typescript：`string \| ButtonProps \| TNode \| null`，[Button API Documents](./button?tab=api)。[see more ts definition](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts)。[see more ts definition](https://github.com/TDesignOteam/tdesign-mobile-react/tree/develop/src/dialog/type.ts) | N
+closeOnOverlayClick | Boolean | undefined | \- | N
+confirmBtn | TNode | - | Typescript：`string \| ButtonProps \| TNode \| null`。[see more ts definition](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts) | N
+content | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts) | N
+destroyOnClose | Boolean | false | \- | N
+overlayProps | Object | {} | \- | N
+preventScrollThrough | Boolean | true | \- | N
+showOverlay | Boolean | true | \- | N
+title | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts) | N
+visible | Boolean | false | \- | N
+zIndex | Number | - | \- | N
+onCancel | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/> | N
+onClose | Function |  | Typescript：`(context: DialogCloseContext) => void`<br/>[see more ts definition](https://github.com/TDesignOteam/tdesign-mobile-react/tree/develop/src/dialog/type.ts)。<br/>`type DialogEventSource = 'cancel' \| 'overlay'`<br/><br/>`interface DialogCloseContext { trigger: DialogEventSource; e: MouseEvent }`<br/> | N
+onClosed | Function |  | Typescript：`() => void`<br/> | N
+onConfirm | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/> | N
+onOverlayClick | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/> | N
+
+### DialogOptions
+
+name | type | default | description | required
+-- | -- | -- | -- | --
+className | String | - | \- | N
+style | Object | - | Typescript：`Styles`。[see more ts definition](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts) | N
+`Omit<DialogProps, 'attach'>` | \- | - | \- | N
+
+### DialogInstance
+
+name | params | return | description
+-- | -- | -- | --
+destroy | \- | \- | \-
+hide | \- | \- | \-
+show | \- | \- | \-
+update | `(props: DialogOptions)` | \- | \-
+
+### dialog 或 DialogPlugin
+
+name | params | default | description
+-- | -- | -- | --
+options | \- | - | Typescript：`DialogOptions`
+
+插件返回值：`DialogInstance`
+
+### dialog.confirm 或 DialogPlugin.confirm
+
+name | params | default | description
+-- | -- | -- | --
+options | \- | - | Typescript：`DialogOptions`
+
+### dialog.alert 或 DialogPlugin.alert
+
+name | params | default | description
+-- | -- | -- | --
+options | Object | - | Typescript：`Omit<DialogOptions, 'cancelBtn'>`
