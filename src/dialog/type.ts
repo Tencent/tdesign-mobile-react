@@ -4,7 +4,6 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TdButtonProps } from '../button';
 import { ButtonProps } from '../button';
 import { TNode, Styles } from '../common';
 import { MouseEvent } from 'react';
@@ -13,7 +12,7 @@ export interface TdDialogProps {
   /**
    * 操作栏
    */
-  actions?: Array<TdButtonProps>;
+  actions?: Array<ButtonProps>;
   /**
    * 多按钮排列方式
    * @default horizontal
@@ -21,19 +20,16 @@ export interface TdDialogProps {
   buttonLayout?: 'horizontal' | 'vertical';
   /**
    * 取消按钮，可自定义。值为 null 则不显示取消按钮。值类型为字符串，则表示自定义按钮文本，值类型为 Object 则表示透传 Button 组件属性。使用 TNode 自定义按钮时，需自行控制取消事件
-   * @default ''
    */
-  cancelBtn?: ButtonProps | TNode;
+  cancelBtn?: ButtonProps | TNode | null;
   /**
    * 点击蒙层时是否触发关闭事件
-   * @default true
    */
   closeOnOverlayClick?: boolean;
   /**
    * 确认按钮。值为 null 则不显示确认按钮。值类型为字符串，则表示自定义按钮文本，值类型为 Object 则表示透传 Button 组件属性。使用 TNode 自定义按钮时，需自行控制确认事件
-   * @default ''
    */
-  confirmBtn?: ButtonProps | TNode;
+  confirmBtn?: ButtonProps | TNode | null;
   /**
    * 内容
    */
@@ -43,6 +39,11 @@ export interface TdDialogProps {
    * @default false
    */
   destroyOnClose?: boolean;
+  /**
+   * 透传至 Overlay 组件
+   * @default {}
+   */
+  overlayProps?: object;
   /**
    * 防止滚动穿透
    * @default true
@@ -121,10 +122,13 @@ export interface DialogInstance {
 
 export type DialogEventSource = 'cancel' | 'overlay';
 
-export interface DialogCloseContext { trigger: DialogEventSource; e: MouseEvent<HTMLElement> };
+export interface DialogCloseContext {
+  trigger: DialogEventSource;
+  e: MouseEvent<HTMLElement>;
+}
 
 export type DialogMethod = (options?: DialogOptions) => DialogInstance;
 
 export type DialogConfirmMethod = (options?: DialogOptions) => DialogInstance;
 
-export type DialogAlertMethod = (options?: Omit<DialogOptions, 'confirmBtn'>) => DialogInstance;
+export type DialogAlertMethod = (options?: Omit<DialogOptions, 'cancelBtn'>) => DialogInstance;
