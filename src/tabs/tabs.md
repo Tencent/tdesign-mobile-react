@@ -6,6 +6,8 @@
 
 名称 | 类型 | 默认值 | 说明 | 必传
 -- | -- | -- | -- | --
+className | String | - | 类名 | N
+style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
 list | Array | - | 选项卡列表 | N
 animation | Object | - | 动画效果设置{transition-timing-function, transition-duration}。 | N
 placement | String | top | 选项卡位置，可选值'left'\|'right'\|'top'\|'bottom' | N
