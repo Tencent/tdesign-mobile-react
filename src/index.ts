@@ -33,6 +33,7 @@ export * from './upload';
 /**
  * 数据展示（11个）
  */
+export * from './action-sheet'
 export * from './avatar';
 export * from './badge';
 export * from './cell';

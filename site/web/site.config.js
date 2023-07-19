@@ -281,12 +281,12 @@ export default {
       title: '消息提醒',
       type: 'component', // 组件文档
       children: [
-        // {
-        //   title: 'ActionSheet 动作面板',
-        //   name: 'action-sheet',
-        //   path: '/mobile-react/components/actionsheet',
-        //   component: () => import('tdesign-mobile-react/action-sheet/action-sheet.md'),
-        // },
+        {
+          title: 'ActionSheet 动作面板',
+          name: 'action-sheet',
+          path: '/mobile-react/components/actionsheet',
+          component: () => import('tdesign-mobile-react/action-sheet/action-sheet.md'),
+        },
         {
           title: 'BackTop 返回顶部',
           name: 'back-top',
