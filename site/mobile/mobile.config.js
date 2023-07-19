@@ -36,6 +36,11 @@ export default {
       component: () => import('tdesign-mobile-react/image/_example/index.jsx'),
     },
     {
+      title: 'ImageViewer 图片预览',
+      name: 'image-viewer',
+      component: () => import('tdesign-mobile-react/image-viewer/_example/index.jsx'),
+    },
+    {
       title: 'Popup 弹出层',
       name: 'popup',
       component: () => import('tdesign-mobile-react/popup/_example/base.jsx'),
