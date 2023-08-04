@@ -36,6 +36,10 @@ export interface TdTabsProps {
    */
   content?: TNode;
   /**
+   * 激活的选项卡值
+   */
+  value?: number | string;
+  /**
    * 默认选中值
    */
   defaultValue?: number | string;

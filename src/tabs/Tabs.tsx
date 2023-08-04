@@ -14,6 +14,7 @@ const Tabs: FC<TabsProps> = (props) => {
     style,
     children,
     content,
+    value = '',
     defaultValue = '',
     list = [],
     animation,
@@ -89,8 +90,8 @@ const Tabs: FC<TabsProps> = (props) => {
 
   useEffect(() => {
     if (activeKey) return;
-    if (defaultValue) {
-      onChange(defaultValue);
+    if (value || defaultValue) {
+      onChange(value || defaultValue);
       return;
     }
     if (list.length > 0) {
@@ -104,7 +105,7 @@ const Tabs: FC<TabsProps> = (props) => {
       onChange(children?.props.value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tabPrefix, defaultValue]);
+  }, [tabPrefix, value, defaultValue]);
 
   return (
     <div
