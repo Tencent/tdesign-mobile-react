@@ -1,6 +1,6 @@
 ---
 title: 更新日志
-docClass: timeline
+docClass: timeline test
 toc: false
 spline: explain
 ---
