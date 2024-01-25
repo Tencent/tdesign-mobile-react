@@ -87,7 +87,7 @@ function Components() {
 
   return (
     <td-doc-layout>
-      <td-header ref={tdHeaderRef} slot="header">
+      <td-header ref={tdHeaderRef} slot="header" platform="mobile">
         {/* <td-doc-search slot="search" ref={tdDocSearch} /> */}
       </td-header>
       <td-doc-aside ref={tdDocAsideRef} title="React for Mobile">
