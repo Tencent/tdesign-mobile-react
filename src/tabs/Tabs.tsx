@@ -1,12 +1,17 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, HTMLAttributes, useEffect, useRef, useState } from 'react';
 import classnames from 'classnames';
 import useConfig from '../_util/useConfig';
 import { TdTabsProps } from './type';
 import TabPanel from './TabPanel';
 import TabContext from './context';
 
-const Tabs: FC<TdTabsProps> = (props) => {
+type TabsHTMLAttrs = Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'style'>;
+export interface TabsProps extends TdTabsProps, TabsHTMLAttrs {}
+
+const Tabs: FC<TabsProps> = (props) => {
   const {
+    className = '',
+    style,
     children,
     content,
     defaultValue = '',
@@ -104,11 +109,12 @@ const Tabs: FC<TdTabsProps> = (props) => {
   return (
     <div
       className={classnames(
-        `${tabPrefix}-tabs`,
+        [`${tabPrefix}-tabs`, className],
         size === 'large' && `${tabPrefix}-size-l`,
         size === 'small' && `${tabPrefix}-size-s`,
         placement && `${tabPrefix}-is-${placement}`,
       )}
+      style={style}
     >
       <div ref={wrapRef} className={classnames(`${tabPrefix}-tabs__nav `, `${tabPrefix}-is-scrollable `)}>
         <div className={classnames(`${tabPrefix}-tabs__nav-wrap`, `${tabPrefix}-tabs__nav-container`)}>
