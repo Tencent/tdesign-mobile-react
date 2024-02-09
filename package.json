@@ -3,7 +3,7 @@
   "version": "0.3.1",
   "description": "TDesign Component for Mobile React",
   "title": "tdesign-mobile-react",
-  "main": "cjs/index.js",
+  "main": "lib/index.js",
   "module": "es/index.js",
   "typings": "es/index.d.ts",
   "unpkg": "dist/tdesign.min.js",
