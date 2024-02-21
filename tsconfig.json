@@ -14,31 +14,46 @@
     ],
     "importHelpers": true,
     "allowSyntheticDefaultImports": true,
-    "suppressImplicitAnyIndexErrors": true,
     "baseUrl": "./",
     "paths": {
-      "tdesign-mobile-react": ["src"],
-      "tdesign-mobile-react/*": ["src/*"],
-      "@test/utils": ["test/utils"],
-      "@common/*": ["src/_common/*"],
+      "tdesign-mobile-react": [
+        "src"
+      ],
+      "tdesign-mobile-react/*": [
+        "src/*"
+      ],
+      "@test/utils": [
+        "test/utils"
+      ],
+      "@common/*": [
+        "src/_common/*"
+      ]
     },
     "allowJs": true,
     "checkJs": true,
     "downlevelIteration": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": [
+      "node",
+      "jest",
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ]
   },
   "include": [
     "./src",
-    "./global.d.ts"
+    "./test",
+    "vitest.setup.ts"
   ],
   "exclude": [
-    "**/**/__tests__/*",
-    "**/**/_example/*",
+    "**/*.jsx",
+    "**/**/_usage/*",
     "node_modules",
     "src/_common",
     "dist",
     "lib",
     "esm",
+    "cjs",
     "es"
   ],
   "compileOnSave": false
