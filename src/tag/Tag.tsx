@@ -1,4 +1,4 @@
-import React, { useCallback, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import { Icon } from 'tdesign-icons-react';
 import noop from '../_util/noop';
@@ -34,10 +34,10 @@ const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
 
   const tagClassNames = classNames(
     `${baseClass}`,
-    `${baseClass}--theme-${theme}`,
-    `${baseClass}--shape-${shape}`,
-    `${baseClass}--variant-${variant}`,
-    `${baseClass}--size-${size}`,
+    `${baseClass}--${theme}`,
+    `${baseClass}--${shape}`,
+    `${baseClass}--${variant}`,
+    `${baseClass}--${size}`,
     {
       [`${classPrefix}-is-closable ${baseClass}--closable`]: closable,
       [`${classPrefix}-is-disabled ${baseClass}--disabled`]: disabled,
@@ -45,22 +45,12 @@ const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     className,
   );
 
-  const tagStyle = {
-    ...style,
-    maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
-  };
-
-  const getRenderContent = useCallback(() => {
-    const contentType = typeof content;
-    if (contentType === 'string' || contentType === 'number') {
-      return content;
-    }
-    // if (contentType === 'function') {
-    //   return content();
-    // }
-
-    return content;
-  }, [content]);
+  const tagStyle = maxWidth
+    ? {
+        ...style,
+        maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
+      }
+    : {};
 
   function onClickClose(e) {
     if (disabled) {
@@ -78,9 +68,17 @@ const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   };
 
   return (
-    <span className={tagClassNames} style={tagStyle} onClick={handleClick} ref={ref} {...other}>
+    <span
+      className={tagClassNames}
+      style={tagStyle}
+      onClick={handleClick}
+      aria-disabled={disabled}
+      role="button"
+      ref={ref}
+      {...other}
+    >
       <span className={`${baseClass}__icon`}>{icon}</span>
-      <span className={`${baseClass}__text`}>{getRenderContent() || children}</span>
+      <span className={`${baseClass}__text`}>{content || children}</span>
       {closable ? (
         <span className={`${baseClass}__icon-close`} onClick={onClickClose}>
           <Icon name="close" />
