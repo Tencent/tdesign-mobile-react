@@ -20,7 +20,7 @@ export interface TdButtonProps {
   /**
    * 按钮内容
    */
-  content?: TNode;
+  content?: string | TNode;
   /**
    * 是否禁用按钮
    * @default false
@@ -34,7 +34,7 @@ export interface TdButtonProps {
   /**
    * 按钮内部图标，可完全自定义
    */
-  icon?: TElement;
+  icon?: TNode;
   /**
    * 是否显示为加载状态
    * @default false
@@ -51,10 +51,14 @@ export interface TdButtonProps {
    */
   size?: SizeEnum;
   /**
+   * 右侧内容，可用于定义右侧图标
+   */
+  suffix?: TNode;
+  /**
    * 组件风格，依次为品牌色、危险色
    * @default default
    */
-  theme?: 'default' | 'primary' | 'danger';
+  theme?: 'default' | 'primary' | 'danger' | 'light';
   /**
    * 按钮类型
    * @default button
