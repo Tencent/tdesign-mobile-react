@@ -8,10 +8,11 @@ import { ConfigContext } from '../config-provider';
 export interface FabProps extends TdFabProps, StyledProps {}
 
 const Fab: React.FC<FabProps> = forwardRef((props, ref: Ref<HTMLButtonElement>) => {
-  const { buttonProps, style, icon = null, text, onClick } = props;
+  const { buttonProps, style, icon = null, text, onClick, ...rest } = props;
   const baseButtonProps: ButtonProps = {
-    shape: 'round',
+    size: 'large',
     theme: 'primary',
+    shape: text ? 'round' : 'circle',
   };
 
   const { classPrefix } = useContext(ConfigContext);
@@ -19,8 +20,7 @@ const Fab: React.FC<FabProps> = forwardRef((props, ref: Ref<HTMLButtonElement>) 
 
   // 外层样式类
   const FabClasses = classNames({
-    [`${name}`]: true,
-    [`${name}--icon-only`]: icon && !text,
+    [`${name}__button`]: true,
   });
 
   const onClickHandle = (e) => {
@@ -28,17 +28,11 @@ const Fab: React.FC<FabProps> = forwardRef((props, ref: Ref<HTMLButtonElement>) 
   };
 
   return (
-    <Button
-      ref={ref}
-      style={style}
-      className={FabClasses}
-      {...baseButtonProps}
-      {...buttonProps}
-      onClick={onClickHandle}
-    >
-      {icon}
-      {text && <span className={classNames(`${name}__text`)}>{text}</span>}
-    </Button>
+    <div style={style} className={name} onClick={onClickHandle}>
+      <Button ref={ref} className={FabClasses} {...baseButtonProps} {...buttonProps} icon={icon} {...rest}>
+        {text}
+      </Button>
+    </div>
   );
 });
 
