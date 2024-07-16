@@ -39,5 +39,5 @@ export interface TdToastProps {
   /**
    * 防止滚动穿透
    */
-  preventScrollThrough: boolean;
+  preventScrollThrough?: boolean;
 }
