@@ -173,14 +173,28 @@ const esmConfig = {
   },
 };
 
-/** @type {import('rollup').RollupOptions} */
+// 按需加载组件 不带 css 样式
 const libConfig = {
+  input: inputList.concat('!src/index-lib.ts'),
+  external: externalDeps.concat(externalPeerDeps),
+  plugins: [multiInput()].concat(getPlugins({ extractMultiCss: true })),
+  output: {
+    banner,
+    dir: 'lib/',
+    format: 'esm',
+    sourcemap: true,
+    chunkFileNames: '_chunks/dep-[hash].js',
+  },
+};
+
+// commonjs 导出规范，不带 css 样式
+const cjsConfig = {
   input: inputList,
   external: externalDeps.concat(externalPeerDeps),
   plugins: [multiInput()].concat(getPlugins()),
   output: {
     banner,
-    dir: 'lib/',
+    dir: 'cjs/',
     format: 'cjs',
     sourcemap: true,
     exports: 'named',
@@ -227,4 +241,13 @@ const umdMinConfig = {
   },
 };
 
-export default [cssConfig, libConfig, esConfig, esmConfig, umdConfig, umdMinConfig];
+// 单独导出 reset.css 到 dist 目录，兼容旧版本样式
+const resetCss = {
+  input: 'src/_common/style/mobile/_reset.less',
+  output: {
+    file: 'dist/reset.css',
+  },
+  plugins: [postcss({ extract: true })],
+};
+
+export default [cssConfig, esConfig, esmConfig, libConfig, cjsConfig, umdConfig, umdMinConfig, resetCss];
