@@ -6,7 +6,7 @@ import { TdButtonProps } from './type';
 import noop from '../_util/noop';
 import { buttonDefaultProps } from './defaultProps';
 
-export interface ButtonProps extends TdButtonProps, React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export interface ButtonProps extends TdButtonProps, Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'content'> {}
 
 const Button = forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>) => {
   const {

@@ -48,7 +48,8 @@
     "build:tsc": "concurrently \"npm:build:tsc-*\"",
     "build:tsc-es": "tsc --emitDeclarationOnly -d --outDir es/",
     "build:tsc-esm": "tsc --emitDeclarationOnly -d --outDir esm/",
-    "build:tsc-lib": "tsc --emitDeclarationOnly -d --outDir lib/"
+    "build:tsc-lib": "tsc --emitDeclarationOnly -d --outDir lib/",
+    "build:tsc-cjs": "tsc --emitDeclarationOnly -d --outDir cjs/"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
@@ -155,7 +156,7 @@
     "classnames": "^2.3.1",
     "hoist-non-react-statics": "^3.3.2",
     "lodash": "^4.17.21",
-    "react-spring": "^9.4.4",
+    "react-spring": "9.6.1",
     "react-transition-group": "^4.4.2",
     "smoothscroll-polyfill": "^0.4.4",
     "tdesign-icons-react": "^0.1.1"
