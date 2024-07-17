@@ -3,11 +3,11 @@ import { Radio, RadioGroup } from 'tdesign-mobile-react';
 import { CheckIcon } from 'tdesign-icons-react';
 
 export default function Base() {
-  const [defaultVaule, setDefaultValue] = useState('idx0');
+  const [defaultValue, setDefaultValue] = useState('idx0');
   const CheckedIcon = <CheckIcon key="1" color="#0052d9" />;
   return (
     <>
-      <RadioGroup value={defaultVaule} onChange={(value) => setDefaultValue(value)}>
+      <RadioGroup value={defaultValue} onChange={(value) => setDefaultValue(value)}>
         <Radio value="idx0" label="单选" icon={[CheckedIcon]}></Radio>
         <Radio value="idx1" label="单选" icon={[CheckedIcon]}></Radio>
         <Radio

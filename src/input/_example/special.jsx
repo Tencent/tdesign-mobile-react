@@ -52,13 +52,12 @@ export default function Base() {
           label={'价格'}
           placeholder="0.00"
           suffix="元"
-          suffixSeperate={false}
           align="right"
           value={value4}
           onChange={(value) => {
             setValue4(value);
           }}
-          className="t-input-suffix-noseperate"
+          className="t-input-suffix-noseparate"
         />
       </CellGroup>
       <CellGroup>
@@ -66,13 +65,12 @@ export default function Base() {
           label={'个数'}
           placeholder="请输入个数"
           suffix="个"
-          suffixSeperate={false}
           align="right"
           value={value5}
           onChange={(value) => {
             setValue5(value);
           }}
-          className="t-input-suffix-noseperate"
+          className="t-input-suffix-noseparate"
         />
       </CellGroup>
     </>

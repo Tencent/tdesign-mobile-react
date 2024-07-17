@@ -18,4 +18,4 @@ theme | String | -- | 提示类型, 可选值：loading \| success \| fail。 | 
 
 名称 | 描述
 -- | --
-destory | 主动销毁toast,需要获取toast实例
+destroy | 主动销毁toast,需要获取toast实例
