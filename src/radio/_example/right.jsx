@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Radio, RadioGroup } from 'tdesign-mobile-react';
 
 export default function () {
-  const [defaultVaule, setDefaultValue] = useState('idx0');
+  const [defaultValue, setDefaultValue] = useState('idx0');
   return (
-    <RadioGroup value={defaultVaule} onChange={setDefaultValue}>
+    <RadioGroup value={defaultValue} onChange={setDefaultValue}>
       <Radio label="单选" align="right" value="idx0"></Radio>
       <Radio label="单选" align="right" value="idx1"></Radio>
       <Radio label="单选" align="right" value="idx2"></Radio>
