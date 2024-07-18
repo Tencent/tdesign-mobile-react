@@ -2,9 +2,9 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-// import camelCase from 'camelcase';
+import camelCase from 'camelcase';
 
-// import testCoverage from '../test-coverage';
+import testCoverage from '../test-coverage';
 
 import { transformSync } from '@babel/core';
 
@@ -12,10 +12,10 @@ export default function mdToReact(options) {
   const mdSegment = customRender(options);
   const { demoCodesDefsStr } = options;
 
-  // let coverage = '';
-  // if (mdSegment.isComponent) {
-  //   coverage = testCoverage[camelCase(mdSegment.componentName)] || '0%';
-  // }
+  let coverage = '';
+  if (mdSegment.isComponent) {
+    coverage = testCoverage[camelCase(mdSegment.componentName)] || {};
+  }
 
   const reactSource = `
     import React, { useEffect, useRef, useState } from 'react';\n
@@ -85,7 +85,25 @@ export default function mdToReact(options) {
                 ref={tdDocHeader}
                 spline="${mdSegment.spline}"
                 platform="mobile"
-              ></td-doc-header>`
+              >
+               ${
+                 mdSegment.isComponent
+                   ? `
+                    <td-doc-badge style={{ marginRight: '10px' }} slot="badge" label="coverages: lines" message="${
+                      coverage.lines || '0%'
+                    }" />
+                    <td-doc-badge style={{ marginRight: '10px' }} slot="badge" label="coverages: functions" message="${
+                      coverage.functions || '0%'
+                    }" />
+                    <td-doc-badge style={{ marginRight: '10px' }} slot="badge" label="coverages: statements" message="${
+                      coverage.statements || '0%'
+                    }" />
+                    <td-doc-badge style={{ marginRight: '10px' }} slot="badge" label="coverages: branches" message="${
+                      coverage.branches || '0%'
+                    }" />`
+                   : ''
+               }
+              </td-doc-header>`
               : ''
           }
           {

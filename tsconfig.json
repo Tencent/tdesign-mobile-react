@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "jsx": "react-jsx",
+    "jsx": "react",
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "module": "esnext",
@@ -26,7 +26,6 @@
   },
   "include": ["./src", "./global.d.ts"],
   "exclude": [
-    "**/**/__tests__/*",
     "**/**/_example/*",
     "node_modules",
     "src/_common",
@@ -34,7 +33,8 @@
     "lib",
     "cjs",
     "esm",
-    "es"
+    "es",
+    "site"
   ],
   "compileOnSave": false
 }
