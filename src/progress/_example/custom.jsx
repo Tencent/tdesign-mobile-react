@@ -5,11 +5,14 @@ import './style/index.less';
 export default function Custom() {
   const customPercentage = 88;
   return (
-    <div className="tdesign-mobile-demo progress">
-      <div className="progress-demo">
+    <div className="example-progress">
+      <div className="example-progress__item">
         <Progress percentage={customPercentage} trackColor="#EAC9FF" color="#CD04FF">
           <span className="label--color">{customPercentage}%</span>
         </Progress>
+      </div>
+      <div className="example-progress__item">
+        <Progress className={'radius--round'} percentage={customPercentage} />
       </div>
     </div>
   );
