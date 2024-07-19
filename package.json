@@ -157,7 +157,6 @@
     "workbox-precaching": "^6.3.0"
   },
   "dependencies": {
-    "@react-spring/web": "^9.6.1",
     "@use-gesture/react": "^10.2.10",
     "ahooks": "^3.1.9",
     "classnames": "^2.3.1",
