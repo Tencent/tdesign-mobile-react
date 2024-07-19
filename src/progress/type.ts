@@ -16,7 +16,7 @@ export interface TdProgressProps {
    * 进度百分比，可自定义
    * @default true
    */
-  label?: string | boolean | TNode;
+  label?: TNode;
   /**
    * 进度条百分比
    * @default 0
@@ -31,6 +31,11 @@ export interface TdProgressProps {
    */
   strokeWidth?: string | number;
   /**
+   * 进度条风格。值为 line，标签（label）显示在进度条右侧；值为 plump，标签（label）显示在进度条里面；值为 circle，标签（label）显示在进度条正中间
+   * @default line
+   */
+  theme?: ThemeEnum;
+  /**
    * 进度条未完成部分颜色
    * @default ''
    */
@@ -38,3 +43,5 @@ export interface TdProgressProps {
 }
 
 export type StatusEnum = 'success' | 'error' | 'warning' | 'active';
+
+export type ThemeEnum = 'line' | 'plump' | 'circle';

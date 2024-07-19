@@ -1,7 +1,7 @@
 export type Gradients = { [percent: string]: string };
 export type FromTo = { from: string; to: string };
 export type LinearGradient = { direction?: string } & (Gradients | FromTo);
-export function getBackgroundColor(color: string | string[] | LinearGradient): string {
+const getBackgroundColor = (color: string | string[] | LinearGradient): string => {
   if (typeof color === 'string') {
     return color;
   }
@@ -15,8 +15,9 @@ export function getBackgroundColor(color: string | string[] | LinearGradient): s
   let keys = Object.keys(rest);
   if (keys.length) {
     keys = keys.sort((a, b) => parseFloat(a.substr(0, a.length - 1)) - parseFloat(b.substr(0, b.length - 1)));
-    const tempArr = keys.map((key: any) => `${rest[key]} ${key}`);
+    const tempArr = keys.map((key) => `${rest[key]} ${key}`);
     return `linear-gradient(${direction}, ${tempArr.join(',')})`;
   }
   return `linear-gradient(${direction}, ${from}, ${to})`;
-}
+};
+export default getBackgroundColor;
