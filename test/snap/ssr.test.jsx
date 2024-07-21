@@ -1,4 +1,4 @@
-import glob from 'glob';
+import { glob } from 'glob';
 import MockDate from 'mockdate';
 import { vi } from 'vitest';
 import React from 'react';
