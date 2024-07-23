@@ -8,6 +8,6 @@ export const progressDefaultProps: TdProgressProps = {
   color: '',
   label: true,
   percentage: 0,
-  status: 'active',
+  theme: 'line',
   trackColor: '',
 };

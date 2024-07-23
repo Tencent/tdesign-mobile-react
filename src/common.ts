@@ -1,9 +1,9 @@
 /** React 特有全局类型 */
 
-import { ReactElement, ReactNode, CSSProperties, FormEvent } from 'react';
+import { ReactElement, ReactNode, CSSProperties, FormEvent, DragEvent, SyntheticEvent } from 'react';
 
 // TElement 表示 API 只接受传入组件
-export type TElement = ReactElement | (() => ReactElement);
+export type TElement<T = undefined> = T extends undefined ? ReactElement : (props: T) => ReactElement;
 // 1. TNode = ReactNode; 2. TNode<T> = (props: T) => ReactNode
 export type TNode<T = undefined> = T extends undefined ? ReactNode : (props: T) => ReactNode;
 
@@ -26,22 +26,45 @@ export interface StyledProps {
   className?: string;
   style?: CSSProperties;
 }
-/** 通用全局类型 */
+
+export interface UploadDisplayDragEvents {
+  onDrop?: (event: DragEvent<HTMLDivElement>) => void;
+  onDragEnter?: (event: DragEvent<HTMLDivElement>) => void;
+  onDragOver?: (event: DragEvent<HTMLDivElement>) => void;
+  onDragLeave?: (event: DragEvent<HTMLDivElement>) => void;
+}
+
+export type ImageEvent<T = any> = SyntheticEvent<T>;
+
+/**
+ * 通用全局类型
+ * */
+export type PlainObject = { [key: string]: any };
 
 export type OptionData = {
   label?: string;
   value?: string | number;
-} & { [key: string]: any };
+} & PlainObject;
 
-export type TreeOptionData = {
-  children?: Array<TreeOptionData>;
-} & OptionData;
+export type TreeOptionData<T = string | number> = {
+  children?: Array<TreeOptionData<T>> | boolean;
+  /** option label content */
+  label?: string | TNode;
+  /** option search text */
+  text?: string;
+  /** option value */
+  value?: T;
+  /** option node content */
+  content?: string | TNode;
+} & PlainObject;
 
 export type SizeEnum = 'small' | 'medium' | 'large';
 
 export type HorizontalAlignEnum = 'left' | 'center' | 'right';
 
 export type VerticalAlignEnum = 'top' | 'middle' | 'bottom';
+
+export type LayoutEnum = 'vertical' | 'horizontal';
 
 export type ClassName = { [className: string]: any } | ClassName[] | string;
 
@@ -50,10 +73,15 @@ export type CSSSelector = string;
 export interface KeysType {
   value?: string;
   label?: string;
+  disabled?: string;
+}
+
+export interface TreeKeysType extends KeysType {
+  children?: string;
 }
 
 export interface HTMLElementAttributes {
-  [css: string]: string;
+  [attribute: string]: string;
 }
 
 export interface TScroll {
@@ -80,4 +108,23 @@ export interface TScroll {
    * 滚动加载类型，有两种：懒加载和虚拟滚动。<br />值为 `lazy` ，表示滚动时会进行懒加载，非可视区域内的内容将不会默认渲染，直到该内容可见时，才会进行渲染，并且已渲染的内容滚动到不可见时，不会被销毁；<br />值为`virtual`时，表示会进行虚拟滚动，无论滚动条滚动到哪个位置，同一时刻，仅渲染该可视区域内的内容，当需要展示的数据量较大时，建议开启该特性
    */
   type: 'lazy' | 'virtual';
+}
+
+/**
+ * @deprecated use TScroll instead
+ */
+export type InfinityScroll = TScroll;
+
+export interface ScrollToElementParams {
+  /** 跳转元素下标 */
+  index?: number;
+  /** 跳转元素距离顶部的距离 */
+  top?: number;
+  /** 单个元素高度非固定场景下，即 isFixedRowHeight = false。延迟设置元素位置，一般用于依赖不同高度异步渲染等场景，单位：毫秒 */
+  time?: number;
+  behavior?: 'auto' | 'smooth';
+}
+
+export interface ComponentScrollToElementParams extends ScrollToElementParams {
+  key?: string | number;
 }
