@@ -1,6 +1,6 @@
 import React from 'react';
-import { render } from '@test/utils';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, render } from '@test/utils';
+
 import Button from '../Button';
 
 describe('Button 组件测试', () => {
