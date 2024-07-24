@@ -1,8 +1,8 @@
 import React from 'react';
-import { render, waitFor } from '@test/utils';
+import { describe, expect, it, render, test, waitFor } from '@test/utils';
 import getBackgroundColor from '../../_util/linearGradient';
 import Progress from '../Progress';
-import { ThemeEnum } from '../type';
+import { ProgressTheme } from '../type';
 
 describe('Progress', () => {
   describe('utils/getBackgroundColor', () => {
@@ -23,7 +23,7 @@ describe('Progress', () => {
   describe('props', () => {
     test('render theme', async () => {
       const testId = 'progress test theme';
-      const themes: ThemeEnum[] = ['line', 'plump', 'circle'];
+      const themes: ProgressTheme[] = ['line', 'plump', 'circle'];
       const { getByTestId } = render(
         <div data-testid={testId}>
           {themes?.map((theme, index) => (
