@@ -8,7 +8,7 @@ export default {
     {
       title: 'Divider 分割符',
       name: 'divider',
-      component: () => import('tdesign-mobile-react/divider/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/divider/_example/index.tsx'),
     },
     {
       title: 'Icon 图标',
