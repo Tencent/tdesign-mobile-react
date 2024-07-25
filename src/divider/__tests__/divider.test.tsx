@@ -54,7 +54,9 @@ describe('Divider', () => {
       const { getByText } = render(<Divider content={content}></Divider>);
       expect(getByText(content).textContent).toBeTruthy();
     });
+  });
 
+  describe('slot', () => {
     it(':children', async () => {
       const content = 'DividerContent';
       const { getByText } = render(<Divider>{content}</Divider>);

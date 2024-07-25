@@ -13,10 +13,6 @@ export interface TdDividerProps {
    */
   align?: 'left' | 'right' | 'center';
   /**
-   * 子元素，同 content
-   */
-  children?: TNode;
-  /**
    * 子元素
    */
   content?: TNode;
