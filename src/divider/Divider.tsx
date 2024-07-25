@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React from 'react';
+import type { FC } from 'react';
 import classNames from 'classnames';
 import { TdDividerProps } from './type';
 import { dividerDefaultProps } from './defaultProps';
@@ -6,7 +7,9 @@ import { StyledProps } from '../common';
 import useConfig from '../_util/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
 
-export interface DividerProps extends TdDividerProps, StyledProps {}
+export interface DividerProps extends TdDividerProps, StyledProps {
+  children?: React.ReactNode;
+}
 
 const Divider: FC<DividerProps> = (props) => {
   const { children, align, dashed, layout, content, style } = useDefaultProps<DividerProps>(props, dividerDefaultProps);
@@ -14,11 +17,14 @@ const Divider: FC<DividerProps> = (props) => {
   const dividerClass = `${classPrefix}-divider`;
   const contentNode = content || children;
 
-  const classes = classNames(dividerClass, {
-    [`${dividerClass}--${layout}`]: layout,
-    [`${dividerClass}--${align}`]: align,
-    [`${dividerClass}--dashed`]: dashed,
-  });
+  const classes = classNames([
+    dividerClass,
+    `${dividerClass}--${layout}`,
+    `${dividerClass}--${align}`,
+    {
+      [`${dividerClass}--dashed`]: dashed,
+    },
+  ]);
 
   return (
     <div className={classes} style={style} role="separator">
