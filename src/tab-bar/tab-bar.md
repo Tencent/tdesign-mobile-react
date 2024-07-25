@@ -20,7 +20,7 @@ onChange | Function |  | TS 类型：`() => void`<br/>选中标签切换时触�
 -- | -- | -- | -- | --
 className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
-badgeProps | Object | - | 图标右上角提示信息。TS 类型：`TdBadgeProps`，[Badge API Documents](./badge?tab=api)。[详细类型定义](https://github.com/TDesignOteam/tdesign-mobile-react/tree/develop/src/tab-bar/type.ts) | N
-icon | TNode | - | 图标名称。TS 类型：`string | TNode`。[通用类型定义](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts) | N
-subTabBar | Array | - | 二级菜单。TS 类型：`SubTabBarItem[] ` `interface SubTabBarItem { value: string; label: string }`。[详细类型定义](https://github.com/TDesignOteam/tdesign-mobile-react/tree/develop/src/tab-bar/type.ts) | N
+badgeProps | Object | - | 图标右上角提示信息。TS 类型：`TdBadgeProps`，[Badge API Documents](./badge?tab=api)。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tab-bar/type.ts) | N
+icon | TNode | - | 图标名称。TS 类型：`string | TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+subTabBar | Array | - | 二级菜单。TS 类型：`SubTabBarItem[] ` `interface SubTabBarItem { value: string; label: string }`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tab-bar/type.ts) | N
 value | String / Number | - | 标识符 | N

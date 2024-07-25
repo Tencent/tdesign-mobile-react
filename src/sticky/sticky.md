@@ -11,4 +11,4 @@ container | String / Function | body | 指定滚动的容器。数据类型为 S
 disabled | Boolean | false | 是否禁用组件 | N
 offsetTop | String / Number | 0 | 吸顶时与顶部的距离，单位`px` | N
 zIndex | Number | 99 | 吸顶时的 z-index | N
-onScroll | Function |  | TS 类型：`(context: { scrollTop: number, isFixed: boolean }) => void`<br/>滚动时触发，scrollTop: 距离顶部位置，isFixed: 是否吸顶。TS 类型：`TNode`。[通用类型定义](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts) | N
+onScroll | Function |  | TS 类型：`(context: { scrollTop: number, isFixed: boolean }) => void`<br/>滚动时触发，scrollTop: 距离顶部位置，isFixed: 是否吸顶。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N

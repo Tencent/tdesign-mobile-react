@@ -30,7 +30,7 @@ import 'tdesign-mobile-react/dist/tdesign.css'; // 如需样式请添加这行
 
 由于原始样式基于 less 编写，需要自行处理 less 文件的编译（例如安装 less、less-loader）
 
-更多 less 变量定义 [查看这里](https://github.com/TDesignOteam/tdesign-common/blob/main/style/mobile/_variables.less)
+更多 less 变量定义 [查看这里](https://github.com/Tencent/tdesign-common/blob/main/style/mobile/_variables.less)
 
 ```javascript
 import { Button } from 'tdesign-mobile-react/esm/';
@@ -80,7 +80,7 @@ module.exports = {
 }
 ```
 
-npm package 中提供了多种构建产物，可以阅读 [这里](https://github.com/TDesignOteam/tdesign-common/blob/develop/develop-install.md) 了解不同目录下产物的差别。
+npm package 中提供了多种构建产物，可以阅读 [这里](https://github.com/Tencent/tdesign-common/blob/develop/develop-install.md) 了解不同目录下产物的差别。
 
 ## 浏览器兼容性
 
