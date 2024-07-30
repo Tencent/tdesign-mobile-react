@@ -58,7 +58,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TDesignOteam/tdesign-mobile-react.git"
+    "url": "git+https://github.com/Tencent/tdesign-mobile-react.git"
   },
   "keywords": [
     "tdesign",
@@ -71,7 +71,7 @@
     "react-dom": ">=16.13.1"
   },
   "bugs": {
-    "url": "https://github.com/TDesignOteam/tdesign-mobile-react/issues"
+    "url": "https://github.com/Tencent/tdesign-mobile-react/issues"
   },
   "homepage": "https://tdesign.tencent.com/mobile-react",
   "devDependencies": {
