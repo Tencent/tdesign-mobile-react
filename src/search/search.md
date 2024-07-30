@@ -7,14 +7,14 @@
 -- | -- | -- | -- | --
 className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
-action | TNode | '' | 自定义右侧操作按钮文字。TS 类型：`string | TNode`。[通用类型定义](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts) | N
+action | TNode | '' | 自定义右侧操作按钮文字。TS 类型：`string | TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 center | Boolean | false | 是否居中 | N
 disabled | Boolean | false | 是否禁用 | N
 focus | Boolean | false | 是否聚焦 | N
 label | String | '' | 左侧文本 | N
-leftIcon | TElement | - | 左侧图标。TS 类型：`TNode`。[通用类型定义](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts) | N
+leftIcon | TElement | - | 左侧图标。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 placeholder | String | '' | 占位符 | N
-rightIcon | TElement | - | 右侧图标。TS 类型：`TNode`。[通用类型定义](https://github.com/TDesignOteam/tdesign-mobile-react/blob/develop/src/common.ts) | N
+rightIcon | TElement | - | 右侧图标。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 shape | String | 'square' | 搜索框形状。可选项：square/round | N
 value | String | '' | 值 | N
 defaultValue | String | '' | 值。非受控属性 | N
