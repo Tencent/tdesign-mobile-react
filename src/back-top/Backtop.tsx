@@ -18,10 +18,11 @@ export const defaultProps = {
   target: (() => window) as any,
   text: '',
   theme: 'round' as ThemeList,
+  visibilityHeight: 200,
 };
 
 const BackTop: React.FC<BackTopProps> = (props) => {
-  const { fixed, icon, target, text, theme } = props;
+  const { fixed, icon, target, text, theme, onToTop, visibilityHeight, container } = props;
 
   const [show, { setTrue, setFalse }] = useBoolean(false);
 
@@ -33,7 +34,16 @@ const BackTop: React.FC<BackTopProps> = (props) => {
 
   const name = `${classPrefix}-back-top`;
 
-  const scroll = useScroll(document);
+  const getContainer = (container: Function) => {
+    if (typeof container === 'function') {
+      return container();
+    }
+    return document.documentElement;
+  };
+  const containerDom = useRef<HTMLElement>(null);
+  containerDom.current = getContainer(container);
+
+  const scroll = useScroll(typeof container === 'function' ? containerDom.current : document);
 
   useMount(() => {
     smoothscroll.polyfill();
@@ -44,16 +54,18 @@ const BackTop: React.FC<BackTopProps> = (props) => {
   const targetHeight = isWindow(backTopDom.current) ? 0 : backTopDom.current?.offsetTop || 0;
 
   useEffect(() => {
-    // 当滚动条滚动到超过锚点二分之一个屏幕后，显示回到顶部按钮
-    const screenHeight = window.innerHeight;
-    if (scroll?.top > screenHeight / 2 + targetHeight) {
+    // 当滚动条滚动到 设置滚动高度时，显示回到顶部按钮
+    if (scroll?.top >= visibilityHeight) {
       setTrue();
     } else {
       setFalse();
     }
-  }, [scroll, setTrue, setFalse, targetHeight]);
+  }, [scroll, setTrue, setFalse, visibilityHeight]);
 
-  const onClick = () => document.documentElement.scrollTo({ top: targetHeight, behavior: 'smooth' });
+  const onClick = () => {
+    containerDom.current.scrollTo({ top: 0 + targetHeight, behavior: 'smooth' });
+    onToTop?.();
+  };
 
   return withNativeProps(
     props,
