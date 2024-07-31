@@ -59,16 +59,14 @@ const BackTop: React.FC<BackTopProps> = (props) => {
     props,
     <div
       className={classNames(`${name}`, `${name}--${theme}`, {
-        [`${classPrefix}-is-fixed`]: fixed,
-        'back-top-hidden': !show,
-        'back-top-show': show,
+        [`${name}--fixed`]: fixed,
       })}
-      style={{ zIndex: 99999 }}
+      style={{ zIndex: 99999, opacity: show ? 1 : 0 }}
       onClick={onClick}
     >
       {isString(icon) ? <Icon className={`${name}__icon`} name={icon} /> : icon}
       {text && (
-        <div className={classNames(`${name}__text`)} style={{ width: 'auto', minWidth: 12, maxWidth: 24 }}>
+        <div className={classNames(`${name}__text--${theme}`)} style={{ width: 'auto', minWidth: 12, maxWidth: 24 }}>
           {text}
         </div>
       )}
