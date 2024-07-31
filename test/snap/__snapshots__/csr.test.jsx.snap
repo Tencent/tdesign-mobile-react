@@ -1,103 +1,288 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`csr snapshot test > csr test src/divider/_example/base.tsx 1`] = `
-{
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
+<div>
+  <div
+    class="divider-demo__title"
+  >
+    水平分割线
+  </div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--center"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    />
+  </div>
+  <div
+    class="divider-demo__title"
+  >
+    带文字水平分割线
+  </div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--left"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      文字信息
+    </div>
+  </div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--center"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      文字信息
+    </div>
+  </div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--right"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      文字信息
+    </div>
+  </div>
+  <div
+    class="divider-demo__title"
+    style="margin-bottom: 10px;"
+  >
+    垂直分割线
+  </div>
+  <div
+    class="divider-wrapper"
+  >
+    <span>
+      文字信息
+    </span>
+    <div
+      class="t-divider t-divider--vertical t-divider--center"
+      role="separator"
+    >
       <div
-        class="divider-demo__title"
-      >
-        水平分割线
-      </div>
+        class="t-divider__content"
+      />
+    </div>
+    <span>
+      文字信息
+    </span>
+    <div
+      class="t-divider t-divider--vertical t-divider--center"
+      role="separator"
+    >
       <div
-        class="t-divider t-divider--horizontal t-divider--center"
-        role="separator"
+        class="t-divider__content"
+      />
+    </div>
+    <span>
+      文字信息
+    </span>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/divider/_example/index.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-demo"
+  >
+    <div
+      class="tdesign-mobile-demo-header"
+    >
+      <h1
+        class="tdesign-mobile-demo-header__title"
       >
-        <div
-          class="t-divider__content"
-        />
-      </div>
+        Divider 分割符
+      </h1>
+      <p
+        class="tdesign-mobile-demo-header__summary"
+      >
+        用于分割、组织、细化有一定逻辑的组织元素内容和页面结构。
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
       <div
-        class="divider-demo__title"
+        class="tdesign-mobile-demo-block__header"
       >
-        带文字水平分割线
-      </div>
-      <div
-        class="t-divider t-divider--horizontal t-divider--left"
-        role="separator"
-      >
-        <div
-          class="t-divider__content"
+        <h2
+          class="tdesign-mobile-demo-block__title"
         >
-          文字信息
-        </div>
+          01 组件类型
+        </h2>
       </div>
       <div
-        class="t-divider t-divider--horizontal t-divider--center"
-        role="separator"
+        class="tdesign-mobile-demo-block__slot with-padding"
       >
         <div
-          class="t-divider__content"
+          class="divider-demo__title"
         >
-          文字信息
+          水平分割线
         </div>
-      </div>
-      <div
-        class="t-divider t-divider--horizontal t-divider--right"
-        role="separator"
-      >
         <div
-          class="t-divider__content"
-        >
-          文字信息
-        </div>
-      </div>
-      <div
-        class="divider-demo__title"
-        style="margin-bottom: 10px;"
-      >
-        垂直分割线
-      </div>
-      <div
-        class="divider-wrapper"
-      >
-        <span>
-          文字信息
-        </span>
-        <div
-          class="t-divider t-divider--vertical t-divider--center"
+          class="t-divider t-divider--horizontal t-divider--center"
           role="separator"
         >
           <div
             class="t-divider__content"
           />
         </div>
-        <span>
-          文字信息
-        </span>
         <div
-          class="t-divider t-divider--vertical t-divider--center"
+          class="divider-demo__title"
+        >
+          带文字水平分割线
+        </div>
+        <div
+          class="t-divider t-divider--horizontal t-divider--left"
           role="separator"
         >
           <div
             class="t-divider__content"
-          />
+          >
+            文字信息
+          </div>
         </div>
-        <span>
-          文字信息
-        </span>
+        <div
+          class="t-divider t-divider--horizontal t-divider--center"
+          role="separator"
+        >
+          <div
+            class="t-divider__content"
+          >
+            文字信息
+          </div>
+        </div>
+        <div
+          class="t-divider t-divider--horizontal t-divider--right"
+          role="separator"
+        >
+          <div
+            class="t-divider__content"
+          >
+            文字信息
+          </div>
+        </div>
+        <div
+          class="divider-demo__title"
+          style="margin-bottom: 10px;"
+        >
+          垂直分割线
+        </div>
+        <div
+          class="divider-wrapper"
+        >
+          <span>
+            文字信息
+          </span>
+          <div
+            class="t-divider t-divider--vertical t-divider--center"
+            role="separator"
+          >
+            <div
+              class="t-divider__content"
+            />
+          </div>
+          <span>
+            文字信息
+          </span>
+          <div
+            class="t-divider t-divider--vertical t-divider--center"
+            role="separator"
+          >
+            <div
+              class="t-divider__content"
+            />
+          </div>
+          <span>
+            文字信息
+          </span>
+        </div>
       </div>
     </div>
-  </body>,
-  "container": <div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          02 组件状态
+        </h2>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot with-padding"
+      >
+        <div>
+          <div
+            class="divider-demo__title"
+          >
+            虚线样式
+          </div>
+          <div
+            class="t-divider t-divider--horizontal t-divider--center t-divider--dashed"
+            role="separator"
+          >
+            <div
+              class="t-divider__content"
+            />
+          </div>
+          <div
+            class="t-divider t-divider--horizontal t-divider--left t-divider--dashed"
+            role="separator"
+          >
+            <div
+              class="t-divider__content"
+            >
+              文字信息
+            </div>
+          </div>
+          <div
+            class="t-divider t-divider--horizontal t-divider--center t-divider--dashed"
+            role="separator"
+          >
+            <div
+              class="t-divider__content"
+            >
+              文字信息
+            </div>
+          </div>
+          <div
+            class="t-divider t-divider--horizontal t-divider--right t-divider--dashed"
+            role="separator"
+          >
+            <div
+              class="t-divider__content"
+            >
+              文字信息
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/divider/_example/theme.tsx 1`] = `
+<div>
+  <div>
     <div
       class="divider-demo__title"
     >
-      水平分割线
+      虚线样式
     </div>
     <div
-      class="t-divider t-divider--horizontal t-divider--center"
+      class="t-divider t-divider--horizontal t-divider--center t-divider--dashed"
       role="separator"
     >
       <div
@@ -105,12 +290,7 @@ exports[`csr snapshot test > csr test src/divider/_example/base.tsx 1`] = `
       />
     </div>
     <div
-      class="divider-demo__title"
-    >
-      带文字水平分割线
-    </div>
-    <div
-      class="t-divider t-divider--horizontal t-divider--left"
+      class="t-divider t-divider--horizontal t-divider--left t-divider--dashed"
       role="separator"
     >
       <div
@@ -120,7 +300,7 @@ exports[`csr snapshot test > csr test src/divider/_example/base.tsx 1`] = `
       </div>
     </div>
     <div
-      class="t-divider t-divider--horizontal t-divider--center"
+      class="t-divider t-divider--horizontal t-divider--center t-divider--dashed"
       role="separator"
     >
       <div
@@ -130,7 +310,7 @@ exports[`csr snapshot test > csr test src/divider/_example/base.tsx 1`] = `
       </div>
     </div>
     <div
-      class="t-divider t-divider--horizontal t-divider--right"
+      class="t-divider t-divider--horizontal t-divider--right t-divider--dashed"
       role="separator"
     >
       <div
@@ -139,1025 +319,159 @@ exports[`csr snapshot test > csr test src/divider/_example/base.tsx 1`] = `
         文字信息
       </div>
     </div>
-    <div
-      class="divider-demo__title"
-      style="margin-bottom: 10px;"
-    >
-      垂直分割线
-    </div>
-    <div
-      class="divider-wrapper"
-    >
-      <span>
-        文字信息
-      </span>
-      <div
-        class="t-divider t-divider--vertical t-divider--center"
-        role="separator"
-      >
-        <div
-          class="t-divider__content"
-        />
-      </div>
-      <span>
-        文字信息
-      </span>
-      <div
-        class="t-divider t-divider--vertical t-divider--center"
-        role="separator"
-      >
-        <div
-          class="t-divider__content"
-        />
-      </div>
-      <span>
-        文字信息
-      </span>
-    </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
-
-exports[`csr snapshot test > csr test src/divider/_example/index.tsx 1`] = `
-{
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
-      <div
-        class="tdesign-mobile-demo"
-      >
-        <div
-          class="tdesign-mobile-demo-header"
-        >
-          <h1
-            class="tdesign-mobile-demo-header__title"
-          >
-            Divider 分割符
-          </h1>
-          <p
-            class="tdesign-mobile-demo-header__summary"
-          >
-            用于分割、组织、细化有一定逻辑的组织元素内容和页面结构。
-          </p>
-        </div>
-        <div
-          class="tdesign-mobile-demo-block"
-        >
-          <div
-            class="tdesign-mobile-demo-block__header"
-          >
-            <h2
-              class="tdesign-mobile-demo-block__title"
-            >
-              01 组件类型
-            </h2>
-          </div>
-          <div
-            class="tdesign-mobile-demo-block__slot with-padding"
-          >
-            <div
-              class="divider-demo__title"
-            >
-              水平分割线
-            </div>
-            <div
-              class="t-divider t-divider--horizontal t-divider--center"
-              role="separator"
-            >
-              <div
-                class="t-divider__content"
-              />
-            </div>
-            <div
-              class="divider-demo__title"
-            >
-              带文字水平分割线
-            </div>
-            <div
-              class="t-divider t-divider--horizontal t-divider--left"
-              role="separator"
-            >
-              <div
-                class="t-divider__content"
-              >
-                文字信息
-              </div>
-            </div>
-            <div
-              class="t-divider t-divider--horizontal t-divider--center"
-              role="separator"
-            >
-              <div
-                class="t-divider__content"
-              >
-                文字信息
-              </div>
-            </div>
-            <div
-              class="t-divider t-divider--horizontal t-divider--right"
-              role="separator"
-            >
-              <div
-                class="t-divider__content"
-              >
-                文字信息
-              </div>
-            </div>
-            <div
-              class="divider-demo__title"
-              style="margin-bottom: 10px;"
-            >
-              垂直分割线
-            </div>
-            <div
-              class="divider-wrapper"
-            >
-              <span>
-                文字信息
-              </span>
-              <div
-                class="t-divider t-divider--vertical t-divider--center"
-                role="separator"
-              >
-                <div
-                  class="t-divider__content"
-                />
-              </div>
-              <span>
-                文字信息
-              </span>
-              <div
-                class="t-divider t-divider--vertical t-divider--center"
-                role="separator"
-              >
-                <div
-                  class="t-divider__content"
-                />
-              </div>
-              <span>
-                文字信息
-              </span>
-            </div>
-          </div>
-        </div>
-        <div
-          class="tdesign-mobile-demo-block"
-        >
-          <div
-            class="tdesign-mobile-demo-block__header"
-          >
-            <h2
-              class="tdesign-mobile-demo-block__title"
-            >
-              02 组件状态
-            </h2>
-          </div>
-          <div
-            class="tdesign-mobile-demo-block__slot with-padding"
-          >
-            <div>
-              <div
-                class="divider-demo__title"
-              >
-                虚线样式
-              </div>
-              <div
-                class="t-divider t-divider--horizontal t-divider--center t-divider--dashed"
-                role="separator"
-              >
-                <div
-                  class="t-divider__content"
-                />
-              </div>
-              <div
-                class="t-divider t-divider--horizontal t-divider--left t-divider--dashed"
-                role="separator"
-              >
-                <div
-                  class="t-divider__content"
-                >
-                  文字信息
-                </div>
-              </div>
-              <div
-                class="t-divider t-divider--horizontal t-divider--center t-divider--dashed"
-                role="separator"
-              >
-                <div
-                  class="t-divider__content"
-                >
-                  文字信息
-                </div>
-              </div>
-              <div
-                class="t-divider t-divider--horizontal t-divider--right t-divider--dashed"
-                role="separator"
-              >
-                <div
-                  class="t-divider__content"
-                >
-                  文字信息
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="tdesign-mobile-demo"
-    >
-      <div
-        class="tdesign-mobile-demo-header"
-      >
-        <h1
-          class="tdesign-mobile-demo-header__title"
-        >
-          Divider 分割符
-        </h1>
-        <p
-          class="tdesign-mobile-demo-header__summary"
-        >
-          用于分割、组织、细化有一定逻辑的组织元素内容和页面结构。
-        </p>
-      </div>
-      <div
-        class="tdesign-mobile-demo-block"
-      >
-        <div
-          class="tdesign-mobile-demo-block__header"
-        >
-          <h2
-            class="tdesign-mobile-demo-block__title"
-          >
-            01 组件类型
-          </h2>
-        </div>
-        <div
-          class="tdesign-mobile-demo-block__slot with-padding"
-        >
-          <div
-            class="divider-demo__title"
-          >
-            水平分割线
-          </div>
-          <div
-            class="t-divider t-divider--horizontal t-divider--center"
-            role="separator"
-          >
-            <div
-              class="t-divider__content"
-            />
-          </div>
-          <div
-            class="divider-demo__title"
-          >
-            带文字水平分割线
-          </div>
-          <div
-            class="t-divider t-divider--horizontal t-divider--left"
-            role="separator"
-          >
-            <div
-              class="t-divider__content"
-            >
-              文字信息
-            </div>
-          </div>
-          <div
-            class="t-divider t-divider--horizontal t-divider--center"
-            role="separator"
-          >
-            <div
-              class="t-divider__content"
-            >
-              文字信息
-            </div>
-          </div>
-          <div
-            class="t-divider t-divider--horizontal t-divider--right"
-            role="separator"
-          >
-            <div
-              class="t-divider__content"
-            >
-              文字信息
-            </div>
-          </div>
-          <div
-            class="divider-demo__title"
-            style="margin-bottom: 10px;"
-          >
-            垂直分割线
-          </div>
-          <div
-            class="divider-wrapper"
-          >
-            <span>
-              文字信息
-            </span>
-            <div
-              class="t-divider t-divider--vertical t-divider--center"
-              role="separator"
-            >
-              <div
-                class="t-divider__content"
-              />
-            </div>
-            <span>
-              文字信息
-            </span>
-            <div
-              class="t-divider t-divider--vertical t-divider--center"
-              role="separator"
-            >
-              <div
-                class="t-divider__content"
-              />
-            </div>
-            <span>
-              文字信息
-            </span>
-          </div>
-        </div>
-      </div>
-      <div
-        class="tdesign-mobile-demo-block"
-      >
-        <div
-          class="tdesign-mobile-demo-block__header"
-        >
-          <h2
-            class="tdesign-mobile-demo-block__title"
-          >
-            02 组件状态
-          </h2>
-        </div>
-        <div
-          class="tdesign-mobile-demo-block__slot with-padding"
-        >
-          <div>
-            <div
-              class="divider-demo__title"
-            >
-              虚线样式
-            </div>
-            <div
-              class="t-divider t-divider--horizontal t-divider--center t-divider--dashed"
-              role="separator"
-            >
-              <div
-                class="t-divider__content"
-              />
-            </div>
-            <div
-              class="t-divider t-divider--horizontal t-divider--left t-divider--dashed"
-              role="separator"
-            >
-              <div
-                class="t-divider__content"
-              >
-                文字信息
-              </div>
-            </div>
-            <div
-              class="t-divider t-divider--horizontal t-divider--center t-divider--dashed"
-              role="separator"
-            >
-              <div
-                class="t-divider__content"
-              >
-                文字信息
-              </div>
-            </div>
-            <div
-              class="t-divider t-divider--horizontal t-divider--right t-divider--dashed"
-              role="separator"
-            >
-              <div
-                class="t-divider__content"
-              >
-                文字信息
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
-
-exports[`csr snapshot test > csr test src/divider/_example/theme.tsx 1`] = `
-{
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
-      <div>
-        <div
-          class="divider-demo__title"
-        >
-          虚线样式
-        </div>
-        <div
-          class="t-divider t-divider--horizontal t-divider--center t-divider--dashed"
-          role="separator"
-        >
-          <div
-            class="t-divider__content"
-          />
-        </div>
-        <div
-          class="t-divider t-divider--horizontal t-divider--left t-divider--dashed"
-          role="separator"
-        >
-          <div
-            class="t-divider__content"
-          >
-            文字信息
-          </div>
-        </div>
-        <div
-          class="t-divider t-divider--horizontal t-divider--center t-divider--dashed"
-          role="separator"
-        >
-          <div
-            class="t-divider__content"
-          >
-            文字信息
-          </div>
-        </div>
-        <div
-          class="t-divider t-divider--horizontal t-divider--right t-divider--dashed"
-          role="separator"
-        >
-          <div
-            class="t-divider__content"
-          >
-            文字信息
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div>
-      <div
-        class="divider-demo__title"
-      >
-        虚线样式
-      </div>
-      <div
-        class="t-divider t-divider--horizontal t-divider--center t-divider--dashed"
-        role="separator"
-      >
-        <div
-          class="t-divider__content"
-        />
-      </div>
-      <div
-        class="t-divider t-divider--horizontal t-divider--left t-divider--dashed"
-        role="separator"
-      >
-        <div
-          class="t-divider__content"
-        >
-          文字信息
-        </div>
-      </div>
-      <div
-        class="t-divider t-divider--horizontal t-divider--center t-divider--dashed"
-        role="separator"
-      >
-        <div
-          class="t-divider__content"
-        >
-          文字信息
-        </div>
-      </div>
-      <div
-        class="t-divider t-divider--horizontal t-divider--right t-divider--dashed"
-        role="separator"
-      >
-        <div
-          class="t-divider__content"
-        >
-          文字信息
-        </div>
-      </div>
-    </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+  </div>
+</div>
 `;
 
 exports[`csr snapshot test > csr test src/grid/_example/badge.tsx 1`] = `
-{
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
-      <div
-        class="t-grid"
-      >
-        <div
-          class="t-grid-item"
-          style="flex-basis: 25%; flex-direction: column; padding-left: 0px; padding-right: 0px; align-items: center; justify-content: center; text-align: center;"
-        >
-          <div
-            class="t-badge"
-          >
-            <div
-              class="t-badge__inner t-badge--dot t-badge--has-children t-badge--medium"
-            />
-            <img
-              class="img-4 img-vertical"
-              src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"
-            />
-          </div>
-          <div
-            class="t-grid-item__text"
-            style="padding-left: 0px;"
-          >
-            <div
-              class="t-grid-item__title"
-              style="padding-top: 8px; margin-bottom: 4px;"
-            >
-              <div
-                class="text-4"
-              >
-                标题文字
-              </div>
-            </div>
-            <div
-              class="t-grid-item__description"
-            />
-          </div>
-        </div>
-        <div
-          class="t-grid-item"
-          style="flex-basis: 25%; flex-direction: column; padding-left: 0px; padding-right: 0px; align-items: center; justify-content: center; text-align: center;"
-        >
-          <div
-            class="t-badge"
-          >
-            <div
-              class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
-            >
-              8
-            </div>
-            <img
-              class="img-4 img-vertical"
-              src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"
-            />
-          </div>
-          <div
-            class="t-grid-item__text"
-            style="padding-left: 0px;"
-          >
-            <div
-              class="t-grid-item__title"
-              style="padding-top: 8px; margin-bottom: 4px;"
-            >
-              <div
-                class="text-4"
-              >
-                标题文字
-              </div>
-            </div>
-            <div
-              class="t-grid-item__description"
-            />
-          </div>
-        </div>
-        <div
-          class="t-grid-item"
-          style="flex-basis: 25%; flex-direction: column; padding-left: 0px; padding-right: 0px; align-items: center; justify-content: center; text-align: center;"
-        >
-          <div
-            class="t-badge"
-          >
-            <div
-              class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
-            >
-              new
-            </div>
-            <img
-              class="img-4 img-vertical"
-              src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"
-            />
-          </div>
-          <div
-            class="t-grid-item__text"
-            style="padding-left: 0px;"
-          >
-            <div
-              class="t-grid-item__title"
-              style="padding-top: 8px; margin-bottom: 4px;"
-            >
-              <div
-                class="text-4"
-              >
-                标题文字
-              </div>
-            </div>
-            <div
-              class="t-grid-item__description"
-            />
-          </div>
-        </div>
-        <div
-          class="t-grid-item"
-          style="flex-basis: 25%; flex-direction: column; padding-left: 0px; padding-right: 0px; align-items: center; justify-content: center; text-align: center;"
-        >
-          <div
-            class="t-badge"
-          >
-            <div
-              class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
-            >
-              ···
-            </div>
-            <img
-              class="img-4 img-vertical"
-              src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"
-            />
-          </div>
-          <div
-            class="t-grid-item__text"
-            style="padding-left: 0px;"
-          >
-            <div
-              class="t-grid-item__title"
-              style="padding-top: 8px; margin-bottom: 4px;"
-            >
-              <div
-                class="text-4"
-              >
-                标题文字
-              </div>
-            </div>
-            <div
-              class="t-grid-item__description"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
+<div>
+  <div
+    class="t-grid"
+  >
     <div
-      class="t-grid"
+      class="t-grid-item"
+      style="flex-basis: 25%; flex-direction: column; padding-left: 0px; padding-right: 0px; align-items: center; justify-content: center; text-align: center;"
     >
       <div
-        class="t-grid-item"
-        style="flex-basis: 25%; flex-direction: column; padding-left: 0px; padding-right: 0px; align-items: center; justify-content: center; text-align: center;"
+        class="t-badge"
       >
         <div
-          class="t-badge"
-        >
-          <div
-            class="t-badge__inner t-badge--dot t-badge--has-children t-badge--medium"
-          />
-          <img
-            class="img-4 img-vertical"
-            src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"
-          />
-        </div>
-        <div
-          class="t-grid-item__text"
-          style="padding-left: 0px;"
-        >
-          <div
-            class="t-grid-item__title"
-            style="padding-top: 8px; margin-bottom: 4px;"
-          >
-            <div
-              class="text-4"
-            >
-              标题文字
-            </div>
-          </div>
-          <div
-            class="t-grid-item__description"
-          />
-        </div>
+          class="t-badge__inner t-badge--dot t-badge--has-children t-badge--medium"
+        />
+        <img
+          class="img-4 img-vertical"
+          src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"
+        />
       </div>
       <div
-        class="t-grid-item"
-        style="flex-basis: 25%; flex-direction: column; padding-left: 0px; padding-right: 0px; align-items: center; justify-content: center; text-align: center;"
+        class="t-grid-item__text"
+        style="padding-left: 0px;"
       >
         <div
-          class="t-badge"
+          class="t-grid-item__title"
+          style="padding-top: 8px; margin-bottom: 4px;"
         >
           <div
-            class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
+            class="text-4"
           >
-            8
+            标题文字
           </div>
-          <img
-            class="img-4 img-vertical"
-            src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"
-          />
         </div>
         <div
-          class="t-grid-item__text"
-          style="padding-left: 0px;"
-        >
-          <div
-            class="t-grid-item__title"
-            style="padding-top: 8px; margin-bottom: 4px;"
-          >
-            <div
-              class="text-4"
-            >
-              标题文字
-            </div>
-          </div>
-          <div
-            class="t-grid-item__description"
-          />
-        </div>
-      </div>
-      <div
-        class="t-grid-item"
-        style="flex-basis: 25%; flex-direction: column; padding-left: 0px; padding-right: 0px; align-items: center; justify-content: center; text-align: center;"
-      >
-        <div
-          class="t-badge"
-        >
-          <div
-            class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
-          >
-            new
-          </div>
-          <img
-            class="img-4 img-vertical"
-            src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"
-          />
-        </div>
-        <div
-          class="t-grid-item__text"
-          style="padding-left: 0px;"
-        >
-          <div
-            class="t-grid-item__title"
-            style="padding-top: 8px; margin-bottom: 4px;"
-          >
-            <div
-              class="text-4"
-            >
-              标题文字
-            </div>
-          </div>
-          <div
-            class="t-grid-item__description"
-          />
-        </div>
-      </div>
-      <div
-        class="t-grid-item"
-        style="flex-basis: 25%; flex-direction: column; padding-left: 0px; padding-right: 0px; align-items: center; justify-content: center; text-align: center;"
-      >
-        <div
-          class="t-badge"
-        >
-          <div
-            class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
-          >
-            ···
-          </div>
-          <img
-            class="img-4 img-vertical"
-            src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"
-          />
-        </div>
-        <div
-          class="t-grid-item__text"
-          style="padding-left: 0px;"
-        >
-          <div
-            class="t-grid-item__title"
-            style="padding-top: 8px; margin-bottom: 4px;"
-          >
-            <div
-              class="text-4"
-            >
-              标题文字
-            </div>
-          </div>
-          <div
-            class="t-grid-item__description"
-          />
-        </div>
+          class="t-grid-item__description"
+        />
       </div>
     </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+    <div
+      class="t-grid-item"
+      style="flex-basis: 25%; flex-direction: column; padding-left: 0px; padding-right: 0px; align-items: center; justify-content: center; text-align: center;"
+    >
+      <div
+        class="t-badge"
+      >
+        <div
+          class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
+        >
+          8
+        </div>
+        <img
+          class="img-4 img-vertical"
+          src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"
+        />
+      </div>
+      <div
+        class="t-grid-item__text"
+        style="padding-left: 0px;"
+      >
+        <div
+          class="t-grid-item__title"
+          style="padding-top: 8px; margin-bottom: 4px;"
+        >
+          <div
+            class="text-4"
+          >
+            标题文字
+          </div>
+        </div>
+        <div
+          class="t-grid-item__description"
+        />
+      </div>
+    </div>
+    <div
+      class="t-grid-item"
+      style="flex-basis: 25%; flex-direction: column; padding-left: 0px; padding-right: 0px; align-items: center; justify-content: center; text-align: center;"
+    >
+      <div
+        class="t-badge"
+      >
+        <div
+          class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
+        >
+          new
+        </div>
+        <img
+          class="img-4 img-vertical"
+          src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"
+        />
+      </div>
+      <div
+        class="t-grid-item__text"
+        style="padding-left: 0px;"
+      >
+        <div
+          class="t-grid-item__title"
+          style="padding-top: 8px; margin-bottom: 4px;"
+        >
+          <div
+            class="text-4"
+          >
+            标题文字
+          </div>
+        </div>
+        <div
+          class="t-grid-item__description"
+        />
+      </div>
+    </div>
+    <div
+      class="t-grid-item"
+      style="flex-basis: 25%; flex-direction: column; padding-left: 0px; padding-right: 0px; align-items: center; justify-content: center; text-align: center;"
+    >
+      <div
+        class="t-badge"
+      >
+        <div
+          class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
+        >
+          ···
+        </div>
+        <img
+          class="img-4 img-vertical"
+          src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"
+        />
+      </div>
+      <div
+        class="t-grid-item__text"
+        style="padding-left: 0px;"
+      >
+        <div
+          class="t-grid-item__title"
+          style="padding-top: 8px; margin-bottom: 4px;"
+        >
+          <div
+            class="text-4"
+          >
+            标题文字
+          </div>
+        </div>
+        <div
+          class="t-grid-item__description"
+        />
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`ssr snapshot test > ssr test src/divider/_example/base.tsx 1`] = `"<div class="divider-demo__title">水平分割线</div><div class="t-divider t-divider--horizontal t-divider--center" role="separator"><div class="t-divider__content"></div></div><div class="divider-demo__title">带文字水平分割线</div><div class="t-divider t-divider--horizontal t-divider--left" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--center" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--right" role="separator"><div class="t-divider__content">文字信息</div></div><div class="divider-demo__title" style="margin-bottom:10px">垂直分割线</div><div class="divider-wrapper"><span>文字信息</span><div class="t-divider t-divider--vertical t-divider--center" role="separator"><div class="t-divider__content"></div></div><span>文字信息</span><div class="t-divider t-divider--vertical t-divider--center" role="separator"><div class="t-divider__content"></div></div><span>文字信息</span></div>"`;
