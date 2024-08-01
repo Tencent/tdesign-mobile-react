@@ -1,9 +1,9 @@
 import React from 'react';
-import { Result } from 'tdesign-mobile-react';
+import { Result, ResultProps } from 'tdesign-mobile-react';
 import './style/index.less';
 
 export default function ThemeResult() {
-  const resultList = [
+  const resultList: Array<ResultProps> = [
     {
       title: '成功状态',
       theme: 'success',
