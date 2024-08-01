@@ -215,7 +215,7 @@ export default {
     {
       title: 'Result 结果',
       name: 'result',
-      component: () => import('tdesign-mobile-react/result/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/result/_example/index.tsx'),
     }
   ],
 };
