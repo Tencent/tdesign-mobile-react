@@ -27,17 +27,15 @@ export default function ThemeResult() {
   ];
   return (
     <div>
-      {
-        resultList.map(resultInfo => (
-          <Result
-            className="space"
-            key={resultInfo.theme}
-            title={resultInfo.title}
-            description={resultInfo.description}
-            theme={resultInfo.theme}
-          />
-        ))
-      }
+      {resultList.map((resultInfo) => (
+        <Result
+          className="space"
+          key={resultInfo.theme}
+          title={resultInfo.title}
+          description={resultInfo.description}
+          theme={resultInfo.theme}
+        />
+      ))}
     </div>
   );
 }
