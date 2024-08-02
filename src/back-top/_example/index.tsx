@@ -7,7 +7,7 @@ import BaseDemo from './base';
 
 export default function Base() {
   const [visible, setVisible] = useState(false);
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const onClose = () => {
     setVisible(true);
