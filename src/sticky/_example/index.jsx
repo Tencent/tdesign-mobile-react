@@ -4,7 +4,7 @@ import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './style/index.less';
 
 import BaseDemo from './base';
-import OffsetTopDemo from './offsetTop';
+import OffsetTopDemo from './offset';
 import ContainerDemo from './container';
 
 export default function Base() {
@@ -12,7 +12,7 @@ export default function Base() {
     <div className="tdesign-mobile-demo">
       <TDemoHeader title="Sticky 吸顶" summary="用于常驻页面顶部的信息，操作展示" />
       <div className="tdesign-demo-block-wrap">
-        <TDemoBlock title="01 类型" summary="基础吸顶">
+        <TDemoBlock summary="基础吸顶">
           <BaseDemo />
         </TDemoBlock>
         <TDemoBlock summary="吸顶距离">
