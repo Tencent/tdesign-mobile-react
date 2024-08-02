@@ -1,11 +1,12 @@
 import React, { useMemo, useCallback } from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import isString from 'lodash/isString';
 import { ChevronRightIcon } from 'tdesign-icons-react';
 
 import { TdCellProps } from './type';
 import { cellDefaultProps } from './defaultProps';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
+import useHover from '../_util/useHover';
 import useConfig from '../_util/useConfig';
 
 export interface CellProps extends TdCellProps, NativeProps {}
@@ -23,7 +24,6 @@ const Cell: React.FC<CellProps> = (props) => {
     required,
     rightIcon,
     title,
-    url,
     onClick,
     children,
   } = props;
@@ -32,20 +32,19 @@ const Cell: React.FC<CellProps> = (props) => {
 
   const name = `${classPrefix}-cell`;
 
-  const renderIcon = useMemo(() => {
-    let content: React.ReactNode | null = null;
-    if (arrow) {
-      content = <ChevronRightIcon size={24} />;
-    } else if (rightIcon) {
-      content = rightIcon;
-    }
+  const classNames = useMemo(
+    () => [
+      `${name}`,
+      `${name}--${align}`,
+      {
+        [`${name}--borderless`]: !bordered,
+      },
+    ],
+    [align, bordered, name],
+  );
 
-    if (content === null) {
-      return content;
-    }
-
-    return <div className={`${name}__right-icon`}>{content}</div>;
-  }, [arrow, rightIcon, name]);
+  const hoverDisabled = useMemo(() => !hover, [hover]);
+  const ref = useHover({ className: `${name}--hover`, disabled: hoverDisabled });
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -54,41 +53,52 @@ const Cell: React.FC<CellProps> = (props) => {
     [onClick],
   );
 
-  const content = (
-    <div
-      className={classNames([`${name}`, `${name}--${align}`], {
-        [`${name}--bordered`]: bordered,
-        [`${name}--hover`]: hover,
-      })}
-      onClick={handleClick}
-    >
-      {(leftIcon || image) && (
-        <div className={`${name}__left-icon`}>
-          {leftIcon}
-          {isString(image) ? <img src={image} className={`${name}__image`} /> : image}
-        </div>
-      )}
-      {title && (
-        <div className={`${name}__title`}>
-          {title}
-          {required && <span className={`${name}--required`}>&nbsp;*</span>}
-          {description && <div className={`${name}__description`}>{description}</div>}
-        </div>
-      )}
-      {(note || children) && <div className={`${name}__note`}>{children ? children : note}</div>}
-      {renderIcon}
+  const readerImage = () => {
+    if (isString(image)) {
+      return <img src={image} className={`${name}__left-image`} />;
+    }
+    return image;
+  };
+
+  const readerLeft = () => (
+    <div className={`${name}__left`}>
+      {leftIcon && <div className={`${name}__left-icon`}>{leftIcon}</div>}
+      {readerImage()}
     </div>
   );
 
+  const readerTitle = () => {
+    if (!title) {
+      return null;
+    }
+    return (
+      <div className={`${name}__title`}>
+        {title}
+        {required && <span className={`${name}--required`}>&nbsp;*</span>}
+        {description && <div className={`${name}__description`}>{description}</div>}
+      </div>
+    );
+  };
+  const readerRight = () => {
+    const Icon = arrow ? <ChevronRightIcon /> : rightIcon;
+    if (!Icon) {
+      return null;
+    }
+    return (
+      <div className={`${name}__right`}>
+        <div className={`${name}__right-icon`}>{Icon}</div>
+      </div>
+    );
+  };
+
   return withNativeProps(
     props,
-    url ? (
-      <a style={{ textDecoration: 'none' }} href={url} rel="noreferrer">
-        {content}
-      </a>
-    ) : (
-      content
-    ),
+    <div ref={ref} className={classnames(classNames)} onClick={handleClick}>
+      {readerLeft()}
+      {readerTitle()}
+      {note ? <div className={`${name}__note`}>{note}</div> : children}
+      {readerRight()}
+    </div>,
   );
 };
 
