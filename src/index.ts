@@ -1,7 +1,8 @@
 /**
- * 基础组件（除icon，3个）
+ * 基础组件（除icon，5个）
  */
 export * from './button';
+export * from './col';
 export * from './divider';
 export * from './fab';
 export * from './progress';
@@ -69,3 +70,4 @@ export * from './notice-bar';
  * 辅助功能组件
  */
 export * from './overlay';
+export * from './row';

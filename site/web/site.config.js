@@ -35,6 +35,12 @@ export default {
           component: () => import('tdesign-mobile-react/button/button.md'),
         },
         {
+          title: 'Layout 布局',
+          name: 'col',
+          path: '/mobile-react/components/col',
+          component: () => import('tdesign-mobile-react/col/col.md'),
+        },
+        {
           title: 'Fab 悬浮按钮',
           name: 'fab',
           path: '/mobile-react/components/fab',

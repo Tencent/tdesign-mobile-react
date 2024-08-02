@@ -6,6 +6,11 @@ export default {
       component: () => import('tdesign-mobile-react/button/_example/index.jsx'),
     },
     {
+      title: 'Layout 布局',
+      name: 'col',
+      component: () => import('tdesign-mobile-react/col/_example/index.tsx'),
+    },
+    {
       title: 'Divider 分割符',
       name: 'divider',
       component: () => import('tdesign-mobile-react/divider/_example/index.tsx'),

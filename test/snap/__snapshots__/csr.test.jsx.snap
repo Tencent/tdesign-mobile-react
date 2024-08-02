@@ -1,5 +1,248 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`csr snapshot test > csr test src/col/_example/base.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-demo"
+  >
+    <div
+      class="t-row"
+    >
+      <div
+        class="t-col dark t-col--8 t-col--offset-0"
+      >
+        col-8
+      </div>
+      <div
+        class="t-col light t-col--8 t-col--offset-0"
+      >
+        col-8
+      </div>
+      <div
+        class="t-col dark t-col--8 t-col--offset-0"
+      >
+        col-8
+      </div>
+    </div>
+    <div
+      class="t-row"
+    >
+      <div
+        class="t-col dark t-col--4 t-col--offset-0"
+      >
+        col-4
+      </div>
+      <div
+        class="t-col light t-col--16 t-col--offset-4"
+      >
+        col-16 col-offset-4
+      </div>
+    </div>
+    <div
+      class="t-row"
+    >
+      <div
+        class="t-col dark t-col--12 t-col--offset-12"
+      >
+        col-12 col-offset-12
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/col/_example/index.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-demo"
+  >
+    <div
+      class="tdesign-mobile-demo-header"
+    >
+      <h1
+        class="tdesign-mobile-demo-header__title"
+      >
+        Layout 布局
+      </h1>
+      <p
+        class="tdesign-mobile-demo-header__summary"
+      >
+        以规则的网格阵列来指导和规范页面中的版面布局以及信息分布，提高界面内布局的一致性，节约成本。
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          01 组件类型
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          基础用法
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="tdesign-mobile-demo"
+        >
+          <div
+            class="t-row"
+          >
+            <div
+              class="t-col dark t-col--8 t-col--offset-0"
+            >
+              col-8
+            </div>
+            <div
+              class="t-col light t-col--8 t-col--offset-0"
+            >
+              col-8
+            </div>
+            <div
+              class="t-col dark t-col--8 t-col--offset-0"
+            >
+              col-8
+            </div>
+          </div>
+          <div
+            class="t-row"
+          >
+            <div
+              class="t-col dark t-col--4 t-col--offset-0"
+            >
+              col-4
+            </div>
+            <div
+              class="t-col light t-col--16 t-col--offset-4"
+            >
+              col-16 col-offset-4
+            </div>
+          </div>
+          <div
+            class="t-row"
+          >
+            <div
+              class="t-col dark t-col--12 t-col--offset-12"
+            >
+              col-12 col-offset-12
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          在列元素之间增加间距
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="tdesign-mobile-demo"
+        >
+          <div
+            class="t-row"
+            style="margin-right: -8px; margin-left: -8px;"
+          >
+            <div
+              class="t-col t-col--8 t-col--offset-0"
+              style="padding-right: 8px; padding-left: 8px;"
+            >
+              <div
+                class="dark"
+              >
+                col-8
+              </div>
+            </div>
+            <div
+              class="t-col t-col--8 t-col--offset-0"
+              style="padding-right: 8px; padding-left: 8px;"
+            >
+              <div
+                class="dark"
+              >
+                col-8
+              </div>
+            </div>
+            <div
+              class="t-col t-col--8 t-col--offset-0"
+              style="padding-right: 8px; padding-left: 8px;"
+            >
+              <div
+                class="dark"
+              >
+                col-8
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/col/_example/offset.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-demo"
+  >
+    <div
+      class="t-row"
+      style="margin-right: -8px; margin-left: -8px;"
+    >
+      <div
+        class="t-col t-col--8 t-col--offset-0"
+        style="padding-right: 8px; padding-left: 8px;"
+      >
+        <div
+          class="dark"
+        >
+          col-8
+        </div>
+      </div>
+      <div
+        class="t-col t-col--8 t-col--offset-0"
+        style="padding-right: 8px; padding-left: 8px;"
+      >
+        <div
+          class="dark"
+        >
+          col-8
+        </div>
+      </div>
+      <div
+        class="t-col t-col--8 t-col--offset-0"
+        style="padding-right: 8px; padding-left: 8px;"
+      >
+        <div
+          class="dark"
+        >
+          col-8
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`csr snapshot test > csr test src/divider/_example/base.tsx 1`] = `
 <div>
   <div
@@ -473,6 +716,12 @@ exports[`csr snapshot test > csr test src/grid/_example/badge.tsx 1`] = `
   </div>
 </div>
 `;
+
+exports[`ssr snapshot test > ssr test src/col/_example/base.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="t-row"><div class="t-col dark t-col--8 t-col--offset-0">col-8</div><div class="t-col light t-col--8 t-col--offset-0">col-8</div><div class="t-col dark t-col--8 t-col--offset-0">col-8</div></div><div class="t-row"><div class="t-col dark t-col--4 t-col--offset-0">col-4</div><div class="t-col light t-col--16 t-col--offset-4">col-16 col-offset-4</div></div><div class="t-row"><div class="t-col dark t-col--12 t-col--offset-12">col-12 col-offset-12</div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/col/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Layout 布局</h1><p class="tdesign-mobile-demo-header__summary">以规则的网格阵列来指导和规范页面中的版面布局以及信息分布，提高界面内布局的一致性，节约成本。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">基础用法</p></div><div class="tdesign-mobile-demo-block__slot"><div class="tdesign-mobile-demo"><div class="t-row"><div class="t-col dark t-col--8 t-col--offset-0">col-8</div><div class="t-col light t-col--8 t-col--offset-0">col-8</div><div class="t-col dark t-col--8 t-col--offset-0">col-8</div></div><div class="t-row"><div class="t-col dark t-col--4 t-col--offset-0">col-4</div><div class="t-col light t-col--16 t-col--offset-4">col-16 col-offset-4</div></div><div class="t-row"><div class="t-col dark t-col--12 t-col--offset-12">col-12 col-offset-12</div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">在列元素之间增加间距</p></div><div class="tdesign-mobile-demo-block__slot"><div class="tdesign-mobile-demo"><div class="t-row" style="margin-right:-8px;margin-left:-8px"><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/col/_example/offset.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="t-row" style="margin-right:-8px;margin-left:-8px"><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/divider/_example/base.tsx 1`] = `"<div class="divider-demo__title">水平分割线</div><div class="t-divider t-divider--horizontal t-divider--center" role="separator"><div class="t-divider__content"></div></div><div class="divider-demo__title">带文字水平分割线</div><div class="t-divider t-divider--horizontal t-divider--left" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--center" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--right" role="separator"><div class="t-divider__content">文字信息</div></div><div class="divider-demo__title" style="margin-bottom:10px">垂直分割线</div><div class="divider-wrapper"><span>文字信息</span><div class="t-divider t-divider--vertical t-divider--center" role="separator"><div class="t-divider__content"></div></div><span>文字信息</span><div class="t-divider t-divider--vertical t-divider--center" role="separator"><div class="t-divider__content"></div></div><span>文字信息</span></div>"`;
 
