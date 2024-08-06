@@ -6,7 +6,7 @@ import { ChevronRightIcon } from 'tdesign-icons-react';
 import { TdCellProps } from './type';
 import { cellDefaultProps } from './defaultProps';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
-import useHover from '../_util/useHover';
+import useHover from '../hooks/useHover';
 import useConfig from '../_util/useConfig';
 
 export interface CellProps extends TdCellProps, NativeProps {}

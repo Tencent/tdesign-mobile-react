@@ -2,20 +2,28 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from 'tdesign-mobile-react/button';
 
-export const demoFiles = import.meta.globEager('../../src/**/_example/*.jsx');
+export const jsxDemoFiles = import.meta.globEager('../../src/**/_example/*.jsx');
+export const tsxDemoFiles = import.meta.globEager('../../src/**/_example/*.tsx');
 
 const demoObject = {};
-Object.keys(demoFiles).forEach((key) => {
-  const match = key.match(/([\w-]+)._example.([\w-]+).jsx/);
-  const [, componentName, demoName] = match;
 
-  demoObject[`${componentName}/${demoName}`] = demoFiles[key].default;
-  if (demoObject[componentName]) {
-    demoObject[componentName].push(demoName);
-  } else {
-    demoObject[componentName] = [demoName];
-  }
-});
+function handleDemoComponents(allDemoFiles, ext) {
+  const regexp = new RegExp(`([\\w-]+)._example.([\\w-]+).${ext}`);
+  Object.keys(allDemoFiles).forEach((key) => {
+    const match = key.match(regexp);
+    const [, componentName, demoName] = match;
+
+    demoObject[`${componentName}/${demoName}`] = allDemoFiles[key].default;
+    if (demoObject[componentName]) {
+      demoObject[componentName].push(demoName);
+    } else {
+      demoObject[componentName] = [demoName];
+    }
+  });
+}
+
+handleDemoComponents(jsxDemoFiles, 'jsx');
+handleDemoComponents(tsxDemoFiles, 'tsx');
 
 export default function Demo() {
   const location = useLocation();
@@ -24,17 +32,19 @@ export default function Demo() {
   const demoList = demoObject[componentName];
   const demoFunc = demoObject[`${componentName}/${demoName}`];
 
-  return demoFunc ? demoFunc() : (
+  return demoFunc ? (
+    demoFunc()
+  ) : (
     <ul style={{ margin: '48px 200px' }}>
-      {
-        demoList.map(demoName => (
-          <li key={demoName}>
-            <Link to={`/mobile-react/demos/${componentName}/${demoName}`}>
-              <Button style={{ fontSize: 18 }} variant="text">{demoName}</Button>
-            </Link>
-          </li>
-        ))
-      }
+      {demoList.map((demoName) => (
+        <li key={demoName}>
+          <Link to={`/mobile-react/demos/${componentName}/${demoName}`}>
+            <Button style={{ fontSize: 18 }} variant="text">
+              {demoName}
+            </Button>
+          </Link>
+        </li>
+      ))}
     </ul>
   );
 }
