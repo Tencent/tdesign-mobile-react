@@ -7,7 +7,8 @@ import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import useConfig from '../_util/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
 
-export interface ResultProps extends TdResultProps, NativeProps {}
+export interface ResultProps extends TdResultProps, NativeProps {
+}
 
 const Result: React.FC<ResultProps> = (props) => {
   const { description, image, theme, title } = useDefaultProps(props, resultDefaultProps);
@@ -64,5 +65,4 @@ const Result: React.FC<ResultProps> = (props) => {
   );
 };
 Result.displayName = 'Result';
-Result.defaultProps = resultDefaultProps;
 export default Result;
