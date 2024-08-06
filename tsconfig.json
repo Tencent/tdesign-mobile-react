@@ -26,7 +26,6 @@
   },
   "include": ["./src", "./global.d.ts"],
   "exclude": [
-    "**/**/_example/*",
     "node_modules",
     "src/_common",
     "dist",
