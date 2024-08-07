@@ -19,7 +19,6 @@ note | TNode | - | Typescript：`string \| TNode`。[see more ts definition](htt
 required | Boolean | false | \- | N
 rightIcon | TElement | - | Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 title | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-url | String | - | \- | N
 onClick | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/>Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 
 
