@@ -43,7 +43,7 @@ export default {
     {
       title: 'Progress 进度条',
       name: 'progress',
-      component: () => import('tdesign-mobile-react/progress/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/progress/_example/index.tsx'),
     },
     {
       title: 'Slider 滑动选择器',
