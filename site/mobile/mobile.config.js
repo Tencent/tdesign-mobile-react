@@ -212,5 +212,10 @@ export default {
       name: 'notice-bar',
       component: () => import('tdesign-mobile-react/notice-bar/_example/mobile.jsx'),
     },
+    {
+      title: 'Result 结果',
+      name: 'result',
+      component: () => import('tdesign-mobile-react/result/_example/index.tsx'),
+    }
   ],
 };

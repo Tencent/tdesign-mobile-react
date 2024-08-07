@@ -252,6 +252,12 @@ export default {
         //   component: () => import('tdesign-mobile-react/image-viewer/image-viewer.md'),
         // },
         {
+          title: 'Result 结果',
+          name: 'result',
+          path: '/mobile-react/components/result',
+          component: () => import('tdesign-mobile-react/result/result.md'),
+        },
+        {
           title: 'Skeleton 骨架屏',
           name: 'skeleton',
           path: '/mobile-react/components/skeleton',
