@@ -107,7 +107,7 @@ jobs:
 
           if [ "$working_tree_clean" -eq "1" ]; then
             echo "nothing to commit, working tree clean"
-            exit 0
+            return 0
           fi
 
           if [ "$count_both_modified" -gt "0" ]&&[ "$both_modified_csr_snap" -eq "0" ]&&[ "$both_modified_ssr_snap" -eq "0" ]; then
@@ -124,7 +124,7 @@ jobs:
               git checkout --theirs test/snap/__snapshots__/ssr.test.jsx.snap
             fi
             git commit -am "chore: merge develop fix snap conflict"
-            exit 0
+            return 0
           fi
 
           git commit -am "chore: merge develop"
@@ -139,8 +139,6 @@ jobs:
           working_tree_clean=$(git status | grep -c 'nothing to commit, working tree clean')
           if [ "$working_tree_clean" -eq "0" ]; then
             git add .
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
             git commit -m "chore: update snapshot"
           fi
       - name: git push
