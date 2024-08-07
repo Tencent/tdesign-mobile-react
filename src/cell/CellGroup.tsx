@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import classnames from 'classnames';
 import useConfig from '../_util/useConfig';
-import { TdCellGroupProps } from '../cell/type';
+import { TdCellGroupProps } from './type';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 
 export type CellGroupProps = TdCellGroupProps & NativeProps;

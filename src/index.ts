@@ -36,7 +36,6 @@ export * from './upload';
 export * from './avatar';
 export * from './badge';
 export * from './cell';
-export * from './cell-group';
 export * from './count-down';
 export * from './grid';
 export * from './image';
