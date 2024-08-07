@@ -1,5 +1,293 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`csr snapshot test > csr test src/back-top/_example/base.tsx 1`] = `
+<div>
+  <div
+    class="button-group"
+  >
+    <button
+      class="t-button t-button--outline t-button--primary button t-size-default t-button--shape-rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         
+        圆形返回顶部
+      </span>
+    </button>
+    <button
+      class="t-button t-button--outline t-button--primary button t-size-default t-button--shape-rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         
+        半圆形返回顶部
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/back-top/_example/index.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-react-demo"
+  >
+    <div
+      class="tdesign-mobile-demo-header"
+    >
+      <h1
+        class="tdesign-mobile-demo-header__title"
+      >
+        BackTop 返回顶部
+      </h1>
+      <p
+        class="tdesign-mobile-demo-header__summary"
+      >
+        当页面过长往下滑动是会出现返回顶部的便捷操作，帮助用户快速回到页面顶部
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          形状
+        </h2>
+        
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="button-group"
+        >
+          <button
+            class="t-button t-button--outline t-button--primary button t-size-default t-button--shape-rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__text"
+            >
+               
+              圆形返回顶部
+            </span>
+          </button>
+          <button
+            class="t-button t-button--outline t-button--primary button t-size-default t-button--shape-rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__text"
+            >
+               
+              半圆形返回顶部
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="group"
+    >
+      <div
+        class="item"
+      >
+        <div
+          class="t-skeleton t-skeleton--text"
+        >
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+              style="width: 165.5px; height: 165.5px; border-radius: 12px;"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+              style="width: 100px;"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="item"
+      >
+        <div
+          class="t-skeleton t-skeleton--text"
+        >
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+              style="width: 165.5px; height: 165.5px; border-radius: 12px;"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+              style="width: 100px;"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="item"
+      >
+        <div
+          class="t-skeleton t-skeleton--text"
+        >
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+              style="width: 165.5px; height: 165.5px; border-radius: 12px;"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+              style="width: 100px;"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="item"
+      >
+        <div
+          class="t-skeleton t-skeleton--text"
+        >
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+              style="width: 165.5px; height: 165.5px; border-radius: 12px;"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+              style="width: 100px;"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="item"
+      >
+        <div
+          class="t-skeleton t-skeleton--text"
+        >
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+              style="width: 165.5px; height: 165.5px; border-radius: 12px;"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+              style="width: 100px;"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="item"
+      >
+        <div
+          class="t-skeleton t-skeleton--text"
+        >
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+              style="width: 165.5px; height: 165.5px; border-radius: 12px;"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text"
+              style="width: 100px;"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`csr snapshot test > csr test src/divider/_example/base.tsx 1`] = `
 <div>
   <div
@@ -2408,6 +2696,10 @@ exports[`csr snapshot test > csr test src/result/_example/theme.tsx 1`] = `
   </div>
 </div>
 `;
+
+exports[`ssr snapshot test > ssr test src/back-top/_example/base.tsx 1`] = `"<div class="button-group"><button type="button" class="t-button t-button--outline t-button--primary button t-size-default t-button--shape-rectangle"><span class="t-button__text"> <!-- -->圆形返回顶部</span></button><button type="button" class="t-button t-button--outline t-button--primary button t-size-default t-button--shape-rectangle"><span class="t-button__text"> <!-- -->半圆形返回顶部</span></button></div>"`;
+
+exports[`ssr snapshot test > ssr test src/back-top/_example/index.tsx 1`] = `"<div class="tdesign-mobile-react-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">BackTop 返回顶部</h1><p class="tdesign-mobile-demo-header__summary">当页面过长往下滑动是会出现返回顶部的便捷操作，帮助用户快速回到页面顶部</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">形状</h2></div><div class="tdesign-mobile-demo-block__slot"><div class="button-group"><button type="button" class="t-button t-button--outline t-button--primary button t-size-default t-button--shape-rectangle"><span class="t-button__text"> <!-- -->圆形返回顶部</span></button><button type="button" class="t-button t-button--outline t-button--primary button t-size-default t-button--shape-rectangle"><span class="t-button__text"> <!-- -->半圆形返回顶部</span></button></div></div></div><div class="group"><div class="item"><div class="t-skeleton t-skeleton--text"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:100px"></div></div></div></div><div class="item"><div class="t-skeleton t-skeleton--text"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:100px"></div></div></div></div><div class="item"><div class="t-skeleton t-skeleton--text"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:100px"></div></div></div></div><div class="item"><div class="t-skeleton t-skeleton--text"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:100px"></div></div></div></div><div class="item"><div class="t-skeleton t-skeleton--text"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:100px"></div></div></div></div><div class="item"><div class="t-skeleton t-skeleton--text"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:100px"></div></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/divider/_example/base.tsx 1`] = `"<div class="divider-demo__title">水平分割线</div><div class="t-divider t-divider--horizontal t-divider--center" role="separator"><div class="t-divider__content"></div></div><div class="divider-demo__title">带文字水平分割线</div><div class="t-divider t-divider--horizontal t-divider--left" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--center" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--right" role="separator"><div class="t-divider__content">文字信息</div></div><div class="divider-demo__title" style="margin-bottom:10px">垂直分割线</div><div class="divider-wrapper"><span>文字信息</span><div class="t-divider t-divider--vertical t-divider--center" role="separator"><div class="t-divider__content"></div></div><span>文字信息</span><div class="t-divider t-divider--vertical t-divider--center" role="separator"><div class="t-divider__content"></div></div><span>文字信息</span></div>"`;
 

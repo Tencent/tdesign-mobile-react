@@ -110,7 +110,7 @@ export default {
     {
       title: 'BackTop 返回顶部',
       name: 'back-top',
-      component: () => import('tdesign-mobile-react/back-top/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/back-top/_example/index.tsx'),
     },
     {
       title: 'Checkbox 多选框',
