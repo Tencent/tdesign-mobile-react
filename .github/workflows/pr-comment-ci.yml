@@ -87,11 +87,48 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           token: ${{ secrets.PERSONAL_TOKEN }}
       - name: gh checkout pr
         env:
           GH_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         run: gh pr checkout ${{ github.event.issue.number }} --recurse-submodules
+      - name: merge develop
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git merge develop --no-commit || true
+      - name: check conflicts
+        run: |
+          count_both_modified=$(git status | grep -c 'both modified:')
+          working_tree_clean=$(git status | grep -c 'nothing to commit, working tree clean')
+          both_modified_csr_snap=$(git status | grep 'both modified:' | grep -c 'csr.test.jsx.snap')
+          both_modified_ssr_snap=$(git status | grep 'both modified:' | grep -c 'ssr.test.jsx.snap')
+
+          if [ "$working_tree_clean" -eq "1" ]; then
+            echo "nothing to commit, working tree clean"
+            exit 0
+          fi
+
+          if [ "$count_both_modified" -gt "0" ]&&[ "$both_modified_csr_snap" -eq "0" ]&&[ "$both_modified_ssr_snap" -eq "0" ]; then
+            echo "Unknown conflict "
+            git status
+            exit 1
+          fi
+
+          if [ "$count_both_modified" -gt "0" ]&&[ "$count_both_modified" -lt "3" ]; then
+            if [ "$both_modified_csr_snap" -eq "1" ];then
+              git checkout --theirs test/snap/__snapshots__/csr.test.jsx.snap
+            fi
+            if [ "$both_modified_ssr_snap" -eq "1" ];then
+              git checkout --theirs test/snap/__snapshots__/ssr.test.jsx.snap
+            fi
+            git commit -am "chore: merge develop fix snap conflict"
+            exit 0
+          fi
+
+          git commit -am "chore: merge develop"
+
       - uses: actions/setup-node@v4
         with:
           node-version: 18
@@ -99,8 +136,16 @@ jobs:
       - run: npm run test:update
       - name: Commit Snapshot
         run: |
-          git add .
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git commit -m "chore: update snapshot"
-          git push
+          working_tree_clean=$(git status | grep -c 'nothing to commit, working tree clean')
+          if [ "$working_tree_clean" -eq "0" ]; then
+            git add .
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git commit -m "chore: update snapshot"
+          fi
+      - name: git push
+        run: |
+          branch_ahead=$(git status | grep -c 'Your branch is ahead of')
+          if [ "$branch_ahead" -eq "1" ]; then
+            git push
+          fi
