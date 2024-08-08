@@ -43,7 +43,7 @@ export default {
     {
       title: 'Progress 进度条',
       name: 'progress',
-      component: () => import('tdesign-mobile-react/progress/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/progress/_example/index.tsx'),
     },
     {
       title: 'Slider 滑动选择器',
@@ -110,7 +110,7 @@ export default {
     {
       title: 'BackTop 返回顶部',
       name: 'back-top',
-      component: () => import('tdesign-mobile-react/back-top/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/back-top/_example/index.tsx'),
     },
     {
       title: 'Checkbox 多选框',
@@ -212,5 +212,10 @@ export default {
       name: 'notice-bar',
       component: () => import('tdesign-mobile-react/notice-bar/_example/mobile.jsx'),
     },
+    {
+      title: 'Result 结果',
+      name: 'result',
+      component: () => import('tdesign-mobile-react/result/_example/index.tsx'),
+    }
   ],
 };
