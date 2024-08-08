@@ -21,6 +21,7 @@ export interface OverlayProps extends NativeProps {
   afterClose?: () => void;
   stopPropagation?: PropagationEvent[];
   children?: React.ReactNode;
+  duration?: number;
 }
 
 const opacityRecord = {
@@ -62,6 +63,7 @@ const Overlay: FC<OverlayProps> = (props) => {
       tension: 200,
       friction: 30,
       clamp: true,
+      duration: props.duration,
     },
     onStart: () => {
       setActive(true);
