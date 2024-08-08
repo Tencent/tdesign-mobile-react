@@ -10,7 +10,7 @@ export default function Base() {
       <Divider />
 
       <div className="divider-demo__title">带文字水平分割线</div>
-      <Divider content="文字信息" align="left" />
+      <Divider content="文字信息123" align="left" />
       <Divider content="文字信息" />
       <Divider content="文字信息" align="right" />
 
