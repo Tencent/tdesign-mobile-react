@@ -105,7 +105,7 @@ export default {
     {
       title: 'Sticky 吸顶',
       name: 'sticky',
-      component: () => import('tdesign-mobile-react/sticky/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/sticky/_example/index.tsx'),
     },
     {
       title: 'BackTop 返回顶部',
