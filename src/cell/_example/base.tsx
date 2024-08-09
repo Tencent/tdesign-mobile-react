@@ -5,6 +5,7 @@ import './style/index.less';
 
 import Single from './single';
 import Multiple from './multiple';
+import Group from './group';
 
 export default function Base() {
   return (
@@ -16,8 +17,11 @@ export default function Base() {
       <TDemoBlock title="01 类型" summary="单行单元格">
         <Single />
       </TDemoBlock>
-      <TDemoBlock title="" summary="多行单元格">
+      <TDemoBlock title="02" summary="多行单元格">
         <Multiple />
+      </TDemoBlock>
+      <TDemoBlock title="03 组件样式" summary="卡片单元格">
+        <Group />
       </TDemoBlock>
     </div>
   );

@@ -89,7 +89,7 @@ export default {
     {
       title: 'Cell 单元格',
       name: 'cell',
-      component: () => import('tdesign-mobile-react/cell/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/cell/_example/base.tsx'),
     },
     {
       title: 'Upload 上传',
@@ -105,12 +105,12 @@ export default {
     {
       title: 'Sticky 吸顶',
       name: 'sticky',
-      component: () => import('tdesign-mobile-react/sticky/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/sticky/_example/index.tsx'),
     },
     {
       title: 'BackTop 返回顶部',
       name: 'back-top',
-      component: () => import('tdesign-mobile-react/back-top/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/back-top/_example/index.tsx'),
     },
     {
       title: 'Checkbox 多选框',

@@ -57,12 +57,25 @@ export interface TdCellProps {
    */
   title?: TNode;
   /**
-   * 点击后跳转链接地址。如果值为空，则表示不需要跳转
-   * @default ''
-   */
-  url?: string;
-  /**
    * 右侧内容
    */
   onClick?: (context: { e: MouseEvent<HTMLDivElement> }) => void;
+}
+
+export interface TdCellGroupProps {
+  /**
+   * 是否显示组边框
+   * @default false
+   */
+  bordered?: boolean;
+  /**
+   * 单元格组风格
+   * @default default
+   */
+  theme?: 'default' | 'card';
+  /**
+   * 单元格组标题
+   * @default ''
+   */
+  title?: string;
 }
