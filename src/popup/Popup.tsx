@@ -8,6 +8,7 @@ import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import { TdPopupProps } from './type';
 import useConfig from '../_util/useConfig';
 import { popupDefaultProps } from './defaultProps';
+import useDefaultProps from '../hooks/useDefaultProps';
 import { renderToContainer, getAttach } from '../_util/renderToContainer';
 import { renderTNode } from '../_util/renderTNode';
 
@@ -45,7 +46,7 @@ const Popup: FC<PopupProps> = (props) => {
     onOpen,
     onOpened,
     onVisibleChange,
-  } = props;
+  } = useDefaultProps(props, popupDefaultProps);
 
   const { classPrefix } = useConfig();
 
@@ -151,6 +152,5 @@ const Popup: FC<PopupProps> = (props) => {
 };
 
 Popup.displayName = 'Popup';
-Popup.defaultProps = popupDefaultProps;
 
 export default Popup;
