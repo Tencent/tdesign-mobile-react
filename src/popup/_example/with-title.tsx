@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Popup, Button } from 'tdesign-mobile-react';
 
-export default function Base() {
+export default function WithTitle() {
   const [visible, setVisible] = useState(false);
 
   const handleVisibleChange = (visible) => {

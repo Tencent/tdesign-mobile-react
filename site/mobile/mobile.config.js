@@ -38,7 +38,7 @@ export default {
     {
       title: 'Popup 弹出层',
       name: 'popup',
-      component: () => import('tdesign-mobile-react/popup/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/popup/_example/index.tsx'),
     },
     {
       title: 'Progress 进度条',
@@ -216,6 +216,6 @@ export default {
       title: 'Result 结果',
       name: 'result',
       component: () => import('tdesign-mobile-react/result/_example/index.tsx'),
-    }
+    },
   ],
 };
