@@ -1,14 +1,126 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './style/index.less';
-import PlacementTop from './placement-top';
-import PlacementLeft from './placement-left';
-import PlacementCenter from './placement-center';
-import PlacementBottom from './placement-bottom';
-import PlacementRight from './placement-right';
 import WithTitle from './with-title';
 import CustomClose from './custom-close';
+import Button from '../../button';
+import Popup from '..';
+
+function PlacementBottom() {
+  const [visible, setVisible] = useState(false);
+
+  const handleVisibleChange = (visible) => {
+    setVisible(visible);
+  };
+
+  return (
+    <>
+      <Button variant="outline" block={true} theme="primary" size="large" onClick={() => setVisible(true)}>
+        底部弹出
+      </Button>
+
+      <Popup
+        visible={visible}
+        onVisibleChange={handleVisibleChange}
+        placement="bottom"
+        style={{ padding: '100px' }}
+      ></Popup>
+    </>
+  );
+}
+
+function PlacementTop() {
+  const [visible, setVisible] = useState(false);
+
+  const handleVisibleChange = (visible) => {
+    setVisible(visible);
+  };
+
+  return (
+    <>
+      <Button variant="outline" block={true} theme="primary" size="large" onClick={() => setVisible(true)}>
+        顶部弹出
+      </Button>
+
+      <Popup
+        visible={visible}
+        onVisibleChange={handleVisibleChange}
+        placement="top"
+        style={{ padding: '100px' }}
+      ></Popup>
+    </>
+  );
+}
+
+function PlacementLeft() {
+  const [visible, setVisible] = useState(false);
+
+  const handleVisibleChange = (visible) => {
+    setVisible(visible);
+  };
+
+  return (
+    <>
+      <Button variant="outline" block={true} theme="primary" size="large" onClick={() => setVisible(true)}>
+        左侧弹出
+      </Button>
+
+      <Popup
+        visible={visible}
+        onVisibleChange={handleVisibleChange}
+        placement="left"
+        style={{ padding: '100px' }}
+      ></Popup>
+    </>
+  );
+}
+
+function PlacementRight() {
+  const [visible, setVisible] = useState(false);
+
+  const handleVisibleChange = (visible) => {
+    setVisible(visible);
+  };
+
+  return (
+    <>
+      <Button variant="outline" block={true} theme="primary" size="large" onClick={() => setVisible(true)}>
+        右侧弹出
+      </Button>
+
+      <Popup
+        visible={visible}
+        onVisibleChange={handleVisibleChange}
+        placement="right"
+        style={{ padding: '100px' }}
+      ></Popup>
+    </>
+  );
+}
+
+function PlacementCenter() {
+  const [visible, setVisible] = useState(false);
+
+  const handleVisibleChange = (visible) => {
+    setVisible(visible);
+  };
+
+  return (
+    <>
+      <Button variant="outline" block={true} theme="primary" size="large" onClick={() => setVisible(true)}>
+        中间弹出
+      </Button>
+
+      <Popup
+        visible={visible}
+        onVisibleChange={handleVisibleChange}
+        placement="center"
+        style={{ padding: '100px' }}
+      ></Popup>
+    </>
+  );
+}
 
 export default function Base() {
   return (
