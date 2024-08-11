@@ -2462,6 +2462,82 @@ exports[`csr snapshot test > csr test src/grid/_example/badge.tsx 1`] = `
 </div>
 `;
 
+exports[`csr snapshot test > csr test src/overlay/_example/base.tsx 1`] = `
+<div>
+  <div>
+    <button
+      class="t-button t-button--outline t-button--default t-size-default t-is-block t-button--shape-rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         
+        基础用法
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/overlay/_example/index.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-demo"
+  >
+    <div
+      class="tdesign-mobile-demo-header"
+    >
+      <h1
+        class="tdesign-mobile-demo-header__title"
+      >
+        Overlay 遮罩层
+      </h1>
+      <p
+        class="tdesign-mobile-demo-header__summary"
+      >
+        通过遮罩层，可以强调部分内容
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          01 组件
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          基础遮罩层
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot with-padding"
+      >
+        <div>
+          <button
+            class="t-button t-button--outline t-button--default t-size-default t-is-block t-button--shape-rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__text"
+            >
+               
+              基础用法
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`csr snapshot test > csr test src/progress/_example/base.tsx 1`] = `
 <div>
   <div
@@ -4661,6 +4737,10 @@ exports[`ssr snapshot test > ssr test src/divider/_example/index.tsx 1`] = `"<di
 exports[`ssr snapshot test > ssr test src/divider/_example/theme.tsx 1`] = `"<div data-reactroot=""><div class="divider-demo__title">虚线样式</div><div class="t-divider t-divider--horizontal t-divider--center t-divider--dashed" role="separator"><div class="t-divider__content"></div></div><div class="t-divider t-divider--horizontal t-divider--left t-divider--dashed" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--center t-divider--dashed" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--right t-divider--dashed" role="separator"><div class="t-divider__content">文字信息</div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/grid/_example/badge.tsx 1`] = `"<div class="t-grid"><div class="t-grid-item" style="flex-basis:25%;flex-direction:column;padding-left:0;padding-right:0;align-items:center;justify-content:center;text-align:center"><div class="t-badge"><div class="t-badge__inner t-badge--dot t-badge--has-children t-badge--medium"></div><img class="img-4 img-vertical" src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"/></div><div class="t-grid-item__text" style="padding-left:0"><div class="t-grid-item__title" style="padding-top:8px;margin-bottom:4px"><div class="text-4">标题文字</div></div><div class="t-grid-item__description"></div></div></div><div class="t-grid-item" style="flex-basis:25%;flex-direction:column;padding-left:0;padding-right:0;align-items:center;justify-content:center;text-align:center"><div class="t-badge"><div class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium">8</div><img class="img-4 img-vertical" src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"/></div><div class="t-grid-item__text" style="padding-left:0"><div class="t-grid-item__title" style="padding-top:8px;margin-bottom:4px"><div class="text-4">标题文字</div></div><div class="t-grid-item__description"></div></div></div><div class="t-grid-item" style="flex-basis:25%;flex-direction:column;padding-left:0;padding-right:0;align-items:center;justify-content:center;text-align:center"><div class="t-badge"><div class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium">new</div><img class="img-4 img-vertical" src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"/></div><div class="t-grid-item__text" style="padding-left:0"><div class="t-grid-item__title" style="padding-top:8px;margin-bottom:4px"><div class="text-4">标题文字</div></div><div class="t-grid-item__description"></div></div></div><div class="t-grid-item" style="flex-basis:25%;flex-direction:column;padding-left:0;padding-right:0;align-items:center;justify-content:center;text-align:center"><div class="t-badge"><div class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium">···</div><img class="img-4 img-vertical" src="https://tdesign.gtimg.com/mobile/%E5%9B%BE%E7%89%87.png"/></div><div class="t-grid-item__text" style="padding-left:0"><div class="t-grid-item__title" style="padding-top:8px;margin-bottom:4px"><div class="text-4">标题文字</div></div><div class="t-grid-item__description"></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/overlay/_example/base.tsx 1`] = `"<div data-reactroot=""><button type="button" class="t-button t-button--outline t-button--default t-size-default t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->基础用法</span></button></div>"`;
+
+exports[`ssr snapshot test > ssr test src/overlay/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Overlay 遮罩层</h1><p class="tdesign-mobile-demo-header__summary">通过遮罩层，可以强调部分内容</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件</h2><p class="tdesign-mobile-demo-block__summary">基础遮罩层</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div><button type="button" class="t-button t-button--outline t-button--default t-size-default t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->基础用法</span></button></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/progress/_example/base.tsx 1`] = `"<div class="example-progress" data-reactroot=""><div class="example-progress__item"><div class="t-progress"><div class="t-progress--thin t-progress--status-default"><div class="t-progress__bar"><div class="t-progress__inner" style="width:80%;background:"></div></div><div class="t-progress__info">80%</div></div></div></div><div class="example-progress__item"><div class="t-progress"><div class="t-progress__bar t-progress--plump t-progress--over-ten t-progress--status-default"><div class="t-progress__inner" style="width:80%;background:"><div class="t-progress__info">80%</div></div></div></div></div><div class="example-progress__item"><div><div class="t-progress--circle t-progress--status-default" style="width:112px;height:112px;font-size:17.5px"><div class="t-progress__info">30%</div><svg width="112" height="112" viewBox="0 0 118 118"><circle cx="59" cy="59" r="56" stroke-width="6" stroke="var(--td-bg-color-component)" fill="none" class="t-progress__circle-outer"></circle><circle cx="59" cy="59" r="56" stroke-width="6" fill="none" transform="matrix(0,-1,1,0,0,118)" stroke-dasharray="105.55751316061705  246.30086404143975" class="t-progress__circle-inner" style="stroke:;stroke-linecap:round"></circle></svg></div></div></div></div>"`;
 
