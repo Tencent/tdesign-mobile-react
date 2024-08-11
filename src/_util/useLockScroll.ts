@@ -2,15 +2,12 @@ import { useEffect, RefObject, useCallback } from 'react';
 import { useTouch } from './useTouch';
 import getScrollParent from './getScrollParent';
 import { supportsPassive } from './supportsPassive';
-import useConfig from './useConfig';
 
 let totalLockCount = 0;
 
 // 移植自vant：https://github.com/youzan/vant/blob/HEAD/src/composables/use-lock-scroll.ts
-export function useLockScroll(rootRef: RefObject<HTMLElement>, shouldLock: boolean) {
+export function useLockScroll(rootRef: RefObject<HTMLElement>, shouldLock: boolean, lockClass: string) {
   const touch = useTouch();
-  const { classPrefix } = useConfig();
-  const BODY_LOCK_CLASS = `${classPrefix}-overflow-hidden`;
 
   const onTouchMove = useCallback(
     (event: TouchEvent) => {
@@ -42,11 +39,11 @@ export function useLockScroll(rootRef: RefObject<HTMLElement>, shouldLock: boole
     document.addEventListener('touchmove', onTouchMove, supportsPassive ? { passive: false } : false);
 
     if (!totalLockCount) {
-      document.body.classList.add(BODY_LOCK_CLASS);
+      document.body.classList.add(lockClass);
     }
 
     totalLockCount += 1;
-  }, [onTouchMove, touch.start, BODY_LOCK_CLASS]);
+  }, [onTouchMove, touch.start, lockClass]);
 
   const unlock = useCallback(() => {
     if (totalLockCount) {
@@ -56,10 +53,10 @@ export function useLockScroll(rootRef: RefObject<HTMLElement>, shouldLock: boole
       totalLockCount -= 1;
 
       if (!totalLockCount) {
-        document.body.classList.remove(BODY_LOCK_CLASS);
+        document.body.classList.remove(lockClass);
       }
     }
-  }, [onTouchMove, touch.start, BODY_LOCK_CLASS]);
+  }, [onTouchMove, touch.start, lockClass]);
 
   useEffect(() => {
     if (shouldLock) {

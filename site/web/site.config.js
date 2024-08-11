@@ -325,6 +325,12 @@ export default {
           component: () => import('tdesign-mobile-react/message/message.md'),
         },
         {
+          title: 'Overlay 弹出层',
+          name: 'overlay',
+          path: '/mobile-react/components/overlay',
+          component: () => import('tdesign-mobile-react/overlay/overlay.md'),
+        },
+        {
           title: 'Popup 弹出层',
           name: 'popup',
           path: '/mobile-react/components/popup',

@@ -1,114 +1,83 @@
-import React, { FC, useRef, useMemo, useState } from 'react';
-import { useUnmountedRef } from 'ahooks';
-import { useSpring, animated } from '@react-spring/web';
-import withNativeProps, { NativeProps } from '../_util/withNativeProps';
-import { PropagationEvent, withStopPropagation } from '../_util/withStopPropagation';
-import { GetContainer, renderToContainer } from '../_util/renderToContainer';
+import React, { forwardRef, useEffect, useRef, useMemo, useState } from 'react';
+import classNames from 'classnames';
+import { CSSTransition } from 'react-transition-group';
+import { StyledProps } from '../common';
+import { TdOverlayProps } from './type';
+import { overlayDefaultProps } from './defaultProps';
 import { useLockScroll } from '../_util/useLockScroll';
-import { useShouldRender } from '../_util/useShouldRender';
-import useConfig from '../_util/useConfig';
+import parseTNode from '../_util/parseTNode';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 
-export interface OverlayProps extends NativeProps {
-  visible?: boolean;
-  onOverlayClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  destroyOnClose?: boolean;
-  forceRender?: boolean;
-  disableBodyScroll?: boolean;
-  color?: 'black' | 'white';
-  opacity?: 'default' | 'thin' | 'thick' | number;
-  getContainer?: GetContainer;
-  afterShow?: () => void;
-  afterClose?: () => void;
-  stopPropagation?: PropagationEvent[];
-  children?: React.ReactNode;
-}
+export interface OverlayProps extends TdOverlayProps, StyledProps {}
 
-const opacityRecord = {
-  default: 0.55,
-  thin: 0.35,
-  thick: 0.75,
-};
+const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props) => {
+  const overlayClass = usePrefixClass('overlay');
+  const maskRef = useRef<HTMLDivElement>();
 
-const defaultProps = {
-  visible: true,
-  destroyOnClose: false,
-  forceRender: false,
-  color: 'black',
-  opacity: 'default',
-  disableBodyScroll: true,
-  getContainer: null,
-  stopPropagation: ['click'],
-} as OverlayProps;
+  const { className, style, backgroundColor, children, duration, preventScrollThrough, visible, zIndex, onClick } =
+    useDefaultProps<OverlayProps>(props, overlayDefaultProps);
 
-const Overlay: FC<OverlayProps> = (props) => {
-  const ref = useRef<HTMLDivElement>(null);
-  useLockScroll(ref, props.visible && props.disableBodyScroll);
-  const { classPrefix } = useConfig();
-  const name = `${classPrefix}-overlay`;
+  const [shouldRender, setShouldRender] = useState(visible); // 确保 CSSTransition 只在 visible 变为 true 时渲染
 
-  const background = useMemo(() => {
-    const opacity = opacityRecord[props.opacity] ?? props.opacity;
-    const rgb = props.color === 'white' ? '255, 255, 255' : '0, 0, 0';
-    return `rgba(${rgb}, ${opacity})`;
-  }, [props.color, props.opacity]);
+  useLockScroll(maskRef, visible && preventScrollThrough, `${overlayClass}-overflow-hidden`);
 
-  const [active, setActive] = useState(props.visible);
-  const unmountedRef = useUnmountedRef();
-  const { opacity } = useSpring({
-    opacity: props.visible ? 1 : 0,
-    config: {
-      precision: 0.01,
-      mass: 1,
-      tension: 200,
-      friction: 30,
-      clamp: true,
-    },
-    onStart: () => {
-      setActive(true);
-    },
-    onRest: () => {
-      if (unmountedRef.current) return;
-      setActive(props.visible);
-      if (props.visible) {
-        props.afterShow?.();
-      } else {
-        props.afterClose?.();
-      }
-    },
-  });
-  const shouldRender = useShouldRender(active, props.forceRender, props.destroyOnClose);
+  useEffect(() => {
+    if (visible) {
+      setShouldRender(true);
+    }
+  }, [visible]);
 
-  const node = withStopPropagation(
-    props.stopPropagation,
-    withNativeProps(
-      props,
-      <animated.div
-        className={name}
-        ref={ref}
-        style={{
-          background,
-          opacity,
-          ...props.style,
-          display: active ? 'unset' : 'none',
-        }}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) {
-            props.onOverlayClick?.(e);
-          }
-        }}
-      >
-        {props.onOverlayClick && (
-          <div className={`${classPrefix}-aria-button`} role="button" onClick={props.onOverlayClick} />
-        )}
-        <div className={`${classPrefix}-content`}>{shouldRender && props.children}</div>
-      </animated.div>,
-    ),
+  const handleExited = () => {
+    if (!visible) {
+      setShouldRender(false);
+    }
+  };
+
+  const overlayStyles = useMemo(
+    () => ({
+      zIndex,
+      backgroundColor,
+      ...style,
+    }),
+    [zIndex, backgroundColor, style],
   );
 
-  return renderToContainer(props.getContainer, node);
-};
+  const handleClick = (e) => {
+    onClick?.({ e });
+  };
 
-Overlay.defaultProps = defaultProps;
+  return (
+    shouldRender && (
+      <CSSTransition
+        in={visible}
+        appear
+        timeout={duration}
+        nodeRef={maskRef}
+        classNames={{
+          enter: `${overlayClass}-enter-from`,
+          enterActive: `${overlayClass}-enter-active`,
+          exit: `${overlayClass}-leave-to`,
+          exitActive: `${overlayClass}-leave-active`,
+        }}
+        onExited={handleExited}
+        unmountOnExit
+      >
+        <div
+          ref={maskRef}
+          className={classNames(className, overlayClass, {
+            [`${overlayClass}--active`]: visible,
+          })}
+          style={overlayStyles}
+          onClick={handleClick}
+        >
+          {parseTNode(children)}
+        </div>
+      </CSSTransition>
+    )
+  );
+});
+
 Overlay.displayName = 'Overlay';
 
 export default Overlay;

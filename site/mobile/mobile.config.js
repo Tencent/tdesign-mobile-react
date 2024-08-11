@@ -36,6 +36,11 @@ export default {
       component: () => import('tdesign-mobile-react/image/_example/index.jsx'),
     },
     {
+      title: 'Overlay 遮罩层',
+      name: 'overlay',
+      component: () => import('tdesign-mobile-react/overlay/_example/index.tsx'),
+    },
+    {
       title: 'Popup 弹出层',
       name: 'popup',
       component: () => import('tdesign-mobile-react/popup/_example/base.jsx'),
@@ -216,6 +221,6 @@ export default {
       title: 'Result 结果',
       name: 'result',
       component: () => import('tdesign-mobile-react/result/_example/index.tsx'),
-    }
+    },
   ],
 };
