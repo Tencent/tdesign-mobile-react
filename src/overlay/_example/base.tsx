@@ -12,7 +12,7 @@ export default function Base() {
 
   return (
     <div>
-      <Button variant="outline" block onClick={() => setVisible(true)}>
+      <Button size="large" block variant="outline" theme="primary" onClick={() => setVisible(true)}>
         基础用法
       </Button>
       <Overlay visible={visible} duration={0} onClick={handleVisible1Change} />
