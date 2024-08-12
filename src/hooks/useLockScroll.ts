@@ -1,16 +1,14 @@
 import { useEffect, RefObject, useCallback } from 'react';
-import { useTouch } from './useTouch';
-import getScrollParent from './getScrollParent';
-import { supportsPassive } from './supportsPassive';
-import useConfig from './useConfig';
+import { useTouch } from '../_util/useTouch';
+import getScrollParent from '../_util/getScrollParent';
+import { supportsPassive } from '../_util/supportsPassive';
 
 let totalLockCount = 0;
 
 // 移植自vant：https://github.com/youzan/vant/blob/HEAD/src/composables/use-lock-scroll.ts
-export function useLockScroll(rootRef: RefObject<HTMLElement>, shouldLock: boolean) {
+export function useLockScroll(rootRef: RefObject<HTMLElement>, shouldLock: boolean, componentName: string) {
   const touch = useTouch();
-  const { classPrefix } = useConfig();
-  const BODY_LOCK_CLASS = `${classPrefix}-overflow-hidden`;
+  const BODY_LOCK_CLASS = `${componentName}-overflow-hidden`;
 
   const onTouchMove = useCallback(
     (event: TouchEvent) => {

@@ -8,18 +8,8 @@ enum PopupSourceEnum {
 }
 
 const Drawer: React.FC<TdDrawerProps> = (props) => {
-  const {
-    items,
-    visible,
-    showOverlay,
-    zIndex,
-    closeOnOverlayClick,
-    destroyOnClose,
-    placement,
-    onClose,
-    onItemClick,
-    onOverlayClick,
-  } = props;
+  const { items, visible, showOverlay, zIndex, closeOnOverlayClick, placement, onClose, onItemClick, onOverlayClick } =
+    props;
 
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-drawer`;
@@ -34,7 +24,7 @@ const Drawer: React.FC<TdDrawerProps> = (props) => {
 
   const [show, setShow] = useState(visible);
 
-  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleOverlayClick = (e) => {
     const context = { e };
     onOverlayClick?.(context);
     if (closeOnOverlayClick) {
@@ -57,9 +47,9 @@ const Drawer: React.FC<TdDrawerProps> = (props) => {
       <Popup
         visible={show}
         placement={placement}
-        overlayProps={{ onOverlayClick: handleOverlayClick, destroyOnClose }}
         showOverlay={showOverlay}
         zIndex={zIndex}
+        onVisibleChange={handleOverlayClick}
       >
         <div className={`${name}__sidebar`}>
           {items?.map((item, index) => {
