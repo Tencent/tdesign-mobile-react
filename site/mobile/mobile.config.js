@@ -7,8 +7,8 @@ export default {
     },
     {
       title: 'Layout 布局',
-      name: 'col',
-      component: () => import('tdesign-mobile-react/col/_example/index.tsx'),
+      name: 'layout',
+      component: () => import('tdesign-mobile-react/layout/_example/index.tsx'),
     },
     {
       title: 'Divider 分割符',

@@ -36,9 +36,9 @@ export default {
         },
         {
           title: 'Layout 布局',
-          name: 'col',
-          path: '/mobile-react/components/col',
-          component: () => import('tdesign-mobile-react/col/col.md'),
+          name: 'layout',
+          path: '/mobile-react/components/layout',
+          component: () => import('tdesign-mobile-react/layout/layout.md'),
         },
         {
           title: 'Fab 悬浮按钮',

@@ -14,3 +14,10 @@ export interface TdColProps {
    */
   span?: string | number;
 }
+
+export interface TdRowProps {
+  /**
+   * 列之间的间距（默认单位px）
+   */
+  gutter?: string | number;
+}
