@@ -6,7 +6,7 @@ import { colDefaultProps } from './defaultProps';
 
 import useConfig from '../_util/useConfig';
 import { NativeProps } from '../_util/withNativeProps';
-import { convertUnit, RowContext, RowProps } from '../row/Row';
+import { convertUnit, RowContext, RowProps } from './Row';
 
 export interface ColProps extends TdColProps, NativeProps {
   children?: React.ReactNode;

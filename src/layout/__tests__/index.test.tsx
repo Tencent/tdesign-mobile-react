@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, it, expect, render } from '@test/utils';
-import Row from '../../row';
+import Row from '../Row';
 import Col from '../Col';
 
 const prefix = 't';
