@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import { StyledProps } from '../common';
 import { TdOverlayProps } from './type';
 import { overlayDefaultProps } from './defaultProps';
-import { useLockScroll } from '../_util/useLockScroll';
+import { useLockScroll } from '../hooks/useLockScroll';
 import parseTNode from '../_util/parseTNode';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
@@ -20,7 +20,7 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props) => {
 
   const [shouldRender, setShouldRender] = useState(visible); // 确保 CSSTransition 只在 visible 变为 true 时渲染
 
-  useLockScroll(maskRef, visible && preventScrollThrough, `${overlayClass}-overflow-hidden`);
+  useLockScroll(maskRef, visible && preventScrollThrough, overlayClass);
 
   useEffect(() => {
     if (visible) {
