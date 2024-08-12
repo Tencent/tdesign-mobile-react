@@ -47,6 +47,12 @@ export default {
           component: () => import('tdesign-mobile-react/icon/icon.md'),
         },
         {
+          title: 'Layout 布局',
+          name: 'layout',
+          path: '/mobile-react/components/layout',
+          component: () => import('tdesign-mobile-react/layout/layout.md'),
+        },
+        {
           title: 'Link 链接',
           name: 'link',
           path: '/mobile-react/components/link',

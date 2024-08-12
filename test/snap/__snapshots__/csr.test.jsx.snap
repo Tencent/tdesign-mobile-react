@@ -6765,6 +6765,7 @@ exports[`csr snapshot test > csr test src/grid/_example/badge.tsx 1`] = `
 </div>
 `;
 
+<<<<<<< HEAD
 exports[`csr snapshot test > csr test src/grid/_example/base.tsx 1`] = `
 <div>
   <div
@@ -7439,12 +7440,60 @@ exports[`csr snapshot test > csr test src/grid/_example/base.tsx 1`] = `
         <div
           class="t-grid-item__description t-grid-item__description--vertical"
         />
+=======
+exports[`csr snapshot test > csr test src/layout/_example/base.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-demo"
+  >
+    <div
+      class="t-row"
+    >
+      <div
+        class="t-col dark t-col--8 t-col--offset-0"
+      >
+        col-8
+      </div>
+      <div
+        class="t-col light t-col--8 t-col--offset-0"
+      >
+        col-8
+      </div>
+      <div
+        class="t-col dark t-col--8 t-col--offset-0"
+      >
+        col-8
+      </div>
+    </div>
+    <div
+      class="t-row"
+    >
+      <div
+        class="t-col dark t-col--4 t-col--offset-0"
+      >
+        col-4
+      </div>
+      <div
+        class="t-col light t-col--16 t-col--offset-4"
+      >
+        col-16 col-offset-4
+      </div>
+    </div>
+    <div
+      class="t-row"
+    >
+      <div
+        class="t-col dark t-col--12 t-col--offset-12"
+      >
+        col-12 col-offset-12
+>>>>>>> 349b246 (feat(layout): add layout component)
       </div>
     </div>
   </div>
 </div>
 `;
 
+<<<<<<< HEAD
 exports[`csr snapshot test > csr test src/grid/_example/bordered.tsx 1`] = `
 <div>
   <div
@@ -8716,6 +8765,9 @@ exports[`csr snapshot test > csr test src/grid/_example/icon.tsx 1`] = `
 `;
 
 exports[`csr snapshot test > csr test src/grid/_example/index.tsx 1`] = `
+=======
+exports[`csr snapshot test > csr test src/layout/_example/index.tsx 1`] = `
+>>>>>>> 349b246 (feat(layout): add layout component)
 <div>
   <div
     class="tdesign-mobile-demo"
@@ -8726,12 +8778,20 @@ exports[`csr snapshot test > csr test src/grid/_example/index.tsx 1`] = `
       <h1
         class="tdesign-mobile-demo-header__title"
       >
+<<<<<<< HEAD
         Grid 宫格
+=======
+        Layout 布局
+>>>>>>> 349b246 (feat(layout): add layout component)
       </h1>
       <p
         class="tdesign-mobile-demo-header__summary"
       >
+<<<<<<< HEAD
         用于功能入口布局，将页面或特定区域切分成若干等大的区块，形成若干功能入口。
+=======
+        以规则的网格阵列来指导和规范页面中的版面布局以及信息分布，提高界面内布局的一致性，节约成本。
+>>>>>>> 349b246 (feat(layout): add layout component)
       </p>
     </div>
     <div
@@ -8748,13 +8808,18 @@ exports[`csr snapshot test > csr test src/grid/_example/index.tsx 1`] = `
         <p
           class="tdesign-mobile-demo-block__summary"
         >
+<<<<<<< HEAD
           基础宫格
+=======
+          基础用法
+>>>>>>> 349b246 (feat(layout): add layout component)
         </p>
       </div>
       <div
         class="tdesign-mobile-demo-block__slot"
       >
         <div
+<<<<<<< HEAD
           class="t-grid grid-demo"
           style="grid-template-columns: repeat(5, 1fr);"
         >
@@ -9426,6 +9491,50 @@ exports[`csr snapshot test > csr test src/grid/_example/index.tsx 1`] = `
               <div
                 class="t-grid-item__description t-grid-item__description--vertical"
               />
+=======
+          class="tdesign-mobile-demo"
+        >
+          <div
+            class="t-row"
+          >
+            <div
+              class="t-col dark t-col--8 t-col--offset-0"
+            >
+              col-8
+            </div>
+            <div
+              class="t-col light t-col--8 t-col--offset-0"
+            >
+              col-8
+            </div>
+            <div
+              class="t-col dark t-col--8 t-col--offset-0"
+            >
+              col-8
+            </div>
+          </div>
+          <div
+            class="t-row"
+          >
+            <div
+              class="t-col dark t-col--4 t-col--offset-0"
+            >
+              col-4
+            </div>
+            <div
+              class="t-col light t-col--16 t-col--offset-4"
+            >
+              col-16 col-offset-4
+            </div>
+          </div>
+          <div
+            class="t-row"
+          >
+            <div
+              class="t-col dark t-col--12 t-col--offset-12"
+            >
+              col-12 col-offset-12
+>>>>>>> 349b246 (feat(layout): add layout component)
             </div>
           </div>
         </div>
@@ -9437,16 +9546,25 @@ exports[`csr snapshot test > csr test src/grid/_example/index.tsx 1`] = `
       <div
         class="tdesign-mobile-demo-block__header"
       >
+<<<<<<< HEAD
         <p
           class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
         >
           带描述宫格
+=======
+        
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          在列元素之间增加间距
+>>>>>>> 349b246 (feat(layout): add layout component)
         </p>
       </div>
       <div
         class="tdesign-mobile-demo-block__slot"
       >
         <div
+<<<<<<< HEAD
           class="t-grid grid-demo"
           style="grid-template-columns: repeat(3, 1fr);"
         >
@@ -11627,6 +11745,42 @@ exports[`csr snapshot test > csr test src/grid/_example/index.tsx 1`] = `
                 class="t-grid-item__description t-grid-item__description--horizontal"
               >
                 描述文字
+=======
+          class="tdesign-mobile-demo"
+        >
+          <div
+            class="t-row"
+            style="margin-right: -8px; margin-left: -8px;"
+          >
+            <div
+              class="t-col t-col--8 t-col--offset-0"
+              style="padding-right: 8px; padding-left: 8px;"
+            >
+              <div
+                class="dark"
+              >
+                col-8
+              </div>
+            </div>
+            <div
+              class="t-col t-col--8 t-col--offset-0"
+              style="padding-right: 8px; padding-left: 8px;"
+            >
+              <div
+                class="dark"
+              >
+                col-8
+              </div>
+            </div>
+            <div
+              class="t-col t-col--8 t-col--offset-0"
+              style="padding-right: 8px; padding-left: 8px;"
+            >
+              <div
+                class="dark"
+              >
+                col-8
+>>>>>>> 349b246 (feat(layout): add layout component)
               </div>
             </div>
           </div>
@@ -11637,6 +11791,7 @@ exports[`csr snapshot test > csr test src/grid/_example/index.tsx 1`] = `
 </div>
 `;
 
+<<<<<<< HEAD
 exports[`csr snapshot test > csr test src/grid/_example/scroll.tsx 1`] = `
 <div>
   <div
@@ -12486,11 +12641,15 @@ exports[`csr snapshot test > csr test src/icon/_example/iconfont-enhanced.tsx 1`
 `;
 
 exports[`csr snapshot test > csr test src/icon/_example/index.tsx 1`] = `
+=======
+exports[`csr snapshot test > csr test src/layout/_example/offset.tsx 1`] = `
+>>>>>>> 349b246 (feat(layout): add layout component)
 <div>
   <div
     class="tdesign-mobile-demo"
   >
     <div
+<<<<<<< HEAD
       class="tdesign-mobile-demo-header"
     >
       <h1
@@ -13036,6 +13195,39 @@ exports[`csr snapshot test > csr test src/icon/_example/index.tsx 1`] = `
               class="t-icon-home t-icon"
             />
           </div>
+=======
+      class="t-row"
+      style="margin-right: -8px; margin-left: -8px;"
+    >
+      <div
+        class="t-col t-col--8 t-col--offset-0"
+        style="padding-right: 8px; padding-left: 8px;"
+      >
+        <div
+          class="dark"
+        >
+          col-8
+        </div>
+      </div>
+      <div
+        class="t-col t-col--8 t-col--offset-0"
+        style="padding-right: 8px; padding-left: 8px;"
+      >
+        <div
+          class="dark"
+        >
+          col-8
+        </div>
+      </div>
+      <div
+        class="t-col t-col--8 t-col--offset-0"
+        style="padding-right: 8px; padding-left: 8px;"
+      >
+        <div
+          class="dark"
+        >
+          col-8
+>>>>>>> 349b246 (feat(layout): add layout component)
         </div>
       </div>
     </div>
@@ -13043,6 +13235,7 @@ exports[`csr snapshot test > csr test src/icon/_example/index.tsx 1`] = `
 </div>
 `;
 
+<<<<<<< HEAD
 exports[`csr snapshot test > csr test src/icon/_example/single.tsx 1`] = `
 <div>
   <div
@@ -19944,6 +20137,8 @@ exports[`csr snapshot test > csr test src/navbar/_example/size.tsx 1`] = `
 </div>
 `;
 
+=======
+>>>>>>> 349b246 (feat(layout): add layout component)
 exports[`csr snapshot test > csr test src/overlay/_example/base.tsx 1`] = `
 <div>
   <div>
@@ -24899,7 +25094,17 @@ exports[`ssr snapshot test > ssr test src/divider/_example/theme.tsx 1`] = `"<di
 
 exports[`ssr snapshot test > ssr test src/grid/_example/badge.tsx 1`] = `"<div class="t-grid grid-demo" style="padding:undefinedpx;grid-template-columns:repeat(4, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-badge"><div class="t-badge__content"><span class="t-badge__content-text"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></span></div><div class="t-badge--basic t-badge--dot t-badge--medium t-badge--circle t-has-count"></div></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-badge"><div class="t-badge__content"><span class="t-badge__content-text"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></span></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">8</div></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-badge"><div class="t-badge__content"><span class="t-badge__content-text"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></span></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">13</div></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题五字内</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-badge"><div class="t-badge__content"><span class="t-badge__content-text"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></span></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">NEW</div></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题五字内</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div></div>"`;
 
+<<<<<<< HEAD
 exports[`ssr snapshot test > ssr test src/grid/_example/base.tsx 1`] = `"<div class="t-grid grid-demo" style="padding:undefinedpx;grid-template-columns:repeat(5, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:20%"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:20%"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:20%"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:20%"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:20%"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">最多四个字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div></div><div class="t-grid grid-demo" style="padding:undefinedpx;grid-template-columns:repeat(4, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">最多五个字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div></div><div class="t-grid grid-demo" style="padding:undefinedpx;grid-template-columns:repeat(3, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">最多六个文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div></div>"`;
+=======
+exports[`ssr snapshot test > ssr test src/layout/_example/base.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="t-row"><div class="t-col dark t-col--8 t-col--offset-0">col-8</div><div class="t-col light t-col--8 t-col--offset-0">col-8</div><div class="t-col dark t-col--8 t-col--offset-0">col-8</div></div><div class="t-row"><div class="t-col dark t-col--4 t-col--offset-0">col-4</div><div class="t-col light t-col--16 t-col--offset-4">col-16 col-offset-4</div></div><div class="t-row"><div class="t-col dark t-col--12 t-col--offset-12">col-12 col-offset-12</div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/layout/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Layout 布局</h1><p class="tdesign-mobile-demo-header__summary">以规则的网格阵列来指导和规范页面中的版面布局以及信息分布，提高界面内布局的一致性，节约成本。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">基础用法</p></div><div class="tdesign-mobile-demo-block__slot"><div class="tdesign-mobile-demo"><div class="t-row"><div class="t-col dark t-col--8 t-col--offset-0">col-8</div><div class="t-col light t-col--8 t-col--offset-0">col-8</div><div class="t-col dark t-col--8 t-col--offset-0">col-8</div></div><div class="t-row"><div class="t-col dark t-col--4 t-col--offset-0">col-4</div><div class="t-col light t-col--16 t-col--offset-4">col-16 col-offset-4</div></div><div class="t-row"><div class="t-col dark t-col--12 t-col--offset-12">col-12 col-offset-12</div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">在列元素之间增加间距</p></div><div class="tdesign-mobile-demo-block__slot"><div class="tdesign-mobile-demo"><div class="t-row" style="margin-right:-8px;margin-left:-8px"><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/layout/_example/offset.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="t-row" style="margin-right:-8px;margin-left:-8px"><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/overlay/_example/base.tsx 1`] = `"<div data-reactroot=""><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->基础用法</span></button></div>"`;
+>>>>>>> 349b246 (feat(layout): add layout component)
 
 exports[`ssr snapshot test > ssr test src/grid/_example/bordered.tsx 1`] = `"<div class="t-grid grid-demo t-grid--bordered" style="padding:undefinedpx;grid-template-columns:repeat(3, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">最多六个文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述最多六字</div></div></div><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">最多六个文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述最多六字</div></div></div></div><div class="t-grid grid-demo t-grid--bordered" style="padding:undefinedpx;grid-template-columns:repeat(2, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:50%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:50%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div></div>"`;
 
