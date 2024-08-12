@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef, useMemo, useState } from 'react';
+import React, { forwardRef, useRef, useMemo } from 'react';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import { StyledProps } from '../common';
@@ -13,34 +13,21 @@ export interface OverlayProps extends TdOverlayProps, StyledProps {}
 
 const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props) => {
   const overlayClass = usePrefixClass('overlay');
-  const maskRef = useRef<HTMLDivElement>();
+  const overlayRef = useRef<HTMLDivElement>();
 
   const { className, style, backgroundColor, children, duration, preventScrollThrough, visible, zIndex, onClick } =
     useDefaultProps<OverlayProps>(props, overlayDefaultProps);
 
-  const [shouldRender, setShouldRender] = useState(visible); // 确保 CSSTransition 只在 visible 变为 true 时渲染
-
-  useLockScroll(maskRef, visible && preventScrollThrough, overlayClass);
-
-  useEffect(() => {
-    if (visible) {
-      setShouldRender(true);
-    }
-  }, [visible]);
-
-  const handleExited = () => {
-    if (!visible) {
-      setShouldRender(false);
-    }
-  };
+  useLockScroll(overlayRef, visible && preventScrollThrough, overlayClass);
 
   const overlayStyles = useMemo(
     () => ({
+      ...style,
       zIndex,
       backgroundColor,
-      ...style,
+      animationDuration: `${duration}ms`,
     }),
-    [zIndex, backgroundColor, style],
+    [zIndex, backgroundColor, duration, style],
   );
 
   const handleClick = (e) => {
@@ -48,33 +35,18 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props) => {
   };
 
   return (
-    shouldRender && (
-      <CSSTransition
-        in={visible}
-        appear
-        timeout={duration}
-        nodeRef={maskRef}
-        classNames={{
-          enter: `${overlayClass}-enter-from`,
-          enterActive: `${overlayClass}-enter-active`,
-          exit: `${overlayClass}-leave-to`,
-          exitActive: `${overlayClass}-leave-active`,
-        }}
-        onExited={handleExited}
-        unmountOnExit
-      >
-        <div
-          ref={maskRef}
-          className={classNames(className, overlayClass, {
-            [`${overlayClass}--active`]: visible,
-          })}
-          style={overlayStyles}
-          onClick={handleClick}
-        >
-          {parseTNode(children)}
-        </div>
-      </CSSTransition>
-    )
+    <CSSTransition
+      in={visible}
+      appear
+      timeout={duration}
+      nodeRef={overlayRef}
+      classNames={`${overlayClass}-fade`}
+      unmountOnExit
+    >
+      <div ref={overlayRef} className={classNames(className, overlayClass)} style={overlayStyles} onClick={handleClick}>
+        {parseTNode(children)}
+      </div>
+    </CSSTransition>
   );
 });
 
