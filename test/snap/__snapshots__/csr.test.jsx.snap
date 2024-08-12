@@ -717,6 +717,82 @@ exports[`csr snapshot test > csr test src/layout/_example/offset.tsx 1`] = `
 </div>
 `;
 
+exports[`csr snapshot test > csr test src/overlay/_example/base.tsx 1`] = `
+<div>
+  <div>
+    <button
+      class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         
+        基础用法
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/overlay/_example/index.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-demo"
+  >
+    <div
+      class="tdesign-mobile-demo-header"
+    >
+      <h1
+        class="tdesign-mobile-demo-header__title"
+      >
+        Overlay 遮罩层
+      </h1>
+      <p
+        class="tdesign-mobile-demo-header__summary"
+      >
+        通过遮罩层，可以强调部分内容
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          01 组件
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          基础遮罩层
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot with-padding"
+      >
+        <div>
+          <button
+            class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__text"
+            >
+               
+              基础用法
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`ssr snapshot test > ssr test src/divider/_example/base.tsx 1`] = `"<div class="divider-demo__title">水平分割线</div><div class="t-divider t-divider--horizontal t-divider--center" role="separator"><div class="t-divider__content"></div></div><div class="divider-demo__title">带文字水平分割线</div><div class="t-divider t-divider--horizontal t-divider--left" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--center" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--right" role="separator"><div class="t-divider__content">文字信息</div></div><div class="divider-demo__title" style="margin-bottom:10px">垂直分割线</div><div class="divider-wrapper"><span>文字信息</span><div class="t-divider t-divider--vertical t-divider--center" role="separator"><div class="t-divider__content"></div></div><span>文字信息</span><div class="t-divider t-divider--vertical t-divider--center" role="separator"><div class="t-divider__content"></div></div><span>文字信息</span></div>"`;
 
 exports[`ssr snapshot test > ssr test src/divider/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Divider 分割符</h1><p class="tdesign-mobile-demo-header__summary">用于分割、组织、细化有一定逻辑的组织元素内容和页面结构。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="divider-demo__title">水平分割线</div><div class="t-divider t-divider--horizontal t-divider--center" role="separator"><div class="t-divider__content"></div></div><div class="divider-demo__title">带文字水平分割线</div><div class="t-divider t-divider--horizontal t-divider--left" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--center" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--right" role="separator"><div class="t-divider__content">文字信息</div></div><div class="divider-demo__title" style="margin-bottom:10px">垂直分割线</div><div class="divider-wrapper"><span>文字信息</span><div class="t-divider t-divider--vertical t-divider--center" role="separator"><div class="t-divider__content"></div></div><span>文字信息</span><div class="t-divider t-divider--vertical t-divider--center" role="separator"><div class="t-divider__content"></div></div><span>文字信息</span></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件状态</h2></div><div class="tdesign-mobile-demo-block__slot with-padding"><div><div class="divider-demo__title">虚线样式</div><div class="t-divider t-divider--horizontal t-divider--center t-divider--dashed" role="separator"><div class="t-divider__content"></div></div><div class="t-divider t-divider--horizontal t-divider--left t-divider--dashed" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--center t-divider--dashed" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--right t-divider--dashed" role="separator"><div class="t-divider__content">文字信息</div></div></div></div></div></div>"`;
@@ -730,3 +806,7 @@ exports[`ssr snapshot test > ssr test src/layout/_example/base.tsx 1`] = `"<div 
 exports[`ssr snapshot test > ssr test src/layout/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Layout 布局</h1><p class="tdesign-mobile-demo-header__summary">以规则的网格阵列来指导和规范页面中的版面布局以及信息分布，提高界面内布局的一致性，节约成本。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">基础用法</p></div><div class="tdesign-mobile-demo-block__slot"><div class="tdesign-mobile-demo"><div class="t-row"><div class="t-col dark t-col--8 t-col--offset-0">col-8</div><div class="t-col light t-col--8 t-col--offset-0">col-8</div><div class="t-col dark t-col--8 t-col--offset-0">col-8</div></div><div class="t-row"><div class="t-col dark t-col--4 t-col--offset-0">col-4</div><div class="t-col light t-col--16 t-col--offset-4">col-16 col-offset-4</div></div><div class="t-row"><div class="t-col dark t-col--12 t-col--offset-12">col-12 col-offset-12</div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">在列元素之间增加间距</p></div><div class="tdesign-mobile-demo-block__slot"><div class="tdesign-mobile-demo"><div class="t-row" style="margin-right:-8px;margin-left:-8px"><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/layout/_example/offset.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="t-row" style="margin-right:-8px;margin-left:-8px"><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div><div class="t-col t-col--8 t-col--offset-0" style="padding-right:8px;padding-left:8px"><div class="dark">col-8</div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/overlay/_example/base.tsx 1`] = `"<div data-reactroot=""><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->基础用法</span></button></div>"`;
+
+exports[`ssr snapshot test > ssr test src/overlay/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Overlay 遮罩层</h1><p class="tdesign-mobile-demo-header__summary">通过遮罩层，可以强调部分内容</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件</h2><p class="tdesign-mobile-demo-block__summary">基础遮罩层</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->基础用法</span></button></div></div></div></div>"`;
