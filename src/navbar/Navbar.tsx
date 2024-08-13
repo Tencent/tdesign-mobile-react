@@ -5,6 +5,7 @@ import useConfig from '../_util/useConfig';
 import { StyledProps } from '../common';
 import { TdNavbarProps } from './type';
 import { navbarDefaultProps } from './defaultProps';
+import parseTNode from '../_util/parseTNode';
 
 export interface NavbarProps extends TdNavbarProps, StyledProps {}
 
@@ -40,7 +41,7 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
   }, [capsule, cls]);
 
   const titleChildren = useMemo(() => {
-    let titleNode = children || title;
+    let titleNode = parseTNode(children) || parseTNode(title);
     const isStringTitle = typeof titleNode === 'string';
 
     if (isStringTitle && !isNaN(titleMaxLength)) {
@@ -59,7 +60,7 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
     () =>
       right ? (
         <div className={cls('right')} onClick={onRightClick}>
-          {right}
+          {parseTNode(right)}
         </div>
       ) : null,
     [cls, right, onRightClick],
@@ -89,7 +90,7 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
       <div className={cls(`content`)}>
         <div className={cls(`left`)} onClick={onLeftClick}>
           {leftArrow && <ChevronLeftIcon className={cls('left-arrow')} />}
-          {left}
+          {parseTNode(left)}
           {leftCapsuleContent}
         </div>
         <div className={cls(`center`)}>{titleChildren}</div>
