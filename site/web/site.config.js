@@ -132,6 +132,12 @@ export default {
       type: 'component',
       children: [
         {
+          title: 'Cascader 级联选择器',
+          name: 'cascader',
+          path: '/mobile-react/components/cascader',
+          component: () => import('tdesign-mobile-react/cascader/cascader.md'),
+        },
+        {
           title: 'CheckBox 多选框',
           name: 'checkbox',
           path: '/mobile-react/components/checkbox',

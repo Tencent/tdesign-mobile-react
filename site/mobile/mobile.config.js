@@ -118,6 +118,11 @@ export default {
       component: () => import('tdesign-mobile-react/back-top/_example/index.tsx'),
     },
     {
+      title: 'Cascader 级联选择器',
+      name: 'cascader',
+      component: () => import('tdesign-mobile-react/cascader/_example/index.tsx'),
+    },
+    {
       title: 'Checkbox 多选框',
       name: 'checkbox',
       component: () => import('tdesign-mobile-react/checkbox/_example/index.jsx'),

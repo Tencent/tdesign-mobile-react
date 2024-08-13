@@ -9,15 +9,16 @@ export * from './progress';
 /**
  * 导航（5个）
  */
+export * from './indexes';
+export * from './navbar';
 export * from './steps';
 export * from './tab-bar';
-export * from './navbar';
 export * from './tabs';
-export * from './indexes';
 
 /**
  * 输入（11个）
  */
+export * from './cascader';
 export * from './checkbox';
 export * from './input';
 export * from './picker';
@@ -39,24 +40,24 @@ export * from './cell';
 export * from './count-down';
 export * from './grid';
 export * from './image';
+export * from './result';
 export * from './skeleton';
 export * from './sticky';
-export * from './swiper';
 export * from './swipe-cell';
+export * from './swiper';
 export * from './tag';
-export * from './result';
 
 /**
  * 消息提醒（7个）
  */
 export * from './back-top';
 export * from './dialog';
+export * from './drawer';
 export * from './loading';
 export * from './message';
 export * from './popup';
 export * from './pull-down-refresh';
 export * from './toast';
-export * from './drawer';
 
 /**
  * 二期组件
