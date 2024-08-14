@@ -6,7 +6,10 @@ import { colDefaultProps } from './defaultProps';
 
 import useConfig from '../_util/useConfig';
 import { NativeProps } from '../_util/withNativeProps';
-import { convertUnit, RowContext, RowProps } from './Row';
+import { convertUnit } from '../_util/convertUnit';
+import parseTNode from '../_util/parseTNode';
+
+import { RowContext, RowProps } from './Row';
 
 export interface ColProps extends TdColProps, NativeProps {
   children?: React.ReactNode;
@@ -28,7 +31,7 @@ const Col = forwardRef<HTMLDivElement, ColProps>((props, ref) => {
   const { offset, span, className, children, style: propStyle } = props;
   const { classPrefix } = useConfig();
 
-  const { gutter } = useContext<{ gutter: RowProps['gutter'] }>(RowContext);
+  const { gutter } = useContext(RowContext);
 
   const colClassNames = classNames(`${classPrefix}-col`, className, {
     [`${classPrefix}-col--${span}`]: span !== undefined,
@@ -42,7 +45,7 @@ const Col = forwardRef<HTMLDivElement, ColProps>((props, ref) => {
 
   return (
     <div className={colClassNames} ref={ref} style={colStyle}>
-      {children}
+      {parseTNode(children)}
     </div>
   );
 });

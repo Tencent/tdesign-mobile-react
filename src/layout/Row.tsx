@@ -1,12 +1,12 @@
 import React, { createContext, forwardRef, useMemo } from 'react';
 import classNames from 'classnames';
-import isNumber from 'lodash/isNumber';
 
 import type { TdRowProps } from './type';
 
 import { NativeProps } from '../_util/withNativeProps';
 
 import useConfig from '../_util/useConfig';
+import { convertUnit } from '../_util/convertUnit';
 
 export interface RowProps extends TdRowProps, NativeProps {
   /**
@@ -15,12 +15,7 @@ export interface RowProps extends TdRowProps, NativeProps {
   children?: React.ReactNode;
 }
 
-export const RowContext = createContext({ gutter: undefined });
-
-export const convertUnit = (val: string | number | undefined) => {
-  if (val == null) return 0;
-  return isNumber(val) ? `${val}px` : val;
-};
+export const RowContext = createContext<{ gutter: RowProps['gutter'] }>({ gutter: undefined });
 
 const Row = forwardRef<HTMLDivElement, RowProps>((props, ref) => {
   const { children, className = '', gutter, style } = props;
