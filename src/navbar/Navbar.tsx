@@ -1,4 +1,5 @@
-import React, { CSSProperties, useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
+import type { CSSProperties } from 'react';
 import { ChevronLeftIcon } from 'tdesign-icons-react';
 import ClassNames from 'classnames';
 import useConfig from '../_util/useConfig';
@@ -41,18 +42,18 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
   }, [capsule, cls]);
 
   const titleChildren = useMemo(() => {
-    let titleNode = parseTNode(children) || parseTNode(title);
+    let titleNode = children || title;
     const isStringTitle = typeof titleNode === 'string';
 
     if (isStringTitle && !isNaN(titleMaxLength)) {
       if (titleMaxLength <= 0) {
         console.warn('titleMaxLength must be greater than 0');
-      } else if (titleNode.length > titleMaxLength) {
-        titleNode = `${titleNode.slice(0, titleMaxLength)}...`;
+      } else if ((titleNode as String).length > titleMaxLength) {
+        titleNode = `${(titleNode as String).slice(0, titleMaxLength)}...`;
       }
     }
 
-    return isStringTitle ? <span className={cls('center-title')}>{titleNode}</span> : titleNode;
+    return isStringTitle ? <span className={cls('center-title')}>{parseTNode(titleNode)}</span> : parseTNode(titleNode);
   }, [children, cls, title, titleMaxLength]);
 
   // 右侧icon
