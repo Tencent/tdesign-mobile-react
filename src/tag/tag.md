@@ -37,7 +37,6 @@ disabled | Boolean | false | 标签禁用态，失效标签不能触发事件。
 icon | TElement | - | 标签中的图标，可自定义图标呈现。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 shape | String | square | 标签类型，有三种：方形、圆角方形、标记型。可选项：square/round/mark | N
 size | String | medium | 标签尺寸。可选项：small/medium/large。TS 类型：`SizeEnum`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-uncheckedProps | Object | - | 透传标签未选态属性。TS 类型：`TdTagProps` | N
 variant | String | dark | 标签风格变体。可选项：dark/light/outline/light-outline | N
 onChange | Function |  | TS 类型：`(checked: boolean) => void`<br/>状态切换时触发 | N
 onClick | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>点击标签时触发 | N

@@ -106,10 +106,6 @@ export interface TdCheckTagProps {
    */
   size?: SizeEnum;
   /**
-   * 透传标签未选态属性
-   */
-  uncheckedProps?: TdTagProps;
-  /**
    * 标签风格变体
    * @default dark
    */
