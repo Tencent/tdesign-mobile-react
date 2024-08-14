@@ -1,14 +1,34 @@
+.tdesign-mobile-demo {
+  background-color: var(--bg-color-demo, #fff)
+}
+
 .tag-demo {
   background-color: #fff;
   padding: 16px;
   display: flex;
 
-  .t-tag + .t-tag {
+  .t-tag+.t-tag {
     margin-left: 16px;
   }
 }
 
-.tag-demo + .tag-demo {
+.tag-block {
+  margin-bottom: 16px;
+}
+
+.check-tag-block {
+  display: flex;
+  align-items: center;
+
+  &__title {
+    color: var(--td-text-color-disabled, rgba(0, 0, 0, 0.4));
+    font-size: 14px;
+    width: 80px;
+    margin-right: 16px;
+  }
+}
+
+.tag-demo+.tag-demo {
   margin-top: 16px;
 }
 
@@ -29,5 +49,20 @@
 
   .t-tag {
     margin-right: 16px;
+  }
+}
+
+.tag-container {
+  width: 100%;
+}
+
+.tag-block1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tag-block1 {
+  >.t-tag {
+    margin: 0;
   }
 }
