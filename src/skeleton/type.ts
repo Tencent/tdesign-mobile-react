@@ -8,19 +8,16 @@ import { TNode } from '../common';
 
 export interface TdSkeletonProps {
   /**
-   * 动画效果，有「渐变加载动画」和「闪烁加载动画」两种。值为空则表示没有动画
+   * 动画效果，有「渐变加载动画」和「闪烁加载动画」两种。值为 'none' 则表示没有动画
+   * @default none
    */
-  animation?: 'gradient' | 'flashed';
+  animation?: 'gradient' | 'flashed' | 'none';
   /**
    * 加载完成的内容，同 content
    */
-  default?: TNode;
+  children?: TNode;
   /**
-   * 加载完成的内容
-   */
-  content?: TNode;
-  /**
-   * 【开发中】延迟显示加载效果的时间，用于防止请求速度过快引起的加载闪烁，单位：毫秒
+   * 延迟显示加载效果的时间，用于防止请求速度过快引起的加载闪烁，单位：毫秒
    * @default 0
    */
   delay?: number;
@@ -37,7 +34,7 @@ export interface TdSkeletonProps {
    * 骨架图风格，有基础、头像组合等两大类
    * @default text
    */
-  theme?: 'text' | 'avatar-text';
+  theme?: 'avatar' | 'image' | 'text' | 'paragraph';
 }
 
 export type SkeletonRowCol = Array<Number | SkeletonRowColObj | Array<SkeletonRowColObj>>;
