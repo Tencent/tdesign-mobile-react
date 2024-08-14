@@ -1,32 +1,33 @@
-import React, { useCallback, forwardRef } from 'react';
 import classNames from 'classnames';
+import React, { forwardRef } from 'react';
 import { Icon } from 'tdesign-icons-react';
-import noop from '../_util/noop';
-import { TdTagProps } from './type';
+import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
+import { StyledProps } from 'tdesign-mobile-react/common';
+import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
 import useConfig from '../_util/useConfig';
+import { tagDefaultProps } from './defaultProps';
+import { TdTagProps } from './type';
 
-export interface TagProps extends TdTagProps {
-  className: string;
-  style: object;
-}
+export interface TagProps extends TdTagProps, StyledProps {}
 
-const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
+const Tag = forwardRef<HTMLDivElement, TagProps>((originProps, ref) => {
+  const props = useDefaultProps(originProps, tagDefaultProps);
   const {
-    className = '',
-    style = {},
-    closable = false,
-    content = null,
-    disabled = false,
-    icon = undefined,
+    className,
+    style,
+    closable,
+    content,
+    disabled,
+    icon,
     maxWidth,
-    children = '',
-    shape = 'square',
-    size = 'medium',
-    theme = 'default',
-    variant = 'dark',
-    onClick = noop,
-    onClose = noop,
-    ...other
+    children,
+    shape,
+    size,
+    theme,
+    variant,
+    onClick,
+    onClose,
+    ...otherProps
   } = props;
 
   const { classPrefix } = useConfig();
@@ -34,10 +35,10 @@ const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
 
   const tagClassNames = classNames(
     `${baseClass}`,
-    `${baseClass}--theme-${theme}`,
-    `${baseClass}--shape-${shape}`,
-    `${baseClass}--variant-${variant}`,
-    `${baseClass}--size-${size}`,
+    `${baseClass}--${theme}`,
+    `${baseClass}--${shape}`,
+    `${baseClass}--${variant}`,
+    `${baseClass}--${size}`,
     {
       [`${classPrefix}-is-closable ${baseClass}--closable`]: closable,
       [`${classPrefix}-is-disabled ${baseClass}--disabled`]: disabled,
@@ -50,44 +51,41 @@ const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
   };
 
-  const getRenderContent = useCallback(() => {
-    const contentType = typeof content;
-    if (contentType === 'string' || contentType === 'number') {
-      return content;
-    }
-    // if (contentType === 'function') {
-    //   return content();
-    // }
-
-    return content;
-  }, [content]);
-
-  function onClickClose(e) {
-    if (disabled) {
-      return;
-    }
+  const handleClose = (e) => {
     e.stopPropagation();
-    onClose({ e });
-  }
+    if (!props.disabled) {
+      onClose?.({ e });
+    }
+  };
 
   const handleClick = (e) => {
     if (disabled) {
       return;
     }
-    onClick({ e });
+    onClick?.({ e });
   };
 
+  const ChildNode = parseTNode(content) || parseTNode(children);
+
   return (
-    <span className={tagClassNames} style={tagStyle} onClick={handleClick} ref={ref} {...other}>
-      <span className={`${baseClass}__icon`}>{icon}</span>
-      <span className={`${baseClass}__text`}>{getRenderContent() || children}</span>
-      {closable ? (
-        <span className={`${baseClass}__icon-close`} onClick={onClickClose}>
+    <span
+      className={tagClassNames}
+      style={tagStyle}
+      aria-disabled={props.disabled}
+      role="button"
+      onClick={handleClick}
+      ref={ref}
+      {...otherProps}
+    >
+      {icon && <span className={`${baseClass}__icon`}>{icon}</span>}
+      <span className={`${baseClass}__text`}>{ChildNode}</span>
+      {props.closable && (
+        <span className={`${baseClass}__icon-close`} onClick={handleClose}>
           <Icon name="close" />
         </span>
-      ) : null}
+      )}
     </span>
   );
 });
 
-export default React.memo(Tag);
+export default Tag;
