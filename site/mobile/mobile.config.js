@@ -13,7 +13,7 @@ export default {
     {
       title: 'Icon 图标',
       name: 'icon',
-      component: () => import('tdesign-mobile-react/icon/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/icon/_example/index.tsx'),
     },
     {
       title: 'Tabs 选项卡',
