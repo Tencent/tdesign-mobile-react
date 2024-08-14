@@ -7,6 +7,7 @@ import { NativeProps } from '../_util/withNativeProps';
 
 import useConfig from '../_util/useConfig';
 import { convertUnit } from '../_util/convertUnit';
+import parseTNode from '../_util/parseTNode';
 
 export interface RowProps extends TdRowProps, NativeProps {
   /**
@@ -38,7 +39,7 @@ const Row = forwardRef<HTMLDivElement, RowProps>((props, ref) => {
 
   return (
     <div className={classNames([`${prefix}-row`], className)} ref={ref} style={computedStyle}>
-      <RowContext.Provider value={{ gutter }}>{children}</RowContext.Provider>
+      <RowContext.Provider value={{ gutter }}>{parseTNode(children)}</RowContext.Provider>
     </div>
   );
 });
