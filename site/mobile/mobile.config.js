@@ -150,7 +150,7 @@ export default {
     {
       title: 'Tag 标签',
       name: 'tag',
-      component: () => import('tdesign-mobile-react/tag/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/tag/_example/index.tsx'),
     },
     {
       title: 'Toast 轻提示',
