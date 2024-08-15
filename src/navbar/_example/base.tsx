@@ -25,9 +25,9 @@ const BaseDemo = () => {
         fixed={false}
         capsule={
           <div className="custom-capsule">
-            <ChevronLeftIcon size={20} class="custom-capsule__icon" />
+            <ChevronLeftIcon size={20} className="custom-capsule__icon" />
             <Divider layout="vertical" />
-            <HomeIcon size={20} class="custom-capsule__icon" />
+            <HomeIcon size={20} className="custom-capsule__icon" />
           </div>
         }
         titleMaxLength={5}
