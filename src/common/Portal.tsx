@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { AttachNode, AttachNodeReturnValue } from '../common';
 import { canUseDocument } from '../_util/dom';
 import useConfig from '../hooks/useConfig';
+import useDefaultProps from '../hooks/useDefaultProps';
 
 export interface PortalProps {
   /**
@@ -36,8 +37,9 @@ export function getAttach(attach: PortalProps['attach'], triggerNode?: HTMLEleme
   return document.body;
 }
 
-const Portal = forwardRef((props: PortalProps, ref) => {
-  const { attach, children, triggerNode } = props;
+const Portal = forwardRef<HTMLElement, PortalProps>((props, ref) => {
+  const { attach, children, triggerNode } = useDefaultProps<PortalProps>(props, {});
+
   const { classPrefix } = useConfig();
 
   const container = useMemo(() => {

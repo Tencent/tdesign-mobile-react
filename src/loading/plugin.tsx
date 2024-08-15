@@ -25,9 +25,10 @@ export const LoadingPlugin: LoadingPluginMethod = (options) => {
     loading: true,
     attach: null,
     fullscreen: !attach,
+    ...props,
   };
 
-  ReactDOM.render(<Loading {...defaultProps} {...props} attach={null}></Loading>, div);
+  ReactDOM.render(<Loading {...defaultProps} attach={null}></Loading>, div);
 
   container.appendChild(div);
 
