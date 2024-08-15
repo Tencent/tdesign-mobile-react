@@ -8,7 +8,7 @@ let totalLockCount = 0;
 // 移植自vant：https://github.com/youzan/vant/blob/HEAD/src/composables/use-lock-scroll.ts
 export function useLockScroll(rootRef: RefObject<HTMLElement>, shouldLock: boolean, componentName: string) {
   const touch = useTouch();
-  const BODY_LOCK_CLASS = `${componentName}-overflow-hidden`;
+  const BODY_LOCK_CLASS = `${componentName}--lock`;
 
   const onTouchMove = useCallback(
     (event: TouchEvent) => {

@@ -4,13 +4,22 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TNode } from '../common';
+import { TNode, AttachNode } from '../common';
 
 export interface TdLoadingProps {
+  /**
+   * 挂载元素，默认挂载到组件本身所在的位置。数据类型为 String 时，会被当作选择器处理，进行节点查询。示例：'body' 或 () => document.body
+   * @default ''
+   */
+  attach?: AttachNode;
   /**
    * 子元素，同 content
    */
   children?: TNode;
+  /**
+   * 子元素
+   */
+  content?: TNode;
   /**
    * 延迟显示加载效果的时间，用于防止请求速度过快引起的加载闪烁，单位：毫秒
    * @default 0
@@ -22,10 +31,15 @@ export interface TdLoadingProps {
    */
   duration?: number;
   /**
-   * 是否显示加载指示符
+   * 是否显示为全屏加载
+   * @default false
+   */
+  fullscreen?: boolean;
+  /**
+   * 加载指示符，值为 true 显示默认指示符，值为 false 则不显示，也可以自定义指示符
    * @default true
    */
-  indicator?: boolean;
+  indicator?: TNode;
   /**
    * 是否继承父元素颜色
    * @default false
@@ -52,16 +66,12 @@ export interface TdLoadingProps {
    */
   preventScrollThrough?: boolean;
   /**
-   * 加载进度
-   */
-  progress?: number;
-  /**
    * 加载动画是否反向
    */
   reverse?: boolean;
   /**
-   * 尺寸，示例：40rpx/20px
-   * @default '40rpx'
+   * 尺寸，示例：20px
+   * @default '20px'
    */
   size?: string;
   /**
@@ -72,9 +82,11 @@ export interface TdLoadingProps {
    * 加载组件类型
    * @default circular
    */
-  theme?: 'circular' | 'spinner' | 'bar' | 'error' | 'dots';
+  theme?: 'circular' | 'spinner' | 'dots';
 }
 
-export interface LoadingInstance { hide: () => void };
+export interface LoadingInstance {
+  hide: () => void;
+}
 
 export type LoadingMethod = (options: boolean | TdLoadingProps) => LoadingInstance;

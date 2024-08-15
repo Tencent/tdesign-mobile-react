@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Loading, Switch } from 'tdesign-mobile-react';
 
-export default function () {
+export default function DelayLoading() {
   const [showLoading, setShowLoading] = useState(false);
 
   const clickSwitch = (value) => {
