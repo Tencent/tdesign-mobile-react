@@ -1,27 +1,18 @@
-.tdesign-mobile-demo.progress {
-    background-color: #F6F6F6;
-
+.tdesign-mobile-demo {
+  background-color: #fff;
 }
 
-.progress-demo {
-    padding: 8px 16px;
-    background-color: #fff;
-
-    .button-group {
-        display: flex;
-        justify-content: center;
-        padding-bottom: 8px;
-
-        .space {
-            width: 16px;
-        }
-    }
-
-    .label--color {
-        color: #d504d9;
-    }
-}
-
-.progress-demo--margin:not(:last-child) {
+.example-progress {
+  &__item:not(:last-child) {
     margin-bottom: 16px;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 8px;
+    .space {
+      width: 16px;
+    }
+  }
 }

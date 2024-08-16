@@ -1,6 +1,6 @@
 {
   "name": "tdesign-mobile-react",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "TDesign Component for Mobile React",
   "title": "tdesign-mobile-react",
   "main": "cjs/index.js",
@@ -24,6 +24,7 @@
     "esm/**/style/**"
   ],
   "scripts": {
+    "init": "git submodule init && git submodule update",
     "prepare": "husky install",
     "start": "cd site && vite",
     "dev": "cd site && vite",
@@ -35,27 +36,29 @@
     "postsite:preview": "cp _site/index.html _site/404.html",
     "lint": "eslint --ext .ts,.tsx ./ --max-warnings 0",
     "lint:fix": "eslint --ext .ts,.tsx ./ --max-warnings 0 --fix",
-    "test": "npm run test:unit",
-    "test:update": "npm run test:unit-update",
-    "test:unit": "bash -c 'jest --coverage --config test/config/jest.unit.conf.js ${1}' -- ",
-    "test:unit-update": "jest --config test/config/jest.unit.conf.js --updateSnapshot --coverage",
-    "test:node": "jest --config test/config/jest.ssr.conf.js",
-    "test:node-update": "jest --config test/config/jest.ssr.conf.js --updateSnapshot --coverage",
-    "test:watch": "jest --config test/config/jest.unit.conf.js --watch",
-    "test:coverage": "npm run test:update",
-    "prebuild": "rimraf es/* lib/* dist/* esm/*",
+    "test": "npm run test:unit && npm run test:snap",
+    "test:unit": "vitest run",
+    "test:unit-dev": "vitest",
+    "test:unit-gui": "vitest --ui",
+    "test:unit-coverage": "vitest run --coverage",
+    "test:snap": "cross-env NODE_ENV=test-snap vitest run",
+    "test:snap-update": "cross-env NODE_ENV=test-snap vitest run -u",
+    "test:update": "vitest run -u && npm run test:snap-update",
+    "generate:coverage-badge": "node script/generate-coverage.js",
+    "prebuild": "rimraf es/* lib/* dist/* esm/* cjs/*",
     "build": "cross-env NODE_ENV=production rollup -c script/rollup.config.js && npm run build:tsc",
     "build:tsc": "concurrently \"npm:build:tsc-*\"",
-    "build:tsc-es": "tsc --emitDeclarationOnly -d --outDir es/",
-    "build:tsc-esm": "tsc --emitDeclarationOnly -d --outDir esm/",
-    "build:tsc-lib": "tsc --emitDeclarationOnly -d --outDir lib/"
+    "build:tsc-es": "tsc --emitDeclarationOnly -d -p ./tsconfig.build.json --outDir es/",
+    "build:tsc-esm": "tsc --emitDeclarationOnly -d -p ./tsconfig.build.json --outDir esm/",
+    "build:tsc-lib": "tsc --emitDeclarationOnly -d -p ./tsconfig.build.json --outDir lib/",
+    "build:tsc-cjs": "tsc --emitDeclarationOnly -d -p ./tsconfig.build.json --outDir cjs/"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TDesignOteam/tdesign-mobile-react.git"
+    "url": "git+https://github.com/Tencent/tdesign-mobile-react.git"
   },
   "keywords": [
     "tdesign",
@@ -68,7 +71,7 @@
     "react-dom": ">=16.13.1"
   },
   "bugs": {
-    "url": "https://github.com/TDesignOteam/tdesign-mobile-react/issues"
+    "url": "https://github.com/Tencent/tdesign-mobile-react/issues"
   },
   "homepage": "https://tdesign.tencent.com/mobile-react",
   "devDependencies": {
@@ -89,11 +92,16 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "@types/lodash": "^4.14.178",
-    "@types/react": "^17.0.38",
+    "@types/node": "^20.14.11",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "17.0.2",
     "@types/react-transition-group": "^4.4.4",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
     "@vitejs/plugin-react": "^1.1.1",
+    "@vitest/coverage-istanbul": "^2.0.3",
+    "@vitest/coverage-v8": "^2.0.3",
+    "@vitest/ui": "^2.0.3",
     "autoprefixer": "^10.4.0",
     "babel-jest": "^27.5.1",
     "babel-polyfill": "^6.26.0",
@@ -104,6 +112,7 @@
     "cross-env": "^7.0.3",
     "cssnano": "^5.0.12",
     "cz-conventional-changelog": "^3.3.0",
+    "dom-parser": "^0.1.6",
     "eslint": "^8.4.1",
     "eslint-config-airbnb": "^19.0.2",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -114,17 +123,18 @@
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "find-node-modules": "^2.1.2",
+    "glob": "^10.4.5",
     "gray-matter": "^4.0.3",
     "husky": "^7.0.4",
     "inquirer": "^8.2.0",
-    "jest": "^27.5.1",
-    "jest-html-reporter": "^3.4.2",
-    "jest-transform-stub": "^2.0.0",
-    "jest-watch-typeahead": "^1.0.0",
+    "jsdom": "^24.1.0",
     "less": "^4.1.2",
+    "lint-staged": "^15.2.9",
     "markdown-it-fence": "^0.1.3",
+    "mockdate": "^3.0.5",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.5",
+    "prettier": "^3.3.3",
     "prismjs": "^1.25.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -140,29 +150,36 @@
     "rollup-plugin-styles": "^3.14.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.2",
-    "tdesign-icons-view": "^0.1.0",
-    "tdesign-site-components": "^0.13.10",
-    "ts-jest": "^27.1.3",
+    "tdesign-icons-view": "^0.2.7",
+    "tdesign-site-components": "^0.15.4",
     "typescript": "^4.5.3",
     "vite": "^2.7.0",
     "vite-plugin-pwa": "^0.11.11",
     "vite-plugin-tdoc": "^2.0.0",
+    "vitest": "^2.0.3",
     "workbox-precaching": "^6.3.0"
   },
   "dependencies": {
+    "@react-spring/web": "9.6.1",
     "@use-gesture/react": "^10.2.10",
     "ahooks": "^3.1.9",
     "classnames": "^2.3.1",
     "hoist-non-react-statics": "^3.3.2",
     "lodash": "^4.17.21",
-    "react-spring": "^9.4.4",
+    "react-spring": "9.6.1",
     "react-transition-group": "^4.4.2",
     "smoothscroll-polyfill": "^0.4.4",
-    "tdesign-icons-react": "^0.1.1"
+    "tdesign-icons-react": "^0.3.4"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "prettier --write",
+      "npm run lint:fix"
+    ]
   }
 }

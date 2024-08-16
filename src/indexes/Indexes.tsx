@@ -1,8 +1,7 @@
 import React, { FC, forwardRef, useState, MouseEvent, TouchEvent, useRef, useEffect } from 'react';
 import isFunction from 'lodash/isFunction';
 import throttle from 'lodash/throttle';
-import { Cell } from '../cell';
-import { CellGroup } from '../cell-group';
+import { Cell, CellGroup } from '../cell';
 import { TdIndexesProps, ListItem } from './type';
 import { StyledProps } from '../common';
 import useConfig from '../_util/useConfig';
@@ -108,9 +107,7 @@ const Indexes: FC<IndexesProps> = forwardRef((props) => {
     >
       {list.map((listItem) => (
         <div className={`${prefix}-indexes__anchor ${prefix}-indexes__index-${listItem.index}`} key={listItem.index}>
-          <div className={`${prefix}-indexes__title`}>
-            {listItem.title}
-          </div>
+          <div className={`${prefix}-indexes__title`}>{listItem.title}</div>
           <CellGroup>
             {listItem.children.map((element, index) => (
               <Cell

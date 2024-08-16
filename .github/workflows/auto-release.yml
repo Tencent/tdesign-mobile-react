@@ -19,7 +19,7 @@ jobs:
     steps:
       - run: echo "The head of this PR starts with 'release/'"
       - uses: actions/checkout@v3
-      - uses: 94dreamer/auto-release@develop
+      - uses: TDesignOteam/tdesign-changelog-action@main
         id: changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -53,13 +53,12 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ steps.comment.outputs.branch }}
-      - run: echo '${{ github.event.comment.body }}'
       - name: Commit and push if needed
         env:
           BODY: ${{ github.event.comment.body }}
         run: |
           txt=$(cat CHANGELOG.md)
-          echo "${txt%%##*} $BODY ${txt##*---}" > CHANGELOG.md
+          echo "${txt%%##*}$BODY${txt##*---}" > CHANGELOG.md
           git add .
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"

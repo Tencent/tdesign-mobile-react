@@ -9,10 +9,10 @@ const createToast = (props, theme?: ToastThemeListEnum) => {
   const el = document.createElement('div');
   document.body.appendChild(el);
   ReactDOM.render(<Toast {...{ ...config, theme, el }} />, el);
-  const destory = () => {
+  const destroy = () => {
     document.body.removeChild(el);
   };
-  return { destory };
+  return { destroy };
 };
 
 export default {

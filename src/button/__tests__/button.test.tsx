@@ -1,14 +1,12 @@
 import React from 'react';
-import { testExamples, render } from '@test/utils';
-import Button from '../Button';
+import { describe, it, expect, render } from '@test/utils';
 
-// 测试组件代码 Example 快照
-testExamples(__dirname);
+import Button from '../Button';
 
 describe('Button 组件测试', () => {
   const ButtonText = '按钮组件';
-  test('content', async () => {
+  it('content', async () => {
     const { queryByText } = render(<Button content={ButtonText} />);
-    expect(queryByText(ButtonText)).toBeInTheDocument();
+    expect(queryByText(ButtonText)).toMatchSnapshot();
   });
 });

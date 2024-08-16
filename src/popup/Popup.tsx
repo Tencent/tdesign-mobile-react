@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import { useSpring, animated } from 'react-spring';
 import Overlay from '../overlay';
 import useDefault from '../_util/useDefault';
-import { PropagationEvent } from '../_util/withStopPropagation';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import { TdPopupProps } from './type';
 import useConfig from '../_util/useConfig';
@@ -79,15 +78,7 @@ const Popup: FC<PopupProps> = (props) => {
   return withNativeProps(
     props,
     <div className={`${name}`} style={rootStyles}>
-      {showOverlay && (
-        <Overlay
-          visible={show}
-          onOverlayClick={handleOverlayClick}
-          disableBodyScroll={false}
-          stopPropagation={[PropagationEvent.CLICK, PropagationEvent.SCROLL]}
-          {...overlayProps}
-        />
-      )}
+      {showOverlay && <Overlay visible={show} onClick={handleOverlayClick} {...overlayProps} />}
       <animated.div className={classnames([`${name}--content`, `${name}--content-${placement}`])} style={contentStyle}>
         {active && children}
       </animated.div>
