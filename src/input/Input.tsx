@@ -12,6 +12,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CloseCircleFilledIcon, BrowseOffIcon, BrowseIcon } from 'tdesign-icons-react';
+import useDefault from 'tdesign-mobile-react/_util/useDefault';
 import { inputDefaultProps } from './defaultProps';
 import { getCharacterLength } from '../_common/js/utils/helper';
 import useConfig from '../_util/useConfig';
@@ -41,20 +42,23 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
     prefixIcon,
     suffix,
     suffixIcon,
-    status,
     tips,
     type,
     readonly,
     onBlur,
     onClear,
     onFocus,
+    value,
+    defaultValue,
+    onChange,
   } = useDefaultProps(props, inputDefaultProps);
 
   const [showClear, setShowClear] = useState<boolean>(false);
-  const [innerValue, setInnerValue] = useState<string>('');
+  const [innerValue, setInnerValue] = useDefault(value, defaultValue, onChange);
   const [renderType, setRenderType] = useState(type);
   const inputRef = useRef<HTMLInputElement>(null);
   const focused = useRef<boolean>(false);
+  const status = props.status || 'default';
   const { classPrefix } = useConfig();
   const rootClassName = `${classPrefix}-input`;
   const inputClasses = classNames(`${rootClassName}__control`, {
@@ -148,7 +152,7 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
     e.preventDefault();
     setInnerValue('');
     focus();
-    onClear?.({ e });
+    onClear?.({ e: e as TouchEvent<HTMLInputElement> });
   };
 
   const handleFocus = (e: FocusEvent) => {
