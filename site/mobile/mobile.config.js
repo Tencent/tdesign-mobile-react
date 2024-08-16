@@ -130,7 +130,7 @@ export default {
     {
       title: 'Loading 加载中',
       name: 'loading',
-      component: () => import('tdesign-mobile-react/loading/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/loading/_example/index.tsx'),
     },
     {
       title: 'Swiper 轮播',
