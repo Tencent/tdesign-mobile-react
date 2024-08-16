@@ -18,6 +18,7 @@ const Button = forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>
     disabled,
     ghost,
     icon = null,
+    suffix = null,
     loading,
     shape,
     size,
@@ -25,6 +26,7 @@ const Button = forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>
     type,
     variant,
     onClick = noop,
+    loadingProps = {},
   } = props;
   const { classPrefix } = useConfig();
 
@@ -33,24 +35,28 @@ const Button = forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>
       ref={ref}
       type={type}
       className={classnames(
-        [`${classPrefix}-button`, `${classPrefix}-button--${variant}`, `${classPrefix}-button--${theme}`, className],
+        [
+          `${classPrefix}-button`,
+          `${classPrefix}-button--size-${size}`,
+          `${classPrefix}-button--${variant}`,
+          `${classPrefix}-button--${theme}`,
+          `${classPrefix}-button--${shape}`,
+          className,
+        ],
         {
           [`${classPrefix}-button--ghost`]: ghost,
-          [`${classPrefix}-size-s`]: size === 'small',
-          [`${classPrefix}-size-default`]: size === 'medium',
-          [`${classPrefix}-size-l`]: size === 'large',
-          [`${classPrefix}-is-loading`]: loading,
-          [`${classPrefix}-is-disabled`]: disabled,
-          [`${classPrefix}-is-block`]: block,
+          [`${classPrefix}-button--loading`]: loading,
+          [`${classPrefix}-button--disabled`]: disabled,
+          [`${classPrefix}-button--block`]: block,
         },
-        [`${classPrefix}-button--shape-${shape}`],
       )}
       style={style}
       onClick={!loading && !disabled ? onClick : undefined}
       disabled={disabled || loading}
     >
-      {loading ? <LoadingIcon /> : icon}
-      {content || children ? <span className={`${classPrefix}-button__text`}> {content || children}</span> : ''}
+      {loading ? <LoadingIcon {...loadingProps} /> : icon}
+      {content || children ? <span className={`${classPrefix}-button__content`}> {content || children}</span> : ''}
+      {suffix}
     </button>
   );
 });
