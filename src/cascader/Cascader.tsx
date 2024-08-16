@@ -8,7 +8,7 @@ import { Popup } from 'tdesign-mobile-react/popup';
 import { Radio, RadioGroup } from 'tdesign-mobile-react/radio';
 import Tabs from 'tdesign-mobile-react/tabs';
 import TabContext from 'tdesign-mobile-react/tabs/context';
-import { StyledProps, TNode, TreeKeysType, TreeOptionData } from '../common';
+import { StyledProps, TNode, TreeOptionData } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { cascaderDefaultProps } from './defaultProps';
@@ -41,6 +41,8 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps>((props) => {
     subTitles,
     options: inputOptions,
     keys,
+    checkStrictly,
+    closeBtn,
     onChange,
     onClose,
     onPick,
@@ -53,8 +55,7 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps>((props) => {
 
   // 根据 inputOptions 和 key 重新构建 options
   const options = useMemo(() => {
-    // TODO: keys 的类型 不对
-    const { label = 'label', value = 'value', children = 'children' } = (keys || {}) as TreeKeysType;
+    const { label = 'label', value = 'value', children = 'children' } = keys || {};
 
     const convert = (options: TreeOptionData[]) =>
       options.map((item) => ({
@@ -115,9 +116,16 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps>((props) => {
   }, [optionsList, internalSelectedValues, placeholder]);
 
   const selectedValuesByInterValue = useMemo(() => {
-    // 最后一级的value为匹配时，返回整个链路上的value
+    /**
+     * checkStrictly true 从外到内 匹配上就挺 返回整个链路上的value
+     * checkStrictly false 最后一级的 value 匹配时，返回整个链路上的value
+     */
     const findValues = (options: TreeOptionData[]): CascaderProps['value'][] => {
       for (const item of options) {
+        if (checkStrictly && item.value === internalValue) {
+          return [item.value];
+        }
+
         const isLast = !(Array.isArray(item.children) && item.children.length);
         if (isLast) {
           if (item.value === internalValue) {
@@ -134,7 +142,7 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps>((props) => {
     };
 
     return findValues(options);
-  }, [options, internalValue]);
+  }, [options, internalValue, checkStrictly]);
 
   // 当 selectedValuesByInterValue 深度变化 的时候再控制 selectedValues
   useDeepCompareEffect(() => {
@@ -148,6 +156,23 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps>((props) => {
       setStepIndex(reviseStepIndex);
     }
   }, [optionsList, stepIndex]);
+
+  // 结束了
+  const onFinish = useCallback(
+    (selectedValues: CascaderProps['value'][]) => {
+      const selectedOptions = [...optionsList].slice(0, selectedValues.length).map((options, index) => {
+        const target = options.find((item) => item.value === selectedValues[index]);
+        const { label = 'label', value = 'value' } = keys || {};
+        return {
+          [label]: target?.label || '',
+          [value]: target?.value || '',
+        };
+      });
+      setInternalValue(last(selectedValues), selectedOptions as any);
+      onClose?.('finish');
+    },
+    [onClose, optionsList, setInternalValue, keys],
+  );
 
   return (
     <Popup
@@ -163,11 +188,16 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps>((props) => {
         <div
           className={`${cascaderClass}__close-btn`}
           onClick={() => {
+            if (checkStrictly) {
+              onFinish(internalSelectedValues);
+              return;
+            }
+
             setInternalVisible(false);
             onClose?.('close-btn');
           }}
         >
-          <Icon name="close" size={24} />
+          {closeBtn === true ? <Icon name="close" size={24} /> : closeBtn}
         </div>
         <div className={`${cascaderClass}__content`}>
           {labelList.length ? (
@@ -248,23 +278,7 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps>((props) => {
                         return;
                       }
 
-                      // 结束了
-                      const selectedOptions = optionsList.map((options, index) => {
-                        const target = options.find((item) => item.value === selectedValues[index]);
-                        const {
-                          label = 'label',
-                          value = 'value',
-                          children = 'children',
-                        } = (keys || {}) as TreeKeysType;
-                        return {
-                          [label]: target?.label || '',
-                          [value]: target?.value || '',
-                          [children]: target?.children,
-                        };
-                      });
-                      // TODO  onChange 的 selectedOptions 类型不对
-                      setInternalValue(value, selectedOptions as any);
-                      onClose?.('finish');
+                      onFinish(selectedValues);
                     }}
                   >
                     {curOptions.map((item) => (
