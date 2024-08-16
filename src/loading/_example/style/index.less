@@ -1,50 +1,58 @@
-.demo-content {
-  padding: 0 16px;
+.loading-demo--flex {
   display: flex;
-  // flex-direction: column;
-  &--column {
-    flex-direction: column;
-  }
-  .demo-loading {
-    margin-top: 20px;
-  }
-  .demo-loading-speed-slider {
-    width: 100%;
-    margin-top: 20px;
-    display: grid;
-    align-items: center;
-    grid-gap: 24px;
-    grid-template-columns: auto 1fr;
-  }
-  &.pure-text-demo-box {
-    display: grid;
-    align-items: center;
-    grid-gap: 40px;
-    grid-template-columns: repeat(3, auto);
-  }
-  &.demo-content-size {
-    .t-loading {
-      margin-bottom: 20px;
-    }
-  }
+  align-items: center;
 }
 
-.normal-content {
+.t-loading {
+  margin-right: 64px;
+}
+
+.loading-demo {
   padding: 0 16px;
 }
 
-.custom-error {
+.loading-demo__summary {
   font-size: 14px;
-  .t-loading {
-    color: rgba(0, 0, 0, 0.9);
-  }
-  span {
-    margin-left: 10px;
-    color: rgba(0, 82, 217, 1);
-    cursor: pointer;
-  }
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 22px;
+}
+.mt-24 {
+  margin-top: 24px;
 }
 
-#app {
-  background-color: #fff;
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.slider-wrap {
+  // width: 100%;
+  // margin-top: 16px;
+  // padding: 20px 0;
+  margin: 16px;
+}
+
+// attact demo
+.loading-attach-demo__title {
+  /** `position: relative` is required as a parent node */
+  position: relative;
+  width: 360px;
+  text-align: center;
+}
+
+// PluginDemo
+.space {
+  display: flex;
+  margin-top: 8px;
+  gap: 6px;
+}
+.loading-service-demo {
+  position: relative;
+  width: 100%;
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px var(--component-border, #eee) solid;
 }
