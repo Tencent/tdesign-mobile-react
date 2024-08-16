@@ -1,48 +1,36 @@
 import React from 'react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
-import './style/index.less';
-import Base from './base';
-import AvatarText from './avatar-text';
-import PicText from './pic-text';
-import Flashed from './flashed';
-import Gradient from './gradient';
+import ThemeSkeleton from './theme';
+import AnimationSkeleton from './animation';
+import CellGroupSkeleton from './cell-group';
+import GridSkeleton from './grid';
+import ImageGroupSkeleton from './image-group';
 
-export default function () {
+import './style/index.less';
+
+export default function SkeletonDemo() {
   return (
     <div className="tdesign-mobile-demo">
       <TDemoHeader
         title="Skeleton 骨架屏"
-        summary="用于等待加载内容所展示的占位图形组合，有动态效果加载效果，减少用户等待焦虑。"
+        summary="用当网络较慢时，在页面真实数据加载之前，给用户展示出页面的大致结构。"
+        padding={true}
       />
-      <TDemoBlock title="01 类型" summary="基础">
-        <div className="demo-content ">
-          <Base />
-        </div>
+      <TDemoBlock title="01 类型" padding={true}>
+        <ThemeSkeleton />
       </TDemoBlock>
-
-      <TDemoBlock summary="头像组合">
-        <div className="demo-content ">
-          <AvatarText />
-        </div>
+      <TDemoBlock summary="单元格骨架屏" padding={true}>
+        <CellGroupSkeleton />
       </TDemoBlock>
-
-      <TDemoBlock summary="图片组合">
-        <div className="demo-content ">
-          <PicText />
-        </div>
+      <TDemoBlock summary="宫格骨架屏" padding={true}>
+        <GridSkeleton />
       </TDemoBlock>
-
-      <TDemoBlock title="02 动画效果" summary="渐变加载动画">
-        <div className="demo-content ">
-          <Gradient />
-        </div>
+      <TDemoBlock summary="图文组合骨架屏" padding={true}>
+        <ImageGroupSkeleton />
       </TDemoBlock>
-
-      <TDemoBlock summary="闪烁加载动画">
-        <div className="demo-content ">
-          <Flashed />
-        </div>
+      <TDemoBlock title="02 组件动效" padding={true}>
+        <AnimationSkeleton />
       </TDemoBlock>
     </div>
   );

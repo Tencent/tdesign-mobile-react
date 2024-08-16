@@ -100,14 +100,12 @@ exports[`csr snapshot test > csr test src/back-top/_example/index.tsx 1`] = `
       <div
         class="item"
       >
-        <div
-          class="t-skeleton t-skeleton--text"
-        >
+        <div>
           <div
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
               style="width: 165.5px; height: 165.5px; border-radius: 12px;"
             />
           </div>
@@ -115,14 +113,14 @@ exports[`csr snapshot test > csr test src/back-top/_example/index.tsx 1`] = `
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
             />
           </div>
           <div
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
               style="width: 100px;"
             />
           </div>
@@ -131,14 +129,12 @@ exports[`csr snapshot test > csr test src/back-top/_example/index.tsx 1`] = `
       <div
         class="item"
       >
-        <div
-          class="t-skeleton t-skeleton--text"
-        >
+        <div>
           <div
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
               style="width: 165.5px; height: 165.5px; border-radius: 12px;"
             />
           </div>
@@ -146,14 +142,14 @@ exports[`csr snapshot test > csr test src/back-top/_example/index.tsx 1`] = `
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
             />
           </div>
           <div
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
               style="width: 100px;"
             />
           </div>
@@ -162,14 +158,12 @@ exports[`csr snapshot test > csr test src/back-top/_example/index.tsx 1`] = `
       <div
         class="item"
       >
-        <div
-          class="t-skeleton t-skeleton--text"
-        >
+        <div>
           <div
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
               style="width: 165.5px; height: 165.5px; border-radius: 12px;"
             />
           </div>
@@ -177,14 +171,14 @@ exports[`csr snapshot test > csr test src/back-top/_example/index.tsx 1`] = `
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
             />
           </div>
           <div
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
               style="width: 100px;"
             />
           </div>
@@ -193,14 +187,12 @@ exports[`csr snapshot test > csr test src/back-top/_example/index.tsx 1`] = `
       <div
         class="item"
       >
-        <div
-          class="t-skeleton t-skeleton--text"
-        >
+        <div>
           <div
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
               style="width: 165.5px; height: 165.5px; border-radius: 12px;"
             />
           </div>
@@ -208,14 +200,14 @@ exports[`csr snapshot test > csr test src/back-top/_example/index.tsx 1`] = `
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
             />
           </div>
           <div
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
               style="width: 100px;"
             />
           </div>
@@ -224,14 +216,12 @@ exports[`csr snapshot test > csr test src/back-top/_example/index.tsx 1`] = `
       <div
         class="item"
       >
-        <div
-          class="t-skeleton t-skeleton--text"
-        >
+        <div>
           <div
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
               style="width: 165.5px; height: 165.5px; border-radius: 12px;"
             />
           </div>
@@ -239,14 +229,14 @@ exports[`csr snapshot test > csr test src/back-top/_example/index.tsx 1`] = `
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
             />
           </div>
           <div
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
               style="width: 100px;"
             />
           </div>
@@ -255,14 +245,12 @@ exports[`csr snapshot test > csr test src/back-top/_example/index.tsx 1`] = `
       <div
         class="item"
       >
-        <div
-          class="t-skeleton t-skeleton--text"
-        >
+        <div>
           <div
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
               style="width: 165.5px; height: 165.5px; border-radius: 12px;"
             />
           </div>
@@ -270,14 +258,14 @@ exports[`csr snapshot test > csr test src/back-top/_example/index.tsx 1`] = `
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
             />
           </div>
           <div
             class="t-skeleton__row"
           >
             <div
-              class="t-skeleton__col t-skeleton--type-text"
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
               style="width: 100px;"
             />
           </div>
@@ -6570,6 +6558,409 @@ exports[`csr snapshot test > csr test src/result/_example/theme.tsx 1`] = `
 </div>
 `;
 
+exports[`csr snapshot test > csr test src/skeleton/_example/animation.tsx 1`] = `
+<div>
+  <div>
+    <div>
+      <div
+        class="demo-section__desc"
+      >
+        渐变加载效果
+      </div>
+      <div
+        class="demo-section__content"
+      >
+        <div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-gradient"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-gradient"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-gradient"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-gradient"
+              style="width: 55%;"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="demo-section__desc"
+      >
+        闪烁加载效果
+      </div>
+      <div
+        class="demo-section__content"
+      >
+        <div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-flashed"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-flashed"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-flashed"
+            />
+          </div>
+          <div
+            class="t-skeleton__row"
+          >
+            <div
+              class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-flashed"
+              style="width: 55%;"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/skeleton/_example/cell-group.tsx 1`] = `
+<div>
+  <div
+    class="cell-group"
+  >
+    <div
+      class="cell-group-avatar"
+    >
+      <div
+        class="t-skeleton__row"
+      >
+        <div
+          class="t-skeleton__col t-skeleton--type-circle t-skeleton--animation-none"
+          style="width: 48px; height: 48px;"
+        />
+      </div>
+    </div>
+    <div
+      class="cell-group-content"
+    >
+      <div
+        class="t-skeleton__row"
+      >
+        <div
+          class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+          style="width: 50%;"
+        />
+      </div>
+      <div
+        class="t-skeleton__row"
+      >
+        <div
+          class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+          style="width: 100%;"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="cell-group"
+  >
+    <div
+      class="cell-group-avatar"
+    >
+      <div
+        class="t-skeleton__row"
+      >
+        <div
+          class="t-skeleton__col t-skeleton--type-rect t-skeleton--animation-none"
+          style="width: 48px; height: 48px;"
+        />
+      </div>
+    </div>
+    <div
+      class="cell-group-content"
+    >
+      <div
+        class="t-skeleton__row"
+      >
+        <div
+          class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+          style="width: 50%;"
+        />
+      </div>
+      <div
+        class="t-skeleton__row"
+      >
+        <div
+          class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+          style="width: 100%;"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/skeleton/_example/grid.tsx 1`] = `
+<div>
+  <div>
+    <div
+      class="t-skeleton__row"
+    >
+      <div
+        class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+        style="width: 48px; height: 48px; border-radius: 6px;"
+      />
+      <div
+        class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+        style="width: 48px; height: 48px; border-radius: 6px;"
+      />
+      <div
+        class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+        style="width: 48px; height: 48px; border-radius: 6px;"
+      />
+      <div
+        class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+        style="width: 48px; height: 48px; border-radius: 6px;"
+      />
+      <div
+        class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+        style="width: 48px; height: 48px; border-radius: 6px;"
+      />
+    </div>
+    <div
+      class="t-skeleton__row"
+    >
+      <div
+        class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+        style="width: 48px; height: 16px; border-radius: 3px;"
+      />
+      <div
+        class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+        style="width: 48px; height: 16px; border-radius: 3px;"
+      />
+      <div
+        class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+        style="width: 48px; height: 16px; border-radius: 3px;"
+      />
+      <div
+        class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+        style="width: 48px; height: 16px; border-radius: 3px;"
+      />
+      <div
+        class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+        style="width: 48px; height: 16px; border-radius: 3px;"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/skeleton/_example/image-group.tsx 1`] = `
+<div>
+  <div
+    class="image-group"
+  >
+    <div>
+      <div
+        class="t-skeleton__row"
+      >
+        <div
+          class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+          style="width: 163.5px; height: 163.5px; border-radius: 12px;"
+        />
+      </div>
+      <div
+        class="t-skeleton__row"
+      >
+        <div
+          class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+        />
+      </div>
+      <div
+        class="t-skeleton__row"
+      >
+        <div
+          class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+          style="width: 61%;"
+        />
+      </div>
+    </div>
+    <div>
+      <div
+        class="t-skeleton__row"
+      >
+        <div
+          class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+          style="width: 163.5px; height: 163.5px; border-radius: 12px;"
+        />
+      </div>
+      <div
+        class="t-skeleton__row"
+      >
+        <div
+          class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+        />
+      </div>
+      <div
+        class="t-skeleton__row"
+      >
+        <div
+          class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+          style="width: 61%;"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/skeleton/_example/theme.tsx 1`] = `
+<div>
+  <div>
+    <div
+      class="demo-section__desc"
+    >
+      头像骨架屏
+    </div>
+    <div
+      class="demo-section__content"
+    >
+      <div>
+        <div
+          class="t-skeleton__row"
+        >
+          <div
+            class="t-skeleton__col t-skeleton--type-circle t-skeleton--animation-none"
+            style="width: 48px; height: 48px;"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="demo-section__desc"
+    >
+      图片骨架屏
+    </div>
+    <div
+      class="demo-section__content"
+    >
+      <div>
+        <div
+          class="t-skeleton__row"
+        >
+          <div
+            class="t-skeleton__col t-skeleton--type-rect t-skeleton--animation-none"
+            style="width: 72px; height: 72px;"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="demo-section__desc"
+    >
+      文本骨架屏
+    </div>
+    <div
+      class="demo-section__content"
+    >
+      <div>
+        <div
+          class="t-skeleton__row"
+        >
+          <div
+            class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+            style="width: 24%; height: 16px; margin-right: 16px;"
+          />
+          <div
+            class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+            style="width: 76%; height: 16px;"
+          />
+        </div>
+        <div
+          class="t-skeleton__row"
+        >
+          <div
+            class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="demo-section__desc"
+    >
+      段落骨架屏
+    </div>
+    <div
+      class="demo-section__content"
+    >
+      <div>
+        <div
+          class="t-skeleton__row"
+        >
+          <div
+            class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+          />
+        </div>
+        <div
+          class="t-skeleton__row"
+        >
+          <div
+            class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+          />
+        </div>
+        <div
+          class="t-skeleton__row"
+        >
+          <div
+            class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+          />
+        </div>
+        <div
+          class="t-skeleton__row"
+        >
+          <div
+            class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"
+            style="width: 55%;"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`csr snapshot test > csr test src/sticky/_example/base.tsx 1`] = `
 <div>
   <div
@@ -8372,7 +8763,7 @@ exports[`csr snapshot test > csr test src/tag/_example/type.tsx 1`] = `
 
 exports[`ssr snapshot test > ssr test src/back-top/_example/base.tsx 1`] = `"<div class="button-group"><button type="button" class="t-button t-button--outline t-button--primary button t-size-default t-button--shape-rectangle"><span class="t-button__text"> <!-- -->圆形返回顶部</span></button><button type="button" class="t-button t-button--outline t-button--primary button t-size-default t-button--shape-rectangle"><span class="t-button__text"> <!-- -->半圆形返回顶部</span></button></div>"`;
 
-exports[`ssr snapshot test > ssr test src/back-top/_example/index.tsx 1`] = `"<div class="tdesign-mobile-react-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">BackTop 返回顶部</h1><p class="tdesign-mobile-demo-header__summary">当页面过长往下滑动是会出现返回顶部的便捷操作，帮助用户快速回到页面顶部</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">形状</h2></div><div class="tdesign-mobile-demo-block__slot"><div class="button-group"><button type="button" class="t-button t-button--outline t-button--primary button t-size-default t-button--shape-rectangle"><span class="t-button__text"> <!-- -->圆形返回顶部</span></button><button type="button" class="t-button t-button--outline t-button--primary button t-size-default t-button--shape-rectangle"><span class="t-button__text"> <!-- -->半圆形返回顶部</span></button></div></div></div><div class="group"><div class="item"><div class="t-skeleton t-skeleton--text"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:100px"></div></div></div></div><div class="item"><div class="t-skeleton t-skeleton--text"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:100px"></div></div></div></div><div class="item"><div class="t-skeleton t-skeleton--text"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:100px"></div></div></div></div><div class="item"><div class="t-skeleton t-skeleton--text"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:100px"></div></div></div></div><div class="item"><div class="t-skeleton t-skeleton--text"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:100px"></div></div></div></div><div class="item"><div class="t-skeleton t-skeleton--text"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text" style="width:100px"></div></div></div></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/back-top/_example/index.tsx 1`] = `"<div class="tdesign-mobile-react-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">BackTop 返回顶部</h1><p class="tdesign-mobile-demo-header__summary">当页面过长往下滑动是会出现返回顶部的便捷操作，帮助用户快速回到页面顶部</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">形状</h2></div><div class="tdesign-mobile-demo-block__slot"><div class="button-group"><button type="button" class="t-button t-button--outline t-button--primary button t-size-default t-button--shape-rectangle"><span class="t-button__text"> <!-- -->圆形返回顶部</span></button><button type="button" class="t-button t-button--outline t-button--primary button t-size-default t-button--shape-rectangle"><span class="t-button__text"> <!-- -->半圆形返回顶部</span></button></div></div></div><div class="group"><div class="item"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:100px"></div></div></div></div><div class="item"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:100px"></div></div></div></div><div class="item"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:100px"></div></div></div></div><div class="item"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:100px"></div></div></div></div><div class="item"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:100px"></div></div></div></div><div class="item"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:165.5px;height:165.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:100px"></div></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/cell/_example/base.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Cell 单元格</h1><p class="tdesign-mobile-demo-header__summary">一行内容/功能的垂直排列方式。一行项目左侧为主要内容展示区域，右侧可增加更多操作内容</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 类型</h2><p class="tdesign-mobile-demo-block__summary">单行单元格</p></div><div class="tdesign-mobile-demo-block__slot"><div class="tdesign-grid-base"><div><div class="t-cell-group t-cell-group--undefined t-cell-group--bordered"><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<span class="t-cell--required"> *</span></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note"><div class="t-badge"><div class="t-badge__inner t-badge--circle t-badge--medium">16</div></div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note"><button class="t-switch"><span class="t-switch__text"></span><span class="t-switch__node"></span></button></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note">辅助信息</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02</h2><p class="tdesign-mobile-demo-block__summary">多行单元格</p></div><div class="tdesign-mobile-demo-block__slot"><div><div class="t-cell-group t-cell-group--undefined"><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<span class="t-cell--required"> *</span><div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note"><div class="t-badge"><div class="t-badge__inner t-badge--circle t-badge--medium">16</div></div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note"><button class="t-switch t-is-checked"><span class="t-switch__text"></span><span class="t-switch__node"></span></button></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note">辅助信息</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容</div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">多行高度不定，长文本自动换行，该选项的描述是一段很长的内容<div class="t-cell__description">一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容</div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><div class="t-avatar t-avatar--circle"><div class="t-avatar__inner"><img alt="" src="https://tdesign.gtimg.com/mobile/demos/avatar1.png"/></div></div></div></div><div class="t-cell__title">多行带头像<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><img src="https://tdesign.gtimg.com/mobile/demos/example4.png" class="t-cell__left-image"/></div><div class="t-cell__title">多行带图片<div class="t-cell__description">一段很长很长的内容文字</div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">03 组件样式</h2><p class="tdesign-mobile-demo-block__summary">卡片单元格</p></div><div class="tdesign-mobile-demo-block__slot"><div><div class="t-cell-group t-cell-group--card"><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-service"><path fill="currentColor" d="M2 11a10 10 0 1120 0v5.15C22 17.8 20.58 19 19 19h-3v-8h4a8 8 0 10-16 0h4v8H6.06A2 2 0 008 20.5h1.56c.32-.45.85-.75 1.44-.75h2a1.75 1.75 0 110 3.5h-2c-.6 0-1.12-.3-1.44-.75H8a4 4 0 01-3.99-3.66A2.85 2.85 0 012 16.15V11zm4 6v-4H4v3.15c0 .4.37.85 1 .85h1zm14-4h-2v4h1c.63 0 1-.45 1-.85V13z"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-internet"><path fill="currentColor" d="M3.05 11a9 9 0 016.28-7.6 16.9 16.9 0 00-2.3 7.6H3.05zM11 1.05a11 11 0 000 21.9l.01.01.43.03a12.48 12.48 0 001.14 0l.43-.03a11 11 0 000-21.91v-.01L12.57 1a11.16 11.16 0 00-1.14 0l-.43.03zM12 3c1.7 2.26 2.77 5 2.97 8H9.03c.2-3 1.27-5.74 2.97-8zM7.03 13a16.9 16.9 0 002.3 7.6A9 9 0 013.05 13h3.98zM12 21c-1.7-2.26-2.77-5-2.97-8h5.94c-.2 3-1.27 5.74-2.97 8zm2.67-.4a16.9 16.9 0 002.3-7.6h3.98a9 9 0 01-6.28 7.6zm2.3-9.6a16.9 16.9 0 00-2.3-7.6 9 9 0 016.28 7.6h-3.98z"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div></div></div></div></div></div>"`;
 
@@ -8447,6 +8838,16 @@ exports[`ssr snapshot test > ssr test src/result/_example/custom.tsx 1`] = `"<di
 exports[`ssr snapshot test > ssr test src/result/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Result 结果</h1><p class="tdesign-mobile-demo-header__summary">结果反馈</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01类型</h2><p class="tdesign-mobile-demo-block__summary">不同结果反馈</p></div><div class="tdesign-mobile-demo-block__slot"><div><div class="t-result t-result--theme-success space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zm-12.5 4.41L6.09 12l1.41-1.41 3 3 6-6L17.91 9l-7.41 7.41z"></path></svg></div><div class="t-result__title">成功状态</div><div class="t-result__description">描述文字</div></div><div class="t-result t-result--theme-error space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zM7.4 15.18L10.6 12 7.4 8.82 8.82 7.4 12 10.6l3.18-3.19 1.42 1.42L13.4 12l3.19 3.18-1.42 1.42L12 13.4 8.82 16.6 7.4 15.18z"></path></svg></div><div class="t-result__title">失败状态</div><div class="t-result__description">描述文字</div></div><div class="t-result t-result--theme-warning space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-info-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zm-12 5.5V10h2v7.5h-2zm2-9h-2v-2h2v2z"></path></svg></div><div class="t-result__title">警示状态</div><div class="t-result__description">描述文字</div></div><div class="t-result t-result--theme-default space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-info-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zm-12 5.5V10h2v7.5h-2zm2-9h-2v-2h2v2z"></path></svg></div><div class="t-result__title">默认状态</div><div class="t-result__description">描述文字</div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">自定义结果</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-result t-result--theme-default"><div class="t-result__thumb"><div class="t-image t-image--round extra-class-image"><div class="t-image__status"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-ellipsis"><path fill="currentColor" d="M3 10.5h3v3H3v-3zm7.5 0h3v3h-3v-3zm7.5 0h3v3h-3v-3z"></path></svg></div><img class="t-image__img" src="https://tdesign.gtimg.com/mobile/demos/result1.png" style="object-fit:fill;width:inherit;height:inherit"/></div></div><div class="t-result__title">自定义结果</div><div class="t-result__description">描述文字</div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">页面位置展示</p></div><div class="tdesign-mobile-demo-block__slot"><div class="padding"><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->页面位置展示</span></button></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/result/_example/theme.tsx 1`] = `"<div data-reactroot=""><div class="t-result t-result--theme-success space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zm-12.5 4.41L6.09 12l1.41-1.41 3 3 6-6L17.91 9l-7.41 7.41z"></path></svg></div><div class="t-result__title">成功状态</div><div class="t-result__description">描述文字</div></div><div class="t-result t-result--theme-error space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zM7.4 15.18L10.6 12 7.4 8.82 8.82 7.4 12 10.6l3.18-3.19 1.42 1.42L13.4 12l3.19 3.18-1.42 1.42L12 13.4 8.82 16.6 7.4 15.18z"></path></svg></div><div class="t-result__title">失败状态</div><div class="t-result__description">描述文字</div></div><div class="t-result t-result--theme-warning space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-info-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zm-12 5.5V10h2v7.5h-2zm2-9h-2v-2h2v2z"></path></svg></div><div class="t-result__title">警示状态</div><div class="t-result__description">描述文字</div></div><div class="t-result t-result--theme-default space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-info-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zm-12 5.5V10h2v7.5h-2zm2-9h-2v-2h2v2z"></path></svg></div><div class="t-result__title">默认状态</div><div class="t-result__description">描述文字</div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/skeleton/_example/animation.tsx 1`] = `"<div data-reactroot=""><div><div class="demo-section__desc">渐变加载效果</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-gradient"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-gradient"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-gradient"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-gradient" style="width:55%"></div></div></div></div></div><div><div class="demo-section__desc">闪烁加载效果</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-flashed"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-flashed"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-flashed"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-flashed" style="width:55%"></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/skeleton/_example/cell-group.tsx 1`] = `"<div class="cell-group"><div class="cell-group-avatar"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-circle t-skeleton--animation-none" style="width:48px;height:48px"></div></div></div><div class="cell-group-content"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:50%"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:100%"></div></div></div></div><div class="cell-group"><div class="cell-group-avatar"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-rect t-skeleton--animation-none" style="width:48px;height:48px"></div></div></div><div class="cell-group-content"><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:50%"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:100%"></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/skeleton/_example/grid.tsx 1`] = `"<div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:48px;height:48px;border-radius:6px"></div><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:48px;height:48px;border-radius:6px"></div><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:48px;height:48px;border-radius:6px"></div><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:48px;height:48px;border-radius:6px"></div><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:48px;height:48px;border-radius:6px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:48px;height:16px;border-radius:3px"></div><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:48px;height:16px;border-radius:3px"></div><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:48px;height:16px;border-radius:3px"></div><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:48px;height:16px;border-radius:3px"></div><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:48px;height:16px;border-radius:3px"></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/skeleton/_example/image-group.tsx 1`] = `"<div class="image-group"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:163.5px;height:163.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:61%"></div></div></div><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:163.5px;height:163.5px;border-radius:12px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:61%"></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/skeleton/_example/theme.tsx 1`] = `"<div><div class="demo-section__desc">头像骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-circle t-skeleton--animation-none" style="width:48px;height:48px"></div></div></div></div></div><div><div class="demo-section__desc">图片骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-rect t-skeleton--animation-none" style="width:72px;height:72px"></div></div></div></div></div><div><div class="demo-section__desc">文本骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:24%;height:16px;margin-right:16px"></div><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:76%;height:16px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div></div></div></div><div><div class="demo-section__desc">段落骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:55%"></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/sticky/_example/base.tsx 1`] = `"<div class="tdesign-demo-block-1" data-reactroot=""><div class="t-sticky"><div class="t-sticky__content"><button type="button" class="t-button t-button--base t-button--primary custom-common-button t-size-default t-button--shape-rectangle"><span class="t-button__text"> <!-- -->基础吸顶</span></button></div></div></div>"`;
 
