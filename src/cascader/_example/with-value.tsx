@@ -64,12 +64,12 @@ const data = {
   ],
 };
 
-export default function BaseDemo() {
+export default function WithValueDemo() {
   const [visible, setVisible] = useState(false);
 
   const [note, setNote] = useState('请选择地址');
 
-  const [value, setValue] = useState<string | number | undefined>();
+  const [value, setValue] = useState<string | number | undefined>('120119');
 
   return (
     <>

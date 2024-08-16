@@ -13,6 +13,33 @@ toc: false
 ::: demo _example/base
 :::
 
+### 选项卡风格
+
+::: demo _example/theme-tab
+:::
+
+## 进阶
+
+### 带初始值
+
+::: demo _example/with-value
+:::
+
+
+### 自定义keys
+
+::: demo _example/keys
+:::
+
+### 使用次级标题
+
+::: demo _example/with-title
+:::
+
+### 异步加载
+
+::: demo _example/lazy
+:::
 
 ## API
 

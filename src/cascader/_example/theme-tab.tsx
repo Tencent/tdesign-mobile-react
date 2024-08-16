@@ -64,7 +64,7 @@ const data = {
   ],
 };
 
-export default function BaseDemo() {
+export default function ThemeTabDemo() {
   const [visible, setVisible] = useState(false);
 
   const [note, setNote] = useState('请选择地址');
@@ -85,6 +85,7 @@ export default function BaseDemo() {
         title="选择地址"
         value={value}
         visible={visible}
+        theme="tab"
         options={data.areaList}
         onChange={(value, selectedOptions) => {
           setNote((selectedOptions as any).map((item) => item.label).join('/') || '');
