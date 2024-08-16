@@ -5,7 +5,7 @@
  * */
 
 import { TNode, TElement } from '../common';
-import { MouseEvent, FocusEvent, TouchEvent, FormEvent, CompositionEvent } from 'react';
+import { MouseEvent, FocusEvent, FormEvent, CompositionEvent, TouchEvent } from 'react';
 
 export interface TdInputProps {
   /**
@@ -130,7 +130,7 @@ export interface TdInputProps {
   /**
    * 清空按钮点击时触发
    */
-  onClear?: (context: { e: TouchEvent }) => void;
+  onClear?: (context: { e: TouchEvent<HTMLDivElement> }) => void;
   /**
    * 获得焦点时触发
    */
