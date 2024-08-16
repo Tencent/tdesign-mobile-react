@@ -11,8 +11,7 @@ export default function Suffix() {
         placeholder="请输入手机号码"
         suffix={
           <Button theme="primary" size="small">
-            {' '}
-            操作按钮{' '}
+            {' 操作按钮 '}
           </Button>
         }
       />
