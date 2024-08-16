@@ -8,7 +8,7 @@ import { buttonDefaultProps } from './defaultProps';
 
 export interface ButtonProps extends TdButtonProps, Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'content'> {}
 
-const Button = forwardRef<HTMLDivElement, ButtonProps>((props, ref) => {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const {
     className = '',
     style,
