@@ -3,6 +3,7 @@ import type { FocusEvent, TouchEvent, CompositionEvent, FormEvent } from 'react'
 import classNames from 'classnames';
 import { CloseCircleFilledIcon, BrowseOffIcon, BrowseIcon } from 'tdesign-icons-react';
 import useDefault from 'tdesign-mobile-react/_util/useDefault';
+import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
 import { inputDefaultProps } from './defaultProps';
 import { getCharacterLength } from '../_common/js/utils/helper';
 import useConfig from '../_util/useConfig';
@@ -159,7 +160,7 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
   const renderPrefix = () => (
     <div className={`${rootClassName}__wrap--prefix`}>
       {prefixIcon ? <div className={`${rootClassName}__icon--prefix`}></div> : null}
-      <div className={`${rootClassName}__label`}>{label}</div>
+      <div className={`${rootClassName}__label`}>{parseTNode(label)}</div>
     </div>
   );
 
@@ -170,7 +171,8 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
       </div>
     ) : null;
 
-  const renderSuffix = () => (suffix ? <div className={`${rootClassName}__wrap--suffix`}>{suffix}</div> : null);
+  const renderSuffix = () =>
+    suffix ? <div className={`${rootClassName}__wrap--suffix`}>{parseTNode(suffix)}</div> : null;
 
   const renderSuffixIcon = () => {
     let tempSuffixIcon = suffixIcon;
@@ -185,7 +187,7 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
   };
 
   const renderTips = () =>
-    tips ? <div className={`${rootClassName}__tips ${rootClassName}--${align}`}>{tips}</div> : null;
+    tips ? <div className={`${rootClassName}__tips ${rootClassName}--${align}`}>{parseTNode(tips)}</div> : null;
 
   return withNativeProps(
     props,
