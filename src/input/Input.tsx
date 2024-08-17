@@ -1,15 +1,5 @@
-import React, {
-  FC,
-  FocusEvent,
-  TouchEvent,
-  CompositionEvent,
-  FormEvent,
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import type { FC, FocusEvent, TouchEvent, CompositionEvent, FormEvent } from 'react';
 import classNames from 'classnames';
 import { CloseCircleFilledIcon, BrowseOffIcon, BrowseIcon } from 'tdesign-icons-react';
 import useDefault from 'tdesign-mobile-react/_util/useDefault';
