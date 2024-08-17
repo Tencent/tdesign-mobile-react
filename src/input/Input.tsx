@@ -7,7 +7,7 @@ import { inputDefaultProps } from './defaultProps';
 import { getCharacterLength } from '../_common/js/utils/helper';
 import useConfig from '../_util/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
-import { InputValue, TdInputProps } from './type';
+import { TdInputProps } from './type';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 
 export interface InputProps extends TdInputProps, NativeProps {
@@ -81,10 +81,6 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
   }, [clearTrigger, clearable, disabled, readonly]);
 
   useEffect(() => {
-    setInputValue(innerValue);
-  }, [innerValue]);
-
-  useEffect(() => {
     if (autofocus) {
       focus();
     }
@@ -93,17 +89,6 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
   useEffect(() => {
     setRenderType(type);
   }, [type]);
-
-  function setInputValue(v: InputValue = '') {
-    const input = inputRef.current;
-    const value = String(v);
-    if (!input) {
-      return;
-    }
-    if (input.value !== value) {
-      input.value = value;
-    }
-  }
 
   function focus() {
     focused.current = true;
