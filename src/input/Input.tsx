@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import type { FC, FocusEvent, TouchEvent, CompositionEvent, FormEvent } from 'react';
+import type { FocusEvent, TouchEvent, CompositionEvent, FormEvent } from 'react';
 import classNames from 'classnames';
 import { CloseCircleFilledIcon, BrowseOffIcon, BrowseIcon } from 'tdesign-icons-react';
 import useDefault from 'tdesign-mobile-react/_util/useDefault';
@@ -15,7 +15,12 @@ export interface InputProps extends TdInputProps, NativeProps {
   readonly?: boolean;
 }
 
-const Input: FC<InputProps> = forwardRef((props, ref) => {
+export interface InputRefProps {
+  focus?: () => void;
+  blur?: () => void;
+}
+
+const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
   const {
     align,
     autofocus,
@@ -69,7 +74,7 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
 
   useEffect(() => {
     const computeShowClear = () => {
-      if (disabled || readonly === true) {
+      if (disabled || readonly) {
         return false;
       }
       if (clearable) {
