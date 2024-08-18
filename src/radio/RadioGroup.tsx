@@ -1,8 +1,9 @@
-import React, { FC, ReactNode, useRef } from 'react';
+import React, { useRef } from 'react';
+import type { FC, ReactNode } from 'react';
 import useConfig from '../_util/useConfig';
 import Radio, { RadioContext, RadioContextValue, RadioProps } from './Radio';
-import { TdRadioGroupProps } from './type';
 import useDefault from '../_util/useDefault';
+import type { TdRadioGroupProps } from './type';
 
 export interface RadioGroupProps extends TdRadioGroupProps {
   children?: ReactNode;
@@ -53,12 +54,8 @@ const RadioGroup: FC<RadioGroupProps> = (props) => {
       );
     });
   return (
-    <div ref={groupRef} className={`${classPrefix}-radio-group`}>
-      <div className={`${classPrefix}-cell-group`}>
-        <div className={`${classPrefix}cell-group__container`}>
-          <RadioContext.Provider value={context}>{options?.length ? renderOptions() : children}</RadioContext.Provider>
-        </div>
-      </div>
+    <div ref={groupRef} className={`${classPrefix}-radio-group ${props.className || ''}`}>
+      <RadioContext.Provider value={context}>{options?.length ? renderOptions() : children}</RadioContext.Provider>
     </div>
   );
 };

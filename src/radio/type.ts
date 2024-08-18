@@ -4,12 +4,12 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TNode } from '../common';
+import { TNode, KeysType } from '../common';
 import { ChangeEvent } from 'react';
 
 export interface TdRadioProps {
   /**
-   * 复选框和内容相对位置
+   * 已废弃。复选框和内容相对位置
    * @default left
    */
   align?: 'left' | 'right';
@@ -19,11 +19,22 @@ export interface TdRadioProps {
    */
   allowUncheck?: boolean;
   /**
+   * 是否为块级元素
+   * @default true
+   */
+  block?: boolean;
+  /**
+   * 是否开启无边框模式
+   */
+  borderless?: boolean;
+  /**
    * 是否选中
+   * @default false
    */
   checked?: boolean;
   /**
    * 是否选中，非受控属性
+   * @default false
    */
   defaultChecked?: boolean;
   /**
@@ -36,17 +47,18 @@ export interface TdRadioProps {
   content?: TNode;
   /**
    * 是否禁用组件内容（content）触发选中
+   * @default false
    */
   contentDisabled?: boolean;
   /**
-   * 是否为禁用态
+   * 是否为禁用态。如果存在父组件 RadioGroup，默认值由 RadioGroup.disabled 控制。优先级：Radio.disabled > RadioGroup.disabled > Form.disabled
    */
   disabled?: boolean;
   /**
-   * 自定义选中图标和非选中图标。示例：[选中态图标地址，非选中态图标地址]。值为 fill-circle 表示图标为填充型图标，值为 stroke-line 表示图标为描边型图标
-   * @default 'fill-circle'
+   * 自定义选中图标和非选中图标。示例：[选中态图标地址，非选中态图标地址]。使用 String 时，值为 circle 表示填充型图标、值为 line 表示描边型图标、值为 dot 表示圆点图标、值为 'none' 则表示没有图标
+   * @default 'circle'
    */
-  icon?: Array<TNode>;
+  icon?: 'circle' | 'line' | 'dot' | 'none' | Array<TNode>;
   /**
    * 主文案
    */
@@ -67,20 +79,44 @@ export interface TdRadioProps {
    */
   name?: string;
   /**
+   * 复选框和内容相对位置
+   * @default left
+   */
+  placement?: 'left' | 'right';
+  /**
    * 单选按钮的值
    */
-  value?: RadioValue;
+  value?: string | number | boolean;
   /**
    * 选中状态变化时触发
    */
   onChange?: (checked: boolean, context: { e: ChangeEvent<HTMLDivElement> }) => void;
 }
 
-export interface TdRadioGroupProps {
+export interface TdRadioGroupProps<T = RadioValue> {
   /**
-   * 是否禁用全部子单选框
+   * 是否允许取消选中
+   * @default false
+   */
+  allowUncheck?: boolean;
+  /**
+   * 是否开启无边框模式；优先级低于 Radio
+   * @default false
+   */
+  borderless?: boolean;
+  /**
+   * 是否禁用全部子单选框。优先级：Radio.disabled > RadioGroup.disabled > Form.disabled
    */
   disabled?: boolean;
+  /**
+   * 自定义选中图标和非选中图标。示例：[选中态图标地址，非选中态图标地址]。使用 String 时，值为 circle 表示填充型图标、值为 line 表示描边型图标、值为 dot 表示圆点图标
+   * @default 'circle'
+   */
+  icon?: 'circle' | 'line' | 'dot' | Array<TNode>;
+  /**
+   * 用来定义 value / label 在 `options` 中对应的字段别名
+   */
+  keys?: KeysType;
   /**
    * HTML 元素原生属性
    * @default ''
@@ -91,25 +127,30 @@ export interface TdRadioGroupProps {
    */
   options?: Array<RadioOption>;
   /**
+   * 复选框和内容相对位置
+   * @default left
+   */
+  placement?: 'left' | 'right';
+  /**
    * 选中的值
    */
-  value?: RadioValue;
+  value?: T;
   /**
    * 选中的值，非受控属性
    */
-  defaultValue?: RadioValue;
+  defaultValue?: T;
   /**
    * 选中值发生变化时触发
    */
-  onChange?: (value: RadioValue, context: { e: ChangeEvent<HTMLInputElement> }) => void;
+  onChange?: (value: T, context: { e: ChangeEvent<HTMLDivElement> }) => void;
 }
-
-export type RadioValue = string | number | boolean;
 
 export type RadioOption = string | number | RadioOptionObj;
 
 export interface RadioOptionObj {
   label?: string | TNode;
-  value?: string | number;
+  value?: string | number | boolean;
   disabled?: boolean;
 }
+
+export type RadioValue = string | number | boolean;

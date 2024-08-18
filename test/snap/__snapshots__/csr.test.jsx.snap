@@ -6122,6 +6122,1838 @@ exports[`csr snapshot test > csr test src/progress/_example/transition.tsx 1`] =
 </div>
 `;
 
+exports[`csr snapshot test > csr test src/radio/_example/base.tsx 1`] = `
+<div>
+  <div
+    class="t-radio-group "
+  >
+    <div
+      class="t-radio t-radio--left t-radio--block"
+    >
+      <input
+        checked=""
+        class="t-radio__original"
+        readonly=""
+        type="radio"
+        value="idx0"
+      />
+      <div
+        class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+      >
+        <svg
+          class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="t-radio__content"
+      >
+        <span
+          class="t-radio__title"
+          style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+        >
+          单选
+        </span>
+      </div>
+      <div
+        class="t-radio__border t-radio__border--left"
+      />
+    </div>
+    <div
+      class="t-radio t-radio--left t-radio--block"
+    >
+      <input
+        class="t-radio__original"
+        readonly=""
+        type="radio"
+        value="idx1"
+      />
+      <div
+        class="t-radio__icon t-radio__icon--left"
+      >
+        <div
+          class="t-radio__icon-circle"
+        />
+      </div>
+      <div
+        class="t-radio__content"
+      >
+        <span
+          class="t-radio__title"
+          style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+        >
+          单选
+        </span>
+      </div>
+      <div
+        class="t-radio__border t-radio__border--left"
+      />
+    </div>
+    <div
+      class="t-radio t-radio--left t-radio--block"
+    >
+      <input
+        class="t-radio__original"
+        readonly=""
+        type="radio"
+        value="idx2"
+      />
+      <div
+        class="t-radio__icon t-radio__icon--left"
+      >
+        <div
+          class="t-radio__icon-circle"
+        />
+      </div>
+      <div
+        class="t-radio__content"
+      >
+        <span
+          class="t-radio__title"
+          style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+        >
+          单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选
+        </span>
+      </div>
+      <div
+        class="t-radio__border t-radio__border--left"
+      />
+    </div>
+    <div
+      class="t-radio t-radio--left t-radio--block"
+    >
+      <input
+        class="t-radio__original"
+        readonly=""
+        type="radio"
+        value="idx3"
+      />
+      <div
+        class="t-radio__icon t-radio__icon--left"
+      >
+        <div
+          class="t-radio__icon-circle"
+        />
+      </div>
+      <div
+        class="t-radio__content"
+      >
+        <span
+          class="t-radio__title"
+          style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+        >
+          单选
+        </span>
+        <div
+          class="t-radio__description undefined"
+          style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 5;"
+        >
+          描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息
+        </div>
+      </div>
+      <div
+        class="t-radio__border t-radio__border--left"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/radio/_example/card.tsx 1`] = `
+<div>
+  <div
+    class="t-radio-group theme-card"
+  >
+    <div
+      class="t-radio t-radio--left t-radio--block"
+    >
+      <input
+        checked=""
+        class="t-radio__original"
+        readonly=""
+        type="radio"
+        value="1"
+      />
+      <div
+        class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+      >
+        <svg
+          class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="t-radio__content"
+      >
+        <span
+          class="t-radio__title"
+          style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+        >
+          单选
+        </span>
+      </div>
+      <div
+        class="t-radio__border t-radio__border--left"
+      />
+    </div>
+    <div
+      class="t-radio t-radio--left t-radio--block"
+    >
+      <input
+        class="t-radio__original"
+        readonly=""
+        type="radio"
+        value="2"
+      />
+      <div
+        class="t-radio__icon t-radio__icon--left"
+      >
+        <div
+          class="t-radio__icon-circle"
+        />
+      </div>
+      <div
+        class="t-radio__content"
+      >
+        <span
+          class="t-radio__title"
+          style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+        >
+          单选
+        </span>
+      </div>
+      <div
+        class="t-radio__border t-radio__border--left"
+      />
+    </div>
+    <div
+      class="t-radio t-radio--left t-radio--block"
+    >
+      <input
+        class="t-radio__original"
+        readonly=""
+        type="radio"
+        value="3"
+      />
+      <div
+        class="t-radio__icon t-radio__icon--left"
+      >
+        <div
+          class="t-radio__icon-circle"
+        />
+      </div>
+      <div
+        class="t-radio__content"
+      >
+        <span
+          class="t-radio__title"
+          style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+        >
+          单选标题多行单选标题多行单选标题多行单选标题多行单选标题多行
+        </span>
+      </div>
+      <div
+        class="t-radio__border t-radio__border--left"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/radio/_example/custom.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+  >
+    <div
+      class="tdesign-mobile-demo-block__header"
+    >
+      <p
+        class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+      >
+        单选框尺寸规格
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block__slot"
+    >
+      <div
+        class="t-radio-group "
+      >
+        <div
+          class="card card--active"
+        >
+          <svg
+            class="t-icon t-icon-check card__icon"
+            color="#fff"
+          >
+            <use
+              xlink:href="#t-icon-check"
+            />
+          </svg>
+          <div
+            class="t-radio t-radio--left t-radio--block"
+          >
+            <input
+              checked=""
+              class="t-radio__original"
+              readonly=""
+              type="radio"
+              value="0"
+            />
+            <div
+              class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+            />
+            <div
+              class="t-radio__content"
+            >
+              <span
+                class="t-radio__title"
+                style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+              >
+                单选
+              </span>
+              <div
+                class="t-radio__description undefined"
+                style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 5;"
+              >
+                描述信息描述信息描述信息描述信息描述信息
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="card "
+        >
+          <div
+            class="t-radio t-radio--left t-radio--block"
+          >
+            <input
+              class="t-radio__original"
+              readonly=""
+              type="radio"
+              value="1"
+            />
+            <div
+              class="t-radio__icon t-radio__icon--left"
+            />
+            <div
+              class="t-radio__content"
+            >
+              <span
+                class="t-radio__title"
+                style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+              >
+                单选
+              </span>
+              <div
+                class="t-radio__description undefined"
+                style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 5;"
+              >
+                描述信息描述信息描述信息描述信息描述信息
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="card "
+        >
+          <div
+            class="t-radio t-radio--left t-radio--block"
+          >
+            <input
+              class="t-radio__original"
+              readonly=""
+              type="radio"
+              value="2"
+            />
+            <div
+              class="t-radio__icon t-radio__icon--left"
+            />
+            <div
+              class="t-radio__content"
+            >
+              <span
+                class="t-radio__title"
+                style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+              >
+                单选
+              </span>
+              <div
+                class="t-radio__description undefined"
+                style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 5;"
+              >
+                描述信息描述信息描述信息描述信息描述信息
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+  >
+    <div
+      class="tdesign-mobile-demo-block__header"
+    >
+      <p
+        class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+      >
+        横向卡片单选框
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block__slot"
+    >
+      <div
+        class="t-radio-group horizontal-box"
+      >
+        <div
+          class="card card--active"
+        >
+          <svg
+            class="t-icon t-icon-check card__icon"
+            color="#fff"
+          >
+            <use
+              xlink:href="#t-icon-check"
+            />
+          </svg>
+          <div
+            class="t-radio t-radio--left t-radio--block"
+          >
+            <input
+              checked=""
+              class="t-radio__original"
+              readonly=""
+              type="radio"
+              value="0"
+            />
+            <div
+              class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+            />
+            <div
+              class="t-radio__content"
+            >
+              <span
+                class="t-radio__title"
+                style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+              >
+                单选
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="card "
+        >
+          <div
+            class="t-radio t-radio--left t-radio--block"
+          >
+            <input
+              class="t-radio__original"
+              readonly=""
+              type="radio"
+              value="1"
+            />
+            <div
+              class="t-radio__icon t-radio__icon--left"
+            />
+            <div
+              class="t-radio__content"
+            >
+              <span
+                class="t-radio__title"
+                style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+              >
+                单选
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="card "
+        >
+          <div
+            class="t-radio t-radio--left t-radio--block"
+          >
+            <input
+              class="t-radio__original"
+              readonly=""
+              type="radio"
+              value="2"
+            />
+            <div
+              class="t-radio__icon t-radio__icon--left"
+            />
+            <div
+              class="t-radio__content"
+            >
+              <span
+                class="t-radio__title"
+                style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+              >
+                单选
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/radio/_example/horizontal.tsx 1`] = `
+<div>
+  <div
+    class="t-radio-group box"
+  >
+    <div
+      class="t-radio t-radio--left"
+    >
+      <input
+        checked=""
+        class="t-radio__original"
+        readonly=""
+        type="radio"
+        value="idx0"
+      />
+      <div
+        class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+      >
+        <svg
+          class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="t-radio__content"
+      >
+        <span
+          class="t-radio__title"
+          style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+        >
+          单选标题
+        </span>
+      </div>
+    </div>
+    <div
+      class="t-radio t-radio--left"
+    >
+      <input
+        class="t-radio__original"
+        readonly=""
+        type="radio"
+        value="idx1"
+      />
+      <div
+        class="t-radio__icon t-radio__icon--left"
+      >
+        <div
+          class="t-radio__icon-circle"
+        />
+      </div>
+      <div
+        class="t-radio__content"
+      >
+        <span
+          class="t-radio__title"
+          style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+        >
+          单选标题
+        </span>
+      </div>
+    </div>
+    <div
+      class="t-radio t-radio--left"
+    >
+      <input
+        class="t-radio__original"
+        readonly=""
+        type="radio"
+        value="idx2"
+      />
+      <div
+        class="t-radio__icon t-radio__icon--left"
+      >
+        <div
+          class="t-radio__icon-circle"
+        />
+      </div>
+      <div
+        class="t-radio__content"
+      >
+        <span
+          class="t-radio__title"
+          style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+        >
+          单选标题
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/radio/_example/icon.tsx 1`] = `
+<div>
+  <div
+    class="t-radio t-radio--left t-radio--block"
+  >
+    <input
+      checked=""
+      class="t-radio__original"
+      readonly=""
+      type="radio"
+      value=""
+    />
+    <div
+      class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+    >
+      <svg
+        class="t-icon t-icon-check t-radio__icon-wrap"
+        fill="none"
+        height="1em"
+        viewBox="0 0 24 24"
+        width="1em"
+      >
+        <path
+          d="M20.99 7.38l-10.61 10.6L4 11.63l1.42-1.41 4.95 4.95 9.2-9.2 1.4 1.42z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      class="t-radio__content"
+    >
+      <span
+        class="t-radio__title"
+        style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+      >
+        单选
+      </span>
+    </div>
+    <div
+      class="t-radio__border t-radio__border--left"
+    />
+  </div>
+  <div
+    class="t-radio t-radio--left t-radio--block"
+  >
+    <input
+      checked=""
+      class="t-radio__original"
+      readonly=""
+      type="radio"
+      value=""
+    />
+    <div
+      class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+    >
+      <div
+        class="t-radio__icon-dot"
+      />
+    </div>
+    <div
+      class="t-radio__content"
+    >
+      <span
+        class="t-radio__title"
+        style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+      >
+        单选
+      </span>
+    </div>
+    <div
+      class="t-radio__border t-radio__border--left"
+    />
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/radio/_example/index.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-demo"
+  >
+    <div
+      class="tdesign-mobile-demo-header"
+    >
+      <h1
+        class="tdesign-mobile-demo-header__title"
+      >
+        Radio 单选框
+      </h1>
+      <p
+        class="tdesign-mobile-demo-header__summary"
+      >
+        用于在预设的一组选项中执行单项选择，并呈现选择结果。
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          01 组件类型
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          纵向单选框
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="radio-demo"
+        >
+          <div
+            class="t-radio-group "
+          >
+            <div
+              class="t-radio t-radio--left t-radio--block"
+            >
+              <input
+                checked=""
+                class="t-radio__original"
+                readonly=""
+                type="radio"
+                value="idx0"
+              />
+              <div
+                class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+              >
+                <svg
+                  class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"
+                  fill="none"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                >
+                  <path
+                    d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div
+                class="t-radio__content"
+              >
+                <span
+                  class="t-radio__title"
+                  style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                >
+                  单选
+                </span>
+              </div>
+              <div
+                class="t-radio__border t-radio__border--left"
+              />
+            </div>
+            <div
+              class="t-radio t-radio--left t-radio--block"
+            >
+              <input
+                class="t-radio__original"
+                readonly=""
+                type="radio"
+                value="idx1"
+              />
+              <div
+                class="t-radio__icon t-radio__icon--left"
+              >
+                <div
+                  class="t-radio__icon-circle"
+                />
+              </div>
+              <div
+                class="t-radio__content"
+              >
+                <span
+                  class="t-radio__title"
+                  style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                >
+                  单选
+                </span>
+              </div>
+              <div
+                class="t-radio__border t-radio__border--left"
+              />
+            </div>
+            <div
+              class="t-radio t-radio--left t-radio--block"
+            >
+              <input
+                class="t-radio__original"
+                readonly=""
+                type="radio"
+                value="idx2"
+              />
+              <div
+                class="t-radio__icon t-radio__icon--left"
+              >
+                <div
+                  class="t-radio__icon-circle"
+                />
+              </div>
+              <div
+                class="t-radio__content"
+              >
+                <span
+                  class="t-radio__title"
+                  style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                >
+                  单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选
+                </span>
+              </div>
+              <div
+                class="t-radio__border t-radio__border--left"
+              />
+            </div>
+            <div
+              class="t-radio t-radio--left t-radio--block"
+            >
+              <input
+                class="t-radio__original"
+                readonly=""
+                type="radio"
+                value="idx3"
+              />
+              <div
+                class="t-radio__icon t-radio__icon--left"
+              >
+                <div
+                  class="t-radio__icon-circle"
+                />
+              </div>
+              <div
+                class="t-radio__content"
+              >
+                <span
+                  class="t-radio__title"
+                  style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                >
+                  单选
+                </span>
+                <div
+                  class="t-radio__description undefined"
+                  style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 5;"
+                >
+                  描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息
+                </div>
+              </div>
+              <div
+                class="t-radio__border t-radio__border--left"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          横向单选框
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="radio-demo"
+        >
+          <div
+            class="t-radio-group box"
+          >
+            <div
+              class="t-radio t-radio--left"
+            >
+              <input
+                checked=""
+                class="t-radio__original"
+                readonly=""
+                type="radio"
+                value="idx0"
+              />
+              <div
+                class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+              >
+                <svg
+                  class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"
+                  fill="none"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                >
+                  <path
+                    d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div
+                class="t-radio__content"
+              >
+                <span
+                  class="t-radio__title"
+                  style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                >
+                  单选标题
+                </span>
+              </div>
+            </div>
+            <div
+              class="t-radio t-radio--left"
+            >
+              <input
+                class="t-radio__original"
+                readonly=""
+                type="radio"
+                value="idx1"
+              />
+              <div
+                class="t-radio__icon t-radio__icon--left"
+              >
+                <div
+                  class="t-radio__icon-circle"
+                />
+              </div>
+              <div
+                class="t-radio__content"
+              >
+                <span
+                  class="t-radio__title"
+                  style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                >
+                  单选标题
+                </span>
+              </div>
+            </div>
+            <div
+              class="t-radio t-radio--left"
+            >
+              <input
+                class="t-radio__original"
+                readonly=""
+                type="radio"
+                value="idx2"
+              />
+              <div
+                class="t-radio__icon t-radio__icon--left"
+              >
+                <div
+                  class="t-radio__icon-circle"
+                />
+              </div>
+              <div
+                class="t-radio__content"
+              >
+                <span
+                  class="t-radio__title"
+                  style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                >
+                  单选标题
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          02 组件状态
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          单选框禁用状态
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="radio-demo"
+        >
+          <div
+            class="t-radio-group "
+          >
+            <div
+              class="t-radio t-radio--left t-radio--block"
+            >
+              <input
+                checked=""
+                class="t-radio__original"
+                disabled=""
+                readonly=""
+                type="radio"
+                value="1"
+              />
+              <div
+                class="t-radio__icon t-radio__icon--left t-radio__icon--checked t-radio__icon--disabled"
+              >
+                <svg
+                  class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"
+                  fill="none"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                >
+                  <path
+                    d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div
+                class="t-radio__content"
+              >
+                <span
+                  class="t-radio__title t-radio__title--disabled"
+                  style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3; color: rgb(220, 220, 220);"
+                >
+                  选项禁用-已选
+                </span>
+              </div>
+              <div
+                class="t-radio__border t-radio__border--left"
+              />
+            </div>
+            <div
+              class="t-radio t-radio--left t-radio--block"
+            >
+              <input
+                class="t-radio__original"
+                disabled=""
+                readonly=""
+                type="radio"
+                value="2"
+              />
+              <div
+                class="t-radio__icon t-radio__icon--left t-radio__icon--disabled"
+              >
+                <div
+                  class="t-radio__icon-circle t-radio__icon-circle--disabled"
+                />
+              </div>
+              <div
+                class="t-radio__content"
+              >
+                <span
+                  class="t-radio__title t-radio__title--disabled"
+                  style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3; color: rgb(220, 220, 220);"
+                >
+                  选项禁用-默认
+                </span>
+              </div>
+              <div
+                class="t-radio__border t-radio__border--left"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          03 组件样式
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          勾选样式
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="radio-demo"
+        >
+          <div
+            class="t-radio t-radio--left t-radio--block"
+          >
+            <input
+              checked=""
+              class="t-radio__original"
+              readonly=""
+              type="radio"
+              value=""
+            />
+            <div
+              class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+            >
+              <svg
+                class="t-icon t-icon-check t-radio__icon-wrap"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M20.99 7.38l-10.61 10.6L4 11.63l1.42-1.41 4.95 4.95 9.2-9.2 1.4 1.42z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <div
+              class="t-radio__content"
+            >
+              <span
+                class="t-radio__title"
+                style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+              >
+                单选
+              </span>
+            </div>
+            <div
+              class="t-radio__border t-radio__border--left"
+            />
+          </div>
+          <div
+            class="t-radio t-radio--left t-radio--block"
+          >
+            <input
+              checked=""
+              class="t-radio__original"
+              readonly=""
+              type="radio"
+              value=""
+            />
+            <div
+              class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+            >
+              <div
+                class="t-radio__icon-dot"
+              />
+            </div>
+            <div
+              class="t-radio__content"
+            >
+              <span
+                class="t-radio__title"
+                style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+              >
+                单选
+              </span>
+            </div>
+            <div
+              class="t-radio__border t-radio__border--left"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          勾选显示位置
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="radio-demo"
+        >
+          <div
+            class="t-radio t-radio--left t-radio--block"
+          >
+            <input
+              checked=""
+              class="t-radio__original"
+              readonly=""
+              type="radio"
+              value=""
+            />
+            <div
+              class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+            >
+              <svg
+                class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <div
+              class="t-radio__content"
+            >
+              <span
+                class="t-radio__title"
+                style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+              >
+                单选
+              </span>
+            </div>
+            <div
+              class="t-radio__border t-radio__border--left"
+            />
+          </div>
+          <div
+            class="t-radio t-radio--right t-radio--block"
+          >
+            <input
+              checked=""
+              class="t-radio__original"
+              readonly=""
+              type="radio"
+              value=""
+            />
+            <div
+              class="t-radio__icon t-radio__icon--right t-radio__icon--checked"
+            >
+              <svg
+                class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <div
+              class="t-radio__content"
+            >
+              <span
+                class="t-radio__title"
+                style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+              >
+                单选
+              </span>
+            </div>
+            <div
+              class="t-radio__border t-radio__border--right"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          非通栏单选样式
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="radio-demo"
+        >
+          <div
+            class="t-radio-group theme-card"
+          >
+            <div
+              class="t-radio t-radio--left t-radio--block"
+            >
+              <input
+                checked=""
+                class="t-radio__original"
+                readonly=""
+                type="radio"
+                value="1"
+              />
+              <div
+                class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+              >
+                <svg
+                  class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"
+                  fill="none"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                >
+                  <path
+                    d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div
+                class="t-radio__content"
+              >
+                <span
+                  class="t-radio__title"
+                  style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                >
+                  单选
+                </span>
+              </div>
+              <div
+                class="t-radio__border t-radio__border--left"
+              />
+            </div>
+            <div
+              class="t-radio t-radio--left t-radio--block"
+            >
+              <input
+                class="t-radio__original"
+                readonly=""
+                type="radio"
+                value="2"
+              />
+              <div
+                class="t-radio__icon t-radio__icon--left"
+              >
+                <div
+                  class="t-radio__icon-circle"
+                />
+              </div>
+              <div
+                class="t-radio__content"
+              >
+                <span
+                  class="t-radio__title"
+                  style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                >
+                  单选
+                </span>
+              </div>
+              <div
+                class="t-radio__border t-radio__border--left"
+              />
+            </div>
+            <div
+              class="t-radio t-radio--left t-radio--block"
+            >
+              <input
+                class="t-radio__original"
+                readonly=""
+                type="radio"
+                value="3"
+              />
+              <div
+                class="t-radio__icon t-radio__icon--left"
+              >
+                <div
+                  class="t-radio__icon-circle"
+                />
+              </div>
+              <div
+                class="t-radio__content"
+              >
+                <span
+                  class="t-radio__title"
+                  style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                >
+                  单选标题多行单选标题多行单选标题多行单选标题多行单选标题多行
+                </span>
+              </div>
+              <div
+                class="t-radio__border t-radio__border--left"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          04 特殊样式
+        </h2>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="radio-demo"
+        >
+          <div
+            class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+          >
+            <div
+              class="tdesign-mobile-demo-block__header"
+            >
+              <p
+                class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+              >
+                单选框尺寸规格
+              </p>
+            </div>
+            <div
+              class="tdesign-mobile-demo-block__slot"
+            >
+              <div
+                class="t-radio-group "
+              >
+                <div
+                  class="card card--active"
+                >
+                  <svg
+                    class="t-icon t-icon-check card__icon"
+                    color="#fff"
+                  >
+                    <use
+                      xlink:href="#t-icon-check"
+                    />
+                  </svg>
+                  <div
+                    class="t-radio t-radio--left t-radio--block"
+                  >
+                    <input
+                      checked=""
+                      class="t-radio__original"
+                      readonly=""
+                      type="radio"
+                      value="0"
+                    />
+                    <div
+                      class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+                    />
+                    <div
+                      class="t-radio__content"
+                    >
+                      <span
+                        class="t-radio__title"
+                        style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                      >
+                        单选
+                      </span>
+                      <div
+                        class="t-radio__description undefined"
+                        style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 5;"
+                      >
+                        描述信息描述信息描述信息描述信息描述信息
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="card "
+                >
+                  <div
+                    class="t-radio t-radio--left t-radio--block"
+                  >
+                    <input
+                      class="t-radio__original"
+                      readonly=""
+                      type="radio"
+                      value="1"
+                    />
+                    <div
+                      class="t-radio__icon t-radio__icon--left"
+                    />
+                    <div
+                      class="t-radio__content"
+                    >
+                      <span
+                        class="t-radio__title"
+                        style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                      >
+                        单选
+                      </span>
+                      <div
+                        class="t-radio__description undefined"
+                        style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 5;"
+                      >
+                        描述信息描述信息描述信息描述信息描述信息
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="card "
+                >
+                  <div
+                    class="t-radio t-radio--left t-radio--block"
+                  >
+                    <input
+                      class="t-radio__original"
+                      readonly=""
+                      type="radio"
+                      value="2"
+                    />
+                    <div
+                      class="t-radio__icon t-radio__icon--left"
+                    />
+                    <div
+                      class="t-radio__content"
+                    >
+                      <span
+                        class="t-radio__title"
+                        style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                      >
+                        单选
+                      </span>
+                      <div
+                        class="t-radio__description undefined"
+                        style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 5;"
+                      >
+                        描述信息描述信息描述信息描述信息描述信息
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+          >
+            <div
+              class="tdesign-mobile-demo-block__header"
+            >
+              <p
+                class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+              >
+                横向卡片单选框
+              </p>
+            </div>
+            <div
+              class="tdesign-mobile-demo-block__slot"
+            >
+              <div
+                class="t-radio-group horizontal-box"
+              >
+                <div
+                  class="card card--active"
+                >
+                  <svg
+                    class="t-icon t-icon-check card__icon"
+                    color="#fff"
+                  >
+                    <use
+                      xlink:href="#t-icon-check"
+                    />
+                  </svg>
+                  <div
+                    class="t-radio t-radio--left t-radio--block"
+                  >
+                    <input
+                      checked=""
+                      class="t-radio__original"
+                      readonly=""
+                      type="radio"
+                      value="0"
+                    />
+                    <div
+                      class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+                    />
+                    <div
+                      class="t-radio__content"
+                    >
+                      <span
+                        class="t-radio__title"
+                        style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                      >
+                        单选
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="card "
+                >
+                  <div
+                    class="t-radio t-radio--left t-radio--block"
+                  >
+                    <input
+                      class="t-radio__original"
+                      readonly=""
+                      type="radio"
+                      value="1"
+                    />
+                    <div
+                      class="t-radio__icon t-radio__icon--left"
+                    />
+                    <div
+                      class="t-radio__content"
+                    >
+                      <span
+                        class="t-radio__title"
+                        style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                      >
+                        单选
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="card "
+                >
+                  <div
+                    class="t-radio t-radio--left t-radio--block"
+                  >
+                    <input
+                      class="t-radio__original"
+                      readonly=""
+                      type="radio"
+                      value="2"
+                    />
+                    <div
+                      class="t-radio__icon t-radio__icon--left"
+                    />
+                    <div
+                      class="t-radio__content"
+                    >
+                      <span
+                        class="t-radio__title"
+                        style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+                      >
+                        单选
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/radio/_example/placement.tsx 1`] = `
+<div>
+  <div
+    class="t-radio t-radio--left t-radio--block"
+  >
+    <input
+      checked=""
+      class="t-radio__original"
+      readonly=""
+      type="radio"
+      value=""
+    />
+    <div
+      class="t-radio__icon t-radio__icon--left t-radio__icon--checked"
+    >
+      <svg
+        class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"
+        fill="none"
+        height="1em"
+        viewBox="0 0 24 24"
+        width="1em"
+      >
+        <path
+          d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      class="t-radio__content"
+    >
+      <span
+        class="t-radio__title"
+        style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+      >
+        单选
+      </span>
+    </div>
+    <div
+      class="t-radio__border t-radio__border--left"
+    />
+  </div>
+  <div
+    class="t-radio t-radio--right t-radio--block"
+  >
+    <input
+      checked=""
+      class="t-radio__original"
+      readonly=""
+      type="radio"
+      value=""
+    />
+    <div
+      class="t-radio__icon t-radio__icon--right t-radio__icon--checked"
+    >
+      <svg
+        class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"
+        fill="none"
+        height="1em"
+        viewBox="0 0 24 24"
+        width="1em"
+      >
+        <path
+          d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      class="t-radio__content"
+    >
+      <span
+        class="t-radio__title"
+        style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3;"
+      >
+        单选
+      </span>
+    </div>
+    <div
+      class="t-radio__border t-radio__border--right"
+    />
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/radio/_example/status.tsx 1`] = `
+<div>
+  <div
+    class="t-radio-group "
+  >
+    <div
+      class="t-radio t-radio--left t-radio--block"
+    >
+      <input
+        checked=""
+        class="t-radio__original"
+        disabled=""
+        readonly=""
+        type="radio"
+        value="1"
+      />
+      <div
+        class="t-radio__icon t-radio__icon--left t-radio__icon--checked t-radio__icon--disabled"
+      >
+        <svg
+          class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="t-radio__content"
+      >
+        <span
+          class="t-radio__title t-radio__title--disabled"
+          style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3; color: rgb(220, 220, 220);"
+        >
+          选项禁用-已选
+        </span>
+      </div>
+      <div
+        class="t-radio__border t-radio__border--left"
+      />
+    </div>
+    <div
+      class="t-radio t-radio--left t-radio--block"
+    >
+      <input
+        class="t-radio__original"
+        disabled=""
+        readonly=""
+        type="radio"
+        value="2"
+      />
+      <div
+        class="t-radio__icon t-radio__icon--left t-radio__icon--disabled"
+      >
+        <div
+          class="t-radio__icon-circle t-radio__icon-circle--disabled"
+        />
+      </div>
+      <div
+        class="t-radio__content"
+      >
+        <span
+          class="t-radio__title t-radio__title--disabled"
+          style="display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3; color: rgb(220, 220, 220);"
+        >
+          选项禁用-默认
+        </span>
+      </div>
+      <div
+        class="t-radio__border t-radio__border--left"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`csr snapshot test > csr test src/result/_example/custom.tsx 1`] = `
 <div>
   <div
@@ -8832,6 +10664,22 @@ exports[`ssr snapshot test > ssr test src/progress/_example/line.tsx 1`] = `"<di
 exports[`ssr snapshot test > ssr test src/progress/_example/plump.tsx 1`] = `"<div class="example-progress" data-reactroot=""><div class="example-progress__item"><div class="t-progress"><div class="t-progress__bar t-progress--plump t-progress--over-ten t-progress--status-default"><div class="t-progress__inner" style="width:80%;background:"><div class="t-progress__info">80%</div></div></div></div></div><div class="example-progress__item"><div class="t-progress"><div class="t-progress__bar t-progress--plump t-progress--over-ten t-progress--status-warning"><div class="t-progress__inner" style="width:88%;background:"><div class="t-progress__info">88%</div></div></div></div></div><div class="example-progress__item"><div class="t-progress"><div class="t-progress__bar t-progress--plump t-progress--over-ten t-progress--status-error"><div class="t-progress__inner" style="width:88%;background:"><div class="t-progress__info">88%</div></div></div></div></div><div class="example-progress__item"><div class="t-progress"><div class="t-progress__bar t-progress--plump t-progress--over-ten t-progress--status-success"><div class="t-progress__inner" style="width:88%;background:"><div class="t-progress__info">88%</div></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/progress/_example/transition.tsx 1`] = `"<div class="example-progress" data-reactroot=""><div class="t-progress"><div class="t-progress--thin t-progress--status-default"><div class="t-progress__bar"><div class="t-progress__inner" style="width:88%;background:"></div></div><div class="t-progress__info">88%</div></div></div><div class="button-group"><button type="button" class="t-button t-button--outline t-button--primary t-size-s t-button--shape-rectangle"><span class="t-button__text"> <!-- -->减少</span></button><div class="space"></div><button type="button" class="t-button t-button--base t-button--primary t-size-s t-button--shape-rectangle"><span class="t-button__text"> <!-- -->增加</span></button></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/radio/_example/base.tsx 1`] = `"<div class="t-radio-group " data-reactroot=""><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="idx0" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="idx1" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"><div class="t-radio__icon-circle"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="idx2" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"><div class="t-radio__icon-circle"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="idx3" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"><div class="t-radio__icon-circle"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span><div class="t-radio__description undefined" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:5">描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息</div></div><div class="t-radio__border t-radio__border--left"></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/radio/_example/card.tsx 1`] = `"<div class="t-radio-group theme-card" data-reactroot=""><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="1" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="2" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"><div class="t-radio__icon-circle"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="3" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"><div class="t-radio__icon-circle"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选标题多行单选标题多行单选标题多行单选标题多行单选标题多行</span></div><div class="t-radio__border t-radio__border--left"></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/radio/_example/custom.tsx 1`] = `"<div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">单选框尺寸规格</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-radio-group "><div class="card card--active"><svg class="t-icon t-icon-check card__icon" color="#fff"><use xlink:href="#t-icon-check"></use></svg><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="0" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span><div class="t-radio__description undefined" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:5">描述信息描述信息描述信息描述信息描述信息</div></div></div></div><div class="card "><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="1" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span><div class="t-radio__description undefined" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:5">描述信息描述信息描述信息描述信息描述信息</div></div></div></div><div class="card "><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="2" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span><div class="t-radio__description undefined" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:5">描述信息描述信息描述信息描述信息描述信息</div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">横向卡片单选框</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-radio-group horizontal-box"><div class="card card--active"><svg class="t-icon t-icon-check card__icon" color="#fff"><use xlink:href="#t-icon-check"></use></svg><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="0" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div></div></div><div class="card "><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="1" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div></div></div><div class="card "><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="2" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/radio/_example/horizontal.tsx 1`] = `"<div class="t-radio-group box" data-reactroot=""><div class="t-radio t-radio--left"><input type="radio" readonly="" value="idx0" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选标题</span></div></div><div class="t-radio t-radio--left"><input type="radio" readonly="" value="idx1" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"><div class="t-radio__icon-circle"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选标题</span></div></div><div class="t-radio t-radio--left"><input type="radio" readonly="" value="idx2" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"><div class="t-radio__icon-circle"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选标题</span></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/radio/_example/icon.tsx 1`] = `"<div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check t-radio__icon-wrap"><path fill="currentColor" d="M20.99 7.38l-10.61 10.6L4 11.63l1.42-1.41 4.95 4.95 9.2-9.2 1.4 1.42z"></path></svg></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"><div class="t-radio__icon-dot"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--left"></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/radio/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Radio 单选框</h1><p class="tdesign-mobile-demo-header__summary">用于在预设的一组选项中执行单项选择，并呈现选择结果。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">纵向单选框</p></div><div class="tdesign-mobile-demo-block__slot"><div class="radio-demo"><div class="t-radio-group "><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="idx0" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="idx1" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"><div class="t-radio__icon-circle"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="idx2" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"><div class="t-radio__icon-circle"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="idx3" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"><div class="t-radio__icon-circle"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span><div class="t-radio__description undefined" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:5">描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息</div></div><div class="t-radio__border t-radio__border--left"></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">横向单选框</p></div><div class="tdesign-mobile-demo-block__slot"><div class="radio-demo"><div class="t-radio-group box"><div class="t-radio t-radio--left"><input type="radio" readonly="" value="idx0" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选标题</span></div></div><div class="t-radio t-radio--left"><input type="radio" readonly="" value="idx1" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"><div class="t-radio__icon-circle"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选标题</span></div></div><div class="t-radio t-radio--left"><input type="radio" readonly="" value="idx2" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"><div class="t-radio__icon-circle"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选标题</span></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件状态</h2><p class="tdesign-mobile-demo-block__summary">单选框禁用状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="radio-demo"><div class="t-radio-group "><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="1" disabled="" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked t-radio__icon--disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-radio__content"><span class="t-radio__title t-radio__title--disabled" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:#dcdcdc">选项禁用-已选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="2" disabled="" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left t-radio__icon--disabled"><div class="t-radio__icon-circle t-radio__icon-circle--disabled"></div></div><div class="t-radio__content"><span class="t-radio__title t-radio__title--disabled" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:#dcdcdc">选项禁用-默认</span></div><div class="t-radio__border t-radio__border--left"></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">03 组件样式</h2><p class="tdesign-mobile-demo-block__summary">勾选样式</p></div><div class="tdesign-mobile-demo-block__slot"><div class="radio-demo"><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check t-radio__icon-wrap"><path fill="currentColor" d="M20.99 7.38l-10.61 10.6L4 11.63l1.42-1.41 4.95 4.95 9.2-9.2 1.4 1.42z"></path></svg></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"><div class="t-radio__icon-dot"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--left"></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">勾选显示位置</p></div><div class="tdesign-mobile-demo-block__slot"><div class="radio-demo"><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--right t-radio--block"><input type="radio" readonly="" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--right t-radio__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--right"></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">非通栏单选样式</p></div><div class="tdesign-mobile-demo-block__slot"><div class="radio-demo"><div class="t-radio-group theme-card"><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="1" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="2" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"><div class="t-radio__icon-circle"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="3" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"><div class="t-radio__icon-circle"></div></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选标题多行单选标题多行单选标题多行单选标题多行单选标题多行</span></div><div class="t-radio__border t-radio__border--left"></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">04 特殊样式</h2></div><div class="tdesign-mobile-demo-block__slot"><div class="radio-demo"><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">单选框尺寸规格</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-radio-group "><div class="card card--active"><svg class="t-icon t-icon-check card__icon" color="#fff"><use xlink:href="#t-icon-check"></use></svg><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="0" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span><div class="t-radio__description undefined" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:5">描述信息描述信息描述信息描述信息描述信息</div></div></div></div><div class="card "><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="1" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span><div class="t-radio__description undefined" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:5">描述信息描述信息描述信息描述信息描述信息</div></div></div></div><div class="card "><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="2" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span><div class="t-radio__description undefined" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:5">描述信息描述信息描述信息描述信息描述信息</div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">横向卡片单选框</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-radio-group horizontal-box"><div class="card card--active"><svg class="t-icon t-icon-check card__icon" color="#fff"><use xlink:href="#t-icon-check"></use></svg><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="0" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div></div></div><div class="card "><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="1" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div></div></div><div class="card "><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="2" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left"></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div></div></div></div></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/radio/_example/placement.tsx 1`] = `"<div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--right t-radio--block"><input type="radio" readonly="" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--right t-radio__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-radio__content"><span class="t-radio__title" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:inherit">单选</span></div><div class="t-radio__border t-radio__border--right"></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/radio/_example/status.tsx 1`] = `"<div class="t-radio-group " data-reactroot=""><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="1" disabled="" class="t-radio__original" checked=""/><div class="t-radio__icon t-radio__icon--left t-radio__icon--checked t-radio__icon--disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-radio__icon-wrap"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-radio__content"><span class="t-radio__title t-radio__title--disabled" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:#dcdcdc">选项禁用-已选</span></div><div class="t-radio__border t-radio__border--left"></div></div><div class="t-radio t-radio--left t-radio--block"><input type="radio" readonly="" value="2" disabled="" class="t-radio__original"/><div class="t-radio__icon t-radio__icon--left t-radio__icon--disabled"><div class="t-radio__icon-circle t-radio__icon-circle--disabled"></div></div><div class="t-radio__content"><span class="t-radio__title t-radio__title--disabled" style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:#dcdcdc">选项禁用-默认</span></div><div class="t-radio__border t-radio__border--left"></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/result/_example/custom.tsx 1`] = `"<div class="t-result t-result--theme-default" data-reactroot=""><div class="t-result__thumb"><div class="t-image t-image--round extra-class-image"><div class="t-image__status"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-ellipsis"><path fill="currentColor" d="M3 10.5h3v3H3v-3zm7.5 0h3v3h-3v-3zm7.5 0h3v3h-3v-3z"></path></svg></div><img class="t-image__img" src="https://tdesign.gtimg.com/mobile/demos/result1.png" style="object-fit:fill;width:inherit;height:inherit"/></div></div><div class="t-result__title">自定义结果</div><div class="t-result__description">描述文字</div></div>"`;
 
