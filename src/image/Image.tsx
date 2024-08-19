@@ -1,94 +1,129 @@
-import React, { FC, useCallback, useMemo, useRef, useState } from 'react';
-import ClassNames from 'classnames';
-import { CloseIcon, EllipsisIcon } from 'tdesign-icons-react';
+import React, { forwardRef, Fragment, useRef, useMemo, useState, useEffect, SyntheticEvent } from 'react';
+import classNames from 'classnames';
+import { CloseIcon as TdCloseIcon } from 'tdesign-icons-react';
 import { useInViewport } from 'ahooks';
-import useConfig from '../_util/useConfig';
+import Loading from '../loading';
+import { StyledProps } from '../common';
 import { TdImageProps } from './type';
+import { imageDefaultProps } from './defaultProps';
+import parseTNode from '../_util/parseTNode';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 
-export interface ImageProps extends TdImageProps, Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'loading' | 'onError' | 'onLoad'> {}
+export interface ImageProps extends TdImageProps, StyledProps {}
 
-const Image: FC<ImageProps> = React.memo((props) => {
+const Image = forwardRef<HTMLDivElement, ImageProps>((props) => {
   const {
-    src,
-    alt,
-    fit = 'fill',
-    onLoad,
-    loading,
-    onError,
-    lazy,
-    shape = 'round',
-    position,
-    error,
     className,
     style,
-    ...others
-  } = props;
+    src,
+    alt,
+    error,
+    fallback,
+    fit,
+    lazy,
+    loading,
+    shape,
+    position,
+    referrerpolicy,
+    srcset,
+    onError,
+    onLoad,
+  } = useDefaultProps<ImageProps>(props, imageDefaultProps);
 
+  const imageClass = usePrefixClass('image');
+  const ref = useRef<HTMLImageElement>(null);
+
+  const [imageSrc, setImageSrc] = useState(src);
   const [isLoad, setIsLoad] = useState(true);
   const [isError, setIsError] = useState(false);
-  const ref = useRef<HTMLImageElement>(null);
   const hasLoad = useRef<boolean>(false);
 
-  // 统一配置信息
-  const { classPrefix } = useConfig();
-
-  // 观察元素是否在可见区域
-  const [isInViewport] = useInViewport(ref);
-
-  const prefix = useMemo(() => `${classPrefix}-image`, [classPrefix]);
+  const rootClasses = classNames(
+    {
+      [`${imageClass}`]: true,
+      [`${imageClass}--${shape}`]: true,
+    },
+    className,
+  );
 
   // Loading Element
   const LoadingStatus = useMemo(() => {
     if (!isLoad) return null;
 
-    return loading || <EllipsisIcon />;
+    return loading || <Loading theme="dots" inheritColor={true} />;
   }, [isLoad, loading]);
 
   // Loading Failed Element
   const FailedStatus = useMemo(() => {
     if (!isError) return null;
 
-    return error || <CloseIcon />;
+    return error || <TdCloseIcon size="22px" />;
   }, [isError, error]);
 
-  // Image Src
-  const imgSrc = useMemo(() => {
-    if (!lazy || hasLoad.current) return src;
+  // 观察元素是否在可见区域
+  const [isInViewport] = useInViewport(ref);
 
-    if (isInViewport) return src;
-
-    return '';
+  useEffect(() => {
+    if (!lazy || hasLoad.current) {
+      setImageSrc(src);
+    } else {
+      setImageSrc(isInViewport ? src : '');
+    }
   }, [src, lazy, isInViewport]);
 
-  // Get ClassName By Prefix
-  const getClass = useCallback((cls: string) => `${prefix}__${cls}`, [prefix]);
+  const renderMask = () =>
+    LoadingStatus || FailedStatus ? (
+      <div className={`${imageClass}__mask`}>{parseTNode(LoadingStatus || FailedStatus)}</div>
+    ) : null;
+
+  // 图片加载完成回调
+  const handleLoad = (e: SyntheticEvent<HTMLImageElement>) => {
+    hasLoad.current = true;
+    setIsLoad(false);
+    setIsError(false);
+    onLoad?.({ e });
+  };
+
+  // 图片加载失败回调
+  const handleError = (e: SyntheticEvent<HTMLImageElement>) => {
+    hasLoad.current = true;
+    setIsLoad(false);
+    setIsError(true);
+    if (fallback) {
+      setImageSrc(fallback);
+    }
+    onError?.({ e });
+  };
+
+  const renderImage = () => (
+    <img
+      className={classNames(`${imageClass}__img`, `${imageClass}--fit-${fit}`, `${imageClass}--position-${position}`)}
+      src={imageSrc}
+      alt={alt}
+      referrerPolicy={referrerpolicy}
+      onLoad={handleLoad}
+      onError={handleError}
+    />
+  );
+
+  const renderImageSrcset = () => (
+    <picture>
+      {Object.entries(srcset).map(([type, url]) => (
+        <source key={url} type={type} srcSet={url} />
+      ))}
+      {src && renderImage()}
+    </picture>
+  );
 
   return (
-    <div className={ClassNames(prefix, `${prefix}--${shape}`, { [className]: className })} ref={ref}>
-      {LoadingStatus || FailedStatus ? <div className={getClass('status')}>{LoadingStatus || FailedStatus}</div> : null}
-      <img
-        {...others}
-        className={getClass('img')}
-        src={imgSrc}
-        alt={alt}
-        style={{ objectFit: fit, objectPosition: position, width: 'inherit', height: 'inherit', ...style }}
-        onLoad={() => {
-          hasLoad.current = true;
-          setIsLoad(false);
-          setIsError(false);
-          onLoad && onLoad();
-        }}
-        onError={() => {
-          if (imgSrc) {
-            hasLoad.current = true;
-            setIsLoad(false);
-            setIsError(true);
-            onError && onError();
-          }
-        }}
-      />
+    <div ref={ref} className={rootClasses} style={style}>
+      {renderMask()}
+      <Fragment>{srcset && Object.keys(srcset).length ? renderImageSrcset() : renderImage()}</Fragment>
     </div>
   );
 });
+
+Image.displayName = 'Image';
 
 export default Image;

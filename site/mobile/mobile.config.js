@@ -33,7 +33,7 @@ export default {
     {
       title: 'Image 图片',
       name: 'image',
-      component: () => import('tdesign-mobile-react/image/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/image/_example/index.tsx'),
     },
     {
       title: 'Overlay 遮罩层',
