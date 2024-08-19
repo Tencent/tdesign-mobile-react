@@ -3427,6 +3427,925 @@ exports[`csr snapshot test > csr test src/icon/_example/single.tsx 1`] = `
 </div>
 `;
 
+exports[`csr snapshot test > csr test src/input/_example/align.tsx 1`] = `
+<div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        左对齐
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          placeholder="请输入文字"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        居中
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--center t-input--default"
+          maxlength="-1"
+          placeholder="请输入文字"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        右对齐
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--right t-input--default"
+          maxlength="-1"
+          placeholder="请输入文字"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/input/_example/banner.tsx 1`] = `
+<div>
+  <div
+    class="t-input t-input--layout-horizontal input-demo"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        标签文字
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          placeholder="请输入文字"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/input/_example/base.tsx 1`] = `
+<div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        标签文字
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          placeholder="请输入文字"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        标签文字
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          placeholder="请输入文字（选填）"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      />
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          placeholder="请输入文字"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/input/_example/bordered.tsx 1`] = `
+<div>
+  <div
+    class="input-bordered"
+  >
+    <div
+      class="input-bordered__summary"
+    >
+      标签文字
+    </div>
+    <div
+      class="t-input t-input--layout-horizontal t-input--border input-bordered__input"
+    >
+      <div
+        class="t-input__wrap--prefix"
+      >
+        <div
+          class="t-input__label"
+        />
+      </div>
+      <div
+        class="t-input__wrap"
+      >
+        <div
+          class="t-input__content t-input--default"
+        >
+          <input
+            class="t-input__control t-input--default"
+            maxlength="-1"
+            placeholder="请输入文字"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/input/_example/custom.tsx 1`] = `
+<div>
+  <div
+    class="input-custom"
+  >
+    <div
+      class="t-input t-input--layout-horizontal"
+    >
+      <div
+        class="t-input__wrap--prefix"
+      >
+        <div
+          class="t-input__label"
+        >
+          标签文字
+        </div>
+      </div>
+      <div
+        class="t-input__wrap"
+      >
+        <div
+          class="t-input__content t-input--default"
+        >
+          <input
+            class="t-input__control t-input--default"
+            maxlength="-1"
+            placeholder="请输入文字"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/input/_example/label.tsx 1`] = `
+<div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        标签超长时最多十个字
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          placeholder="请输入文字"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/input/_example/layout.tsx 1`] = `
+<div>
+  <div
+    class="t-input t-input--layout-vertical"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        标签文字
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          placeholder="请输入文字"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/input/_example/maxLength.tsx 1`] = `
+<div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        标签文字
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="10"
+          placeholder="请输入文字"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="t-input__tips t-input--left"
+      >
+        最大输入10个字符
+      </div>
+    </div>
+  </div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        标签文字
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="10"
+          placeholder="请输入文字"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="t-input__tips t-input--left"
+      >
+        最大输入10个字符，汉字算两个
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/input/_example/prefix.tsx 1`] = `
+<div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__icon--prefix"
+      />
+      <div
+        class="t-input__label"
+      >
+        标签文字
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          placeholder="请输入文字"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__icon--prefix"
+      />
+      <div
+        class="t-input__label"
+      />
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          placeholder="请输入文字"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/input/_example/special.tsx 1`] = `
+<div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        输入密码
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          type="password"
+          value=""
+        />
+        <div
+          class="t-input__wrap--suffix-icon"
+        >
+          <svg
+            class="t-icon t-icon-browse-off"
+            fill="none"
+            height="1em"
+            viewBox="0 0 26 24"
+            width="1em"
+          >
+            <path
+              d="M4 1.59l6.17 6.17 7.07 7.07L23.41 21 22 22.41l-2.97-2.96A12.5 12.5 0 011.08 12.3L1 12l.1-.3c.77-2.4 2.24-4.5 4.18-6.02L2.59 3 4 1.59zM6.7 7.1A10.53 10.53 0 003.1 12a10.5 10.5 0 0014.45 5.97l-1.8-1.8a5 5 0 01-6.93-6.93L6.7 7.11zm3.6 3.6a3 3 0 004 4l-4-4zM13 5c-.58 0-1.14.05-1.7.14l-.98.16L10 3.32l.99-.16A12.5 12.5 0 0124.9 11.7l.1.31-.1.3c-.41 1.3-1.03 2.5-1.82 3.58l-.59.8-1.61-1.18.59-.8c.6-.82 1.08-1.73 1.42-2.7A10.5 10.5 0 0013 5zm.51 1.93l.96.29a5 5 0 013.31 3.31l.3.96-1.92.58-.3-.95a3 3 0 00-1.98-1.99l-.95-.3.58-1.9z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        验证码
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          placeholder="输入验证码"
+          type="text"
+          value=""
+        />
+        <div
+          class="t-input__wrap--suffix"
+        >
+          <div
+            class="input-suffix"
+          >
+            <div
+              class="input-suffix__line"
+            />
+            <div
+              class="t-image t-image--round input-suffix__image"
+            >
+              <div
+                class="t-image__status"
+              >
+                <svg
+                  class="t-icon t-icon-ellipsis"
+                  fill="none"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                >
+                  <path
+                    d="M3 10.5h3v3H3v-3zm7.5 0h3v3h-3v-3zm7.5 0h3v3h-3v-3z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <img
+                aria-label="验证码"
+                aria-role="img"
+                class="t-image__img"
+                src="https://wwcdn.weixin.qq.com/node/wework/images/202010241547.ac6876be9c.png"
+                style="object-fit: fill; width: inherit; height: inherit;"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        手机号
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          placeholder="请输入手机号码"
+          type="text"
+          value="17600600600"
+        />
+        <div
+          class="t-input__wrap--suffix"
+        >
+          <div
+            class="input-suffix"
+          >
+            <div
+              class="input-suffix__line"
+            />
+            <div
+              class="input-suffix__verify"
+            >
+              发送验证码
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="t-input__tips t-input--left"
+      >
+        手机号输入不正确
+      </div>
+    </div>
+  </div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        价格
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--right t-input--default"
+          maxlength="-1"
+          placeholder="0.00"
+          type="number"
+          value=""
+        />
+        <div
+          class="t-input__wrap--suffix"
+        >
+          元
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        数量
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--right t-input--default"
+          maxlength="-1"
+          placeholder="填写个数"
+          type="number"
+          value=""
+        />
+        <div
+          class="t-input__wrap--suffix"
+        >
+          个
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/input/_example/status.tsx 1`] = `
+<div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        标签文字
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--error"
+      >
+        <input
+          class="t-input__control t-input--error"
+          maxlength="-1"
+          placeholder="请输入文字"
+          type="text"
+          value="已输入文字"
+        />
+      </div>
+      <div
+        class="t-input__tips t-input--left"
+      >
+        辅助说明
+      </div>
+    </div>
+  </div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        不可编辑
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default t-input__control--disabled"
+          disabled=""
+          maxlength="-1"
+          type="text"
+          value="不可编辑文字"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/input/_example/suffix.tsx 1`] = `
+<div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        标签文字
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          placeholder="请输入文字"
+          type="text"
+          value=""
+        />
+        <div
+          class="t-input__wrap--suffix-icon"
+        >
+          <svg
+            class="t-icon t-icon-info-circle-filled"
+            fill="none"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+          >
+            <path
+              d="M12 23a11 11 0 100-22 11 11 0 000 22zM11 8.5v-2h2v2h-2zm2 1.5v7.5h-2V10h2z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        标签文字
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          placeholder="请输入手机号码"
+          type="text"
+          value=""
+        />
+        <div
+          class="t-input__wrap--suffix"
+        >
+          <button
+            class="t-button t-button--base t-button--primary t-size-s t-button--shape-rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__text"
+            >
+               
+               操作按钮 
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="t-input t-input--layout-horizontal"
+  >
+    <div
+      class="t-input__wrap--prefix"
+    >
+      <div
+        class="t-input__label"
+      >
+        标签文字
+      </div>
+    </div>
+    <div
+      class="t-input__wrap"
+    >
+      <div
+        class="t-input__content t-input--default"
+      >
+        <input
+          class="t-input__control t-input--default"
+          maxlength="-1"
+          placeholder="请输入文字"
+          type="text"
+          value=""
+        />
+        <div
+          class="t-input__wrap--suffix-icon"
+        >
+          <svg
+            class="t-icon t-icon-user-avatar"
+            fill="none"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+          >
+            <path
+              d="M2 2h20v20H2V2zm17.5 18h.5V4H4v16h.5a5 5 0 015-5h5a5 5 0 015 5zM12 7a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM7.5 9.5a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zm2 7.5a3 3 0 00-3 3h11a3 3 0 00-3-3h-5z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`csr snapshot test > csr test src/loading/_example/attach.tsx 1`] = `
 <div>
   <div
@@ -8792,6 +9711,30 @@ exports[`ssr snapshot test > ssr test src/icon/_example/iconfont-enhanced.tsx 1`
 exports[`ssr snapshot test > ssr test src/icon/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Icon 图标</h1><p class="tdesign-mobile-demo-header__summary">Icon 作为UI构成中重要的元素，一定程度上影响UI界面整体呈现出的风格。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">SVG 全量引入</h2></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="t-demo-iconfont"><div class="t-demo-row"><p>How do you feel today?</p><i class="t-icon t-icon-sneer"></i><i class="t-icon t-icon-unhappy"></i><i class="t-icon t-icon-excited"></i><i class="t-icon t-icon-surprised"></i><i class="t-icon t-icon-giggle"></i></div><br/><div class="t-demo-row"><p>What is your favourite food?</p><i style="color:orange" class="t-icon t-icon-tangerinr"></i><i style="color:green" class="t-icon t-icon-bamboo-shoot"></i><i style="color:red" class="t-icon t-icon-apple"></i><i style="color:#0052D9" class="t-icon t-icon-milk"></i><i style="color:pink" class="t-icon t-icon-peach"></i></div><br/><div class="t-demo-row"><p>How much icons does TDesign Icon includes?</p><i style="color:red" class="t-icon t-icon-numbers-1"></i><i style="color:green" class="t-icon t-icon-numbers-2"></i><i style="color:orange" class="t-icon t-icon-numbers-0"></i><i style="color:#0052d9" class="t-icon t-icon-numbers-3"></i></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">SVG 按需引入</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="t-demo-iconfont"><div class="t-demo-row"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-letters-t"><path fill="currentColor" d="M6.5 4h11v2H13v14h-2V6H6.5V4z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-letters-d"><path fill="currentColor" d="M7 4h8a2 2 0 012 2v12a2 2 0 01-2 2H7V4zm2 2v12h6V6H9z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-letters-e"><path fill="currentColor" d="M7 6c0-1.1.9-2 2-2h8v2H9v5h8v2H9v5h8v2H9a2 2 0 01-2-2V6z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-letters-s"><path fill="currentColor" d="M7.5 6c0-1.1.9-2 2-2H16v2H9.5v5h5a2 2 0 012 2v5a2 2 0 01-2 2H8v-2h6.5v-5h-5a2 2 0 01-2-2V6z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-letters-i"><path fill="currentColor" d="M8.5 4h7v2H13v12h2.5v2h-7v-2H11V6H8.5V4z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-letters-g"><path fill="currentColor" d="M16 4H8.5C7.67 4 7 4.67 7 5.5v13c0 .83.67 1.5 1.5 1.5H17v-9h-5.2v2H15v5H9V6h7V4z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-letters-n"><path fill="currentColor" d="M8.5 20V6h7v14h2V6a2 2 0 00-2-2h-9v16h2z"></path></svg></div><br/><div class="t-demo-row"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-component-checkbox"><path fill="currentColor" d="M2 2h13v5.5h-2V4H4v9h3.5v2H2V2zm7 7h13v13H9V9zm2 2v9h9v-9h-9zm8.41 3L15 18.41l-2.91-2.91 1.41-1.41 1.5 1.5 3-3L19.41 14z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-component-breadcrumb"><path fill="currentColor" d="M2 6.5v11h7.91l5.5-5.5-5.5-5.5H2zm2 2h5.09l3.5 3.5-3.5 3.5H4v-7zm10.59-1l4.5 4.5-4.5 4.5L16 17.91 21.91 12 16 6.09 14.59 7.5z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-component-input"><path fill="currentColor" d="M2 7h20v9H2V7zm2 2v5h16V9H4zm4 1v3H6v-3h2z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-component-switch"><path fill="currentColor" d="M7.5 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm4.24 0a5.48 5.48 0 010 7h4.76a3.5 3.5 0 100-7h-4.76zM2 12a5.5 5.5 0 015.5-5.5h9a5.5 5.5 0 110 11h-9A5.5 5.5 0 012 12z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-component-dropdown"><path fill="currentColor" d="M2 2h20v7H2V2zm2 2v3h16V4H4zm0 7v9h16v-9h2v11H2V11h2zm2 1h12v2H6v-2zm0 4h12v2H6v-2z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-component-radio"><path fill="currentColor" d="M12 4a8 8 0 100 16 8 8 0 000-16zM2 12a10 10 0 1120 0 10 10 0 01-20 0zm10-4a4 4 0 100 8 4 4 0 000-8zm-6 4a6 6 0 1112 0 6 6 0 01-12 0z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-component-steps"><path fill="currentColor" d="M1 12a3.5 3.5 0 016.86-1h.78a3.5 3.5 0 016.72 0h.78a3.5 3.5 0 110 2h-.78a3.5 3.5 0 01-6.72 0h-.78A3.5 3.5 0 011 12zm3.5-1.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm7.5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm7.5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"></path></svg></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">SVG 高级用法</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="t-demo-iconfont"><div><svg class="t-icon cps-icon-home-sheep" style="margin-right:8px"><use xlink:href="#cps-icon-home-sheep"></use></svg><svg class="t-icon cps-icon-home-sheep t-size-m" style="margin-right:8px"><use xlink:href="#cps-icon-home-sheep"></use></svg><svg class="t-icon cps-icon-home-sheep t-size-l" style="margin-right:8px"><use xlink:href="#cps-icon-home-sheep"></use></svg><svg class="t-icon cps-icon-home-sheep" style="font-size:25px"><use xlink:href="#cps-icon-home-sheep"></use></svg></div><br/><div><svg class="t-icon cps-icon-home-sheep" style="color:red"><use xlink:href="#cps-icon-home-sheep"></use></svg><svg class="t-icon cps-icon-home-sheep" style="color:green"><use xlink:href="#cps-icon-home-sheep"></use></svg><svg class="t-icon cps-icon-home-sheep" style="color:orange"><use xlink:href="#cps-icon-home-sheep"></use></svg><svg class="t-icon t-icon-home"><use xlink:href="#t-icon-home"></use></svg></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">iconfont 图标</h2></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="t-demo-iconfont"><div class="t-demo-row"><p>How do you feel today?</p><i class="t-icon t-icon-sneer"></i><i class="t-icon t-icon-unhappy"></i><i class="t-icon t-icon-excited"></i><i class="t-icon t-icon-surprised"></i><i class="t-icon t-icon-giggle"></i></div><br/><div class="t-demo-row"><p>What is your favourite food?</p><i style="color:orange" class="t-icon t-icon-tangerinr"></i><i style="color:green" class="t-icon t-icon-bamboo-shoot"></i><i style="color:red" class="t-icon t-icon-apple"></i><i style="color:#0052D9" class="t-icon t-icon-milk"></i><i style="color:pink" class="t-icon t-icon-peach"></i></div><br/><div class="t-demo-row"><p>How much icons does TDesign Icon includes?</p><i style="color:red" class="t-icon t-icon-numbers-1"></i><i style="color:green" class="t-icon t-icon-numbers-2"></i><i style="color:orange" class="t-icon t-icon-numbers-0"></i><i style="color:#0052d9" class="t-icon t-icon-numbers-3"></i></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">iconfont 高级用法</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="t-demo-iconfont"><div><i class="cps-icon cps-icon-home-sheep"></i><i class="cps-icon cps-icon-home-sheep t-size-m"></i><i class="cps-icon cps-icon-home-sheep t-size-l"></i><i style="font-size:25px" class="cps-icon cps-icon-home-sheep"></i><i style="font-size:2em" class="cps-icon cps-icon-home-sheep"></i></div><br/><div><i style="color:red" class="cps-icon cps-icon-home-sheep"></i><i style="color:green" class="cps-icon cps-icon-home-sheep"></i><i style="color:orange" class="cps-icon cps-icon-home-sheep"></i><i class="t-icon-home t-icon"></i></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/icon/_example/single.tsx 1`] = `"<div class="t-demo-iconfont" data-reactroot=""><div class="t-demo-row"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-letters-t"><path fill="currentColor" d="M6.5 4h11v2H13v14h-2V6H6.5V4z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-letters-d"><path fill="currentColor" d="M7 4h8a2 2 0 012 2v12a2 2 0 01-2 2H7V4zm2 2v12h6V6H9z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-letters-e"><path fill="currentColor" d="M7 6c0-1.1.9-2 2-2h8v2H9v5h8v2H9v5h8v2H9a2 2 0 01-2-2V6z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-letters-s"><path fill="currentColor" d="M7.5 6c0-1.1.9-2 2-2H16v2H9.5v5h5a2 2 0 012 2v5a2 2 0 01-2 2H8v-2h6.5v-5h-5a2 2 0 01-2-2V6z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-letters-i"><path fill="currentColor" d="M8.5 4h7v2H13v12h2.5v2h-7v-2H11V6H8.5V4z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-letters-g"><path fill="currentColor" d="M16 4H8.5C7.67 4 7 4.67 7 5.5v13c0 .83.67 1.5 1.5 1.5H17v-9h-5.2v2H15v5H9V6h7V4z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-letters-n"><path fill="currentColor" d="M8.5 20V6h7v14h2V6a2 2 0 00-2-2h-9v16h2z"></path></svg></div><br/><div class="t-demo-row"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-component-checkbox"><path fill="currentColor" d="M2 2h13v5.5h-2V4H4v9h3.5v2H2V2zm7 7h13v13H9V9zm2 2v9h9v-9h-9zm8.41 3L15 18.41l-2.91-2.91 1.41-1.41 1.5 1.5 3-3L19.41 14z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-component-breadcrumb"><path fill="currentColor" d="M2 6.5v11h7.91l5.5-5.5-5.5-5.5H2zm2 2h5.09l3.5 3.5-3.5 3.5H4v-7zm10.59-1l4.5 4.5-4.5 4.5L16 17.91 21.91 12 16 6.09 14.59 7.5z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-component-input"><path fill="currentColor" d="M2 7h20v9H2V7zm2 2v5h16V9H4zm4 1v3H6v-3h2z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-component-switch"><path fill="currentColor" d="M7.5 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm4.24 0a5.48 5.48 0 010 7h4.76a3.5 3.5 0 100-7h-4.76zM2 12a5.5 5.5 0 015.5-5.5h9a5.5 5.5 0 110 11h-9A5.5 5.5 0 012 12z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-component-dropdown"><path fill="currentColor" d="M2 2h20v7H2V2zm2 2v3h16V4H4zm0 7v9h16v-9h2v11H2V11h2zm2 1h12v2H6v-2zm0 4h12v2H6v-2z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-component-radio"><path fill="currentColor" d="M12 4a8 8 0 100 16 8 8 0 000-16zM2 12a10 10 0 1120 0 10 10 0 01-20 0zm10-4a4 4 0 100 8 4 4 0 000-8zm-6 4a6 6 0 1112 0 6 6 0 01-12 0z"></path></svg><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-component-steps"><path fill="currentColor" d="M1 12a3.5 3.5 0 016.86-1h.78a3.5 3.5 0 016.72 0h.78a3.5 3.5 0 110 2h-.78a3.5 3.5 0 01-6.72 0h-.78A3.5 3.5 0 011 12zm3.5-1.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm7.5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm7.5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"></path></svg></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/input/_example/align.tsx 1`] = `"<div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">左对齐</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">居中</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--center t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">右对齐</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--right t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/input/_example/banner.tsx 1`] = `"<div class="t-input t-input--layout-horizontal input-demo"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/input/_example/base.tsx 1`] = `"<div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字（选填）" maxLength="-1"/></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label"></div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/input/_example/bordered.tsx 1`] = `"<div class="input-bordered" data-reactroot=""><div class="input-bordered__summary">标签文字</div><div class="t-input t-input--layout-horizontal t-input--border input-bordered__input"><div class="t-input__wrap--prefix"><div class="t-input__label"></div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/input/_example/custom.tsx 1`] = `"<div class="input-custom" data-reactroot=""><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/input/_example/label.tsx 1`] = `"<div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签超长时最多十个字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/input/_example/layout.tsx 1`] = `"<div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/input/_example/maxLength.tsx 1`] = `"<div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="10"/></div><div class="t-input__tips t-input--left">最大输入10个字符</div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="10"/></div><div class="t-input__tips t-input--left">最大输入10个字符，汉字算两个</div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/input/_example/prefix.tsx 1`] = `"<div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__icon--prefix"></div><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__icon--prefix"></div><div class="t-input__label"></div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/input/_example/special.tsx 1`] = `"<div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">输入密码</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="password" class="t-input__control t-input--default" maxLength="-1"/><div class="t-input__wrap--suffix-icon"><svg fill="none" viewBox="0 0 26 24" width="1em" height="1em" class="t-icon t-icon-browse-off"><path fill="currentColor" d="M4 1.59l6.17 6.17 7.07 7.07L23.41 21 22 22.41l-2.97-2.96A12.5 12.5 0 011.08 12.3L1 12l.1-.3c.77-2.4 2.24-4.5 4.18-6.02L2.59 3 4 1.59zM6.7 7.1A10.53 10.53 0 003.1 12a10.5 10.5 0 0014.45 5.97l-1.8-1.8a5 5 0 01-6.93-6.93L6.7 7.11zm3.6 3.6a3 3 0 004 4l-4-4zM13 5c-.58 0-1.14.05-1.7.14l-.98.16L10 3.32l.99-.16A12.5 12.5 0 0124.9 11.7l.1.31-.1.3c-.41 1.3-1.03 2.5-1.82 3.58l-.59.8-1.61-1.18.59-.8c.6-.82 1.08-1.73 1.42-2.7A10.5 10.5 0 0013 5zm.51 1.93l.96.29a5 5 0 013.31 3.31l.3.96-1.92.58-.3-.95a3 3 0 00-1.98-1.99l-.95-.3.58-1.9z"></path></svg></div></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">验证码</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="输入验证码" maxLength="-1"/><div class="t-input__wrap--suffix"><div class="input-suffix"><div class="input-suffix__line"></div><div class="t-image t-image--round input-suffix__image"><div class="t-image__status"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-ellipsis"><path fill="currentColor" d="M3 10.5h3v3H3v-3zm7.5 0h3v3h-3v-3zm7.5 0h3v3h-3v-3z"></path></svg></div><img aria-role="img" aria-label="验证码" class="t-image__img" src="https://wwcdn.weixin.qq.com/node/wework/images/202010241547.ac6876be9c.png" style="object-fit:fill;width:inherit;height:inherit"/></div></div></div></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">手机号</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" value="17600600600" class="t-input__control t-input--default" placeholder="请输入手机号码" maxLength="-1"/><div class="t-input__wrap--suffix"><div class="input-suffix"><div class="input-suffix__line"></div><div class="input-suffix__verify">发送验证码</div></div></div></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">价格</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="number" class="t-input__control t-input--right t-input--default" placeholder="0.00" maxLength="-1"/><div class="t-input__wrap--suffix">元</div></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">数量</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="number" class="t-input__control t-input--right t-input--default" placeholder="填写个数" maxLength="-1"/><div class="t-input__wrap--suffix">个</div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/input/_example/status.tsx 1`] = `"<div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--error"><input type="text" value="已输入文字" class="t-input__control t-input--error" placeholder="请输入文字" maxLength="-1"/></div><div class="t-input__tips t-input--left">辅助说明</div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">不可编辑</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" value="不可编辑文字" class="t-input__control t-input--default t-input__control--disabled" disabled="" maxLength="-1"/></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/input/_example/suffix.tsx 1`] = `"<div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/><div class="t-input__wrap--suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-info-circle-filled"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM11 8.5v-2h2v2h-2zm2 1.5v7.5h-2V10h2z"></path></svg></div></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入手机号码" maxLength="-1"/><div class="t-input__wrap--suffix"><button type="button" class="t-button t-button--base t-button--primary t-size-s t-button--shape-rectangle"><span class="t-button__text"> <!-- --> 操作按钮 </span></button></div></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/><div class="t-input__wrap--suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-user-avatar"><path fill="currentColor" d="M2 2h20v20H2V2zm17.5 18h.5V4H4v16h.5a5 5 0 015-5h5a5 5 0 015 5zM12 7a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM7.5 9.5a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zm2 7.5a3 3 0 00-3 3h11a3 3 0 00-3-3h-5z"></path></svg></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/loading/_example/attach.tsx 1`] = `"<div class="loading-demo" data-reactroot=""><div id="alice" class="loading-attach-demo__title">Hello, I\`&#x27;m Alice. I\`&#x27;m going to be a front-end developer.</div><button class="t-switch"><span class="t-switch__text">关</span><span class="t-switch__node"></span></button></div>"`;
 
