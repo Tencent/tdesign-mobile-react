@@ -1,7 +1,8 @@
-import React, { forwardRef, useRef } from 'react';
+import React, { forwardRef, useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
 import { CloseIcon } from 'tdesign-icons-react';
 import { CSSTransition } from 'react-transition-group';
+import { CSSTransitionClassNames } from 'react-transition-group/CSSTransition';
 import Overlay from '../overlay';
 import useDefault from '../_util/useDefault';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
@@ -19,14 +20,6 @@ enum PopupSourceEnum {
   CLOSEBTN = 'close-btn',
 }
 
-// enum PlacementEnum {
-//   TOP = 'top',
-//   BOTTOM = 'bottom',
-//   LEFT = 'left',
-//   RIGHT = 'right',
-//   CENTER = 'center',
-// }
-
 const Popup = forwardRef<HTMLDivElement, PopupProps>((props) => {
   const {
     children,
@@ -42,9 +35,9 @@ const Popup = forwardRef<HTMLDivElement, PopupProps>((props) => {
     closeBtn,
     closeOnOverlayClick,
     onClose,
-    // onClosed,
-    // onOpen,
-    // onOpened,
+    onClosed,
+    onOpen,
+    onOpened,
     onVisibleChange,
   } = useDefaultProps(props, popupDefaultProps);
 
@@ -56,7 +49,7 @@ const Popup = forwardRef<HTMLDivElement, PopupProps>((props) => {
 
   const [show, setShow] = useDefault<boolean, any>(visible, defaultVisible, onVisibleChange);
 
-  // const [active, setActive] = useState(show);
+  const [active, setActive] = useState(show);
 
   const handleOverlayClick = (e) => {
     if (!closeOnOverlayClick) return;
@@ -69,56 +62,22 @@ const Popup = forwardRef<HTMLDivElement, PopupProps>((props) => {
     setShow(false, PopupSourceEnum.CLOSEBTN);
   };
 
-  // const { progress, opacity } = useSpring({
-  //   progress: show ? 0 : 100,
-  //   opacity: show ? 1 : 0,
-  //   config: {
-  //     duration,
-  //   },
-  //   onStart: () => {
-  //     if (show) {
-  //       onOpen?.();
-  //     }
-  //     setActive(true);
-  //   },
-  //   onRest: () => {
-  //     setActive(show);
-  //     if (show) {
-  //       onOpened?.();
-  //     } else {
-  //       onClosed?.();
-  //     }
-  //   },
-  // });
+  const contentStyle = useMemo<React.CSSProperties>(
+    () => ({
+      zIndex,
+      display: active ? null : 'none',
+      animationFillMode: 'forwards',
+    }),
+    [zIndex, active],
+  );
 
-  const contentStyle = {
-    // transform: progress.to((p) => {
-    //   if (placement === PlacementEnum.BOTTOM) {
-    //     return `translateY(${p}%)`;
-    //   }
-    //   if (placement === PlacementEnum.TOP) {
-    //     return `translateY(-${p}%)`;
-    //   }
-    //   if (placement === PlacementEnum.LEFT) {
-    //     return `translateX(-${p}%)`;
-    //   }
-    //   if (placement === PlacementEnum.RIGHT) {
-    //     return `translateX(${p}%)`;
-    //   }
-    //   if (placement === PlacementEnum.CENTER) {
-    //     return `scale(${1 - p / 100}) translate3d(-50%, -50%, 0)`;
-    //   }
-    // }),
-    // opacity: opacity.to((o) => {
-    //   if (placement === PlacementEnum.CENTER) {
-    //     return o;
-    //   }
-    // }),
-    zIndex,
-    // display: active ? null : 'none',
-    // transition: 'none',
-    // transformOrigin: '0 0',
-  };
+  const classNames = useMemo<CSSTransitionClassNames>(
+    () => ({
+      enterActive: placement === 'center' ? 'fade-zoom-enter-active' : `slide-${placement}-enter-active`,
+      exitActive: placement === 'center' ? 'fade-zoom-leave-active' : `slide-${placement}-leave-active`,
+    }),
+    [placement],
+  );
 
   const closeBtnNode = !closeBtn ? null : (
     <div className={`${name}__close`} onClick={handleCloseClick}>
@@ -137,15 +96,20 @@ const Popup = forwardRef<HTMLDivElement, PopupProps>((props) => {
       />
       <CSSTransition
         in={show}
-        appear={true}
-        unmountOnExit={destroyOnClose}
         timeout={duration}
         nodeRef={contentRef}
-        classNames={{
-          // enter: `slide-${placement}-enter`,
-          enterActive: `slide-${placement}-enter-active`,
-          // exit: `slide-${placement}-leave`,
-          exitActive: `slide-${placement}-leave-active`,
+        unmountOnExit={destroyOnClose}
+        classNames={classNames}
+        onEnter={() => {
+          onOpen?.();
+          setActive(true);
+        }}
+        onEntered={() => {
+          onOpened?.();
+        }}
+        onExited={() => {
+          onClosed?.();
+          setActive(false);
         }}
       >
         {withNativeProps(
