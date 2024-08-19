@@ -1,8 +1,9 @@
-import React, { forwardRef, Fragment, useRef, useMemo, useState, useEffect, SyntheticEvent } from 'react';
+import React, { Fragment, useRef, useMemo, useState, useEffect } from 'react';
+import type { SyntheticEvent } from 'react';
 import classNames from 'classnames';
 import { CloseIcon as TdCloseIcon } from 'tdesign-icons-react';
-import { useInViewport } from 'ahooks';
 import Loading from '../loading';
+import observe from '../_common/js/utils/observe';
 import { StyledProps } from '../common';
 import { TdImageProps } from './type';
 import { imageDefaultProps } from './defaultProps';
@@ -12,7 +13,7 @@ import { usePrefixClass } from '../hooks/useClass';
 
 export interface ImageProps extends TdImageProps, StyledProps {}
 
-const Image = forwardRef<HTMLDivElement, ImageProps>((props) => {
+const Image: React.FC<ImageProps> = (props) => {
   const {
     className,
     style,
@@ -32,12 +33,12 @@ const Image = forwardRef<HTMLDivElement, ImageProps>((props) => {
   } = useDefaultProps<ImageProps>(props, imageDefaultProps);
 
   const imageClass = usePrefixClass('image');
-  const ref = useRef<HTMLImageElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   const [imageSrc, setImageSrc] = useState(src);
-  const [isLoad, setIsLoad] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
-  const hasLoad = useRef<boolean>(false);
+  const [shouldLoad, setShouldLoad] = useState(!lazy);
 
   const rootClasses = classNames(
     {
@@ -49,52 +50,52 @@ const Image = forwardRef<HTMLDivElement, ImageProps>((props) => {
 
   // Loading Element
   const LoadingStatus = useMemo(() => {
-    if (!isLoad) return null;
-
-    return loading || <Loading theme="dots" inheritColor={true} />;
-  }, [isLoad, loading]);
+    if (!(isError || !shouldLoad) && !isLoaded) return loading || <Loading theme="dots" inheritColor={true} />;
+  }, [isError, shouldLoad, isLoaded, loading]);
 
   // Loading Failed Element
   const FailedStatus = useMemo(() => {
-    if (!isError) return null;
-
-    return error || <TdCloseIcon size="22px" />;
+    if (isError) return error || <TdCloseIcon size="22px" />;
   }, [isError, error]);
 
-  // 观察元素是否在可见区域
-  const [isInViewport] = useInViewport(ref);
+  const handleLoadImage = () => {
+    setShouldLoad(true);
+  };
 
   useEffect(() => {
-    if (!lazy || hasLoad.current) {
-      setImageSrc(src);
-    } else {
-      setImageSrc(isInViewport ? src : '');
+    if (!lazy || !imageRef?.current) {
+      return;
     }
-  }, [src, lazy, isInViewport]);
 
-  const renderMask = () =>
-    LoadingStatus || FailedStatus ? (
-      <div className={`${imageClass}__mask`}>{parseTNode(LoadingStatus || FailedStatus)}</div>
-    ) : null;
+    const handleUnObserve = (element) => {
+      const observer = observe(element, null, handleLoadImage, 0);
+      return () => {
+        observer && observer.unobserve(element);
+      };
+    };
+
+    return handleUnObserve(imageRef.current);
+  }, [lazy, imageRef]);
 
   // 图片加载完成回调
   const handleLoad = (e: SyntheticEvent<HTMLImageElement>) => {
-    hasLoad.current = true;
-    setIsLoad(false);
-    setIsError(false);
+    setIsLoaded(true);
     onLoad?.({ e });
   };
 
   // 图片加载失败回调
   const handleError = (e: SyntheticEvent<HTMLImageElement>) => {
-    hasLoad.current = true;
-    setIsLoad(false);
     setIsError(true);
     if (fallback) {
       setImageSrc(fallback);
     }
     onError?.({ e });
   };
+
+  const renderMask = () =>
+    LoadingStatus || FailedStatus ? (
+      <div className={`${imageClass}__mask`}>{parseTNode(LoadingStatus || FailedStatus)}</div>
+    ) : null;
 
   const renderImage = () => (
     <img
@@ -117,12 +118,14 @@ const Image = forwardRef<HTMLDivElement, ImageProps>((props) => {
   );
 
   return (
-    <div ref={ref} className={rootClasses} style={style}>
+    <div ref={imageRef} className={rootClasses} style={style}>
       {renderMask()}
-      <Fragment>{srcset && Object.keys(srcset).length ? renderImageSrcset() : renderImage()}</Fragment>
+      {!isError && shouldLoad && (
+        <Fragment>{srcset && Object.keys(srcset).length ? renderImageSrcset() : renderImage()}</Fragment>
+      )}
     </div>
   );
-});
+};
 
 Image.displayName = 'Image';
 

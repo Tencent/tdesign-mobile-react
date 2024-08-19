@@ -15,9 +15,6 @@ export default function ImageDemo() {
         <PositionImage />
         <ShapeImage />
       </TDemoBlock>
-      <div style={{ width: '40px', height: '40px', backgroundColor: '#f3f3f3' }}></div>
-      <div style={{ width: '40px', height: '40px', backgroundColor: '#f3f3f3' }}></div>
-      <div style={{ width: '40px', height: '40px', backgroundColor: '#f3f3f3' }}></div>
       <TDemoBlock title="02 组件状态">
         <StatusImage />
       </TDemoBlock>
