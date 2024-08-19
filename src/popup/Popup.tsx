@@ -1,16 +1,16 @@
-import React, { FC, useState } from 'react';
+import React, { forwardRef, useRef } from 'react';
 import classnames from 'classnames';
-import { useSpring, animated } from 'react-spring';
 import { CloseIcon } from 'tdesign-icons-react';
+import { CSSTransition } from 'react-transition-group';
 import Overlay from '../overlay';
 import useDefault from '../_util/useDefault';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import { TdPopupProps } from './type';
-import useConfig from '../_util/useConfig';
 import { popupDefaultProps } from './defaultProps';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { renderToContainer, getAttach } from '../_util/renderToContainer';
-import { renderTNode } from '../_util/renderTNode';
+import parseTNode from '../_util/parseTNode';
+import { usePrefixClass } from '../hooks/useClass';
 
 export interface PopupProps extends TdPopupProps, NativeProps {}
 
@@ -19,15 +19,15 @@ enum PopupSourceEnum {
   CLOSEBTN = 'close-btn',
 }
 
-enum PlacementEnum {
-  TOP = 'top',
-  BOTTOM = 'bottom',
-  LEFT = 'left',
-  RIGHT = 'right',
-  CENTER = 'center',
-}
+// enum PlacementEnum {
+//   TOP = 'top',
+//   BOTTOM = 'bottom',
+//   LEFT = 'left',
+//   RIGHT = 'right',
+//   CENTER = 'center',
+// }
 
-const Popup: FC<PopupProps> = (props) => {
+const Popup = forwardRef<HTMLDivElement, PopupProps>((props) => {
   const {
     children,
     placement,
@@ -42,21 +42,21 @@ const Popup: FC<PopupProps> = (props) => {
     closeBtn,
     closeOnOverlayClick,
     onClose,
-    onClosed,
-    onOpen,
-    onOpened,
+    // onClosed,
+    // onOpen,
+    // onOpened,
     onVisibleChange,
   } = useDefaultProps(props, popupDefaultProps);
 
-  const { classPrefix } = useConfig();
-
-  const name = `${classPrefix}-popup`;
-
   const duration = 300;
+
+  const name = usePrefixClass('popup');
+
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const [show, setShow] = useDefault<boolean, any>(visible, defaultVisible, onVisibleChange);
 
-  const [active, setActive] = useState(show);
+  // const [active, setActive] = useState(show);
 
   const handleOverlayClick = (e) => {
     if (!closeOnOverlayClick) return;
@@ -69,87 +69,97 @@ const Popup: FC<PopupProps> = (props) => {
     setShow(false, PopupSourceEnum.CLOSEBTN);
   };
 
-  const { progress, opacity } = useSpring({
-    progress: show ? 0 : 100,
-    opacity: show ? 1 : 0,
-    config: {
-      duration,
-    },
-    onStart: () => {
-      if (show) {
-        onOpen?.();
-      }
-      setActive(true);
-    },
-    onRest: () => {
-      setActive(show);
-      if (show) {
-        onOpened?.();
-      } else {
-        onClosed?.();
-      }
-    },
-  });
+  // const { progress, opacity } = useSpring({
+  //   progress: show ? 0 : 100,
+  //   opacity: show ? 1 : 0,
+  //   config: {
+  //     duration,
+  //   },
+  //   onStart: () => {
+  //     if (show) {
+  //       onOpen?.();
+  //     }
+  //     setActive(true);
+  //   },
+  //   onRest: () => {
+  //     setActive(show);
+  //     if (show) {
+  //       onOpened?.();
+  //     } else {
+  //       onClosed?.();
+  //     }
+  //   },
+  // });
 
   const contentStyle = {
-    transform: progress.to((p) => {
-      if (placement === PlacementEnum.BOTTOM) {
-        return `translateY(${p}%)`;
-      }
-      if (placement === PlacementEnum.TOP) {
-        return `translateY(-${p}%)`;
-      }
-      if (placement === PlacementEnum.LEFT) {
-        return `translateX(-${p}%)`;
-      }
-      if (placement === PlacementEnum.RIGHT) {
-        return `translateX(${p}%)`;
-      }
-      if (placement === PlacementEnum.CENTER) {
-        return `scale(${1 - p / 100}) translate3d(-50%, -50%, 0)`;
-      }
-    }),
-    opacity: opacity.to((o) => {
-      if (placement === PlacementEnum.CENTER) {
-        return o;
-      }
-    }),
+    // transform: progress.to((p) => {
+    //   if (placement === PlacementEnum.BOTTOM) {
+    //     return `translateY(${p}%)`;
+    //   }
+    //   if (placement === PlacementEnum.TOP) {
+    //     return `translateY(-${p}%)`;
+    //   }
+    //   if (placement === PlacementEnum.LEFT) {
+    //     return `translateX(-${p}%)`;
+    //   }
+    //   if (placement === PlacementEnum.RIGHT) {
+    //     return `translateX(${p}%)`;
+    //   }
+    //   if (placement === PlacementEnum.CENTER) {
+    //     return `scale(${1 - p / 100}) translate3d(-50%, -50%, 0)`;
+    //   }
+    // }),
+    // opacity: opacity.to((o) => {
+    //   if (placement === PlacementEnum.CENTER) {
+    //     return o;
+    //   }
+    // }),
     zIndex,
-    display: active ? null : 'none',
-    transition: 'none',
-    transformOrigin: '0 0',
+    // display: active ? null : 'none',
+    // transition: 'none',
+    // transformOrigin: '0 0',
   };
 
-  const closeBtnNode = renderTNode(closeBtn, {
-    defaultNode: <CloseIcon size={24} />,
-    params: props,
-    wrap: (node) => (
-      <div className={`${name}__close`} onClick={handleCloseClick}>
-        {node}
-      </div>
-    ),
-  });
-  let node = (
+  const closeBtnNode = !closeBtn ? null : (
+    <div className={`${name}__close`} onClick={handleCloseClick}>
+      {parseTNode(closeBtn, props, <CloseIcon size={24} />)}
+    </div>
+  );
+
+  const node = (
     <>
       <Overlay
         visible={show && showOverlay}
-        onOverlayClick={handleOverlayClick}
-        disableBodyScroll={preventScrollThrough}
+        onClick={handleOverlayClick}
+        preventScrollThrough={preventScrollThrough}
         duration={duration}
         {...overlayProps}
       />
-      {withNativeProps(
-        props,
-        <animated.div className={classnames([name, `${name}--${placement}`])} style={contentStyle}>
-          {closeBtnNode}
-          {children}
-        </animated.div>,
-      )}
+      <CSSTransition
+        in={show}
+        appear={true}
+        unmountOnExit={destroyOnClose}
+        timeout={duration}
+        nodeRef={contentRef}
+        classNames={{
+          // enter: `slide-${placement}-enter`,
+          enterActive: `slide-${placement}-enter-active`,
+          // exit: `slide-${placement}-leave`,
+          exitActive: `slide-${placement}-leave-active`,
+        }}
+      >
+        {withNativeProps(
+          props,
+          <div ref={contentRef} className={classnames([name, `${name}--${placement}`])} style={contentStyle}>
+            {closeBtnNode}
+            {parseTNode(children)}
+          </div>,
+        )}
+      </CSSTransition>
     </>
   );
-  node = attach ? renderToContainer(getAttach(attach), node) : node;
-  return (!destroyOnClose || active) && node;
-};
+  return attach ? renderToContainer(getAttach(attach), node) : node;
+});
 
 Popup.displayName = 'Popup';
 

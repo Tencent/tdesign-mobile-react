@@ -1,6 +1,6 @@
 {
   "name": "tdesign-mobile-react",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "TDesign Component for Mobile React",
   "title": "tdesign-mobile-react",
   "main": "cjs/index.js",
@@ -129,10 +129,12 @@
     "inquirer": "^8.2.0",
     "jsdom": "^24.1.0",
     "less": "^4.1.2",
+    "lint-staged": "^15.2.9",
     "markdown-it-fence": "^0.1.3",
     "mockdate": "^3.0.5",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.5",
+    "prettier": "^3.3.3",
     "prismjs": "^1.25.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -148,8 +150,8 @@
     "rollup-plugin-styles": "^3.14.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.2",
-    "tdesign-icons-view": "^0.1.0",
-    "tdesign-site-components": "^0.13.10",
+    "tdesign-icons-view": "^0.2.7",
+    "tdesign-site-components": "^0.15.4",
     "typescript": "^4.5.3",
     "vite": "^2.7.0",
     "vite-plugin-pwa": "^0.11.11",
@@ -167,11 +169,17 @@
     "react-spring": "9.6.1",
     "react-transition-group": "^4.4.2",
     "smoothscroll-polyfill": "^0.4.4",
-    "tdesign-icons-react": "^0.1.1"
+    "tdesign-icons-react": "^0.3.4"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "prettier --write",
+      "npm run lint:fix"
+    ]
   }
 }

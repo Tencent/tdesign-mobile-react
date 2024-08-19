@@ -229,7 +229,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     >
       {showOverlay ? (
         <animated.div style={maskSpring}>
-          <Overlay onOverlayClick={onOverlayClickHandle} disableBodyScroll={false} />
+          <Overlay visible={visible} onClick={onOverlayClickHandle} />
         </animated.div>
       ) : null}
       <div className="wrap" style={wrapStyle}>

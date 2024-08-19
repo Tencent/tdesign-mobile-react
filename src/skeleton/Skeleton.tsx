@@ -1,121 +1,139 @@
-import React from 'react';
+import React, { forwardRef, useState, useEffect } from 'react';
 import classNames from 'classnames';
 import isNumber from 'lodash/isNumber';
+import isArray from 'lodash/isArray';
 import { SkeletonRowCol, SkeletonRowColObj, TdSkeletonProps } from './type';
 import { StyledProps, Styles } from '../common';
-import useConfig from '../_util/useConfig';
+import { skeletonDefaultProps } from './defaultProps';
+import { pxCompat } from '../_util/helper';
+import parseTNode from '../_util/parseTNode';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 
-export type SkeletonProps = TdSkeletonProps & StyledProps;
+export interface SkeletonProps extends TdSkeletonProps, StyledProps {}
 
-const Skeleton: React.FC<SkeletonProps> = (props) => {
-  const { animation, loading = true, rowCol, theme = 'text' } = props;
-  const { classPrefix } = useConfig();
-  const name = `${classPrefix}-skeleton`;
+const ThemeMap: Record<TdSkeletonProps['theme'], SkeletonRowCol> = {
+  avatar: [{ type: 'circle', size: '48px' }],
+  image: [{ type: 'rect', size: '72px' }],
+  text: [
+    [
+      { width: '24%', height: '16px', marginRight: '16px' },
+      { width: '76%', height: '16px' },
+    ],
+    1,
+  ],
+  paragraph: [1, 1, 1, { width: '55%' }],
+};
 
-  const completeContent = props.content || props.default || props.children;
-  const rootClasses = classNames(`${name}`, `${name}--${theme}`);
-  const defaultRowcols: SkeletonRowCol = [1, 1, 1, { width: '70%' }];
-  const rowCols: SkeletonRowCol = [];
-  if (theme === 'avatar-text') {
-    rowCols.push(...defaultRowcols);
-  } else if (rowCol) {
-    rowCols.push(...rowCol);
-  } else {
-    rowCols.push(...defaultRowcols);
-  }
+const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>((props) => {
+  const skeletonClass = usePrefixClass('skeleton');
+  const { className, style, children, animation, delay, loading, rowCol, theme } = useDefaultProps<SkeletonProps>(
+    props,
+    skeletonDefaultProps,
+  );
 
-  const rowClass = `${name}__row`;
-  const colClass = classNames(`${name}__col`, `${name}--type-text`, {
-    [`${name}--animation-${animation}`]: animation,
-  });
+  const renderCols = (_cols: Number | SkeletonRowColObj | Array<SkeletonRowColObj>) => {
+    let cols: Array<SkeletonRowColObj> = [];
+    if (isArray(_cols)) {
+      cols = _cols;
+    } else if (isNumber(_cols)) {
+      cols = new Array(_cols).fill({ type: 'text' });
+    } else {
+      cols = [_cols as SkeletonRowColObj];
+    }
 
-  const getColItemStyle = (obj: SkeletonRowColObj): Styles => {
-    const styleName = [
-      'width',
-      'height',
-      'marginRight',
-      'marginLeft',
-      'margin',
-      'size',
-      'background',
-      'backgroundColor',
-      'borderRadius',
-    ];
+    const getColItemClass = (obj: SkeletonRowColObj) =>
+      classNames(`${skeletonClass}__col`, `${skeletonClass}--type-${obj.type || 'text'}`, {
+        [`${skeletonClass}--animation-${animation}`]: animation,
+      });
 
-    return styleName.reduce((style, currentStyle) => {
-      const accStyle = style;
-      if (currentStyle in obj) {
-        const px = isNumber(obj[currentStyle]) ? `${obj[currentStyle]}px` : obj[currentStyle];
-        if (currentStyle === 'size') {
-          [accStyle.width, accStyle.height] = [px, px];
+    const getColItemStyle = (obj: SkeletonRowColObj): Styles => {
+      const styleName = [
+        'width',
+        'height',
+        'marginRight',
+        'marginLeft',
+        'margin',
+        'size',
+        'background',
+        'backgroundColor',
+        'borderRadius',
+      ];
+      const style: Styles = {};
+      styleName.forEach((name) => {
+        if (name in obj) {
+          const px = pxCompat(obj[name]);
+          if (name === 'size') {
+            [style.width, style.height] = [px, px];
+          } else {
+            style[name] = px;
+          }
         }
-        accStyle[currentStyle] = px;
-      }
-      return accStyle;
-    }, {} as Styles);
+      });
+      return style;
+    };
+
+    return cols.map((obj, index) => (
+      <div key={index} className={getColItemClass(obj)} style={getColItemStyle(obj)}>
+        {parseTNode(obj.content)}
+      </div>
+    ));
   };
 
-  const parsedRowcols = rowCols.map((item) => {
-    if (isNumber(item)) {
-      return [
-        {
-          type: 'text',
-          style: {},
-        },
-      ];
-    }
-    if (Array.isArray(item)) {
-      return item.map((col) => ({
-        ...col,
-        style: getColItemStyle(col),
-      }));
+  const renderRowCol = (_rowCol?: SkeletonRowCol) => {
+    const renderedRowCol: SkeletonRowCol = _rowCol || rowCol;
+
+    return renderedRowCol.map<React.ReactNode>((item, index) => (
+      <div key={index} className={`${skeletonClass}__row`}>
+        {renderCols(item)}
+      </div>
+    ));
+  };
+
+  const [isLoading, setIsLoading] = useState(loading);
+
+  useEffect(() => {
+    if (delay > 0 && !loading) {
+      const timeout = setTimeout(() => {
+        setIsLoading(loading);
+      }, delay);
+      return () => clearTimeout(timeout);
     }
 
-    const nItem = item as SkeletonRowColObj;
-    return [
-      {
-        ...nItem,
-        style: getColItemStyle(nItem),
-      },
-    ];
-  });
+    setIsLoading(loading);
+  }, [delay, loading]);
+
+  if (!isLoading) {
+    return <>{parseTNode(children)}</>;
+  }
+
+  const childrenContent: React.ReactNode[] = [];
+
+  // 保持优先级： rowCol > theme，增加默认值兜底
+  if (rowCol) {
+    childrenContent.push(renderRowCol(rowCol));
+  } else if (props.theme) {
+    childrenContent.push(renderRowCol(ThemeMap[theme]));
+  } else if (!theme && !rowCol) {
+    // 什么都不传时，传入默认 rowCol
+    childrenContent.push(
+      renderRowCol([
+        [
+          { width: '24%', height: '16px', marginRight: '16px' },
+          { width: '76%', height: '16px' },
+        ],
+        1,
+      ]),
+    );
+  }
 
   return (
-    <>
-      <div className={rootClasses}>
-        {!loading && completeContent}
-
-        {loading && theme === 'avatar-text' && (
-          <>
-            {/* avater-text */}
-            <div className={`${name}__col ${name}--type-circle`}></div>
-            <div className={`${name}__paragraph`}>
-              {parsedRowcols.map((item, index) => (
-                <div className={rowClass} key={index}>
-                  {item.map((subItem, subIndex) => (
-                    <div key={subIndex} className={colClass} style={subItem.style}></div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </>
-        )}
-
-        {loading && theme === 'text' && (
-          <>
-            {/* text */}
-            {parsedRowcols.map((item, index) => (
-              <div className={rowClass} key={index}>
-                {item.map((subItem, subIndex) => (
-                  <div key={subIndex} className={colClass} style={subItem.style}></div>
-                ))}
-              </div>
-            ))}
-          </>
-        )}
-      </div>
-    </>
+    <div className={className} style={style}>
+      {childrenContent}
+    </div>
   );
-};
+});
+
+Skeleton.displayName = 'Skeleton';
 
 export default Skeleton;
