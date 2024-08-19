@@ -1,0 +1,40 @@
+.t-button.t-is-block.t-action-sheet__list-item {
+  display: flex;
+  align-items: center;
+  border-radius: 0;
+
+  .t-badge__inner {
+    padding: 0;
+  }
+
+  &::after {
+    top: unset;
+    height: 1px;
+  }
+}
+
+.t-button.t-is-block.t-action-sheet__list-item.t-action-sheet__list-item--left {
+  justify-content: start;
+
+  &::after {
+    left: 16px;
+  }
+}
+
+.t-action-sheet__swiper-wrap--base {
+  user-select: none;
+
+  .t-swiper__item {
+    .t-grid {
+      display: flex;
+    }
+  }
+
+  .t-swiper__pagination {
+    position: absolute;
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translate(-50%);
+  }
+}

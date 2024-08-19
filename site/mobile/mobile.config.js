@@ -263,6 +263,11 @@ export default {
       component: () => import('tdesign-mobile-react/result/_example/index.tsx'),
     },
     {
+      title: 'ActionSheet 动作面板',
+      name: 'action-sheet',
+      component: () => import('tdesign-mobile-react/action-sheet/_example/index.jsx'),
+    },
+    {
       title: 'Link 链接',
       name: 'link',
       component: () => import('tdesign-mobile-react/link/_example/index.tsx'),

@@ -456,12 +456,12 @@ export const docs = [
     titleEn: 'FeedBack',
     type: 'component',
     children: [
-      // {
-      //   title: 'ActionSheet 动作面板',
-      //   name: 'action-sheet',
-      //   path: '/mobile-react/components/actionsheet',
-      //   component: () => import('tdesign-mobile-react/action-sheet/action-sheet.md'),
-      // },
+      {
+        title: 'ActionSheet 动作面板',
+        name: 'action-sheet',
+        path: '/mobile-react/components/actionsheet',
+        component: () => import('tdesign-mobile-react/action-sheet/action-sheet.md'),
+      },
       {
         title: 'Dialog 对话框',
         titleEn: 'Dialog',
