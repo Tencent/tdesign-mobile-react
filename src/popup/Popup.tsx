@@ -9,9 +9,9 @@ import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import { TdPopupProps } from './type';
 import { popupDefaultProps } from './defaultProps';
 import useDefaultProps from '../hooks/useDefaultProps';
-import { renderToContainer, getAttach } from '../_util/renderToContainer';
 import parseTNode from '../_util/parseTNode';
 import { usePrefixClass } from '../hooks/useClass';
+import Portal from '../common/Portal';
 
 export interface PopupProps extends TdPopupProps, NativeProps {}
 
@@ -122,7 +122,7 @@ const Popup = forwardRef<HTMLDivElement, PopupProps>((props) => {
       </CSSTransition>
     </>
   );
-  return attach ? renderToContainer(getAttach(attach), node) : node;
+  return <Portal attach={attach}>{node}</Portal>;
 });
 
 Popup.displayName = 'Popup';
