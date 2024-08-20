@@ -4,10 +4,12 @@ import isString from 'lodash/isString';
 import isObject from 'lodash/isObject';
 import isFunction from 'lodash/isFunction';
 import { Badge, Image } from 'tdesign-mobile-react';
-import { TdGridItemProps, TdGridProps } from './type';
 import useConfig from '../_util/useConfig';
-import { GridContext } from './GridContext';
+import parseTNode from '../_util/parseTNode';
+import useDefaultProps from '../hooks/useDefaultProps';
 
+import { TdGridItemProps, TdGridProps } from './type';
+import { GridContext } from './GridContext';
 import { gridItemDefaultProps } from './defaultProps';
 
 const getGridItemWidth = (column: number) => (column > 0 ? `${100 / column}%` : 0);
@@ -15,7 +17,7 @@ const getGridItemWidth = (column: number) => (column > 0 ? `${100 / column}%` : 
 export interface GridItemProp extends TdGridItemProps, TdGridProps {}
 
 const GridItem: FC<GridItemProp> = (prop) => {
-  const { description, image, layout, text, badge, ...resetProps } = prop;
+  const { description, image, layout, text, badge, ...resetProps } = useDefaultProps(prop, gridItemDefaultProps);
 
   const { classPrefix } = useConfig();
   const { align, gutter, column, border } = useContext(GridContext);
@@ -33,7 +35,7 @@ const GridItem: FC<GridItemProp> = (prop) => {
 
   const rootStyle = useMemo(() => {
     const percent = getGridItemWidth(column);
-    const style: Record<string, any> = {
+    const style: React.CSSProperties = {
       textAlign: ['center', 'left'].includes(align) ? align : 'center',
     };
     if (percent !== 0) {
@@ -58,7 +60,7 @@ const GridItem: FC<GridItemProp> = (prop) => {
     if (isObject(image) && !isFunction(image) && !React.isValidElement(image)) {
       imgProps = image;
     }
-    return imgProps ? <Image shape="round" {...imgProps} /> : image;
+    return imgProps ? <Image shape="round" {...imgProps} /> : parseTNode(image);
   }, [image]);
 
   return (
@@ -75,6 +77,5 @@ const GridItem: FC<GridItemProp> = (prop) => {
 };
 
 GridItem.displayName = 'GridItem';
-GridItem.defaultProps = gridItemDefaultProps;
 
 export default GridItem;

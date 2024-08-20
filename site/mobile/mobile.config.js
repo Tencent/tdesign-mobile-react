@@ -28,7 +28,7 @@ export default {
     {
       title: 'Grid 宫格',
       name: 'grid',
-      component: () => import('tdesign-mobile-react/grid/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/grid/_example/index.tsx'),
     },
     {
       title: 'Image 图片',
