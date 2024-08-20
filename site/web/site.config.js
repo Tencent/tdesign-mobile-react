@@ -198,6 +198,12 @@ export const docs = [
       //   component: () => import('tdesign-mobile-react/cascader/cascader.md'),
       // },
       {
+        title: 'Cascader 级联选择器',
+        name: 'cascader',
+        path: '/mobile-react/components/cascader',
+        component: () => import('tdesign-mobile-react/cascader/cascader.md'),
+      },
+      {
         title: 'CheckBox 多选框',
         titleEn: 'CheckBox',
         name: 'checkbox',
