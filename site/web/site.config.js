@@ -281,6 +281,12 @@ export default {
           path: '/mobile-react/components/tag',
           component: () => import('tdesign-mobile-react/tag/tag.md'),
         },
+        {
+          title: 'Table 表格',
+          name: 'table',
+          path: '/mobile-react/components/table',
+          component: () => import('tdesign-mobile-react/table/table.md'),
+        },
       ],
     },
     {
