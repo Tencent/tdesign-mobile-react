@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { TdLoadingProps } from './type';
 import { loadingDefaultProps } from './defaultProps';
@@ -12,7 +12,7 @@ import { usePrefixClass } from '../hooks/useClass';
 
 export interface LoadingProps extends TdLoadingProps, StyledProps {}
 
-const Loading = forwardRef<HTMLDivElement, LoadingProps>((props) => {
+const Loading: React.FC<LoadingProps> = (props) => {
   const {
     className,
     style,
@@ -164,7 +164,7 @@ const Loading = forwardRef<HTMLDivElement, LoadingProps>((props) => {
       </div>
     )
   );
-});
+};
 
 Loading.displayName = 'Loading';
 
