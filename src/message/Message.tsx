@@ -94,7 +94,7 @@ const Message: React.FC<MessageProps> = (props) => {
       : {};
   };
 
-  const [messageVisible, { setTrue, setFalse }] = useBoolean(false);
+  const [messageVisible, { setTrue, setFalse }] = useBoolean(props.defaultVisible);
 
   const contentRef = useRef<HTMLDivElement>(null);
   const textWrapRef = useRef<HTMLDivElement>(null);
