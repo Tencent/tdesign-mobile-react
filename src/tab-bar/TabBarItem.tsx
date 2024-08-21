@@ -8,6 +8,7 @@ import { TabBarContext } from './TabBarContext';
 import Badge from '../badge';
 import useConfig from '../_util/useConfig';
 import useTabBarCssTransition from './useTabBarCssTransition';
+import parseTNode from '../_util/parseTNode';
 
 export interface TabBarItemProps extends TdTabBarItemProps, StyledProps {}
 
@@ -54,7 +55,6 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
     () => ({
       count: 0,
       dot: false,
-      size: 'medium',
       offset: defaultBadgeOffset,
       maxCount: defaultBadgeMaxCount,
       ...badgeProps,
@@ -162,7 +162,7 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
                 <div className={tabItemIconMenuCls} />
               </>
             )}
-            {children}
+            {parseTNode(children)}
           </div>
         )}
       </div>
