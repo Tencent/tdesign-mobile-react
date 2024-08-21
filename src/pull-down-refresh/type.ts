@@ -11,7 +11,7 @@ export interface TdPullDownRefreshProps {
    * 加载中下拉高度
    * @default 50
    */
-  loadingBarHeight?: number;
+  loadingBarHeight?: number | string;
   /**
    * 加载loading样式
    */
@@ -40,9 +40,19 @@ export interface TdPullDownRefreshProps {
    */
   onTimeout?: () => void;
   /**
-   * 控制是否正在加载
+   * 组件状态，值为 `true` 表示下拉状态，值为 `false` 表示收起状态
+   * @default false
    */
   value?: boolean | undefined;
+  /**
+   * 组件状态，值为 `true` 表示下拉状态，值为 `false` 表示收起状态，非受控属性
+   * @default false
+   */
+  defaultValue?: boolean;
+  /**
+   * 滚动到页面底部时触发
+   */
+  onScrolltolower?: () => void;
   /**
    * 刷新过程中加载状态的更改
    */
