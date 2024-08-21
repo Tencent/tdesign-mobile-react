@@ -68,7 +68,7 @@ export default {
     {
       title: 'Search 搜索框',
       name: 'search',
-      component: () => import('tdesign-mobile-react/search/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/search/_example/index.tsx'),
     },
     {
       title: 'Badge 徽标',
