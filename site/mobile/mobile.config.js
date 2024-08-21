@@ -222,5 +222,10 @@ export default {
       name: 'result',
       component: () => import('tdesign-mobile-react/result/_example/index.tsx'),
     },
+    {
+      title: 'Link 链接',
+      name: 'link',
+      component: () => import('tdesign-mobile-react/link/_example/index.tsx'),
+    },
   ],
 };
