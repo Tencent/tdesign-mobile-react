@@ -7,6 +7,8 @@ import BadgePropsDemo from './badge-props';
 import TextDemo from './text';
 import PureIconDemo from './pure-icon';
 import TextSpreadDemo from './text-spread';
+import RoundDemo from './round';
+import CustomDemo from './custom';
 
 import './style/index.less';
 
@@ -26,14 +28,14 @@ function TabBarMobileDemo() {
       <TDemoBlock summary="双层级纯文本标签栏">
         <TextSpreadDemo />
       </TDemoBlock>
-      <TDemoBlock title="01 组件类型" summary="带徽章标签栏">
+      <TDemoBlock title="01 组件类型" summary="弱选中标签栏">
         <BadgePropsDemo />
       </TDemoBlock>
       <TDemoBlock summary="悬浮胶囊标签栏">
-        <BadgePropsDemo />
+        <RoundDemo />
       </TDemoBlock>
       <TDemoBlock title="03 自定义" summary="自定义样式">
-        <BadgePropsDemo />
+        <CustomDemo />
       </TDemoBlock>
     </div>
   );

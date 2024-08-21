@@ -4,28 +4,30 @@ import { TabBar, TabBarItem } from 'tdesign-mobile-react';
 function TabBarBaseDemo() {
   const list = [
     {
-      name: 'label_1',
-      text: '标签栏一',
+      value: 'home',
+      label: '首页',
+      icon: 'home',
     },
     {
-      name: 'label_2',
-      text: '标签栏二',
+      value: 'app',
+      label: '应用',
+      icon: 'app',
     },
     {
-      name: 'label_3',
-      text: '此处展开',
+      value: 'user',
+      label: '我的',
       children: [
         {
-          value: 'spread_3',
-          label: '展开项三',
+          value: 'info',
+          label: '基本信息',
         },
         {
-          value: 'spread_2',
-          label: '展开项二',
+          value: 'home-page',
+          label: '个人主页',
         },
         {
-          value: 'spread_1',
-          label: '展开项一',
+          value: 'setting',
+          label: '设置',
         },
       ],
     },
@@ -33,10 +35,10 @@ function TabBarBaseDemo() {
 
   return (
     <div className="demo-tab-bar">
-      <TabBar defaultValue="label_3">
+      <TabBar defaultValue="home" theme="tag" split={false}>
         {list.map((item, i) => (
-          <TabBarItem key={item.name || i} value={item.name} subTabBar={item.children}>
-            {item.text}
+          <TabBarItem key={item.value || i} value={item.value} subTabBar={item.children}>
+            {item.label}
           </TabBarItem>
         ))}
       </TabBar>

@@ -3,12 +3,12 @@ import { TabBar, TabBarItem } from 'tdesign-mobile-react';
 
 function TabBarBaseDemo() {
   const list = [
-    { name: 'label_1', text: '标签栏一' },
-    { name: 'label_2', text: '标签栏二' },
-    { name: 'label_3', text: '标签栏三' },
-    { name: 'label_4', text: '标签栏四' },
+    { value: 'home', label: '首页' },
+    { value: 'app', label: '应用' },
+    { value: 'chat', label: '聊天' },
+    { value: 'user', label: '我的' },
   ];
-  const [value, setValue] = useState('label_1');
+  const [value, setValue] = useState('home');
 
   const change = (changeValue) => {
     setValue(changeValue);
@@ -21,10 +21,10 @@ function TabBarBaseDemo() {
 
   return (
     <div className="demo-tab-bar">
-      <TabBar value={value} onChange={change}>
+      <TabBar value={value} onChange={change} theme="tag" split={false}>
         {list.map((item, i) => (
-          <TabBarItem key={item.name || i} value={item.name}>
-            {item.text}
+          <TabBarItem key={item.value || i} value={item.value}>
+            {item.label}
           </TabBarItem>
         ))}
       </TabBar>
