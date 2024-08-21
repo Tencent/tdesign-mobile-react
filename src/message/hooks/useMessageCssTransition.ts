@@ -51,7 +51,7 @@ const useMessageCssTransition = ({
         if (contentEle && contentEle.style.display === 'block') {
           contentEle.style.display = 'none';
         }
-        if (container && ReactDOM.unmountComponentAtNode(container)) {
+        if (container && ReactDOM.unmountComponentAtNode(container) && container.parentNode) {
           container.parentNode.removeChild(container);
         }
       }, 0);
