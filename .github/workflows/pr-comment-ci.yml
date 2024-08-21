@@ -73,7 +73,21 @@ jobs:
       - name: gh checkout pr
         env:
           GH_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-        run: gh pr checkout ${{ github.event.issue.number }} --recurse-submodules
+        run: gh pr checkout ${{ github.event.issue.number }}
+
+      - name: submodule init and sync remote
+        run: |
+          git submodule update --init --remote
+
+      - name: Commit common
+        run: |
+          git status
+          working_tree_clean=$(git status | grep -c 'nothing to commit, working tree clean') || true
+          if [ "$working_tree_clean" -eq "0" ]; then
+            git add .
+            git commit -m "chore: update common"
+          fi
+          git status
 
       - name: merge develop
         run: |
@@ -105,25 +119,13 @@ jobs:
           fi
 
           if [ "$common_conflict" -eq "1" ];then
-              git checkout --theirs src/_common
+              git checkout --ours src/_common
               git add src/_common
               echo "resolve conflict _common"
           fi
 
           git status
           git commit -am "chore: merge develop"
-      - name: udpate common
-        run: |
-          git submodule update --remote --merge
-      - name: Commit common
-        run: |
-          git status
-          working_tree_clean=$(git status | grep -c 'nothing to commit, working tree clean') || true
-          if [ "$working_tree_clean" -eq "0" ]; then
-            git add .
-            git commit -m "chore: update common"
-          fi
-          git status
 
       - name: git push
         run: |
