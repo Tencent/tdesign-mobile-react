@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import '@common/style/mobile/index.less';
+// import '@common/style/mobile/index.less';
 
 import 'tdesign-site-components';
 import 'tdesign-site-components/lib/styles/style.css';
