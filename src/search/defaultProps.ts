@@ -4,4 +4,14 @@
 
 import { TdSearchProps } from './type';
 
-export const searchDefaultProps: TdSearchProps = { center: false, disabled: false, focus: false, shape: 'square' };
+export const searchDefaultProps: TdSearchProps = {
+  action: '',
+  center: false,
+  clearable: true,
+  disabled: false,
+  focus: false,
+  leftIcon: 'search',
+  placeholder: '',
+  readonly: false,
+  shape: 'square',
+};

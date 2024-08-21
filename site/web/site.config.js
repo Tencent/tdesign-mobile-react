@@ -40,12 +40,17 @@ export default {
           path: '/mobile-react/components/fab',
           component: () => import('tdesign-mobile-react/fab/fab.md'),
         },
-
         {
           title: 'Icon 图标',
           name: 'icon',
           path: '/mobile-react/components/icon',
           component: () => import('tdesign-mobile-react/icon/icon.md'),
+        },
+        {
+          title: 'Link 链接',
+          name: 'link',
+          path: '/mobile-react/components/link',
+          component: () => import('tdesign-mobile-react/link/link.md'),
         },
       ],
     },

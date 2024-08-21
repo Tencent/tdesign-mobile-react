@@ -1,94 +1,132 @@
-import React, { FC, useCallback, useMemo, useRef, useState } from 'react';
-import ClassNames from 'classnames';
-import { CloseIcon, EllipsisIcon } from 'tdesign-icons-react';
-import { useInViewport } from 'ahooks';
-import useConfig from '../_util/useConfig';
+import React, { Fragment, useRef, useMemo, useState, useEffect } from 'react';
+import type { SyntheticEvent } from 'react';
+import classNames from 'classnames';
+import { CloseIcon as TdCloseIcon } from 'tdesign-icons-react';
+import Loading from '../loading';
+import observe from '../_common/js/utils/observe';
+import { StyledProps } from '../common';
 import { TdImageProps } from './type';
+import { imageDefaultProps } from './defaultProps';
+import parseTNode from '../_util/parseTNode';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 
-export interface ImageProps extends TdImageProps, Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'loading' | 'onError' | 'onLoad'> {}
+export interface ImageProps extends TdImageProps, StyledProps {}
 
-const Image: FC<ImageProps> = React.memo((props) => {
+const Image: React.FC<ImageProps> = (props) => {
   const {
-    src,
-    alt,
-    fit = 'fill',
-    onLoad,
-    loading,
-    onError,
-    lazy,
-    shape = 'round',
-    position,
-    error,
     className,
     style,
-    ...others
-  } = props;
+    src,
+    alt,
+    error,
+    fallback,
+    fit,
+    lazy,
+    loading,
+    shape,
+    position,
+    referrerpolicy,
+    srcset,
+    onError,
+    onLoad,
+  } = useDefaultProps<ImageProps>(props, imageDefaultProps);
 
-  const [isLoad, setIsLoad] = useState(true);
+  const imageClass = usePrefixClass('image');
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  const [imageSrc, setImageSrc] = useState(src);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
-  const ref = useRef<HTMLImageElement>(null);
-  const hasLoad = useRef<boolean>(false);
+  const [shouldLoad, setShouldLoad] = useState(!lazy);
 
-  // 统一配置信息
-  const { classPrefix } = useConfig();
-
-  // 观察元素是否在可见区域
-  const [isInViewport] = useInViewport(ref);
-
-  const prefix = useMemo(() => `${classPrefix}-image`, [classPrefix]);
+  const rootClasses = classNames(
+    {
+      [`${imageClass}`]: true,
+      [`${imageClass}--${shape}`]: true,
+    },
+    className,
+  );
 
   // Loading Element
   const LoadingStatus = useMemo(() => {
-    if (!isLoad) return null;
-
-    return loading || <EllipsisIcon />;
-  }, [isLoad, loading]);
+    if (!(isError || !shouldLoad) && !isLoaded) return loading || <Loading theme="dots" inheritColor={true} />;
+  }, [isError, shouldLoad, isLoaded, loading]);
 
   // Loading Failed Element
   const FailedStatus = useMemo(() => {
-    if (!isError) return null;
-
-    return error || <CloseIcon />;
+    if (isError) return error || <TdCloseIcon size="22px" />;
   }, [isError, error]);
 
-  // Image Src
-  const imgSrc = useMemo(() => {
-    if (!lazy || hasLoad.current) return src;
+  const handleLoadImage = () => {
+    setShouldLoad(true);
+  };
 
-    if (isInViewport) return src;
+  useEffect(() => {
+    if (!lazy || !imageRef?.current) {
+      return;
+    }
 
-    return '';
-  }, [src, lazy, isInViewport]);
+    const handleUnObserve = (element) => {
+      const observer = observe(element, null, handleLoadImage, 0);
+      return () => {
+        observer && observer.unobserve(element);
+      };
+    };
 
-  // Get ClassName By Prefix
-  const getClass = useCallback((cls: string) => `${prefix}__${cls}`, [prefix]);
+    return handleUnObserve(imageRef.current);
+  }, [lazy, imageRef]);
+
+  // 图片加载完成回调
+  const handleLoad = (e: SyntheticEvent<HTMLImageElement>) => {
+    setIsLoaded(true);
+    onLoad?.({ e });
+  };
+
+  // 图片加载失败回调
+  const handleError = (e: SyntheticEvent<HTMLImageElement>) => {
+    setIsError(true);
+    if (fallback) {
+      setImageSrc(fallback);
+    }
+    onError?.({ e });
+  };
+
+  const renderMask = () =>
+    LoadingStatus || FailedStatus ? (
+      <div className={`${imageClass}__mask`}>{parseTNode(LoadingStatus || FailedStatus)}</div>
+    ) : null;
+
+  const renderImage = () => (
+    <img
+      className={classNames(`${imageClass}__img`, `${imageClass}--fit-${fit}`, `${imageClass}--position-${position}`)}
+      src={imageSrc}
+      alt={alt}
+      referrerPolicy={referrerpolicy}
+      onLoad={handleLoad}
+      onError={handleError}
+    />
+  );
+
+  const renderImageSrcset = () => (
+    <picture>
+      {Object.entries(srcset).map(([type, url]) => (
+        <source key={url} type={type} srcSet={url} />
+      ))}
+      {src && renderImage()}
+    </picture>
+  );
 
   return (
-    <div className={ClassNames(prefix, `${prefix}--${shape}`, { [className]: className })} ref={ref}>
-      {LoadingStatus || FailedStatus ? <div className={getClass('status')}>{LoadingStatus || FailedStatus}</div> : null}
-      <img
-        {...others}
-        className={getClass('img')}
-        src={imgSrc}
-        alt={alt}
-        style={{ objectFit: fit, objectPosition: position, width: 'inherit', height: 'inherit', ...style }}
-        onLoad={() => {
-          hasLoad.current = true;
-          setIsLoad(false);
-          setIsError(false);
-          onLoad && onLoad();
-        }}
-        onError={() => {
-          if (imgSrc) {
-            hasLoad.current = true;
-            setIsLoad(false);
-            setIsError(true);
-            onError && onError();
-          }
-        }}
-      />
+    <div ref={imageRef} className={rootClasses} style={style}>
+      {renderMask()}
+      {!isError && shouldLoad && (
+        <Fragment>{srcset && Object.keys(srcset).length ? renderImageSrcset() : renderImage()}</Fragment>
+      )}
     </div>
   );
-});
+};
+
+Image.displayName = 'Image';
 
 export default Image;

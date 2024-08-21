@@ -1,35 +1,38 @@
-.tdesign-mobile-demo {
-    background-color: #ffffff;
+.tdesign-mobile-popup-demo {
+  background-color: #ffffff;
+  flex: 1;
+  padding-bottom: 16px;
 
-    .vertical {
-        height: 240px;
-        background-color: #fff;
+  button + button {
+    margin-top: 16px;
+  }
+}
+
+.tdesign-mobile-popup-demo__with-title.header {
+  display: flex;
+  align-items: center;
+  .btn {
+    font-size: 16px;
+    padding: 16px;
+    &--cancel {
+      color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
     }
-    
-    .horizontal {
-        width: 307px;
-        height: 100%;
-        background-color: #fff;
+    &--confirm {
+      color: #0052d9;
     }
-    
-    .center {
-        width: 88px;
-        height: 88px;
-        border-radius: 4px;
-        background-color: #fff;
-    }
-    
-    &__button-group {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    &__button {
-        width: 343px;
-        height: 44px;
-        border-radius: 4px;
-        margin-bottom: 16px;
-    }
+  }
+  .title {
+    flex: 1;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+  }
+}
+
+.design-mobile-popup-demo__custom-close.close-btn {
+  position: absolute;
+  left: 50%;
+  margin-left: -16px;
+  bottom: -56px;
 }
