@@ -7957,6 +7957,1098 @@ exports[`csr snapshot test > csr test src/input/_example/suffix.tsx 1`] = `
 </div>
 `;
 
+exports[`csr snapshot test > csr test src/link/_example/base.tsx 1`] = `
+<div>
+  <div
+    class="demo-content"
+  >
+    <a
+      class="t-link t-link--medium t-link--default"
+      href="/mobile-react/overview"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+    </a>
+    <a
+      class="t-link t-link--medium t-link--default t-link--hover"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/link/_example/index.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-demo"
+  >
+    <div
+      class="tdesign-mobile-demo-header"
+    >
+      <h1
+        class="tdesign-mobile-demo-header__title"
+      >
+        Link 链接
+      </h1>
+      <p
+        class="tdesign-mobile-demo-header__summary"
+      >
+        当功能使用图标即可表意清楚时，可使用纯图标悬浮按钮，例如：添加、发布。
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          01 组件类型
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          基础文字链接
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="demo-content"
+        >
+          <a
+            class="t-link t-link--medium t-link--default"
+            href="/mobile-react/overview"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+          </a>
+          <a
+            class="t-link t-link--medium t-link--default t-link--hover"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          下划线文字链接
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="demo-content"
+        >
+          <a
+            class="t-link t-link--medium t-link--primary t-link--underline"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+          </a>
+          <a
+            class="t-link t-link--medium t-link--default t-link--underline t-link--hover"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          前置图标文字链接
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="demo-content"
+        >
+          <a
+            class="t-link t-link--medium t-link--primary t-link--underline t-link--hover"
+          >
+            <span
+              class="t-link__prefix-icon"
+            >
+              <svg
+                class="t-icon t-icon-link"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+          </a>
+          <a
+            class="t-link t-link--medium t-link--default t-link--underline t-link--hover"
+          >
+            <span
+              class="t-link__prefix-icon"
+            >
+              <svg
+                class="t-icon t-icon-link"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          后置图标文字链接
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="demo-content"
+        >
+          <a
+            class="t-link t-link--medium t-link--primary t-link--underline"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+            <span
+              class="t-link__suffix-icon"
+            >
+              <svg
+                class="t-icon t-icon-jump"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </a>
+          <a
+            class="t-link t-link--medium t-link--default t-link--underline t-link--hover"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+            <span
+              class="t-link__suffix-icon"
+            >
+              <svg
+                class="t-icon t-icon-jump"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          02 组件状态
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          不同主题
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="demo-content"
+        >
+          <a
+            class="t-link t-link--medium t-link--primary"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+            <span
+              class="t-link__suffix-icon"
+            >
+              <svg
+                class="t-icon t-icon-jump"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </a>
+          <a
+            class="t-link t-link--medium t-link--default"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+            <span
+              class="t-link__suffix-icon"
+            >
+              <svg
+                class="t-icon t-icon-jump"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </a>
+          <a
+            class="t-link t-link--medium t-link--danger"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+            <span
+              class="t-link__suffix-icon"
+            >
+              <svg
+                class="t-icon t-icon-jump"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </a>
+        </div>
+        <div
+          class="demo-content"
+        >
+          <a
+            class="t-link t-link--medium t-link--success"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+            <span
+              class="t-link__suffix-icon"
+            >
+              <svg
+                class="t-icon t-icon-jump"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </a>
+          <a
+            class="t-link t-link--medium t-link--warning"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+            <span
+              class="t-link__suffix-icon"
+            >
+              <svg
+                class="t-icon t-icon-jump"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          禁用状态
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="demo-content"
+        >
+          <a
+            class="t-link t-link--medium t-link--primary t-link--disabled"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+            <span
+              class="t-link__suffix-icon"
+            >
+              <svg
+                class="t-icon t-icon-jump"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </a>
+          <a
+            class="t-link t-link--medium t-link--default t-link--disabled"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+            <span
+              class="t-link__suffix-icon"
+            >
+              <svg
+                class="t-icon t-icon-jump"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </a>
+          <a
+            class="t-link t-link--medium t-link--danger t-link--disabled"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+            <span
+              class="t-link__suffix-icon"
+            >
+              <svg
+                class="t-icon t-icon-jump"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </a>
+        </div>
+        <div
+          class="demo-content"
+        >
+          <a
+            class="t-link t-link--medium t-link--success t-link--disabled"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+            <span
+              class="t-link__suffix-icon"
+            >
+              <svg
+                class="t-icon t-icon-jump"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </a>
+          <a
+            class="t-link t-link--medium t-link--warning t-link--disabled"
+          >
+            <span
+              class="t-link__content"
+            >
+              跳转链接
+            </span>
+            <span
+              class="t-link__suffix-icon"
+            >
+              <svg
+                class="t-icon t-icon-jump"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          03 组件样式
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          链接尺寸
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="demo-content"
+        >
+          <a
+            class="t-link t-link--small t-link--primary"
+          >
+            <span
+              class="t-link__content"
+            >
+              S跳转链接
+            </span>
+          </a>
+          <a
+            class="t-link t-link--medium t-link--primary"
+          >
+            <span
+              class="t-link__content"
+            >
+              M跳转链接
+            </span>
+          </a>
+          <a
+            class="t-link t-link--large t-link--primary"
+          >
+            <span
+              class="t-link__content"
+            >
+              L跳转链接
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/link/_example/linkSize.tsx 1`] = `
+<div>
+  <div
+    class="demo-content"
+  >
+    <a
+      class="t-link t-link--small t-link--primary"
+    >
+      <span
+        class="t-link__content"
+      >
+        S跳转链接
+      </span>
+    </a>
+    <a
+      class="t-link t-link--medium t-link--primary"
+    >
+      <span
+        class="t-link__content"
+      >
+        M跳转链接
+      </span>
+    </a>
+    <a
+      class="t-link t-link--large t-link--primary"
+    >
+      <span
+        class="t-link__content"
+      >
+        L跳转链接
+      </span>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/link/_example/prefix.tsx 1`] = `
+<div>
+  <div
+    class="demo-content"
+  >
+    <a
+      class="t-link t-link--medium t-link--primary t-link--underline t-link--hover"
+    >
+      <span
+        class="t-link__prefix-icon"
+      >
+        <svg
+          class="t-icon t-icon-link"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+    </a>
+    <a
+      class="t-link t-link--medium t-link--default t-link--underline t-link--hover"
+    >
+      <span
+        class="t-link__prefix-icon"
+      >
+        <svg
+          class="t-icon t-icon-link"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/link/_example/status.tsx 1`] = `
+<div>
+  <div
+    class="demo-content"
+  >
+    <a
+      class="t-link t-link--medium t-link--primary t-link--disabled"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+      <span
+        class="t-link__suffix-icon"
+      >
+        <svg
+          class="t-icon t-icon-jump"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </a>
+    <a
+      class="t-link t-link--medium t-link--default t-link--disabled"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+      <span
+        class="t-link__suffix-icon"
+      >
+        <svg
+          class="t-icon t-icon-jump"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </a>
+    <a
+      class="t-link t-link--medium t-link--danger t-link--disabled"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+      <span
+        class="t-link__suffix-icon"
+      >
+        <svg
+          class="t-icon t-icon-jump"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </a>
+  </div>
+  <div
+    class="demo-content"
+  >
+    <a
+      class="t-link t-link--medium t-link--success t-link--disabled"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+      <span
+        class="t-link__suffix-icon"
+      >
+        <svg
+          class="t-icon t-icon-jump"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </a>
+    <a
+      class="t-link t-link--medium t-link--warning t-link--disabled"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+      <span
+        class="t-link__suffix-icon"
+      >
+        <svg
+          class="t-icon t-icon-jump"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/link/_example/suffix.tsx 1`] = `
+<div>
+  <div
+    class="demo-content"
+  >
+    <a
+      class="t-link t-link--medium t-link--primary t-link--underline"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+      <span
+        class="t-link__suffix-icon"
+      >
+        <svg
+          class="t-icon t-icon-jump"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </a>
+    <a
+      class="t-link t-link--medium t-link--default t-link--underline t-link--hover"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+      <span
+        class="t-link__suffix-icon"
+      >
+        <svg
+          class="t-icon t-icon-jump"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/link/_example/theme.tsx 1`] = `
+<div>
+  <div
+    class="demo-content"
+  >
+    <a
+      class="t-link t-link--medium t-link--primary"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+      <span
+        class="t-link__suffix-icon"
+      >
+        <svg
+          class="t-icon t-icon-jump"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </a>
+    <a
+      class="t-link t-link--medium t-link--default"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+      <span
+        class="t-link__suffix-icon"
+      >
+        <svg
+          class="t-icon t-icon-jump"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </a>
+    <a
+      class="t-link t-link--medium t-link--danger"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+      <span
+        class="t-link__suffix-icon"
+      >
+        <svg
+          class="t-icon t-icon-jump"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </a>
+  </div>
+  <div
+    class="demo-content"
+  >
+    <a
+      class="t-link t-link--medium t-link--success"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+      <span
+        class="t-link__suffix-icon"
+      >
+        <svg
+          class="t-icon t-icon-jump"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </a>
+    <a
+      class="t-link t-link--medium t-link--warning"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+      <span
+        class="t-link__suffix-icon"
+      >
+        <svg
+          class="t-icon t-icon-jump"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/link/_example/underline.tsx 1`] = `
+<div>
+  <div
+    class="demo-content"
+  >
+    <a
+      class="t-link t-link--medium t-link--primary t-link--underline"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+    </a>
+    <a
+      class="t-link t-link--medium t-link--default t-link--underline t-link--hover"
+    >
+      <span
+        class="t-link__content"
+      >
+        跳转链接
+      </span>
+    </a>
+  </div>
+</div>
+`;
+
 exports[`csr snapshot test > csr test src/loading/_example/attach.tsx 1`] = `
 <div>
   <div
@@ -9209,6 +10301,361 @@ exports[`csr snapshot test > csr test src/overlay/_example/index.tsx 1`] = `
             </span>
           </button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/popup/_example/base.tsx 1`] = `
+<div>
+  <div
+    style="padding: 0px 16px;"
+  >
+    <button
+      class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+      style="margin: 16px 0px;"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         
+        顶部弹出
+      </span>
+    </button>
+    <button
+      class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+      style="margin: 16px 0px;"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         
+        左侧弹出
+      </span>
+    </button>
+    <button
+      class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+      style="margin: 16px 0px;"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         
+        中间弹出
+      </span>
+    </button>
+    <button
+      class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+      style="margin: 16px 0px;"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         
+        底部弹出
+      </span>
+    </button>
+    <button
+      class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+      style="margin: 16px 0px;"
+      type="button"
+    >
+      <span
+        class="t-button__text"
+      >
+         
+        右侧弹出
+      </span>
+    </button>
+    <div
+      class="t-popup t-popup--top"
+      style="display: none; animation-fill-mode: forwards; padding: 100px;"
+    />
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/popup/_example/custom-close.tsx 1`] = `
+<div>
+  <button
+    class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+    type="button"
+  >
+    <span
+      class="t-button__text"
+    >
+       
+      居中弹出层-带自定义关闭按钮
+    </span>
+  </button>
+  <div
+    class="t-popup t-popup--center"
+    style="display: none; animation-fill-mode: forwards; width: 240px; height: 240px;"
+  >
+    <svg
+      class="t-icon t-icon-close-circle design-mobile-popup-demo__custom-close close-btn"
+      color="#fff"
+      fill="none"
+      height="1em"
+      style="font-size: 32px;"
+      viewBox="0 0 24 24"
+      width="1em"
+    >
+      <path
+        d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zM7.4 15.18L10.6 12 7.4 8.82 8.82 7.4 12 10.6l3.18-3.19 1.42 1.42L13.4 12l3.19 3.18-1.42 1.42L12 13.4 8.82 16.6 7.4 15.18z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/popup/_example/index.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-popup-demo"
+  >
+    <div
+      class="tdesign-mobile-demo-header"
+    >
+      <h1
+        class="tdesign-mobile-demo-header__title"
+      >
+        Popup 弹窗层
+      </h1>
+      <p
+        class="tdesign-mobile-demo-header__summary"
+      >
+        由其他控件触发，屏幕滑出或弹出一块自定义内容区域
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          01 组件类型
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          基础弹出层
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot with-padding"
+      >
+        <button
+          class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             
+            顶部弹出
+          </span>
+        </button>
+        <div
+          class="t-popup t-popup--top"
+          style="display: none; animation-fill-mode: forwards; padding: 100px;"
+        />
+        <button
+          class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             
+            左侧弹出
+          </span>
+        </button>
+        <div
+          class="t-popup t-popup--left"
+          style="display: none; animation-fill-mode: forwards; padding: 100px;"
+        />
+        <button
+          class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             
+            中间弹出
+          </span>
+        </button>
+        <div
+          class="t-popup t-popup--center"
+          style="display: none; animation-fill-mode: forwards; padding: 100px;"
+        />
+        <button
+          class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             
+            底部弹出
+          </span>
+        </button>
+        <div
+          class="t-popup t-popup--bottom"
+          style="display: none; animation-fill-mode: forwards; padding: 100px;"
+        />
+        <button
+          class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             
+            右侧弹出
+          </span>
+        </button>
+        <div
+          class="t-popup t-popup--right"
+          style="display: none; animation-fill-mode: forwards; padding: 100px;"
+        />
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          01 组件示例
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          应用示例
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot with-padding"
+      >
+        <button
+          class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             
+            底部弹出层-带标题及操作
+          </span>
+        </button>
+        <div
+          class="t-popup t-popup--bottom"
+          style="display: none; animation-fill-mode: forwards; height: 258px;"
+        >
+          <div
+            class="tdesign-mobile-popup-demo__with-title header"
+          >
+            <div
+              class="btn btn--cancel"
+            >
+              取消
+            </div>
+            <div
+              class="title"
+            >
+              标题文字
+            </div>
+            <div
+              class="btn btn--confirm"
+            >
+              确定
+            </div>
+          </div>
+        </div>
+        <button
+          class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+          type="button"
+        >
+          <span
+            class="t-button__text"
+          >
+             
+            居中弹出层-带自定义关闭按钮
+          </span>
+        </button>
+        <div
+          class="t-popup t-popup--center"
+          style="display: none; animation-fill-mode: forwards; width: 240px; height: 240px;"
+        >
+          <svg
+            class="t-icon t-icon-close-circle design-mobile-popup-demo__custom-close close-btn"
+            color="#fff"
+            fill="none"
+            height="1em"
+            style="font-size: 32px;"
+            viewBox="0 0 24 24"
+            width="1em"
+          >
+            <path
+              d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zM7.4 15.18L10.6 12 7.4 8.82 8.82 7.4 12 10.6l3.18-3.19 1.42 1.42L13.4 12l3.19 3.18-1.42 1.42L12 13.4 8.82 16.6 7.4 15.18z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/popup/_example/with-title.tsx 1`] = `
+<div>
+  <button
+    class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"
+    type="button"
+  >
+    <span
+      class="t-button__text"
+    >
+       
+      底部弹出层-带标题及操作
+    </span>
+  </button>
+  <div
+    class="t-popup t-popup--bottom"
+    style="display: none; animation-fill-mode: forwards; height: 258px;"
+  >
+    <div
+      class="tdesign-mobile-popup-demo__with-title header"
+    >
+      <div
+        class="btn btn--cancel"
+      >
+        取消
+      </div>
+      <div
+        class="title"
+      >
+        标题文字
+      </div>
+      <div
+        class="btn btn--confirm"
+      >
+        确定
       </div>
     </div>
   </div>
@@ -11100,6 +12547,380 @@ exports[`csr snapshot test > csr test src/result/_example/theme.tsx 1`] = `
         class="t-result__description"
       >
         描述文字
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/search/_example/action.tsx 1`] = `
+<div>
+  <div
+    class="search-example"
+  >
+    <div
+      class="t-search"
+    >
+      <div
+        class="t-search__input-box t-search__input-box--square t-is-focused"
+      >
+        <svg
+          class="t-icon t-icon-search"
+          fill="none"
+          height="1em"
+          style="font-size: 24px;"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"
+            fill="currentColor"
+          />
+        </svg>
+        <input
+          class="t-input__keyword t-search--center"
+          placeholder="搜索预设文案"
+          type="search"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/search/_example/base.tsx 1`] = `
+<div>
+  <div
+    class="search-example"
+  >
+    <div
+      class="t-search"
+    >
+      <div
+        class="t-search__input-box t-search__input-box--square"
+      >
+        <svg
+          class="t-icon t-icon-search"
+          fill="none"
+          height="1em"
+          style="font-size: 24px;"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"
+            fill="currentColor"
+          />
+        </svg>
+        <input
+          class="t-input__keyword"
+          placeholder="请输入关键字"
+          type="search"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/search/_example/index.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-demo"
+  >
+    <div
+      class="tdesign-mobile-demo-header"
+    >
+      <h1
+        class="tdesign-mobile-demo-header__title"
+      >
+        Search 搜索框
+      </h1>
+      <p
+        class="tdesign-mobile-demo-header__summary"
+      >
+        用于用户输入搜索信息，并进行页面内容搜索。
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          01 组件类型
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          基础搜索框
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="search-example"
+        >
+          <div
+            class="t-search"
+          >
+            <div
+              class="t-search__input-box t-search__input-box--square"
+            >
+              <svg
+                class="t-icon t-icon-search"
+                fill="none"
+                height="1em"
+                style="font-size: 24px;"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"
+                  fill="currentColor"
+                />
+              </svg>
+              <input
+                class="t-input__keyword"
+                placeholder="请输入关键字"
+                type="search"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          输入值后显示取消按钮
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="search-example"
+        >
+          <div
+            class="t-search"
+          >
+            <div
+              class="t-search__input-box t-search__input-box--square t-is-focused"
+            >
+              <svg
+                class="t-icon t-icon-search"
+                fill="none"
+                height="1em"
+                style="font-size: 24px;"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"
+                  fill="currentColor"
+                />
+              </svg>
+              <input
+                class="t-input__keyword t-search--center"
+                placeholder="搜索预设文案"
+                type="search"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          02 组件样式
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          搜索框形状
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="search-example"
+        >
+          <div
+            class="t-search"
+          >
+            <div
+              class="t-search__input-box t-search__input-box--round"
+            >
+              <svg
+                class="t-icon t-icon-search"
+                fill="none"
+                height="1em"
+                style="font-size: 24px;"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"
+                  fill="currentColor"
+                />
+              </svg>
+              <input
+                class="t-input__keyword"
+                placeholder="请输入关键字"
+                type="search"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          03 组件状态
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          默认状态其他对齐方式
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="search-example"
+        >
+          <div
+            class="t-search"
+          >
+            <div
+              class="t-search__input-box t-search__input-box--square"
+            >
+              <svg
+                class="t-icon t-icon-search"
+                fill="none"
+                height="1em"
+                style="font-size: 24px;"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"
+                  fill="currentColor"
+                />
+              </svg>
+              <input
+                class="t-input__keyword"
+                placeholder="搜索预设文案"
+                type="search"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/search/_example/other.tsx 1`] = `
+<div>
+  <div
+    class="search-example"
+  >
+    <div
+      class="t-search"
+    >
+      <div
+        class="t-search__input-box t-search__input-box--square"
+      >
+        <svg
+          class="t-icon t-icon-search"
+          fill="none"
+          height="1em"
+          style="font-size: 24px;"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"
+            fill="currentColor"
+          />
+        </svg>
+        <input
+          class="t-input__keyword"
+          placeholder="搜索预设文案"
+          type="search"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/search/_example/shape.tsx 1`] = `
+<div>
+  <div
+    class="search-example"
+  >
+    <div
+      class="t-search"
+    >
+      <div
+        class="t-search__input-box t-search__input-box--round"
+      >
+        <svg
+          class="t-icon t-icon-search"
+          fill="none"
+          height="1em"
+          style="font-size: 24px;"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"
+            fill="currentColor"
+          />
+        </svg>
+        <input
+          class="t-input__keyword"
+          placeholder="请输入关键字"
+          type="search"
+          value=""
+        />
       </div>
     </div>
   </div>
@@ -13397,6 +15218,22 @@ exports[`ssr snapshot test > ssr test src/input/_example/status.tsx 1`] = `"<div
 
 exports[`ssr snapshot test > ssr test src/input/_example/suffix.tsx 1`] = `"<div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/><div class="t-input__wrap--suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-info-circle-filled"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM11 8.5v-2h2v2h-2zm2 1.5v7.5h-2V10h2z"></path></svg></div></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入手机号码" maxLength="-1"/><div class="t-input__wrap--suffix"><button type="button" class="t-button t-button--size-small t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- --> 操作按钮 </span></button></div></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/><div class="t-input__wrap--suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-user-avatar"><path fill="currentColor" d="M2 2h20v20H2V2zm17.5 18h.5V4H4v16h.5a5 5 0 015-5h5a5 5 0 015 5zM12 7a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM7.5 9.5a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zm2 7.5a3 3 0 00-3 3h11a3 3 0 00-3-3h-5z"></path></svg></div></div></div></div>"`;
 
+exports[`ssr snapshot test > ssr test src/link/_example/base.tsx 1`] = `"<div class="demo-content" data-reactroot=""><a href="/mobile-react/overview" class="t-link t-link--medium t-link--default"><span class="t-link__content">跳转链接</span></a><a class="t-link t-link--medium t-link--default t-link--hover"><span class="t-link__content">跳转链接</span></a></div>"`;
+
+exports[`ssr snapshot test > ssr test src/link/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Link 链接</h1><p class="tdesign-mobile-demo-header__summary">当功能使用图标即可表意清楚时，可使用纯图标悬浮按钮，例如：添加、发布。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">基础文字链接</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-content"><a href="/mobile-react/overview" class="t-link t-link--medium t-link--default"><span class="t-link__content">跳转链接</span></a><a class="t-link t-link--medium t-link--default t-link--hover"><span class="t-link__content">跳转链接</span></a></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">下划线文字链接</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-content"><a class="t-link t-link--medium t-link--primary t-link--underline"><span class="t-link__content">跳转链接</span></a><a class="t-link t-link--medium t-link--default t-link--underline t-link--hover"><span class="t-link__content">跳转链接</span></a></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">前置图标文字链接</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-content"><a class="t-link t-link--medium t-link--primary t-link--underline t-link--hover"><span class="t-link__prefix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-link"><path fill="currentColor" d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"></path></svg></span><span class="t-link__content">跳转链接</span></a><a class="t-link t-link--medium t-link--default t-link--underline t-link--hover"><span class="t-link__prefix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-link"><path fill="currentColor" d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"></path></svg></span><span class="t-link__content">跳转链接</span></a></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">后置图标文字链接</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-content"><a class="t-link t-link--medium t-link--primary t-link--underline"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--default t-link--underline t-link--hover"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件状态</h2><p class="tdesign-mobile-demo-block__summary">不同主题</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-content"><a class="t-link t-link--medium t-link--primary"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--default"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--danger"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div><div class="demo-content"><a class="t-link t-link--medium t-link--success"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--warning"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">禁用状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-content"><a class="t-link t-link--medium t-link--primary t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--default t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--danger t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div><div class="demo-content"><a class="t-link t-link--medium t-link--success t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--warning t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">03 组件样式</h2><p class="tdesign-mobile-demo-block__summary">链接尺寸</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-content"><a class="t-link t-link--small t-link--primary"><span class="t-link__content">S跳转链接</span></a><a class="t-link t-link--medium t-link--primary"><span class="t-link__content">M跳转链接</span></a><a class="t-link t-link--large t-link--primary"><span class="t-link__content">L跳转链接</span></a></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/link/_example/linkSize.tsx 1`] = `"<div class="demo-content" data-reactroot=""><a class="t-link t-link--small t-link--primary"><span class="t-link__content">S跳转链接</span></a><a class="t-link t-link--medium t-link--primary"><span class="t-link__content">M跳转链接</span></a><a class="t-link t-link--large t-link--primary"><span class="t-link__content">L跳转链接</span></a></div>"`;
+
+exports[`ssr snapshot test > ssr test src/link/_example/prefix.tsx 1`] = `"<div class="demo-content" data-reactroot=""><a class="t-link t-link--medium t-link--primary t-link--underline t-link--hover"><span class="t-link__prefix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-link"><path fill="currentColor" d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"></path></svg></span><span class="t-link__content">跳转链接</span></a><a class="t-link t-link--medium t-link--default t-link--underline t-link--hover"><span class="t-link__prefix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-link"><path fill="currentColor" d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"></path></svg></span><span class="t-link__content">跳转链接</span></a></div>"`;
+
+exports[`ssr snapshot test > ssr test src/link/_example/status.tsx 1`] = `"<div class="demo-content"><a class="t-link t-link--medium t-link--primary t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--default t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--danger t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div><div class="demo-content"><a class="t-link t-link--medium t-link--success t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--warning t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div>"`;
+
+exports[`ssr snapshot test > ssr test src/link/_example/suffix.tsx 1`] = `"<div class="demo-content" data-reactroot=""><a class="t-link t-link--medium t-link--primary t-link--underline"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--default t-link--underline t-link--hover"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div>"`;
+
+exports[`ssr snapshot test > ssr test src/link/_example/theme.tsx 1`] = `"<div class="demo-content"><a class="t-link t-link--medium t-link--primary"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--default"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--danger"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div><div class="demo-content"><a class="t-link t-link--medium t-link--success"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--warning"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div>"`;
+
+exports[`ssr snapshot test > ssr test src/link/_example/underline.tsx 1`] = `"<div class="demo-content" data-reactroot=""><a class="t-link t-link--medium t-link--primary t-link--underline"><span class="t-link__content">跳转链接</span></a><a class="t-link t-link--medium t-link--default t-link--underline t-link--hover"><span class="t-link__content">跳转链接</span></a></div>"`;
+
 exports[`ssr snapshot test > ssr test src/loading/_example/attach.tsx 1`] = `"<div class="loading-demo" data-reactroot=""><div id="alice" class="loading-attach-demo__title">Hello, I\`&#x27;m Alice. I\`&#x27;m going to be a front-end developer.</div><button class="t-switch"><span class="t-switch__text">关</span><span class="t-switch__node"></span></button></div>"`;
 
 exports[`ssr snapshot test > ssr test src/loading/_example/base.tsx 1`] = `"<div class="t-loading t-loading--center" style="font-size:20px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg></div><div class="t-loading t-loading--center" style="font-size:20px"><span style="animation:t-rotate 0.8s infinite linear;animation-timing-function:steps(12);animation-direction:normal" class="t-loading__spinner"><i class="t-loading__spinner--line t-loading__spinner--line-1"></i><i class="t-loading__spinner--line t-loading__spinner--line-2"></i><i class="t-loading__spinner--line t-loading__spinner--line-3"></i><i class="t-loading__spinner--line t-loading__spinner--line-4"></i><i class="t-loading__spinner--line t-loading__spinner--line-5"></i><i class="t-loading__spinner--line t-loading__spinner--line-6"></i><i class="t-loading__spinner--line t-loading__spinner--line-7"></i><i class="t-loading__spinner--line t-loading__spinner--line-8"></i><i class="t-loading__spinner--line t-loading__spinner--line-9"></i><i class="t-loading__spinner--line t-loading__spinner--line-10"></i><i class="t-loading__spinner--line t-loading__spinner--line-11"></i><i class="t-loading__spinner--line t-loading__spinner--line-12"></i></span></div><div class="t-loading t-loading--center" style="font-size:40px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:40px;height:40px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div>"`;
@@ -13423,6 +15260,14 @@ exports[`ssr snapshot test > ssr test src/overlay/_example/base.tsx 1`] = `"<div
 
 exports[`ssr snapshot test > ssr test src/overlay/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Overlay 遮罩层</h1><p class="tdesign-mobile-demo-header__summary">通过遮罩层，可以强调部分内容</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件</h2><p class="tdesign-mobile-demo-block__summary">基础遮罩层</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->基础用法</span></button></div></div></div></div>"`;
 
+exports[`ssr snapshot test > ssr test src/popup/_example/base.tsx 1`] = `"<div style="padding:0 16px" data-reactroot=""><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle" style="margin:16px 0"><span class="t-button__text"> <!-- -->顶部弹出</span></button><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle" style="margin:16px 0"><span class="t-button__text"> <!-- -->左侧弹出</span></button><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle" style="margin:16px 0"><span class="t-button__text"> <!-- -->中间弹出</span></button><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle" style="margin:16px 0"><span class="t-button__text"> <!-- -->底部弹出</span></button><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle" style="margin:16px 0"><span class="t-button__text"> <!-- -->右侧弹出</span></button><div class="t-popup t-popup--top" style="display:none;animation-fill-mode:forwards;padding:100px"></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/popup/_example/custom-close.tsx 1`] = `"<button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->居中弹出层-带自定义关闭按钮</span></button><div class="t-popup t-popup--center" style="display:none;animation-fill-mode:forwards;width:240px;height:240px"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close-circle design-mobile-popup-demo__custom-close close-btn" style="font-size:32px" color="#fff"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zM7.4 15.18L10.6 12 7.4 8.82 8.82 7.4 12 10.6l3.18-3.19 1.42 1.42L13.4 12l3.19 3.18-1.42 1.42L12 13.4 8.82 16.6 7.4 15.18z"></path></svg></div>"`;
+
+exports[`ssr snapshot test > ssr test src/popup/_example/index.tsx 1`] = `"<div class="tdesign-mobile-popup-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Popup 弹窗层</h1><p class="tdesign-mobile-demo-header__summary">由其他控件触发，屏幕滑出或弹出一块自定义内容区域</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">基础弹出层</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->顶部弹出</span></button><div class="t-popup t-popup--top" style="display:none;animation-fill-mode:forwards;padding:100px"></div><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->左侧弹出</span></button><div class="t-popup t-popup--left" style="display:none;animation-fill-mode:forwards;padding:100px"></div><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->中间弹出</span></button><div class="t-popup t-popup--center" style="display:none;animation-fill-mode:forwards;padding:100px"></div><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->底部弹出</span></button><div class="t-popup t-popup--bottom" style="display:none;animation-fill-mode:forwards;padding:100px"></div><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->右侧弹出</span></button><div class="t-popup t-popup--right" style="display:none;animation-fill-mode:forwards;padding:100px"></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件示例</h2><p class="tdesign-mobile-demo-block__summary">应用示例</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->底部弹出层-带标题及操作</span></button><div class="t-popup t-popup--bottom" style="display:none;animation-fill-mode:forwards;height:258px"><div class="tdesign-mobile-popup-demo__with-title header"><div class="btn btn--cancel">取消</div><div class="title">标题文字</div><div class="btn btn--confirm">确定</div></div></div><button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->居中弹出层-带自定义关闭按钮</span></button><div class="t-popup t-popup--center" style="display:none;animation-fill-mode:forwards;width:240px;height:240px"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close-circle design-mobile-popup-demo__custom-close close-btn" style="font-size:32px" color="#fff"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zM7.4 15.18L10.6 12 7.4 8.82 8.82 7.4 12 10.6l3.18-3.19 1.42 1.42L13.4 12l3.19 3.18-1.42 1.42L12 13.4 8.82 16.6 7.4 15.18z"></path></svg></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/popup/_example/with-title.tsx 1`] = `"<button type="button" class="t-button t-button--outline t-button--primary t-size-l t-is-block t-button--shape-rectangle"><span class="t-button__text"> <!-- -->底部弹出层-带标题及操作</span></button><div class="t-popup t-popup--bottom" style="display:none;animation-fill-mode:forwards;height:258px"><div class="tdesign-mobile-popup-demo__with-title header"><div class="btn btn--cancel">取消</div><div class="title">标题文字</div><div class="btn btn--confirm">确定</div></div></div>"`;
+
 exports[`ssr snapshot test > ssr test src/progress/_example/base.tsx 1`] = `"<div class="example-progress" data-reactroot=""><div class="example-progress__item"><div class="t-progress"><div class="t-progress--thin t-progress--status-default"><div class="t-progress__bar"><div class="t-progress__inner" style="width:80%;background:"></div></div><div class="t-progress__info">80%</div></div></div></div><div class="example-progress__item"><div class="t-progress"><div class="t-progress__bar t-progress--plump t-progress--over-ten t-progress--status-default"><div class="t-progress__inner" style="width:80%;background:"><div class="t-progress__info">80%</div></div></div></div></div><div class="example-progress__item"><div><div class="t-progress--circle t-progress--status-default" style="width:112px;height:112px;font-size:17.5px"><div class="t-progress__info">30%</div><svg width="112" height="112" viewBox="0 0 118 118"><circle cx="59" cy="59" r="56" stroke-width="6" stroke="var(--td-bg-color-component)" fill="none" class="t-progress__circle-outer"></circle><circle cx="59" cy="59" r="56" stroke-width="6" fill="none" transform="matrix(0,-1,1,0,0,118)" stroke-dasharray="105.55751316061705  246.30086404143975" class="t-progress__circle-inner" style="stroke:;stroke-linecap:round"></circle></svg></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/progress/_example/circle.tsx 1`] = `"<div class="example-progress" data-reactroot=""><div class="example-progress__item"><div><div class="t-progress--circle t-progress--status-default" style="width:112px;height:112px;font-size:17.5px"><div class="t-progress__info">80%</div><svg width="112" height="112" viewBox="0 0 118 118"><circle cx="59" cy="59" r="56" stroke-width="6" stroke="var(--td-bg-color-component)" fill="none" class="t-progress__circle-outer"></circle><circle cx="59" cy="59" r="56" stroke-width="6" fill="none" transform="matrix(0,-1,1,0,0,118)" stroke-dasharray="281.48670176164546  70.37167544041135" class="t-progress__circle-inner" style="stroke:;stroke-linecap:round"></circle></svg></div></div></div><div class="example-progress__item"><div><div class="t-progress--circle t-progress--status-warning" style="width:112px;height:112px;font-size:17.5px"><div class="t-progress__info"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-error t-progress__icon"><path fill="currentColor" d="M13 2v14.5h-2V2h2zm-2 17h2v2h-2v-2z"></path></svg></div><svg width="112" height="112" viewBox="0 0 118 118"><circle cx="59" cy="59" r="56" stroke-width="6" stroke="var(--td-bg-color-component)" fill="none" class="t-progress__circle-outer"></circle><circle cx="59" cy="59" r="56" stroke-width="6" fill="none" transform="matrix(0,-1,1,0,0,118)" stroke-dasharray="281.48670176164546  70.37167544041135" class="t-progress__circle-inner" style="stroke:;stroke-linecap:round"></circle></svg></div></div></div><div class="example-progress__item"><div><div class="t-progress--circle t-progress--status-error" style="width:112px;height:112px;font-size:17.5px"><div class="t-progress__info"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close t-progress__icon"><path fill="currentColor" d="M7.05 5.64L12 10.59l4.95-4.95 1.41 1.41L13.41 12l4.95 4.95-1.41 1.41L12 13.41l-4.95 4.95-1.41-1.41L10.59 12 5.64 7.05l1.41-1.41z"></path></svg></div><svg width="112" height="112" viewBox="0 0 118 118"><circle cx="59" cy="59" r="56" stroke-width="6" stroke="var(--td-bg-color-component)" fill="none" class="t-progress__circle-outer"></circle><circle cx="59" cy="59" r="56" stroke-width="6" fill="none" transform="matrix(0,-1,1,0,0,118)" stroke-dasharray="281.48670176164546  70.37167544041135" class="t-progress__circle-inner" style="stroke:;stroke-linecap:round"></circle></svg></div></div></div><div class="example-progress__item"><div><div class="t-progress--circle t-progress--status-success" style="width:112px;height:112px;font-size:17.5px"><div class="t-progress__info"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check t-progress__icon"><path fill="currentColor" d="M20.99 7.38l-10.61 10.6L4 11.63l1.42-1.41 4.95 4.95 9.2-9.2 1.4 1.42z"></path></svg></div><svg width="112" height="112" viewBox="0 0 118 118"><circle cx="59" cy="59" r="56" stroke-width="6" stroke="var(--td-bg-color-component)" fill="none" class="t-progress__circle-outer"></circle><circle cx="59" cy="59" r="56" stroke-width="6" fill="none" transform="matrix(0,-1,1,0,0,118)" stroke-dasharray="281.48670176164546  70.37167544041135" class="t-progress__circle-inner" style="stroke:;stroke-linecap:round"></circle></svg></div></div></div></div>"`;
@@ -13442,6 +15287,16 @@ exports[`ssr snapshot test > ssr test src/result/_example/custom.tsx 1`] = `"<di
 exports[`ssr snapshot test > ssr test src/result/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Result 结果</h1><p class="tdesign-mobile-demo-header__summary">结果反馈</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01类型</h2><p class="tdesign-mobile-demo-block__summary">不同结果反馈</p></div><div class="tdesign-mobile-demo-block__slot"><div><div class="t-result t-result--theme-success space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zm-12.5 4.41L6.09 12l1.41-1.41 3 3 6-6L17.91 9l-7.41 7.41z"></path></svg></div><div class="t-result__title">成功状态</div><div class="t-result__description">描述文字</div></div><div class="t-result t-result--theme-error space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zM7.4 15.18L10.6 12 7.4 8.82 8.82 7.4 12 10.6l3.18-3.19 1.42 1.42L13.4 12l3.19 3.18-1.42 1.42L12 13.4 8.82 16.6 7.4 15.18z"></path></svg></div><div class="t-result__title">失败状态</div><div class="t-result__description">描述文字</div></div><div class="t-result t-result--theme-warning space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-info-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zm-12 5.5V10h2v7.5h-2zm2-9h-2v-2h2v2z"></path></svg></div><div class="t-result__title">警示状态</div><div class="t-result__description">描述文字</div></div><div class="t-result t-result--theme-default space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-info-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zm-12 5.5V10h2v7.5h-2zm2-9h-2v-2h2v2z"></path></svg></div><div class="t-result__title">默认状态</div><div class="t-result__description">描述文字</div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">自定义结果</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-result t-result--theme-default"><div class="t-result__thumb"><div class="t-image t-image--square extra-class-image"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/result1.png"/></div></div><div class="t-result__title">自定义结果</div><div class="t-result__description">描述文字</div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">页面位置展示</p></div><div class="tdesign-mobile-demo-block__slot"><div class="padding"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->页面位置展示</span></button></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/result/_example/theme.tsx 1`] = `"<div data-reactroot=""><div class="t-result t-result--theme-success space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zm-12.5 4.41L6.09 12l1.41-1.41 3 3 6-6L17.91 9l-7.41 7.41z"></path></svg></div><div class="t-result__title">成功状态</div><div class="t-result__description">描述文字</div></div><div class="t-result t-result--theme-error space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zM7.4 15.18L10.6 12 7.4 8.82 8.82 7.4 12 10.6l3.18-3.19 1.42 1.42L13.4 12l3.19 3.18-1.42 1.42L12 13.4 8.82 16.6 7.4 15.18z"></path></svg></div><div class="t-result__title">失败状态</div><div class="t-result__description">描述文字</div></div><div class="t-result t-result--theme-warning space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-info-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zm-12 5.5V10h2v7.5h-2zm2-9h-2v-2h2v2z"></path></svg></div><div class="t-result__title">警示状态</div><div class="t-result__description">描述文字</div></div><div class="t-result t-result--theme-default space"><div class="t-result__thumb"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-info-circle t-result__icon"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zm-12 5.5V10h2v7.5h-2zm2-9h-2v-2h2v2z"></path></svg></div><div class="t-result__title">默认状态</div><div class="t-result__description">描述文字</div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/search/_example/action.tsx 1`] = `"<div class="search-example" data-reactroot=""><div class="t-search"><div class="t-search__input-box t-search__input-box--square t-is-focused"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-search" style="font-size:24px"><path fill="currentColor" d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"></path></svg><input type="search" value="" class="t-input__keyword t-search--center" autofocus="" placeholder="搜索预设文案"/></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/search/_example/base.tsx 1`] = `"<div class="search-example" data-reactroot=""><div class="t-search"><div class="t-search__input-box t-search__input-box--square"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-search" style="font-size:24px"><path fill="currentColor" d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"></path></svg><input type="search" value="" class="t-input__keyword" placeholder="请输入关键字"/></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/search/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Search 搜索框</h1><p class="tdesign-mobile-demo-header__summary">用于用户输入搜索信息，并进行页面内容搜索。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">基础搜索框</p></div><div class="tdesign-mobile-demo-block__slot"><div class="search-example"><div class="t-search"><div class="t-search__input-box t-search__input-box--square"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-search" style="font-size:24px"><path fill="currentColor" d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"></path></svg><input type="search" value="" class="t-input__keyword" placeholder="请输入关键字"/></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">输入值后显示取消按钮</p></div><div class="tdesign-mobile-demo-block__slot"><div class="search-example"><div class="t-search"><div class="t-search__input-box t-search__input-box--square t-is-focused"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-search" style="font-size:24px"><path fill="currentColor" d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"></path></svg><input type="search" value="" class="t-input__keyword t-search--center" autofocus="" placeholder="搜索预设文案"/></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件样式</h2><p class="tdesign-mobile-demo-block__summary">搜索框形状</p></div><div class="tdesign-mobile-demo-block__slot"><div class="search-example"><div class="t-search"><div class="t-search__input-box t-search__input-box--round"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-search" style="font-size:24px"><path fill="currentColor" d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"></path></svg><input type="search" value="" class="t-input__keyword" placeholder="请输入关键字"/></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">03 组件状态</h2><p class="tdesign-mobile-demo-block__summary">默认状态其他对齐方式</p></div><div class="tdesign-mobile-demo-block__slot"><div class="search-example"><div class="t-search"><div class="t-search__input-box t-search__input-box--square"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-search" style="font-size:24px"><path fill="currentColor" d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"></path></svg><input type="search" value="" class="t-input__keyword" placeholder="搜索预设文案"/></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/search/_example/other.tsx 1`] = `"<div class="search-example" data-reactroot=""><div class="t-search"><div class="t-search__input-box t-search__input-box--square"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-search" style="font-size:24px"><path fill="currentColor" d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"></path></svg><input type="search" value="" class="t-input__keyword" placeholder="搜索预设文案"/></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/search/_example/shape.tsx 1`] = `"<div class="search-example" data-reactroot=""><div class="t-search"><div class="t-search__input-box t-search__input-box--round"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-search" style="font-size:24px"><path fill="currentColor" d="M15.1 5.9a6.5 6.5 0 10-9.2 9.2 6.5 6.5 0 009.2-9.2zM4.49 4.5a8.5 8.5 0 0112.69 11.27l5.34 5.35-1.41 1.41-5.35-5.34A8.5 8.5 0 014.5 4.49z"></path></svg><input type="search" value="" class="t-input__keyword" placeholder="请输入关键字"/></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/skeleton/_example/animation.tsx 1`] = `"<div data-reactroot=""><div><div class="demo-section__desc">渐变加载效果</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-gradient"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-gradient"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-gradient"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-gradient" style="width:55%"></div></div></div></div></div><div><div class="demo-section__desc">闪烁加载效果</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-flashed"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-flashed"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-flashed"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-flashed" style="width:55%"></div></div></div></div></div></div>"`;
 
