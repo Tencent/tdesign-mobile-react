@@ -13,21 +13,27 @@ import './style/index.less';
 function TabBarMobileDemo() {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="TabBar 标签栏" summary="移动端的主导航，用做功能模块之间的切换"></TDemoHeader>
-      <TDemoBlock title="01 类型" summary="基础标签栏">
-        <BaseDemo />
-      </TDemoBlock>
-      <TDemoBlock summary="带徽章标签栏">
-        <BadgePropsDemo />
-      </TDemoBlock>
-      <TDemoBlock summary="纯文本标签栏">
+      <TDemoHeader title="TabBar 标签栏" summary="用于在不同功能模块之间进行快速切换，位于页面底部。"></TDemoHeader>
+      <TDemoBlock title="01 组件类型" summary="纯文本标签栏">
         <TextDemo />
+      </TDemoBlock>
+      <TDemoBlock summary="图标加文字标签栏">
+        <BaseDemo />
       </TDemoBlock>
       <TDemoBlock summary="纯图标标签栏">
         <PureIconDemo />
       </TDemoBlock>
       <TDemoBlock summary="双层级纯文本标签栏">
         <TextSpreadDemo />
+      </TDemoBlock>
+      <TDemoBlock title="01 组件类型" summary="带徽章标签栏">
+        <BadgePropsDemo />
+      </TDemoBlock>
+      <TDemoBlock summary="悬浮胶囊标签栏">
+        <BadgePropsDemo />
+      </TDemoBlock>
+      <TDemoBlock title="03 自定义" summary="自定义样式">
+        <BadgePropsDemo />
       </TDemoBlock>
     </div>
   );
