@@ -196,8 +196,6 @@ const Message: React.FC<MessageProps> = (props) => {
       duration: 0,
       offset: state.listWidth,
     });
-    // state.duration = 0;
-    // state.offset = state.listWidth;
 
     setTimeout(() => {
       setState({
@@ -205,8 +203,6 @@ const Message: React.FC<MessageProps> = (props) => {
         offset: -state.itemWidth,
         duration: (state.itemWidth + state.listWidth) / state.scroll.speed,
       });
-      // state.offset = -state.itemWidth;
-      // state.duration = (state.itemWidth + state.listWidth) / state.scroll.speed;
     }, 0);
   };
 
@@ -225,8 +221,6 @@ const Message: React.FC<MessageProps> = (props) => {
         loop: -(-state.scroll.loop),
       },
     };
-
-    // state.scroll.loop = --state.scroll.loop;
 
     if (state.scroll.loop === 0) {
       newState.scroll.marquee = false;
