@@ -10,6 +10,7 @@ import type { StyledProps } from '../common';
 import { searchDefaultProps } from './defaultProps';
 import { ENTER_REG } from '../_common/js/common';
 import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 
 export interface SearchProps extends TdSearchProps, StyledProps {}
 
@@ -37,12 +38,13 @@ const Search: FC<SearchProps> = (props) => {
   const [searchValue, setSearchValue] = useDefault(value, '', onChange);
 
   const { classPrefix } = useConfig();
-  const rootClassName = `${classPrefix}-search`;
-  const boxClasses = classNames(`${rootClassName}__input-box`, `${rootClassName}__input-box--${shape}`, {
+  const searchClass = usePrefixClass('search');
+
+  const boxClasses = classNames(`${searchClass}__input-box`, `${searchClass}__input-box--${shape}`, {
     [`${classPrefix}-is-focused`]: focusState,
   });
   const inputClasses = classNames(`${classPrefix}-input__keyword`, {
-    [`${rootClassName}--center`]: center,
+    [`${searchClass}--center`]: center,
   });
 
   const inputValueChangeHandle = (e: FormEvent<HTMLInputElement>) => {
@@ -100,7 +102,7 @@ const Search: FC<SearchProps> = (props) => {
   const renderClear = () => {
     if (clearable && searchValue) {
       return (
-        <div className={`${rootClassName}__clear`} onClick={handleClear}>
+        <div className={`${searchClass}__clear`} onClick={handleClear}>
           <CloseCircleFilledIcon size="24" />
         </div>
       );
@@ -111,7 +113,7 @@ const Search: FC<SearchProps> = (props) => {
   const renderAction = () => {
     if (action && searchValue) {
       return (
-        <div className={`${rootClassName}__search-action`} onClick={handleAction}>
+        <div className={`${searchClass}__search-action`} onClick={handleAction}>
           {parseTNode(action)}
         </div>
       );
@@ -120,7 +122,7 @@ const Search: FC<SearchProps> = (props) => {
   };
 
   return (
-    <div className={`${rootClassName}`}>
+    <div className={`${searchClass}`}>
       <div className={`${boxClasses}`}>
         {renderLeftIcon()}
         <input

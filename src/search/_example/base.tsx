@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Search } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function Base() {
   const [value, setValue] = useState<string>('');

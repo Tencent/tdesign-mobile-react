@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { Popup, Button } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
-import './style/index.less';
 import WithTitle from './with-title';
 import CustomClose from './custom-close';
-import Button from '../../button';
-import Popup from '..';
+
+import './style/index.less';
 
 function PlacementBottom() {
   const [visible, setVisible] = useState(false);

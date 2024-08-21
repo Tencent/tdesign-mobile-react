@@ -1,6 +1,5 @@
 import React from 'react';
 import { Search } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function Action() {
   const onChange = (val: string) => {
