@@ -56,7 +56,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
       onClick={handleClick}
     >
       {prefixIcon && <span className={classNames([`${classPrefix}-link__prefix-icon`])}>{parseTNode(prefixIcon)}</span>}
-      {childNode && <span className={classNames([`${classPrefix}-link__content`])}>{childNode}</span>}
+      {childNode && <span className={classNames([`${classPrefix}-link__content`])}>{parseTNode(childNode)}</span>}
       {suffixIcon && <span className={classNames([`${classPrefix}-link__suffix-icon`])}>{parseTNode(suffixIcon)}</span>}
     </a>
   );
