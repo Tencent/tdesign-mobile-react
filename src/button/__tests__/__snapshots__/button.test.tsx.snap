@@ -2,7 +2,7 @@
 
 exports[`Button 组件测试 > content 1`] = `
 <span
-  class="t-button__text"
+  class="t-button__content"
 >
    
   按钮组件
