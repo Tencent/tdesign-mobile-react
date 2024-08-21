@@ -3,7 +3,7 @@ export default {
     {
       title: 'Button 按钮',
       name: 'button',
-      component: () => import('tdesign-mobile-react/button/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/button/_example/index.tsx'),
     },
     {
       title: 'Divider 分割符',
@@ -28,7 +28,7 @@ export default {
     {
       title: 'Grid 宫格',
       name: 'grid',
-      component: () => import('tdesign-mobile-react/grid/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/grid/_example/index.tsx'),
     },
     {
       title: 'Image 图片',
@@ -68,7 +68,7 @@ export default {
     {
       title: 'Search 搜索框',
       name: 'search',
-      component: () => import('tdesign-mobile-react/search/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/search/_example/index.tsx'),
     },
     {
       title: 'Badge 徽标',

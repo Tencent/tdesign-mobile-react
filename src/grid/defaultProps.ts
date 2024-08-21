@@ -4,6 +4,6 @@
 
 import { TdGridProps, TdGridItemProps } from './type';
 
-export const gridDefaultProps: TdGridProps = { align: 'center', border: false, column: 4 };
+export const gridDefaultProps: TdGridProps = { align: 'center', border: false, column: 4, theme: 'default' };
 
-export const gridItemDefaultProps: TdGridItemProps = { layout: 'vertical' };
+export const gridItemDefaultProps: TdGridItemProps = { badge: null, layout: 'vertical' };

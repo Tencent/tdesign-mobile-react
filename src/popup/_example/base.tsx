@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Button from '../../button';
-import Popup from '..';
+import { Popup, Button } from 'tdesign-mobile-react';
 
 const placementList = [
   { value: 'top', text: '顶部弹出' },

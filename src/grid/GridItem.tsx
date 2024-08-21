@@ -1,28 +1,23 @@
 import React, { FC, useContext, useMemo } from 'react';
 import cls from 'classnames';
-import { Badge } from 'tdesign-mobile-react';
-import { TdGridItemProps, TdGridProps } from './type';
+import isString from 'lodash/isString';
+import isObject from 'lodash/isObject';
+import isFunction from 'lodash/isFunction';
+import { Badge, Image } from 'tdesign-mobile-react';
 import useConfig from '../_util/useConfig';
-import { GridContext } from './GridContext';
+import parseTNode from '../_util/parseTNode';
+import useDefaultProps from '../hooks/useDefaultProps';
 
+import { TdGridItemProps, TdGridProps } from './type';
+import { GridContext } from './GridContext';
 import { gridItemDefaultProps } from './defaultProps';
 
-enum LAYOUT {
-  VERTICAL = 'vertical',
-  HORIZONTAL = 'horizontal',
-}
-
-const LAYOUT_MAP = {
-  [LAYOUT.VERTICAL]: 'column',
-  [LAYOUT.HORIZONTAL]: 'row',
-} as const;
-
-const getGridItemWidth = (column: number) => `${100 / column}%`;
+const getGridItemWidth = (column: number) => (column > 0 ? `${100 / column}%` : 0);
 
 export interface GridItemProp extends TdGridItemProps, TdGridProps {}
 
 const GridItem: FC<GridItemProp> = (prop) => {
-  const { description, image, layout, text, badgeProps, ...resetProps } = prop;
+  const { description, image, layout, text, badge, ...resetProps } = useDefaultProps(prop, gridItemDefaultProps);
 
   const { classPrefix } = useConfig();
   const { align, gutter, column, border } = useContext(GridContext);
@@ -31,88 +26,56 @@ const GridItem: FC<GridItemProp> = (prop) => {
 
   const rootClass = useMemo(
     () =>
-      cls(name, {
+      cls(name, `${name}--${layout}`, {
         [`${name}--bordered`]: border,
-        [`${classPrefix}-is-large`]: column <= 3,
+        [`${name}--surround`]: border && gutter,
       }),
-    [border, name, column, classPrefix],
+    [border, name, gutter, layout],
   );
-
-  const isHorizontal = useMemo(() => layout === 'horizontal', [layout]);
 
   const rootStyle = useMemo(() => {
     const percent = getGridItemWidth(column);
-
-    if (border && typeof border !== 'boolean') {
-      const { color, width, style } = border;
-      return {
-        borderColor: color,
-        borderWidth: width,
-        borderStyle: style,
-      };
-    }
-
-    const flexDirection = isHorizontal ? LAYOUT_MAP.horizontal : LAYOUT_MAP.vertical;
-    const gutterSize = gutter ? `${gutter}px` : 0;
-
-    const style = {
-      flexBasis: percent,
-      flexDirection,
-      paddingLeft: gutterSize,
-      paddingRight: gutterSize,
-      alignItems: 'center' as const,
-      justifyContent: 'center' as const,
-      textAlign: align,
+    const style: React.CSSProperties = {
+      textAlign: ['center', 'left'].includes(align) ? align : 'center',
     };
-
+    if (percent !== 0) {
+      style.flexBasis = percent;
+    }
     return style;
-  }, [column, border, gutter, align, isHorizontal]);
+  }, [column, align]);
 
-  const imgStyle = useMemo(() => {
-    let imgSize = 32;
-    if (column >= 5) {
-      imgSize = 28;
-    } else if (column <= 3) {
-      imgSize = 48;
-    }
-    return {
-      width: `${imgSize}px`,
-      height: `${imgSize}px`,
-    };
+  const size = useMemo(() => {
+    if (column > 4 || !column) return 'small';
+    return column < 4 ? 'large' : 'middle';
   }, [column]);
 
   const gridItemImage = useMemo(() => {
     if (!image) {
       return null;
     }
-
-    return typeof image === 'string' ? <img src={image} className={`${name}__image`} style={imgStyle} /> : image;
-  }, [image, name, imgStyle]);
-
-  const textStyle = useMemo(() => ({ paddingLeft: isHorizontal ? '12px' : 0 }), [isHorizontal]);
-
-  const titleStyle = useMemo(
-    () => ({
-      paddingTop: isHorizontal ? 0 : '8px',
-      marginBottom: '4px',
-    }),
-    [isHorizontal],
-  );
+    let imgProps: Record<string, any>;
+    if (isString(image)) {
+      imgProps = { src: image };
+    }
+    if (isObject(image) && !isFunction(image) && !React.isValidElement(image)) {
+      imgProps = image;
+    }
+    return imgProps ? <Image shape="round" {...imgProps} /> : parseTNode(image);
+  }, [image]);
 
   return (
     <div {...resetProps} className={rootClass} style={rootStyle}>
-      {badgeProps ? <Badge {...badgeProps}>{gridItemImage}</Badge> : gridItemImage}
-      <div className={`${name}__text`} style={textStyle}>
-        <div className={`${name}__title`} style={titleStyle}>
-          {text}
-        </div>
-        <div className={`${name}__description`}>{description}</div>
+      <div className={cls([`${name}__image`, `${name}__image--${size}`])}>
+        {badge ? <Badge {...badge}>{gridItemImage}</Badge> : gridItemImage}
+      </div>
+      <div className={cls([`${name}__content`, `${name}__content--${layout}`])}>
+        <div className={cls([`${name}__title`, `${name}__title--${size}`])}>{text}</div>
+        <div className={cls([`${name}__description`, `${name}__description--${layout}`])}>{description}</div>
       </div>
     </div>
   );
 };
 
 GridItem.displayName = 'GridItem';
-GridItem.defaultProps = gridItemDefaultProps;
 
 export default GridItem;
