@@ -29,7 +29,11 @@ export interface TdTabBarProps {
   /**
    * 选中标签切换时触发
    */
-  onChange?: () => void;
+  onChange?: (value: string | number) => void;
+  /**
+   * 标签栏内容
+   */
+  children?: TNode;
 }
 
 export interface TdTabBarItemProps {
@@ -44,11 +48,18 @@ export interface TdTabBarItemProps {
   /**
    * 二级菜单
    */
-  subTabBar?: SubTabBarItem[] ;
+  subTabBar?: SubTabBarItem[];
   /**
    * 标识符
    */
   value?: string | number;
+  /**
+   * 标签内容
+   */
+  children?: TNode;
 }
 
-export interface SubTabBarItem { value: string; label: string };
+export interface SubTabBarItem {
+  value: string;
+  label: string;
+}
