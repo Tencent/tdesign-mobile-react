@@ -5,7 +5,7 @@
  * */
 
 import { TdBadgeProps } from '../badge';
-import { TNode } from '../common';
+import { TElement, TNode } from '../common';
 
 export interface TdTabBarProps {
   /**
@@ -64,7 +64,7 @@ export interface TdTabBarItemProps {
   /**
    * 图标名称
    */
-  icon?: TNode;
+  icon?: TElement;
   /**
    * 二级菜单
    */

@@ -1,7 +1,7 @@
 import cls from 'classnames';
-import React, { forwardRef, memo, useContext, useEffect, useMemo, useState } from 'react';
-
+import React, { forwardRef, memo, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { Icon } from 'tdesign-icons-react';
 import type { StyledProps } from '../common';
 import type { TdTabBarItemProps } from './type';
 import { TabBarContext } from './TabBarContext';
@@ -11,14 +11,21 @@ import useTabBarCssTransition from './useTabBarCssTransition';
 
 export interface TabBarItemProps extends TdTabBarItemProps, StyledProps {}
 
-const defaultBadgeOffset = [0, 5];
+const defaultBadgeOffset = [0, 0];
 const defaultBadgeMaxCount = 99;
 
 const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
   const { subTabBar, icon, badgeProps, value, children } = props;
 
   const hasSubTabBar = useMemo(() => !!subTabBar, [subTabBar]);
-  const { defaultIndex, activeValue, updateChild } = useContext(TabBarContext);
+  const { defaultIndex, activeValue, updateChild, shape, split, theme, itemCount } = useContext(TabBarContext);
+
+  const { classPrefix } = useConfig();
+
+  const textNode = useRef<HTMLDivElement>(null);
+
+  const [iconOnly, setIconOnly] = useState(false);
+
   // 组件每次 render 生成一个临时的当前组件唯一值
   const [currentName] = useState<undefined | number | string>(() => {
     if (value) {
@@ -27,7 +34,10 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
     return (defaultIndex.current += 1);
   });
 
-  const { classPrefix } = useConfig();
+  useEffect(() => {
+    const height = textNode?.current?.clientHeight;
+    setIconOnly(Number(height) === 0);
+  }, [textNode]);
 
   const componentName = `${classPrefix}-tab-bar-item`;
 
@@ -42,6 +52,9 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
 
   const mergedBadgeProps = useMemo(
     () => ({
+      count: 0,
+      dot: false,
+      size: 'medium',
       offset: defaultBadgeOffset,
       maxCount: defaultBadgeMaxCount,
       ...badgeProps,
@@ -83,68 +96,96 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
     setIsSpread(() => false);
   };
 
-  const tabItemCls = cls(componentName, {
-    [`${classPrefix}-no-border`]: icon,
-  });
-  const tabItemInnerCls = cls(`${componentName}__content`, {
-    [`${classPrefix}-is-checked`]: isChecked,
-    [`${componentName}--onlytext`]: !icon,
-  });
+  /** 拥挤否 */
+  const crowded = itemCount > 3;
+
+  const tabItemCls = cls(
+    componentName,
+    {
+      [`${componentName}--split`]: split,
+      [`${componentName}--text-only`]: !icon,
+      [`${componentName}--crowded`]: crowded,
+    },
+    `${componentName}--${shape}`,
+  );
+  const tabItemInnerCls = cls(
+    `${componentName}__content`,
+    {
+      [`${componentName}__content--checked`]: isChecked,
+    },
+    `${componentName}__content--${theme}`,
+  );
   const tabItemIconCls = cls(`${componentName}__icon`);
   const tabItemSpreadCls = cls(`${componentName}__spread`);
   const tabItemSpreadItemCls = cls(`${componentName}__spread-item`);
-  const tabItemTextCls = cls(`${componentName}__text`);
+  const tabItemTextCls = cls(`${componentName}__text`, {
+    [`${componentName}__text--small`]: icon,
+  });
   const tabItemIconMenuCls = cls(`${componentName}__icon-menu`);
 
   const transitionClsNames = useTabBarCssTransition({
     name: 'spread',
   });
 
+  const iconSize = `${iconOnly ? 24 : 20}px`;
+
+  const iconContent =
+    icon &&
+    React.cloneElement(icon, {
+      style: { fontSize: iconSize },
+    });
+
   return (
-    <div
-      role="tab"
-      aria-label="TabBar"
-      aria-selected={isChecked}
-      aria-haspopup={shouldShowSubTabBar}
-      className={tabItemCls}
-      ref={ref}
-    >
-      <div className={tabItemInnerCls} onClick={toggle}>
+    <div className={tabItemCls} ref={ref}>
+      <div
+        role="tab"
+        aria-label="TabBar"
+        aria-selected={isChecked}
+        aria-haspopup={shouldShowSubTabBar}
+        className={tabItemInnerCls}
+        onClick={toggle}
+      >
         {icon && (
-          <div className={tabItemIconCls}>
+          <div className={tabItemIconCls} style={{ height: iconSize }}>
             {badgeProps && (badgeProps?.dot || badgeProps?.count) ? (
-              <Badge content={icon} {...mergedBadgeProps} />
+              <Badge content={iconContent} {...mergedBadgeProps} />
             ) : (
-              icon
+              iconContent
             )}
           </div>
         )}
         {children && (
-          <div className={tabItemTextCls}>
-            {shouldShowSubTabBar && <div className={tabItemIconMenuCls} />}
+          <div ref={textNode} className={tabItemTextCls}>
+            {shouldShowSubTabBar && (
+              <>
+                <Icon name="view-list" size="16" />
+                <div className={tabItemIconMenuCls} />
+              </>
+            )}
             {children}
           </div>
         )}
-
-        <CSSTransition timeout={200} in={showSubTabBar} classNames={transitionClsNames} mountOnEnter unmountOnExit>
-          <ul role="menu" className={tabItemSpreadCls}>
-            {subTabBar?.map((child, index) => (
-              <li
-                key={child.value || index}
-                role="menuitem"
-                aria-label={child.label}
-                className={tabItemSpreadItemCls}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  selectChild(child.value || index);
-                }}
-              >
-                {child.label}
-              </li>
-            ))}
-          </ul>
-        </CSSTransition>
       </div>
+
+      <CSSTransition timeout={200} in={showSubTabBar} classNames={transitionClsNames} mountOnEnter unmountOnExit>
+        <ul role="menu" className={tabItemSpreadCls}>
+          {subTabBar?.map((child, index) => (
+            <div
+              key={child.value || index}
+              role="menuitem"
+              aria-label={child.label}
+              className={tabItemSpreadItemCls}
+              onClick={(e) => {
+                e.stopPropagation();
+                selectChild(child.value || index);
+              }}
+            >
+              {index !== 0 && <div className={`${componentName}__spread-item-split`} />}
+              <div className={`${componentName}__spread-item-text`}>{child.label}</div>
+            </div>
+          ))}
+        </ul>
+      </CSSTransition>
     </div>
   );
 });
