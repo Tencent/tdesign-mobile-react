@@ -21,7 +21,7 @@ function TabBarBaseDemo() {
   }, [value]);
 
   return (
-    <div className="demo-tab-bar">
+    <div className="demo-tab-bar section-custom">
       <TabBar value={value} onChange={change}>
         {list.map((item, i) => (
           <TabBarItem key={item.value || i} icon={<Icon name={item.icon} />} value={item.value} />
