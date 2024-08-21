@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import type { FC, FormEvent, CompositionEvent, MouseEvent, KeyboardEvent, FocusEvent } from 'react';
 import { CloseCircleFilledIcon, SearchIcon } from 'tdesign-icons-react';
-import isFunction from 'lodash/isFunction';
 import classNames from 'classnames';
 import useDefault from '../_util/useDefault';
 import parseTNode from '../_util/parseTNode';
@@ -17,20 +16,21 @@ export interface SearchProps extends TdSearchProps, StyledProps {}
 const Search: FC<SearchProps> = (props) => {
   const {
     clearable,
-    action = '',
+    action,
     center,
     disabled,
     focus,
     leftIcon,
     placeholder,
     readonly,
-    shape = 'square',
-    value = '',
+    shape,
+    value,
     onActionClick,
     onBlur,
     onChange,
     onClear,
     onFocus,
+    onSubmit,
   } = useDefaultProps(props, searchDefaultProps);
   const [focusState, setFocus] = useState(focus);
   const inputRef = useRef(null);
@@ -60,18 +60,18 @@ const Search: FC<SearchProps> = (props) => {
     inputValueChangeHandle(e);
   };
 
-  const handleClear = (e: MouseEvent) => {
+  const handleClear = (e: MouseEvent<HTMLDivElement>) => {
     setSearchValue('', { trigger: 'input-change' });
     setFocus(true);
-    isFunction(onClear) && onClear({ e });
+    onClear?.({ e });
   };
 
-  const handleFocus = (e: FocusEvent) => {
-    isFunction(onFocus) && onFocus({ value: searchValue, e });
+  const handleFocus = (e: FocusEvent<HTMLDivElement>) => {
+    onFocus?.({ value: searchValue, e });
   };
 
-  const handleBlur = (e: FocusEvent) => {
-    isFunction(onBlur) && onBlur({ value: searchValue, e });
+  const handleBlur = (e: FocusEvent<HTMLDivElement>) => {
+    onBlur?.({ value: searchValue, e });
   };
 
   const handleCompositionend = (e: CompositionEvent) => {
@@ -79,14 +79,14 @@ const Search: FC<SearchProps> = (props) => {
   };
 
   const handleAction = (e: MouseEvent) => {
-    isFunction(onActionClick) && onActionClick({ e });
+    onActionClick?.({ e });
   };
 
-  const handleSearch = (e: KeyboardEvent) => {
+  const handleSearch = (e: KeyboardEvent<HTMLDivElement>) => {
     // 如果按的是 enter 键, 13是 enter
     if (ENTER_REG.test(e.code) || ENTER_REG.test(e.key)) {
       e.preventDefault();
-      props.onSubmit?.({ value: searchValue, e: e as KeyboardEvent<HTMLDivElement> });
+      onSubmit?.({ value: searchValue, e });
     }
   };
 
