@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { InfoCircleFilledIcon, CheckCircleFilledIcon, CloseCircleFilledIcon } from 'tdesign-icons-react';
 import cls from 'classnames';
 import { ConfigContext } from '../config-provider';
@@ -97,7 +97,7 @@ function useAnimationSettingValue() {
   };
 }
 
-const NoticeBar = forwardRef<HTMLDivElement, NoticeBarProps>((props) => {
+const NoticeBar: React.FC<NoticeBarProps> = (props) => {
   const { classPrefix } = useContext(ConfigContext);
   const {
     content,
@@ -309,7 +309,7 @@ const NoticeBar = forwardRef<HTMLDivElement, NoticeBarProps>((props) => {
       </div>
     </div>
   );
-});
+};
 
 NoticeBar.displayName = 'NoticeBar';
 

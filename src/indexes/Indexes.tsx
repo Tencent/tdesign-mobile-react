@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, useState, MouseEvent, TouchEvent, useRef, useEffect } from 'react';
+import React, { useState, MouseEvent, TouchEvent, useRef, useEffect } from 'react';
 import isFunction from 'lodash/isFunction';
 import throttle from 'lodash/throttle';
 import { Cell, CellGroup } from '../cell';
@@ -10,7 +10,7 @@ const topOffset = 40; // 滑动选中高亮的顶部偏移(px)
 
 export interface IndexesProps extends TdIndexesProps, StyledProps {}
 
-const Indexes: FC<IndexesProps> = forwardRef((props) => {
+const Indexes: React.FC<IndexesProps> = (props) => {
   const { height, list, onSelect, style } = props;
 
   const { classPrefix } = useConfig();
@@ -141,6 +141,6 @@ const Indexes: FC<IndexesProps> = forwardRef((props) => {
       </div>
     </div>
   );
-});
+};
 
 export default Indexes;

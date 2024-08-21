@@ -1,47 +1,73 @@
-.button-demo {
-  padding: 0 16px;
+.tdesign-mobile-demo {
+  background-color: #ffffff;
+  padding-bottom: 28px;
+  box-sizing: border-box;
 
-  .t-button {
-    margin-bottom: 16px;
+  &-block {
+    .row {
+      display: flex;
+      padding: 0 16px;
+    }
+
+    .row + .row {
+      margin-top: 16px;
+    }
+
+    .t-button + .t-button {
+      margin-left: 16px;
+    }
+
+    .rectangle-button {
+      border-radius: 0;
+    }
+
+    .section {
+      &-shape,
+      &-size {
+        display: flex;
+        justify-content: space-between;
+
+        .t-button + .t-button {
+          margin-left: 0;
+        }
+      }
+
+      &-shape {
+        margin: 0 0 16px 0;
+      }
+
+      &-group {
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+
+        .t-button + .t-button {
+          margin-left: 0;
+        }
+      }
+
+      &-ghost {
+        padding: 16px;
+        background-color: #181818;
+      }
+
+      &-theme {
+        position: relative;
+        width: 100%;
+        overflow-y: auto;
+
+        & > .row {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 16px;
+          width: max-content;
+        }
+
+        .t-button + .t-button {
+          margin-left: 0;
+        }
+      }
+    }
   }
-
-}
-
-.margin-button {
-  .t-button {
-    margin-bottom: 16px;
-  }
-}
-
-.margin-right {
-  .t-button:not(:last-child) {
-    margin-right: 16px;
-  }
-}
-
-.no-border-radius {
-  .t-button {
-    border-radius: 0;
-  }
-}
-
-.no-border {
-  .t-button {
-    border: 0 ;
-  }
-}
-
-.flex {
-  display: flex;
-}
-
-.align-center {
-  flex-direction: row;
-  align-items: center;
-}
-
-.align-bottom {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
 }
