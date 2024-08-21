@@ -1,172 +1,224 @@
-import React, { FC, forwardRef, useRef } from 'react';
-import { CloseCircleFilledIcon } from 'tdesign-icons-react';
-import isFunction from 'lodash/isFunction';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import type { FocusEvent, TouchEvent, CompositionEvent, FormEvent } from 'react';
 import classNames from 'classnames';
+import { CloseCircleFilledIcon, BrowseOffIcon, BrowseIcon } from 'tdesign-icons-react';
+import useDefault from 'tdesign-mobile-react/_util/useDefault';
+import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
+import { inputDefaultProps } from './defaultProps';
 import { getCharacterLength } from '../_common/js/utils/helper';
-import { TdInputProps } from './type';
 import useConfig from '../_util/useConfig';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { TdInputProps } from './type';
+import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 
-export interface InputProps extends TdInputProps {
+export interface InputProps extends TdInputProps, NativeProps {
   required?: boolean;
   readonly?: boolean;
 }
 
-const Input: FC<InputProps> = forwardRef((props, ref) => {
+export interface InputRefProps {
+  focus?: () => void;
+  blur?: () => void;
+}
+
+const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
   const {
-    align = 'left',
-    autofocus = false,
-    clearable = false,
-    disabled = false,
-    errorMessage = '',
-    label = '',
-    maxcharacter = 0, // 半成品
-    maxlength = 0,
-    vertical = false,
-    name = '',
-    placeholder = '',
+    align,
+    autofocus,
+    autocomplete,
+    borderless,
+    clearable,
+    clearTrigger,
+    disabled,
+    label,
+    layout,
+    maxlength,
+    name,
+    placeholder,
     prefixIcon,
-    // size = 'small',
     suffix,
     suffixIcon,
-    type = 'text',
-    value = '',
-    className = '',
-    defaultValue,
-    required = false,
-    readonly = false,
+    tips,
+    type,
+    readonly,
     onBlur,
-    onChange,
     onClear,
-    onEnter,
     onFocus,
-  } = props;
+    value,
+    defaultValue,
+    onChange,
+  } = useDefaultProps(props, inputDefaultProps);
 
+  const [showClear, setShowClear] = useState<boolean>(false);
+  const [innerValue, setInnerValue] = useDefault(value, defaultValue, onChange);
+  const [renderType, setRenderType] = useState(type);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const focused = useRef<boolean>(false);
+  const status = props.status || 'default';
   const { classPrefix } = useConfig();
-  const prefix = classPrefix;
+  const rootClassName = `${classPrefix}-input`;
+  const inputClasses = classNames(`${rootClassName}__control`, {
+    [`${rootClassName}--${align}`]: align !== 'left',
+    [`${rootClassName}--${status}`]: status,
+    [`${rootClassName}__control--disabled`]: disabled,
+  });
+  const rootClasses = classNames(`${rootClassName}`, {
+    [`${rootClassName}--layout-${layout}`]: layout,
+    [`${rootClassName}--border`]: borderless,
+  });
+  const resultMaxLength = !isNaN(+maxlength) ? +maxlength : -1;
 
-  const compositionRef = useRef(false);
+  useImperativeHandle(ref, () => ({
+    focus,
+    blur,
+  }));
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement> | React.CompositionEvent<HTMLInputElement>) {
-    let { value } = e.currentTarget;
-    if (maxcharacter !== 0 && !compositionRef.current) {
-      const res = getCharacterLength(value, maxcharacter) as {
+  useEffect(() => {
+    const computeShowClear = () => {
+      if (disabled || readonly) {
+        return false;
+      }
+      if (clearable) {
+        return clearTrigger === 'always' || (clearTrigger === 'focus' && focused.current);
+      }
+      return false;
+    };
+    setShowClear(computeShowClear());
+  }, [clearTrigger, clearable, disabled, readonly]);
+
+  useEffect(() => {
+    if (autofocus) {
+      focus();
+    }
+  }, [autofocus]);
+
+  useEffect(() => {
+    setRenderType(type);
+  }, [type]);
+
+  function focus() {
+    focused.current = true;
+    inputRef.current?.focus();
+  }
+
+  function blur() {
+    focused.current = false;
+    inputRef.current?.blur();
+  }
+
+  const inputValueChangeHandle = (e: FormEvent<HTMLInputElement>) => {
+    const { value } = e.target as HTMLInputElement;
+    const { allowInputOverMax, maxcharacter } = props;
+    if (!allowInputOverMax && maxcharacter && !Number.isNaN(maxcharacter)) {
+      const { characters } = getCharacterLength(value, maxcharacter) as {
         length: number;
         characters: string;
       };
-      value = res.characters;
+      setInnerValue(characters);
+    } else {
+      setInnerValue(value);
     }
-    isFunction(onChange) && !readonly && onChange(value, { e });
-  }
+  };
 
-  function handleBlur(e: React.FocusEvent<HTMLInputElement, Element>) {
-    const { value } = e.currentTarget;
-    isFunction(onBlur) && onBlur(value, { e });
-  }
-
-  function handleEnter(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.keyCode === 13 || e.key === 'Enter' || e.charCode === 13 || e.which === 13) {
-      const { value } = e.currentTarget;
-      isFunction(onEnter) && onEnter(value, { e });
+  const handleInput = (e: FormEvent<HTMLInputElement>) => {
+    // 中文输入的时候inputType是insertCompositionText所以中文输入的时候禁止触发。
+    if (e instanceof InputEvent) {
+      const checkInputType = e.inputType && e.inputType === 'insertCompositionText';
+      if (e.isComposing || checkInputType) return;
     }
-  }
+    inputValueChangeHandle(e);
+  };
 
-  function handleFocus(e: React.FocusEvent<HTMLInputElement, Element>) {
-    const { value } = e.currentTarget;
-    isFunction(onFocus) && onFocus(value, { e });
-  }
+  const handleClear = (e: TouchEvent) => {
+    e.preventDefault();
+    setInnerValue('');
+    focus();
+    onClear?.({ e: e as TouchEvent<HTMLInputElement> });
+  };
 
-  function handleClear(e: React.MouseEvent<SVGElement, MouseEvent>) {
-    isFunction(onChange) && !readonly && onChange('');
-    isFunction(onClear) && onClear({ e });
-  }
+  const handleFocus = (e: FocusEvent) => {
+    focused.current = true;
+    onFocus?.(innerValue, { e: e as FocusEvent<HTMLInputElement> });
+  };
 
-  const inputProps: any = {};
-  if (maxlength > 0) {
-    inputProps.maxLength = maxlength;
-  }
-  if (defaultValue !== undefined) {
-    inputProps.defaultValue = defaultValue;
-  }
-  if (isFunction(onBlur)) {
-    inputProps.onBlur = handleBlur;
-  }
-  if (isFunction(onEnter)) {
-    inputProps.onKeyPress = handleEnter;
-  }
-  if (isFunction(onFocus)) {
-    inputProps.onFocus = handleFocus;
-  }
+  const handleBlur = (e: FocusEvent) => {
+    focused.current = false;
+    onBlur?.(innerValue, { e: e as FocusEvent<HTMLInputElement> });
+  };
 
-  return (
-    <div
-      className={classNames(
-        [`${prefix}-cell`],
-        [`${prefix}-cell--middle`],
-        [`${prefix}-cell--bordered ${prefix}-input`],
-        {
-          [`${prefix}-input__error`]: errorMessage,
-          [`${prefix}-input__vertical`]: vertical,
-        },
-        className,
-      )}
-    >
-      <div
-        className={classNames([`${prefix}-input__left`], {
-          [`${prefix}-input__vertical__left`]: vertical,
-        })}
-      >
-        <div className={classNames({ [`${prefix}-cell__left-icon`]: prefixIcon })}>
-          {prefixIcon ? prefixIcon : <></>}
-        </div>
-        {label && (
-          <div className={`${prefix}-cell__title`}>
-            <div className={`${prefix}-input--label`}>{label}</div>
-            {required && <span className={`${prefix}-cell--required`}>&nbsp;*</span>}
-          </div>
-        )}
-      </div>
-      <div
-        className={classNames([`${prefix}-input__right`], {
-          [`${prefix}-input__vertical__right`]: vertical,
-        })}
-      >
-        <div className={`${prefix}-cell__note`}>
-          <div className={`${prefix}-input__wrap`}>
-            <input
-              style={{ textAlign: align }}
-              autoFocus={autofocus}
-              disabled={disabled}
-              name={name}
-              type={type}
-              className={`${prefix}-input__control`}
-              autoComplete="off"
-              placeholder={placeholder}
-              value={value}
-              onChange={handleChange}
-              onCompositionStart={() => {
-                compositionRef.current = true;
-              }}
-              onCompositionEnd={(e) => {
-                compositionRef.current = false;
-                handleChange(e);
-              }}
-              ref={ref}
-              {...inputProps}
-            />
-            {clearable && (
-              <div className={`${prefix}-input__wrap--icon`}>
-                <CloseCircleFilledIcon onClick={handleClear} />
-              </div>
-            )}
-            {suffix && <div className={`${prefix}-input__wrap--suffix`}>{suffix}</div>}
-          </div>
-          {errorMessage && <div className={`${prefix}-input__error-msg`}>{errorMessage}</div>}
-        </div>
-        <div className={classNames({ [`${prefix}-cell__right-icon`]: suffixIcon })}>
-          {suffixIcon ? suffixIcon : <></>}
-        </div>
-      </div>
+  const handleCompositionend = (e: CompositionEvent) => {
+    inputValueChangeHandle(e as CompositionEvent<HTMLInputElement>);
+  };
+
+  const handlePwdIconClick = () => {
+    if (disabled) {
+      return;
+    }
+    setRenderType((renderType) => (renderType === 'password' ? 'text' : 'password'));
+  };
+
+  const renderPrefix = () => (
+    <div className={`${rootClassName}__wrap--prefix`}>
+      {prefixIcon ? <div className={`${rootClassName}__icon--prefix`}></div> : null}
+      <div className={`${rootClassName}__label`}>{parseTNode(label)}</div>
     </div>
+  );
+
+  const renderClearable = () =>
+    showClear ? (
+      <div className={`${rootClassName}__wrap--clearable-icon`} onTouchEnd={handleClear}>
+        <CloseCircleFilledIcon />
+      </div>
+    ) : null;
+
+  const renderSuffix = () =>
+    suffix ? <div className={`${rootClassName}__wrap--suffix`}>{parseTNode(suffix)}</div> : null;
+
+  const renderSuffixIcon = () => {
+    let tempSuffixIcon = suffixIcon;
+    if (type === 'password') {
+      if (renderType === 'password') {
+        tempSuffixIcon = <BrowseOffIcon onClick={handlePwdIconClick} />;
+      } else if (renderType === 'text') {
+        tempSuffixIcon = <BrowseIcon onClick={handlePwdIconClick} />;
+      }
+    }
+    return suffixIcon ? <div className={`${rootClassName}__wrap--suffix-icon`}>{tempSuffixIcon}</div> : null;
+  };
+
+  const renderTips = () =>
+    tips ? <div className={`${rootClassName}__tips ${rootClassName}--${align}`}>{parseTNode(tips)}</div> : null;
+
+  return withNativeProps(
+    props,
+    <div className={rootClasses}>
+      {renderPrefix()}
+      <div className={`${rootClassName}__wrap`}>
+        <div className={`${rootClassName}__content ${rootClassName}--${status}`}>
+          <input
+            ref={inputRef}
+            autoFocus={autofocus}
+            value={innerValue}
+            name={name}
+            className={inputClasses}
+            type={renderType}
+            disabled={disabled}
+            autoComplete={autocomplete}
+            placeholder={placeholder}
+            readOnly={readonly}
+            maxLength={resultMaxLength || -1}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onInput={handleInput}
+            onCompositionEnd={handleCompositionend}
+          />
+          {renderClearable()}
+          {renderSuffix()}
+          {renderSuffixIcon()}
+        </div>
+        {renderTips()}
+      </div>
+    </div>,
   );
 });
 

@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useMemo } from 'react';
+import React, { useRef, useMemo } from 'react';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import { StyledProps } from '../common';
@@ -11,7 +11,7 @@ import { usePrefixClass } from '../hooks/useClass';
 
 export interface OverlayProps extends TdOverlayProps, StyledProps {}
 
-const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props) => {
+const Overlay: React.FC<OverlayProps> = (props) => {
   const overlayClass = usePrefixClass('overlay');
   const overlayRef = useRef<HTMLDivElement>();
 
@@ -48,7 +48,7 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>((props) => {
       </div>
     </CSSTransition>
   );
-});
+};
 
 Overlay.displayName = 'Overlay';
 
