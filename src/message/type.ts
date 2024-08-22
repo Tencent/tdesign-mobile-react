@@ -16,7 +16,7 @@ export interface TdMessageProps {
   /**
    * 关闭按钮，可以自定义。值为 true 显示默认关闭按钮，值为 false 不显示关闭按钮。值类型为 string 则直接显示值，如：“关闭”。也可以完全自定义按钮
    */
-  closeBtn?: TNode;
+  closeBtn?: String | Boolean | TNode;
   /**
    * 用于自定义消息弹出内容
    */
@@ -41,7 +41,7 @@ export interface TdMessageProps {
    */
   marquee?: boolean | MessageMarquee;
   /**
-   * 相对于 placement 的偏移量，示例：[-10, 20] 或 ['10rpx', '8rpx']
+   * 相对于 placement 的偏移量。示例：[-10, 20] 或 ['10rpx', '8rpx']
    */
   offset?: Array<string | number>;
   /**

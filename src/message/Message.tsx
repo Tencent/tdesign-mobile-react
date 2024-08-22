@@ -264,7 +264,7 @@ const Message: React.FC<MessageProps> = (originProps) => {
             style={state.scroll.marquee ? animateStyle : {}}
             onTransitionEnd={handleTransitionend}
           >
-            {content || children}
+            {parseTNode(content) || parseTNode(children)}
           </div>
         </div>
         {link && (
