@@ -3,6 +3,7 @@ import isFunction from 'lodash/isFunction';
 import get from 'lodash/get';
 import cx from 'classnames';
 
+import { StyledProps } from '../common';
 import useClassName from './hooks/useClassName';
 import useStyle, { formatCSSUnit } from './hooks/useStyle';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -12,7 +13,7 @@ import { baseTableDefaultProps } from './defaultProps';
 
 import type { TdBaseTableProps, BaseTableCol, TableRowData, BaseTableCellParams } from './type';
 
-export type BaseTableProps = TdBaseTableProps;
+export type BaseTableProps = TdBaseTableProps & StyledProps;
 
 export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLTableElement>) => {
   const {
@@ -27,6 +28,8 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
     tableLayout,
     showHeader,
     cellEmptyContent,
+    className,
+    style,
     onRowClick,
     onCellClick,
     onScroll,
@@ -170,7 +173,7 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
   };
 
   return (
-    <div ref={ref} className={tableClasses} style={{ position: 'relative' }}>
+    <div ref={ref} className={cx(tableClasses, className)} style={{ position: 'relative', ...style }}>
       <div
         ref={tableContentRef}
         className={tableBaseClass.content}

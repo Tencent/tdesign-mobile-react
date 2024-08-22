@@ -4,4 +4,15 @@
 
 import { TdBaseTableProps } from './type';
 
-export const baseTableDefaultProps: Partial<TdBaseTableProps> = {};
+export const baseTableDefaultProps: TdBaseTableProps = {
+  bordered: false,
+  columns: [],
+  data: [],
+  empty: '',
+  loading: undefined,
+  rowKey: 'id',
+  showHeader: true,
+  stripe: false,
+  tableLayout: 'fixed',
+  verticalAlign: 'middle',
+};
