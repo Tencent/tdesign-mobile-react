@@ -12785,6 +12785,22 @@ exports[`csr snapshot test > csr test src/input/_example/bordered.tsx 1`] = `
             type="text"
             value=""
           />
+          <div
+            class="t-input__wrap--suffix-icon"
+          >
+            <svg
+              class="t-icon t-icon-error-circle-filled"
+              fill="none"
+              height="1em"
+              viewBox="0 0 24 24"
+              width="1em"
+            >
+              <path
+                d="M12 1a11 11 0 110 22 11 11 0 010-22zm-1 13h2V6.5h-2V14zm2 1.5h-2v2h2v-2z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -12889,6 +12905,22 @@ exports[`csr snapshot test > csr test src/input/_example/layout.tsx 1`] = `
           type="text"
           value=""
         />
+        <div
+          class="t-input__wrap--suffix-icon"
+        >
+          <svg
+            class="t-icon t-icon-error-circle-filled"
+            fill="none"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+          >
+            <path
+              d="M12 1a11 11 0 110 22 11 11 0 010-22zm-1 13h2V6.5h-2V14zm2 1.5h-2v2h2v-2z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -20726,13 +20758,13 @@ exports[`ssr snapshot test > ssr test src/input/_example/banner.tsx 1`] = `"<div
 
 exports[`ssr snapshot test > ssr test src/input/_example/base.tsx 1`] = `"<div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字（选填）" maxLength="-1"/></div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label"></div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/input/_example/bordered.tsx 1`] = `"<div class="input-bordered" data-reactroot=""><div class="input-bordered__summary">标签文字</div><div class="t-input t-input--layout-horizontal t-input--border input-bordered__input"><div class="t-input__wrap--prefix"><div class="t-input__label"></div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/input/_example/bordered.tsx 1`] = `"<div class="input-bordered" data-reactroot=""><div class="input-bordered__summary">标签文字</div><div class="t-input t-input--layout-horizontal t-input--border input-bordered__input"><div class="t-input__wrap--prefix"><div class="t-input__label"></div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/><div class="t-input__wrap--suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-error-circle-filled"><path fill="currentColor" d="M12 1a11 11 0 110 22 11 11 0 010-22zm-1 13h2V6.5h-2V14zm2 1.5h-2v2h2v-2z"></path></svg></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/input/_example/custom.tsx 1`] = `"<div class="input-custom" data-reactroot=""><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/input/_example/label.tsx 1`] = `"<div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签超长时最多十个字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/input/_example/layout.tsx 1`] = `"<div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/input/_example/layout.tsx 1`] = `"<div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="-1"/><div class="t-input__wrap--suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-error-circle-filled"><path fill="currentColor" d="M12 1a11 11 0 110 22 11 11 0 010-22zm-1 13h2V6.5h-2V14zm2 1.5h-2v2h2v-2z"></path></svg></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/input/_example/maxLength.tsx 1`] = `"<div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="10"/></div><div class="t-input__tips t-input--left">最大输入10个字符</div></div></div><div class="t-input t-input--layout-horizontal"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入文字" maxLength="10"/></div><div class="t-input__tips t-input--left">最大输入10个字符，汉字算两个</div></div></div>"`;
 
