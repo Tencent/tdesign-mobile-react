@@ -41,6 +41,16 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
     onCancel?.(ev);
   };
 
+  const handleSelected = (idx) => {
+    const found = items?.[idx];
+
+    onSelected?.(found, idx);
+
+    onClose?.('select');
+
+    setInnerVisible(false);
+  };
+
   return (
     <Popup
       visible={finalVisible}
@@ -65,36 +75,8 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
             {description}
           </p>
         ) : null}
-        {theme === 'list' ? (
-          <ActionSheetList
-            items={items}
-            align={align}
-            onSelected={(idx) => {
-              const found = items?.[idx];
-
-              onSelected?.(found, idx);
-
-              onClose?.('select');
-
-              setInnerVisible(false);
-            }}
-          />
-        ) : null}
-        {theme === 'grid' ? (
-          <ActionSheetGrid
-            items={items}
-            align={align}
-            onSelected={(idx) => {
-              const found = items?.[idx];
-
-              onSelected?.(found, idx);
-
-              onClose?.('select');
-
-              setInnerVisible(false);
-            }}
-          />
-        ) : null}
+        {theme === 'list' ? <ActionSheetList items={items} align={align} onSelected={handleSelected} /> : null}
+        {theme === 'grid' ? <ActionSheetGrid items={items} align={align} onSelected={handleSelected} /> : null}
         {showCancel ? (
           <div className={`${cls}__footer`}>
             <div className={`${cls}__gap-${theme}`}></div>

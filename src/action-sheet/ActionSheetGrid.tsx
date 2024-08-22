@@ -8,20 +8,18 @@ import { Grid, GridItem } from '../grid';
 import { Swiper } from '../swiper';
 import useConfig from '../_util/useConfig';
 
-type ActionSheetGridProps = {
-  items: ActionSheetProps['items'];
-  align: ActionSheetProps['align'];
+type ActionSheetGridProps = Pick<ActionSheetProps, 'items' | 'align'> & {
   onSelected?: (idx: number) => void;
   count?: number;
 };
 
 export function ActionSheetGrid(props: ActionSheetGridProps) {
-  const { items, count = 8, onSelected } = props;
+  const { items = [], count = 8, onSelected } = props;
   const { classPrefix } = useConfig();
   const cls = `${classPrefix}-action-sheet`;
 
   const gridColumn = Math.ceil(count / 2);
-  const pageNum = Math.ceil(props.items.length / count);
+  const pageNum = Math.ceil(items.length / count);
 
   const actionItems = useMemo(() => {
     const res: ActionSheetProps['items'][] = [];

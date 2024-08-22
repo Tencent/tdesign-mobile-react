@@ -9,14 +9,12 @@ import { Button } from '../button';
 import { Badge } from '../badge';
 import useConfig from '../_util/useConfig';
 
-type ActionSheetListProps = {
-  items: ActionSheetProps['items'];
-  align: ActionSheetProps['align'];
+type ActionSheetListProps = Pick<ActionSheetProps, 'items' | 'align'> & {
   onSelected?: (idx: number) => void;
 };
 
 export function ActionSheetList(props: ActionSheetListProps) {
-  const { items, align, onSelected } = props;
+  const { items = [], align, onSelected } = props;
   const { classPrefix } = useConfig();
   const cls = `${classPrefix}-action-sheet`;
 

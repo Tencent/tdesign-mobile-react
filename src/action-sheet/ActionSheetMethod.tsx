@@ -12,7 +12,7 @@ export function show(config: Partial<ActionSheetProps>) {
 
   document.body.appendChild(app);
 
-  destroyRef = renderToBody(<ActionSheet visible {...config} />);
+  destroyRef = renderToBody(<ActionSheet {...config} visible />);
 }
 
 export function close() {
