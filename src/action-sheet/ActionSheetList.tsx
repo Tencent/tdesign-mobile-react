@@ -37,7 +37,7 @@ export function ActionSheetList(props: ActionSheetListProps) {
                 dot={item?.badge?.dot}
                 content={item?.badge?.content}
                 size={item?.badge?.size}
-                offset={item?.badge?.offset || [16, -10]}
+                offset={item?.badge?.offset || [16, -20]}
               >
                 <span className={cx([`${cls}__list-item-text`])}>{item?.label}</span>
               </Badge>
