@@ -11,10 +11,11 @@ import useConfig from '../_util/useConfig';
 type ActionSheetGridProps = Pick<ActionSheetProps, 'items' | 'align'> & {
   onSelected?: (idx: number) => void;
   count?: number;
+  gridHeight?: number;
 };
 
 export function ActionSheetGrid(props: ActionSheetGridProps) {
-  const { items = [], count = 8, onSelected } = props;
+  const { items = [], count = 8, onSelected, gridHeight } = props;
   const { classPrefix } = useConfig();
   const cls = `${classPrefix}-action-sheet`;
 
@@ -50,7 +51,7 @@ export function ActionSheetGrid(props: ActionSheetGridProps) {
         loop={false}
         navigation={pageNum > 1 ? { type: 'dots' } : undefined}
         direction={direction}
-        height={pageNum > 1 ? 208 : 196}
+        height={gridHeight || (pageNum > 1 ? 208 : 196)}
       >
         {actionItems.map((item, idx1) => (
           <Swiper.SwiperItem key={idx1}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cx from 'classnames';
 
 import type { TdActionSheetProps } from './type';
@@ -6,11 +6,14 @@ import type { TdActionSheetProps } from './type';
 import { Button } from '../button';
 import { Popup } from '../popup';
 import useConfig from '../_util/useConfig';
+import useDefault from '../_util/useDefault';
 import { ActionSheetList } from './ActionSheetList';
 import { ActionSheetGrid } from './ActionSheetGrid';
 
 export type ActionSheetProps = TdActionSheetProps & {
   showOverlay?: boolean;
+  onVisibleChange?: (value: boolean) => void;
+  gridHeight?: number;
 };
 
 export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
@@ -27,15 +30,16 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
     onClose,
     onSelected,
     onCancel,
+    onVisibleChange,
+    count,
+    gridHeight,
   } = props;
 
   const { classPrefix } = useConfig();
 
   const cls = `${classPrefix}-action-sheet`;
 
-  const [innerVisible, setInnerVisible] = useState(defaultVisible);
-
-  const finalVisible = typeof visible !== 'undefined' ? visible : innerVisible;
+  const [finalVisible, onChange] = useDefault(visible, defaultVisible, onVisibleChange);
 
   const handleCancel = (ev) => {
     onCancel?.(ev);
@@ -48,7 +52,7 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
 
     onClose?.('select');
 
-    setInnerVisible(false);
+    onChange(false);
   };
 
   return (
@@ -57,7 +61,7 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
       className={cls}
       placement="bottom"
       onVisibleChange={(value) => {
-        setInnerVisible(value);
+        onChange(value);
 
         if (!value) onClose?.('overlay');
       }}
@@ -77,7 +81,13 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
         ) : null}
         {theme === 'list' ? <ActionSheetList items={items} align={align} onSelected={handleSelected} /> : null}
         {theme === 'grid' && finalVisible ? (
-          <ActionSheetGrid items={items} align={align} onSelected={handleSelected} />
+          <ActionSheetGrid
+            items={items}
+            align={align}
+            onSelected={handleSelected}
+            count={count}
+            gridHeight={gridHeight}
+          />
         ) : null}
         {showCancel ? (
           <div className={`${cls}__footer`}>
