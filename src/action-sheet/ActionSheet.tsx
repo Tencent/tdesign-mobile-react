@@ -76,7 +76,9 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
           </p>
         ) : null}
         {theme === 'list' ? <ActionSheetList items={items} align={align} onSelected={handleSelected} /> : null}
-        {theme === 'grid' ? <ActionSheetGrid items={items} align={align} onSelected={handleSelected} /> : null}
+        {theme === 'grid' && finalVisible ? (
+          <ActionSheetGrid items={items} align={align} onSelected={handleSelected} />
+        ) : null}
         {showCancel ? (
           <div className={`${cls}__footer`}>
             <div className={`${cls}__gap-${theme}`}></div>

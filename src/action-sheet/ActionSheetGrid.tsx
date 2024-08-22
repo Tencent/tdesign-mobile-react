@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import cx from 'classnames';
 
 import type { ActionSheetProps } from './ActionSheet';
 import type { ActionSheetItem } from './type';
 
 import { Grid, GridItem } from '../grid';
-import { Swiper } from '../swiper';
+import { Swiper, SwiperProps } from '../swiper';
 import useConfig from '../_util/useConfig';
 
 type ActionSheetGridProps = Pick<ActionSheetProps, 'items' | 'align'> & {
@@ -18,6 +18,8 @@ export function ActionSheetGrid(props: ActionSheetGridProps) {
   const { classPrefix } = useConfig();
   const cls = `${classPrefix}-action-sheet`;
 
+  const [direction, setDirection] = useState<SwiperProps['direction']>('vertical');
+
   const gridColumn = Math.ceil(count / 2);
   const pageNum = Math.ceil(items.length / count);
 
@@ -29,6 +31,10 @@ export function ActionSheetGrid(props: ActionSheetGridProps) {
     }
     return res;
   }, [items, count, pageNum]);
+
+  useEffect(() => {
+    setDirection('horizontal');
+  }, []);
 
   return (
     <div
@@ -43,7 +49,8 @@ export function ActionSheetGrid(props: ActionSheetGridProps) {
         className={cx(`${cls}__swiper-wrap--base`, pageNum > 1 && `${cls}__swiper-wrap`)}
         loop={false}
         navigation={pageNum > 1 ? { type: 'dots' } : undefined}
-        height={169}
+        direction={direction}
+        height={pageNum > 1 ? 208 : 196}
       >
         {actionItems.map((item, idx1) => (
           <Swiper.SwiperItem key={idx1}>
@@ -64,7 +71,7 @@ export function ActionSheetGrid(props: ActionSheetGridProps) {
                     key={`${idx1}-${idx2}`}
                     image={image}
                     text={label}
-                    badgeProps={badge}
+                    badge={badge}
                     // @ts-ignore
                     onClick={() => {
                       onSelected?.(idx1 * count + idx2);
