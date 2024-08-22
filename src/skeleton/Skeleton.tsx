@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import isNumber from 'lodash/isNumber';
 import isArray from 'lodash/isArray';
@@ -25,7 +25,7 @@ const ThemeMap: Record<TdSkeletonProps['theme'], SkeletonRowCol> = {
   paragraph: [1, 1, 1, { width: '55%' }],
 };
 
-const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>((props) => {
+const Skeleton: React.FC<SkeletonProps> = (props) => {
   const skeletonClass = usePrefixClass('skeleton');
   const { className, style, children, animation, delay, loading, rowCol, theme } = useDefaultProps<SkeletonProps>(
     props,
@@ -132,7 +132,7 @@ const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>((props) => {
       {childrenContent}
     </div>
   );
-});
+};
 
 Skeleton.displayName = 'Skeleton';
 

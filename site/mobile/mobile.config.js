@@ -3,7 +3,7 @@ export default {
     {
       title: 'Button 按钮',
       name: 'button',
-      component: () => import('tdesign-mobile-react/button/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/button/_example/index.tsx'),
     },
     {
       title: 'Divider 分割符',
@@ -28,12 +28,12 @@ export default {
     {
       title: 'Grid 宫格',
       name: 'grid',
-      component: () => import('tdesign-mobile-react/grid/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/grid/_example/index.tsx'),
     },
     {
       title: 'Image 图片',
       name: 'image',
-      component: () => import('tdesign-mobile-react/image/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/image/_example/index.tsx'),
     },
     {
       title: 'Overlay 遮罩层',
@@ -43,7 +43,7 @@ export default {
     {
       title: 'Popup 弹出层',
       name: 'popup',
-      component: () => import('tdesign-mobile-react/popup/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/popup/_example/index.tsx'),
     },
     {
       title: 'Progress 进度条',
@@ -68,7 +68,7 @@ export default {
     {
       title: 'Search 搜索框',
       name: 'search',
-      component: () => import('tdesign-mobile-react/search/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/search/_example/index.tsx'),
     },
     {
       title: 'Badge 徽标',
@@ -221,6 +221,11 @@ export default {
       title: 'Result 结果',
       name: 'result',
       component: () => import('tdesign-mobile-react/result/_example/index.tsx'),
+    },
+    {
+      title: 'Link 链接',
+      name: 'link',
+      component: () => import('tdesign-mobile-react/link/_example/index.tsx'),
     },
     {
       title: 'Table 表格',
