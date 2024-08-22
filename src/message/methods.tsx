@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MessageThemeList, MessageActionOptionsType } from './type';
-import { defaultProps } from './constant';
+import { messageDefaultProps } from './defaultProps';
 import Message from './Message';
 
 const isBrowser = typeof window !== 'undefined';
@@ -19,7 +19,8 @@ function destroy(context: Element, root: Element) {
 
 const createMessage = (props, theme?: MessageThemeList) => {
   const config = {
-    ...defaultProps,
+    ...messageDefaultProps,
+    visible: true,
     context: isBrowser ? document.body : null,
     ...props,
   };

@@ -1,21 +1,27 @@
 import React, { useEffect, useState, useRef } from 'react';
 import classNames from 'classnames';
-import isBoolean from 'lodash/isBoolean';
-import { useBoolean, useTimeout } from 'ahooks';
+import { useTimeout } from 'ahooks';
 import isObject from 'lodash/isObject';
 import { CSSTransition } from 'react-transition-group';
 import { Icon } from 'tdesign-icons-react';
-import useConfig from '../_util/useConfig';
+
 import type { TdMessageProps, MessageMarquee } from './type';
 import useMessageCssTransition from './hooks/useMessageCssTransition';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
+
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
-import { defaultProps } from './constant';
+import parseTNode from '../_util/parseTNode';
+import { messageDefaultProps } from './defaultProps';
+
+import Link from '../link';
 
 export interface MessageProps extends TdMessageProps, NativeProps {
   container?: Element;
 }
 
-const Message: React.FC<MessageProps> = (props) => {
+const Message: React.FC<MessageProps> = (originProps) => {
+  const props = useDefaultProps(originProps, messageDefaultProps);
   const {
     children,
     align,
@@ -24,34 +30,22 @@ const Message: React.FC<MessageProps> = (props) => {
     theme,
     marquee,
     visible,
+    defaultVisible,
+    link,
     zIndex,
-    onOpen,
-    onOpened,
-    onClose,
-    onClosed,
-    onVisibleChange,
     content,
     icon,
     container,
+    onDurationEnd,
+    onCloseBtnClick,
   } = props;
 
-  const { classPrefix } = useConfig();
-
-  const name = `${classPrefix}-message`;
+  const name = usePrefixClass('message');
 
   /**
    * 获取visibleChange函数引用
    */
-  const handler = useRef<Function>(null);
-
   const scrollingHandler = useRef<Function>(null);
-
-  handler.current = onVisibleChange;
-
-  /**
-   * 判断是否受控，如果是受控，则直接使用使用props中的visible，否则使用messageVisible
-   */
-  const [isControl] = useState<boolean>(duration === 0 && isBoolean(visible) && closeBtn !== true);
 
   /**
    * duration为0时，取消倒计时
@@ -81,8 +75,18 @@ const Message: React.FC<MessageProps> = (props) => {
     },
   });
 
+  const [messageVisible, setVisible] = useState<boolean>(visible ?? defaultVisible);
+
+  useEffect(() => {
+    if (typeof visible !== 'undefined' && messageVisible !== visible) {
+      setVisible(visible);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
+
   const changeNumToStr = (arr: TdMessageProps['offset'] = []) =>
     arr.map((item) => (typeof item === 'number' ? `${item}px` : item));
+
   const getMessageStylesOffset = (offset: TdMessageProps['offset']) => {
     const arr = changeNumToStr(offset);
     return offset
@@ -94,8 +98,6 @@ const Message: React.FC<MessageProps> = (props) => {
       : {};
   };
 
-  const [messageVisible, { setTrue, setFalse }] = useBoolean(props.defaultVisible);
-
   const contentRef = useRef<HTMLDivElement>(null);
   const textWrapRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
@@ -103,27 +105,13 @@ const Message: React.FC<MessageProps> = (props) => {
   const cssTransitionState = useMessageCssTransition({
     contentRef,
     classPrefix: 'message',
-    onEnter: onOpen,
-    onEntered: onOpened,
-    onExit: onClose,
-    onExited: onClosed,
     container: container as HTMLElement,
   });
 
-  useEffect(() => {
-    if (!isControl) {
-      setTrue();
-    }
-  }, [isControl, setTrue]);
-
   useTimeout(() => {
-    setFalse();
-    props.onDurationEnd?.();
+    setVisible(false);
+    onDurationEnd?.();
   }, messageDuration);
-
-  useEffect(() => {
-    handler.current(isControl ? visible : messageVisible);
-  }, [isControl, visible, messageVisible]);
 
   const handleScrolling = () => {
     if (!props?.marquee || (isObject(props?.marquee) && (props?.marquee as MessageMarquee))?.loop === 0) {
@@ -229,15 +217,28 @@ const Message: React.FC<MessageProps> = (props) => {
     setState(newState);
   };
 
-  const leftIcon = isBoolean(icon) ? (
-    <>{icon && <Icon name={`${theme === 'success' ? 'check' : 'error'}-circle-filled`} size={22} />}</>
-  ) : (
-    icon
+  const onLinkClick = (e) => {
+    props.onLinkClick?.(e);
+  };
+  const leftIcon = parseTNode(
+    icon,
+    null,
+    <Icon name={`${theme === 'success' ? 'check' : 'error'}-circle-filled`} size={22} />,
   );
 
+  const getLinkContent = () => {
+    if (typeof link === 'string') {
+      return <Link content={link} />;
+    }
+    if (isObject(link)) {
+      return <Link theme="primary" {...link} />;
+    }
+    return parseTNode(link);
+  };
+
   const clickCloseButton = (e) => {
-    setFalse();
-    props.onCloseBtnClick?.(e);
+    setVisible(false);
+    onCloseBtnClick?.(e);
   };
 
   const closeButton =
@@ -249,7 +250,7 @@ const Message: React.FC<MessageProps> = (props) => {
 
   return withNativeProps(
     props,
-    <CSSTransition in={isControl ? visible : messageVisible} appear {...cssTransitionState.props} unmountOnExit>
+    <CSSTransition in={messageVisible} appear {...cssTransitionState.props} unmountOnExit>
       <div
         className={classNames(`${name}`, `${name}--${theme}`, { [`${name}-align--${align}`]: !!align })}
         ref={contentRef}
@@ -266,13 +267,18 @@ const Message: React.FC<MessageProps> = (props) => {
             {content || children}
           </div>
         </div>
+        {link && (
+          <div className={`${name}__link`} onClick={onLinkClick}>
+            {getLinkContent()}
+          </div>
+        )}
         {closeButton}
       </div>
     </CSSTransition>,
   );
 };
 
-Message.defaultProps = defaultProps;
+Message.defaultProps = messageDefaultProps;
 Message.displayName = 'Message';
 
 export default Message;

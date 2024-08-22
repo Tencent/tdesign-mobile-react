@@ -5,6 +5,7 @@
  * */
 
 import { TNode } from '../common';
+import { MouseEvent } from 'react';
 
 export interface TdMessageProps {
   /**
@@ -17,15 +18,23 @@ export interface TdMessageProps {
    */
   closeBtn?: TNode;
   /**
+   * 用于自定义消息弹出内容
+   */
+  content?: TNode;
+  /**
    * 消息内置计时器，计时到达时会触发 duration-end 事件。单位：毫秒。值为 0 则表示没有计时器。
    * @default 3000
    */
   duration?: number;
   /**
-   * 消息组件风格
-   * @default info
+   * 用于自定义消息前面的图标，优先级大于 theme 设定的图标。值为 false 则不显示图标，值为 true 显示 theme 设定图标
+   * @default true
    */
-  theme?: MessageThemeList;
+  icon?: TNode;
+  /**
+   * 链接名称。值为字符串表示链接名称，值为 `Object` 类型，表示透传至 `Link`
+   */
+  link?: TNode;
   /**
    * 跑马灯效果。speed 指速度控制；loop 指循环播放次数，值为 -1 表示循环播放，值为 0 表示不循环播放；delay 表示延迟多久开始播放
    * @default false
@@ -35,6 +44,11 @@ export interface TdMessageProps {
    * 相对于 placement 的偏移量，示例：[-10, 20] 或 ['10rpx', '8rpx']
    */
   offset?: Array<string | number>;
+  /**
+   * 消息组件风格
+   * @default info
+   */
+  theme?: MessageThemeList;
   /**
    * 是否显示，隐藏时默认销毁组件
    * @default false
@@ -52,41 +66,16 @@ export interface TdMessageProps {
   /**
    * 当关闭按钮存在时，用户点击关闭按钮触发
    */
-  onCloseBtnClick?: (context: { e: MouseEvent }) => void;
+  onCloseBtnClick?: (context: { e: MouseEvent<SVGElement | HTMLElement> }) => void;
   /**
    * 计时结束后触发
    */
   onDurationEnd?: () => void;
   /**
-   * 关闭Message时触发
+   * 当`link`链接存在时，点击链接文本时触发
    */
-  onClose?: () => void;
-  /**
-   * 关闭Message时并且动画结束后触发
-   */
-  onClosed?: () => void;
-  /**
-   * 展示Message时触发
-   */
-  onOpen?: () => void;
-  /**
-   * 展示Message时并且动画结束后触发
-   */
-  onOpened?: () => void;
-  /**
-   * 可见性变化时触发
-   */
-  onVisibleChange?: (visible: boolean) => void;
-
-  content?: string | React.ReactNode | boolean;
-  /**
-   * 用于自定义消息前面的图标，优先级大于 theme 设定的图标。值为 false 则不显示图标，值为 true 显示 theme 设定图标
-   * @default true
-   */
-  icon?: boolean | React.ReactNode;
+  onLinkClick?: (context: { e: MouseEvent<HTMLDivElement> }) => void;
 }
-
-export type MessageThemeList = 'info' | 'success' | 'warning' | 'error';
 
 export type MessageAlignType = 'left' | 'center';
 
@@ -95,6 +84,8 @@ export interface MessageMarquee {
   loop?: number;
   delay?: number;
 }
+
+export type MessageThemeList = 'info' | 'success' | 'warning' | 'error';
 
 export interface MessageActionOptionsType extends TdMessageProps {
   context?: Element;

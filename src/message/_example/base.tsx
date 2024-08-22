@@ -11,7 +11,7 @@ export default function () {
       content: '这是一条纯文字的消息通知 5s消失',
     },
     {
-      duration: 50000000,
+      duration: 5000,
       content: '这是一条带图标的消息通知 5s消失',
       icon: true,
     },
@@ -20,21 +20,6 @@ export default function () {
       duration: 0,
       content: '这是一条带关闭的消息通知 常驻可关闭',
       icon: true,
-      onOpen: () => {
-        console.log('onOpen');
-      },
-      onOpened: () => {
-        console.log('onOpened');
-      },
-      onClose: () => {
-        console.log('onClose');
-      },
-      onClosed: () => {
-        console.log('onClosed');
-      },
-      onVisibleChange: (e) => {
-        console.log('onVisibleChange', e);
-      },
     },
     {
       duration: 5000,
@@ -46,7 +31,6 @@ export default function () {
   const content = ['纯文字的通知', '带图标的通知', '带关闭的通知', '可滚动的通知'];
 
   const onClick = (index) => {
-    // @ts-ignore
     Message.info({
       ...messages[index],
     });
@@ -79,21 +63,6 @@ export default function () {
         duration={0}
         content="这是一条带操作的消息通知"
         icon={<Icon name="notification" size={22} />}
-        onOpen={() => {
-          console.log('control onOpen');
-        }}
-        onOpened={() => {
-          console.log('control onOpened');
-        }}
-        onClose={() => {
-          console.log('control onClose');
-        }}
-        onClosed={() => {
-          console.log('control onClosed');
-        }}
-        onVisibleChange={(e) => {
-          console.log('control onVisibleChange', e);
-        }}
       />
     </div>
   );
