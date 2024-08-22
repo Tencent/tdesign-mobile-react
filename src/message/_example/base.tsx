@@ -9,6 +9,7 @@ export default function () {
     {
       duration: 5000,
       content: '这是一条纯文字的消息通知 5s消失',
+      icon: false,
     },
     {
       duration: 5000,
@@ -25,6 +26,7 @@ export default function () {
       duration: 5000,
       content: '这是一条普通的通知信息，这是一条普通的通知信息，这是一条普通的通知信息',
       marquee: true,
+      icon: false,
     },
   ];
 
