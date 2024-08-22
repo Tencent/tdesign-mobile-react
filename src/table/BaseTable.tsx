@@ -5,29 +5,48 @@ import cx from 'classnames';
 
 import useClassName from './hooks/useClassName';
 import useStyle, { formatCSSUnit } from './hooks/useStyle';
+import useDefaultProps from '../hooks/useDefaultProps';
 import defaultConfig from '../_common/js/global-config/mobile/locale/zh_CN';
 import Loading from '../loading';
+import { baseTableDefaultProps } from './defaultProps';
 
 import type { TdBaseTableProps, BaseTableCol, TableRowData, BaseTableCellParams } from './type';
 
 export type BaseTableProps = TdBaseTableProps;
 
 export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLTableElement>) => {
+  const {
+    data,
+    empty,
+    height,
+    loading,
+    loadingProps,
+    columns,
+    bordered,
+    maxHeight,
+    tableLayout,
+    showHeader,
+    cellEmptyContent,
+    onRowClick,
+    onCellClick,
+    onScroll,
+  } = useDefaultProps<BaseTableProps>(props, baseTableDefaultProps);
+
   const { tableLayoutClasses, tableHeaderClasses, tableBaseClass, tdAlignClasses, tdEllipsisClass, classPrefix } =
     useClassName();
 
   const { tableClasses, tableContentStyles, tableElementStyles } = useStyle(props);
 
-  const tableElmClasses = tableLayoutClasses[props.tableLayout || 'fixed'];
+  const tableElmClasses = tableLayoutClasses[tableLayout || 'fixed'];
 
   const theadClasses = cx(tableHeaderClasses.header, {
-    [tableHeaderClasses.fixed]: Boolean(props.maxHeight || props.height),
-    [tableBaseClass.bordered]: props.bordered,
+    [tableHeaderClasses.fixed]: Boolean(maxHeight || height),
+    [tableBaseClass.bordered]: bordered,
   });
 
   const ellipsisClasses = cx([`${classPrefix}-table__ellipsis`, `${classPrefix}-text-ellipsis`]);
 
-  const defaultColWidth = props.tableLayout === 'fixed' ? '80px' : undefined;
+  const defaultColWidth = tableLayout === 'fixed' ? '80px' : undefined;
 
   const tableContentRef = useRef();
 
@@ -38,7 +57,7 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
   const colStyle = (colItem: BaseTableCol<TableRowData>) => ({
     width: `${formatCSSUnit(colItem.width || defaultColWidth)}`,
     minWidth: `${
-      !formatCSSUnit(colItem.width || defaultColWidth) && !colItem.minWidth && props.tableLayout === 'fixed'
+      !formatCSSUnit(colItem.width || defaultColWidth) && !colItem.minWidth && tableLayout === 'fixed'
         ? '80px'
         : formatCSSUnit(colItem.minWidth)
     }`,
@@ -102,37 +121,37 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
   };
 
   const handleRowClick = (row: TableRowData, rowIndex: number, e: React.MouseEvent) => {
-    props.onRowClick?.({ row, index: rowIndex, e });
+    onRowClick?.({ row, index: rowIndex, e });
   };
 
   const handleCellClick = (row: TableRowData, col: any, rowIndex: number, colIndex: number, e: React.MouseEvent) => {
     if (col.stopPropagation) {
       e.stopPropagation();
     }
-    props.onCellClick?.({ row, col, rowIndex, colIndex, e });
+    onCellClick?.({ row, col, rowIndex, colIndex, e });
   };
 
   const renderTableBody = () => {
-    const renderContentEmpty = props.empty || defaultConfig?.table?.empty;
+    const renderContentEmpty = empty || defaultConfig?.table?.empty;
 
-    if (!props.data?.length && renderContentEmpty) {
+    if (!data?.length && renderContentEmpty) {
       return (
         <tr className={tableBaseClass.emptyRow}>
-          <td colSpan={props.columns?.length}>
+          <td colSpan={columns?.length}>
             <div className={tableBaseClass.empty}>{renderContentEmpty}</div>
           </td>
         </tr>
       );
     }
-    if (props.data?.length) {
-      return props.data?.map((trItem, trIdx) => (
+    if (data?.length) {
+      return data?.map((trItem, trIdx) => (
         <tr
           key={trIdx}
           onClick={(ev) => {
             handleRowClick(trItem, trIdx, ev);
           }}
         >
-          {props.columns?.map((tdItem, tdIdx) => (
+          {columns?.map((tdItem, tdIdx) => (
             <td
               key={tdIdx}
               className={tdClassName(tdItem)}
@@ -141,7 +160,7 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
               }}
             >
               <div className={tdItem.ellipsis && ellipsisClasses}>
-                {renderCell({ row: trItem, col: tdItem, rowIndex: trIdx, colIndex: tdIdx }, props.cellEmptyContent)}
+                {renderCell({ row: trItem, col: tdItem, rowIndex: trIdx, colIndex: tdIdx }, cellEmptyContent)}
               </div>
             </td>
           ))}
@@ -157,15 +176,15 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
         className={tableBaseClass.content}
         style={tableContentStyles}
         onScroll={(e) => {
-          props.onScroll?.({ e });
+          onScroll?.({ e });
         }}
       >
         <table ref={tableElmRef} className={tableElmClasses} style={tableElementStyles}>
-          <colgroup>{props.columns?.map((col) => <col key={col.colKey} style={colStyle(col)} />)}</colgroup>
-          {props.showHeader && (
+          <colgroup>{columns?.map((col) => <col key={col.colKey} style={colStyle(col)} />)}</colgroup>
+          {showHeader && (
             <thead ref={theadRef} className={theadClasses}>
               <tr>
-                {props.columns?.map((thItem, idx) => (
+                {columns?.map((thItem, idx) => (
                   <th key={idx} className={thClassName(thItem)}>
                     <div className={(thItem.ellipsisTitle || thItem.ellipsis) && ellipsisClasses}>
                       {renderTitle(thItem, idx)}
@@ -177,9 +196,9 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
           )}
           <tbody className={tableBaseClass.body}>{renderTableBody()}</tbody>
         </table>
-        {props.loading && (
+        {loading && (
           <div className={`${classPrefix}-table__loading--full`}>
-            <Loading {...props.loadingProps} />
+            <Loading {...loadingProps} />
           </div>
         )}
       </div>
