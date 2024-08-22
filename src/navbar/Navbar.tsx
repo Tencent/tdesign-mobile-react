@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import type { CSSProperties } from 'react';
 import { ChevronLeftIcon } from 'tdesign-icons-react';
 import ClassNames from 'classnames';
-import useConfig from '../_util/useConfig';
+import { usePrefixClass } from 'tdesign-mobile-react/hooks/useClass';
 import { StyledProps } from '../common';
 import { TdNavbarProps } from './type';
 import { navbarDefaultProps } from './defaultProps';
@@ -27,8 +27,7 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
     onLeftClick,
     onRightClick,
   } = props;
-  const { classPrefix } = useConfig();
-  const prefix = useMemo(() => `${classPrefix}-navbar`, [classPrefix]);
+  const prefix = usePrefixClass('navbar');
   const animationSuffix = useMemo(() => (animation ? '-animation' : ''), [animation]);
 
   const cls = useCallback((name?: string) => (name ? `${prefix}__${name}` : prefix), [prefix]);
