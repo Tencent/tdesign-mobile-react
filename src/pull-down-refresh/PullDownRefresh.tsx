@@ -1,6 +1,5 @@
 import React, { useRef, useState, ReactNode, useEffect } from 'react';
 import classNames from 'classnames';
-import identity from 'lodash/identity';
 import uniqueId from 'lodash/uniqueId';
 import { useDrag } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
@@ -12,8 +11,8 @@ import useConfig from '../_util/useConfig';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import getScrollParent from '../_util/getScrollParent';
 import useDefault from '../_util/useDefault';
-import delay from '../_util/delay';
 import { TdPullDownRefreshProps } from './type';
+import { pullDownRefreshDefaultProps } from './defaultProps';
 
 const convertUnit = (val: string | number | undefined) => {
   if (val == null) return 0;
@@ -50,20 +49,10 @@ function getStatusText(status: PullStatusEnum, loadingTexts: string[]) {
 
 export interface PullDownRefreshProps extends TdPullDownRefreshProps, NativeProps {
   disabled?: boolean;
-  threshold?: number;
-  onRefresh?: () => Promise<unknown>;
+  onRefresh?: () => void;
 }
 
-const defaultProps = {
-  loadingBarHeight: 50,
-  loadingTexts: ['下拉刷新', '松手刷新', '正在刷新', '刷新完成'],
-  maxBarHeight: 80,
-  threshold: 50,
-  refreshTimeout: 3000,
-  disabled: false,
-  onRefresh: () => delay(2000),
-  onTimeout: identity,
-};
+const threshold = 50;
 
 const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
   const {
@@ -73,7 +62,6 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
     loadingProps,
     loadingBarHeight,
     maxBarHeight,
-    threshold,
     refreshTimeout,
     onRefresh,
     onTimeout,
@@ -141,7 +129,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
       const timeoutId = uniqueId(`${name}-timeout_`);
       let timeoutTid: any;
       const res = await Promise.race([
-        onRefresh(),
+        onRefresh?.(),
         new Promise((resolve) => {
           timeoutTid = setTimeout(() => {
             resolve(timeoutId);
@@ -167,7 +155,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
     if (!isBoolean(value)) {
       doRefresh();
     }
-    onRefresh();
+    onRefresh?.();
   };
 
   useDrag(
@@ -193,7 +181,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
     {
       target: rootRef,
       from: [0, y.get()],
-      bounds: { top: 0, bottom: maxBarHeight },
+      bounds: { top: 0, bottom: reconvertUnit(maxBarHeight) },
       pointer: { touch: true },
       axis: 'y',
       enabled: !disabled && status !== PullStatusEnum.loading,
@@ -220,7 +208,6 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
             style={{
               height: loadingHeight,
               maxHeight: loadingHeight,
-              color: 'red',
             }}
           >
             {statusNode}
@@ -232,7 +219,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
   );
 };
 
-PullDownRefresh.defaultProps = defaultProps;
+PullDownRefresh.defaultProps = pullDownRefreshDefaultProps;
 PullDownRefresh.displayName = 'PullDownRefresh';
 
 export default PullDownRefresh;
