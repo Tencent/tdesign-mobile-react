@@ -20,7 +20,7 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
   const {
     defaultVisible = false,
     items = [],
-    visible,
+    visible: visibleFromProps,
     theme = 'list',
     align = 'center',
     showOverlay = true,
@@ -39,7 +39,7 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
 
   const cls = `${classPrefix}-action-sheet`;
 
-  const [finalVisible, onChange] = useDefault(visible, defaultVisible, onVisibleChange);
+  const [visible, onChange] = useDefault(visibleFromProps, defaultVisible, onVisibleChange);
 
   const handleCancel = (ev) => {
     onCancel?.(ev);
@@ -57,7 +57,7 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
 
   return (
     <Popup
-      visible={finalVisible}
+      visible={visible}
       className={cls}
       placement="bottom"
       onVisibleChange={(value) => {
@@ -80,7 +80,7 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
           </p>
         ) : null}
         {theme === 'list' ? <ActionSheetList items={items} align={align} onSelected={handleSelected} /> : null}
-        {theme === 'grid' && finalVisible ? (
+        {theme === 'grid' && visible ? (
           <ActionSheetGrid
             items={items}
             align={align}
