@@ -9,7 +9,7 @@ import useDefaultProps from '../hooks/useDefaultProps';
 
 export interface ButtonProps
   extends TdButtonProps,
-    Omit<React.ButtonHTMLAttributes<HTMLElement>, 'content' | 'children'> {}
+    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'content' | 'children'> {}
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((originProps, ref) => {
   const props = useDefaultProps(originProps, buttonDefaultProps);
@@ -60,7 +60,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((originProps, ref) => 
       onClick={!loading && !disabled ? onClick : undefined}
       disabled={disabled || loading}
     >
-      {loading ? <TLoading inherit-color {...loadingProps} /> : parseTNode(icon)}
+      {loading ? <TLoading inheritColor {...loadingProps} /> : parseTNode(icon)}
       {childNode && <span className={`${classPrefix}-button__content`}> {parseTNode(childNode)}</span>}
       {parseTNode(suffix)}
     </button>
