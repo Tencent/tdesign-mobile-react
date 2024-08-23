@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Drawer, Button } from 'tdesign-mobile-react';
+import { Icon } from 'tdesign-icons-react';
 import './style/index.less';
 
-export default function Base() {
+export default function IconPage() {
   const [openBase, setOpenBase] = useState(false);
 
   const onClose = (e) => {
@@ -10,24 +11,31 @@ export default function Base() {
     setOpenBase(false);
   };
 
+  const iconName = 'app';
   const baseSidebar = [
     {
       title: '菜单一',
+      icon: <Icon name={iconName} />,
     },
     {
       title: '菜单二',
+      icon: <Icon name={iconName} />,
     },
     {
       title: '菜单三',
+      icon: <Icon name={iconName} />,
     },
     {
       title: '菜单四',
+      icon: <Icon name={iconName} />,
     },
     {
       title: '菜单五',
+      icon: <Icon name={iconName} />,
     },
     {
       title: '菜单六',
+      icon: <Icon name={iconName} />,
     },
   ];
 
@@ -36,14 +44,14 @@ export default function Base() {
       <Button
         size="large"
         variant="outline"
-        // shape="round"
+        block
         onClick={() => {
           setOpenBase(!openBase);
         }}
       >
-        基础抽屉
+        带图标抽屉
       </Button>
-      <Drawer visible={openBase} items={baseSidebar} placement="left" closeOnOverlayClick onClose={onClose} />
+      <Drawer visible={openBase} items={baseSidebar} closeOnOverlayClick onClose={onClose} />
     </div>
   );
 }
