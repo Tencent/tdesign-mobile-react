@@ -1,90 +1,106 @@
-import React, { forwardRef, useContext, useMemo } from 'react';
-import cls from 'classnames';
-import { ConfigContext } from '../config-provider';
+import React, { forwardRef, useMemo } from 'react';
+import classNames from 'classnames';
+import isNumber from 'lodash/isNumber';
+import isString from 'lodash/isString';
 import type { StyledProps } from '../common';
 import type { TdBadgeProps } from './type';
+import { badgeDefaultProps } from './defaultProps';
+import parseTNode from '../_util/parseTNode';
+import useDefaultProps from '../hooks/useDefaultProps';
+import useConfig from '../hooks/useConfig';
+import { usePrefixClass } from '../hooks/useClass';
 
 export interface BadgeProps extends TdBadgeProps, StyledProps {}
 
-function resolveOffset(ofs): number | string | undefined {
-  if (typeof ofs === 'undefined') return ofs;
-  if (Number.isNaN(ofs)) return;
-  if (typeof ofs === 'number') return (ofs * -1) as number;
-  return (ofs as string).startsWith('-') ? ofs.replace(/^-/, '') : `-${ofs}`;
-}
+const hasUnit = (unit: string) =>
+  unit.indexOf('px') > 0 ||
+  unit.indexOf('rpx') > 0 ||
+  unit.indexOf('em') > 0 ||
+  unit.indexOf('rem') > 0 ||
+  unit.indexOf('%') > 0 ||
+  unit.indexOf('vh') > 0 ||
+  unit.indexOf('vm') > 0;
 
-const Badge = forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
-  const {
-    children,
-    className,
-    style,
-    color = '',
-    content,
-    count = 0,
-    dot = false,
-    maxCount = 99,
-    offset,
-    shape = 'circle',
-    showZero = false,
-    size = 'medium',
-    ...resetProps
-  } = props;
-  const { classPrefix } = useContext(ConfigContext);
-  const name = useMemo(() => `${classPrefix}-badge`, [classPrefix]);
-  const hasChildren = useMemo(() => !!(content || children), [content, children]);
-  // const isRibbon = useMemo(() => !dot && shape === 'ribbon', [shape, dot]);
+const Badge = forwardRef<HTMLDivElement, BadgeProps>((originProps, ref) => {
+  const props = useDefaultProps(originProps, badgeDefaultProps);
+  const { children, className, style, color, content, count, dot, maxCount, offset, shape, showZero, size } = props;
+
+  const { classPrefix } = useConfig();
+  const badgeClass = usePrefixClass('badge');
 
   // 徽标自定义样式
-  const computedStyle = useMemo(() => {
-    const mergedStyle = { ...style };
+  const badgeInnerStyles = useMemo(() => {
+    const mergedStyle: React.CSSProperties = {};
     if (color) mergedStyle.backgroundColor = color;
     if (offset && Array.isArray(offset)) {
-      const [right, top] = offset;
-      mergedStyle.right = resolveOffset(right);
-      mergedStyle.top = resolveOffset(top);
+      const [right = 0, top = 0]: Array<string | number> = offset;
+      mergedStyle.right = hasUnit(right.toString()) ? right : `${right}px`;
+      mergedStyle.top = hasUnit(top.toString()) ? top : `${top}px`;
     }
     return mergedStyle;
-  }, [style, color, offset]);
+  }, [color, offset]);
 
   // 徽标外层样式类
-  const badgeClasses = cls({
-    [`${name}`]: true,
-    // [`${name}__ribbon--outer`]: isRibbon,
+  const badgeClasses = classNames(className, {
+    [`${badgeClass}`]: true,
+    [`${badgeClass}__ribbon-outer`]: shape === 'ribbon',
   });
 
   // 徽标内层样式类
-  const badgeInnerClasses = cls(
-    {
-      [`${name}__inner`]: true,
-      [`${name}--dot`]: dot,
-      [`${name}--${shape}`]: !dot && shape,
-      [`${classPrefix}-badge--has-children`]: hasChildren,
-    },
-    size === 'small' ? `${name}--${size}` : `${name}--medium`,
-    className,
-  );
+  const badgeInnerClasses = classNames({
+    [`${badgeClass}--basic`]: true,
+    [`${badgeClass}--dot`]: dot,
+    [`${badgeClass}--${size}`]: true,
+    [`${badgeClass}--${shape}`]: true,
+    [`${badgeClass}--count`]: !dot && count,
+    [`${classPrefix}-has-count`]: true,
+  });
 
-  const renderBadgeContent = useMemo(() => {
+  // 是否展示角标
+  const isShowBadge = useMemo(() => {
+    if (dot) {
+      return true;
+    }
+    if (!showZero && Number(count) === 0) {
+      return false;
+    }
+    if (count == null) return false;
+    return true;
+  }, [dot, count, showZero]);
+
+  const readerCount = useMemo(() => {
     if (dot) return null;
-    if (typeof count === 'number') {
-      if (count === 0) {
+    if (isString(count) || isNumber(count)) {
+      if (Number(count) === 0) {
         return showZero ? count : null;
       }
-      return count >= +maxCount ? maxCount : count;
+      return Number(count) > Number(maxCount) ? `${maxCount}+` : count;
     }
-    return count;
+    return parseTNode(count);
   }, [dot, count, maxCount, showZero]);
 
-  const renderBadge = (
-    <div className={badgeInnerClasses} style={computedStyle}>
-      {renderBadgeContent}
-    </div>
-  );
+  const childNode = content || children;
+
+  const readerContent = () =>
+    childNode && (
+      <div className={`${badgeClass}__content`}>
+        <span className={`${badgeClass}__content-text`}>{parseTNode(childNode)}</span>
+      </div>
+    );
+
+  const readerBadge = () => {
+    if (!isShowBadge) return null;
+    return (
+      <div className={badgeInnerClasses} style={badgeInnerStyles}>
+        {readerCount}
+      </div>
+    );
+  };
 
   return (
-    <div ref={ref} className={badgeClasses} {...resetProps}>
-      {renderBadge}
-      {content || children}
+    <div ref={ref} className={badgeClasses} style={style}>
+      {readerContent()}
+      {readerBadge()}
     </div>
   );
 });

@@ -43,7 +43,7 @@ export interface TdBadgeProps {
    * 形状
    * @default circle
    */
-  shape?: 'circle' | 'round';
+  shape?: 'circle' | 'square' | 'bubble' | 'ribbon';
   /**
    * 当数值为 0 时，是否展示徽标
    * @default false
@@ -53,5 +53,5 @@ export interface TdBadgeProps {
    * 尺寸
    * @default medium
    */
-  size?: 'small' | 'medium';
+  size?: 'medium' | 'large';
 }

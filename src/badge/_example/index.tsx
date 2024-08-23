@@ -1,23 +1,25 @@
 import React from 'react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
-import BaseDemo from './base';
-import ButtonDemo from './button';
-import CellDemo from './cell';
+
+import BaseBadge from './base';
+import ThemeBadge from './theme';
+import SizeBadge from './size';
+
 import './style/index.less';
 
 export default function BadgeDemo() {
   return (
-    <div className="badge-demo">
+    <div className="tdesign-mobile-demo">
       <TDemoHeader title="Badge 徽标" summary="用于告知用户，该区域的状态变化或者待处理任务的数量。" />
-      <TDemoBlock title="01 类型" summary="徽标主要分红点、数字、文字和角标提醒">
-        <BaseDemo />
+      <TDemoBlock title="01 组件类型">
+        <BaseBadge />
       </TDemoBlock>
-      <TDemoBlock>
-        <ButtonDemo />
+      <TDemoBlock title="02 组件样式">
+        <ThemeBadge />
       </TDemoBlock>
-      <TDemoBlock>
-        <CellDemo />
+      <TDemoBlock title="03 组件尺寸">
+        <SizeBadge />
       </TDemoBlock>
     </div>
   );
