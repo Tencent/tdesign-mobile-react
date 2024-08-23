@@ -4,14 +4,16 @@ import classNames from 'classnames';
 import { TdColProps } from './type';
 import { colDefaultProps } from './defaultProps';
 
-import useConfig from '../_util/useConfig';
-import { NativeProps } from '../_util/withNativeProps';
+import { StyledProps } from '../common';
+
 import { convertUnit } from '../_util/convertUnit';
 import parseTNode from '../_util/parseTNode';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 
 import { RowContext, RowProps } from './Row';
 
-export interface ColProps extends TdColProps, NativeProps {
+export interface ColProps extends TdColProps, StyledProps {
   children?: React.ReactNode;
 }
 
@@ -28,14 +30,15 @@ const calcColPadding = (gutter: RowProps['gutter']) => {
 };
 
 const Col = forwardRef<HTMLDivElement, ColProps>((props, ref) => {
-  const { offset, span, className, children, style: propStyle } = props;
-  const { classPrefix } = useConfig();
+  const { offset, span, className, children, style: propStyle } = useDefaultProps<ColProps>(props, colDefaultProps);
+
+  const colClass = usePrefixClass('col');
 
   const { gutter } = useContext(RowContext);
 
-  const colClassNames = classNames(`${classPrefix}-col`, className, {
-    [`${classPrefix}-col--${span}`]: span !== undefined,
-    [`${classPrefix}-col--offset-${offset}`]: parseInt(offset as string, 10) >= 0,
+  const colClassNames = classNames(colClass, className, {
+    [`${colClass}--${span}`]: span !== undefined,
+    [`${colClass}--offset-${offset}`]: parseInt(offset as string, 10) >= 0,
   });
 
   const colStyle = {
@@ -51,6 +54,5 @@ const Col = forwardRef<HTMLDivElement, ColProps>((props, ref) => {
 });
 
 Col.displayName = 'Col';
-Col.defaultProps = colDefaultProps;
 
 export default Col;
