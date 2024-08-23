@@ -56,6 +56,8 @@ const threshold = 50;
 
 const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
   const {
+    className,
+    style,
     children,
     disabled,
     loadingTexts,
@@ -197,7 +199,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
 
   return withNativeProps(
     props,
-    <div className={name} ref={rootRef}>
+    <div className={classNames(name, className)} style={style} ref={rootRef}>
       <animated.div
         className={classNames(`${name}__track`, { [`${name}__track--loosing`]: status !== PullStatusEnum.pulling })}
         style={{ y }}
