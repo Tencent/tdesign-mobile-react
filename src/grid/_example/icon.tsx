@@ -6,10 +6,10 @@ import './style/index.less';
 
 export default function () {
   const iconNode = (iconName) => (
-      <div className="icon-wrapper">
-        <Icon name={iconName} size={24} />
-      </div>
-    );
+    <div className="icon-wrapper">
+      <Icon name={iconName} size={24} />
+    </div>
+  );
   return (
     <>
       <Grid column={4} className={'grid-demo'}>

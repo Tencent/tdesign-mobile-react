@@ -1,35 +1,36 @@
 import React, { forwardRef } from 'react';
 import classnames from 'classnames';
-import { LoadingIcon } from 'tdesign-icons-react';
+import TLoading from '../loading';
 import useConfig from '../_util/useConfig';
 import parseTNode from '../_util/parseTNode';
 import { TdButtonProps } from './type';
-import noop from '../_util/noop';
 import { buttonDefaultProps } from './defaultProps';
+import useDefaultProps from '../hooks/useDefaultProps';
 
 export interface ButtonProps
   extends TdButtonProps,
     Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'content' | 'children'> {}
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((originProps, ref) => {
+  const props = useDefaultProps(originProps, buttonDefaultProps);
   const {
-    className = '',
+    className,
     style,
     block,
     children,
-    content = '',
+    content,
     disabled,
     ghost,
-    icon = null,
-    suffix = null,
+    icon,
+    suffix,
     loading,
     shape,
     size,
     theme,
     type,
     variant,
-    onClick = noop,
-    loadingProps = {},
+    onClick,
+    loadingProps,
   } = props;
   const { classPrefix } = useConfig();
 
@@ -59,7 +60,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       onClick={!loading && !disabled ? onClick : undefined}
       disabled={disabled || loading}
     >
-      {loading ? <LoadingIcon {...loadingProps} /> : parseTNode(icon)}
+      {loading ? <TLoading inheritColor {...loadingProps} /> : parseTNode(icon)}
       {childNode && <span className={`${classPrefix}-button__content`}> {parseTNode(childNode)}</span>}
       {parseTNode(suffix)}
     </button>
@@ -67,6 +68,5 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 });
 
 Button.displayName = 'Button';
-Button.defaultProps = buttonDefaultProps;
 
 export default Button;
