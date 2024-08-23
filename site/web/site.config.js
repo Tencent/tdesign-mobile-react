@@ -119,6 +119,12 @@ export default {
           component: () => import('tdesign-mobile-react/navbar/navbar.md'),
         },
         {
+          title: 'SideBar 侧边栏',
+          name: 'side-bar',
+          path: '/mobile-react/components/side-bar',
+          component: () => import('tdesign-mobile-react/side-bar/side-bar.md'),
+        },
+        {
           title: 'Tabs 选项卡',
           name: 'tabs',
           path: '/mobile-react/components/tabs',

@@ -143,6 +143,31 @@ export default {
       component: () => import('tdesign-mobile-react/navbar/_example/index.jsx'),
     },
     {
+      title: 'SideBar 侧边栏',
+      name: 'side-bar',
+      component: () => import('tdesign-mobile-react/side-bar/_example/index.tsx'),
+    },
+    {
+      title: 'SideBar 侧边栏',
+      name: 'side-bar-base',
+      component: () => import('tdesign-mobile-react/side-bar/_example/base.tsx'),
+    },
+    {
+      title: 'SideBar 侧边栏',
+      name: 'side-bar-switch',
+      component: () => import('tdesign-mobile-react/side-bar/_example/switch.tsx'),
+    },
+    {
+      title: 'SideBar 侧边栏',
+      name: 'side-bar-with-icon',
+      component: () => import('tdesign-mobile-react/side-bar/_example/with-icon.tsx'),
+    },
+    {
+      title: 'SideBar 侧边栏',
+      name: 'side-bar-custom',
+      component: () => import('tdesign-mobile-react/side-bar/_example/custom.tsx'),
+    },
+    {
       title: 'SwipeCell 滑动单元格',
       name: 'swipe-cell',
       component: () => import('tdesign-mobile-react/swipe-cell/_example/index.jsx'),
