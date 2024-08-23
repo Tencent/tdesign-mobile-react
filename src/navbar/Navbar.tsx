@@ -7,10 +7,12 @@ import { StyledProps } from '../common';
 import { TdNavbarProps } from './type';
 import { navbarDefaultProps } from './defaultProps';
 import parseTNode from '../_util/parseTNode';
+import useDefaultProps from '../hooks/useDefaultProps';
 
 export interface NavbarProps extends TdNavbarProps, StyledProps {}
 
-export const Navbar: React.FC<NavbarProps> = (props) => {
+const Navbar: React.FC<NavbarProps> = (originProps) => {
+  const props = useDefaultProps(originProps, navbarDefaultProps);
   const {
     visible,
     title,
@@ -100,6 +102,6 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
   );
 };
 
-Navbar.defaultProps = navbarDefaultProps;
+Navbar.displayName = 'Navbar';
 
 export default Navbar;
