@@ -42,9 +42,22 @@ export interface SwipeActionItem {
   text: string;
   className?: string;
   style?: string;
-  sure?: string | TNode;
+  sure?: Sure;
   onClick?: () => void;
   [key: string]: any;
 }
 
 export type SwipeSource = 'left' | 'right';
+
+export interface SwipeCellInstanceFunctions {
+  /**
+   * 显示二次确认内容的函数。<br/>【关于参数】`sure` 表示二次确认的具体内容，同content
+   */
+  showSure?: (sure: Sure, onClick?: SwipeActionItem['onClick']) => void;
+  /**
+   * 关闭
+   */
+  close?: () => void;
+}
+
+export type Sure = string | TNode;

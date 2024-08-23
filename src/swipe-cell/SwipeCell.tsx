@@ -1,4 +1,13 @@
-import React, { ReactNode, forwardRef, useImperativeHandle, useRef, useLayoutEffect, useMemo, memo } from 'react';
+import React, {
+  ReactNode,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useLayoutEffect,
+  useMemo,
+  memo,
+  useState,
+} from 'react';
 import isArray from 'lodash/isArray';
 import isBoolean from 'lodash/isBoolean';
 import classNames from 'classnames';
@@ -9,7 +18,7 @@ import Button from '../button';
 import useConfig from '../_util/useConfig';
 import nearest from '../_util/nearest';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
-import { TdSwipeCellProps, SwipeActionItem } from './type';
+import { TdSwipeCellProps, SwipeActionItem, Sure } from './type';
 import { swipeCellDefaultProps } from './defaultProps';
 import useDefaultProps from '../hooks/useDefaultProps';
 
@@ -21,19 +30,21 @@ export interface SwipeCellRef {
   close: (immediate?: boolean) => void;
 }
 
-export interface SwipeCellProps extends TdSwipeCellProps, NativeProps {
-  closeOnClick?: boolean;
-  closeOnTouchOutside?: boolean;
-  threshold?: number | string;
-}
+export interface SwipeCellProps extends TdSwipeCellProps, NativeProps {}
+
+const threshold = '50%';
 
 const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) => {
   const props = useDefaultProps<SwipeCellProps>(originProps, swipeCellDefaultProps);
 
-  const { left, right, content, disabled, opened, closeOnClick, threshold } = props;
+  const { left, right, content, disabled, opened, className, style } = props;
   const rootRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
+  const [curSure, setSure] = useState<{
+    content: Sure;
+    width: number;
+  }>({ content: '', width: 0 });
 
   const getOpenedSide = (opened) => {
     if (isBoolean(opened)) {
@@ -71,10 +82,10 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
 
   const getSideOffsetX = (side?: SideType) => {
     if (side === 'left' && leftRef.current) {
-      return leftRef.current.offsetWidth;
+      return leftRef.current.clientWidth;
     }
     if (side === 'right' && rightRef.current) {
-      return -rightRef.current.offsetWidth;
+      return -rightRef.current.clientWidth;
     }
     return 0;
   };
@@ -90,11 +101,18 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   const close = (immediate = false) => {
     api.start({ x: 0, immediate });
     onChange();
+    if (curSure.content) {
+      setSure({
+        content: '',
+        width: 0,
+      });
+    }
   };
 
   const expand = (side: SideType = 'right', immediate = false) => {
+    const x = getSideOffsetX(side);
     api.start({
-      x: getSideOffsetX(side),
+      x,
       immediate,
     });
     onChange(side);
@@ -161,8 +179,11 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     const side = getOpenedSide(opened);
 
     if (['left', 'right'].includes(side)) {
-      // 初始化expanded，等待dom加载完，获取left/right宽度后无动画设置展开状态
-      expand(side as SideType, !!ctx.initialExpanded);
+      // 初始化 expanded，等待 dom 加载完，获取 left/right 宽度后无动画设置展开状态
+      // 防止 left/right 为列表时，获取真实宽度有误
+      setTimeout(() => {
+        expand(side as SideType, !!ctx.initialExpanded);
+      }, 100);
     } else {
       close();
     }
@@ -182,13 +203,22 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   );
 
   const onActionClick = (action: SwipeActionItem, side: SideType) => {
-    if (closeOnClick) close();
+    if (action.sure) {
+      setSure({
+        content: action.sure,
+        width: getSideOffsetX(side),
+      });
+      return;
+    }
     if (action.onClick) action.onClick();
     if (props.onClick) props.onClick(action, side);
   };
 
   const renderActions = (actions: SwipeActionItem[] | ReactNode, side: SideType) => {
     if (isArray(actions)) {
+      if (curSure.content) {
+        return <div style={{ width: Math.abs(curSure.width) }}>{curSure.content}</div>;
+      }
       return actions.map((action, index) => {
         const btnClass = classNames([`${name}__content`, action.className || '']);
         const style = { height: '100%', ...action.style };
@@ -215,8 +245,9 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     props,
     <div
       {...bind()}
-      className={name}
+      className={classNames(name, className)}
       ref={rootRef}
+      style={style}
       onClickCapture={(e) => {
         if (ctx.dragging) {
           e.stopPropagation();
