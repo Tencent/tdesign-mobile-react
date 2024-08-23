@@ -1,6 +1,7 @@
 import React, { ReactNode, forwardRef, useImperativeHandle, useRef, useLayoutEffect, useMemo, memo } from 'react';
 import isArray from 'lodash/isArray';
-import identity from 'lodash/identity';
+import isBoolean from 'lodash/isBoolean';
+import classNames from 'classnames';
 import { useClickAway } from 'ahooks';
 import { useDrag } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
@@ -9,6 +10,8 @@ import useConfig from '../_util/useConfig';
 import nearest from '../_util/nearest';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import { TdSwipeCellProps, SwipeActionItem } from './type';
+import { swipeCellDefaultProps } from './defaultProps';
+import useDefaultProps from '../hooks/useDefaultProps';
 
 import './style';
 
@@ -24,31 +27,44 @@ export interface SwipeCellProps extends TdSwipeCellProps, NativeProps {
   threshold?: number | string;
 }
 
-const defaultProps = {
-  disabled: false,
-  left: null,
-  right: null,
-  closeOnClick: false,
-  closeOnTouchOutside: true,
-  threshold: '50%',
-  onChange: identity,
-  onClick: identity,
-};
+const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) => {
+  const props = useDefaultProps<SwipeCellProps>(originProps, swipeCellDefaultProps);
 
-const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((props, ref) => {
-  const { left, right, content, disabled, expanded, closeOnClick, closeOnTouchOutside, threshold } = props;
+  const { left, right, content, disabled, opened, closeOnClick, threshold } = props;
   const rootRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
+
+  const getOpenedSide = (opened) => {
+    if (isBoolean(opened)) {
+      if (rightRef.current) {
+        return 'right';
+      }
+      if (leftRef.current) {
+        return 'left';
+      }
+      return;
+    }
+    if (isArray(opened)) {
+      if (open[1] && rightRef.current) {
+        return 'right';
+      }
+      if (open[0] && leftRef.current) {
+        return 'left';
+      }
+    }
+  };
+
+  const isOpened = isBoolean(opened) ? opened : opened.includes(true);
   // 记录dragging和初始化expanded状态
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const ctx = useMemo(() => ({ dragging: false, lastExpanded: expanded, initialExpanded: expanded }), []);
+  const ctx = useMemo(() => ({ dragging: false, lastExpanded: '', initialExpanded: isOpened }), []);
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-swipe-cell`;
 
   const onChange = (side?: SideType) => {
     if (side !== ctx.lastExpanded) {
-      props.onChange(side);
+      props.onChange?.(side);
     }
     ctx.lastExpanded = side;
   };
@@ -142,20 +158,22 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((props, ref) => {
 
   useLayoutEffect(() => {
     if (!rootRef.current) return;
-    if (['left', 'right'].includes(expanded)) {
+    const side = getOpenedSide(opened);
+
+    if (['left', 'right'].includes(side)) {
       // 初始化expanded，等待dom加载完，获取left/right宽度后无动画设置展开状态
-      expand(expanded, !!ctx.initialExpanded);
+      expand(side as SideType, !!ctx.initialExpanded);
     } else {
       close();
     }
     delete ctx.initialExpanded;
     // 可以保证expand，close正常执行
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [expanded, rootRef.current]);
+  }, [opened, rootRef.current]);
 
   useClickAway(
     () => {
-      if (closeOnTouchOutside && x.get() !== 0) {
+      if (x.get() !== 0) {
         close();
       }
     },
@@ -166,18 +184,27 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((props, ref) => {
   const onActionClick = (action: SwipeActionItem, side: SideType) => {
     if (closeOnClick) close();
     if (action.onClick) action.onClick();
-    if (props.onClick) props.onClick({ action, source: side });
+    if (props.onClick) props.onClick(action, side);
   };
 
-  const rederActions = (actions: SwipeActionItem[] | ReactNode, side: SideType) => {
+  const renderActions = (actions: SwipeActionItem[] | ReactNode, side: SideType) => {
     if (isArray(actions)) {
       return actions.map((action, index) => {
-        const { text, ...buttonProps } = action;
+        const btnClass = classNames([`${name}__content`, action.className || '']);
+        const style = { height: '100%', ...action.style };
+        const { icon: btnIcon, text: btnText, ...buttonProps } = action;
+
         return (
-          // @ts-ignore, SwipeActionItem.style不应该是string，而是CSSProperties
-          <Button key={index} {...buttonProps} onClick={() => onActionClick(action, side)}>
-            {text}
-          </Button>
+          <div
+            key={index}
+            className={btnClass}
+            style={style}
+            {...buttonProps}
+            onClick={() => onActionClick(action, side)}
+          >
+            {btnIcon && <span className={`${name}__icon`}>{btnIcon}</span>}
+            {btnText && <span className={`${name}__text`}>{btnText}</span>}
+          </div>
         );
       });
     }
@@ -200,24 +227,13 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((props, ref) => {
       <animated.div className={`${name}__wrapper`} style={{ x }}>
         {left && (
           <div className={`${name}__left`} ref={leftRef}>
-            {rederActions(left, 'left')}
+            {renderActions(left, 'left')}
           </div>
         )}
-        <div
-          className={`${name}__content`}
-          onClickCapture={(e) => {
-            if (closeOnClick && x.goal !== 0) {
-              e.preventDefault();
-              e.stopPropagation();
-              close();
-            }
-          }}
-        >
-          {content}
-        </div>
+        {content}
         {right && (
           <div className={`${name}__right`} ref={rightRef}>
-            {rederActions(right, 'right')}
+            {renderActions(right, 'right')}
           </div>
         )}
       </animated.div>
@@ -225,7 +241,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((props, ref) => {
   );
 });
 
-SwipeCell.defaultProps = defaultProps;
+SwipeCell.defaultProps = swipeCellDefaultProps;
 SwipeCell.displayName = 'SwipeCell';
 
 export default memo(SwipeCell);
