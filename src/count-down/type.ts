@@ -13,6 +13,10 @@ export interface TdCountDownProps {
    */
   autoStart?: boolean;
   /**
+   * 最终倒计时的展示内容，同 content
+   */
+  children?: TNode;
+  /**
    * 最终倒计时的展示内容，值为'default'时使用默认的格式，否则使用自定义样式插槽
    * @default 'default'
    */
@@ -29,7 +33,7 @@ export interface TdCountDownProps {
   millisecond?: boolean;
   /**
    * 倒计时尺寸
-   * @default 'small'
+   * @default 'medium'
    */
   size?: 'small' | 'medium' | 'large';
   /**
@@ -44,6 +48,7 @@ export interface TdCountDownProps {
   theme?: 'default' | 'round' | 'square';
   /**
    * 倒计时时长，单位毫秒
+   * @default 0
    */
   time: number;
   /**
@@ -56,4 +61,10 @@ export interface TdCountDownProps {
   onFinish?: () => void;
 }
 
-export interface TimeData {  days: number; hours: number; minutes: number; seconds: number; milliseconds: number };
+export interface TimeData {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  milliseconds: number;
+}

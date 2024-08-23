@@ -4,7 +4,8 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TNode, TElement, SizeEnum } from '../common';
+import { LoadingProps } from '../loading';
+import { TNode, TElement } from '../common';
 import { MouseEvent } from 'react';
 
 export interface TdButtonProps {
@@ -22,8 +23,7 @@ export interface TdButtonProps {
    */
   content?: TNode;
   /**
-   * 是否禁用按钮
-   * @default false
+   * 禁用状态。优先级：Button.disabled > Form.disabled
    */
   disabled?: boolean;
   /**
@@ -41,6 +41,10 @@ export interface TdButtonProps {
    */
   loading?: boolean;
   /**
+   * 透传 Loading 组件全部属性
+   */
+  loadingProps?: LoadingProps;
+  /**
    * 按钮形状，有 4 种：长方形、正方形、圆角长方形、圆形
    * @default rectangle
    */
@@ -49,22 +53,26 @@ export interface TdButtonProps {
    * 组件尺寸
    * @default medium
    */
-  size?: SizeEnum;
+  size?: 'extra-small' | 'small' | 'medium' | 'large';
+  /**
+   * 右侧内容，可用于定义右侧图标
+   */
+  suffix?: TElement;
   /**
    * 组件风格，依次为品牌色、危险色
    * @default default
    */
-  theme?: 'default' | 'primary' | 'danger';
+  theme?: 'default' | 'primary' | 'danger' | 'light';
   /**
    * 按钮类型
    * @default button
    */
   type?: 'submit' | 'reset' | 'button';
   /**
-   * 按钮形式，基础、线框、文字
+   * 按钮形式，基础、线框、虚线、文字
    * @default base
    */
-  variant?: 'base' | 'outline' | 'text';
+  variant?: 'base' | 'outline' | 'dashed' | 'text';
   /**
    * 点击时触发
    */

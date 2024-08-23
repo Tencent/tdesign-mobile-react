@@ -6,7 +6,7 @@ import { TdButtonProps } from './type';
 
 export const buttonDefaultProps: TdButtonProps = {
   block: false,
-  disabled: false,
+  disabled: undefined,
   ghost: false,
   loading: false,
   shape: 'rectangle',

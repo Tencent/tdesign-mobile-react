@@ -5,8 +5,11 @@
 import { TdPopupProps } from './type';
 
 export const popupDefaultProps: TdPopupProps = {
+  attach: 'body',
+  closeOnOverlayClick: true,
+  destroyOnClose: false,
   overlayProps: {},
   placement: 'top',
+  preventScrollThrough: true,
   showOverlay: true,
-  visible: false,
 };

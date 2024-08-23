@@ -5,7 +5,7 @@
  * */
 
 import { TNode, TElement } from '../common';
-import { MouseEvent, KeyboardEvent, FocusEvent, FormEvent } from 'react';
+import { MouseEvent, FocusEvent, FormEvent, CompositionEvent, TouchEvent } from 'react';
 
 export interface TdInputProps {
   /**
@@ -14,10 +14,29 @@ export interface TdInputProps {
    */
   align?: 'left' | 'center' | 'right';
   /**
+   * 超出 `maxlength` 或 `maxcharacter` 之后是否允许继续输入
+   * @default false
+   */
+  allowInputOverMax?: boolean;
+  /**
+   * 是否开启自动填充功能，HTML5 原生属性，[点击查看详情](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete)
+   */
+  autocomplete?: string;
+  /**
    * 自动聚焦
    * @default false
    */
   autofocus?: boolean;
+  /**
+   * 是否开启无边框模式
+   * @default false
+   */
+  borderless?: boolean;
+  /**
+   * 清空图标触发方式，仅在输入框有值时有效
+   * @default always
+   */
+  clearTrigger?: 'always' | 'focus';
   /**
    * 是否可清空
    * @default false
@@ -25,26 +44,29 @@ export interface TdInputProps {
   clearable?: boolean;
   /**
    * 是否禁用输入框
-   * @default false
    */
   disabled?: boolean;
   /**
-   * 错误提示文本，值为空不显示
-   * @default ''
+   * 【开发中】指定输入框展示值的格式
    */
-  errorMessage?: string;
+  format?: InputFormatType;
   /**
    * 左侧文本
    */
   label?: TNode;
   /**
+   * 标题输入框布局方式
+   * @default horizontal
+   */
+  layout?: 'vertical' | 'horizontal';
+  /**
    * 用户最多可以输入的字符个数，一个中文汉字表示两个字符长度。`maxcharacter` 和 `maxlength` 二选一使用
    */
   maxcharacter?: number;
   /**
-   * 用户最多可以输入的文本长度。值小于等于 0 的时候，则不限制输入长度。`maxcharacter` 和 `maxlength` 二选一使用
+   * 用户最多可以输入的文本长度，一个中文等于一个计数长度。默认为空，不限制输入长度。`maxcharacter` 和 `maxlength` 二选一使用
    */
-  maxlength?: number;
+  maxlength?: string | number;
   /**
    * 名称
    * @default ''
@@ -59,10 +81,13 @@ export interface TdInputProps {
    */
   prefixIcon?: TElement;
   /**
-   * 输入框尺寸
-   * @default small
+   * 只读状态
    */
-  size?: 'medium' | 'small';
+  readonly?: boolean;
+  /**
+   * 输入框状态。默认情况会由组件内部根据实际情况呈现，如果文本过长引起的状态变化
+   */
+  status?: 'default' | 'success' | 'warning' | 'error';
   /**
    * 后置图标前的后置内容
    */
@@ -72,16 +97,14 @@ export interface TdInputProps {
    */
   suffixIcon?: TElement;
   /**
+   * 输入框下方提示文本，会根据不同的 `status` 呈现不同的样式
+   */
+  tips?: TNode;
+  /**
    * 输入框类型
    * @default text
    */
   type?: 'text' | 'number' | 'url' | 'tel' | 'password' | 'search' | 'submit' | 'hidden';
-  /**
-   * 是否垂直显示
-   * @default false
-   */
-  vertical?: boolean;
-
   /**
    * 输入框的值
    */
@@ -91,33 +114,33 @@ export interface TdInputProps {
    */
   defaultValue?: InputValue;
   /**
-   * 传入的class
-   * @default ""
-   */
-  className?: string;
-  /**
    * 失去焦点时触发
    */
   onBlur?: (value: InputValue, context: { e: FocusEvent<HTMLInputElement> }) => void;
   /**
-   * 输入框值发生变化时触发
+   * 输入框值发生变化时触发。`trigger=initial` 表示传入的数据不符合预期，组件自动处理后触发 change 告知父组件。如：初始值长度超过 `maxlength` 限制
    */
   onChange?: (
     value: InputValue,
-    context?: { e?: FormEvent<HTMLDivElement> | MouseEvent<HTMLElement | SVGElement> },
+    context?: {
+      e?: FormEvent<HTMLInputElement> | MouseEvent<any> | CompositionEvent<HTMLDivElement>;
+      trigger: 'input' | 'initial' | 'clear';
+    },
   ) => void;
   /**
    * 清空按钮点击时触发
    */
-  onClear?: (context: { e: MouseEvent<SVGElement> }) => void;
-  /**
-   * 回车键按下时触发
-   */
-  onEnter?: (value: InputValue, context: { e: KeyboardEvent<HTMLDivElement> }) => void;
+  onClear?: (context: { e: TouchEvent<HTMLDivElement> }) => void;
   /**
    * 获得焦点时触发
    */
   onFocus?: (value: InputValue, context: { e: FocusEvent<HTMLInputElement> }) => void;
+  /**
+   * 字数超出限制时触发
+   */
+  onValidate?: (context: { error?: 'exceed-maximum' | 'below-minimum' }) => void;
 }
+
+export type InputFormatType = (value: InputValue) => string;
 
 export type InputValue = string | number;
