@@ -23,6 +23,8 @@ export interface MessageProps extends TdMessageProps, NativeProps {
 const Message: React.FC<MessageProps> = (originProps) => {
   const props = useDefaultProps(originProps, messageDefaultProps);
   const {
+    className,
+    style,
     children,
     align,
     closeBtn,
@@ -252,9 +254,9 @@ const Message: React.FC<MessageProps> = (originProps) => {
     props,
     <CSSTransition in={messageVisible} appear {...cssTransitionState.props} unmountOnExit>
       <div
-        className={classNames(`${name}`, `${name}--${theme}`, { [`${name}-align--${align}`]: !!align })}
+        className={classNames(`${name}`, className, `${name}--${theme}`, { [`${name}-align--${align}`]: !!align })}
         ref={contentRef}
-        style={{ zIndex, ...getMessageStylesOffset(props.offset) }}
+        style={{ zIndex, ...getMessageStylesOffset(props.offset), ...style }}
       >
         <div className={`${name}__icon--left`}>{leftIcon}</div>
         <div ref={textWrapRef} className={classNames(`${name}__text-wrap`, { [`${name}__text-nowrap`]: marquee })}>
