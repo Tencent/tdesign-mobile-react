@@ -140,7 +140,7 @@ export default {
     {
       title: 'Navbar 导航栏',
       name: 'navbar',
-      component: () => import('tdesign-mobile-react/navbar/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/navbar/_example/index.tsx'),
     },
     {
       title: 'SwipeCell 滑动单元格',
