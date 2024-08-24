@@ -21,6 +21,7 @@ import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import { TdSwipeCellProps, SwipeActionItem, Sure } from './type';
 import { swipeCellDefaultProps } from './defaultProps';
 import useDefaultProps from '../hooks/useDefaultProps';
+import { Styles } from '../common';
 
 import './style';
 
@@ -44,7 +45,8 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   const [curSure, setSure] = useState<{
     content: Sure;
     width: number;
-  }>({ content: '', width: 0 });
+    transform: string;
+  }>({ content: '', width: 0, transform: 'none' });
 
   const getOpenedSide = (opened) => {
     if (isBoolean(opened)) {
@@ -102,10 +104,13 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     api.start({ x: 0, immediate });
     onChange();
     if (curSure.content) {
-      setSure({
-        content: '',
-        width: 0,
-      });
+      setTimeout(() => {
+        setSure({
+          content: '',
+          width: 0,
+          transform: 'none',
+        });
+      }, 300);
     }
   };
 
@@ -207,18 +212,23 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
       setSure({
         content: action.sure,
         width: getSideOffsetX(side),
+        transform: side === 'left' ? 'translateX(-100%)' : 'translateX(100%)',
+      });
+      setTimeout(() => {
+        setSure((current) => ({
+          ...current,
+          transform: 'none',
+        }));
       });
       return;
     }
+
     if (action.onClick) action.onClick();
     if (props.onClick) props.onClick(action, side);
   };
 
   const renderActions = (actions: SwipeActionItem[] | ReactNode, side: SideType) => {
     if (isArray(actions)) {
-      if (curSure.content) {
-        return <div style={{ width: Math.abs(curSure.width) }}>{curSure.content}</div>;
-      }
       return actions.map((action, index) => {
         const btnClass = classNames([`${name}__content`, action.className || '']);
         const style = { height: '100%', ...action.style };
@@ -241,6 +251,23 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     return actions;
   };
 
+  const renderSureContent = () => {
+    if (curSure.content) {
+      const style: Styles = {
+        width: Math.abs(curSure.width),
+        transition: 'all .3s ease-in-out',
+        transform: curSure.transform,
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+      };
+      return <div style={{ ...style }}>{curSure.content}</div>;
+    }
+    return null;
+  };
+
   return withNativeProps(
     props,
     <div
@@ -258,12 +285,14 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
       <animated.div className={`${name}__wrapper`} style={{ x }}>
         {left && (
           <div className={`${name}__left`} ref={leftRef}>
+            {renderSureContent()}
             {renderActions(left, 'left')}
           </div>
         )}
         {content}
         {right && (
           <div className={`${name}__right`} ref={rightRef}>
+            {renderSureContent()}
             {renderActions(right, 'right')}
           </div>
         )}
