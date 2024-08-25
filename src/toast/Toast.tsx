@@ -9,6 +9,7 @@ import { TdToastProps } from './type';
 import { IconType } from './constant';
 import { toastDefaultProps } from './defaultProps';
 import useDefaultProps from '../hooks/useDefaultProps';
+import parseTNode from '../_util/parseTNode';
 
 interface ToastProps extends TdToastProps {
   children?: React.ReactNode;
@@ -39,7 +40,7 @@ const Toast: FC<TdToastProps> = (originProps: ToastProps) => {
     },
   ]);
 
-  const TIcon = icon || (theme && <Icon name={IconType[theme]} />);
+  const TIcon = icon ? parseTNode(icon) : theme && <Icon name={IconType[theme]} />;
   const containerClass = classNames([
     `${toastClass}`,
     `${toastClass}__content`,
@@ -110,7 +111,7 @@ const Toast: FC<TdToastProps> = (originProps: ToastProps) => {
       <CSSTransition in={toastVisible} appear {...cssTransitionState.props} unmountOnExit>
         <div className={containerClass} ref={contentRef} style={computedStyle}>
           {TIcon && <div className={iconClasses}>{TIcon}</div>}
-          {message && <div className={textClasses}>{message}</div>}
+          {message && <div className={textClasses}>{parseTNode(message)}</div>}
         </div>
       </CSSTransition>
     </>
