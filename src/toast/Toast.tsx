@@ -7,32 +7,61 @@ import useMessageCssTransition from './hooks/useMessageCssTransition';
 import useConfig from '../_util/useConfig';
 import { TdToastProps } from './type';
 import { IconType } from './constant';
+import { toastDefaultProps } from './defaultProps';
+import useDefaultProps from '../hooks/useDefaultProps';
 
 interface ToastProps extends TdToastProps {
   children?: React.ReactNode;
   el: React.ReactNode;
 }
 
-const Toast: FC<TdToastProps> = (props: ToastProps) => {
+const Toast: FC<TdToastProps> = (originProps: ToastProps) => {
+  const props = useDefaultProps<ToastProps>(originProps, toastDefaultProps);
   const {
-    direction = 'row',
-    placement = 'middle',
+    direction,
+    placement,
     icon,
     message,
-    // children,
     duration,
     theme,
     preventScrollThrough,
+    showOverlay,
+    overlayProps,
     el,
+    onClose,
   } = props;
   const { classPrefix } = useConfig();
   const cls = `${classPrefix}-overflow-hidden`;
-  const TIcon = icon || (theme && <Icon className={`${classPrefix}-icon`} name={IconType[theme]} />);
-  const containerClass = [
-    `${classPrefix}-toast--${direction || 'row'}`,
-    `${classPrefix}-toast--${placement}`,
-    icon && !message && `${classPrefix}-toast--icononly`,
-  ];
+  const toastClass = `${classPrefix}-toast`;
+  const iconClasses = classNames([
+    {
+      [`${toastClass}__icon--${direction}`]: direction,
+    },
+  ]);
+
+  const TIcon = icon || (theme && <Icon name={IconType[theme]} />);
+  const containerClass = classNames([
+    `${toastClass}`,
+    `${toastClass}__content`,
+    `${toastClass}__icon`,
+    {
+      [`${toastClass}--${direction}`]: direction,
+      [`${toastClass}__content--${direction}`]: direction,
+      [`${toastClass}--loading`]: props.theme === 'loading',
+    },
+  ]);
+  const topOptions = {
+    top: '25%',
+    bottom: '75%',
+  };
+  const computedStyle = { top: topOptions[placement] ?? '45%' };
+
+  const textClasses = classNames([
+    {
+      [`${toastClass}__text`]: !TIcon,
+      [`${toastClass}__text--${direction}`]: direction,
+    },
+  ]);
 
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -49,12 +78,13 @@ const Toast: FC<TdToastProps> = (props: ToastProps) => {
     if (duration) {
       timer = setTimeout(() => {
         setToastVisible(false);
+        onClose?.();
       }, duration);
     }
     return () => {
       clearTimeout(timer);
     };
-  }, [duration]);
+  }, [duration, onClose]);
 
   useEffect(() => {
     preventScrollThrough && document.body.classList.add(cls);
@@ -63,13 +93,24 @@ const Toast: FC<TdToastProps> = (props: ToastProps) => {
     };
   }, [preventScrollThrough, cls]);
 
+  const getCustomOverlayProps = () => {
+    const toastOverlayProps = {
+      preventScrollThrough,
+      visible: showOverlay,
+    };
+    return {
+      ...overlayProps,
+      ...toastOverlayProps,
+    };
+  };
+
   return (
     <>
-      {preventScrollThrough && <Overlay />}
+      {showOverlay && <Overlay {...getCustomOverlayProps()} />}
       <CSSTransition in={toastVisible} appear {...cssTransitionState.props} unmountOnExit>
-        <div className={classNames(`${classPrefix}-toast`, [...containerClass])} ref={contentRef}>
-          {TIcon && TIcon}
-          {message && <div className={classNames(`${classPrefix}-toast__text`)}>{message}</div>}
+        <div className={containerClass} ref={contentRef} style={computedStyle}>
+          {TIcon && <div className={iconClasses}>{TIcon}</div>}
+          {message && <div className={textClasses}>{message}</div>}
         </div>
       </CSSTransition>
     </>

@@ -1,14 +1,12 @@
 export enum ToastThemeListEnum {
   success = 'success',
-  warning = 'warning',
-  fail = 'fail',
+  error = 'error',
   loading = 'loading',
 }
 
 export enum IconType {
   success = 'check-circle',
-  warning = 'error-circle',
-  fail = 'close-circle',
+  error = 'close-circle',
   loading = 'loading',
 }
 
