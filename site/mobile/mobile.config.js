@@ -73,12 +73,12 @@ export default {
     {
       title: 'Badge 徽标',
       name: 'badge',
-      component: () => import('tdesign-mobile-react/badge/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/badge/_example/index.tsx'),
     },
     {
       title: 'CountDown 倒计时',
       name: 'count-down',
-      component: () => import('tdesign-mobile-react/count-down/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/count-down/_example/index.tsx'),
     },
     {
       title: 'Message 消息通知',
@@ -140,7 +140,7 @@ export default {
     {
       title: 'Navbar 导航栏',
       name: 'navbar',
-      component: () => import('tdesign-mobile-react/navbar/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/navbar/_example/index.tsx'),
     },
     {
       title: 'SideBar 侧边栏',
