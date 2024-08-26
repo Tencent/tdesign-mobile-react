@@ -5,6 +5,7 @@
  * */
 
 import { TElement } from '../common';
+import { BadgeProps } from '../badge';
 
 export interface TdSideBarProps {
   /**
@@ -33,7 +34,7 @@ export interface TdSideBarItemProps {
   /**
    * 透传至 Badge 组件
    */
-  badgeProps?: object;
+  badgeProps?: BadgeProps;
   /**
    * 是否禁用
    * @default false

@@ -21,7 +21,7 @@ onClick | Function |  | TS 类型：`(value: number \| string, label: string) =>
 -- | -- | -- | -- | --
 className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
-badgeProps | Object | - | 透传至 Badge 组件 | N
+badgeProps | \- | - | 透传至 Badge 组件。TS 类型：`BadgeProps` | N
 disabled | Boolean | false | 是否禁用 | N
 icon | TElement | - | 图标。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 label | String | - | 展示的标签 | N
