@@ -1,27 +1,34 @@
 :: BASE_DOC ::
 
 ## API
+
 ### SideBar Props
 
 name | type | default | description | required
 -- | -- | -- | -- | --
-value | String / Number | - | `v-model` and `v-model:value` is supported | N
-defaultValue | String / Number | - | uncontrolled property | N
+className | String | - | className of component | N
+style | Object | - | CSS(Cascading Style Sheets)，Typescript：`React.CSSProperties` | N
+children | TElement | - | children。Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+defaultValue | String / Number | undefined | \- | N
+value | String / Number | - | \- | N
 onChange | Function |  | Typescript：`(value: number \| string) => void`<br/> | N
 onClick | Function |  | Typescript：`(value: number \| string, label: string) => void`<br/> | N
+
 
 ### SideBarItem Props
 
 name | type | default | description | required
 -- | -- | -- | -- | --
+className | String | - | className of component | N
+style | Object | - | CSS(Cascading Style Sheets)，Typescript：`React.CSSProperties` | N
 badgeProps | Object | - | \- | N
 disabled | Boolean | false | \- | N
-icon | Slot / Function | - | Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-vue/blob/develop/src/common.ts) | N
+icon | TElement | - | Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 label | String | - | \- | N
 value | String / Number | - | \- | N
 
-
 ### CSS Variables
+
 The component provides the following CSS variables, which can be used to customize styles.
 Name | Default Value | Description 
 -- | -- | --
@@ -36,4 +43,4 @@ Name | Default Value | Description
 --td-side-bar-icon-size | 20px | - 
 --td-side-bar-item-height | 56px | - 
 --td-side-bar-item-line-height | 24px | - 
---td-side-bar-width | 103px | - 
+--td-side-bar-width | 103px | -

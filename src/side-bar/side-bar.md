@@ -1,27 +1,34 @@
 :: BASE_DOC ::
 
 ## API
+
 ### SideBar Props
 
-名称 | 类型 | 默认值 | 说明 | 必传
+名称 | 类型 | 默认值 | 描述 | 必传
 -- | -- | -- | -- | --
-value | String / Number | - | 选项值。支持语法糖 `v-model` 或 `v-model:value` | N
-defaultValue | String / Number | - | 选项值。非受控属性 | N
+className | String | - | 类名 | N
+style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
+children | TElement | - | 侧边导航内容。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+defaultValue | String / Number | undefined | 选项值。非受控属性 | N
+value | String / Number | - | 选项值 | N
 onChange | Function |  | TS 类型：`(value: number \| string) => void`<br/>选项值发生变化时触发 | N
 onClick | Function |  | TS 类型：`(value: number \| string, label: string) => void`<br/>点击选项时触发 | N
 
+
 ### SideBarItem Props
 
-名称 | 类型 | 默认值 | 说明 | 必传
+名称 | 类型 | 默认值 | 描述 | 必传
 -- | -- | -- | -- | --
+className | String | - | 类名 | N
+style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
 badgeProps | Object | - | 透传至 Badge 组件 | N
 disabled | Boolean | false | 是否禁用 | N
-icon | Slot / Function | - | 图标。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-vue/blob/develop/src/common.ts) | N
+icon | TElement | - | 图标。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 label | String | - | 展示的标签 | N
 value | String / Number | - | 当前选项的值 | N
 
-
 ### CSS Variables
+
 组件提供了下列 CSS 变量，可用于自定义样式。
 名称 | 默认值 | 描述 
 -- | -- | --
@@ -36,4 +43,4 @@ value | String / Number | - | 当前选项的值 | N
 --td-side-bar-icon-size | 20px | - 
 --td-side-bar-item-height | 56px | - 
 --td-side-bar-item-line-height | 24px | - 
---td-side-bar-width | 103px | - 
+--td-side-bar-width | 103px | -

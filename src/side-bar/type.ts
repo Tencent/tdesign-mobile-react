@@ -4,18 +4,21 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { BadgeProps } from 'tdesign-mobile-react/badge';
-import { TNode } from '../common';
+import { TElement } from '../common';
 
 export interface TdSideBarProps {
+  /**
+   * 侧边导航内容
+   */
+  children?: TElement;
+  /**
+   * 选项值。非受控属性
+   */
+  defaultValue?: string | number;
   /**
    * 选项值
    */
   value?: string | number;
-  /**
-   * 选项值，非受控属性
-   */
-  defaultValue?: string | number;
   /**
    * 选项值发生变化时触发
    */
@@ -24,17 +27,13 @@ export interface TdSideBarProps {
    * 点击选项时触发
    */
   onClick?: (value: number | string, label: string) => void;
-  /**
-   * 标签栏内容
-   */
-  children?: TNode;
 }
 
 export interface TdSideBarItemProps {
   /**
    * 透传至 Badge 组件
    */
-  badgeProps?: BadgeProps;
+  badgeProps?: object;
   /**
    * 是否禁用
    * @default false
@@ -43,7 +42,7 @@ export interface TdSideBarItemProps {
   /**
    * 图标
    */
-  icon?: TNode;
+  icon?: TElement;
   /**
    * 展示的标签
    * @default ''
@@ -53,8 +52,4 @@ export interface TdSideBarItemProps {
    * 当前选项的值
    */
   value?: string | number;
-  /**
-   * 标签栏内容
-   */
-  children?: TNode;
 }

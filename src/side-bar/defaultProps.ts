@@ -4,5 +4,6 @@
 
 import { TdSideBarProps, TdSideBarItemProps } from './type';
 
-export const sideBarDefaultProps: TdSideBarProps = {};
-export const sideBarItemDefaultProps: TdSideBarItemProps = {};
+export const sideBarDefaultProps: TdSideBarProps = { defaultValue: undefined };
+
+export const sideBarItemDefaultProps: TdSideBarItemProps = { disabled: false };
