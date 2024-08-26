@@ -115,13 +115,9 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
     },
     `${tabBarItemClass}__content--${theme}`,
   );
-  const tabItemIconCls = cls(`${tabBarItemClass}__icon`);
-  const tabItemSpreadCls = cls(`${tabBarItemClass}__spread`);
-  const tabItemSpreadItemCls = cls(`${tabBarItemClass}__spread-item`);
   const tabItemTextCls = cls(`${tabBarItemClass}__text`, {
     [`${tabBarItemClass}__text--small`]: icon,
   });
-  const tabItemIconMenuCls = cls(`${tabBarItemClass}__icon-menu`);
 
   const transitionClsNames = useTabBarCssTransition({
     name: 'spread',
@@ -146,7 +142,7 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
         onClick={toggle}
       >
         {icon && (
-          <div className={tabItemIconCls} style={{ height: iconSize }}>
+          <div className={`${tabBarItemClass}__icon`} style={{ height: iconSize }}>
             {badgeProps && (badgeProps?.dot || badgeProps?.count) ? (
               <Badge content={iconContent} {...mergedBadgeProps} />
             ) : (
@@ -159,7 +155,7 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
             {shouldShowSubTabBar && (
               <>
                 <Icon name="view-list" size="16" />
-                <div className={tabItemIconMenuCls} />
+                <div className={`${tabBarItemClass}__icon-menu`} />
               </>
             )}
             {parseTNode(children)}
@@ -168,13 +164,13 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
       </div>
 
       <CSSTransition timeout={200} in={showSubTabBar} classNames={transitionClsNames} mountOnEnter unmountOnExit>
-        <ul role="menu" className={tabItemSpreadCls}>
+        <ul role="menu" className={`${tabBarItemClass}__spread`}>
           {subTabBar?.map((child, index) => (
             <div
               key={child.value || index}
               role="menuitem"
               aria-label={child.label}
-              className={tabItemSpreadItemCls}
+              className={`${tabBarItemClass}__spread-item`}
               onClick={(e) => {
                 e.stopPropagation();
                 selectChild(child.value || index);
