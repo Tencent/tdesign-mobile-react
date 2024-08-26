@@ -51,13 +51,4 @@ const TabBar = forwardRef<HTMLDivElement, TabBarProps>((props, ref) => {
   );
 });
 
-TabBar.defaultProps = {
-  bordered: true,
-  fixed: true,
-  safeAreaInsetBottom: true,
-  shape: 'normal',
-  split: true,
-  theme: 'normal',
-};
-
 export default memo(TabBar);
