@@ -47,6 +47,12 @@ export default {
           component: () => import('tdesign-mobile-react/icon/icon.md'),
         },
         {
+          title: 'Layout 布局',
+          name: 'layout',
+          path: '/mobile-react/components/layout',
+          component: () => import('tdesign-mobile-react/layout/layout.md'),
+        },
+        {
           title: 'Link 链接',
           name: 'link',
           path: '/mobile-react/components/link',
@@ -285,6 +291,12 @@ export default {
           name: 'tag',
           path: '/mobile-react/components/tag',
           component: () => import('tdesign-mobile-react/tag/tag.md'),
+        },
+        {
+          title: 'Table 表格',
+          name: 'table',
+          path: '/mobile-react/components/table',
+          component: () => import('tdesign-mobile-react/table/table.md'),
         },
       ],
     },

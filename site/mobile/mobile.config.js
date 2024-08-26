@@ -16,6 +16,11 @@ export default {
       component: () => import('tdesign-mobile-react/icon/_example/index.tsx'),
     },
     {
+      title: 'Layout 布局',
+      name: 'layout',
+      component: () => import('tdesign-mobile-react/layout/_example/index.tsx'),
+    },
+    {
       title: 'Tabs 选项卡',
       name: 'tabs',
       component: () => import('tdesign-mobile-react/tabs/_example/index.jsx'),
@@ -226,6 +231,11 @@ export default {
       title: 'Link 链接',
       name: 'link',
       component: () => import('tdesign-mobile-react/link/_example/index.tsx'),
+    },
+    {
+      title: 'Table 表格',
+      name: 'table',
+      component: () => import('tdesign-mobile-react/table/_example/index.jsx'),
     },
   ],
 };
