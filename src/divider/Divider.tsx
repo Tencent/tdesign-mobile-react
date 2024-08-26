@@ -6,10 +6,9 @@ import { dividerDefaultProps } from './defaultProps';
 import { StyledProps } from '../common';
 import useConfig from '../_util/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
+import parseTNode from '../_util/parseTNode';
 
-export interface DividerProps extends TdDividerProps, StyledProps {
-  children?: React.ReactNode;
-}
+export interface DividerProps extends TdDividerProps, StyledProps {}
 
 const Divider: FC<DividerProps> = (props) => {
   const { children, align, dashed, layout, content, style } = useDefaultProps<DividerProps>(props, dividerDefaultProps);
@@ -28,7 +27,7 @@ const Divider: FC<DividerProps> = (props) => {
 
   return (
     <div className={classes} style={style} role="separator">
-      <div className={`${dividerClass}__content`}>{contentNode}</div>
+      <div className={`${dividerClass}__content`}>{parseTNode(contentNode)}</div>
     </div>
   );
 };
