@@ -23314,19 +23314,27 @@ exports[`csr snapshot test > csr test src/tab-bar/_example/badge-props.tsx 1`] =
               class="t-badge"
             >
               <div
-                class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
+                class="t-badge__content"
+              >
+                <span
+                  class="t-badge__content-text"
+                >
+                  <svg
+                    class="t-icon t-icon-home"
+                    style="font-size: 24px;"
+                  >
+                    <use
+                      xlink:href="#t-icon-home"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <div
+                class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count"
                 style="right: 0px; top: 0px;"
               >
                 16
               </div>
-              <svg
-                class="t-icon t-icon-home"
-                style="font-size: 24px;"
-              >
-                <use
-                  xlink:href="#t-icon-home"
-                />
-              </svg>
             </div>
           </div>
           <div
@@ -23353,17 +23361,25 @@ exports[`csr snapshot test > csr test src/tab-bar/_example/badge-props.tsx 1`] =
               class="t-badge"
             >
               <div
-                class="t-badge__inner t-badge--dot t-badge--has-children t-badge--medium"
+                class="t-badge__content"
+              >
+                <span
+                  class="t-badge__content-text"
+                >
+                  <svg
+                    class="t-icon t-icon-app"
+                    style="font-size: 24px;"
+                  >
+                    <use
+                      xlink:href="#t-icon-app"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <div
+                class="t-badge--basic t-badge--dot t-badge--medium t-badge--circle t-has-count"
                 style="right: 0px; top: 0px;"
               />
-              <svg
-                class="t-icon t-icon-app"
-                style="font-size: 24px;"
-              >
-                <use
-                  xlink:href="#t-icon-app"
-                />
-              </svg>
             </div>
           </div>
           <div
@@ -23390,19 +23406,27 @@ exports[`csr snapshot test > csr test src/tab-bar/_example/badge-props.tsx 1`] =
               class="t-badge"
             >
               <div
-                class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
+                class="t-badge__content"
+              >
+                <span
+                  class="t-badge__content-text"
+                >
+                  <svg
+                    class="t-icon t-icon-chat"
+                    style="font-size: 24px;"
+                  >
+                    <use
+                      xlink:href="#t-icon-chat"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <div
+                class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count"
                 style="right: 0px; top: 0px;"
               >
                 New
               </div>
-              <svg
-                class="t-icon t-icon-chat"
-                style="font-size: 24px;"
-              >
-                <use
-                  xlink:href="#t-icon-chat"
-                />
-              </svg>
             </div>
           </div>
           <div
@@ -23429,19 +23453,27 @@ exports[`csr snapshot test > csr test src/tab-bar/_example/badge-props.tsx 1`] =
               class="t-badge"
             >
               <div
-                class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
+                class="t-badge__content"
+              >
+                <span
+                  class="t-badge__content-text"
+                >
+                  <svg
+                    class="t-icon t-icon-user"
+                    style="font-size: 24px;"
+                  >
+                    <use
+                      xlink:href="#t-icon-user"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <div
+                class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count"
                 style="right: 0px; top: 0px;"
               >
                 ···
               </div>
-              <svg
-                class="t-icon t-icon-user"
-                style="font-size: 24px;"
-              >
-                <use
-                  xlink:href="#t-icon-user"
-                />
-              </svg>
             </div>
           </div>
           <div
@@ -24203,19 +24235,27 @@ exports[`csr snapshot test > csr test src/tab-bar/_example/mobile.tsx 1`] = `
                     class="t-badge"
                   >
                     <div
-                      class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
+                      class="t-badge__content"
+                    >
+                      <span
+                        class="t-badge__content-text"
+                      >
+                        <svg
+                          class="t-icon t-icon-home"
+                          style="font-size: 24px;"
+                        >
+                          <use
+                            xlink:href="#t-icon-home"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                    <div
+                      class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count"
                       style="right: 0px; top: 0px;"
                     >
                       16
                     </div>
-                    <svg
-                      class="t-icon t-icon-home"
-                      style="font-size: 24px;"
-                    >
-                      <use
-                        xlink:href="#t-icon-home"
-                      />
-                    </svg>
                   </div>
                 </div>
                 <div
@@ -24242,17 +24282,25 @@ exports[`csr snapshot test > csr test src/tab-bar/_example/mobile.tsx 1`] = `
                     class="t-badge"
                   >
                     <div
-                      class="t-badge__inner t-badge--dot t-badge--has-children t-badge--medium"
+                      class="t-badge__content"
+                    >
+                      <span
+                        class="t-badge__content-text"
+                      >
+                        <svg
+                          class="t-icon t-icon-app"
+                          style="font-size: 24px;"
+                        >
+                          <use
+                            xlink:href="#t-icon-app"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                    <div
+                      class="t-badge--basic t-badge--dot t-badge--medium t-badge--circle t-has-count"
                       style="right: 0px; top: 0px;"
                     />
-                    <svg
-                      class="t-icon t-icon-app"
-                      style="font-size: 24px;"
-                    >
-                      <use
-                        xlink:href="#t-icon-app"
-                      />
-                    </svg>
                   </div>
                 </div>
                 <div
@@ -24279,19 +24327,27 @@ exports[`csr snapshot test > csr test src/tab-bar/_example/mobile.tsx 1`] = `
                     class="t-badge"
                   >
                     <div
-                      class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
+                      class="t-badge__content"
+                    >
+                      <span
+                        class="t-badge__content-text"
+                      >
+                        <svg
+                          class="t-icon t-icon-chat"
+                          style="font-size: 24px;"
+                        >
+                          <use
+                            xlink:href="#t-icon-chat"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                    <div
+                      class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count"
                       style="right: 0px; top: 0px;"
                     >
                       New
                     </div>
-                    <svg
-                      class="t-icon t-icon-chat"
-                      style="font-size: 24px;"
-                    >
-                      <use
-                        xlink:href="#t-icon-chat"
-                      />
-                    </svg>
                   </div>
                 </div>
                 <div
@@ -24318,19 +24374,27 @@ exports[`csr snapshot test > csr test src/tab-bar/_example/mobile.tsx 1`] = `
                     class="t-badge"
                   >
                     <div
-                      class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium"
+                      class="t-badge__content"
+                    >
+                      <span
+                        class="t-badge__content-text"
+                      >
+                        <svg
+                          class="t-icon t-icon-user"
+                          style="font-size: 24px;"
+                        >
+                          <use
+                            xlink:href="#t-icon-user"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                    <div
+                      class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count"
                       style="right: 0px; top: 0px;"
                     >
                       ···
                     </div>
-                    <svg
-                      class="t-icon t-icon-user"
-                      style="font-size: 24px;"
-                    >
-                      <use
-                        xlink:href="#t-icon-user"
-                      />
-                    </svg>
                   </div>
                 </div>
                 <div
@@ -26751,13 +26815,13 @@ exports[`ssr snapshot test > ssr test src/sticky/_example/index.tsx 1`] = `"<div
 
 exports[`ssr snapshot test > ssr test src/sticky/_example/offset.tsx 1`] = `"<div class="tdesign-demo-block-2" data-reactroot=""><div class="t-sticky"><div class="t-sticky__content"><button type="button" class="t-button t-button--size-medium t-button--base t-button--danger t-button--rectangle custom-common-button"><span class="t-button__content"> <!-- -->吸顶距离</span></button></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/tab-bar/_example/badge-props.tsx 1`] = `"<div class="demo-tab-bar" data-reactroot=""><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium" style="right:0;top:0">16</div><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">首页</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__inner t-badge--dot t-badge--has-children t-badge--medium" style="right:0;top:0"></div><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">软件</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium" style="right:0;top:0">New</div><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">聊天</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium" style="right:0;top:0">···</div><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">我的</div></div></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/tab-bar/_example/badge-props.tsx 1`] = `"<div class="demo-tab-bar" data-reactroot=""><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__content"><span class="t-badge__content-text"><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></span></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count" style="right:0px;top:0px">16</div></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">首页</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__content"><span class="t-badge__content-text"><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></span></div><div class="t-badge--basic t-badge--dot t-badge--medium t-badge--circle t-has-count" style="right:0px;top:0px"></div></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">软件</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__content"><span class="t-badge__content-text"><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></span></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count" style="right:0px;top:0px">New</div></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">聊天</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__content"><span class="t-badge__content-text"><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></span></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count" style="right:0px;top:0px">···</div></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">我的</div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/tab-bar/_example/base.tsx 1`] = `"<div class="demo-tab-bar" data-reactroot=""><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">首页</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">应用</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">聊天</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">我的</div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/tab-bar/_example/custom.tsx 1`] = `"<div class="demo-tab-bar section-custom" data-reactroot=""><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--split t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--split t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--split t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--split t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></div></div></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/tab-bar/_example/mobile.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">TabBar 标签栏</h1><p class="tdesign-mobile-demo-header__summary">用于在不同功能模块之间进行快速切换，位于页面底部。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">纯文本标签栏</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-tab-bar"><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--text-only t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--tag"><div class="t-tab-bar-item__text">首页</div></div></div><div class="t-tab-bar-item t-tab-bar-item--text-only t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__text">应用</div></div></div><div class="t-tab-bar-item t-tab-bar-item--text-only t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__text">聊天</div></div></div><div class="t-tab-bar-item t-tab-bar-item--text-only t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__text">我的</div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">图标加文字标签栏</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-tab-bar"><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">首页</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">应用</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">聊天</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">我的</div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">纯图标标签栏</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-tab-bar"><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">双层级纯文本标签栏</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-tab-bar"><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--text-only t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--tag"><div class="t-tab-bar-item__text">首页</div></div></div><div class="t-tab-bar-item t-tab-bar-item--text-only t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__text">应用</div></div></div><div class="t-tab-bar-item t-tab-bar-item--text-only t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" aria-haspopup="true" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__text"><svg class="t-icon t-icon-view-list" style="font-size:16"><use xlink:href="#t-icon-view-list"></use></svg><div class="t-tab-bar-item__icon-menu"></div>我的</div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">弱选中标签栏</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-tab-bar"><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium" style="right:0;top:0">16</div><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">首页</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__inner t-badge--dot t-badge--has-children t-badge--medium" style="right:0;top:0"></div><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">软件</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium" style="right:0;top:0">New</div><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">聊天</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__inner t-badge--circle t-badge--has-children t-badge--medium" style="right:0;top:0">···</div><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">我的</div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">悬浮胶囊标签栏</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-tab-bar"><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--round" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--round"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--round"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--round"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--round"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">03 自定义</h2><p class="tdesign-mobile-demo-block__summary">自定义样式</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-tab-bar section-custom"><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--split t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--split t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--split t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--split t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></div></div></div></div></div></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/tab-bar/_example/mobile.tsx 1`] = `"<div class="tdesign-mobile-demo" data-reactroot=""><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">TabBar 标签栏</h1><p class="tdesign-mobile-demo-header__summary">用于在不同功能模块之间进行快速切换，位于页面底部。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">纯文本标签栏</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-tab-bar"><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--text-only t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--tag"><div class="t-tab-bar-item__text">首页</div></div></div><div class="t-tab-bar-item t-tab-bar-item--text-only t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__text">应用</div></div></div><div class="t-tab-bar-item t-tab-bar-item--text-only t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__text">聊天</div></div></div><div class="t-tab-bar-item t-tab-bar-item--text-only t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__text">我的</div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">图标加文字标签栏</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-tab-bar"><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">首页</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">应用</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">聊天</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">我的</div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">纯图标标签栏</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-tab-bar"><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">双层级纯文本标签栏</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-tab-bar"><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--text-only t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--tag"><div class="t-tab-bar-item__text">首页</div></div></div><div class="t-tab-bar-item t-tab-bar-item--text-only t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__text">应用</div></div></div><div class="t-tab-bar-item t-tab-bar-item--text-only t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" aria-haspopup="true" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__text"><svg class="t-icon t-icon-view-list" style="font-size:16"><use xlink:href="#t-icon-view-list"></use></svg><div class="t-tab-bar-item__icon-menu"></div>我的</div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">弱选中标签栏</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-tab-bar"><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__content"><span class="t-badge__content-text"><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></span></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count" style="right:0px;top:0px">16</div></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">首页</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__content"><span class="t-badge__content-text"><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></span></div><div class="t-badge--basic t-badge--dot t-badge--medium t-badge--circle t-has-count" style="right:0px;top:0px"></div></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">软件</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__content"><span class="t-badge__content-text"><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></span></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count" style="right:0px;top:0px">New</div></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">聊天</div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><div class="t-badge"><div class="t-badge__content"><span class="t-badge__content-text"><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></span></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count" style="right:0px;top:0px">···</div></div></div><div class="t-tab-bar-item__text t-tab-bar-item__text--small">我的</div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">悬浮胶囊标签栏</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-tab-bar"><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--round" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--round"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--round"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--round"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--round"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">03 自定义</h2><p class="tdesign-mobile-demo-block__summary">自定义样式</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-tab-bar section-custom"><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--split t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--split t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--split t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--split t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--normal"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></div></div></div></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/tab-bar/_example/pure-icon.tsx 1`] = `"<div class="demo-tab-bar" data-reactroot=""><div class="t-tab-bar t-tab-bar--bordered t-tab-bar--fixed t-tab-bar--safe t-tab-bar--normal" role="tablist"><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="true" class="t-tab-bar-item__content t-tab-bar-item__content--checked t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-home" style="font-size:20px"><use xlink:href="#t-icon-home"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-app" style="font-size:20px"><use xlink:href="#t-icon-app"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-chat" style="font-size:20px"><use xlink:href="#t-icon-chat"></use></svg></div></div></div><div class="t-tab-bar-item t-tab-bar-item--crowded t-tab-bar-item--normal"><div role="tab" aria-label="TabBar" aria-selected="false" class="t-tab-bar-item__content t-tab-bar-item__content--tag"><div class="t-tab-bar-item__icon" style="height:20px"><svg class="t-icon t-icon-user" style="font-size:20px"><use xlink:href="#t-icon-user"></use></svg></div></div></div></div></div>"`;
 
