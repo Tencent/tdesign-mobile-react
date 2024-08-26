@@ -1,13 +1,20 @@
-import React, { useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './style/index.less';
 import { Cell, List } from 'tdesign-mobile-react';
+
+interface ListItem {
+  id: number;
+  content: string;
+  icon: string;
+  title: string;
+}
 
 export default function ListDemo() {
   const [isLoading, setIsLoading] = useState(false);
   const pageSize = 20;
   const stateRef = useRef([]);
   const pageRef = useRef(1);
-  const dataSource = [];
+  const dataSource: ListItem[] = [];
   const total = 100;
   for (let i = 0; i < total; i++) {
     dataSource.push({
@@ -27,12 +34,12 @@ export default function ListDemo() {
         const { pageNum, pageSize } = pageInfo;
         const newDataSource = dataSource.slice((pageNum - 1) * pageSize, pageNum * pageSize);
         const newListData = stateRef.current.concat(newDataSource);
-        pageRef.current = pageNum
-        stateRef.current = newListData
+        pageRef.current = pageNum;
+        stateRef.current = newListData;
         setIsLoading(false);
       }, 0);
     } catch (err) {
-      stateRef.current = []
+      stateRef.current = [];
     }
   };
 
@@ -40,7 +47,7 @@ export default function ListDemo() {
     if (!scrollBottom && stateRef.current.length < total) {
       fetchData({ pageNum: pageRef.current + 1, pageSize });
     }
-  }
+  };
 
   useEffect(() => {
     fetchData({ pageNum: pageRef.current, pageSize });
@@ -49,11 +56,11 @@ export default function ListDemo() {
 
   return (
     <List asyncLoading={isLoading} onScroll={onScroll}>
-      {
-        stateRef.current.map((item) => <Cell key={item.id} align="middle">
-            <span className="cell">{item.id}</span>
-          </Cell>)
-      }
+      {stateRef.current.map((item) => (
+        <Cell key={item.id} align="middle">
+          <span className="cell">{item.id}</span>
+        </Cell>
+      ))}
     </List>
   );
 }

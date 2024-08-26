@@ -1,10 +1,9 @@
-
-
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { TdListProps } from './type';
 import useConfig from '../_util/useConfig';
 
 import TLoading from '../loading';
+import parseTNode from '../_util/parseTNode';
 
 export interface ListProps extends TdListProps {
   required?: boolean;
@@ -18,7 +17,7 @@ function isElement(node: Element) {
 
 const overflowScrollReg = /scroll|auto/i;
 
-function getScrollParent(el: Element, root = window ) {
+function getScrollParent(el: Element, root = window) {
   let node = el;
 
   while (node && node !== root && isElement(node)) {
@@ -32,9 +31,9 @@ function getScrollParent(el: Element, root = window ) {
   return root;
 }
 
-const List: React.FC<ListProps> = (props: ListProps) => {
+const List: React.FC<ListProps> = (props) => {
   const { classPrefix } = useConfig();
-  const { header, footer, children}  = props;
+  const { asyncLoading, header, footer, children } = props;
   const name = classPrefix;
 
   const LOADING_TEXT_MAP = {
@@ -44,23 +43,23 @@ const List: React.FC<ListProps> = (props: ListProps) => {
 
   const root = useRef(null);
 
-  const useWindowHeight = ()=>{
-    const [height, setHeight] = useState(window.innerHeight); 
-    window.onresize = ()=>{
-      const height =  window.innerHeight
-      setHeight(height)
-    }
-    return height
-  }
+  const useWindowHeight = () => {
+    const [height, setHeight] = useState(window.innerHeight);
+    window.onresize = () => {
+      const height = window.innerHeight;
+      setHeight(height);
+    };
+    return height;
+  };
   const height = useWindowHeight();
 
   const onLoadMore = () => {
-    if (props.asyncLoading === 'load-more') {
+    if (asyncLoading === 'load-more') {
       props.onLoadMore?.();
     }
   };
 
-  const handleScroll = useCallback((e: WheelEvent<HTMLDivElement> | Event):void => {
+  const handleScroll = useCallback((e: WheelEvent<HTMLDivElement> | Event): void => {
     const scrollHeight =
       (e.target as HTMLElement).scrollHeight ||
       Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
@@ -69,25 +68,25 @@ const List: React.FC<ListProps> = (props: ListProps) => {
       (e.target as HTMLElement).scrollTop || document.documentElement.scrollTop || document.body.scrollTop;
 
     const offsetHeight = (e.target as HTMLElement).offsetHeight || height;
-    const bottomDistance = scrollHeight - (scrollTop + offsetHeight)
+    const bottomDistance = scrollHeight - (scrollTop + offsetHeight);
     props.onScroll?.(bottomDistance, scrollTop);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    const scorllParent = getScrollParent(root.current)
-
+    const scorllParent = getScrollParent(root.current);
+    if (scorllParent === root.current) return;
     scorllParent.addEventListener('scroll', handleScroll);
     return () => {
-      removeEventListener('scroll', handleScroll)
-    }
-  }, [height, handleScroll])
+      removeEventListener('scroll', handleScroll);
+    };
+  }, [height, handleScroll]);
 
   return (
-    <div ref={root} className={`${name}-list`} onScroll={(e)=>handleScroll(e)}>
-      {header}
-      {children}
-      <div className={`${name}-list__loading--wrapper`} onClick={()=> onLoadMore()}>
+    <div ref={root} className={`${name}-list`} onScroll={(e) => handleScroll(e)}>
+      {parseTNode(header)}
+      {parseTNode(children)}
+      <div className={`${name}-list__loading--wrapper`} onClick={() => onLoadMore()}>
         {typeof props.asyncLoading === 'string' && ['loading', 'load-more'].includes(props.asyncLoading) && (
           <TLoading
             indicator={props.asyncLoading === 'loading'}
@@ -96,7 +95,7 @@ const List: React.FC<ListProps> = (props: ListProps) => {
           />
         )}
       </div>
-      {footer}
+      {parseTNode(footer)}
     </div>
   );
 };

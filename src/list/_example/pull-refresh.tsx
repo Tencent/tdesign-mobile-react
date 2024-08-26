@@ -2,18 +2,18 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Cell, List, PullDownRefresh } from 'tdesign-mobile-react';
 
 export default function ListDemo() {
-  const [loading, setLoading] = useState('')
-  const [refreshing, setRefreshing] = useState(false)
+  const [loading, setLoading] = useState('');
+  const [refreshing, setRefreshing] = useState(false);
 
-  const listData = useRef([])
+  const listData = useRef<string[]>([]);
 
   const MAX_DATA_LEN = 60;
 
   const loadData = (isRefresh) => {
     const ONCE_LOAD_NUM = 20;
-    return new Promise((resolve) => {
+    return new Promise(() => {
       setTimeout(() => {
-        const temp = [];
+        const temp: string[] = [];
         for (let i = 0; i < ONCE_LOAD_NUM; i++) {
           if (isRefresh) {
             temp.push(`${i + 1}`);
@@ -23,9 +23,9 @@ export default function ListDemo() {
         }
 
         if (isRefresh) {
-          listData.current = temp
+          listData.current = temp;
         } else {
-          listData.current= [...listData.current, ...temp ]
+          listData.current = [...listData.current, ...temp];
         }
         setLoading('');
         setRefreshing(false);
@@ -33,12 +33,12 @@ export default function ListDemo() {
     });
   };
 
-  const onLoadData = (isRefresh) => {
+  const onLoadData = (isRefresh?) => {
     if ((listData.current.length >= MAX_DATA_LEN && !isRefresh) || loading.value) {
       return;
     }
     setLoading('loading');
-    loadData(isRefresh)
+    loadData(isRefresh);
   };
 
   const onScroll = (scrollBottom) => {
@@ -52,18 +52,19 @@ export default function ListDemo() {
     onLoadData(true);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     onLoadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <PullDownRefresh value={refreshing} onChange={(val)=>setRefreshing(val)} onRefresh={onRefresh}>
+    <PullDownRefresh value={refreshing} onChange={(val) => setRefreshing(val)} onRefresh={onRefresh}>
       <List asyncLoading={loading} onScroll={onScroll}>
-        {
-          listData.current.map((item) => <Cell key={item} align="middle">
-              <span className="cell">{item}</span>
-            </Cell>)
-        }
+        {listData.current.map((item) => (
+          <Cell key={item} align="middle">
+            <span className="cell">{item}</span>
+          </Cell>
+        ))}
       </List>
     </PullDownRefresh>
   );
