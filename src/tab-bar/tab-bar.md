@@ -4,30 +4,33 @@
 
 ### TabBar Props
 
-名称 | 类型 | 默认值 | 说明 | 必传
+名称 | 类型 | 默认值 | 描述 | 必传
 -- | -- | -- | -- | --
+className | String | - | 类名 | N
+style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
 bordered | Boolean | true | 是否显示外边框 | N
+children | TNode | - | 标签栏内容。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 fixed | Boolean | true | 是否固定在底部 | N
 safeAreaInsetBottom | Boolean | true | 是否为 iPhoneX 留出底部安全距离 | N
 shape | String | 'normal' | 标签栏的形状。可选项：normal/round | N
 split | Boolean | true | 是否需要分割线 | N
 theme | String | 'normal' | 选项风格。可选项：normal/tag | N
-value | String / Number / Array | undefined | 当前选中标签的索引。TS 类型：`string \| number \| Array<string \| number>`| N
-defaultValue | String / Number / Array | undefined | 默认选中标签的索引。非受控属性。TS 类型：`string \| number \| Array<string \| number>` | N
+value | String / Number / Array | undefined | 当前选中标签的索引。TS 类型：`string \| number \| Array<string \| number>` | N
+defaultValue | String / Number / Array | undefined | 当前选中标签的索引。非受控属性。TS 类型：`string \| number \| Array<string \| number>` | N
 onChange | Function |  | TS 类型：`(value: string \| number) => void`<br/>选中标签切换时触发 | N
-className | String | - | 类名 | N
-style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
+
 
 ### TabBarItem Props
 
-名称 | 类型 | 默认值 | 说明 | 必传
+名称 | 类型 | 默认值 | 描述 | 必传
 -- | -- | -- | -- | --
-badgeProps | Object | - | 图标右上角提示信息。TS 类型：`TdBadgeProps`，[Badge API Documents](./badge?tab=api)。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tab-bar/type.ts) | N
-icon | TNode | - | 图标。TS 类型：`TElement`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-subTabBar | Array | - | 二级菜单。TS 类型：`SubTabBarItem[]` `interface SubTabBarItem { value: string; label: string }`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tab-bar/type.ts) | N
-value | String / Number | - | 标识符 | N
 className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
+badgeProps | Object | - | 图标右上角提示信息。TS 类型：`BadgeProps`，[Badge API Documents](./badge?tab=api)。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tab-bar/type.ts) | N
+children | TNode | - | 标签内容。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+icon | TNode | - | 图标名称。传入对象时透传至 Icon 组件。TS 类型：`string \| object \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+subTabBar | Array | - | 二级菜单。TS 类型：`SubTabBarItem[] ` `interface SubTabBarItem { value: string; label: string }`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tab-bar/type.ts) | N
+value | String / Number | - | 标识符 | N
 
 ### CSS Variables
 

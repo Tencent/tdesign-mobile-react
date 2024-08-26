@@ -4,8 +4,8 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TdBadgeProps } from '../badge';
-import { TElement, TNode } from '../common';
+import { BadgeProps } from '../badge';
+import { TNode } from '../common';
 
 export interface TdTabBarProps {
   /**
@@ -13,6 +13,10 @@ export interface TdTabBarProps {
    * @default true
    */
   bordered?: boolean;
+  /**
+   * 标签栏内容
+   */
+  children?: TNode;
   /**
    * 是否固定在底部
    * @default true
@@ -50,21 +54,21 @@ export interface TdTabBarProps {
    * 选中标签切换时触发
    */
   onChange?: (value: string | number) => void;
-  /**
-   * 标签栏内容
-   */
-  children?: TNode;
 }
 
 export interface TdTabBarItemProps {
   /**
    * 图标右上角提示信息
    */
-  badgeProps?: TdBadgeProps;
+  badgeProps?: BadgeProps;
   /**
-   * 图标名称
+   * 标签内容
    */
-  icon?: TElement;
+  children?: TNode;
+  /**
+   * 图标名称。传入对象时透传至 Icon 组件
+   */
+  icon?: TNode;
   /**
    * 二级菜单
    */
@@ -73,10 +77,6 @@ export interface TdTabBarItemProps {
    * 标识符
    */
   value?: string | number;
-  /**
-   * 标签内容
-   */
-  children?: TNode;
 }
 
 export interface SubTabBarItem {
