@@ -4,14 +4,15 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TElement } from '../common';
+import { TElement, TNode } from '../common';
 import { BadgeProps } from '../badge';
 
 export interface TdSideBarProps {
   /**
    * 侧边导航内容
+   * @default ''
    */
-  children?: TElement;
+  children?: TNode;
   /**
    * 选项值。非受控属性
    */
