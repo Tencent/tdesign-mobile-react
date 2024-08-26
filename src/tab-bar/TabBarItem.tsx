@@ -6,22 +6,24 @@ import type { StyledProps } from '../common';
 import type { TdTabBarItemProps } from './type';
 import { TabBarContext } from './TabBarContext';
 import Badge from '../badge';
-import useConfig from '../_util/useConfig';
 import useTabBarCssTransition from './useTabBarCssTransition';
 import parseTNode from '../_util/parseTNode';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 
 export interface TabBarItemProps extends TdTabBarItemProps, StyledProps {}
 
 const defaultBadgeOffset = [0, 0];
 const defaultBadgeMaxCount = 99;
 
-const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
+const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref) => {
+  const props = useDefaultProps(originProps, {});
   const { subTabBar, icon, badgeProps, value, children } = props;
 
   const hasSubTabBar = useMemo(() => !!subTabBar, [subTabBar]);
   const { defaultIndex, activeValue, updateChild, shape, split, theme, itemCount } = useContext(TabBarContext);
 
-  const { classPrefix } = useConfig();
+  const tabBarItemClass = usePrefixClass('tab-bar-item');
 
   const textNode = useRef<HTMLDivElement>(null);
 
@@ -39,8 +41,6 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
     const height = textNode?.current?.clientHeight;
     setIconOnly(Number(height) === 0);
   }, [textNode]);
-
-  const componentName = `${classPrefix}-tab-bar-item`;
 
   const [isSpread, setIsSpread] = useState(false);
 
@@ -100,28 +100,28 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
   const crowded = itemCount > 3;
 
   const tabItemCls = cls(
-    componentName,
+    tabBarItemClass,
     {
-      [`${componentName}--split`]: split,
-      [`${componentName}--text-only`]: !icon,
-      [`${componentName}--crowded`]: crowded,
+      [`${tabBarItemClass}--split`]: split,
+      [`${tabBarItemClass}--text-only`]: !icon,
+      [`${tabBarItemClass}--crowded`]: crowded,
     },
-    `${componentName}--${shape}`,
+    `${tabBarItemClass}--${shape}`,
   );
   const tabItemInnerCls = cls(
-    `${componentName}__content`,
+    `${tabBarItemClass}__content`,
     {
-      [`${componentName}__content--checked`]: isChecked,
+      [`${tabBarItemClass}__content--checked`]: isChecked,
     },
-    `${componentName}__content--${theme}`,
+    `${tabBarItemClass}__content--${theme}`,
   );
-  const tabItemIconCls = cls(`${componentName}__icon`);
-  const tabItemSpreadCls = cls(`${componentName}__spread`);
-  const tabItemSpreadItemCls = cls(`${componentName}__spread-item`);
-  const tabItemTextCls = cls(`${componentName}__text`, {
-    [`${componentName}__text--small`]: icon,
+  const tabItemIconCls = cls(`${tabBarItemClass}__icon`);
+  const tabItemSpreadCls = cls(`${tabBarItemClass}__spread`);
+  const tabItemSpreadItemCls = cls(`${tabBarItemClass}__spread-item`);
+  const tabItemTextCls = cls(`${tabBarItemClass}__text`, {
+    [`${tabBarItemClass}__text--small`]: icon,
   });
-  const tabItemIconMenuCls = cls(`${componentName}__icon-menu`);
+  const tabItemIconMenuCls = cls(`${tabBarItemClass}__icon-menu`);
 
   const transitionClsNames = useTabBarCssTransition({
     name: 'spread',
@@ -180,8 +180,8 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
                 selectChild(child.value || index);
               }}
             >
-              {index !== 0 && <div className={`${componentName}__spread-item-split`} />}
-              <div className={`${componentName}__spread-item-text`}>{child.label}</div>
+              {index !== 0 && <div className={`${tabBarItemClass}__spread-item-split`} />}
+              <div className={`${tabBarItemClass}__spread-item-text`}>{child.label}</div>
             </div>
           ))}
         </ul>
