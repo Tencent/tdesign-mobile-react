@@ -1,11 +1,12 @@
 import React, { forwardRef, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { StyledProps } from '../common';
 import type { TdSideBarProps } from './type';
-import { SideBarDefaultProps } from './defaultProps';
+import { sideBarDefaultProps } from './defaultProps';
 import { SideBarProvider } from './SideBarContext';
-import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
 import parseTNode from '../_util/parseTNode';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 
 export interface SideBarProps extends TdSideBarProps, StyledProps {}
 
@@ -15,9 +16,9 @@ export interface SideBarProps extends TdSideBarProps, StyledProps {}
  * @param {Object} props - The properties of the SideBar component.
  * @returns The rendered SideBar component.
  */
-const SideBar = forwardRef<HTMLDivElement, SideBarProps>((props, ref) => {
-  const { classPrefix } = useConfig();
-  const name = `${classPrefix}-side-bar`;
+const SideBar = forwardRef<HTMLDivElement, SideBarProps>((originProps, ref) => {
+  const props = useDefaultProps(originProps, sideBarDefaultProps);
+  const sideBarClass = usePrefixClass('side-bar');
 
   const { onClick, onChange, children, defaultValue, value } = props;
   const [activeValue, onToggleActiveValue] = useDefault(value, defaultValue, onChange);
@@ -77,13 +78,11 @@ const SideBar = forwardRef<HTMLDivElement, SideBarProps>((props, ref) => {
   );
 
   return (
-    <div ref={ref} className={name}>
+    <div ref={ref} className={sideBarClass}>
       <SideBarProvider value={memoProviderValues}>{parseTNode(children)}</SideBarProvider>
-      <div className={`${name}__padding`}></div>
+      <div className={`${sideBarClass}__padding`}></div>
     </div>
   );
 });
-
-SideBar.defaultProps = SideBarDefaultProps;
 
 export default memo(SideBar);

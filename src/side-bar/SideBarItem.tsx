@@ -4,17 +4,19 @@ import type { StyledProps } from '../common';
 import type { TdSideBarItemProps } from './type';
 import { SideBarContext } from './SideBarContext';
 import Badge from '../badge';
-import useConfig from '../_util/useConfig';
 import parseTNode from '../_util/parseTNode';
+import { sideBarItemDefaultProps } from './defaultProps';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 
 export interface SideBarItemProps extends TdSideBarItemProps, StyledProps {}
 
-const SideBarItem = forwardRef<HTMLDivElement, SideBarItemProps>((props, ref) => {
+const SideBarItem = forwardRef<HTMLDivElement, SideBarItemProps>((originProps, ref) => {
+  const props = useDefaultProps(originProps, sideBarItemDefaultProps);
   const { badgeProps, disabled, icon, label, value } = props;
   const { relation, removeRelation, activeValue, onClickItem } = useContext(SideBarContext);
 
-  const { classPrefix } = useConfig();
-  const name = `${classPrefix}-side-bar-item`;
+  const sideBarItemClass = usePrefixClass('side-bar-item');
 
   useEffect(() => {
     relation(props);
@@ -34,20 +36,20 @@ const SideBarItem = forwardRef<HTMLDivElement, SideBarItemProps>((props, ref) =>
   return (
     <div
       ref={ref}
-      className={cls(name, {
-        [`${name}--active`]: isActive,
-        [`${name}--disabled`]: disabled,
+      className={cls(sideBarItemClass, {
+        [`${sideBarItemClass}--active`]: isActive,
+        [`${sideBarItemClass}--disabled`]: disabled,
       })}
       onClick={onClick}
     >
       {isActive && (
         <div>
-          <div className={`${name}__line`}></div>
-          <div className={`${name}__prefix`}></div>
-          <div className={`${name}__suffix`}></div>
+          <div className={`${sideBarItemClass}__line`}></div>
+          <div className={`${sideBarItemClass}__prefix`}></div>
+          <div className={`${sideBarItemClass}__suffix`}></div>
         </div>
       )}
-      {icon && <div className={`${name}__icon`}>{parseTNode(icon)}</div>}
+      {icon && <div className={`${sideBarItemClass}__icon`}>{parseTNode(icon)}</div>}
       {isShowBadge ? <Badge content={label} {...badgeProps} /> : <div>{label}</div>}
     </div>
   );
