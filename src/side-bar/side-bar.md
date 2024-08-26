@@ -10,13 +10,6 @@ defaultValue | String / Number | - | 选项值。非受控属性 | N
 onChange | Function |  | TS 类型：`(value: number \| string) => void`<br/>选项值发生变化时触发 | N
 onClick | Function |  | TS 类型：`(value: number \| string, label: string) => void`<br/>点击选项时触发 | N
 
-### SideBar Events
-
-名称 | 参数 | 描述
--- | -- | --
-change | `(value: number \| string)` | 选项值发生变化时触发
-click | `(value: number \| string, label: string)` | 点击选项时触发
-
 ### SideBarItem Props
 
 名称 | 类型 | 默认值 | 说明 | 必传

@@ -10,13 +10,6 @@ defaultValue | String / Number | - | uncontrolled property | N
 onChange | Function |  | Typescript：`(value: number \| string) => void`<br/> | N
 onClick | Function |  | Typescript：`(value: number \| string, label: string) => void`<br/> | N
 
-### SideBar Events
-
-name | params | description
--- | -- | --
-change | `(value: number \| string)` | \-
-click | `(value: number \| string, label: string)` | \-
-
 ### SideBarItem Props
 
 name | type | default | description | required
