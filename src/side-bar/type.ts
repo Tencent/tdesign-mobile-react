@@ -10,7 +10,6 @@ import { BadgeProps } from '../badge';
 export interface TdSideBarProps {
   /**
    * 侧边导航内容
-   * @default ''
    */
   children?: TNode;
   /**

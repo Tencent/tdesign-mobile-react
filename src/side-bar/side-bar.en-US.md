@@ -8,7 +8,7 @@ name | type | default | description | required
 -- | -- | -- | -- | --
 className | String | - | className of component | N
 style | Object | - | CSS(Cascading Style Sheets)，Typescript：`React.CSSProperties` | N
-children | String | - | children。Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+children | TNode | - | children。Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 defaultValue | String / Number | undefined | \- | N
 value | String / Number | - | \- | N
 onChange | Function |  | Typescript：`(value: number \| string) => void`<br/> | N
