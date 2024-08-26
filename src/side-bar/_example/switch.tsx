@@ -29,9 +29,7 @@ function SideBarWrapper() {
       <div className="side-bar-wrapper section-switch">
         <SideBar value={sideBarIndex} onClick={onSideBarClick} onChange={onSideBarChange}>
           {categories.map((item, index) => (
-            <SideBarItem key={index} value={index} label={item.label} badgeProps={item.badgeProps}>
-              <div className="side-bar-title">{item.title || item.label}</div>
-            </SideBarItem>
+            <SideBarItem key={index} value={index} label={item.label} badgeProps={item.badgeProps} />
           ))}
         </SideBar>
 

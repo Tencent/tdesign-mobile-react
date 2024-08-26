@@ -68,9 +68,7 @@ function SideBarWrapper() {
       <div className="side-bar-wrapper section-base">
         <SideBar value={sideBarIndex} onChange={onSideBarChange} onClick={onSideBarClick}>
           {categories.map((item, index) => (
-            <SideBarItem key={index} value={index} label={item.label} badgeProps={item.badgeProps} icon={item.icon}>
-              <div className="side-bar-title">{item.title || item.label}</div>
-            </SideBarItem>
+            <SideBarItem key={index} value={index} label={item.label} badgeProps={item.badgeProps} icon={item.icon} />
           ))}
         </SideBar>
         <div ref={wrapperRef} className="content" onScroll={onScroll}>
