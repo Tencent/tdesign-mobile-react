@@ -227,5 +227,10 @@ export default {
       name: 'link',
       component: () => import('tdesign-mobile-react/link/_example/index.tsx'),
     },
+    {
+      title: 'Table 表格',
+      name: 'table',
+      component: () => import('tdesign-mobile-react/table/_example/index.jsx'),
+    },
   ],
 };
