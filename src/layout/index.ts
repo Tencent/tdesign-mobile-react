@@ -10,5 +10,3 @@ export * from './type';
 
 export const Col = _Col;
 export const Row = _Row;
-
-export default { Col, Row };
