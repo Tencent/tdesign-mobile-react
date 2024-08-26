@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from 'tdesign-icons-react';
+import { ChevronLeftIcon } from 'tdesign-icons-react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 const THeader = (prop) => {
@@ -16,7 +16,7 @@ const THeader = (prop) => {
       {title ? (
         <div className="tdesign-demo-topnav">
           <div className="tdesign-demo-topnav-title">{title}</div>
-          {showNavBack && <Icon name="chevron-left" className="tdesign-demo-topnav__back" onClick={navBack} />}
+          {showNavBack && <ChevronLeftIcon className="tdesign-demo-topnav__back" onClick={navBack} />}
         </div>
       ) : null}
     </>
