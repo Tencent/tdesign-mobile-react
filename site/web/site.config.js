@@ -71,12 +71,6 @@ export default {
           component: () => import('tdesign-mobile-react/cell/cell.md'),
         },
         {
-          title: 'Collapse 折叠面板',
-          name: 'collapse',
-          path: '/mobile-react/components/collapse',
-          component: () => import('tdesign-mobile-react/collapse/collapse.md'),
-        },
-        {
           title: 'Divider 分割符',
           name: 'divider',
           path: '/mobile-react/components/divider',
@@ -238,12 +232,12 @@ export default {
           path: '/mobile-react/components/badge',
           component: () => import('tdesign-mobile-react/badge/badge.md'),
         },
-        // {
-        //   title: 'Collapse 折叠面板',
-        //   name: 'collapse',
-        //   path: '/mobile-react/components/collapse',
-        //   component: () => import('tdesign-mobile-react/collapse/collapse.md'),
-        // },
+        {
+          title: 'Collapse 折叠面板',
+          name: 'collapse',
+          path: '/mobile-react/components/collapse',
+          component: () => import('tdesign-mobile-react/collapse/collapse.md'),
+        },
         {
           title: 'CountDown 倒计时',
           name: 'count-down',
