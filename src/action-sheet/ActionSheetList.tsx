@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 
-import type { TElement } from 'tdesign-mobile-react/common';
 import type { ActionSheetProps } from './ActionSheet';
 import type { ActionSheetItem } from './type';
 
@@ -63,7 +62,7 @@ export function ActionSheetList(props: ActionSheetListProps) {
               onSelected?.(idx);
             }}
             disabled={disabled}
-            icon={icon as TElement}
+            icon={icon}
             style={{
               color,
             }}

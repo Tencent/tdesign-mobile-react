@@ -4,9 +4,9 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
+import type { BadgeProps } from '../badge';
+import type { TElement } from 'tdesign-mobile-react/common';
 import { MouseEvent } from 'react';
-import { TdBadgeProps } from 'tdesign-mobile-react/badge';
-import { TElement } from 'tdesign-mobile-react/common';
 
 export interface TdActionSheetProps {
   /**
@@ -31,6 +31,7 @@ export interface TdActionSheetProps {
   description?: string;
   /**
    * 菜单项
+   * @default []
    */
   items: Array<string | ActionSheetItem>;
   /**
@@ -47,12 +48,12 @@ export interface TdActionSheetProps {
    * 显示与隐藏
    * @default false
    */
-  visible?: boolean;
+  visible: boolean;
   /**
    * 显示与隐藏，非受控属性
    * @default false
    */
-  defaultVisible?: boolean;
+  defaultVisible: boolean;
   /**
    * 点击取消按钮时触发
    */
@@ -72,8 +73,7 @@ export interface ActionSheetItem {
   color?: string;
   disabled?: boolean;
   icon?: TElement;
-  suffixIcon?: string;
-  badge?: TdBadgeProps;
+  badge?: BadgeProps;
 }
 
 export type TriggerSource = 'overlay' | 'command' | 'select';

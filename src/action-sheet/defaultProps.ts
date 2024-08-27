@@ -7,9 +7,9 @@ import { TdActionSheetProps } from './type';
 export const actionSheetDefaultProps: TdActionSheetProps = {
   align: 'center',
   count: 8,
+  items: [],
   showCancel: true,
   theme: 'list',
-  items: [],
-  visible: false,
   defaultVisible: false,
+  visible: false,
 };

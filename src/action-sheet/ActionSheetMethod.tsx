@@ -2,6 +2,7 @@ import React from 'react';
 import renderToBody from '../_util/renderToBody';
 import ActionSheet from './ActionSheet';
 import type { ActionSheetProps } from './ActionSheet';
+import { actionSheetDefaultProps } from './defaultProps';
 
 let destroyRef: () => void;
 
@@ -12,7 +13,7 @@ export function show(config: Partial<ActionSheetProps>) {
 
   document.body.appendChild(app);
 
-  destroyRef = renderToBody(<ActionSheet {...config} visible />);
+  destroyRef = renderToBody(<ActionSheet {...actionSheetDefaultProps} {...config} visible />);
 }
 
 export function close() {
