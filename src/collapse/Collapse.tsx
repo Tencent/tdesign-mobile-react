@@ -18,7 +18,7 @@ const Collapse = forwardRef<HTMLDivElement, CollapseProps>((originProps, ref) =>
   const [activeValue, setActiveValue] = useState<CollapseValue | undefined>(value || defaultValue);
 
   const onPanelChange = useCallback(
-    (panelValue: string | number, args) => {
+    (panelValue: string | number, args: { e: React.MouseEvent<HTMLDivElement> }) => {
       if (Array.isArray(activeValue)) {
         const hit = activeValue.indexOf(panelValue);
 
