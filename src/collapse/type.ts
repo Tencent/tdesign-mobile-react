@@ -4,7 +4,7 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TNode } from '../common';
+import { TNode, TElement } from '../common';
 import { MouseEvent } from 'react';
 
 export interface TdCollapseProps {
@@ -81,7 +81,7 @@ export interface TdCollapsePanelProps {
   /**
    * 面板头左侧图标
    */
-  headerLeftIcon?: TNode;
+  headerLeftIcon?: TElement;
   /**
    * 面板头的右侧区域，一般用于呈现面板操作
    */
