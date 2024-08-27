@@ -27,10 +27,9 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = useCallback(
     (e) => {
-      console.log('handleClick');
       e?.stopPropagation();
       if (parent?.disabled || disabled) return;
-      parent?.onPanelChange(value);
+      parent?.onPanelChange(value, { e });
     },
     [parent, value, disabled],
   );
@@ -59,7 +58,7 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
 
   useEffect(() => {
     if (parent?.defaultExpandAll) {
-      parent.onPanelChange(value);
+      parent.onPanelChange(value, { e: null });
     }
   }, [parent, value]);
 
