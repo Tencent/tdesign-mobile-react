@@ -71,7 +71,8 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
   };
 
   const renderRightIcon = () => {
-    const icon = expandIcon || (parent && parent.expandIcon) || renderDefaultIcon();
+    const showIcon = expandIcon || parent?.expandIcon;
+    const icon = showIcon === true ? renderDefaultIcon() : showIcon;
     return <div className={`${collapsePanelClass}__header-icon`}>{icon}</div>;
   };
 
@@ -88,12 +89,10 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
     >
       <div ref={headRef} className={`${collapsePanelClass}__title`} onClick={handleClick}>
         <Cell
-          className={[
-            `${collapsePanelClass}__header`,
-            `${collapsePanelClass}__header--${placement}`,
-            { [`${collapsePanelClass}__header--expanded`]: isActive },
-          ]}
-          leftIcon={parseTNode(headerLeftIcon)}
+          className={cls(`${collapsePanelClass}__header`, `${collapsePanelClass}__header--${placement}`, {
+            [`${collapsePanelClass}__header--expanded`]: isActive,
+          })}
+          leftIcon={headerLeftIcon}
           title={parseTNode(header)}
           note={parseTNode(headerRightContent)}
           rightIcon={renderRightIcon()}
