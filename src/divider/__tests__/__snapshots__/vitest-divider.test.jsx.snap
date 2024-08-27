@@ -45,6 +45,25 @@ exports[`Divider Component > props.align is equal to right 1`] = `
 </div>
 `;
 
+exports[`Divider Component > props.children works fine 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--center"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      <span
+        class="custom-node"
+      >
+        TNode
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Divider Component > props.content works fine 1`] = `
 <div>
   <div

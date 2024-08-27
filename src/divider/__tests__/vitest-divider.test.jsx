@@ -17,6 +17,16 @@ describe('Divider Component', () => {
     });
   });
 
+  it('props.children works fine', () => {
+    const { container } = render(
+      <Divider>
+        <span className="custom-node">TNode</span>
+      </Divider>,
+    );
+    expect(container.querySelector('.custom-node')).toBeTruthy();
+    expect(container).toMatchSnapshot();
+  });
+
   it('props.content works fine', () => {
     const { container } = render(<Divider content={<span className="custom-node">TNode</span>}></Divider>);
     expect(container.querySelector('.custom-node')).toBeTruthy();
