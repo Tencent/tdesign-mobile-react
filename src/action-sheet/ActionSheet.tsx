@@ -7,6 +7,8 @@ import { Button } from '../button';
 import { Popup } from '../popup';
 import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { actionSheetDefaultProps } from './defaultProps';
 import { ActionSheetList } from './ActionSheetList';
 import { ActionSheetGrid } from './ActionSheetGrid';
 
@@ -18,14 +20,14 @@ export type ActionSheetProps = TdActionSheetProps & {
 
 export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
   const {
-    defaultVisible = false,
-    items = [],
+    defaultVisible,
+    items,
     visible: visibleFromProps,
-    theme = 'list',
-    align = 'center',
-    showOverlay = true,
-    showCancel = true,
-    cancelText = '取消',
+    theme,
+    align,
+    showOverlay,
+    showCancel,
+    cancelText,
     description,
     onClose,
     onSelected,
@@ -33,7 +35,7 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
     onVisibleChange,
     count,
     gridHeight,
-  } = props;
+  } = useDefaultProps<ActionSheetProps>(props, actionSheetDefaultProps);
 
   const { classPrefix } = useConfig();
 

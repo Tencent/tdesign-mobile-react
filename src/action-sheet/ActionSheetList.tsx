@@ -27,7 +27,7 @@ export function ActionSheetList(props: ActionSheetListProps) {
         let color: ActionSheetItem['color'];
 
         if (typeof item === 'string') {
-          label = item;
+          label = <span className={cx([`${cls}__list-item-text`])}>{item}</span>;
         } else {
           if (item?.badge) {
             label = (
@@ -67,6 +67,7 @@ export function ActionSheetList(props: ActionSheetListProps) {
             style={{
               color,
             }}
+            shape="rectangle"
           >
             {label}
           </Button>

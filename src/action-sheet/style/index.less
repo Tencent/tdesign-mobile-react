@@ -1,29 +1,15 @@
 button.t-button.t-action-sheet__list-item {
-  display: flex;
-  align-items: center;
+  // 按钮无圆角
   border-radius: 0;
 
+  // 徽标圆形，无留白
   .t-button__content .t-badge__inner {
     padding: 0;
-  }
-
-  &::after {
-    top: unset;
-    height: 1px;
-  }
-}
-
-.t-button.t-is-block.t-action-sheet__list-item.t-action-sheet__list-item--left {
-  justify-content: start;
-
-  &::after {
-    left: 16px;
   }
 }
 
 .t-action-sheet__swiper-wrap--base {
-  user-select: none;
-
+  // swiper分页器 底部居中
   .t-swiper__pagination {
     position: absolute;
     position: absolute;
