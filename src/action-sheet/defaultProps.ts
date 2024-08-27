@@ -12,4 +12,5 @@ export const actionSheetDefaultProps: TdActionSheetProps = {
   theme: 'list',
   defaultVisible: false,
   visible: false,
+  cancelText: '取消',
 };

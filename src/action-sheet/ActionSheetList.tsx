@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
+import type { TElement } from 'tdesign-mobile-react/common';
 import type { ActionSheetProps } from './ActionSheet';
 import type { ActionSheetItem } from './type';
 
@@ -36,7 +37,7 @@ export function ActionSheetList(props: ActionSheetListProps) {
                 dot={item?.badge?.dot}
                 content={item?.badge?.content}
                 size={item?.badge?.size}
-                offset={item?.badge?.offset || [16, -20]}
+                offset={item?.badge?.offset || [-16, 20]}
               >
                 <span className={cx([`${cls}__list-item-text`])}>{item?.label}</span>
               </Badge>
@@ -62,7 +63,7 @@ export function ActionSheetList(props: ActionSheetListProps) {
               onSelected?.(idx);
             }}
             disabled={disabled}
-            icon={icon}
+            icon={icon as TElement}
             style={{
               color,
             }}

@@ -53,7 +53,7 @@ export interface TdActionSheetProps {
    * 显示与隐藏，非受控属性
    * @default false
    */
-  defaultVisible: boolean;
+  defaultVisible?: boolean;
   /**
    * 点击取消按钮时触发
    */
@@ -72,7 +72,7 @@ export interface ActionSheetItem {
   label: string;
   color?: string;
   disabled?: boolean;
-  icon?: TElement;
+  icon?: string | TElement;
   badge?: BadgeProps;
 }
 
