@@ -220,7 +220,7 @@ export default {
     {
       title: 'NoticeBar 公告栏',
       name: 'notice-bar',
-      component: () => import('tdesign-mobile-react/notice-bar/_example/mobile.jsx'),
+      component: () => import('tdesign-mobile-react/notice-bar/_example/mobile.tsx'),
     },
     {
       title: 'Result 结果',

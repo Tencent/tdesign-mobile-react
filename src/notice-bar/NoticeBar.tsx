@@ -225,8 +225,8 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
   );
 
   const renderPerfixIcon = () => {
-    const prefixIconContent = defaultIcons[theme || 'info'];
-    if (prefixIcon && prefixIconContent) {
+    const prefixIconContent = prefixIcon ? parseTNode(prefixIcon) : defaultIcons[theme];
+    if (prefixIcon !== null && prefixIconContent) {
       return (
         <div className={`${rootClassName}__prefix-icon`} onClick={() => handleClick('prefix-icon')}>
           {prefixIconContent}
@@ -276,7 +276,7 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
           <div
             ref={itemDOM}
             className={classNames(`${rootClassName}__content`, {
-              [`${rootClassName}__content-wrapable`]: animationSettingValue.current.scroll.marquee,
+              [`${rootClassName}__content-wrapable`]: !animationSettingValue.current.scroll.marquee,
             })}
             style={animationSettingValue.current.scroll.marquee ? animateStyle : {}}
             onTransitionEnd={handleTransitionend}
@@ -300,13 +300,13 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
       </div>
     );
   };
-  return (
+  return isShow ? (
     <div className={containerClassName}>
       {renderPerfixIcon()}
       {renderContent()}
       {renderSuffixIconContent()}
     </div>
-  );
+  ) : null;
 };
 
 NoticeBar.displayName = 'NoticeBar';
