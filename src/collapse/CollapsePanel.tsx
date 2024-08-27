@@ -1,122 +1,109 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
-import { Icon } from 'tdesign-icons-react';
-import classNames from 'classnames';
-import useConfig from '../_util/useConfig';
-import { TdCollapsePanelProps } from './type';
-import { StyledProps } from '../common';
-import { CollapseContext } from './Collapse';
+import React, { forwardRef, memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import cls from 'classnames';
+import { ChevronDownIcon, ChevronUpIcon } from 'tdesign-icons-react';
+import type { StyledProps } from '../common';
+import type { TdCollapsePanelProps } from './type';
+import { collapsePanelDefaultProps } from './defaultProps';
+import { CollapseContext } from './CollapseContext';
+import { Cell } from '../cell';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
+import parseTNode from '../_util/parseTNode';
 
-export interface CollapsePanelProps extends TdCollapsePanelProps, StyledProps {
-  children?: React.ReactNode;
-}
+export interface CollapsePanelProps extends TdCollapsePanelProps, StyledProps {}
 
-const CollapsePanel = function(_props: CollapsePanelProps) {
-  const context = useContext(CollapseContext);
-  const props = context ? context.inject(_props) : _props;
-  const {
-    className,
-    style,
-    children,
-    content,
-    destroyOnCollapse,
-    disabled,
-    expandIcon,
-    header,
-    headerRightContent,
-    expanded: injectedExpanded,
-    value,
-    onChange,
-    isControlled,
-  } = props;
+const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProps, ref) => {
+  const props = useDefaultProps(originProps, collapsePanelDefaultProps);
+  const collapsePanelClass = usePrefixClass('collapse-panel');
 
-  const { classPrefix } = useConfig();
+  const { value, disabled, placement, expandIcon, children, headerLeftIcon, header, headerRightContent } = props;
 
-  const [expanded, setExpanded] = useState(injectedExpanded);
-  const [showPanelBody, setShowPanelBody] = useState(injectedExpanded);
-  const [panelStyle, setPanelStyle] = useState({});
+  const parent = useContext(CollapseContext);
 
-  const panelRef = useRef(null);
-  const headerRef = useRef(null);
-  const bodyRef = useRef(null);
-  
-  const panelClassNames = classNames(
-    className, 
-    `${classPrefix}-collapse-panel`, 
-    {[`${classPrefix}-collapse-panel--active`]: expanded},
-    {[`${classPrefix}-collapse-panel--disabled`]: disabled},
+  const isActive = useMemo(
+    () => parent && parent.activeValue && parent.activeValue.indexOf(value) > -1,
+    [parent, value],
   );
 
-  useEffect(() => {
-    if (expanded) {
-      setShowPanelBody(true);
-    }
-    setTimeout(() => {
-      const headerHeight = headerRef.current.getBoundingClientRect().height;
-      const bodyHeight = (bodyRef && bodyRef.current) ? bodyRef.current.getBoundingClientRect().height : 0;
-      setPanelStyle({
-        height: `${expanded ? (headerHeight + bodyHeight) : headerHeight}px`
-      });
-    });
-  }, [expanded]);
+  const handleClick: React.MouseEventHandler<HTMLDivElement> = useCallback(
+    (e) => {
+      console.log('handleClick');
+      e?.stopPropagation();
+      if (parent?.disabled || disabled) return;
+      parent?.onPanelChange(value);
+    },
+    [parent, value, disabled],
+  );
+
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const headRef = useRef<HTMLDivElement>(null);
+  const [wrapperHeight, setWrapperHeight] = useState('');
 
   useEffect(() => {
-    if (!disabled) {
-      setExpanded(injectedExpanded);
-    }
-  }, [injectedExpanded, disabled]);
+    const updatePanelState = () => {
+      if (!headRef.current || !bodyRef.current) {
+        return;
+      }
+      const headHeight = headRef.current.getBoundingClientRect().height;
+      if (!isActive) {
+        setWrapperHeight(`${headHeight}px`);
+        return;
+      }
+      const bodyHeight = bodyRef.current.getBoundingClientRect().height;
+      const height = headHeight + bodyHeight;
+      setWrapperHeight(`${height}px`);
+    };
 
-  const handleHeaderClick = () => {
-    if (disabled) {
-      return;
+    updatePanelState();
+  }, [isActive]);
+
+  useEffect(() => {
+    if (parent?.defaultExpandAll) {
+      parent.onPanelChange(value);
     }
-    if (!isControlled) {
-      setExpanded(!expanded);
-      onChange(value);
+  }, [parent, value]);
+
+  const renderDefaultIcon = () => {
+    if (placement === 'bottom') {
+      return isActive ? <ChevronUpIcon /> : <ChevronDownIcon />;
     }
+    return isActive ? <ChevronDownIcon /> : <ChevronUpIcon />;
   };
 
-  const renderIcon = () => {
-    if (expandIcon === 'undefined' || expandIcon === false) {
-      return <></>;
-    }
-    if (expandIcon === true) {
-      return (
-        <Icon 
-          name={expanded ? 'chevron-up' : 'chevron-down'} 
-          size="1em"
-          className={`${classPrefix}-collapse-panel__header-icon`}
-        />
-      );
-    } 
-    return expandIcon;
+  const renderRightIcon = () => {
+    const icon = expandIcon || (parent && parent.expandIcon) || renderDefaultIcon();
+    return <div className={`${collapsePanelClass}__header-icon`}>{icon}</div>;
   };
-
-  const onTransitionEnd = () => {
-    const { height: panelHeight } = panelRef.current.getBoundingClientRect();
-    if (destroyOnCollapse && panelHeight <= 48) {
-      setShowPanelBody(false);
-    }
-  }
 
   return (
-    <div className={panelClassNames} style={{...style, ...panelStyle}} ref={panelRef} onTransitionEnd={onTransitionEnd}>
-      <div className={`${classPrefix}-collapse-panel__header`} onClick={handleHeaderClick} ref={headerRef}>
-        <div className={`${classPrefix}-collapse-panel__title`}>{header}</div>
-        <div className={`${classPrefix}-collapse-panel__header-right`}>
-          <div className={`${classPrefix}-collapse-panel__header-right-content`}>
-            {headerRightContent}
-          </div>
-          {renderIcon()}
-        </div>
+    <div
+      ref={ref}
+      className={cls({
+        [`${collapsePanelClass}`]: true,
+        [`${collapsePanelClass}--${placement}`]: true,
+        [`${collapsePanelClass}--active`]: isActive,
+        [`${collapsePanelClass}--disabled`]: parent?.disabled || disabled,
+      })}
+      style={{ height: wrapperHeight }}
+    >
+      <div ref={headRef} className={`${collapsePanelClass}__title`} onClick={handleClick}>
+        <Cell
+          className={[
+            `${collapsePanelClass}__header`,
+            `${collapsePanelClass}__header--${placement}`,
+            { [`${collapsePanelClass}__header--expanded`]: isActive },
+          ]}
+          leftIcon={parseTNode(headerLeftIcon)}
+          title={parseTNode(header)}
+          note={parseTNode(headerRightContent)}
+          rightIcon={renderRightIcon()}
+        />
       </div>
-      {(!destroyOnCollapse || destroyOnCollapse && showPanelBody) 
-        && <div className={`${classPrefix}-collapse-panel__body`} ref={bodyRef}>
-        <div className={`${classPrefix}-collapse-panel__content`}>
-          {children || content}
-        </div>
-      </div>}
+      <div ref={bodyRef} className={`${collapsePanelClass}__content`}>
+        {parseTNode(children, 'default', 'content')}
+      </div>
     </div>
   );
-};
+});
 
-export default CollapsePanel;
+export default memo(CollapsePanel);
