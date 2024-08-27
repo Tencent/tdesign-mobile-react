@@ -81,12 +81,12 @@ const Badge = forwardRef<HTMLDivElement, BadgeProps>((originProps, ref) => {
 
   const childNode = content || children;
 
-  const readerContent = () =>
-    childNode && (
-      <div className={`${badgeClass}__content`}>
-        <span className={`${badgeClass}__content-text`}>{parseTNode(childNode)}</span>
-      </div>
-    );
+  const readerContent = () => {
+    if (typeof content === 'string') {
+      return <span className={`${badgeClass}__content-text`}>{content}</span>;
+    }
+    return parseTNode(childNode);
+  };
 
   const readerBadge = () => {
     if (!isShowBadge) return null;
@@ -99,7 +99,7 @@ const Badge = forwardRef<HTMLDivElement, BadgeProps>((originProps, ref) => {
 
   return (
     <div ref={ref} className={badgeClasses} style={style}>
-      {readerContent()}
+      <div className={`${badgeClass}__content`}>{readerContent()}</div>
       {readerBadge()}
     </div>
   );
