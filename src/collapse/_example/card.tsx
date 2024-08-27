@@ -9,7 +9,7 @@ export default function () {
   };
 
   return (
-    <Collapse value={values} onChange={handleChange} expandMutex>
+    <Collapse theme="card" value={values} onChange={handleChange} expandMutex>
       {Array.from({ length: 4 }).map((_, i) => (
         <Fragment key={i}>
           <CollapsePanel value={i} header="折叠面板标题" headerRightContent="单元测试" disabled={i === 4}>

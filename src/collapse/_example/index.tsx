@@ -4,6 +4,7 @@ import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import Base from './base';
 import Action from './action';
 import Accordion from './accordion';
+import Card from './card';
 
 export default function CheckboxDemo() {
   return (
@@ -20,6 +21,10 @@ export default function CheckboxDemo() {
 
       <TDemoBlock summary="手风琴模式">
         <Accordion />
+      </TDemoBlock>
+
+      <TDemoBlock title="02 组件样式" summary="卡片折叠面板">
+        <Card />
       </TDemoBlock>
     </div>
   );
