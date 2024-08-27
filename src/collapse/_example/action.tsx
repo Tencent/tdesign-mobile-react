@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Collapse, CollapsePanel } from '..';
+import { Collapse, CollapsePanel } from 'tdesign-mobile-react';
 
 export default function () {
   const [values, setValues] = useState([0]);
