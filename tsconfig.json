@@ -32,7 +32,8 @@
     "cjs",
     "esm",
     "es",
-    "site"
+    "site",
+    "**/*.jsx",
   ],
   "compileOnSave": false
 }
