@@ -224,7 +224,7 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
     [animationSettingValue.current.offset, animationSettingValue.current.duration],
   );
 
-  const renderPerfixIcon = () => {
+  const renderPrefixIcon = () => {
     const prefixIconContent = prefixIcon ? parseTNode(prefixIcon) : defaultIcons[theme];
     if (prefixIcon !== null && prefixIconContent) {
       return (
@@ -302,7 +302,7 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
   };
   return isShow ? (
     <div className={containerClassName}>
-      {renderPerfixIcon()}
+      {renderPrefixIcon()}
       {renderContent()}
       {renderSuffixIconContent()}
     </div>
