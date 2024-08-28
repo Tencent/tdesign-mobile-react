@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { InfoCircleFilledIcon, CheckCircleFilledIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
 import isObject from 'lodash/isObject';
@@ -6,7 +6,7 @@ import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
 import isArray from 'lodash/isArray';
 import Swiper from 'tdesign-mobile-react/swiper';
 import SwiperItem from 'tdesign-mobile-react/swiper/SwiperItem';
-import { ConfigContext } from '../config-provider';
+import { usePrefixClass } from 'tdesign-mobile-react/hooks/useClass';
 import type { StyledProps } from '../common';
 import type { TdNoticeBarProps, NoticeBarTrigger, NoticeBarMarquee } from './type';
 import useDefault from '../_util/useDefault';
@@ -56,7 +56,11 @@ const defaultIcons: Record<TdNoticeBarProps['theme'], IconType> = {
 };
 
 function useAnimationSettingValue() {
-  const animationSettingValue = useRef<frameState>(defaultReduceState());
+  const animationSettingValue = useRef<frameState | null>(null);
+  if (!animationSettingValue.current) {
+    // 仅为null时进行初始化
+    animationSettingValue.current = defaultReduceState();
+  }
   const [, setState] = useState(0);
 
   function updateScroll(obj: Partial<frameState['scroll']>) {
@@ -109,9 +113,8 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
   const itemDOM = useRef<HTMLDivElement | null>(null);
   const hasBeenExecute = useRef(false);
 
-  const { classPrefix } = useContext(ConfigContext);
   const [isShow] = useDefault(visible, defaultVisible, noop);
-  const rootClassName = `${classPrefix}-notice-bar`;
+  const rootClassName = usePrefixClass('notice-bar');
   const containerClassName = classNames(rootClassName, `${rootClassName}--${theme}`);
   const { animationSettingValue, updateScroll, updateAnimationFrame } = useAnimationSettingValue();
 
@@ -123,7 +126,7 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
       }
       return;
     }
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       if (isShow) {
         updateAnimationFrame({
           offset: animationSettingValue.current.listWidth,
@@ -132,6 +135,10 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
         handleScrolling();
       }
     }, 0);
+
+    return () => {
+      clearTimeout(timer);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isShow]);
 
