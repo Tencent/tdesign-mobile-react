@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { TabBar, TabBarItem } from 'tdesign-mobile-react';
-import { AppIcon } from 'tdesign-icons-react';
+import { Icon } from 'tdesign-icons-react';
 
 function TabBarBaseDemo() {
   const list = [
-    { name: 'label_1', text: '文字', icon: <AppIcon /> },
-    { name: 'label_2', text: '文字', icon: <AppIcon /> },
-    { name: 'label_3', text: '文字', icon: <AppIcon /> },
-    { name: 'label_4', text: '文字', icon: <AppIcon /> },
+    { value: 'label_1', icon: 'home', ariaLabel: '首页' },
+    { value: 'label_2', icon: 'app', ariaLabel: '软件' },
+    { value: 'label_3', icon: 'chat', ariaLabel: '聊天' },
+    { value: 'label_4', icon: 'user', ariaLabel: '我的' },
   ];
   const [value, setValue] = useState('label_1');
 
@@ -22,11 +22,9 @@ function TabBarBaseDemo() {
 
   return (
     <div className="demo-tab-bar">
-      <TabBar value={value} onChange={change}>
+      <TabBar value={value} onChange={change} shape="round" theme="tag" split={false}>
         {list.map((item, i) => (
-          <TabBarItem key={item.name || i} icon={item.icon} value={item.name}>
-            {item.text}
-          </TabBarItem>
+          <TabBarItem key={item.value || i} icon={<Icon name={item.icon} />} value={item.value} />
         ))}
       </TabBar>
     </div>

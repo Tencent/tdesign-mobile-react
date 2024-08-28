@@ -235,7 +235,7 @@ export default {
     {
       title: 'TabBar 标签栏',
       name: 'tab-bar',
-      component: () => import('tdesign-mobile-react/tab-bar/_example/mobile.jsx'),
+      component: () => import('tdesign-mobile-react/tab-bar/_example/mobile.tsx'),
     },
     {
       title: 'Fab 悬浮按钮',
@@ -245,7 +245,7 @@ export default {
     {
       title: 'NoticeBar 公告栏',
       name: 'notice-bar',
-      component: () => import('tdesign-mobile-react/notice-bar/_example/mobile.jsx'),
+      component: () => import('tdesign-mobile-react/notice-bar/_example/mobile.tsx'),
     },
     {
       title: 'Result 结果',
