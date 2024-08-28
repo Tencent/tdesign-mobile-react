@@ -14,13 +14,13 @@ export default function () {
     <div className="tdesign-demo-block-wrap">
       <Swiper onChange={onChange} current={current}>
         <Swiper.SwiperItem>
-          <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/site/swiper/01.png" />
+          <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper1.png" />
         </Swiper.SwiperItem>
         <Swiper.SwiperItem>
-          <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/site/swiper/02.png" />
+          <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper2.png" />
         </Swiper.SwiperItem>
         <Swiper.SwiperItem>
-          <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/site/swiper/03.png" />
+          <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper1.png" />
         </Swiper.SwiperItem>
       </Swiper>
       <div className="dots-container">
