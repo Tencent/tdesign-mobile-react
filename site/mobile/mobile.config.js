@@ -210,7 +210,7 @@ export default {
     {
       title: 'TabBar 标签栏',
       name: 'tab-bar',
-      component: () => import('tdesign-mobile-react/tab-bar/_example/mobile.jsx'),
+      component: () => import('tdesign-mobile-react/tab-bar/_example/mobile.tsx'),
     },
     {
       title: 'Fab 悬浮按钮',

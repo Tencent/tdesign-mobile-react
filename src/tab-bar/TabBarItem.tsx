@@ -1,24 +1,34 @@
 import cls from 'classnames';
-import React, { forwardRef, memo, useContext, useEffect, useMemo, useState } from 'react';
-
+import React, { forwardRef, memo, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { Icon } from 'tdesign-icons-react';
 import type { StyledProps } from '../common';
 import type { TdTabBarItemProps } from './type';
 import { TabBarContext } from './TabBarContext';
 import Badge from '../badge';
-import useConfig from '../_util/useConfig';
 import useTabBarCssTransition from './useTabBarCssTransition';
+import parseTNode from '../_util/parseTNode';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 
 export interface TabBarItemProps extends TdTabBarItemProps, StyledProps {}
 
-const defaultBadgeOffset = [0, 5];
+const defaultBadgeOffset = [0, 0];
 const defaultBadgeMaxCount = 99;
 
-const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
+const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref) => {
+  const props = useDefaultProps(originProps, {});
   const { subTabBar, icon, badgeProps, value, children } = props;
 
   const hasSubTabBar = useMemo(() => !!subTabBar, [subTabBar]);
-  const { defaultIndex, activeValue, updateChild } = useContext(TabBarContext);
+  const { defaultIndex, activeValue, updateChild, shape, split, theme, itemCount } = useContext(TabBarContext);
+
+  const tabBarItemClass = usePrefixClass('tab-bar-item');
+
+  const textNode = useRef<HTMLDivElement>(null);
+
+  const [iconOnly, setIconOnly] = useState(false);
+
   // 组件每次 render 生成一个临时的当前组件唯一值
   const [currentName] = useState<undefined | number | string>(() => {
     if (value) {
@@ -27,9 +37,10 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
     return (defaultIndex.current += 1);
   });
 
-  const { classPrefix } = useConfig();
-
-  const componentName = `${classPrefix}-tab-bar-item`;
+  useEffect(() => {
+    const height = textNode?.current?.clientHeight;
+    setIconOnly(Number(height) === 0);
+  }, [textNode]);
 
   const [isSpread, setIsSpread] = useState(false);
 
@@ -42,6 +53,8 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
 
   const mergedBadgeProps = useMemo(
     () => ({
+      count: 0,
+      dot: false,
       offset: defaultBadgeOffset,
       maxCount: defaultBadgeMaxCount,
       ...badgeProps,
@@ -83,68 +96,92 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((props, ref) => {
     setIsSpread(() => false);
   };
 
-  const tabItemCls = cls(componentName, {
-    [`${classPrefix}-no-border`]: icon,
+  /** 拥挤否 */
+  const crowded = itemCount > 3;
+
+  const tabItemCls = cls(
+    tabBarItemClass,
+    {
+      [`${tabBarItemClass}--split`]: split,
+      [`${tabBarItemClass}--text-only`]: !icon,
+      [`${tabBarItemClass}--crowded`]: crowded,
+    },
+    `${tabBarItemClass}--${shape}`,
+  );
+  const tabItemInnerCls = cls(
+    `${tabBarItemClass}__content`,
+    {
+      [`${tabBarItemClass}__content--checked`]: isChecked,
+    },
+    `${tabBarItemClass}__content--${theme}`,
+  );
+  const tabItemTextCls = cls(`${tabBarItemClass}__text`, {
+    [`${tabBarItemClass}__text--small`]: icon,
   });
-  const tabItemInnerCls = cls(`${componentName}__content`, {
-    [`${classPrefix}-is-checked`]: isChecked,
-    [`${componentName}--onlytext`]: !icon,
-  });
-  const tabItemIconCls = cls(`${componentName}__icon`);
-  const tabItemSpreadCls = cls(`${componentName}__spread`);
-  const tabItemSpreadItemCls = cls(`${componentName}__spread-item`);
-  const tabItemTextCls = cls(`${componentName}__text`);
-  const tabItemIconMenuCls = cls(`${componentName}__icon-menu`);
 
   const transitionClsNames = useTabBarCssTransition({
     name: 'spread',
   });
 
+  const iconSize = `${iconOnly ? 24 : 20}px`;
+
+  const iconContent =
+    icon &&
+    React.cloneElement(icon, {
+      style: { fontSize: iconSize },
+    });
+
   return (
-    <div
-      role="tab"
-      aria-label="TabBar"
-      aria-selected={isChecked}
-      aria-haspopup={shouldShowSubTabBar}
-      className={tabItemCls}
-      ref={ref}
-    >
-      <div className={tabItemInnerCls} onClick={toggle}>
+    <div className={tabItemCls} ref={ref}>
+      <div
+        role="tab"
+        aria-label="TabBar"
+        aria-selected={isChecked}
+        aria-haspopup={shouldShowSubTabBar}
+        className={tabItemInnerCls}
+        onClick={toggle}
+      >
         {icon && (
-          <div className={tabItemIconCls}>
+          <div className={`${tabBarItemClass}__icon`} style={{ height: iconSize }}>
             {badgeProps && (badgeProps?.dot || badgeProps?.count) ? (
-              <Badge content={icon} {...mergedBadgeProps} />
+              <Badge content={iconContent} {...mergedBadgeProps} />
             ) : (
-              icon
+              iconContent
             )}
           </div>
         )}
         {children && (
-          <div className={tabItemTextCls}>
-            {shouldShowSubTabBar && <div className={tabItemIconMenuCls} />}
-            {children}
+          <div ref={textNode} className={tabItemTextCls}>
+            {shouldShowSubTabBar && (
+              <>
+                <Icon name="view-list" size="16" />
+                <div className={`${tabBarItemClass}__icon-menu`} />
+              </>
+            )}
+            {parseTNode(children)}
           </div>
         )}
-
-        <CSSTransition timeout={200} in={showSubTabBar} classNames={transitionClsNames} mountOnEnter unmountOnExit>
-          <ul role="menu" className={tabItemSpreadCls}>
-            {subTabBar?.map((child, index) => (
-              <li
-                key={child.value || index}
-                role="menuitem"
-                aria-label={child.label}
-                className={tabItemSpreadItemCls}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  selectChild(child.value || index);
-                }}
-              >
-                {child.label}
-              </li>
-            ))}
-          </ul>
-        </CSSTransition>
       </div>
+
+      <CSSTransition timeout={200} in={showSubTabBar} classNames={transitionClsNames} mountOnEnter unmountOnExit>
+        <ul role="menu" className={`${tabBarItemClass}__spread`}>
+          {subTabBar?.map((child, index) => (
+            <div
+              key={child.value || index}
+              role="menuitem"
+              aria-label={child.label}
+              className={`${tabBarItemClass}__spread-item`}
+              onClick={(e) => {
+                e.stopPropagation();
+                selectChild(child.value || index);
+              }}
+            >
+              {index !== 0 && <div className={`${tabBarItemClass}__spread-item-split`} />}
+              <div className={`${tabBarItemClass}__spread-item-text`}>{child.label}</div>
+            </div>
+          ))}
+        </ul>
+      </CSSTransition>
     </div>
   );
 });

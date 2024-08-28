@@ -4,8 +4,8 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TdBadgeProps } from '../badge';
-import { TNode } from '../common';
+import { BadgeProps } from '../badge';
+import { TNode, TElement } from '../common';
 
 export interface TdTabBarProps {
   /**
@@ -14,10 +14,34 @@ export interface TdTabBarProps {
    */
   bordered?: boolean;
   /**
+   * 标签栏内容
+   */
+  children?: TNode;
+  /**
    * 是否固定在底部
    * @default true
    */
   fixed?: boolean;
+  /**
+   * 是否为 iPhoneX 留出底部安全距离
+   * @default true
+   */
+  safeAreaInsetBottom?: boolean;
+  /**
+   * 标签栏的形状
+   * @default 'normal'
+   */
+  shape?: 'normal' | 'round';
+  /**
+   * 是否需要分割线
+   * @default true
+   */
+  split?: boolean;
+  /**
+   * 选项风格
+   * @default 'normal'
+   */
+  theme?: 'normal' | 'tag';
   /**
    * 当前选中标签的索引
    */
@@ -29,26 +53,33 @@ export interface TdTabBarProps {
   /**
    * 选中标签切换时触发
    */
-  onChange?: () => void;
+  onChange?: (value: string | number) => void;
 }
 
 export interface TdTabBarItemProps {
   /**
    * 图标右上角提示信息
    */
-  badgeProps?: TdBadgeProps;
+  badgeProps?: BadgeProps;
+  /**
+   * 标签内容
+   */
+  children?: TNode;
   /**
    * 图标名称
    */
-  icon?: TNode;
+  icon?: TElement;
   /**
    * 二级菜单
    */
-  subTabBar?: SubTabBarItem[] ;
+  subTabBar?: SubTabBarItem[];
   /**
    * 标识符
    */
   value?: string | number;
 }
 
-export interface SubTabBarItem { value: string; label: string };
+export interface SubTabBarItem {
+  value: string;
+  label: string;
+}
