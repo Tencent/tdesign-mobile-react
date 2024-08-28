@@ -9,10 +9,10 @@ import { ChangeEvent, MouseEvent } from 'react';
 
 export interface TdCheckboxProps {
   /**
-   * 多选框和内容相对位置
-   * @default left
+   * 是否为块级元素
+   * @default true
    */
-  align?: 'left' | 'right';
+  block?: boolean;
   /**
    * 用于标识是否为「全选选项」。单独使用无效，需在 CheckboxGroup 中使用
    * @default false
@@ -29,25 +29,31 @@ export interface TdCheckboxProps {
    */
   defaultChecked?: boolean;
   /**
-   * 多选框内容，同 label
+   * 是否选中
+   * @default false
    */
-  children?: TNode;
+  modelValue?: boolean;
   /**
    * 多选框内容
    */
-  content?: TNode;
+  content?: string | TNode;
   /**
    * 是否禁用组件内容（content）触发选中
    */
   contentDisabled?: boolean;
   /**
-   * 是否禁用组件
+   * 多选框内容，同 label
+   */
+  default?: string | TNode;
+  /**
+   * 是否禁用组件。如果父组件存在 CheckboxGroup，默认值由 CheckboxGroup.disabled 控制。优先级：Checkbox.disabled > CheckboxGroup.disabled > Form.disabled
    */
   disabled?: boolean;
   /**
-   * 自定义选中图标和非选中图标。示例：[选中态图标，非选中态图标]
+   * 自定义选中图标和非选中图标。使用 Array 时表示：[选中态图标，非选中态图标]。使用 String 时，值为 circle 表示填充圆形图标、值为 line 表示描边型图标、值为 rectangle 表示填充矩形图标。
+   * @default 'circle'
    */
-  icon?: Array<TNode>;
+  icon?: 'circle' | 'line' | 'rectangle' | boolean | Array<TNode | String>;
   /**
    * 是否为半选
    * @default false
@@ -56,7 +62,7 @@ export interface TdCheckboxProps {
   /**
    * 主文案
    */
-  label?: TNode;
+  label?: string | TNode;
   /**
    * 内容最大行数限制
    * @default 5
@@ -73,14 +79,19 @@ export interface TdCheckboxProps {
    */
   name?: string;
   /**
-   * 只读状态
+   * 多选框和内容相对位置
+   * @default left
+   */
+  placement?: 'left' | 'right';
+  /**
+   * 【暂不支持】只读状态
    * @default false
    */
   readonly?: boolean;
   /**
    * 多选框的值
    */
-  value?: string | number;
+  value?: string | number | boolean;
   /**
    * 值变化时触发
    */
@@ -89,7 +100,7 @@ export interface TdCheckboxProps {
 
 export interface TdCheckboxGroupProps {
   /**
-   * 是否禁用组件
+   * 是否禁用组件。优先级：Form.disabled < CheckboxGroup.disabled < Checkbox.disabled
    * @default false
    */
   disabled?: boolean;
@@ -125,8 +136,18 @@ export interface TdCheckboxGroupProps {
 
 export type CheckboxOption = string | number | CheckboxOptionObj;
 
-export interface CheckboxOptionObj { label?: string | TNode; value?: string | number; disabled?: boolean; name?: string; checkAll?: true };
+export interface CheckboxOptionObj {
+  label?: string | TNode;
+  value?: string | number;
+  disabled?: boolean;
+  name?: string;
+  checkAll?: true;
+}
 
 export type CheckboxGroupValue = Array<string | number>;
 
-export interface CheckboxGroupChangeContext { e: ChangeEvent<HTMLDivElement> | MouseEvent<HTMLDivElement>; current:    | TdCheckboxProps; type: 'check' | 'uncheck' };
+export interface CheckboxGroupChangeContext {
+  e: ChangeEvent<HTMLDivElement> | MouseEvent<HTMLDivElement>;
+  current: TdCheckboxProps;
+  type: 'check' | 'uncheck';
+}
