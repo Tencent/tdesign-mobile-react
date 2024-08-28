@@ -26,14 +26,10 @@ const columns = [
   { colKey: 'detail.email', title: '标题', width: 180 },
 ];
 
-export function ScrollExample() {
+export default function ScrollExample() {
   const handleScroll = (e) => {
     console.log('scroll=====', e);
   };
 
-  return (
-    <div style={{ margin: '16px 16px 0' }}>
-      <Table columns={columns} data={data} rowKey="index" showHeader onScroll={handleScroll}></Table>
-    </div>
-  );
+  return <Table columns={columns} data={data} rowKey="index" showHeader onScroll={handleScroll}></Table>;
 }

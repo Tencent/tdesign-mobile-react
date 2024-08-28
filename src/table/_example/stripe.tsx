@@ -25,22 +25,20 @@ const columns = [
   { colKey: 'detail.email', title: '标题', ellipsis: true },
 ];
 
-export function StripeExample() {
+export default function StripeExample() {
   const handleScroll = (e) => {
     console.log('scroll=====', e);
   };
 
   return (
-    <div style={{ margin: '16px 16px 0' }}>
-      <Table
-        columns={columns}
-        data={data}
-        rowKey="index"
-        showHeader
-        stripe
-        maxHeight={400}
-        onScroll={handleScroll}
-      ></Table>
-    </div>
+    <Table
+      columns={columns}
+      data={data}
+      rowKey="index"
+      showHeader
+      stripe
+      maxHeight={400}
+      onScroll={handleScroll}
+    ></Table>
   );
 }
