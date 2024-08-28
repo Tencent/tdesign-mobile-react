@@ -125,6 +125,12 @@ export default {
           component: () => import('tdesign-mobile-react/navbar/navbar.md'),
         },
         {
+          title: 'SideBar 侧边栏',
+          name: 'side-bar',
+          path: '/mobile-react/components/side-bar',
+          component: () => import('tdesign-mobile-react/side-bar/side-bar.md'),
+        },
+        {
           title: 'Tabs 选项卡',
           name: 'tabs',
           path: '/mobile-react/components/tabs',
@@ -232,12 +238,12 @@ export default {
           path: '/mobile-react/components/badge',
           component: () => import('tdesign-mobile-react/badge/badge.md'),
         },
-        // {
-        //   title: 'Collapse 折叠面板',
-        //   name: 'collapse',
-        //   path: '/mobile-react/components/collapse',
-        //   component: () => import('tdesign-mobile-react/collapse/collapse.md'),
-        // },
+        {
+          title: 'Collapse 折叠面板',
+          name: 'collapse',
+          path: '/mobile-react/components/collapse',
+          component: () => import('tdesign-mobile-react/collapse/collapse.md'),
+        },
         {
           title: 'CountDown 倒计时',
           name: 'count-down',
