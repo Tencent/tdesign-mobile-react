@@ -471,6 +471,12 @@ export const docs = [
         path: '/mobile-react/components/dialog',
         component: () => import('tdesign-mobile-react/dialog/dialog.md'),
       },
+      {
+        title: 'DropdownMenu 下拉菜单',
+        name: 'dropdown-menu',
+        path: '/mobile-react/components/dropdown-menu',
+        component: () => import('tdesign-mobile-react/dropdown-menu/dropdown-menu.md'),
+      },
       // {
       //   title: 'DropdownMenu 下拉菜单',
       //   name: 'dropdown-menu',
