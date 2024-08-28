@@ -140,7 +140,7 @@ export default {
     {
       title: 'Swiper 轮播',
       name: 'swiper',
-      component: () => import('tdesign-mobile-react/swiper/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/swiper/_example/index.tsx'),
     },
     {
       title: 'Navbar 导航栏',
