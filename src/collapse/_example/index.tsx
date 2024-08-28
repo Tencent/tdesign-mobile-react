@@ -2,8 +2,10 @@ import React from 'react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import Base from './base';
+import Placement from './placement';
 import Action from './action';
 import Accordion from './accordion';
+import Card from './card';
 
 export default function CheckboxDemo() {
   return (
@@ -14,12 +16,20 @@ export default function CheckboxDemo() {
         <Base />
       </TDemoBlock>
 
+      <TDemoBlock summary="向上展开">
+        <Placement />
+      </TDemoBlock>
+
       <TDemoBlock summary="带操作说明">
         <Action />
       </TDemoBlock>
 
       <TDemoBlock summary="手风琴模式">
         <Accordion />
+      </TDemoBlock>
+
+      <TDemoBlock title="02 组件样式" summary="卡片折叠面板">
+        <Card />
       </TDemoBlock>
     </div>
   );

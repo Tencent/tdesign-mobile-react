@@ -195,7 +195,7 @@ export default {
     {
       title: 'Collapse 折叠面板',
       name: 'Collapse',
-      component: () => import('tdesign-mobile-react/collapse/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/collapse/_example/index.tsx'),
     },
     {
       title: 'Stepper 步进器',
