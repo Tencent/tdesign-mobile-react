@@ -32,6 +32,10 @@ export interface TdGridProps {
    * @default default
    */
   theme?: 'default' | 'card';
+  /**
+   * 标签栏内容
+   */
+  children?: TNode;
 }
 
 export interface TdGridItemProps {
