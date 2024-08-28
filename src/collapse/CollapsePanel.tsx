@@ -16,7 +16,18 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
   const props = useDefaultProps(originProps, collapsePanelDefaultProps);
   const collapsePanelClass = usePrefixClass('collapse-panel');
 
-  const { value, disabled, placement, expandIcon, children, headerLeftIcon, header, headerRightContent } = props;
+  const {
+    value,
+    disabled,
+    placement,
+    expandIcon,
+    children,
+    headerLeftIcon,
+    header,
+    headerRightContent,
+    className,
+    style,
+  } = props;
 
   const parent = useContext(CollapseContext);
 
@@ -83,8 +94,12 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
         [`${collapsePanelClass}--${placement}`]: true,
         [`${collapsePanelClass}--active`]: isActive,
         [`${collapsePanelClass}--disabled`]: parent?.disabled || disabled,
+        [className]: className,
       })}
-      style={{ height: wrapperHeight }}
+      style={{
+        height: wrapperHeight,
+        ...style,
+      }}
     >
       <div ref={headRef} className={`${collapsePanelClass}__title`} onClick={handleClick}>
         <Cell

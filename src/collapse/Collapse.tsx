@@ -13,7 +13,19 @@ const Collapse = forwardRef<HTMLDivElement, CollapseProps>((originProps, ref) =>
   const props = useDefaultProps(originProps, collapseDefaultProps);
   const collapseClass = usePrefixClass('collapse');
 
-  const { defaultValue, value, onChange, disabled, expandIcon, expandMutex, defaultExpandAll, theme, children } = props;
+  const {
+    defaultValue,
+    value,
+    onChange,
+    disabled,
+    expandIcon,
+    expandMutex,
+    defaultExpandAll,
+    theme,
+    children,
+    className,
+    style,
+  } = props;
 
   const [activeValue, setActiveValue] = useState<CollapseValue | undefined>(value || defaultValue);
 
@@ -48,7 +60,7 @@ const Collapse = forwardRef<HTMLDivElement, CollapseProps>((originProps, ref) =>
   );
 
   return (
-    <div ref={ref} className={`${collapseClass} ${collapseClass}--${theme}`}>
+    <div ref={ref} className={`${collapseClass} ${collapseClass}--${theme} ${className}`} style={style}>
       <CollapseProvider value={memoProviderValues}>{parseTNode(children)}</CollapseProvider>
     </div>
   );
