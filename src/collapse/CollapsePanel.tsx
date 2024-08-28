@@ -31,10 +31,7 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
 
   const parent = useContext(CollapseContext);
 
-  const isActive = useMemo(
-    () => parent && parent.activeValue && parent.activeValue.indexOf(value) > -1,
-    [parent, value],
-  );
+  const isActive = useMemo(() => !!parent?.activeValue?.includes(value), [parent, value]);
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = useCallback(
     (e) => {
@@ -86,6 +83,19 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
     return <div className={`${collapsePanelClass}__header-icon`}>{icon}</div>;
   };
 
+  /** 面板内容区， */
+  const PanelContent = () => {
+    const panelContent = parseTNode(children);
+    // 当前面板处理折叠状态时，是否销毁面板内容
+    if (props.destroyOnCollapse && !isActive) return null;
+
+    return (
+      <div ref={bodyRef} className={`${collapsePanelClass}__content`}>
+        {panelContent}
+      </div>
+    );
+  };
+
   return (
     <div
       ref={ref}
@@ -112,9 +122,7 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
           rightIcon={renderRightIcon()}
         />
       </div>
-      <div ref={bodyRef} className={`${collapsePanelClass}__content`}>
-        {parseTNode(children, 'default', 'content')}
-      </div>
+      <PanelContent />
     </div>
   );
 });
