@@ -97,6 +97,8 @@ function useAnimationSettingValue() {
 
 const NoticeBar: React.FC<NoticeBarProps> = (props) => {
   const {
+    style,
+    className,
     content,
     direction,
     marquee,
@@ -115,7 +117,7 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
 
   const [isShow] = useDefault(visible, defaultVisible, noop);
   const rootClassName = usePrefixClass('notice-bar');
-  const containerClassName = classNames(rootClassName, `${rootClassName}--${theme}`);
+  const containerClassName = classNames(rootClassName, `${rootClassName}--${theme}`, className);
   const { animationSettingValue, updateScroll, updateAnimationFrame } = useAnimationSettingValue();
 
   useEffect(() => {
@@ -308,7 +310,7 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
     );
   };
   return isShow ? (
-    <div className={containerClassName}>
+    <div className={containerClassName} style={style}>
       {renderPrefixIcon()}
       {renderContent()}
       {renderSuffixIconContent()}

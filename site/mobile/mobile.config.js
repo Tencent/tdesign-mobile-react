@@ -260,7 +260,7 @@ export default {
     {
       title: 'Table 表格',
       name: 'table',
-      component: () => import('tdesign-mobile-react/table/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/table/_example/index.tsx'),
     },
   ],
 };

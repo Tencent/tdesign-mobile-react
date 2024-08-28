@@ -16,17 +16,27 @@ for (let i = 0; i < total; i++) {
 }
 
 const columns = [
-  { colKey: 'applicant', title: '标题', ellipsis: true },
+  { colKey: 'applicant', title: '标题', ellipsis: true, cell: 'type-slot-name' },
   {
     colKey: 'status',
     title: '标题',
     ellipsis: true,
   },
-  { colKey: 'channel', title: '标题', ellipsis: true },
-  { colKey: 'detail.email', title: '标题', ellipsis: true },
+  {
+    colKey: 'channel',
+    title: '标题',
+    cell: ({ col, row }) => row[col.colKey],
+    ellipsis: true,
+  },
+  {
+    colKey: 'detail.email',
+    title: '标题',
+    cell: () => '内容',
+    ellipsis: true,
+  },
 ];
 
-export function BorderedExample() {
+export default function BaseExample() {
   const handleRowClick = (e) => {
     console.log('row-cliek=====', e);
   };
@@ -35,22 +45,15 @@ export function BorderedExample() {
     console.log('cell-cliek=====', e);
   };
 
-  const handleScroll = (e) => {
-    console.log('scroll=====', e);
-  };
-
   return (
-    <div style={{ margin: '16px 16px 0' }}>
-      <Table
-        columns={columns}
-        data={data}
-        rowKey="index"
-        showHeader
-        onCellClick={handleCellClick}
-        onRowClick={handleRowClick}
-        onScroll={handleScroll}
-        bordered
-      ></Table>
-    </div>
+    <Table
+      columns={columns}
+      data={data}
+      cellEmptyContent={'vvv'}
+      rowKey="index"
+      showHeader
+      onCellClick={handleCellClick}
+      onRowClick={handleRowClick}
+    ></Table>
   );
 }
