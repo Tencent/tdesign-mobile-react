@@ -54,6 +54,11 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
     [`${classPrefixCheckBox}--block`]: block,
   });
 
+  const isChecked = useMemo(
+    () => (props.checkAll ? props.checked : internalChecked),
+    [internalChecked, props.checkAll, props.checked],
+  );
+
   const checkIcons = useMemo(() => {
     if (Array.isArray(icon) && icon.length > 1) {
       return icon.map((i) =>
@@ -79,11 +84,11 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
   const renderIconArray = () => {
     const className = `${classPrefixCheckBox}__icon-wrapper`;
     if (Array.isArray(icon)) {
-      return parseContentTNode(internalChecked ? checkIcons[0] : checkIcons[1], {
+      return parseContentTNode(isChecked ? checkIcons[0] : checkIcons[1], {
         className,
       });
     }
-    if (internalChecked) {
+    if (isChecked) {
       return parseContentTNode(checkIcon, {
         className,
       });

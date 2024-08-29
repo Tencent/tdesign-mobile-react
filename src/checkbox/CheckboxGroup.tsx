@@ -80,7 +80,7 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
       return {
         ...checkProps,
         name,
-        checked: checkProps.checkAll ? checkAllChecked : checkedSet.has(checkValue),
+        checked: checkProps.checkAll ? checkAllChecked || checkedSet.size !== 0 : checkedSet.has(checkValue),
         indeterminate: checkProps.checkAll ? indeterminate : checkProps.indeterminate,
         disabled: checkProps.disabled || disabled || (checkedSet.size >= localMax && !checkedSet.has(checkValue)),
         onChange(checked, { e }) {
