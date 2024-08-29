@@ -82,7 +82,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
         className: classNames({ [`${classPrefixCheckBox}__icon-wrapper`]: true }),
       });
     }
-    if (props.checked) {
+    if (internalChecked) {
       return parseContentTNode(checkIcon, {
         className: classNames({ [`${classPrefixCheckBox}__icon-wrapper`]: true }),
       });
@@ -122,9 +122,9 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
   };
 
   const handleClick = (e) => {
-    console.log(e, internalChecked, 123);
-    if (contentDisabled) {
+    if (contentDisabled || props.disabled) {
       e.preventDefault();
+      return;
     }
 
     setInternalChecked(!internalChecked, { e });
