@@ -93,6 +93,11 @@ export interface TdCheckboxProps {
    */
   value?: string | number | boolean;
   /**
+   * 是否无边框
+   * @default false
+   */
+  borderless?: boolean;
+  /**
    * 值变化时触发
    */
   onChange?: (checked: boolean, context: { e: ChangeEvent<HTMLDivElement> | MouseEvent<HTMLDivElement> }) => void;

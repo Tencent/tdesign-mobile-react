@@ -27,18 +27,7 @@ const getCheckboxValue = (v: CheckboxOption): string | number => {
 
 export function CheckboxGroup(props: CheckboxGroupProps) {
   const { classPrefix } = useConfig();
-  const { 
-    value, 
-    defaultValue, 
-    disabled, 
-    className, 
-    max, 
-    options = [], 
-    name,
-    style,
-    children, 
-    onChange, 
-  } = props;
+  const { value, defaultValue, disabled, className, max, options = [], name, style, children, onChange } = props;
 
   const internalOptions =
     Array.isArray(options) && options.length > 0
@@ -116,8 +105,8 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
 
           setInternalValue(Array.from(checkedSet), {
             e,
-            current: checkProps.checkAll ? undefined : (checkValue as TdCheckboxProps), 
-            type: checked ? 'check' : 'uncheck' 
+            current: checkProps.checkAll ? undefined : (checkValue as TdCheckboxProps),
+            type: checked ? 'check' : 'uncheck',
           });
         },
       };
@@ -129,11 +118,10 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
 
   return (
     <div className={classNames(`${classPrefix}-checkbox-group`, className)} style={style}>
-      <div className={`${classPrefix}-cell-group`}>
-        <div className={`${classPrefix}cell-group__container`}>
-          <CheckContext.Provider value={context}>
-            {useOptions
-              ? options.map((v, index) => {
+      <span>
+        <CheckContext.Provider value={context}>
+          {useOptions
+            ? options.map((v, index) => {
                 const type = typeof v;
                 switch (type) {
                   case 'number' || 'string': {
@@ -148,20 +136,19 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
                     const vs = v as CheckboxOptionObj;
                     // CheckAll 的 checkBox 不存在 value,故用 checkAll_index 来保证尽量不和用户的 value 冲突.
                     return vs.checkAll ? (
-                      <Checkbox {...v as Object} key={`checkAll_${index}`} indeterminate={indeterminate} />
+                      <Checkbox {...(v as Object)} key={`checkAll_${index}`} indeterminate={indeterminate} />
                     ) : (
-                      <Checkbox {...v as Object} key={vs.value} disabled={vs.disabled || disabled} />
+                      <Checkbox {...(v as Object)} key={vs.value} disabled={vs.disabled || disabled} />
                     );
                   }
                   default:
                     return null;
                 }
               })
-              : children}
-          </CheckContext.Provider>
-        </div>
-      </div>
+            : children}
+        </CheckContext.Provider>
+      </span>
     </div>
-  )
+  );
 }
 export default CheckboxGroup;

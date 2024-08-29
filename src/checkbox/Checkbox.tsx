@@ -1,11 +1,20 @@
-import React, { useContext, useMemo, Ref, forwardRef, CSSProperties } from 'react';
+import React, { useContext, useMemo, Ref, forwardRef } from 'react';
 import classNames from 'classnames';
-import { Icon } from 'tdesign-icons-react';
+import {
+  CheckIcon,
+  MinusIcon,
+  CheckCircleFilledIcon,
+  CircleIcon,
+  MinusCircleFilledIcon,
+  MinusRectangleFilledIcon,
+  CheckRectangleFilledIcon,
+} from 'tdesign-icons-react';
 import { TdCheckboxProps } from './type';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import CheckboxGroup from './CheckboxGroup';
 import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
+import { parseContentTNode } from '../_util/parseTNode';
 
 export interface CheckBoxProps extends TdCheckboxProps {
   ref: Ref<HTMLLabelElement>;
@@ -17,125 +26,150 @@ export interface CheckContextValue {
 
 export const CheckContext = React.createContext<CheckContextValue>(null);
 
-const getLimitRowStyle = (row: number): CSSProperties => ({
-  display: '-webkit-box',
-  overflow: 'hidden',
-  WebkitBoxOrient: 'vertical',
-  WebkitLineClamp: row,
-});
-
-const Checkbox = forwardRef((_props: CheckBoxProps, ref: Ref<HTMLInputElement>) => {
+const Checkbox = forwardRef((_props: CheckBoxProps) => {
   const context = useContext(CheckContext);
   const props = context ? context.inject(_props) : _props;
   const { classPrefix } = useConfig();
+  const classPrefixCheckBox = `${classPrefix}-checkbox`;
   const {
-    name,
-    align = 'left',
+    placement = 'left',
     content,
-    children,
-    disabled,
     indeterminate,
     label,
     onChange,
     checked,
     defaultChecked = false,
-    readonly,
-    value,
     maxLabelRow = 3,
     maxContentRow = 5,
-    icon,
+    icon = 'circle',
     contentDisabled = false,
-    // borderless = false,
+    block = true,
+    borderless = false,
   } = props;
   const [internalChecked, setInternalChecked] = useDefault(checked, defaultChecked, onChange);
 
   const checkboxClassName = classNames(`${classPrefix}-checkbox`, {
-    [`${classPrefix}-is-checked`]: internalChecked || indeterminate,
-    [`${classPrefix}-is-disabled`]: disabled,
+    [`${classPrefixCheckBox}--${placement}`]: true,
+    [`${classPrefixCheckBox}--checked`]: props.checked,
+    [`${classPrefixCheckBox}--block`]: block,
   });
-  const iconName = useMemo(() => {
-    if (indeterminate) {
-      return 'minus-circle-filled';
+
+  const checkIcons = useMemo(() => {
+    if (Array.isArray(icon) && icon.length > 1) {
+      return icon.map((i) =>
+        typeof i === 'string' ? <img key={i} className={`${classPrefixCheckBox}__icon-image`} src={i}></img> : i,
+      );
     }
-    if (internalChecked) {
-      return 'check-circle-filled';
+    return [<CheckCircleFilledIcon key="check"></CheckCircleFilledIcon>, <CircleIcon key="uncheck"></CircleIcon>];
+  }, [classPrefixCheckBox, icon]);
+
+  const checkIcon = useMemo(() => {
+    if (icon === 'circle' || icon === true) {
+      return indeterminate ? <MinusCircleFilledIcon /> : <CheckCircleFilledIcon />;
     }
-    return 'circle';
-  }, [indeterminate, internalChecked]);
-  const renderIcon = () => {
+    if (icon === 'rectangle') {
+      return indeterminate ? <MinusRectangleFilledIcon /> : <CheckRectangleFilledIcon />;
+    }
+    if (icon === 'line') {
+      return indeterminate ? <MinusIcon /> : <CheckIcon />;
+    }
+    return null;
+  }, [icon, indeterminate]);
+
+  const renderIconArray = () => {
     if (Array.isArray(icon)) {
-      if (internalChecked) {
-        return icon[0];
-      }
-      return icon[1];
+      return parseContentTNode(internalChecked ? checkIcons[0] : checkIcons[1], {
+        className: classNames({ [`${classPrefixCheckBox}__icon-wrapper`]: true }),
+      });
+    }
+    if (props.checked) {
+      return parseContentTNode(checkIcon, {
+        className: classNames({ [`${classPrefixCheckBox}__icon-wrapper`]: true }),
+      });
     }
     return (
-      <Icon
-        name={iconName}
-        className={classNames({
-          [`${classPrefix}-checkbox__checked__disable-icon`]: disabled,
-        })}
-      />
+      <>
+        {(icon === 'circle' || icon === true || icon === 'rectangle') && (
+          <div
+            className={classNames({
+              [`${classPrefixCheckBox}__icon-circle`]: icon === true,
+              [`${classPrefixCheckBox}__icon-${icon}`]: typeof icon === 'string',
+              [`${classPrefixCheckBox}__icon-${icon}--disabled`]: props.disabled,
+            })}
+          ></div>
+        )}
+        {icon === 'line' && <div className="placeholder"></div>}
+      </>
     );
   };
-  const labelStyle: CSSProperties = {
-    color: disabled ? '#dcdcdc' : 'inherit',
-    ...getLimitRowStyle(maxLabelRow),
+
+  const renderIconNode = () => {
+    if (!icon) {
+      return null;
+    }
+    return (
+      <div
+        className={classNames({
+          [`${classPrefixCheckBox}__icon`]: true,
+          [`${classPrefixCheckBox}__icon--${placement}`]: true,
+          [`${classPrefixCheckBox}__icon--checked`]: internalChecked,
+          [`${classPrefixCheckBox}__icon--disabled`]: props.disabled,
+        })}
+      >
+        {renderIconArray()}
+      </div>
+    );
   };
+
   const handleClick = (e) => {
     if (contentDisabled) {
       e.preventDefault();
     }
 
-    setInternalChecked(!internalChecked, { e })
+    setInternalChecked(!internalChecked, { e });
   };
+
+  const renderCheckBoxContent = () => (
+    <div
+      className={classNames({
+        [`${classPrefixCheckBox}__content`]: true,
+      })}
+      onClick={(event) => {
+        event.stopPropagation();
+        handleClick(event);
+      }}
+    >
+      <div
+        className={classNames({
+          [`${classPrefixCheckBox}__title`]: true,
+          [`${classPrefixCheckBox}__title--checked`]: internalChecked,
+          [`${classPrefixCheckBox}__title--disabled`]: props.disabled,
+        })}
+        style={{ WebkitLineClamp: maxLabelRow }}
+      >
+        {label}
+      </div>
+      <div
+        className={classNames({
+          [`${classPrefixCheckBox}__description`]: true,
+          [`${classPrefixCheckBox}__description--disabled`]: props.disabled,
+        })}
+        style={{ WebkitLineClamp: maxContentRow }}
+      >
+        {content}
+      </div>
+    </div>
+  );
+
   return (
     <>
-      <div className={checkboxClassName}>
-        <div className={`${classPrefix}-checkbox__content-wrap`}>
-         { align ==='left' && <span className={`${classPrefix}-checkbox__icon-left`}>
-            <input
-              readOnly={readonly}
-              value={value}
-              ref={ref}
-              type="checkbox"
-              name={name}
-              className={`${classPrefix}-checkbox__original-left`}
-              disabled={disabled}
-              checked={internalChecked}
-              onClick={(e) => e.stopPropagation()}
-              onChange={(e) => setInternalChecked(e.currentTarget.checked, { e })}
-            />
-            {renderIcon()}
-          </span>}
-          <span className={ `${classPrefix}-checkbox__label ${classPrefix}-checkbox__label-left`} onClick={handleClick}>
-            <span style={labelStyle}>
-              {label}
-            </span>
-            <span className={`${classPrefix}-checkbox__description`} style={getLimitRowStyle(maxContentRow)}>
-              {children || content}
-            </span>
-          </span>
-
-          { align ==='right' && <span className={`${classPrefix}-checkbox__icon-right`}>
-            <input
-              readOnly={readonly}
-              value={value}
-              ref={ref}
-              type="checkbox"
-              name={name}
-              className={`${classPrefix}-checkbox__original-right`}
-              disabled={disabled}
-              checked={internalChecked}
-              onClick={(e) => e.stopPropagation()}
-              onChange={(e) => setInternalChecked(e.currentTarget.checked, { e })}
-            />
-            {renderIcon()}
-          </span>}
-        </div>
+      <div className={checkboxClassName} onClick={handleClick}>
+        {renderIconNode()}
+        {renderCheckBoxContent()}
         {/* 下边框 */}
-        {/* { !borderless && <div className={`${classPrefix}-checkbox__border ${classPrefix}-checkbox__border--${align}`}></div>} */}
-        { <div className={`${classPrefix}-checkbox__border ${classPrefix}-checkbox__border--${align}`}></div> }
+        {!borderless && (
+          <div className={`${classPrefixCheckBox}__border ${classPrefixCheckBox}__border--${placement}`}></div>
+        )}
       </div>
     </>
   );
