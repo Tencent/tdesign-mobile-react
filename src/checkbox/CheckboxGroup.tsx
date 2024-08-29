@@ -116,38 +116,41 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
   // options 和 children 的抉择,在未明确说明时，暂时以 options 优先
   const useOptions = Array.isArray(options) && options.length !== 0;
 
+  const checkboxNode = () =>
+    options.map((v, index) => {
+      const type = typeof v;
+      switch (type) {
+        case 'number' || 'string': {
+          const vs = v as number | string;
+          return (
+            <Checkbox key={vs} label={vs} value={vs}>
+              {v}
+            </Checkbox>
+          );
+        }
+        case 'object': {
+          const vs = v as CheckboxOptionObj;
+          // CheckAll 的 checkBox 不存在 value,故用 checkAll_index 来保证尽量不和用户的 value 冲突.
+          return vs.checkAll ? (
+            <Checkbox {...(v as Object)} key={`checkAll_${index}`} indeterminate={indeterminate} />
+          ) : (
+            <Checkbox {...(v as Object)} key={vs.value} disabled={vs.disabled || disabled} />
+          );
+        }
+        default:
+          return null;
+      }
+    });
+
   return (
     <div className={classNames(`${classPrefix}-checkbox-group`, className)} style={style}>
-      <span>
-        <CheckContext.Provider value={context}>
-          {useOptions
-            ? options.map((v, index) => {
-                const type = typeof v;
-                switch (type) {
-                  case 'number' || 'string': {
-                    const vs = v as number | string;
-                    return (
-                      <Checkbox key={vs} label={vs} value={vs}>
-                        {v}
-                      </Checkbox>
-                    );
-                  }
-                  case 'object': {
-                    const vs = v as CheckboxOptionObj;
-                    // CheckAll 的 checkBox 不存在 value,故用 checkAll_index 来保证尽量不和用户的 value 冲突.
-                    return vs.checkAll ? (
-                      <Checkbox {...(v as Object)} key={`checkAll_${index}`} indeterminate={indeterminate} />
-                    ) : (
-                      <Checkbox {...(v as Object)} key={vs.value} disabled={vs.disabled || disabled} />
-                    );
-                  }
-                  default:
-                    return null;
-                }
-              })
-            : children}
-        </CheckContext.Provider>
-      </span>
+      {useOptions ? (
+        <span>
+          <CheckContext.Provider value={context}>{checkboxNode()}</CheckContext.Provider>
+        </span>
+      ) : (
+        <CheckContext.Provider value={context}>{children}</CheckContext.Provider>
+      )}
     </div>
   );
 }
