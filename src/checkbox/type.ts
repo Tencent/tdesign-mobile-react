@@ -146,7 +146,7 @@ export interface CheckboxOptionObj {
   value?: string | number;
   disabled?: boolean;
   name?: string;
-  checkAll?: true;
+  checkAll?: boolean;
 }
 
 export type CheckboxGroupValue = Array<string | number>;
