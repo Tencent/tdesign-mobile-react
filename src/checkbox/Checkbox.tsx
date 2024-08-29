@@ -60,7 +60,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
         typeof i === 'string' ? <img key={i} className={`${classPrefixCheckBox}__icon-image`} src={i}></img> : i,
       );
     }
-    return [<CheckCircleFilledIcon key="check"></CheckCircleFilledIcon>, <CircleIcon key="uncheck"></CircleIcon>];
+    return [<CheckCircleFilledIcon key="check" />, <CircleIcon key="uncheck" />];
   }, [classPrefixCheckBox, icon]);
 
   const checkIcon = useMemo(() => {
@@ -77,14 +77,15 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
   }, [icon, indeterminate]);
 
   const renderIconArray = () => {
+    const className = `${classPrefixCheckBox}__icon-wrapper`;
     if (Array.isArray(icon)) {
       return parseContentTNode(internalChecked ? checkIcons[0] : checkIcons[1], {
-        className: classNames({ [`${classPrefixCheckBox}__icon-wrapper`]: true }),
+        className,
       });
     }
     if (internalChecked) {
       return parseContentTNode(checkIcon, {
-        className: classNames({ [`${classPrefixCheckBox}__icon-wrapper`]: true }),
+        className,
       });
     }
     return (
