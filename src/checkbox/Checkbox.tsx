@@ -122,6 +122,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
   };
 
   const handleClick = (e) => {
+    console.log(e, internalChecked, 123);
     if (contentDisabled) {
       e.preventDefault();
     }
