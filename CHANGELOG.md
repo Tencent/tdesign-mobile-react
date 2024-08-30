@@ -5,6 +5,21 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.6.0 `2024-08-30` 
+### 🚀 Features
+- `Table`: 新增 `Table` 组件 @TianlunXiong ([#472](https://github.com/Tencent/tdesign-mobile-react/pull/472))
+- `SideBar`: 新增 `SideBar` 组件 @tobytovi ([#491](https://github.com/Tencent/tdesign-mobile-react/pull/491))
+- `layout`: 新增 layout 组件 @jiasy1616 ([#452](https://github.com/Tencent/tdesign-mobile-react/pull/452))
+- `NoticeBar`: 新增 `direction` 属性， `extra` 属性名称变更为 `operation`，废弃 `change` 事件 @slatejack ([#501](https://github.com/Tencent/tdesign-mobile-react/pull/501))
+- `TabBar`:  新增 `children`、`split` 和 `shape` 等属性 @tobytovi ([#482](https://github.com/Tencent/tdesign-mobile-react/pull/482))
+- `TabBarItem`:  新增 `children` 属性 @tobytovi ([#482](https://github.com/Tencent/tdesign-mobile-react/pull/482))
+- `Collapse`: 新增 `children`  和 `theme` 属性 @tobytovi ([#500](https://github.com/Tencent/tdesign-mobile-react/pull/500))
+- `CollapsePanel`: 新增 `placement`  和 `headerLeftIcon` 属性 @tobytovi ([#500](https://github.com/Tencent/tdesign-mobile-react/pull/500))
+
+### 🐞 Bug Fixes
+- `Badge`:  修复 `content` 为 `ReactNode` 类型时组件渲染异常 @anlyyao ([#499](https://github.com/Tencent/tdesign-mobile-react/pull/499))
+ 
+
 ## 🌈 0.5.0 `2024-08-23` 
 ### ❗ Breaking Changes
 - `Input`: 组件重构，新增 `allowInputOverMax`、`autocomplete`、`borderless`、`readonly`、`status` 与`tips` 属性，新增 `onValidate` 事件 @slatejack ([#467](https://github.com/Tencent/tdesign-mobile-react/pull/467))
