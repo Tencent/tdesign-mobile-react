@@ -9,11 +9,7 @@ describe('Divider', () => {
       const testId = 'divider test align';
       const aligns: TdDividerProps['align'][] = ['left', 'right', 'center'];
       const { getByTestId } = render(
-        <div data-testid={testId}>
-          {aligns?.map((align, index) => (
-            <Divider key={index} align={align} />
-          ))}
-        </div>,
+        <div data-testid={testId}>{aligns?.map((align, index) => <Divider key={index} align={align} />)}</div>,
       );
 
       const instance = await waitFor(() => getByTestId(testId));
@@ -28,11 +24,7 @@ describe('Divider', () => {
       const testId = 'divider test layout';
       const layouts: TdDividerProps['layout'][] = ['horizontal', 'vertical'];
       const { getByTestId } = render(
-        <div data-testid={testId}>
-          {layouts?.map((layout, index) => (
-            <Divider key={index} layout={layout} />
-          ))}
-        </div>,
+        <div data-testid={testId}>{layouts?.map((layout, index) => <Divider key={index} layout={layout} />)}</div>,
       );
 
       const instance = await waitFor(() => getByTestId(testId));
@@ -53,6 +45,14 @@ describe('Divider', () => {
       const content = 'DividerContent';
       const { getByText } = render(<Divider content={content}></Divider>);
       expect(getByText(content).textContent).toBeTruthy();
+    });
+  });
+
+  describe('function', () => {
+    it(':content', async () => {
+      const content = () => 'DividerContent';
+      const { getByText } = render(<Divider>{content}</Divider>);
+      expect(getByText(content()).textContent).toBeTruthy();
     });
   });
 

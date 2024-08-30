@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Col > Col baseDemo demo works fine 1`] = `null`;
+
+exports[`Col > Col indexDemo demo works fine 1`] = `null`;
+
+exports[`Col > Col offsetDemo demo works fine 1`] = `null`;

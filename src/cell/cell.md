@@ -6,16 +6,6 @@ isComponent: true
 toc: false
 ---
 
-## 单行单元格
-
-::: demo _example/single cell
-:::
-
-## 多行单元格
-
-::: demo _example/multiple cell
-:::
-
 ## API
 
 ### Cell Props
