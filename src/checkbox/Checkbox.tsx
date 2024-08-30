@@ -118,7 +118,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
         className={classNames({
           [`${classPrefixCheckBox}__icon`]: true,
           [`${classPrefixCheckBox}__icon--${placement}`]: true,
-          [`${classPrefixCheckBox}__icon--checked`]: internalChecked,
+          [`${classPrefixCheckBox}__icon--checked`]: isChecked,
           [`${classPrefixCheckBox}__icon--disabled`]: props.disabled,
         })}
       >
@@ -149,7 +149,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
       <div
         className={classNames({
           [`${classPrefixCheckBox}__title`]: true,
-          [`${classPrefixCheckBox}__title--checked`]: internalChecked,
+          [`${classPrefixCheckBox}__title--checked`]: isChecked,
           [`${classPrefixCheckBox}__title--disabled`]: props.disabled,
         })}
         style={{ WebkitLineClamp: maxLabelRow }}
