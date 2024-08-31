@@ -15,6 +15,7 @@ import CheckboxGroup from './CheckboxGroup';
 import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
 import { parseContentTNode } from '../_util/parseTNode';
+import { usePrefixClass } from '../hooks/useClass';
 
 export interface CheckBoxProps extends TdCheckboxProps {
   ref: Ref<HTMLLabelElement>;
@@ -30,7 +31,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
   const context = useContext(CheckContext);
   const props = context ? context.inject(_props) : _props;
   const { classPrefix } = useConfig();
-  const classPrefixCheckBox = `${classPrefix}-checkbox`;
+  const classPrefixCheckBox = usePrefixClass('checkbox');
   const {
     placement = 'left',
     content,
