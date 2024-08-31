@@ -1,112 +1,69 @@
-import React, { useMemo } from 'react';
-import classNames from 'classnames';
-import { TdCollapseProps } from './type';
-import { StyledProps } from '../common';
-import useDefault from '../_util/useDefault';
-import useConfig from '../_util/useConfig';
-import noop from '../_util/noop';
-import CollapsePanel, { CollapsePanelProps } from './CollapsePanel';
+import React, { forwardRef, memo, useCallback, useMemo, useState } from 'react';
+import type { StyledProps } from '../common';
+import type { TdCollapseProps, CollapseValue } from './type';
+import { collapseDefaultProps } from './defaultProps';
+import { CollapseProvider } from './CollapseContext';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
+import parseTNode from '../_util/parseTNode';
 
-export interface CollapseProps extends TdCollapseProps, StyledProps {
-  children?: React.ReactNode;
-}
+export interface CollapseProps extends TdCollapseProps, StyledProps {}
 
-export const CollapseContext = React.createContext(null);
+const Collapse = forwardRef<HTMLDivElement, CollapseProps>((originProps, ref) => {
+  const props = useDefaultProps(originProps, collapseDefaultProps);
+  const collapseClass = usePrefixClass('collapse');
 
-export interface CollapsePanelContextValue {
-  inject: (props: CollapsePanelProps) => CollapsePanelProps;
-}
-
-const Collapse = function(props: CollapseProps) {
-  const { classPrefix } = useConfig();
-  const { 
-    className,
-    style,
+  const {
+    defaultValue,
+    value,
+    onChange,
     disabled,
-    defaultExpandAll,
     expandIcon,
     expandMutex,
-    value: propsValue,
-    defaultValue,
-    onChange: propsOnChange = noop,
+    defaultExpandAll,
+    theme,
     children,
-   } = props; 
-  const collapseClassNames = classNames(
     className,
-    `${classPrefix}-collapse`,
-  );  
+    style,
+  } = props;
 
-  const propsValueArr = useMemo(() => {
-    if (typeof propsValue === 'string' || typeof propsValue === 'number') {
-      return [propsValue];
-    }
-    if (Array.isArray(propsValue)) {
-      return [...propsValue]
-    }
-  }, [propsValue]);
+  const [activeValue, setActiveValue] = useState<CollapseValue | undefined>(value || defaultValue);
 
-  let defaultValueArr = [];
-  if (typeof defaultValue === 'string' || typeof defaultValue === 'number') {
-    defaultValueArr = [defaultValue];
-  }
-  if (Array.isArray(defaultValue)) {
-    defaultValueArr = [...defaultValue];
-  }
+  const onPanelChange = useCallback(
+    (panelValue: string | number, args: { e: React.MouseEvent<HTMLDivElement> }) => {
+      if (Array.isArray(activeValue)) {
+        const hit = activeValue.indexOf(panelValue);
 
-  const [value, setValue] = useDefault(propsValueArr, defaultValueArr, noop);
-
-  const valueSet = useMemo(() => {
-    if (!Array.isArray(value)) return new Set([]);
-    return new Set([].concat(value));
-  }, [value]);
-
-  const context: CollapsePanelContextValue = {
-    inject: (collapsePanelProps) => {
-      const { 
-        disabled: innerDisabled,
-        expandIcon: innerExpandedIcon, 
-        value: innerValue,
-      } = collapsePanelProps;
-
-      const expanded = valueSet.has(innerValue) || defaultExpandAll;
-      const returnDisabled = typeof innerDisabled === 'undefined' ? disabled : innerDisabled;
-
-      return {
-        ...collapsePanelProps,
-        disabled: returnDisabled,
-        expandIcon: typeof innerExpandedIcon === 'undefined' ? expandIcon : innerExpandedIcon,
-        isControlled: typeof propsValue !== 'undefined',
-        expanded,
-        onChange(v) {
-          if (value.includes(v)) {
-            setValue([...value.filter(item => item !== v)]);
-          } else {
-            if (expandMutex) {
-              setValue([v]);
-              return;
-            }
-            setValue([...value, v]);
-          }
-          propsOnChange(v);
+        if (hit > -1) {
+          const newVal = activeValue.filter((item) => item !== panelValue);
+          setActiveValue(newVal);
+          onChange?.(newVal, args);
+        } else {
+          const newVal = expandMutex ? [panelValue] : activeValue.concat(panelValue);
+          setActiveValue(newVal);
+          onChange?.(newVal, args);
         }
-      };
+      }
     },
-  };
+    [activeValue, onChange, expandMutex],
+  );
+
+  const memoProviderValues = useMemo(
+    () => ({
+      activeValue,
+      disabled,
+      expandIcon,
+      onPanelChange,
+      defaultExpandAll,
+    }),
+    [activeValue, disabled, expandIcon, onPanelChange, defaultExpandAll],
+  );
+
   return (
-    <div className={collapseClassNames} style={style}>
-      <CollapseContext.Provider value={context}>
-        {React.Children.map(children, (child, index) => {
-          if (!React.isValidElement(child)) {
-            return child;
-          }
-          const childProps = { value: index }
-          return React.cloneElement(child, childProps)
-        })}
-      </CollapseContext.Provider>
+    <div ref={ref} className={`${collapseClass} ${collapseClass}--${theme} ${className}`} style={style}>
+      <CollapseProvider value={memoProviderValues}>{parseTNode(children)}</CollapseProvider>
     </div>
   );
-};
+});
 
-Collapse.Panel = CollapsePanel;
-
-export default Collapse;
+export default memo(Collapse);
