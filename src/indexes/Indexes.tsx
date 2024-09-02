@@ -172,7 +172,7 @@ const Indexes: React.FC<IndexesProps> = (props) => {
 
   useEffect(() => {
     const clearSidebarTip = (): void => {
-      if (showSidebarTip && activeSidebar) {
+      if (showSidebarTip && activeSidebar !== null) {
         tipTimer.current && clearTimeout(tipTimer.current);
         tipTimer.current = window.setTimeout(() => {
           setShowSidebarTip(false);
@@ -208,17 +208,18 @@ const Indexes: React.FC<IndexesProps> = (props) => {
       tipTimer.current && clearTimeout(tipTimer.current);
       sideBar && sideBar.removeEventListener('touchmove', handleSidebarTouchmove);
     };
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <div
-      className={cls(name, className)}
-      onScroll={throttle(handleRootScroll, 1000 / 30)}
-      style={{ ...style }}
-      ref={indexesRef}
-    >
-      <div ref={sidebarRef} className={`${name}__sidebar`}>
-        <IndexesPorvider value={{ relation }}>
+    <IndexesPorvider value={{ relation }}>
+      <div
+        className={cls(name, className)}
+        onScroll={throttle(handleRootScroll, 1000 / 30)}
+        style={{ ...style }}
+        ref={indexesRef}
+      >
+        <div ref={sidebarRef} className={`${name}__sidebar`}>
           {indexListMemo.map((listItem) => (
             <div
               className={cls(`${name}__sidebar-item`, {
@@ -237,10 +238,10 @@ const Indexes: React.FC<IndexesProps> = (props) => {
               )}
             </div>
           ))}
-        </IndexesPorvider>
+        </div>
+        {parseTNode(children)}
       </div>
-      {parseTNode(children)}
-    </div>
+    </IndexesPorvider>
   );
 };
 
