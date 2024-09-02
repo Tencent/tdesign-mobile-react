@@ -17,10 +17,6 @@ export interface TdPopoverProps {
    */
   content?: string | TNode;
   /**
-   * 触发元素，同 triggerElement
-   */
-  default?: string | TNode;
-  /**
    * 浮层出现位置
    * @default top
    */

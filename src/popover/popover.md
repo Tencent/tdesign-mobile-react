@@ -8,7 +8,6 @@
 -- | -- | -- | -- | --
 closeOnClickOutside | Boolean | true | 是否在点击外部元素后关闭菜单  | N
 content | String / Slot / Function | - | 确认框内容。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-vue/blob/develop/src/common.ts) | N
-default | String / Slot / Function | - | 触发元素，同 triggerElement。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-vue/blob/develop/src/common.ts) | N
 placement | String | top | 浮层出现位置。可选项：top/left/right/bottom/top-left/top-right/bottom-left/bottom-right/left-top/left-bottom/right-top/right-bottom | N
 showArrow | Boolean | true | 是否显示浮层箭头 | N
 theme | String | dark | 弹出气泡主题。。可选项：dark/light/brand/success/warning/error | N

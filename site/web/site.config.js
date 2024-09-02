@@ -354,6 +354,12 @@ export default {
           component: () => import('tdesign-mobile-react/overlay/overlay.md'),
         },
         {
+          title: 'Popover 弹出气泡',
+          name: 'popover',
+          path: '/mobile-react/components/popover',
+          component: () => import('tdesign-mobile-react/popover/popover.md'),
+        },
+        {
           title: 'Popup 弹出层',
           name: 'popup',
           path: '/mobile-react/components/popup',

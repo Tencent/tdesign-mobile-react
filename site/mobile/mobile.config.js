@@ -46,6 +46,11 @@ export default {
       component: () => import('tdesign-mobile-react/overlay/_example/index.tsx'),
     },
     {
+      title: 'Popover 弹出气泡',
+      name: 'popover',
+      component: () => import('tdesign-mobile-react/popover/_example/index.tsx'),
+    },
+    {
       title: 'Popup 弹出层',
       name: 'popup',
       component: () => import('tdesign-mobile-react/popup/_example/index.tsx'),
