@@ -14,27 +14,27 @@ export default function IndexesDemo({ goHome }) {
   const [curIndex, setCurIndex] = useState<number | string>('');
   const list = [
     {
-      index: '1',
+      index: 0,
       children,
     },
     {
-      index: '3',
+      index: 3,
       children,
     },
     {
-      index: '5',
+      index: 4,
       children,
     },
     {
-      index: '7',
+      index: 7,
       children,
     },
     {
-      index: '8',
+      index: 8,
       children,
     },
     {
-      index: '10',
+      index: 10,
       children,
     },
     {
