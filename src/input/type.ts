@@ -85,7 +85,8 @@ export interface TdInputProps {
    */
   readonly?: boolean;
   /**
-   * 输入框状态。默认情况会由组件内部根据实际情况呈现，如果文本过长引起的状态变化
+   * 输入框状态
+   * @default default
    */
   status?: 'default' | 'success' | 'warning' | 'error';
   /**
