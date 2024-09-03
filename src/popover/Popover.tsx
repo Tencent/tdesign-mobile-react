@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createPopper, Placement } from '@popperjs/core';
 import { useClickAway } from 'ahooks';
-import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
+import { CSSTransitionClassNames } from 'react-transition-group/CSSTransition';
+import classNames from 'classnames';
 import { TdPopoverProps } from './type';
 import { StyledProps } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
@@ -13,12 +14,13 @@ import { parseContentTNode } from '../_util/parseTNode';
 export interface PopoverProps extends TdPopoverProps, StyledProps {}
 
 const Popover: React.FC<PopoverProps> = (props) => {
-  const { closeOnClickOutside, content, placement, showArrow, theme, triggerElement, visible } =
+  const { closeOnClickOutside, content, placement, showArrow, theme, triggerElement, visible, onVisibleChange } =
     useDefaultProps<PopoverProps>(props, popoverDefaultProps);
 
   const [currentVisible, setVisible] = useState(visible);
-  const referenceRef = useRef<HTMLDivElement>();
-  const popoverRef = useRef<HTMLDivElement>();
+  const [active, setActive] = useState(visible);
+  const referenceRef = useRef<HTMLDivElement>(null);
+  const popoverRef = useRef<HTMLDivElement>(null);
   let popper: ReturnType<typeof createPopper>;
   const popoverClass = usePrefixClass('popover');
   const contentClasses = useMemo(
@@ -66,7 +68,6 @@ const Popover: React.FC<PopoverProps> = (props) => {
     const isHorizontal = horizontal.find((item) => placement.includes(item));
     const isEnd = placement.includes('end');
     const small = (a: number, b: number) => (a < b ? a : b);
-
     if (isHorizontal) {
       const padding = isEnd ? small(width + x, popperWidth) : small(windowWidth - x, popperWidth);
       return {
@@ -101,6 +102,13 @@ const Popover: React.FC<PopoverProps> = (props) => {
     }
   };
 
+  const animationClassNames: CSSTransitionClassNames = {
+    enter: `${popoverClass}--animation-enter`,
+    enterActive: `${popoverClass}--animation-enter-active ${popoverClass}--animation-enter-to`,
+    exitActive: `${popoverClass}--animation-leave-active ${popoverClass}--animation-leave-to`,
+    exitDone: `${popoverClass}--animation-leave-done`,
+  };
+
   const updatePopper = () => {
     if (currentVisible && referenceRef.current && popoverRef.current) {
       popper = createPopper(referenceRef.current, popoverRef.current, getPopoverOptions());
@@ -108,18 +116,27 @@ const Popover: React.FC<PopoverProps> = (props) => {
     return null;
   };
 
+  const updateVisible = (visible) => {
+    setVisible((pre) => {
+      if (pre !== visible) {
+        onVisibleChange?.(visible);
+      }
+      return visible;
+    });
+  };
+
   const onClickAway = () => {
     if (currentVisible && closeOnClickOutside) {
-      setVisible(false);
+      updateVisible(false);
     }
   };
 
   useClickAway(() => {
     onClickAway();
-  }, [referenceRef, popoverRef]);
+  }, [referenceRef.current, popoverRef.current]);
 
   const onClickReference = () => {
-    setVisible(!currentVisible);
+    updateVisible(!currentVisible);
   };
 
   useEffect(() => {
@@ -129,22 +146,33 @@ const Popover: React.FC<PopoverProps> = (props) => {
   useEffect(() => {
     destroyPopper();
     updatePopper();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [placement]);
 
-    return () => {
+  useEffect(
+    () => () => {
       onClickAway();
-    };
-  });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
+  const contentStyle = useMemo<React.CSSProperties>(
+    () => ({
+      display: active ? null : 'none',
+    }),
+    [active],
+  );
 
   const renderArrow = () => showArrow && <div className={`${popoverClass}__arrow`} data-popper-arrow />;
-  const renderContentNode = () =>
-    currentVisible && (
-      <div ref={popoverRef} data-popper-placement={placement} className={`${popoverClass}`}>
-        <div className={contentClasses}>
-          {parseContentTNode(content, {})}
-          {renderArrow()}
-        </div>
+  const renderContentNode = () => (
+    <div ref={popoverRef} data-popper-placement={placement} className={`${popoverClass}`} style={contentStyle}>
+      <div className={contentClasses}>
+        {parseContentTNode(content, {})}
+        {renderArrow()}
       </div>
-    );
+    </div>
+  );
 
   return (
     <>
@@ -153,11 +181,16 @@ const Popover: React.FC<PopoverProps> = (props) => {
       </div>
       <CSSTransition
         in={currentVisible}
-        classNames={`${popoverClass}--animation`}
+        classNames={animationClassNames}
         timeout={200}
-        appear
-        onEnter={updatePopper}
-        onExit={destroyPopper}
+        onEnter={() => {
+          updatePopper();
+          setActive(true);
+        }}
+        onExited={() => {
+          destroyPopper();
+          setActive(false);
+        }}
         nodeRef={popoverRef}
       >
         <>{renderContentNode()}</>

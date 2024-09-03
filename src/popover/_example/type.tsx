@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Popover, Button } from 'tdesign-mobile-react';
 
 export default () => {
-  const [visible, setVisible] = useState(false);
+  const [visible] = useState(false);
 
   const handleVisibleChange = (val) => {
-    setVisible(val);
+    console.log(val);
   };
 
   return (
