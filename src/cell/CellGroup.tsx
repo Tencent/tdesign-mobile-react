@@ -2,16 +2,14 @@ import React, { useMemo } from 'react';
 import classnames from 'classnames';
 import useConfig from '../_util/useConfig';
 import { TdCellGroupProps } from './type';
+import { cellGroupDefaultProps } from './defaultProps';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
+import useDefaultProps from '../hooks/useDefaultProps';
 
 export type CellGroupProps = TdCellGroupProps & NativeProps;
 
-const defaultProps = {
-  bordered: false,
-  title: '',
-};
-
-const CellGroup: React.FC<CellGroupProps> = (props) => {
+const CellGroup: React.FC<CellGroupProps> = (originProps) => {
+  const props = useDefaultProps(originProps, cellGroupDefaultProps);
   const { children, bordered, title, theme } = props;
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-cell-group`;
@@ -36,7 +34,6 @@ const CellGroup: React.FC<CellGroupProps> = (props) => {
   );
 };
 
-CellGroup.defaultProps = defaultProps;
 CellGroup.displayName = 'CellGroup';
 
 export default CellGroup;

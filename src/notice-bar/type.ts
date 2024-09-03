@@ -10,20 +10,25 @@ export interface TdNoticeBarProps {
   /**
    * 文本内容
    */
-  content?: TNode;
+  content?: [] | TNode;
   /**
-   * 右侧额外信息
+   * 滚动方向
+   * @default horizontal
    */
-  extra?: TNode;
+  direction?: 'horizontal' | 'vertical';
   /**
    * 跑马灯效果。speed 指速度控制；loop 指循环播放次数，值为 -1 表示循环播放，值为 0 表示不循环播放；delay 表示延迟多久开始播放
    * @default false
    */
-  marquee?: boolean | DrawMarquee;
+  marquee?: boolean | NoticeBarMarquee;
+  /**
+   * 右侧额外信息
+   */
+  operation?: TNode;
   /**
    * 前缀图标
    */
-  prefixIcon?: TNode;
+  prefixIcon?: TElement;
   /**
    * 后缀图标
    */
@@ -44,19 +49,15 @@ export interface TdNoticeBarProps {
    */
   defaultVisible?: boolean;
   /**
-   * 展示或关闭公告栏时触发。参数为true时，代表展示公告栏。参数为false时，代表关闭公告栏
-   */
-  onChange?: (value: boolean) => void;
-  /**
    * 点击事件
    */
   onClick?: (trigger: NoticeBarTrigger) => void;
 }
 
-export interface DrawMarquee {
+export interface NoticeBarMarquee {
   speed?: number;
   loop?: number;
   delay?: number;
 }
 
-export type NoticeBarTrigger = 'prefix-icon' | 'content' | 'extra' | 'suffix-icon';
+export type NoticeBarTrigger = 'prefix-icon' | 'content' | 'operation' | 'suffix-icon';

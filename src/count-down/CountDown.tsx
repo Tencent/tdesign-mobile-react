@@ -1,9 +1,12 @@
-import React, { Fragment, ReactNode, memo, useImperativeHandle, forwardRef } from 'react';
-import cls from 'classnames';
-import useCountDown from './hooks/useCountDown';
-import useConfig from '../_util/useConfig';
-import withNativeProps, { NativeProps } from '../_util/withNativeProps';
+import React, { Fragment, useImperativeHandle, forwardRef } from 'react';
+import classNames from 'classnames';
+import type { StyledProps } from '../common';
 import { TdCountDownProps } from './type';
+import { countDownDefaultProps } from './defaultProps';
+import parseTNode from '../_util/parseTNode';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
+import useCountDown from './hooks/useCountDown';
 
 import './style';
 
@@ -13,20 +16,26 @@ export interface CountDownRef {
   pause: () => void;
 }
 
-export interface CountDownProps extends TdCountDownProps, NativeProps {}
-
-const defaultProps = {
-  autoStart: true,
-  size: 'small',
-  splitWithUnit: false,
-  format: 'HH:mm:ss',
-  theme: 'default',
-};
+export interface CountDownProps extends TdCountDownProps, StyledProps {}
 
 const CountDown = forwardRef<CountDownRef, CountDownProps>((props, ref) => {
-  const { autoStart, content, millisecond, size, splitWithUnit, time, format, theme, onChange, onFinish } = props;
-  const { classPrefix } = useConfig();
-  const name = `${classPrefix}-countdown`;
+  const {
+    className,
+    style,
+    autoStart,
+    content,
+    children,
+    millisecond,
+    size,
+    splitWithUnit,
+    time,
+    format,
+    theme,
+    onChange,
+    onFinish,
+  } = useDefaultProps<CountDownProps>(props, countDownDefaultProps);
+
+  const countDownClass = usePrefixClass('count-down');
 
   const { timeText, timeList, start, reset, pause } = useCountDown({
     autoStart,
@@ -41,26 +50,42 @@ const CountDown = forwardRef<CountDownRef, CountDownProps>((props, ref) => {
 
   if (!timeText) return null;
 
-  let contentNode: ReactNode = null;
-  if (content) {
-    contentNode = content;
-  } else {
-    contentNode = timeList.map(({ digit, unit, match }) => (
+  const rootClasses = classNames(
+    countDownClass,
+    `${countDownClass}--${theme}`,
+    `${countDownClass}--${size}`,
+    className,
+  );
+
+  const renderContent = () => {
+    if (content !== 'default') {
+      return parseTNode(content || children);
+    }
+
+    return timeList.map(({ digit, unit, match }) => (
       <Fragment key={match}>
-        <span className={`${name}__digit ${name}__digit-${match}`}>{digit}</span>
-        {unit && <span className={`${name}__unit ${name}__unit-${match}`}>{unit}</span>}
+        <span className={`${countDownClass}__item`}>{digit}</span>
+        {unit && (
+          <span
+            className={classNames([
+              `${countDownClass}__split`,
+              `${countDownClass}__split--${splitWithUnit ? 'text' : 'dot'}`,
+            ])}
+          >
+            {unit}
+          </span>
+        )}
       </Fragment>
     ));
-  }
+  };
 
-  const classNames = cls(name, `${name}--${theme}`, `${name}--${size}`, {
-    [`${name}--split-with-unit`]: splitWithUnit,
-  });
-
-  return withNativeProps(props, <span className={classNames}>{contentNode}</span>);
+  return (
+    <div className={rootClasses} style={style}>
+      {renderContent()}
+    </div>
+  );
 });
 
-CountDown.defaultProps = defaultProps as CountDownProps;
 CountDown.displayName = 'CountDown';
 
-export default memo(CountDown);
+export default CountDown;
