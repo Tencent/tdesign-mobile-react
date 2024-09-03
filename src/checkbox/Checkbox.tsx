@@ -1,11 +1,13 @@
-import React, { useContext, useMemo, Ref, forwardRef, CSSProperties } from 'react';
+import React, { useContext, Ref, forwardRef } from 'react';
 import classNames from 'classnames';
 import { Icon } from 'tdesign-icons-react';
+import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
 import { TdCheckboxProps } from './type';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import CheckboxGroup from './CheckboxGroup';
 import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
+import { checkboxDefaultProps } from './defaultProps';
 
 export interface CheckBoxProps extends TdCheckboxProps {
   ref: Ref<HTMLLabelElement>;
@@ -17,125 +19,147 @@ export interface CheckContextValue {
 
 export const CheckContext = React.createContext<CheckContextValue>(null);
 
-const getLimitRowStyle = (row: number): CSSProperties => ({
-  display: '-webkit-box',
-  overflow: 'hidden',
-  WebkitBoxOrient: 'vertical',
-  WebkitLineClamp: row,
-});
-
-const Checkbox = forwardRef((_props: CheckBoxProps, ref: Ref<HTMLInputElement>) => {
+const Checkbox = forwardRef((_props: CheckBoxProps) => {
   const context = useContext(CheckContext);
   const props = context ? context.inject(_props) : _props;
-  const { classPrefix } = useConfig();
+  const { classPrefix: prefix } = useConfig();
   const {
     name,
-    align = 'left',
+    placement,
     content,
-    children,
     disabled,
     indeterminate,
     label,
     onChange,
     checked,
-    defaultChecked = false,
-    readonly,
-    value,
-    maxLabelRow = 3,
-    maxContentRow = 5,
+    defaultChecked,
+    maxLabelRow,
+    maxContentRow,
     icon,
-    contentDisabled = false,
-    // borderless = false,
-  } = props;
-  const [internalChecked, setInternalChecked] = useDefault(checked, defaultChecked, onChange);
+    block,
+    borderless,
+  } = useDefaultProps(props, checkboxDefaultProps);
+  const [internalChecked, setInternalChecked] = useDefault<Boolean, any[]>(checked, defaultChecked, onChange);
 
-  const checkboxClassName = classNames(`${classPrefix}-checkbox`, {
-    [`${classPrefix}-is-checked`]: internalChecked || indeterminate,
-    [`${classPrefix}-is-disabled`]: disabled,
+  const classPrefix = `${prefix}-checkbox`;
+
+  const checkboxClassName = classNames(`${classPrefix}`, {
+    [`${classPrefix}--checked`]: internalChecked,
+    [`${classPrefix}--block`]: block,
+    [`${classPrefix}--${placement}`]: true,
   });
-  const iconName = useMemo(() => {
-    if (indeterminate) {
-      return 'minus-circle-filled';
+
+  const isIconArray = Array.isArray(icon);
+  const defaultCheckIcons = [<Icon key={0} name="check-circle-filled"></Icon>, <Icon key={1} name="circle"></Icon>];
+  const checkIcons = () => {
+    if (isIconArray && icon.length > 1) {
+      return icon.map((icon) =>
+        typeof icon === 'string' ? <img key={icon} src={icon} className={`${name}__icon-image`} alt="" /> : icon,
+      );
     }
-    if (internalChecked) {
-      return 'check-circle-filled';
-    }
-    return 'circle';
-  }, [indeterminate, internalChecked]);
+    return defaultCheckIcons;
+  };
+
+  const checkedIcon = () => {
+    if (icon === 'circle' || props.icon === true) return indeterminate ? 'minus-circle-filled' : 'check-circle-filled';
+    if (icon === 'rectangle') return indeterminate ? 'minus-rectangle-filled' : 'check-rectangle-filled';
+    if (icon === 'line') return indeterminate ? 'minus' : 'check';
+  };
+
   const renderIcon = () => {
-    if (Array.isArray(icon)) {
-      if (internalChecked) {
-        return icon[0];
-      }
-      return icon[1];
+    if (!icon) {
+      return null;
     }
+    const renderIconCircle = () => {
+      const iconCircleClass = `${classPrefix}__icon-circle`;
+      const iconStringClass = `${classPrefix}__icon-${icon}`;
+      const iconDisabledClass = `${classPrefix}__icon-${icon}--disabled`;
+
+      return (
+        <div
+          className={classNames({
+            [iconCircleClass]: icon === true,
+            [iconStringClass]: typeof icon === 'string',
+            [iconDisabledClass]: disabled,
+          })}
+        />
+      );
+    };
+
+    const renderCheckedIcon = () => <Icon name={checkedIcon()} className={`${classPrefix}__icon-wrapper`} />;
+
+    const renderLinePlaceholder = () => <div className="placeholder"></div>;
+
+    const renderIcon = () => {
+      if (Array.isArray(icon)) {
+        return checkIcons()[internalChecked ? 0 : 1];
+      }
+
+      if (internalChecked) {
+        return renderCheckedIcon();
+      }
+
+      if (icon === 'circle' || icon === true || icon === 'rectangle') {
+        return renderIconCircle();
+      }
+
+      if (icon === 'line') {
+        return renderLinePlaceholder();
+      }
+
+      return null;
+    };
     return (
-      <Icon
-        name={iconName}
-        className={classNames({
-          [`${classPrefix}-checkbox__checked__disable-icon`]: disabled,
+      <div
+        className={classNames(`${classPrefix}__icon ${classPrefix}__icon--${placement}`, {
+          [`${classPrefix}__icon--checked`]: internalChecked,
+          [`${classPrefix}__icon--disabled`]: disabled,
         })}
-      />
+      >
+        {renderIcon()}
+      </div>
     );
   };
-  const labelStyle: CSSProperties = {
-    color: disabled ? '#dcdcdc' : 'inherit',
-    ...getLimitRowStyle(maxLabelRow),
-  };
-  const handleClick = (e) => {
-    if (contentDisabled) {
-      e.preventDefault();
+  const handleChange = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    if (disabled) {
+      return;
     }
-
-    setInternalChecked(!internalChecked, { e })
+    setInternalChecked(!internalChecked, { e });
+    e.stopPropagation();
   };
+  const renderCheckBoxContent = () => (
+    <div
+      className={`${classPrefix}__content`}
+      onClick={(event) => {
+        event.stopPropagation();
+        handleChange(event);
+      }}
+    >
+      <div
+        className={classNames(`${classPrefix}__title`, {
+          [`${classPrefix}__title--checked`]: internalChecked,
+          [`${classPrefix}__title--disabled`]: disabled,
+        })}
+        style={{ WebkitLineClamp: maxLabelRow }}
+      >
+        {label}
+      </div>
+      <div
+        className={classNames(`${classPrefix}__description`, {
+          [`${classPrefix}__description--disabled`]: disabled,
+        })}
+        style={{ WebkitLineClamp: maxContentRow }}
+      >
+        {content}
+      </div>
+    </div>
+  );
   return (
     <>
-      <div className={checkboxClassName}>
-        <div className={`${classPrefix}-checkbox__content-wrap`}>
-         { align ==='left' && <span className={`${classPrefix}-checkbox__icon-left`}>
-            <input
-              readOnly={readonly}
-              value={value}
-              ref={ref}
-              type="checkbox"
-              name={name}
-              className={`${classPrefix}-checkbox__original-left`}
-              disabled={disabled}
-              checked={internalChecked}
-              onClick={(e) => e.stopPropagation()}
-              onChange={(e) => setInternalChecked(e.currentTarget.checked, { e })}
-            />
-            {renderIcon()}
-          </span>}
-          <span className={ `${classPrefix}-checkbox__label ${classPrefix}-checkbox__label-left`} onClick={handleClick}>
-            <span style={labelStyle}>
-              {label}
-            </span>
-            <span className={`${classPrefix}-checkbox__description`} style={getLimitRowStyle(maxContentRow)}>
-              {children || content}
-            </span>
-          </span>
-
-          { align ==='right' && <span className={`${classPrefix}-checkbox__icon-right`}>
-            <input
-              readOnly={readonly}
-              value={value}
-              ref={ref}
-              type="checkbox"
-              name={name}
-              className={`${classPrefix}-checkbox__original-right`}
-              disabled={disabled}
-              checked={internalChecked}
-              onClick={(e) => e.stopPropagation()}
-              onChange={(e) => setInternalChecked(e.currentTarget.checked, { e })}
-            />
-            {renderIcon()}
-          </span>}
-        </div>
-        {/* 下边框 */}
-        {/* { !borderless && <div className={`${classPrefix}-checkbox__border ${classPrefix}-checkbox__border--${align}`}></div>} */}
-        { <div className={`${classPrefix}-checkbox__border ${classPrefix}-checkbox__border--${align}`}></div> }
+      <div className={checkboxClassName} onClick={handleChange}>
+        {renderIcon()}
+        {renderCheckBoxContent()}
+        {!borderless && <div className={`${classPrefix}__border ${classPrefix}__border--${placement}`} />}
       </div>
     </>
   );
