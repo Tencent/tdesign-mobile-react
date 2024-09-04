@@ -43,7 +43,7 @@ const Indexes: React.FC<IndexesProps> = (props) => {
   const sidebarRef = useRef<HTMLDivElement>(null);
   // 存放tip消失的定时器
   const tipTimer = useRef(null);
-  // 存放index组的scrollTop
+  // 存放 anchor 组的scrollTop
   const groupTop = useRef<GroupTop[]>([]);
 
   const childNodes = useRef<ChildNodes[]>([]);
@@ -97,7 +97,7 @@ const Indexes: React.FC<IndexesProps> = (props) => {
           wrapper.classList.add(`${wrapperClass}--sticky`);
           wrapper.classList.add(`${wrapperClass}--active`);
           header.classList.add(`${headerClass}--active`);
-          wrapper.style.cssText = `transform: translate3d(0, ${betwixt ? offset : 0}px, 0); top: ${stickyTop}px;`;
+          wrapper.style.cssText = `transform: translate3d(0, ${betwixt ? offset - groupTop.current[index].height : 0}px, 0); top: ${stickyTop}px;`;
         } else {
           wrapper.classList.remove(`${wrapperClass}--sticky`);
           wrapper.classList.remove(`${wrapperClass}--active`);
@@ -131,22 +131,20 @@ const Indexes: React.FC<IndexesProps> = (props) => {
     setAnchorOnScroll(scrollTop);
   };
 
-  const getAnchorsRect = () =>
-    Promise.all(
-      childNodes.current.map((child) => {
-        const { ele, anchor } = child;
-        // const { index } = dataset;
-        const rect = ele.getBoundingClientRect();
-        groupTop.current.push({
-          height: rect.height,
-          top: rect.top - parentRect.current.top,
-          anchor,
-          totalHeight: 0,
-        });
-        return child;
-      }),
-    );
-
+  const getAnchorsRect = () => {
+    childNodes.current.map((child) => {
+      const { ele, anchor } = child;
+      // const { index } = dataset;
+      const rect = ele.getBoundingClientRect();
+      groupTop.current.push({
+        height: rect.height,
+        top: rect.top - parentRect.current.top,
+        anchor,
+        totalHeight: 0,
+      });
+      return child;
+    });
+  };
   const handleSidebarTouchmove = (event: TouchEvent) => {
     event.preventDefault();
     const { touches } = event;
@@ -190,14 +188,13 @@ const Indexes: React.FC<IndexesProps> = (props) => {
 
   useEffect(() => {
     parentRect.current = indexesRef.current?.getBoundingClientRect() || { top: 0 };
-    getAnchorsRect().then(() => {
-      groupTop.current.forEach((item, index) => {
-        const next = groupTop.current[index + 1];
-        // eslint-disable-next-line no-param-reassign
-        item.totalHeight = (next?.top || Infinity) - item.top;
-      });
-      setAnchorOnScroll(0);
+    getAnchorsRect();
+    groupTop.current.forEach((item, index) => {
+      const next = groupTop.current[index + 1];
+      // eslint-disable-next-line no-param-reassign
+      item.totalHeight = (next?.top || Infinity) - item.top;
     });
+    setAnchorOnScroll(0);
 
     // https://github.com/facebook/react/pull/19654
     // react 中 onTouchMove 等事件默认使用 passive： true，导致无法在listener 中使用 preventDefault()

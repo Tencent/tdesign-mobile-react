@@ -19,7 +19,8 @@ const IndexesAnchor: FC<IndexesAnchorProps> = (props) => {
 
   useEffect(() => {
     relation(indexesAnchorRef.current, index);
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={cls(name, className)} style={style} ref={indexesAnchorRef} data-index={index}>
