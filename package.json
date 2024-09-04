@@ -169,7 +169,7 @@
     "react-spring": "9.6.1",
     "react-transition-group": "^4.4.2",
     "smoothscroll-polyfill": "^0.4.4",
-    "tdesign-icons-react": "^0.3.4"
+    "tdesign-icons-react": "^0.3.5"
   },
   "config": {
     "commitizen": {
