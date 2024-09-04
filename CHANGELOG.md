@@ -5,6 +5,10 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.6.1 `2024-09-04` 
+### 🚀 Features
+- `Icon`: 更新图标库版本到 `0.3.5` ，`lock-on` 图标存在更新 @liweijie0812 ([#507](https://github.com/Tencent/tdesign-mobile-react/pull/507))
+
 ## 🌈 0.6.0 `2024-08-30` 
 ### 🚀 Features
 - `Table`: 新增 `Table` 组件 @TianlunXiong ([#472](https://github.com/Tencent/tdesign-mobile-react/pull/472))
