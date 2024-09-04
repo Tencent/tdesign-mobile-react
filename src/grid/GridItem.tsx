@@ -3,11 +3,11 @@ import cls from 'classnames';
 import isString from 'lodash/isString';
 import isObject from 'lodash/isObject';
 import isFunction from 'lodash/isFunction';
-import { Badge, Image } from 'tdesign-mobile-react';
 import useConfig from '../_util/useConfig';
 import parseTNode from '../_util/parseTNode';
 import useDefaultProps from '../hooks/useDefaultProps';
-
+import Badge from '../badge';
+import Image from '../image';
 import { TdGridItemProps, TdGridProps } from './type';
 import { GridContext } from './GridContext';
 import { gridItemDefaultProps } from './defaultProps';
