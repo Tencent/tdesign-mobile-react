@@ -12,7 +12,7 @@ export interface CheckboxGroupProps extends TdCheckboxGroupProps, StyledProps {
 }
 
 // 将 checkBox 的 value 转换为 string|number
-const getCheckboxValue = (v: CheckboxOption): string | number => {
+const getCheckboxValue = (v: CheckboxOption): string | number | boolean => {
   switch (typeof v) {
     case 'number' || 'string':
       return v as string | number;
@@ -106,6 +106,7 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
           setInternalValue(Array.from(checkedSet), {
             e,
             current: checkProps.checkAll ? undefined : (checkValue as TdCheckboxProps),
+            option: checkProps,
             type: checked ? 'check' : 'uncheck',
           });
         },
