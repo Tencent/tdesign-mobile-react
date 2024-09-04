@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useImperativeHandle, forwardRef } from 'react';
-import { Popup } from 'tdesign-mobile-react';
 import classNames from 'classnames';
+import Popup from '../popup';
 import { TdDrawerProps, DrawerItem } from './type';
+
 import useConfig from '../_util/useConfig';
 import parseTNode from '../_util/parseTNode';
 import { StyledProps } from '../common';

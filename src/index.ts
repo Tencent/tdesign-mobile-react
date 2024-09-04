@@ -5,6 +5,7 @@ export * from './button';
 export * from './divider';
 export * from './fab';
 export * from './progress';
+export * from './layout';
 export * from './link';
 
 /**
@@ -46,6 +47,7 @@ export * from './swiper';
 export * from './swipe-cell';
 export * from './tag';
 export * from './result';
+export * from './table';
 
 /**
  * 消息提醒（7个）

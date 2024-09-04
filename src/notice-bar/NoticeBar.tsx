@@ -1,10 +1,18 @@
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { InfoCircleFilledIcon, CheckCircleFilledIcon, CloseCircleFilledIcon } from 'tdesign-icons-react';
-import cls from 'classnames';
-import { ConfigContext } from '../config-provider';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { InfoCircleFilledIcon, CheckCircleFilledIcon } from 'tdesign-icons-react';
+import classNames from 'classnames';
+import isObject from 'lodash/isObject';
+import isArray from 'lodash/isArray';
+import parseTNode from '../_util/parseTNode';
+import Swiper from '../swiper';
+import SwiperItem from '../swiper/SwiperItem';
+import { usePrefixClass } from '../hooks/useClass';
 import type { StyledProps } from '../common';
-import type { TdNoticeBarProps, NoticeBarTrigger } from './type';
+import type { TdNoticeBarProps, NoticeBarTrigger, NoticeBarMarquee } from './type';
 import useDefault from '../_util/useDefault';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { noticeBarDefaultProps } from './defaultProps';
+import noop from '../_util/noop';
 
 export interface NoticeBarProps extends TdNoticeBarProps, StyledProps {}
 
@@ -44,26 +52,15 @@ const defaultIcons: Record<TdNoticeBarProps['theme'], IconType> = {
   info: <InfoCircleFilledIcon />,
   success: <CheckCircleFilledIcon />,
   warning: <InfoCircleFilledIcon />,
-  error: <CloseCircleFilledIcon />,
+  error: <InfoCircleFilledIcon />,
 };
 
-function filterUndefinedValue<T extends Record<string, any>>(obj: T): Partial<T> {
-  const keys = Object.keys(obj);
-  const result = keys.reduce((prev, next: keyof T) => {
-    if (typeof obj[next] !== 'undefined') {
-      return {
-        ...prev,
-        [next]: obj[next],
-      };
-    }
-    return prev;
-  }, {});
-
-  return result;
-}
-
 function useAnimationSettingValue() {
-  const animationSettingValue = useRef<frameState>(defaultReduceState());
+  const animationSettingValue = useRef<frameState | null>(null);
+  if (!animationSettingValue.current) {
+    // 仅为null时进行初始化
+    animationSettingValue.current = defaultReduceState();
+  }
   const [, setState] = useState(0);
 
   function updateScroll(obj: Partial<frameState['scroll']>) {
@@ -89,6 +86,7 @@ function useAnimationSettingValue() {
     animationSettingValue.current = obj || defaultReduceState();
     setState(Math.random());
   }
+
   return {
     animationSettingValue,
     updateScroll,
@@ -98,60 +96,53 @@ function useAnimationSettingValue() {
 }
 
 const NoticeBar: React.FC<NoticeBarProps> = (props) => {
-  const { classPrefix } = useContext(ConfigContext);
   const {
+    style,
+    className,
     content,
-    extra,
+    direction,
     marquee,
+    operation,
     prefixIcon,
     suffixIcon,
     theme = 'info',
     visible,
     defaultVisible,
-    onChange,
     onClick,
-  } = props;
-
-  const { animationSettingValue, updateScroll, updateAnimationFrame } = useAnimationSettingValue();
-
-  const name = `${classPrefix}-notice-bar`;
-
-  const showExtraText = !!extra;
-  const rootClasses = useMemo(() => cls([name, `${name}--${theme}`]), [name, theme]);
-
-  const computedPrefixIcon: TdNoticeBarProps['prefixIcon'] | IconType | null = useMemo(() => {
-    let temp = null;
-    if (prefixIcon !== '') {
-      if (Object.keys(defaultIcons).includes(theme)) {
-        temp = defaultIcons[theme];
-      }
-
-      return prefixIcon || temp || null;
-    }
-    return null;
-  }, [prefixIcon, theme]);
-
-  const handleClick = useCallback(
-    (trigger: NoticeBarTrigger) => {
-      onClick?.(trigger);
-    },
-    [onClick],
-  );
-
-  const animateStyle = useMemo(
-    () => ({
-      transform: animationSettingValue.current.offset ? `translateX(${animationSettingValue.current.offset}px)` : '',
-      transitionDuration: `${animationSettingValue.current.duration}s`,
-      transitionTimingFunction: 'linear',
-    }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [animationSettingValue.current.offset, animationSettingValue.current.duration],
-  );
+  } = useDefaultProps(props, noticeBarDefaultProps);
 
   const listDOM = useRef<HTMLDivElement | null>(null);
   const itemDOM = useRef<HTMLDivElement | null>(null);
+  const hasBeenExecute = useRef(false);
 
-  const [isShow] = useDefault(visible, defaultVisible, onChange);
+  const [isShow] = useDefault(visible, defaultVisible, noop);
+  const rootClassName = usePrefixClass('notice-bar');
+  const containerClassName = classNames(rootClassName, `${rootClassName}--${theme}`, className);
+  const { animationSettingValue, updateScroll, updateAnimationFrame } = useAnimationSettingValue();
+
+  useEffect(() => {
+    if (!hasBeenExecute.current) {
+      if (isShow) {
+        hasBeenExecute.current = true;
+        handleScrolling();
+      }
+      return;
+    }
+    const timer = setTimeout(() => {
+      if (isShow) {
+        updateAnimationFrame({
+          offset: animationSettingValue.current.listWidth,
+          duration: 0,
+        });
+        handleScrolling();
+      }
+    }, 0);
+
+    return () => {
+      clearTimeout(timer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isShow]);
 
   function handleScrolling() {
     // 过滤 marquee 为 false
@@ -170,13 +161,16 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
       updateScrollState = {
         ...animationSettingValue.current.scroll,
         ...defaultReduceState().scroll,
-        marquee: true,
+        marquee,
       };
-    } else {
+    }
+    if (isObject(marquee)) {
+      const curMarquee = marquee as NoticeBarMarquee;
       updateScrollState = {
-        ...animationSettingValue.current.scroll,
-        ...filterUndefinedValue(marquee),
         marquee: true,
+        loop: typeof curMarquee?.loop === 'undefined' ? updateScrollState.loop : curMarquee.loop,
+        speed: curMarquee.speed ?? updateScrollState.speed,
+        delay: curMarquee.delay ?? updateScrollState.delay,
       };
     }
 
@@ -225,90 +219,103 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
     }, 0);
   }
 
-  const listScrollDomCls = cls(`${name}__list`, {
-    [`${name}__list--scrolling`]: animationSettingValue.current.scroll.marquee,
-  });
-
-  const listItemScrollDomCls = cls(`${name}__item`, {
-    [`${name}__item-detail`]: showExtraText,
-  });
-
-  const renderPrefixIcon = useMemo(
-    () =>
-      computedPrefixIcon ? (
-        <div className={`${name}__hd`} onClick={() => handleClick('prefix-icon')}>
-          {computedPrefixIcon}
-        </div>
-      ) : null,
-    [handleClick, name, computedPrefixIcon],
+  const handleClick = (trigger: NoticeBarTrigger) => {
+    onClick?.(trigger);
+  };
+  // 动画
+  const animateStyle = useMemo(
+    () => ({
+      transform: animationSettingValue.current.offset ? `translateX(${animationSettingValue.current.offset}px)` : '',
+      transitionDuration: `${animationSettingValue.current.duration}s`,
+      transitionTimingFunction: 'linear',
+    }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [animationSettingValue.current.offset, animationSettingValue.current.duration],
   );
 
-  function onClickExtra(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
-    e.stopPropagation();
-    handleClick('extra');
-  }
-
-  const itemDomStyle = animationSettingValue.current.scroll.marquee ? animateStyle : {};
-
-  const hasBeenExecute = useRef(false);
-
-  useEffect(() => {
-    if (!hasBeenExecute.current) {
-      if (isShow) {
-        hasBeenExecute.current = true;
-        handleScrolling();
-      }
-      return;
-    }
-    onChange?.(isShow);
-    setTimeout(() => {
-      if (isShow) {
-        updateAnimationFrame({
-          offset: animationSettingValue.current.listWidth,
-          duration: 0,
-        });
-        handleScrolling();
-      }
-    }, 0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isShow]);
-
-  if (!isShow) {
-    return null;
-  }
-
-  return (
-    <div className={rootClasses}>
-      <div className={`${name}__inner`}>
-        {renderPrefixIcon}
-        <div className={`${name}__bd`}>
-          <div ref={listDOM} className={listScrollDomCls}>
-            <div
-              ref={itemDOM}
-              className={listItemScrollDomCls}
-              onTransitionEnd={handleTransitionend}
-              style={itemDomStyle}
-            >
-              <span className={`${name}__text`} onClick={() => handleClick('content')}>
-                {content}
-                {showExtraText && (
-                  <span className={`${name}__text-detail`} onClick={onClickExtra}>
-                    {extra}
-                  </span>
-                )}
-              </span>
-            </div>
-          </div>
+  const renderPrefixIcon = () => {
+    const prefixIconContent = prefixIcon ? parseTNode(prefixIcon) : defaultIcons[theme];
+    if (prefixIcon !== null && prefixIconContent) {
+      return (
+        <div className={`${rootClassName}__prefix-icon`} onClick={() => handleClick('prefix-icon')}>
+          {prefixIconContent}
         </div>
+      );
+    }
+    return null;
+  };
 
-        {suffixIcon && (
-          <div className={`${name}__ft`} onClick={() => handleClick('suffix-icon')}>
-            {suffixIcon}
+  const renderContent = () => {
+    const renderShowContent = () => parseTNode(content) || null;
+    const renderOperationContent = () => {
+      const operationContent = parseTNode(operation);
+      if (!operationContent) {
+        return null;
+      }
+      return (
+        <span
+          className={`${rootClassName}__operation`}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleClick('operation');
+          }}
+        >
+          {operationContent}
+        </span>
+      );
+    };
+    return (
+      <div ref={listDOM} className={`${rootClassName}__content-wrap`} onClick={() => handleClick('content')}>
+        {direction === 'vertical' && isArray(content) ? (
+          <Swiper
+            className={`${rootClassName}__content--vertical`}
+            autoplay
+            loop
+            direction={direction}
+            duration={2000}
+            height={22}
+          >
+            {content.map((item, index) => (
+              <SwiperItem key={index}>
+                <div className={`${rootClassName}__content--vertical-item`}>{item}</div>
+              </SwiperItem>
+            ))}
+          </Swiper>
+        ) : (
+          <div
+            ref={itemDOM}
+            className={classNames(`${rootClassName}__content`, {
+              [`${rootClassName}__content-wrapable`]: !animationSettingValue.current.scroll.marquee,
+            })}
+            style={animationSettingValue.current.scroll.marquee ? animateStyle : {}}
+            onTransitionEnd={handleTransitionend}
+          >
+            {renderShowContent()}
+            {renderOperationContent()}
           </div>
         )}
       </div>
+    );
+  };
+
+  const renderSuffixIconContent = () => {
+    const suffixIconContent = parseTNode(suffixIcon);
+    if (!suffixIconContent) {
+      return null;
+    }
+    return (
+      <div className={`${rootClassName}__suffix-icon`} onClick={() => handleClick('suffix-icon')}>
+        {suffixIconContent}
+      </div>
+    );
+  };
+  return isShow ? (
+    <div className={containerClassName} style={style}>
+      {renderPrefixIcon()}
+      {renderContent()}
+      {renderSuffixIconContent()}
     </div>
-  );
+  ) : null;
 };
 
 NoticeBar.displayName = 'NoticeBar';

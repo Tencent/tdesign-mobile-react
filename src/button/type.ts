@@ -5,7 +5,7 @@
  * */
 
 import { LoadingProps } from '../loading';
-import { TNode, TElement, SizeEnum } from '../common';
+import { TNode, TElement } from '../common';
 import { MouseEvent } from 'react';
 
 export interface TdButtonProps {
@@ -23,8 +23,7 @@ export interface TdButtonProps {
    */
   content?: TNode;
   /**
-   * 是否禁用按钮
-   * @default false
+   * 禁用状态。优先级：Button.disabled > Form.disabled
    */
   disabled?: boolean;
   /**
@@ -36,10 +35,6 @@ export interface TdButtonProps {
    * 按钮内部图标，可完全自定义
    */
   icon?: TElement;
-  /**
-   * 右侧内容，可用于定义右侧图标
-   */
-  suffix?: TElement;
   /**
    * 是否显示为加载状态
    * @default false
@@ -60,6 +55,10 @@ export interface TdButtonProps {
    */
   size?: 'extra-small' | 'small' | 'medium' | 'large';
   /**
+   * 右侧内容，可用于定义右侧图标
+   */
+  suffix?: TElement;
+  /**
    * 组件风格，依次为品牌色、危险色
    * @default default
    */
@@ -70,7 +69,7 @@ export interface TdButtonProps {
    */
   type?: 'submit' | 'reset' | 'button';
   /**
-   * 按钮形式，基础、线框、文字
+   * 按钮形式，基础、线框、虚线、文字
    * @default base
    */
   variant?: 'base' | 'outline' | 'dashed' | 'text';

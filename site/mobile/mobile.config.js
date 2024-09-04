@@ -16,6 +16,11 @@ export default {
       component: () => import('tdesign-mobile-react/icon/_example/index.tsx'),
     },
     {
+      title: 'Layout 布局',
+      name: 'layout',
+      component: () => import('tdesign-mobile-react/layout/_example/index.tsx'),
+    },
+    {
       title: 'Tabs 选项卡',
       name: 'tabs',
       component: () => import('tdesign-mobile-react/tabs/_example/index.jsx'),
@@ -73,12 +78,12 @@ export default {
     {
       title: 'Badge 徽标',
       name: 'badge',
-      component: () => import('tdesign-mobile-react/badge/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/badge/_example/index.tsx'),
     },
     {
       title: 'CountDown 倒计时',
       name: 'count-down',
-      component: () => import('tdesign-mobile-react/count-down/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/count-down/_example/index.tsx'),
     },
     {
       title: 'Message 消息通知',
@@ -140,7 +145,32 @@ export default {
     {
       title: 'Navbar 导航栏',
       name: 'navbar',
-      component: () => import('tdesign-mobile-react/navbar/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/navbar/_example/index.tsx'),
+    },
+    {
+      title: 'SideBar 侧边栏',
+      name: 'side-bar',
+      component: () => import('tdesign-mobile-react/side-bar/_example/index.tsx'),
+    },
+    {
+      title: 'SideBar 侧边栏',
+      name: 'side-bar-base',
+      component: () => import('tdesign-mobile-react/side-bar/_example/base.tsx'),
+    },
+    {
+      title: 'SideBar 侧边栏',
+      name: 'side-bar-switch',
+      component: () => import('tdesign-mobile-react/side-bar/_example/switch.tsx'),
+    },
+    {
+      title: 'SideBar 侧边栏',
+      name: 'side-bar-with-icon',
+      component: () => import('tdesign-mobile-react/side-bar/_example/with-icon.tsx'),
+    },
+    {
+      title: 'SideBar 侧边栏',
+      name: 'side-bar-custom',
+      component: () => import('tdesign-mobile-react/side-bar/_example/custom.tsx'),
     },
     {
       title: 'SwipeCell 滑动单元格',
@@ -165,7 +195,7 @@ export default {
     {
       title: 'Collapse 折叠面板',
       name: 'Collapse',
-      component: () => import('tdesign-mobile-react/collapse/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/collapse/_example/index.tsx'),
     },
     {
       title: 'Stepper 步进器',
@@ -205,7 +235,7 @@ export default {
     {
       title: 'TabBar 标签栏',
       name: 'tab-bar',
-      component: () => import('tdesign-mobile-react/tab-bar/_example/mobile.jsx'),
+      component: () => import('tdesign-mobile-react/tab-bar/_example/mobile.tsx'),
     },
     {
       title: 'Fab 悬浮按钮',
@@ -215,7 +245,7 @@ export default {
     {
       title: 'NoticeBar 公告栏',
       name: 'notice-bar',
-      component: () => import('tdesign-mobile-react/notice-bar/_example/mobile.jsx'),
+      component: () => import('tdesign-mobile-react/notice-bar/_example/mobile.tsx'),
     },
     {
       title: 'Result 结果',
@@ -226,6 +256,11 @@ export default {
       title: 'Link 链接',
       name: 'link',
       component: () => import('tdesign-mobile-react/link/_example/index.tsx'),
+    },
+    {
+      title: 'Table 表格',
+      name: 'table',
+      component: () => import('tdesign-mobile-react/table/_example/index.tsx'),
     },
   ],
 };

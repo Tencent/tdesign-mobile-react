@@ -47,14 +47,14 @@ export const useCountDown = (params: UseCountdownParams) => {
       nextRemainTime = 0;
       clearCountDown();
       nextStatus = EnumCountDownStatus.finished;
-      onFinish && onFinish();
+      onFinish?.();
     }
 
     const countDownData = {
       ...transformTime(nextRemainTime, format),
       status: nextStatus,
     };
-    onChange && onChange(countDownData.timeData);
+    onChange?.(countDownData.timeData);
     setCountDownData(countDownData);
   };
 
