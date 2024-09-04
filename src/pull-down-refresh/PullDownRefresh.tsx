@@ -13,7 +13,7 @@ import type { TdPullDownRefreshProps } from './type';
 import { pullDownRefreshDefaultProps } from './defaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
-import { convertUnit, reconvertUnit } from '../_util/unit';
+import { convertUnit, reconvertUnit } from '../_util/convertUnit';
 
 export enum PullStatusEnum {
   normal,
