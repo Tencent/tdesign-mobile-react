@@ -16,6 +16,6 @@ export const inputDefaultProps: TdInputProps = {
   layout: 'horizontal',
   placeholder: undefined,
   readonly: undefined,
-  status: undefined,
+  status: 'default',
   type: 'text',
 };

@@ -5,7 +5,7 @@ import uniqueId from 'lodash/uniqueId';
 import { useDrag } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
 import isBoolean from 'lodash/isBoolean';
-import { Loading } from 'tdesign-mobile-react';
+import Loading from '../loading';
 import useConfig from '../_util/useConfig';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import getScrollParent from '../_util/getScrollParent';

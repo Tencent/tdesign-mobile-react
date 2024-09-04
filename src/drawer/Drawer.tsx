@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Popup } from 'tdesign-mobile-react';
+import Popup from '../popup';
 import { TdDrawerProps, DrawerCloseContext, DrawerItem } from './type';
 import useConfig from '../_util/useConfig';
 

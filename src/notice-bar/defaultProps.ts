@@ -4,4 +4,9 @@
 
 import { TdNoticeBarProps } from './type';
 
-export const noticeBarDefaultProps: TdNoticeBarProps = { marquee: false, theme: 'info', defaultVisible: false };
+export const noticeBarDefaultProps: TdNoticeBarProps = {
+  direction: 'horizontal',
+  marquee: false,
+  theme: 'info',
+  defaultVisible: false,
+};

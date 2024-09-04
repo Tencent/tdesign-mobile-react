@@ -2,8 +2,8 @@ import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } f
 import type { FocusEvent, TouchEvent, CompositionEvent, FormEvent } from 'react';
 import classNames from 'classnames';
 import { CloseCircleFilledIcon, BrowseOffIcon, BrowseIcon } from 'tdesign-icons-react';
-import useDefault from 'tdesign-mobile-react/_util/useDefault';
-import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
+import useDefault from '../_util/useDefault';
+import parseTNode from '../_util/parseTNode';
 import { inputDefaultProps } from './defaultProps';
 import { getCharacterLength } from '../_common/js/utils/helper';
 import useConfig from '../_util/useConfig';

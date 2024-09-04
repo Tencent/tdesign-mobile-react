@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import React, { forwardRef } from 'react';
 import { Icon } from 'tdesign-icons-react';
-import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
-import { StyledProps } from 'tdesign-mobile-react/common';
+import parseTNode from '../_util/parseTNode';
+import { StyledProps } from '../common';
 import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
 import useDefaultProps from '../hooks/useDefaultProps';
