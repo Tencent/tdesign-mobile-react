@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
 import { CloseIcon } from 'tdesign-icons-react';
 import { CSSTransition } from 'react-transition-group';
@@ -20,7 +20,7 @@ enum PopupSourceEnum {
   CLOSEBTN = 'close-btn',
 }
 
-const Popup = forwardRef<HTMLDivElement, PopupProps>((props) => {
+const Popup: React.FC<PopupProps> = (props) => {
   const {
     children,
     placement,
@@ -123,7 +123,7 @@ const Popup = forwardRef<HTMLDivElement, PopupProps>((props) => {
     </>
   );
   return <Portal attach={attach}>{node}</Portal>;
-});
+};
 
 Popup.displayName = 'Popup';
 

@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import React, { forwardRef } from 'react';
 import { Icon } from 'tdesign-icons-react';
-import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
-import { StyledProps } from 'tdesign-mobile-react/common';
-import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
+import parseTNode from '../_util/parseTNode';
+import { StyledProps } from '../common';
+import useDefaultProps from '../hooks/useDefaultProps';
 import useConfig from '../_util/useConfig';
 import { tagDefaultProps } from './defaultProps';
 import { TdTagProps } from './type';
