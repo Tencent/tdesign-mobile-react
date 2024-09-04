@@ -1,28 +1,19 @@
-import React, { useRef, useState, ReactNode, useEffect } from 'react';
+import React, { useRef, useState, type ReactNode, useEffect } from 'react';
 import classNames from 'classnames';
 import uniqueId from 'lodash/uniqueId';
 import { useDrag } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
 import isBoolean from 'lodash/isBoolean';
-import isNumber from 'lodash/isNumber';
-import debounce from 'lodash/debounce';
 import { Loading } from 'tdesign-mobile-react';
-import useConfig from '../_util/useConfig';
+import { useDebounceFn } from 'ahooks';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import getScrollParent from '../_util/getScrollParent';
 import useDefault from '../_util/useDefault';
-import { TdPullDownRefreshProps } from './type';
+import type { TdPullDownRefreshProps } from './type';
 import { pullDownRefreshDefaultProps } from './defaultProps';
-
-const convertUnit = (val: string | number | undefined) => {
-  if (val == null) return 0;
-  return isNumber(val) ? `${val}px` : val;
-};
-
-const reconvertUnit = (val: string | number | undefined) => {
-  if (val == null) return 0;
-  return isNumber(val) ? Number(val) : Number(val.slice(0, -2));
-};
+import { usePrefixClass } from '../hooks/useClass';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { convertUnit, reconvertUnit } from '../_util/unit';
 
 export enum PullStatusEnum {
   normal,
@@ -50,11 +41,13 @@ function getStatusText(status: PullStatusEnum, loadingTexts: string[]) {
 export interface PullDownRefreshProps extends TdPullDownRefreshProps, NativeProps {
   disabled?: boolean;
   onRefresh?: () => void;
+  children?: React.ReactNode;
 }
 
 const threshold = 50;
 
-const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
+const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
+  const props = useDefaultProps<PullDownRefreshProps>(originProps, pullDownRefreshDefaultProps);
   const {
     className,
     style,
@@ -67,14 +60,18 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
     refreshTimeout,
     onRefresh,
     onTimeout,
+    value: propsValue,
+    defaultValue,
+    onChange: propsOnChange,
+    onScrolltolower,
   } = props;
   const [status, originalSetStatus] = useState(PullStatusEnum.normal);
   const rootRef = useRef<HTMLDivElement>(null);
   const scrollParentRef = useRef<Element | Window>(null);
-  const [value, onChange] = useDefault(props.value, props.defaultValue, props.onChange);
+  const [value, onChange] = useDefault(propsValue, defaultValue, propsOnChange);
 
-  const { classPrefix } = useConfig();
-  const name = `${classPrefix}-pull-down-refresh`;
+  const name = usePrefixClass('pull-down-refresh');
+
   const setStatus = (nextStatus: PullStatusEnum) => {
     if (nextStatus !== status) originalSetStatus(nextStatus);
   };
@@ -101,28 +98,28 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
-  const onReachBottom = debounce(
+  const { run } = useDebounceFn(
     () => {
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop; // 滚动高度
       const { clientHeight, scrollHeight } = document.documentElement; // 可视区域/屏幕高度， 页面高度
       const distance = 20; // 距离视窗 20 时，开始触发
       if (scrollTop + clientHeight >= scrollHeight - distance) {
-        props.onScrolltolower?.();
+        onScrolltolower?.();
       }
     },
-    300,
     {
       leading: true,
       trailing: false,
+      wait: 300,
     },
   );
 
   useEffect(() => {
-    window.addEventListener('scroll', onReachBottom);
+    window.addEventListener('scroll', run);
     return () => {
-      window.removeEventListener('scroll', onReachBottom);
+      window.removeEventListener('scroll', run);
     };
-  }, [onReachBottom]);
+  }, [run]);
 
   const doRefresh = async () => {
     setStatus(PullStatusEnum.loading);
@@ -152,11 +149,8 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
       });
     }
   };
-
   const handleRefresh = () => {
-    if (!isBoolean(value)) {
-      doRefresh();
-    }
+    doRefresh();
     onRefresh?.();
   };
 
@@ -167,6 +161,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
         scrollParentRef.current = getScrollParent(rootRef.current);
         setStatus(PullStatusEnum.pulling);
       }
+
       if (!scrollParentRef.current) return;
       if (state.last) {
         if (status === PullStatusEnum.loosing) {
@@ -221,7 +216,6 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
   );
 };
 
-PullDownRefresh.defaultProps = pullDownRefreshDefaultProps;
 PullDownRefresh.displayName = 'PullDownRefresh';
 
 export default PullDownRefresh;

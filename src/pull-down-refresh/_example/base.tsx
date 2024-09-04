@@ -11,7 +11,7 @@ export default function BaseDemo({ children }) {
         onRefresh={() =>
           new Promise((resolve) => {
             setTimeout(() => {
-              resolve();
+              resolve(1);
             }, 2000);
           })
         }
