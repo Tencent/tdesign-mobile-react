@@ -6,7 +6,7 @@ import { StyledProps } from '../common';
 import useConfig from '../_util/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { indexesDefaultProps } from './defaultProps';
-import { IndexesPorvider } from './IndexesContext';
+import { IndexesProrvider } from './IndexesContext';
 import parseTNode from '../_util/parseTNode';
 
 export interface IndexesProps extends TdIndexesProps, StyledProps {}
@@ -209,7 +209,7 @@ const Indexes: React.FC<IndexesProps> = (props) => {
   }, []);
 
   return (
-    <IndexesPorvider value={{ relation }}>
+    <IndexesProrvider value={{ relation }}>
       <div
         className={cls(name, className)}
         onScroll={throttle(handleRootScroll, 1000 / 30)}
@@ -238,7 +238,7 @@ const Indexes: React.FC<IndexesProps> = (props) => {
         </div>
         {parseTNode(children)}
       </div>
-    </IndexesPorvider>
+    </IndexesProrvider>
   );
 };
 
