@@ -183,6 +183,8 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
   );
 });
 
+Checkbox.displayName = 'Checkbox';
+
 export default forwardRefWithStatics(
   (props: TdCheckboxProps, ref: Ref<HTMLInputElement>) => <Checkbox ref={ref} {...props} />,
   { Group: CheckboxGroup },

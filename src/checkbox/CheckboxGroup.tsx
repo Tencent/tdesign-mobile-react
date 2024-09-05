@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useMemo, useState } from 'react';
+import React, { FC, ReactElement, useEffect, useMemo, useState } from 'react';
 import isNumber from 'lodash/isNumber';
 import classNames from 'classnames';
 import { CheckboxOption, CheckboxOptionObj, TdCheckboxProps, TdCheckboxGroupProps } from './type';
@@ -25,7 +25,7 @@ const getCheckboxValue = (v: CheckboxOption): string | number => {
   }
 };
 
-export function CheckboxGroup(props: CheckboxGroupProps) {
+const CheckboxGroup: FC<CheckboxGroupProps> = (props: CheckboxGroupProps) => {
   const { classPrefix } = useConfig();
   const { value, defaultValue, disabled, className, max, options = [], name, style, children, onChange } = props;
 
@@ -154,4 +154,7 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
     </div>
   );
 }
+
+CheckboxGroup.displayName = 'CheckboxGroup';
+
 export default CheckboxGroup;
