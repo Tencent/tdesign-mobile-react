@@ -199,4 +199,6 @@ const Popover: React.FC<PopoverProps> = (props) => {
   );
 };
 
+Popover.displayName = 'Popover';
+
 export default Popover;
