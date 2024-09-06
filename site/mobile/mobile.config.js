@@ -23,7 +23,7 @@ export default {
     {
       title: 'Tabs 选项卡',
       name: 'tabs',
-      component: () => import('tdesign-mobile-react/tabs/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/tabs/_example/index.tsx'),
     },
     {
       title: 'Input 输入框',

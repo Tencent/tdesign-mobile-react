@@ -1,6 +1,5 @@
 import React, { CSSProperties, FC, HTMLAttributes, useEffect, useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
-import find from 'lodash/find';
 import Sticky from '../sticky';
 import Badge from '../badge';
 import { TdTabPanelProps, TdTabsProps } from './type';
@@ -10,6 +9,7 @@ import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { tabsDefaultProps } from './defaultProps';
 import { parseContentTNode } from '../_util/parseTNode';
+import TabContext from './context';
 
 type TabsHTMLAttrs = Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'style'>;
 export interface TabsProps extends TdTabsProps, TabsHTMLAttrs {}
@@ -58,7 +58,9 @@ const Tabs: FC<TabsProps> = (props) => {
     return propsArr;
   }, [list, children]);
 
-  const [activeKey, setActiveKey] = useState<number | string>(defaultValue || value);
+  const [activeKey, setActiveKey] = useState<number | string>(
+    defaultValue || defaultValue === 0 ? defaultValue : value,
+  );
   const [lineStyle, setLineStyle] = useState({});
   const { classPrefix } = useConfig();
   const activeClass = `${tabsClass}__item--active`;
@@ -231,18 +233,6 @@ const Tabs: FC<TabsProps> = (props) => {
       );
     });
 
-  const renderChildren = () => {
-    if (children && Array.isArray(children)) {
-      const activitedTab = find(children, (child) => child.props.value === activeKey);
-      return <>{activitedTab?.props?.children}</>;
-    }
-    if (React.isValidElement(children)) {
-      return <>{children?.props?.children}</>;
-    }
-
-    return null;
-  };
-
   return (
     <div className={tabsClasses}>
       <Sticky {...stickyProps} onScroll={handlerScroll}>
@@ -270,7 +260,7 @@ const Tabs: FC<TabsProps> = (props) => {
         onTouchMove={handleTouchmove}
         onTouchEnd={handleTouchend}
       >
-        {renderChildren()}
+        <TabContext.Provider value={{ activeKey }}>{children}</TabContext.Provider>
       </div>
     </div>
   );
