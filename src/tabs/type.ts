@@ -68,10 +68,6 @@ export interface TdTabsProps {
    */
   defaultValue?: TabValue;
   /**
-   * 激活的选项卡值
-   */
-  modelValue?: TabValue;
-  /**
    * 激活的选项卡发生变化时触发
    */
   onChange?: (value: TabValue, label: string) => void;

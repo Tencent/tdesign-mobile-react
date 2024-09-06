@@ -16,7 +16,7 @@ sticky | Boolean | false | 是否开启粘性布局 | N
 stickyProps | Object | - | 透传至 Sticky 组件。TS 类型：`StickyProps`，[Sticky API Documents](./sticky?tab=api)。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tabs/type.ts) | N
 swipeable | Boolean | true | 是否可以滑动切换 | N
 theme | String | line | 标签的样式。可选项：line/tag/card | N
-value | String / Number | - | 激活的选项卡值。TS 类型：`TabValue` `type TabValue = string \| number`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-vue/tree/develop/src/tabs/type.ts) | N
+value | String / Number | - | 激活的选项卡值。TS 类型：`TabValue` `type TabValue = string \| number`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tabs/type.ts) | N
 defaultValue | String / Number | - | 激活的选项卡值。非受控属性。TS 类型：`TabValue` `type TabValue = string \| number`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tabs/type.ts) | N
 onChange | Function |  | TS 类型：`(value: TabValue, label: string) => void`<br/>激活的选项卡发生变化时触发 | N
 onClick | Function |  | TS 类型：`(value: TabValue, label: string) => void`<br/>点击选项卡时触发 | N
