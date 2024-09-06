@@ -49,8 +49,6 @@ const Indexes: React.FC<IndexesProps> = (props) => {
   const childNodes = useRef<ChildNodes[]>([]);
   const parentRect = useRef({ top: 0 });
 
-  const touchActiveIndex = useRef<string>('');
-
   const indexListMemo = useMemo(() => {
     if (!indexList) {
       const start = 'A'.charCodeAt(0);
@@ -152,14 +150,10 @@ const Indexes: React.FC<IndexesProps> = (props) => {
     const target = document.elementFromPoint(clientX, clientY);
     if (target && target.className === `${name}__sidebar-item` && target instanceof HTMLElement) {
       const { index } = target.dataset;
-      // const curIndex = /^\d+$/.test(index ?? '') ? Number(index) : index;
-      if (index !== undefined && touchActiveIndex.current !== index) {
-        touchActiveIndex.current = index;
-        const curIndex = childNodes.current.find((child) => String(child.anchor) === index)?.anchor;
-        if (curIndex !== undefined) {
-          setActiveSidebarAndTip(curIndex);
-          scrollToByIndex(curIndex);
-        }
+      const curIndex = indexListMemo.find((idx) => String(idx) === index);
+      if (curIndex !== undefined && activeSidebar !== index) {
+        setActiveSidebarAndTip(curIndex);
+        scrollToByIndex(curIndex);
       }
     }
   };
