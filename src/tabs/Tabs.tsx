@@ -1,5 +1,6 @@
-import React, { CSSProperties, FC, HTMLAttributes, useMemo, useRef, useState } from 'react';
+import React, { CSSProperties, FC, HTMLAttributes, useEffect, useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
+import find from 'lodash/find';
 import Sticky from '../sticky';
 import Badge from '../badge';
 import { TdTabPanelProps, TdTabsProps } from './type';
@@ -8,6 +9,7 @@ import useConfig from '../_util/useConfig';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { tabsDefaultProps } from './defaultProps';
+import { parseContentTNode } from '../_util/parseTNode';
 
 type TabsHTMLAttrs = Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'style'>;
 export interface TabsProps extends TdTabsProps, TabsHTMLAttrs {}
@@ -27,6 +29,8 @@ const Tabs: FC<TabsProps> = (props) => {
     onChange,
     onClick,
     onScroll,
+    value,
+    defaultValue,
   } = useDefaultProps<TabsProps>(props, tabsDefaultProps);
   const tabsClass = usePrefixClass('tabs');
   const tabsClasses = useMemo(
@@ -54,7 +58,7 @@ const Tabs: FC<TabsProps> = (props) => {
     return propsArr;
   }, [list, children]);
 
-  const [activeKey, setActiveKey] = useState<number | string>('');
+  const [activeKey, setActiveKey] = useState<number | string>(defaultValue || value);
   const [lineStyle, setLineStyle] = useState({});
   const { classPrefix } = useConfig();
   const activeClass = `${tabsClass}__item--active`;
@@ -107,17 +111,17 @@ const Tabs: FC<TabsProps> = (props) => {
     }
   };
 
-  const handleTabClick = (event: React.MouseEvent, item: TdTabPanelProps) => {
+  const handleTabClick = (item: TdTabPanelProps) => {
     const { value, disabled } = item;
     if (disabled || activeKey === value) {
       return false;
     }
     setActiveKey(item.value);
     if (onChange) {
-      onChange(item.value, '');
+      onChange(item.value, parseContentTNode(item.label, {}).toString());
     }
     if (onClick) {
-      onClick(item.value, `label`);
+      onClick(item.value, parseContentTNode(item.label, {}).toString());
     }
     setTimeout(() => {
       moveToActiveTab();
@@ -133,9 +137,7 @@ const Tabs: FC<TabsProps> = (props) => {
 
   // 手势滑动开始
   const handleTouchstart = (e: React.TouchEvent) => {
-    console.log(e);
     if (!swipeable) return;
-    console.log();
     setStartX(e.targetTouches[0].clientX);
     setStartY(e.targetTouches[0].clientY);
   };
@@ -150,19 +152,20 @@ const Tabs: FC<TabsProps> = (props) => {
     const dValueY = Math.abs(startY - endY);
     if (tabIndex >= 0 && tabIndex < itemProps.length) {
       if (dValueX > dValueY) {
-        // 水平滑动长度大于纵向滑动长度，那么选择水平滑动，阻止浏览器默认左右滑动事件
-        e.preventDefault();
+        // if (typeof e.cancelable !== 'boolean' || e.cancelable) {
+        //   e.preventDefault();
+        // }
         if (dValueX <= 40) return;
         if (startX > endX) {
           // 向左划
           if (tabIndex >= itemProps.length - 1) return;
           setCanMove(false);
-          handleTabClick(e, itemProps[tabIndex + 1]);
+          handleTabClick(itemProps[tabIndex + 1]);
         } else if (startX < endX) {
           // 向右划
           if (tabIndex <= 0) return;
           setCanMove(false);
-          handleTabClick(e, itemProps[tabIndex - 1]);
+          handleTabClick(itemProps[tabIndex - 1]);
         }
       }
     }
@@ -170,13 +173,32 @@ const Tabs: FC<TabsProps> = (props) => {
 
   // 手势滑动结束
   const handleTouchend = () => {
-    if (!props.swipeable) return;
+    if (!swipeable) return;
     setCanMove(true);
     setStartX(0);
     setEndX(0);
     setStartY(0);
     setEndY(0);
   };
+
+  useEffect(() => {
+    window.addEventListener('resize', moveToActiveTab, false);
+    setTimeout(() => {
+      moveToActiveTab();
+    }, 300);
+
+    return () => {
+      window.removeEventListener('resize', moveToActiveTab);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      moveToActiveTab();
+    }, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
   const renderNav = () =>
     itemProps.map((item, index) => {
@@ -187,11 +209,11 @@ const Tabs: FC<TabsProps> = (props) => {
           className={classnames({
             [`${tabsClass}__item ${tabsClass}__item--top`]: true,
             [`${tabsClass}__item--evenly`]: spaceEvenly,
-            [`${tabsClass}__item--active`]: item.value === activeKey,
+            [`${activeClass}`]: item.value === activeKey,
             [`${tabsClass}__item--disabled`]: item.disabled,
             [`${tabsClass}__item--${theme}`]: true,
           })}
-          onClick={(e) => handleTabClick(e, item)}
+          onClick={() => handleTabClick(item)}
         >
           <Badge {...badgeProps}>
             <div
@@ -200,7 +222,7 @@ const Tabs: FC<TabsProps> = (props) => {
                 [`${tabsClass}__item-inner--active`]: theme === 'tag' && item.value === activeKey,
               })}
             >
-              <div>{item.label}</div>
+              <div>{parseContentTNode(item.label, {})}</div>
             </div>
           </Badge>
           {theme === 'card' && index === currentIndex - 1 && <div className={`${tabsClass}__item-prefix`}></div>}
@@ -208,6 +230,18 @@ const Tabs: FC<TabsProps> = (props) => {
         </div>
       );
     });
+
+  const renderChildren = () => {
+    if (children && Array.isArray(children)) {
+      const activitedTab = find(children, (child) => child.props.value === activeKey);
+      return <>{activitedTab?.props?.children}</>;
+    }
+    if (React.isValidElement(children)) {
+      return <>{children?.props?.children}</>;
+    }
+
+    return null;
+  };
 
   return (
     <div className={tabsClasses}>
@@ -236,10 +270,7 @@ const Tabs: FC<TabsProps> = (props) => {
         onTouchMove={handleTouchmove}
         onTouchEnd={handleTouchend}
       >
-        {children &&
-          Array.isArray(children) &&
-          children.map((item) => <>{activeKey === item?.props?.value && <>{item.props.children}</>}</>)}
-        {children && typeof children === 'object' && <>{children?.props?.children}</>}
+        {renderChildren()}
       </div>
     </div>
   );
