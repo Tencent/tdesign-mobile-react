@@ -9,7 +9,7 @@
 
   .tdesign-mobile-block {
     box-sizing: border-box;
-    background-color: rgba(243, 243, 243, 1);;
+    background-color: rgba(243, 243, 243, 1);
     border-radius: 12px;
     height: 171px;
     font-size: 16px;
@@ -19,11 +19,13 @@
     margin: 16px;
   }
 
-  .tdesign-mobile-item {
-    width: 48%;
-
-    &:last-child {
-      margin-left: 4%;
+  .group {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 16px 140px 16px;
+    .item {
+      width: 47%;
       margin-bottom: 16px;
     }
   }

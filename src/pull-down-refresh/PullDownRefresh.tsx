@@ -1,7 +1,8 @@
-import React, { useRef, useState, ReactNode, useEffect } from 'react';
+import React, { useRef, useState, ReactNode, useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import identity from 'lodash/identity';
 import uniqueId from 'lodash/uniqueId';
+import debounce from 'lodash/debounce';
 import { useDrag } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
 import isBoolean from 'lodash/isBoolean';
@@ -66,6 +67,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
     onTimeout,
     value,
     onChange,
+    onScrolltolower,
   } = props;
   const [status, originalSetStatus] = useState(PullStatusEnum.normal);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -84,6 +86,30 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
     [],
   );
 
+  const statusClassName = useMemo(() => {
+    const baseClass = `${name}__track`;
+    return classNames({
+      [baseClass]: true,
+      [`${baseClass}--loosing`]: status !== PullStatusEnum.pulling,
+    });
+  }, [name, status]);
+
+  const onReachBottom = debounce(
+    () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop; // 滚动高度
+      const { clientHeight, scrollHeight } = document.documentElement; // 可视区域/屏幕高度， 页面高度
+      const distance = 20; // 距离视窗 20 时，开始触发
+      if (scrollTop + clientHeight >= scrollHeight - distance) {
+        onScrolltolower?.();
+      }
+    },
+    200,
+    // {
+    //   leading: true,
+    //   trailing: false,
+    // },
+  );
+
   useEffect(() => {
     if (onChange) {
       onChange(value);
@@ -97,6 +123,14 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', onReachBottom);
+    return () => {
+      window.removeEventListener('scroll', onReachBottom);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const doRefresh = async () => {
     setStatus(PullStatusEnum.loading);
@@ -165,26 +199,19 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
   );
 
   const statusText = getStatusText(status, loadingTexts);
-  let statusNode: ReactNode = statusText;
+  let statusNode: ReactNode = <div className={classNames(`${name}__text`)}>{statusText}</div>;
   if (status === PullStatusEnum.loading) {
-    statusNode = (
-      <Loading
-        className={`${name}__loading`}
-        text={<span className={`${name}__loading-icon`}>{statusText}</span>}
-        {...loadingProps}
-      />
-    );
+    statusNode = <Loading size="24px" text={statusText} {...loadingProps} />;
   }
 
   return withNativeProps(
     props,
     <div className={name} ref={rootRef}>
-      <animated.div className={`${name}__track`} style={{ y }}>
-        <div
-          className={classNames(`${name}__loading`, `${name}__loading-icon`, `${name}__max`)}
-          style={{ height: loadingBarHeight }}
-        >
-          {statusNode}
+      <animated.div className={statusClassName} style={{ y }}>
+        <div className={classNames(`${name}__tips`)} style={{ height: maxBarHeight }}>
+          <div className={classNames(`${name}__loading`)} style={{ height: loadingBarHeight }}>
+            {statusNode}
+          </div>
         </div>
         {children}
       </animated.div>

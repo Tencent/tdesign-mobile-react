@@ -28,7 +28,7 @@ export default function Demo() {
           <TDemoBlock>
             <div className="tdesign-mobile-block">拖拽该区域演示 顶部下拉刷新</div>
             <div style={{ display: 'flex', padding: '0 16px 140px 16px' }}>
-              {Array.from(Array(2), (_, key) => (
+              {Array.from(Array(6), (_, key) => (
                 <div className="tdesign-mobile-item" key={key}>
                   <Skeleton theme="text" rowCol={rowCols} />
                 </div>

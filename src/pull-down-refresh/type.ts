@@ -8,7 +8,7 @@ import { TdLoadingProps } from '../loading';
 
 export interface TdPullDownRefreshProps {
   /**
-   * 加载中下拉高度
+   * 加载中下拉高度，如果值为数字则单位是：'px'
    * @default 50
    */
   loadingBarHeight?: number;
@@ -22,7 +22,7 @@ export interface TdPullDownRefreshProps {
    */
   loadingTexts?: string[];
   /**
-   * 最大下拉高度
+   * 最大下拉高度，如果值为数字则单位是：'px'
    * @default 80
    */
   maxBarHeight?: number;
@@ -32,19 +32,29 @@ export interface TdPullDownRefreshProps {
    */
   refreshTimeout?: number;
   /**
+   * 组件状态，值为 `true` 表示下拉状态，值为 `false` 表示收起状态
+   * @default false
+   */
+  value?: boolean;
+  /**
+   * 组件状态，值为 `true` 表示下拉状态，值为 `false` 表示收起状态，非受控属性
+   * @default false
+   */
+  defaultValue?: boolean;
+  /**
+   * 下拉或收起时触发，用户手势往下滑动触发下拉状态，手势松开触发收起状态
+   */
+  onChange?: (value: boolean) => void;
+  /**
    * 结束下拉时触发
    */
   onRefresh?: () => void;
   /**
+   * 滚动到页面底部时触发
+   */
+  onScrolltolower?: () => void;
+  /**
    * 刷新超时触发
    */
   onTimeout?: () => void;
-  /**
-   * 控制是否正在加载
-   */
-  value?: boolean | undefined;
-  /**
-   * 刷新过程中加载状态的更改
-   */
-  onChange?: (value: boolean) => void;
 }
