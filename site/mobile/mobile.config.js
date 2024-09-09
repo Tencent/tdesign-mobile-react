@@ -205,7 +205,7 @@ export default {
     {
       title: 'PullDownRefresh 下拉刷新',
       name: 'pull-down-refresh',
-      component: () => import('tdesign-mobile-react/pull-down-refresh/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/pull-down-refresh/_example/index.tsx'),
     },
     {
       title: 'Avatar 头像',
