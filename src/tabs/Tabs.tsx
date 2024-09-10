@@ -50,8 +50,8 @@ const Tabs: FC<TabsProps> = (props) => {
 
     const propsArr = [];
 
-    React.Children.forEach(children, (child) => {
-      if (React.isValidElement(child) && child.type === TabPanel) {
+    React.Children.forEach(children, (child: JSX.Element) => {
+      if (child.type.displayName === TabPanel.displayName) {
         propsArr.push(child.props);
       }
     });
