@@ -1,5 +1,6 @@
-import React, { CSSProperties, FC, HTMLAttributes, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
+import type { FC, HTMLAttributes, CSSProperties } from 'react';
 import Sticky from '../sticky';
 import Badge from '../badge';
 import { TdTabPanelProps, TdTabsProps } from './type';
@@ -8,7 +9,7 @@ import useConfig from '../_util/useConfig';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { tabsDefaultProps } from './defaultProps';
-import { parseContentTNode } from '../_util/parseTNode';
+import parseTNode from '../_util/parseTNode';
 import TabContext from './context';
 
 type TabsHTMLAttrs = Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'style'>;
@@ -120,10 +121,10 @@ const Tabs: FC<TabsProps> = (props) => {
     }
     setActiveKey(item.value);
     if (onChange) {
-      onChange(item.value, parseContentTNode(item.label, {}).toString());
+      onChange(item.value, parseTNode(item.label).toString());
     }
     if (onClick) {
-      onClick(item.value, parseContentTNode(item.label, {}).toString());
+      onClick(item.value, parseTNode(item.label).toString());
     }
     setTimeout(() => {
       moveToActiveTab();
@@ -224,7 +225,7 @@ const Tabs: FC<TabsProps> = (props) => {
                 [`${tabsClass}__item-inner--active`]: theme === 'tag' && item.value === activeKey,
               })}
             >
-              <div>{parseContentTNode(item.label, {})}</div>
+              <div>{parseTNode(item.label)}</div>
             </div>
           </Badge>
           {theme === 'card' && index === currentIndex - 1 && <div className={`${tabsClass}__item-prefix`}></div>}
