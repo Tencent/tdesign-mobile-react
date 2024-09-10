@@ -21,7 +21,7 @@ const Popover: React.FC<PopoverProps> = (props) => {
   const [active, setActive] = useState(visible);
   const referenceRef = useRef<HTMLDivElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
-  let popper: ReturnType<typeof createPopper>;
+  const popperRef = useRef<ReturnType<typeof createPopper> | null>(null);
   const popoverClass = usePrefixClass('popover');
   const contentClasses = useMemo(
     () =>
@@ -96,9 +96,9 @@ const Popover: React.FC<PopoverProps> = (props) => {
   });
 
   const destroyPopper = () => {
-    if (popper) {
-      popper?.destroy();
-      popper = null;
+    if (popperRef.current) {
+      popperRef.current?.destroy();
+      popperRef.current = null;
     }
   };
 
@@ -111,7 +111,7 @@ const Popover: React.FC<PopoverProps> = (props) => {
 
   const updatePopper = () => {
     if (currentVisible && referenceRef.current && popoverRef.current) {
-      popper = createPopper(referenceRef.current, popoverRef.current, getPopoverOptions());
+      popperRef.current = createPopper(referenceRef.current, popoverRef.current, getPopoverOptions());
     }
     return null;
   };
@@ -164,12 +164,12 @@ const Popover: React.FC<PopoverProps> = (props) => {
     [active],
   );
 
-  const renderArrow = () => showArrow && <div className={`${popoverClass}__arrow`} data-popper-arrow />;
+  const renderArrow = () => <div className={`${popoverClass}__arrow`} data-popper-arrow />;
   const renderContentNode = () => (
     <div ref={popoverRef} data-popper-placement={placement} className={`${popoverClass}`} style={contentStyle}>
       <div className={contentClasses}>
         {parseContentTNode(content, {})}
-        {renderArrow()}
+        {showArrow && renderArrow()}
       </div>
     </div>
   );
