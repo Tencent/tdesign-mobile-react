@@ -3,11 +3,11 @@ import throttle from 'lodash/throttle';
 import cls from 'classnames';
 import { TdIndexesProps } from './type';
 import { StyledProps } from '../common';
-import useConfig from '../_util/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
+import parseTNode from '../_util/parseTNode';
+import { usePrefixClass } from '../hooks/useClass';
 import { indexesDefaultProps } from './defaultProps';
 import { IndexesProrvider } from './IndexesContext';
-import parseTNode from '../_util/parseTNode';
 
 export interface IndexesProps extends TdIndexesProps, StyledProps {}
 
@@ -24,14 +24,12 @@ interface ChildNodes {
 }
 
 const Indexes: React.FC<IndexesProps> = (props) => {
-  const { indexList, className, style, sticky, stickyOffset, children, onChange } = useDefaultProps(
+  const { indexList, className, style, sticky, stickyOffset, children, onChange, onSelect } = useDefaultProps(
     props,
     indexesDefaultProps,
   );
 
-  const { classPrefix } = useConfig();
-  const prefix = classPrefix;
-  const name = `${prefix}-indexes`;
+  const indexesClass = usePrefixClass('indexes');
 
   // 当前高亮index
   const [activeSidebar, setActiveSidebar] = useState<string | number>(null);
@@ -78,8 +76,8 @@ const Indexes: React.FC<IndexesProps> = (props) => {
       const betwixt = offset < curGroup.height && offset > 0 && scrollTop > stickyTop;
       childNodes.current.forEach((child, index) => {
         const { ele } = child;
-        const wrapperClass = `${name}-anchor__wrapper`;
-        const headerClass = `${name}-anchor__header`;
+        const wrapperClass = `${indexesClass}-anchor__wrapper`;
+        const headerClass = `${indexesClass}-anchor__header`;
         const wrapper = ele.querySelector<HTMLElement>(`.${wrapperClass}`);
         const header = ele.querySelector<HTMLElement>(`.${headerClass}`);
         if (index === curIndex) {
@@ -119,7 +117,7 @@ const Indexes: React.FC<IndexesProps> = (props) => {
   };
 
   const handleSidebarItemClick = (index: string | number) => {
-    props.onSelect?.(index);
+    onSelect?.(index);
     setActiveSidebarAndTip(index);
     scrollToByIndex(index);
   };
@@ -148,7 +146,7 @@ const Indexes: React.FC<IndexesProps> = (props) => {
     const { touches } = event;
     const { clientX, clientY } = touches[0];
     const target = document.elementFromPoint(clientX, clientY);
-    if (target && target.className === `${name}__sidebar-item` && target instanceof HTMLElement) {
+    if (target && target.className === `${indexesClass}__sidebar-item` && target instanceof HTMLElement) {
       const { index } = target.dataset;
       const curIndex = indexListMemo.find((idx) => String(idx) === index);
       if (curIndex !== undefined && activeSidebar !== index) {
@@ -178,7 +176,8 @@ const Indexes: React.FC<IndexesProps> = (props) => {
 
   useEffect(() => {
     onChange?.(activeSidebar);
-  }, [activeSidebar, onChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSidebar]);
 
   useEffect(() => {
     parentRect.current = indexesRef.current?.getBoundingClientRect() || { top: 0 };
@@ -205,16 +204,16 @@ const Indexes: React.FC<IndexesProps> = (props) => {
   return (
     <IndexesProrvider value={{ relation }}>
       <div
-        className={cls(name, className)}
+        className={cls(indexesClass, className)}
         onScroll={throttle(handleRootScroll, 1000 / 30)}
         style={{ ...style }}
         ref={indexesRef}
       >
-        <div ref={sidebarRef} className={`${name}__sidebar`}>
+        <div ref={sidebarRef} className={`${indexesClass}__sidebar`}>
           {indexListMemo.map((listItem) => (
             <div
-              className={cls(`${name}__sidebar-item`, {
-                [`${name}__sidebar-item--active`]: activeSidebar === listItem,
+              className={cls(`${indexesClass}__sidebar-item`, {
+                [`${indexesClass}__sidebar-item--active`]: activeSidebar === listItem,
               })}
               key={listItem}
               data-index={listItem}
@@ -225,7 +224,7 @@ const Indexes: React.FC<IndexesProps> = (props) => {
             >
               {listItem}
               {showSidebarTip && activeSidebar === listItem && (
-                <div className={`${name}__sidebar-tips`}>{activeSidebar}</div>
+                <div className={`${indexesClass}__sidebar-tips`}>{activeSidebar}</div>
               )}
             </div>
           ))}
