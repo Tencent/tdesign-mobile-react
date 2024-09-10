@@ -2,7 +2,7 @@ import React from 'react';
 import TImage from '../image';
 import { TdEmptyProps } from './type';
 import { StyledProps } from '../common';
-import { parseContentTNode } from '../_util/parseTNode';
+import parseTNode from '../_util/parseTNode';
 import { usePrefixClass } from '../hooks/useClass';
 
 export interface EmptyProps extends TdEmptyProps, StyledProps {}
@@ -13,15 +13,12 @@ const Empty: React.FC<EmptyProps> = (props) => {
   const emptyClass = usePrefixClass('empty');
 
   const renderThumb = () => {
-    const tNodeImage = parseContentTNode(image, {});
+    const tNodeImage = parseTNode(image, {});
     if (tNodeImage) {
-      if (typeof image === 'string') {
-        return typeof tNodeImage === 'string' && <TImage src={image} />;
-      }
-      return tNodeImage;
+      return typeof image === 'string' ? <TImage src={image} /> : tNodeImage;
     }
 
-    const tNodeIcon = parseContentTNode(icon, {});
+    const tNodeIcon = parseTNode(icon, {});
     if (tNodeIcon) {
       return <div className={`${emptyClass}__icon`}>{tNodeIcon}</div>;
     }
