@@ -3,9 +3,12 @@ import isNumber from 'lodash/isNumber';
 import classNames from 'classnames';
 import { CheckboxOption, CheckboxOptionObj, TdCheckboxProps, TdCheckboxGroupProps } from './type';
 import { StyledProps } from '../common';
-import useConfig from '../_util/useConfig';
+
 import useDefault from '../_util/useDefault';
 import Checkbox, { CheckContext, CheckContextValue } from './Checkbox';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { checkboxGroupDefaultProps } from './defaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 
 export interface CheckboxGroupProps extends TdCheckboxGroupProps, StyledProps {
   children?: React.ReactNode;
@@ -25,9 +28,12 @@ const getCheckboxValue = (v: CheckboxOption): string | number => {
   }
 };
 
-const CheckboxGroup: FC<CheckboxGroupProps> = (props: CheckboxGroupProps) => {
-  const { classPrefix } = useConfig();
-  const { value, defaultValue, disabled, className, max, options = [], name, style, children, onChange } = props;
+const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
+  const checkboxGroulClass = usePrefixClass('checkbox-group');
+  const { value, defaultValue, disabled, className, max, options, name, style, children, onChange } = useDefaultProps(
+    props,
+    checkboxGroupDefaultProps,
+  );
 
   const internalOptions =
     Array.isArray(options) && options.length > 0
@@ -114,7 +120,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props: CheckboxGroupProps) => {
   };
 
   // options 和 children 的抉择,在未明确说明时，暂时以 options 优先
-  const useOptions = Array.isArray(options) && options.length !== 0;
+  const isOptions = Array.isArray(options) && options.length !== 0;
 
   const checkboxNode = () =>
     options.map((v, index) => {
@@ -143,8 +149,8 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props: CheckboxGroupProps) => {
     });
 
   return (
-    <div className={classNames(`${classPrefix}-checkbox-group`, className)} style={style}>
-      {useOptions ? (
+    <div className={classNames(checkboxGroulClass, className)} style={style}>
+      {isOptions ? (
         <span>
           <CheckContext.Provider value={context}>{checkboxNode()}</CheckContext.Provider>
         </span>
@@ -153,7 +159,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props: CheckboxGroupProps) => {
       )}
     </div>
   );
-}
+};
 
 CheckboxGroup.displayName = 'CheckboxGroup';
 

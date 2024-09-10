@@ -16,6 +16,8 @@ import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
 import { parseContentTNode } from '../_util/parseTNode';
 import { usePrefixClass } from '../hooks/useClass';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { checkboxDefaultProps } from './defaultProps';
 
 export interface CheckBoxProps extends TdCheckboxProps {
   ref: Ref<HTMLLabelElement>;
@@ -29,36 +31,35 @@ export const CheckContext = React.createContext<CheckContextValue>(null);
 
 const Checkbox = forwardRef((_props: CheckBoxProps) => {
   const context = useContext(CheckContext);
-  const props = context ? context.inject(_props) : _props;
+  const props = useDefaultProps(context ? context.inject(_props) : _props, checkboxDefaultProps);
   const { classPrefix } = useConfig();
   const classPrefixCheckBox = usePrefixClass('checkbox');
   const {
-    placement = 'left',
+    placement,
     content,
     indeterminate,
     label,
     onChange,
     checked,
-    defaultChecked = false,
-    maxLabelRow = 3,
-    maxContentRow = 5,
-    icon = 'circle',
-    contentDisabled = false,
-    block = true,
-    borderless = false,
+    defaultChecked,
+    maxLabelRow,
+    maxContentRow,
+    icon,
+    contentDisabled,
+    block,
+    borderless,
+    checkAll,
+    disabled,
   } = props;
   const [internalChecked, setInternalChecked] = useDefault(checked, defaultChecked, onChange);
 
   const checkboxClassName = classNames(`${classPrefix}-checkbox`, {
     [`${classPrefixCheckBox}--${placement}`]: true,
-    [`${classPrefixCheckBox}--checked`]: props.checked,
+    [`${classPrefixCheckBox}--checked`]: checked,
     [`${classPrefixCheckBox}--block`]: block,
   });
 
-  const isChecked = useMemo(
-    () => (props.checkAll ? props.checked : internalChecked),
-    [internalChecked, props.checkAll, props.checked],
-  );
+  const isChecked = useMemo(() => (checkAll ? checked : internalChecked), [internalChecked, checkAll, checked]);
 
   const checkIcons = useMemo(() => {
     if (Array.isArray(icon) && icon.length > 1) {
@@ -101,7 +102,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
             className={classNames({
               [`${classPrefixCheckBox}__icon-circle`]: icon === true,
               [`${classPrefixCheckBox}__icon-${icon}`]: typeof icon === 'string',
-              [`${classPrefixCheckBox}__icon-${icon}--disabled`]: props.disabled,
+              [`${classPrefixCheckBox}__icon-${icon}--disabled`]: disabled,
             })}
           ></div>
         )}
@@ -110,26 +111,21 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
     );
   };
 
-  const renderIconNode = () => {
-    if (!icon) {
-      return null;
-    }
-    return (
-      <div
-        className={classNames({
-          [`${classPrefixCheckBox}__icon`]: true,
-          [`${classPrefixCheckBox}__icon--${placement}`]: true,
-          [`${classPrefixCheckBox}__icon--checked`]: isChecked,
-          [`${classPrefixCheckBox}__icon--disabled`]: props.disabled,
-        })}
-      >
-        {renderIconArray()}
-      </div>
-    );
-  };
+  const renderIconNode = () => (
+    <div
+      className={classNames({
+        [`${classPrefixCheckBox}__icon`]: true,
+        [`${classPrefixCheckBox}__icon--${placement}`]: true,
+        [`${classPrefixCheckBox}__icon--checked`]: isChecked,
+        [`${classPrefixCheckBox}__icon--disabled`]: disabled,
+      })}
+    >
+      {renderIconArray()}
+    </div>
+  );
 
   const handleClick = (e) => {
-    if (contentDisabled || props.disabled) {
+    if (contentDisabled || disabled) {
       e.preventDefault();
       return;
     }
@@ -151,7 +147,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
         className={classNames({
           [`${classPrefixCheckBox}__title`]: true,
           [`${classPrefixCheckBox}__title--checked`]: isChecked,
-          [`${classPrefixCheckBox}__title--disabled`]: props.disabled,
+          [`${classPrefixCheckBox}__title--disabled`]: disabled,
         })}
         style={{ WebkitLineClamp: maxLabelRow }}
       >
@@ -160,7 +156,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
       <div
         className={classNames({
           [`${classPrefixCheckBox}__description`]: true,
-          [`${classPrefixCheckBox}__description--disabled`]: props.disabled,
+          [`${classPrefixCheckBox}__description--disabled`]: disabled,
         })}
         style={{ WebkitLineClamp: maxContentRow }}
       >
@@ -172,7 +168,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
   return (
     <>
       <div className={checkboxClassName} onClick={handleClick}>
-        {renderIconNode()}
+        {icon && renderIconNode()}
         {renderCheckBoxContent()}
         {/* 下边框 */}
         {!borderless && (
