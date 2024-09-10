@@ -13,12 +13,12 @@ const Empty: React.FC<EmptyProps> = (props) => {
   const emptyClass = usePrefixClass('empty');
 
   const renderThumb = () => {
-    const tNodeImage = parseTNode(image, {});
+    const tNodeImage = parseTNode(image);
     if (tNodeImage) {
       return typeof image === 'string' ? <TImage src={image} /> : tNodeImage;
     }
 
-    const tNodeIcon = parseTNode(icon, {});
+    const tNodeIcon = parseTNode(icon);
     if (tNodeIcon) {
       return <div className={`${emptyClass}__icon`}>{tNodeIcon}</div>;
     }
