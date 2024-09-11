@@ -5,16 +5,21 @@
 import { TdCheckboxProps, TdCheckboxGroupProps } from './type';
 
 export const checkboxDefaultProps: TdCheckboxProps = {
-  placement: 'left',
-  defaultChecked: false,
-  maxLabelRow: 3,
-  maxContentRow: 5,
-  icon: 'circle',
-  contentDisabled: false,
   block: true,
   borderless: false,
+  checkAll: false,
+  defaultChecked: false,
+  disabled: undefined,
+  icon: 'circle',
+  indeterminate: false,
+  maxContentRow: 5,
+  maxLabelRow: 3,
+  placement: 'left',
+  readonly: false,
 };
 
 export const checkboxGroupDefaultProps: TdCheckboxGroupProps = {
-  options: [],
+  disabled: undefined,
+  max: undefined,
+  defaultValue: [],
 };
