@@ -44,7 +44,7 @@
     "test:snap": "cross-env NODE_ENV=test-snap vitest run",
     "test:snap-update": "cross-env NODE_ENV=test-snap vitest run -u",
     "test:update": "vitest run -u && npm run test:snap-update",
-    "generate:coverage-badge": "node script/generate-coverage.js",
+    "generate:coverage-badge": "npm run test:unit-coverage && node script/generate-coverage.js",
     "prebuild": "rimraf es/* lib/* dist/* esm/* cjs/*",
     "build": "cross-env NODE_ENV=production rollup -c script/rollup.config.js && npm run build:tsc",
     "build:tsc": "concurrently \"npm:build:tsc-*\"",
