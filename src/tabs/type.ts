@@ -2,16 +2,12 @@
 
 /**
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
- * updated at 2022-01-07 16:30:49
  * */
+
 import { StickyProps } from '../sticky';
-import { TNode } from '../common';
+import { TNode, TElement } from '../common';
 
 export interface TdTabsProps {
-  /**
-   * 触发元素
-   */
-  children?: TNode;
   /**
    * 动画效果设置。其中 duration 表示动画时长
    */
@@ -21,6 +17,10 @@ export interface TdTabsProps {
    * @default fixed
    */
   bottomLineMode?: 'fixed' | 'auto' | 'full';
+  /**
+   * 组件子元素
+   */
+  children?: TElement;
   /**
    * 选项卡列表
    */
@@ -99,7 +99,7 @@ export interface TdTabPanelProps {
   /**
    * 选项卡名称，可自定义选项卡导航内容
    */
-  label?: string | TNode;
+  label?: TNode;
   /**
    * 是否启用选项卡懒加载
    * @default false
@@ -108,7 +108,7 @@ export interface TdTabPanelProps {
   /**
    * 用于自定义选项卡面板内容
    */
-  panel?: string | TNode;
+  panel?: TNode;
   /**
    * 选项卡的值，唯一标识
    */

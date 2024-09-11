@@ -6,8 +6,11 @@
 
 name | type | default | description | required
 -- | -- | -- | -- | --
+className | String | - | className of component | N
+style | Object | - | CSS(Cascading Style Sheets)，Typescript：`React.CSSProperties` | N
 animation | Object | - | Typescript：`TabAnimation` `type TabAnimation = { duration: number } & Record<string, any>`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tabs/type.ts) | N
 bottomLineMode | String | fixed | options: fixed/auto/full | N
+children | TElement | - | Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 list | Array | - | Typescript：`Array<TdTabPanelProps>` | N
 showBottomLine | Boolean | true | \- | N
 size | String | medium | options: medium/large | N
@@ -22,25 +25,19 @@ onChange | Function |  | Typescript：`(value: TabValue, label: string) => void`
 onClick | Function |  | Typescript：`(value: TabValue, label: string) => void`<br/> | N
 onScroll | Function |  | Typescript：`(scrollTop: number, isFixed: boolean) => void`<br/> | N
 
-### Tabs Events
-
-name | params | description
--- | -- | --
-change | `(value: TabValue, label: string)` | \-
-click | `(value: TabValue, label: string)` | \-
-scroll | `(scrollTop: number, isFixed: boolean)` | \-
-
 
 ### TabPanel Props
 
 name | type | default | description | required
 -- | -- | -- | -- | --
+className | String | - | className of component | N
+style | Object | - | CSS(Cascading Style Sheets)，Typescript：`React.CSSProperties` | N
 badgeProps | Object | - | \- | N
 destroyOnHide | Boolean | true | \- | N
 disabled | Boolean | false | \- | N
-label | String / Slot / Function | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+label | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 lazy | Boolean | false | Enable tab lazy loading | N
-panel | String / Slot / Function | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+panel | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 value | String / Number | - | Typescript：`TabValue` | N
 
 ### CSS Variables
