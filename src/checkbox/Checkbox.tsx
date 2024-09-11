@@ -50,6 +50,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
     borderless,
     checkAll,
     disabled,
+    readonly,
   } = props;
   const [internalChecked, setInternalChecked] = useDefault(checked, defaultChecked, onChange);
 
@@ -125,7 +126,7 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
   );
 
   const handleClick = (e) => {
-    if (contentDisabled || disabled) {
+    if (contentDisabled || disabled || readonly) {
       e.preventDefault();
       return;
     }
