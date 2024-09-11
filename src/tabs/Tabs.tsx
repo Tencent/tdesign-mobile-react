@@ -186,12 +186,13 @@ const Tabs: FC<TabsProps> = (props) => {
 
   useEffect(() => {
     window.addEventListener('resize', moveToActiveTab, false);
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       moveToActiveTab();
     }, 300);
 
     return () => {
       window.removeEventListener('resize', moveToActiveTab);
+      clearTimeout(timeout);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
