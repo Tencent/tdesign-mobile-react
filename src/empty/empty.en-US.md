@@ -6,19 +6,9 @@
 
 name | type | default | description | required
 -- | -- | -- | -- | --
-action | Slot / Function | - | Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-description | String / Slot / Function | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-icon | String / Slot / Function | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-image | String / Slot / Function | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-
-
-### CSS Variables
-The component provides the following CSS variables, which can be used to customize styles.
-Name | Default Value | Description 
--- | -- | --
---td-empty-action-margin-top | @spacer-4 | - 
---td-empty-description-color | @font-gray-3 | - 
---td-empty-description-font-size | @font-size-base | - 
---td-empty-description-line-height | 44rpx | - 
---td-empty-description-margin-top | @spacer-2 | - 
---td-empty-icon-color | @font-gray-3 | - 
+className | String | - | className of component | N
+style | Object | - | CSS(Cascading Style Sheets)，Typescript：`React.CSSProperties` | N
+action | TElement | - | action block。Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+description | TNode | - | empty component description。Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+icon | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+image | TNode | - | image url, or Image component props, or custom any node you need.。Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
