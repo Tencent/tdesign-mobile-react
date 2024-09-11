@@ -1,7 +1,7 @@
 import React, { FC, ReactElement, useEffect, useMemo, useState } from 'react';
 import isNumber from 'lodash/isNumber';
 import classNames from 'classnames';
-import { CheckboxOption, CheckboxOptionObj, TdCheckboxProps, TdCheckboxGroupProps } from './type';
+import { CheckboxOption, CheckboxOptionObj, TdCheckboxGroupProps } from './type';
 import { StyledProps } from '../common';
 
 import useDefault from '../_util/useDefault';
@@ -21,7 +21,7 @@ const getCheckboxValue = (v: CheckboxOption): string | number => {
       return v as string | number;
     case 'object': {
       const vs = v as CheckboxOptionObj;
-      return vs.value;
+      return vs.value as string | number;
     }
     default:
       return undefined;
@@ -110,9 +110,10 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
           }
 
           setInternalValue(Array.from(checkedSet), {
-            e,
-            current: checkProps.checkAll ? undefined : (checkValue as TdCheckboxProps),
+            e: e as any,
+            current: checkProps.checkAll ? undefined : (checkValue as string | number),
             type: checked ? 'check' : 'uncheck',
+            option: checkProps,
           });
         },
       };
@@ -140,7 +141,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
           return vs.checkAll ? (
             <Checkbox {...(v as Object)} key={`checkAll_${index}`} indeterminate={indeterminate} />
           ) : (
-            <Checkbox {...(v as Object)} key={vs.value} disabled={vs.disabled || disabled} />
+            <Checkbox {...(v as Object)} key={vs.value.toString()} disabled={vs.disabled || disabled} />
           );
         }
         default:
