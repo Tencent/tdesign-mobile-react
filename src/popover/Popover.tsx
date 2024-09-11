@@ -14,8 +14,17 @@ import { parseContentTNode } from '../_util/parseTNode';
 export interface PopoverProps extends TdPopoverProps, StyledProps {}
 
 const Popover: React.FC<PopoverProps> = (props) => {
-  const { closeOnClickOutside, content, placement, showArrow, theme, triggerElement, visible, onVisibleChange } =
-    useDefaultProps<PopoverProps>(props, popoverDefaultProps);
+  const {
+    closeOnClickOutside,
+    content,
+    placement,
+    showArrow,
+    theme,
+    triggerElement,
+    children,
+    visible,
+    onVisibleChange,
+  } = useDefaultProps<PopoverProps>(props, popoverDefaultProps);
 
   const [currentVisible, setVisible] = useState(visible);
   const [active, setActive] = useState(visible);
@@ -177,6 +186,7 @@ const Popover: React.FC<PopoverProps> = (props) => {
   return (
     <>
       <div ref={referenceRef} className={`${popoverClass}__wrapper`} onClick={onClickReference}>
+        {children}
         {triggerElement}
       </div>
       <CSSTransition

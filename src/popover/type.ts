@@ -8,6 +8,10 @@ import { TNode } from '../common';
 
 export interface TdPopoverProps {
   /**
+   * 触发元素，同 triggerElement
+   */
+  children?: TNode;
+  /**
    * 是否在点击外部元素后关闭菜单
    * @default true
    */
@@ -15,7 +19,7 @@ export interface TdPopoverProps {
   /**
    * 确认框内容
    */
-  content?: string | TNode;
+  content?: TNode;
   /**
    * 浮层出现位置
    * @default top
@@ -46,7 +50,7 @@ export interface TdPopoverProps {
   /**
    * 触发元素
    */
-  triggerElement?: string | TNode;
+  triggerElement?: TNode;
   /**
    * 是否显示气泡确认框
    */
@@ -55,10 +59,6 @@ export interface TdPopoverProps {
    * 是否显示气泡确认框，非受控属性
    */
   defaultVisible?: boolean;
-  /**
-   * 是否显示气泡确认框
-   */
-  modelValue?: boolean;
   /**
    * 确认框显示或隐藏时触发
    */
