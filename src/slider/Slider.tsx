@@ -1,223 +1,389 @@
-import React, { FC, useCallback, useMemo, useRef } from 'react';
-import classnames from 'classnames';
-import identity from 'lodash/identity';
-import isArray from 'lodash/isArray';
-import useConfig from '../_util/useConfig';
-import nearest from '../_util/nearest';
+import React, { FC, useEffect, useRef, useState } from 'react';
+import type { MouseEvent, TouchEvent } from 'react';
+import classNames from 'classnames';
+import isFunction from 'lodash/isFunction';
+import { usePrefixClass } from '../hooks/useClass';
+import useDefaultProps from '../hooks/useDefaultProps';
 import useDefault from '../_util/useDefault';
-import withNativeProps, { NativeProps } from '../_util/withNativeProps';
-import Handle from './Handle';
-import Marks from './Marks';
+import { NativeProps } from '../_util/withNativeProps';
 import { SliderValue, TdSliderProps } from './type';
-
-const defaultProps = {
-  disabled: false,
-  max: 100,
-  min: 0,
-  range: false,
-  step: 1,
-  label: true,
-  showExtremeValue: false,
-  onChange: identity,
-  onDragstart: identity,
-  onDragend: identity,
-};
+import { sliderDefaultProps } from './defaultProps';
+import { trimSingleValue, trimValue } from './helper';
+import { BLOCK_SIZE, BORDER_WIDTH } from './constants';
 
 export interface SliderProps extends TdSliderProps, NativeProps {}
 
 const Slider: FC<SliderProps> = (props) => {
-  const { classPrefix } = useConfig();
-  const name = `${classPrefix}-slider`;
+  const { disabled, max, min, range, step, theme, value, defaultValue, marks, showExtremeValue, label, onChange } =
+    useDefaultProps(props, sliderDefaultProps);
+  const [scaleArray, setScaleArray] = useState<any[]>([]);
+  const [scaleTextArray, setScaleTextArray] = useState<any[]>([]);
+  const [isScale, setIsScale] = useState<boolean>(false);
+  const [initialLeft, setInitialLeft] = useState<number>(0);
+  const [initialRight, setInitialRight] = useState<number>(0);
+  const [maxRange, setMaxRange] = useState<number>(0);
+  const [dotTopValue, setDotTopValue] = useState<number[]>([0, 0]);
+  const [lineLeft, setLineLeft] = useState<number>();
+  const [lineRight, setLineRight] = useState<number>(0);
+  const [lineBarWidth, setLineBarWidth] = useState<number>(0);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const leftDotRef = useRef<HTMLDivElement>(null);
+  const rightDotRef = useRef<HTMLDivElement>(null);
+  const sliderLineRef = useRef<HTMLDivElement>(null);
+  const [innerValue, setInnerValue] = useDefault(value, defaultValue, onChange);
+  const scope = Number(max) - Number(min);
 
-  const {
-    disabled,
-    max,
-    min,
-    range,
-    step,
-    value,
-    defaultValue,
-    marks,
-    showExtremeValue,
-    label,
-    onChange,
-    onDragstart,
-    onDragend,
-  } = props;
+  const rootClassName = usePrefixClass('slider');
+  const containerClassName = classNames(rootClassName, {
+    [`${rootClassName}--top`]: label || scaleTextArray.length,
+    [`${rootClassName}--disabled`]: disabled,
+    [`${rootClassName}--range`]: range,
+  });
+  const sliderLineClassName = classNames(`${rootClassName}__bar`, `${rootClassName}__bar--${theme}`, {
+    [`${rootClassName}__bar--disabled`]: disabled,
+    [`${rootClassName}__bar--marks`]: isScale && theme === 'capsule',
+  });
+  const sliderMaxTextClassName = classNames(`${rootClassName}__value`, `${rootClassName}__value--max`);
 
-  const barRef = useRef<HTMLDivElement>(null);
-  const handleRef = useRef<HTMLDivElement>(null);
-  const firstValueRef = useRef<[number, number]>();
-  const dragLockRef = useRef(false);
+  useEffect(() => {
+    getInitialStyle(theme);
+  }, [theme]);
 
-  const [rawValue, setRawValue] = useDefault<SliderValue, any>(
-    value,
-    defaultValue || (range ? [min, min] : min),
-    onChange,
-  );
-
-  // 排序
-  const sortValue = useCallback((val: [number, number]): [number, number] => val.sort((a, b) => a - b), []);
-
-  // 统一单/双游标滑块value结构
-  const convertValue = useCallback(
-    (value: SliderValue): [number, number] => (range ? value : [min, value]) as [number, number],
-    [min, range],
-  );
-
-  const reverseValue = useCallback((value: [number, number]): SliderValue => (range ? value : value[1]), [range]);
-
-  // 计算要显示的点
-  const pointList = useMemo(() => {
-    if (marks) {
-      return isArray(marks)
-        ? marks.sort((a, b) => a - b)
-        : Object.keys(marks)
-            .map(parseFloat)
-            .sort((a, b) => a - b);
-    }
-    const points: number[] = [];
-    for (let i = min; i <= max; i += step) {
-      points.push(i);
-    }
-    return points;
-  }, [marks, max, min, step]);
-
-  const sliderValue = useMemo(() => sortValue(convertValue(rawValue)), [rawValue, convertValue, sortValue]);
-
-  const trackSize = `${(100 * (sliderValue[1] - sliderValue[0])) / (max - min)}%`;
-
-  const trackStart = `${(100 * (sliderValue[0] - min)) / (max - min)}%`;
-
-  const getValueByPosition = (position: number) => {
-    let newPosition = position;
-    if (position < min) {
-      newPosition = min;
-    } else if (position > max) {
-      newPosition = max;
+  useEffect(() => {
+    function setSingleBarWidth(value: number) {
+      const halfBlock = theme === 'capsule' ? BLOCK_SIZE / 2 : 0;
+      const percentage = (Number(value) - min) / scope;
+      setLineBarWidth(percentage * maxRange + halfBlock);
     }
 
-    let value = min;
+    function setLineStyle(left: number, right: number) {
+      const halfBlock = theme === 'capsule' ? BLOCK_SIZE / 2 : 0;
+      const [a, b] = innerValue as Array<number>;
 
-    // 如果有显示刻度点，就移动到刻度点上
-    if (pointList?.length) {
-      value = nearest({
-        items: pointList,
-        target: newPosition,
-      });
-    } else {
-      const lengthPerStep = 100 / ((max - min) / step);
-      const steps = Math.round(newPosition / lengthPerStep);
-      value = lengthPerStep * steps * (max - min) * 0.01 + min;
-    }
-    return value;
-  };
+      const parseNumber = (v: any) => parseInt(v, 10);
 
-  // 更新滑块value
-  const updateSliderValue = (value: [number, number]) => {
-    const next = sortValue(value);
-    const current = sliderValue;
-    if (next[0] === current[0] && next[1] === current[1]) return;
-    setRawValue(reverseValue(next));
-  };
+      setDotTopValue([a, b]);
 
-  const handleClick = (e) => {
-    if (!dragLockRef.current) return;
-    if (disabled) return;
-
-    e.stopPropagation();
-
-    const bar = barRef.current;
-    if (!bar) return;
-
-    const sliderOffsetLeft = bar.getBoundingClientRect().left;
-    const position = ((e.clientX - sliderOffsetLeft) / Math.ceil(bar.offsetWidth)) * (max - min) + min;
-
-    const targetValue = getValueByPosition(position);
-    let next: [number, number];
-    if (range) {
-      if (Math.abs(targetValue - sliderValue[0]) > Math.abs(targetValue - sliderValue[1])) {
-        next = [sliderValue[0], targetValue];
+      if (left + right <= maxRange) {
+        setLineLeft(parseNumber(left + halfBlock));
+        setLineRight(parseNumber(right + halfBlock));
       } else {
-        next = [targetValue, sliderValue[1]];
+        setLineLeft(parseNumber(maxRange + halfBlock - right));
+        setLineRight(parseNumber(maxRange - left + halfBlock * 1.5));
       }
-    } else {
-      next = [min, targetValue];
     }
 
-    updateSliderValue(next);
+    if (!range) {
+      setSingleBarWidth(innerValue as number);
+      return;
+    }
+    const left = (maxRange * (innerValue[0] ?? 0 - min)) / scope;
+    const right = maxRange * (max - innerValue[1]);
+    setLineStyle(left, right);
+  }, [innerValue, max, maxRange, min, range, scope, theme]);
+
+  useEffect(() => {
+    function handleMask(marks: any) {
+      const calcPos = (arr: number[]) => {
+        const margin = theme === 'capsule' ? BLOCK_SIZE / 2 : 0;
+        return arr.map((item) => ({
+          val: item,
+          left: Math.round(((item - min) / scope) * maxRange) + margin,
+        }));
+      };
+      if (marks?.length && Array.isArray(marks)) {
+        setIsScale(true);
+        setScaleArray(calcPos(marks));
+        setScaleTextArray([]);
+      }
+
+      if (Object.prototype.toString.call(marks) === '[object Object]') {
+        const scaleArray = Object.keys(marks).map((item) => Number(item));
+        const scaleTextArray = scaleArray.map((item) => marks[item]);
+        setIsScale(scaleArray.length > 0);
+        setScaleArray(calcPos(scaleArray));
+        setScaleTextArray(scaleTextArray);
+      }
+    }
+
+    if (marks) {
+      handleMask(marks);
+    }
+  }, [marks, maxRange, min, scope, theme]);
+
+  function getInitialStyle(theme: 'default' | 'capsule') {
+    const line = sliderLineRef.current?.getBoundingClientRect() as DOMRect;
+    const halfBlock = Number(BLOCK_SIZE) / 2;
+    const maxRange = line.right - line.left;
+
+    if (theme === 'capsule') {
+      setMaxRange(maxRange - BLOCK_SIZE - BORDER_WIDTH); // 6 是边框宽度
+      setInitialLeft((initialLeft) => initialLeft - halfBlock);
+      setInitialRight((initialRight) => initialRight - halfBlock);
+      return;
+    }
+    setMaxRange(maxRange);
+    setInitialLeft(line.left);
+    setInitialRight(line.right);
+  }
+
+  const getValue = (label: any, value: any) => {
+    const REGEXP = /[$][{value}]{7}/;
+    if (isFunction(label)) return label(value);
+    if (label && label === 'true') return value;
+    if (REGEXP.test(label)) return label.replace(REGEXP, value);
   };
 
-  // 游标滑块
-  const renderHandle = (index: number) => (
-    <Handle
-      key={index}
-      value={sliderValue[index]}
-      min={min}
-      max={max}
-      disabled={disabled}
-      barRef={barRef}
-      onDrag={(position, first, last) => {
-        if (first) {
-          dragLockRef.current = true;
-          firstValueRef.current = sliderValue;
-          onDragstart();
-        }
-        const val = getValueByPosition(position);
-        const firstValue = firstValueRef.current;
-        if (!firstValue) return;
-        const next = [...firstValue] as [number, number];
-        next[index] = val;
-        updateSliderValue(next);
-        if (last) {
-          onDragend();
-          window.setTimeout(() => {
-            dragLockRef.current = false;
-          }, 100);
-        }
-      }}
-    />
+  const convertPosToValue = (posValue: number, isLeft = true) =>
+    isLeft ? (posValue / maxRange) * scope + min : max - (posValue / maxRange) * scope;
+
+  const getPrecision = () => {
+    const precisions = [min, max, step].map((item) => {
+      const decimalArr = `${item}`.split('.');
+      return decimalArr[1] ? decimalArr[1].length : 0;
+    });
+    return Math.max.apply(null, precisions);
+  };
+
+  const calcByStep = (value: number): number => {
+    const precision = getPrecision();
+    if (step < 0 || step > scope) {
+      return Number(parseFloat(`${value}`).toFixed(precision));
+    }
+    const closestStep = trimSingleValue(Math.round(value / step) * step, min, max);
+
+    return Number(parseFloat(`${closestStep}`).toFixed(precision));
+  };
+
+  const changeValue = (value: SliderValue) => {
+    setInnerValue(trimValue(value, props));
+  };
+
+  const handleRangeClick = (e: MouseEvent) => {
+    e.stopPropagation();
+    if (disabled) {
+      return;
+    }
+    const halfBlock = props.theme === 'capsule' ? Number(BLOCK_SIZE) / 2 : 0;
+    const currentLeft = e.clientX - initialLeft;
+    if (currentLeft < 0 || currentLeft > maxRange + Number(BLOCK_SIZE)) {
+      return;
+    }
+
+    const leftDotValue = leftDotRef.current?.getBoundingClientRect() as DOMRect;
+    const rightDotValue = rightDotRef.current?.getBoundingClientRect() as DOMRect;
+    // 点击处-halfblock 与 leftDot左侧的距离（绝对值）
+    const distanceLeft = Math.abs(e.clientX - leftDotValue.left - halfBlock);
+    // 点击处-halfblock 与 rightDot左侧的距离（绝对值）
+    const distanceRight = Math.abs(rightDotValue.left - e.clientX + halfBlock);
+    // 哪个绝对值小就移动哪个Dot
+    const isMoveLeft = distanceLeft < distanceRight;
+
+    if (isMoveLeft) {
+      // 当前leftdot中心 + 左侧偏移量 = 目标左侧中心距离
+      const left = e.clientX - initialLeft;
+      const leftValue = convertPosToValue(left);
+      changeValue([calcByStep(leftValue), innerValue?.[1]]);
+    } else {
+      const right = -(e.clientX - initialRight);
+      const rightValue = convertPosToValue(right, false);
+      changeValue([innerValue?.[0], calcByStep(rightValue)]);
+    }
+  };
+
+  const handleSingleClick = (e: MouseEvent) => {
+    e.stopPropagation();
+    if (disabled) {
+      return;
+    }
+    if (!sliderLineRef.current) {
+      return;
+    }
+    const currentLeft = e.clientX - initialLeft;
+    const value = convertPosToValue(currentLeft);
+    changeValue(calcByStep(value));
+  };
+
+  const onTouchMoveLeft = (e: TouchEvent) => {
+    if (disabled) {
+      return;
+    }
+    const { pageX } = e?.changedTouches?.[0] || {};
+    const currentLeft = pageX - initialLeft;
+    const newData = [...(innerValue as number[])];
+    const leftValue = convertPosToValue(currentLeft);
+    newData[0] = calcByStep(leftValue);
+    changeValue(newData);
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const onTouchEnd = () => {};
+
+  const onSingleDotMove = (e: TouchEvent) => {
+    if (disabled) {
+      return;
+    }
+    const { pageX } = e.changedTouches?.[0] || {};
+    const value = convertPosToValue(pageX - initialLeft);
+    changeValue(calcByStep(value));
+  };
+
+  const onTouchMoveRight = (e: TouchEvent) => {
+    if (disabled) {
+      return;
+    }
+    const { pageX } = e?.changedTouches?.[0] || {};
+    const currentRight = -(pageX - initialRight);
+    const newData = [...(innerValue as number[])];
+    const rightValue = convertPosToValue(currentRight, false);
+    newData[1] = calcByStep(rightValue);
+    changeValue(newData);
+  };
+
+  const renderMinText = () => {
+    if (showExtremeValue) {
+      return null;
+    }
+    const textClassName = classNames({
+      [`${rootClassName}__value`]: !range,
+      [`${rootClassName}__value--min`]: !range,
+      [`${rootClassName}__range-extreme`]: range,
+      [`${rootClassName}__range-extreme--min`]: range,
+    });
+    if (range) {
+      return <text className={textClassName}>{min}</text>;
+    }
+    return <text className={textClassName}>{label ? getValue(label, min) : min}</text>;
+  };
+
+  const renderMaxText = () => {
+    if (!showExtremeValue) {
+      return null;
+    }
+    if (range) {
+      return <text className={sliderMaxTextClassName}>{max}</text>;
+    }
+    return <text className={sliderMaxTextClassName}>{label ? getValue(label, max) : max}</text>;
+  };
+
+  const renderScale = () => {
+    if (!isScale) {
+      return null;
+    }
+    return scaleArray.map((item, index) => (
+      <div
+        key={index}
+        style={{ left: item.left, transform: 'translateX(-50%)' }}
+        className={classNames(
+          `${rootClassName}__scale-item`,
+          `${rootClassName}__scale-item`,
+          `${rootClassName}__scale-item--${theme}`,
+          {
+            [`${rootClassName}__scale-item--active`]: !range && Number(innerValue) >= item.val,
+            [`${rootClassName}__scale-item--active`]: range && dotTopValue[1] >= item.val && item.val >= dotTopValue[0],
+            [`${rootClassName}__scale-item--disabled`]: disabled,
+            [`${rootClassName}__scale-item--hidden`]:
+              ((index === 0 || index === scaleArray.length - 1) && theme === 'capsule') || innerValue === item.val,
+          },
+        )}
+      >
+        {scaleTextArray.length && (
+          <div className={`${rootClassName}__scale-desc, ${rootClassName}__scale-desc--${theme}`}>
+            {scaleTextArray[index]}
+          </div>
+        )}
+      </div>
+    ));
+  };
+
+  const readerLineRange = () => (
+    <div
+      className={classNames(`${rootClassName}__line`, `${rootClassName}__line--${theme}`, {
+        [`${rootClassName}__line--disabled`]: disabled,
+      })}
+      style={{ left: `${lineLeft}px`, right: `${lineRight}px` }}
+    >
+      <div
+        ref={leftDotRef}
+        className={classNames(`${rootClassName}__dot`, `${rootClassName}__dot--left`)}
+        onTouchMove={onTouchMoveLeft}
+        onTouchEnd={onTouchEnd}
+        onTouchCancel={onTouchEnd}
+      >
+        {label && (
+          <div
+            className={classNames(`${rootClassName}__dot-value`, {
+              [`${rootClassName}__dot-value--sr-only`]: !props.label,
+            })}
+          >
+            {getValue(props.label, dotTopValue[0]) || dotTopValue[0]}
+          </div>
+        )}
+        <div className={`${rootClassName}__dot-slider`}></div>
+      </div>
+      <div
+        ref={rightDotRef}
+        className={classNames(`${rootClassName}__dot`, `${rootClassName}__dot--right`)}
+        onTouchMove={onTouchMoveRight}
+        onTouchEnd={onTouchEnd}
+        onTouchCancel={onTouchEnd}
+      >
+        {props.label && (
+          <div
+            className={classNames(`${rootClassName}__dot-value`, {
+              [`${rootClassName}__dot-value--sr-only`]: !props.label,
+            })}
+          >
+            {getValue(props.label, dotTopValue[1]) || dotTopValue[1]}
+          </div>
+        )}
+        <div className={`${rootClassName}__dot-slider`}></div>
+      </div>
+    </div>
   );
 
-  return withNativeProps(
-    props,
+  const readerLineSingle = () => (
     <div
-      className={classnames(`${name}-wrap`, {
-        [`${classPrefix}-is-disabled`]: disabled,
-      })}
+      className={classNames(
+        `${rootClassName}__line`,
+        `${rootClassName}__line--${theme}`,
+        `${rootClassName}__line--single`,
+        {
+          [`${rootClassName}__line--disabled`]: disabled,
+        },
+      )}
+      style={{ width: `${lineBarWidth}px` }}
     >
-      {showExtremeValue && <div className={`${name}-wrap__value ${name}-wrap__value--left`}>{min}</div>}
       <div
-        className={classnames(name, {
-          [`${name}--with-marks`]: marks || range,
-        })}
-        onClick={handleClick}
+        className={`${rootClassName}__dot`}
+        onTouchMove={onSingleDotMove}
+        onTouchEnd={onTouchEnd}
+        onTouchCancel={onTouchEnd}
       >
-        {/* 总长度 */}
-        <div ref={barRef} className={`${name}__bar`}></div>
-        {/* 滑块长度 */}
-        <div
-          className={`${name}__track`}
-          style={{
-            width: trackSize,
-            left: trackStart,
-          }}
-          ref={handleRef}
-        />
-        {/* 双游标滑块操作 */}
-        {range && renderHandle(0)}
-        {/* 单游标滑块操作 */}
-        {renderHandle(1)}
-        {/* 刻度内容 */}
-        <Marks marks={marks} range={range} value={sliderValue} />
+        {label ? (
+          <div
+            className={classNames(`${rootClassName}__dot-value`, {
+              [`${rootClassName}__dot-value--sr-only`]: label,
+            })}
+          >
+            {getValue(label, value) || innerValue}
+          </div>
+        ) : null}
+        <div className={`${rootClassName}__dot-slider`} />
       </div>
-      {!range && label && <div className={`${name}-wrap__value`}>{sliderValue[1]}</div>}
-      {showExtremeValue && <div className={`${name}-wrap__value`}>{max}</div>}
-    </div>,
+    </div>
+  );
+
+  return (
+    <div ref={rootRef} className={containerClassName}>
+      {renderMinText()}
+      <div ref={sliderLineRef} className={sliderLineClassName} onClick={range ? handleRangeClick : handleSingleClick}>
+        {renderScale()}
+        {range ? readerLineRange() : readerLineSingle()}
+      </div>
+      {renderMaxText()}
+    </div>
   );
 };
-
-Slider.defaultProps = defaultProps;
-Slider.displayName = 'Slider';
 
 export default Slider;
