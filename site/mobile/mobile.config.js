@@ -200,7 +200,7 @@ export default {
     {
       title: 'Stepper 步进器',
       name: 'Stepper',
-      component: () => import('tdesign-mobile-react/stepper/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/stepper/_example/index.tsx'),
     },
     {
       title: 'PullDownRefresh 下拉刷新',
@@ -230,7 +230,7 @@ export default {
     {
       title: 'Steps 步骤条',
       name: 'steps',
-      component: () => import('tdesign-mobile-react/steps/_example/index.tsx'),
+      component: () => import('tdesign-mobile-react/steps/_example/index.jsx'),
     },
     {
       title: 'TabBar 标签栏',
