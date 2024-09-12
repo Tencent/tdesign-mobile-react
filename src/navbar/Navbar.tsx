@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import type { CSSProperties } from 'react';
 import { ChevronLeftIcon } from 'tdesign-icons-react';
 import ClassNames from 'classnames';
-import { usePrefixClass } from 'tdesign-mobile-react/hooks/useClass';
+import { usePrefixClass } from '../hooks/useClass';
 import { StyledProps } from '../common';
 import { TdNavbarProps } from './type';
 import { navbarDefaultProps } from './defaultProps';
