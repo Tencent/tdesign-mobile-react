@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
 import { AddIcon, RemoveIcon } from 'tdesign-icons-react';
-import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
 import { TdStepperProps } from './type';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
@@ -30,7 +29,6 @@ const Stepper: FC<StepperProps> = (props) => {
     onOverlimit,
   } = useDefaultProps(props, stepperDefaultProps);
   const [currentValue, setCurrentValue] = useDefault(value, defaultValue, onChange);
-  const { classPrefix } = useConfig();
   const stepperClass = usePrefixClass('stepper');
 
   const isDisabled = (type: 'minus' | 'plus') => {
@@ -94,7 +92,7 @@ const Stepper: FC<StepperProps> = (props) => {
 
   return withNativeProps(
     props,
-    <div className={classNames(`${stepperClass}`, `${classPrefix}--${size}`)}>
+    <div className={classNames(`${stepperClass}`, `${stepperClass}--${size}`)}>
       <div
         className={classNames(
           `${stepperClass}__minus`,
