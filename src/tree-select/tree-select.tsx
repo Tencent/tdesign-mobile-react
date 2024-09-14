@@ -52,7 +52,7 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
     setTreeOptions(tmpTreeOptions);
     if (multiple) {
       const finalValue = innerValue;
-      if (finalValue[leafLevel] != null && !Array.isArray(finalValue[leafLevel])) {
+      if (finalValue[level] != null && !Array.isArray(finalValue[level])) {
         throw TypeError('应传入数组类型的 value');
       }
     }
