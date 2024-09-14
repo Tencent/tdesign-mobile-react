@@ -2,6 +2,7 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import type { MouseEvent, TouchEvent } from 'react';
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
+import cloneDeep from 'lodash/cloneDeep';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import useDefault from '../_util/useDefault';
@@ -19,8 +20,6 @@ const Slider: FC<SliderProps> = (props) => {
   const [scaleArray, setScaleArray] = useState<any[]>([]);
   const [scaleTextArray, setScaleTextArray] = useState<any[]>([]);
   const [isScale, setIsScale] = useState<boolean>(false);
-  const [initialLeft, setInitialLeft] = useState<number>(0);
-  const [initialRight, setInitialRight] = useState<number>(0);
   const [maxRange, setMaxRange] = useState<number>(0);
   const [dotTopValue, setDotTopValue] = useState<number[]>([0, 0]);
   const [lineLeft, setLineLeft] = useState<number>();
@@ -30,6 +29,8 @@ const Slider: FC<SliderProps> = (props) => {
   const leftDotRef = useRef<HTMLDivElement>(null);
   const rightDotRef = useRef<HTMLDivElement>(null);
   const sliderLineRef = useRef<HTMLDivElement>(null);
+  const initialLeft = useRef<number>(0);
+  const initialRight = useRef<number>(0);
   const [innerValue, setInnerValue] = useDefault(value, defaultValue, onChange);
   const scope = Number(max) - Number(min);
 
@@ -46,7 +47,9 @@ const Slider: FC<SliderProps> = (props) => {
   const sliderMaxTextClassName = classNames(`${rootClassName}__value`, `${rootClassName}__value--max`);
 
   useEffect(() => {
-    getInitialStyle(theme);
+    if (theme) {
+      getInitialStyle(theme);
+    }
   }, [theme]);
 
   useEffect(() => {
@@ -57,10 +60,9 @@ const Slider: FC<SliderProps> = (props) => {
     }
 
     function setLineStyle(left: number, right: number) {
+      const parseNumber = (v: any) => parseInt(v, 10);
       const halfBlock = theme === 'capsule' ? BLOCK_SIZE / 2 : 0;
       const [a, b] = innerValue as Array<number>;
-
-      const parseNumber = (v: any) => parseInt(v, 10);
 
       setDotTopValue([a, b]);
 
@@ -77,8 +79,8 @@ const Slider: FC<SliderProps> = (props) => {
       setSingleBarWidth(innerValue as number);
       return;
     }
-    const left = (maxRange * (innerValue[0] ?? 0 - min)) / scope;
-    const right = maxRange * (max - innerValue[1]);
+    const left = (maxRange * (innerValue[0] - min)) / scope;
+    const right = (maxRange * (max - innerValue[1])) / scope;
     setLineStyle(left, right);
   }, [innerValue, max, maxRange, min, range, scope, theme]);
 
@@ -116,22 +118,26 @@ const Slider: FC<SliderProps> = (props) => {
     const halfBlock = Number(BLOCK_SIZE) / 2;
     const maxRange = line.right - line.left;
 
+    setMaxRange(theme === 'capsule' ? maxRange - BLOCK_SIZE - BORDER_WIDTH : maxRange);
+    initialLeft.current = line.left;
+    initialRight.current = line.right;
     if (theme === 'capsule') {
-      setMaxRange(maxRange - BLOCK_SIZE - BORDER_WIDTH); // 6 是边框宽度
-      setInitialLeft((initialLeft) => initialLeft - halfBlock);
-      setInitialRight((initialRight) => initialRight - halfBlock);
-      return;
+      initialLeft.current -= halfBlock;
+      initialRight.current -= halfBlock;
     }
-    setMaxRange(maxRange);
-    setInitialLeft(line.left);
-    setInitialRight(line.right);
   }
 
   const getValue = (label: any, value: any) => {
     const REGEXP = /[$][{value}]{7}/;
-    if (isFunction(label)) return label(value);
-    if (label && label === 'true') return value;
-    if (REGEXP.test(label)) return label.replace(REGEXP, value);
+    if (isFunction(label)) {
+      return label(value);
+    }
+    if (label) {
+      return value;
+    }
+    if (REGEXP.test(label)) {
+      return label.replace(REGEXP, value);
+    }
   };
 
   const convertPosToValue = (posValue: number, isLeft = true) =>
@@ -156,7 +162,7 @@ const Slider: FC<SliderProps> = (props) => {
   };
 
   const changeValue = (value: SliderValue) => {
-    setInnerValue(trimValue(value, props));
+    setInnerValue(trimValue(value, { min, max, range }));
   };
 
   const handleRangeClick = (e: MouseEvent) => {
@@ -165,7 +171,7 @@ const Slider: FC<SliderProps> = (props) => {
       return;
     }
     const halfBlock = props.theme === 'capsule' ? Number(BLOCK_SIZE) / 2 : 0;
-    const currentLeft = e.clientX - initialLeft;
+    const currentLeft = e.clientX - initialLeft.current;
     if (currentLeft < 0 || currentLeft > maxRange + Number(BLOCK_SIZE)) {
       return;
     }
@@ -181,11 +187,11 @@ const Slider: FC<SliderProps> = (props) => {
 
     if (isMoveLeft) {
       // 当前leftdot中心 + 左侧偏移量 = 目标左侧中心距离
-      const left = e.clientX - initialLeft;
+      const left = e.clientX - initialLeft.current;
       const leftValue = convertPosToValue(left);
       changeValue([calcByStep(leftValue), innerValue?.[1]]);
     } else {
-      const right = -(e.clientX - initialRight);
+      const right = -(e.clientX - initialRight.current);
       const rightValue = convertPosToValue(right, false);
       changeValue([innerValue?.[0], calcByStep(rightValue)]);
     }
@@ -199,7 +205,7 @@ const Slider: FC<SliderProps> = (props) => {
     if (!sliderLineRef.current) {
       return;
     }
-    const currentLeft = e.clientX - initialLeft;
+    const currentLeft = e.clientX - initialLeft.current;
     const value = convertPosToValue(currentLeft);
     changeValue(calcByStep(value));
   };
@@ -209,23 +215,11 @@ const Slider: FC<SliderProps> = (props) => {
       return;
     }
     const { pageX } = e?.changedTouches?.[0] || {};
-    const currentLeft = pageX - initialLeft;
-    const newData = [...(innerValue as number[])];
+    const currentLeft = pageX - initialLeft.current;
+    const newData = cloneDeep(innerValue as number[]);
     const leftValue = convertPosToValue(currentLeft);
     newData[0] = calcByStep(leftValue);
     changeValue(newData);
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onTouchEnd = () => {};
-
-  const onSingleDotMove = (e: TouchEvent) => {
-    if (disabled) {
-      return;
-    }
-    const { pageX } = e.changedTouches?.[0] || {};
-    const value = convertPosToValue(pageX - initialLeft);
-    changeValue(calcByStep(value));
   };
 
   const onTouchMoveRight = (e: TouchEvent) => {
@@ -233,15 +227,24 @@ const Slider: FC<SliderProps> = (props) => {
       return;
     }
     const { pageX } = e?.changedTouches?.[0] || {};
-    const currentRight = -(pageX - initialRight);
-    const newData = [...(innerValue as number[])];
+    const currentRight = -(pageX - initialRight.current);
+    const newData = cloneDeep(innerValue as number[]);
     const rightValue = convertPosToValue(currentRight, false);
     newData[1] = calcByStep(rightValue);
     changeValue(newData);
   };
 
+  const onSingleDotMove = (e: TouchEvent) => {
+    if (disabled) {
+      return;
+    }
+    const { pageX } = e.changedTouches?.[0] || {};
+    const value = convertPosToValue(pageX - initialLeft.current);
+    changeValue(calcByStep(value));
+  };
+
   const renderMinText = () => {
-    if (showExtremeValue) {
+    if (!showExtremeValue) {
       return null;
     }
     const textClassName = classNames({
@@ -287,16 +290,16 @@ const Slider: FC<SliderProps> = (props) => {
           },
         )}
       >
-        {scaleTextArray.length && (
-          <div className={`${rootClassName}__scale-desc, ${rootClassName}__scale-desc--${theme}`}>
+        {scaleTextArray.length ? (
+          <div className={`${rootClassName}__scale-desc ${rootClassName}__scale-desc--${theme}`}>
             {scaleTextArray[index]}
           </div>
-        )}
+        ) : null}
       </div>
     ));
   };
 
-  const readerLineRange = () => (
+  const renderLineRange = () => (
     <div
       className={classNames(`${rootClassName}__line`, `${rootClassName}__line--${theme}`, {
         [`${rootClassName}__line--disabled`]: disabled,
@@ -307,26 +310,22 @@ const Slider: FC<SliderProps> = (props) => {
         ref={leftDotRef}
         className={classNames(`${rootClassName}__dot`, `${rootClassName}__dot--left`)}
         onTouchMove={onTouchMoveLeft}
-        onTouchEnd={onTouchEnd}
-        onTouchCancel={onTouchEnd}
       >
-        {label && (
+        {label ? (
           <div
             className={classNames(`${rootClassName}__dot-value`, {
-              [`${rootClassName}__dot-value--sr-only`]: !props.label,
+              [`${rootClassName}__dot-value--sr-only`]: !label,
             })}
           >
-            {getValue(props.label, dotTopValue[0]) || dotTopValue[0]}
+            {getValue(label, dotTopValue[0]) || dotTopValue[0]}
           </div>
-        )}
+        ) : null}
         <div className={`${rootClassName}__dot-slider`}></div>
       </div>
       <div
         ref={rightDotRef}
         className={classNames(`${rootClassName}__dot`, `${rootClassName}__dot--right`)}
         onTouchMove={onTouchMoveRight}
-        onTouchEnd={onTouchEnd}
-        onTouchCancel={onTouchEnd}
       >
         {props.label && (
           <div
@@ -342,7 +341,7 @@ const Slider: FC<SliderProps> = (props) => {
     </div>
   );
 
-  const readerLineSingle = () => (
+  const renderLineSingle = () => (
     <div
       className={classNames(
         `${rootClassName}__line`,
@@ -354,16 +353,11 @@ const Slider: FC<SliderProps> = (props) => {
       )}
       style={{ width: `${lineBarWidth}px` }}
     >
-      <div
-        className={`${rootClassName}__dot`}
-        onTouchMove={onSingleDotMove}
-        onTouchEnd={onTouchEnd}
-        onTouchCancel={onTouchEnd}
-      >
+      <div className={`${rootClassName}__dot`} onTouchMove={onSingleDotMove}>
         {label ? (
           <div
             className={classNames(`${rootClassName}__dot-value`, {
-              [`${rootClassName}__dot-value--sr-only`]: label,
+              [`${rootClassName}__dot-value--sr-only`]: !label,
             })}
           >
             {getValue(label, value) || innerValue}
@@ -379,7 +373,7 @@ const Slider: FC<SliderProps> = (props) => {
       {renderMinText()}
       <div ref={sliderLineRef} className={sliderLineClassName} onClick={range ? handleRangeClick : handleSingleClick}>
         {renderScale()}
-        {range ? readerLineRange() : readerLineSingle()}
+        {range ? renderLineRange() : renderLineSingle()}
       </div>
       {renderMaxText()}
     </div>

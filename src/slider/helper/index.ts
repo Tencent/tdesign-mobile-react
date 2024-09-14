@@ -28,7 +28,7 @@ export const trimValue = (value: number | number[], props: any): number | number
 
   if (range) {
     if (Array.isArray(value)) {
-      const newValue = value.reduce((prev, cur) => trimSingleValue(cur, min, max));
+      const newValue = value.map((cur) => trimSingleValue(cur, min, max));
       return newValue[0] <= newValue[1] ? value : [value[1], value[0]];
     }
     return [min, max];
