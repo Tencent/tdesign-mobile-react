@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import useDefault from '../_util/useDefault';
 import useDefaultProps from '../hooks/useDefaultProps';
-import { TdTreeSelectProps, TreeSelectValue } from './type';
+import { TdTreeSelectProps, TreeLevel, TreeSelectValue } from './type';
 import { treeSelectDefaultProps } from './defaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 import { convertUnit } from '../_util/convertUnit';
@@ -17,15 +17,15 @@ export interface TreeSelectProps extends TdTreeSelectProps, NativeProps {}
 
 const TreeSelect: FC<TreeSelectProps> = (props) => {
   const treeSelectClass = usePrefixClass('tree-select');
-  const { value, onChange, height, options, keys, multiple } = useDefaultProps(props, treeSelectDefaultProps);
-  const [innerValue, setInnerValue] = useDefault<TreeSelectValue, any>(value, null, onChange);
+  const { value, onChange, height, options, keys, multiple, defaultValue } = useDefaultProps(
+    props,
+    treeSelectDefaultProps,
+  );
+  const [innerValue, setInnerValue] = useDefault(value, defaultValue, onChange);
   const [leafLevel, setLeafLevel] = useState(0);
   const [treeOptions, setTreeOptions] = useState<TreeOptionData[][]>([]);
-  // const rootStyle = useMemo(() => [`height: ${convertUnit(height)}`, style].join(';'), [height, style]);
 
   const buildTreeOptions = () => {
-    const { options, multiple, keys } = props;
-
     let level = -1;
     const tmpTreeOptions: TreeOptionData[][] = [];
     let node: TreeOptionData = { children: options };
@@ -39,7 +39,6 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
         children: item.children,
       }));
       const thisValue = innerValue?.[level];
-
       tmpTreeOptions.push([...list]);
       if (thisValue == null) {
         const [firstChild] = list;
@@ -51,7 +50,6 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
     }
     setLeafLevel(Math.max(0, level));
     setTreeOptions(tmpTreeOptions);
-
     if (multiple) {
       const finalValue = innerValue;
       if (finalValue[leafLevel] != null && !Array.isArray(finalValue[leafLevel])) {
@@ -66,23 +64,33 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
     return 'left';
   };
 
-  const onRootChange = (level: number) => {
-    setInnerValue(innerValue, level);
+  const onRootChange = (level: TreeLevel, itemValue: any) => {
+    const newVal = Array.isArray(innerValue) ? [...innerValue] : innerValue;
+    newVal[level] = itemValue;
+    setInnerValue(newVal, level);
   };
 
-  const handleTreeClick = (itemValue: TreeSelectValue, level: number, isDisabled: boolean) => {
+  const handleTreeClick = (itemValue: TreeSelectValue, level: TreeLevel, isDisabled: boolean) => {
     if (isDisabled) return;
-    // innerValue.value[level] = itemValue;
-    setInnerValue(innerValue, level);
+
+    const newVal = Array.isArray(innerValue) ? [...innerValue] : innerValue;
+    newVal[level] = itemValue;
+    setInnerValue(newVal, level);
   };
 
   useEffect(() => {
     buildTreeOptions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [innerValue, options, keys, multiple]);
+  }, [innerValue, options, keys, multiple, value]);
 
   const renderSideBar = (treeOption: TreeOptionData[]) => (
-    <SideBar className={`${treeSelectClass}-colum`} onChange={() => onRootChange(0)}>
+    <SideBar
+      defaultValue={innerValue[0]}
+      className={`${treeSelectClass}-colum`}
+      onClick={(val) => {
+        onRootChange(0, val);
+      }}
+    >
       {treeOption.map((item, index) => (
         <SideBarItem
           key={index}
@@ -103,7 +111,7 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
           [`${treeSelectClass}__item--active`]: item.value === innerValue[level],
           [`${treeSelectClass}__item--disabled`]: item.disabled,
         })}
-        onClick={() => handleTreeClick(item.value, level, item.disabled)}
+        onClick={() => handleTreeClick(item.value, level as TreeLevel, item.disabled)}
       >
         {parseTNode(item.label)}
       </div>
@@ -113,9 +121,9 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
     if (multiple) {
       return (
         <Checkbox.Group
-          v-model={innerValue[level]}
+          value={innerValue[level]}
           className={`${treeSelectClass}__checkbox`}
-          onChange={() => onRootChange(level)}
+          onChange={(val) => onRootChange(level as TreeLevel, val)}
         >
           {treeOption.map((item) => (
             <Checkbox
@@ -135,22 +143,28 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
       );
     }
     return (
-      <RadioGroup className={`${treeSelectClass}__radio`} onChange={() => onRootChange(level)}>
-        {treeOption.map((item) => (
-          <Radio
-            key={item.value}
-            className={`${treeSelectClass}__radio-item`}
-            value={item.value}
-            icon="line"
-            maxLabelRow={1}
-            borderless
-            placement="right"
-            disabled={item.disabled}
-          >
-            {item.label}
-          </Radio>
-        ))}
-      </RadioGroup>
+      <>
+        <RadioGroup
+          value={innerValue[level]}
+          className={`${treeSelectClass}__radio`}
+          onChange={(val) => onRootChange(level as TreeLevel, val)}
+        >
+          {treeOption.map((item) => (
+            <Radio
+              key={item.value}
+              className={`${treeSelectClass}__radio-item`}
+              value={item.value}
+              icon="line"
+              maxLabelRow={1}
+              borderless
+              placement="right"
+              disabled={item.disabled}
+            >
+              {item.label}
+            </Radio>
+          ))}
+        </RadioGroup>
+      </>
     );
   };
 
