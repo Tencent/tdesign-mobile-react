@@ -1,59 +1,35 @@
 import React from 'react';
-import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
-import './style/index.less';
-
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import BaseDemo from './base';
-import ValueDemo from './value';
-import UnZeroDemo from './unZero';
-import MarkDemo from './mark';
 import RangDemo from './range';
-import DisableDemo from './disable';
-import TitleDemo from './title';
+import LabelDemo from './label';
+import StepDemo from './step';
+import DisabledDemo from './disabled';
+import CapsuleDemo from './capsule';
+import './style/index.less';
 
 export default function Base() {
   return (
     <div className="tdesign-mobile-demo">
       <TDemoHeader title="Slider 滑动选择器" summary="用于选择横轴上的数值、区间、档位" />
-      <TDemoBlock title="01 类型" summary="基础滑动选择器">
-        <div className="tdesign-demo-block-wrap">
-          <BaseDemo />
-        </div>
+      <TDemoBlock title="01 类型" summary="单游标滑块">
+        <BaseDemo />
       </TDemoBlock>
-      <TDemoBlock title="" summary="带数值滑动选择器">
-        <div className="tdesign-demo-block-wrap">
-          <ValueDemo />
-        </div>
+      <TDemoBlock summary="双游标滑块">
+        <RangDemo />
       </TDemoBlock>
-      <TDemoBlock title="" summary="起始非零滑动选择器">
-        <div className="tdesign-demo-block-wrap">
-          <UnZeroDemo />
-        </div>
+      <TDemoBlock summary="带数值单游标/双游标滑块">
+        <LabelDemo />
       </TDemoBlock>
-      <TDemoBlock title="" summary="带刻度滑动选择器">
-        <div className="tdesign-demo-block-wrap">
-          <MarkDemo />
-        </div>
+      <TDemoBlock summary="带刻度单游标/双游标滑块">
+        <StepDemo />
       </TDemoBlock>
-      <TDemoBlock title="" summary="区间滑动选择器">
-        <div className="tdesign-demo-block-wrap">
-          <RangDemo />
-        </div>
+      <TDemoBlock title="02 组件状态" summary="滑块禁用状态">
+        <DisabledDemo />
       </TDemoBlock>
-      <TDemoBlock title="02 状态" summary="滑动选择器禁用状态">
-        <div className="tdesign-demo-block-wrap">
-          <DisableDemo />
-        </div>
-      </TDemoBlock>
-      <TDemoBlock title="03 规格" summary="无标题滑动选择器">
-        <div className="tdesign-demo-block-wrap">
-          <BaseDemo />
-        </div>
-      </TDemoBlock>
-      <TDemoBlock title="" summary="有标题滑动选择器">
-        <div className="tdesign-demo-block-wrap tdesign-demo-block-wrap-flex">
-          <TitleDemo />
-        </div>
+      <TDemoBlock title="03 特殊样式" summary="胶囊型滑块">
+        <CapsuleDemo />
       </TDemoBlock>
     </div>
   );

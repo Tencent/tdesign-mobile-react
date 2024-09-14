@@ -2987,8 +2987,10 @@ exports[`csr snapshot test > csr test src/cell/_example/base.tsx 1`] = `
                       width="1em"
                     >
                       <path
-                        d="M12 3a4 4 0 014 4v3H8V7a4 4 0 014-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12h13v8h-13v-8zM9 15h6v2H9v-2z"
+                        clip-rule="evenodd"
+                        d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z"
                         fill="currentColor"
+                        fill-rule="evenodd"
                       />
                     </svg>
                   </div>
@@ -3270,8 +3272,10 @@ exports[`csr snapshot test > csr test src/cell/_example/base.tsx 1`] = `
                     width="1em"
                   >
                     <path
-                      d="M12 3a4 4 0 014 4v3H8V7a4 4 0 014-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12h13v8h-13v-8zM9 15h6v2H9v-2z"
+                      clip-rule="evenodd"
+                      d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z"
                       fill="currentColor"
+                      fill-rule="evenodd"
                     />
                   </svg>
                 </div>
@@ -3462,8 +3466,10 @@ exports[`csr snapshot test > csr test src/cell/_example/base.tsx 1`] = `
                     width="1em"
                   >
                     <path
-                      d="M12 3a4 4 0 014 4v3H8V7a4 4 0 014-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12h13v8h-13v-8zM9 15h6v2H9v-2z"
+                      clip-rule="evenodd"
+                      d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z"
                       fill="currentColor"
+                      fill-rule="evenodd"
                     />
                   </svg>
                 </div>
@@ -3623,8 +3629,10 @@ exports[`csr snapshot test > csr test src/cell/_example/group.tsx 1`] = `
               width="1em"
             >
               <path
-                d="M12 3a4 4 0 014 4v3H8V7a4 4 0 014-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12h13v8h-13v-8zM9 15h6v2H9v-2z"
+                clip-rule="evenodd"
+                d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z"
                 fill="currentColor"
+                fill-rule="evenodd"
               />
             </svg>
           </div>
@@ -3986,8 +3994,10 @@ exports[`csr snapshot test > csr test src/cell/_example/multiple.tsx 1`] = `
               width="1em"
             >
               <path
-                d="M12 3a4 4 0 014 4v3H8V7a4 4 0 014-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12h13v8h-13v-8zM9 15h6v2H9v-2z"
+                clip-rule="evenodd"
+                d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z"
                 fill="currentColor"
+                fill-rule="evenodd"
               />
             </svg>
           </div>
@@ -4344,8 +4354,10 @@ exports[`csr snapshot test > csr test src/cell/_example/single.tsx 1`] = `
                 width="1em"
               >
                 <path
-                  d="M12 3a4 4 0 014 4v3H8V7a4 4 0 014-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12h13v8h-13v-8zM9 15h6v2H9v-2z"
+                  clip-rule="evenodd"
+                  d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z"
                   fill="currentColor"
+                  fill-rule="evenodd"
                 />
               </svg>
             </div>
@@ -25441,27 +25453,23 @@ exports[`csr snapshot test > csr test src/loading/_example/index.tsx 1`] = `
         class="slider-wrap"
       >
         <div
-          class="t-slider-wrap"
+          class="t-slider"
         >
           <div
-            class="t-slider"
+            class="t-slider__bar t-slider__bar--default"
           >
             <div
-              class="t-slider__bar"
-            />
-            <div
-              class="t-slider__track"
-              style="width: 50%; left: 0%;"
-            />
-            <div
-              class="t-slider__handle"
-              style="left: 50%;"
-            />
-          </div>
-          <div
-            class="t-slider-wrap__value"
-          >
-            5
+              class="t-slider__line t-slider__line--default t-slider__line--single"
+              style="width: 0px;"
+            >
+              <div
+                class="t-slider__dot"
+              >
+                <div
+                  class="t-slider__dot-slider"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -25688,27 +25696,23 @@ exports[`csr snapshot test > csr test src/loading/_example/speed.tsx 1`] = `
     class="slider-wrap"
   >
     <div
-      class="t-slider-wrap"
+      class="t-slider"
     >
       <div
-        class="t-slider"
+        class="t-slider__bar t-slider__bar--default"
       >
         <div
-          class="t-slider__bar"
-        />
-        <div
-          class="t-slider__track"
-          style="width: 50%; left: 0%;"
-        />
-        <div
-          class="t-slider__handle"
-          style="left: 50%;"
-        />
-      </div>
-      <div
-        class="t-slider-wrap__value"
-      >
-        5
+          class="t-slider__line t-slider__line--default t-slider__line--single"
+          style="width: 0px;"
+        >
+          <div
+            class="t-slider__dot"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -38656,6 +38660,7 @@ exports[`csr snapshot test > csr test src/skeleton/_example/theme.tsx 1`] = `
 </div>
 `;
 
+<<<<<<< HEAD
 exports[`csr snapshot test > csr test src/stepper/_example/base.tsx 1`] = `
 <div>
   <div
@@ -39389,6 +39394,29 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
                 />
               </svg>
             </div>
+=======
+exports[`csr snapshot test > csr test src/slider/_example/base.tsx 1`] = `
+<div>
+  <div
+    class="wrapper-base"
+  >
+    <div
+      class="t-slider"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--default"
+      >
+        <div
+          class="t-slider__line t-slider__line--default t-slider__line--single"
+          style="width: 0px;"
+        >
+          <div
+            class="t-slider__dot"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+>>>>>>> 2bfa127 (feat(slider): update slider demo, alignment vue mobile)
           </div>
         </div>
       </div>
@@ -39397,6 +39425,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
 </div>
 `;
 
+<<<<<<< HEAD
 exports[`csr snapshot test > csr test src/stepper/_example/min-max.tsx 1`] = `
 <div>
   <div
@@ -39526,12 +39555,285 @@ exports[`csr snapshot test > csr test src/stepper/_example/min-max.tsx 1`] = `
             fill="currentColor"
           />
         </svg>
+=======
+exports[`csr snapshot test > csr test src/slider/_example/capsule.tsx 1`] = `
+<div>
+  <div
+    class="wrapper-capsule"
+  >
+    <div
+      class="t-slider"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--capsule"
+      >
+        <div
+          class="t-slider__line t-slider__line--capsule t-slider__line--single"
+          style="width: 2.2px;"
+        >
+          <div
+            class="t-slider__dot"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="wrapper-capsule"
+  >
+    <div
+      class="t-slider t-slider--range"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--capsule"
+      >
+        <div
+          class="t-slider__line t-slider__line--capsule"
+          style="right: 0px; left: -5px;"
+        >
+          <div
+            class="t-slider__dot t-slider__dot--left"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+          <div
+            class="t-slider__dot t-slider__dot--right"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="wrapper-capsule"
+  >
+    <div
+      class="t-slider t-slider--top t-slider--range"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--capsule"
+      >
+        <div
+          class="t-slider__line t-slider__line--capsule"
+          style="right: 0px; left: -5px;"
+        >
+          <div
+            class="t-slider__dot t-slider__dot--left"
+          >
+            <div
+              class="t-slider__dot-value"
+            >
+              40
+            </div>
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+          <div
+            class="t-slider__dot t-slider__dot--right"
+          >
+            <div
+              class="t-slider__dot-value"
+            >
+              60
+            </div>
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="wrapper-capsule"
+  >
+    <div
+      class="t-slider t-slider--top"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--capsule t-slider__bar--marks"
+      >
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
+          style="left: 10px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            0
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule"
+          style="left: 5px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            20
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            40
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
+          style="left: -6px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            60
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule"
+          style="left: -11px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            80
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
+          style="left: -16px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            100
+          </div>
+        </div>
+        <div
+          class="t-slider__line t-slider__line--capsule t-slider__line--single"
+          style="width: -5.6px;"
+        >
+          <div
+            class="t-slider__dot"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="wrapper-capsule"
+  >
+    <div
+      class="t-slider t-slider--top t-slider--range"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--capsule t-slider__bar--marks"
+      >
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
+          style="left: 10px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            0
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+          style="left: 5px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            20
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            40
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+          style="left: -6px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            60
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+          style="left: -11px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            80
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
+          style="left: -16px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            100
+          </div>
+        </div>
+        <div
+          class="t-slider__line t-slider__line--capsule"
+          style="right: -5px; left: -10px;"
+        >
+          <div
+            class="t-slider__dot t-slider__dot--left"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+          <div
+            class="t-slider__dot t-slider__dot--right"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+>>>>>>> 2bfa127 (feat(slider): update slider demo, alignment vue mobile)
       </div>
     </div>
   </div>
 </div>
 `;
 
+<<<<<<< HEAD
 exports[`csr snapshot test > csr test src/stepper/_example/size.tsx 1`] = `
 <div>
   <div
@@ -39661,12 +39963,132 @@ exports[`csr snapshot test > csr test src/stepper/_example/size.tsx 1`] = `
             fill="currentColor"
           />
         </svg>
+=======
+exports[`csr snapshot test > csr test src/slider/_example/disabled.tsx 1`] = `
+<div>
+  <div
+    class="wrapper-disabled"
+  >
+    <div
+      class="t-slider t-slider--disabled"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"
+      >
+        <div
+          class="t-slider__line t-slider__line--default t-slider__line--single t-slider__line--disabled"
+          style="width: 0px;"
+        >
+          <div
+            class="t-slider__dot"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="wrapper-disabled"
+  />
+  <div
+    class="wrapper-disabled"
+  >
+    <div
+      class="t-slider t-slider--top t-slider--disabled t-slider--range"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"
+      >
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--disabled"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            0
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active t-slider__scale-item--disabled"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            20
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active t-slider__scale-item--disabled"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            40
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active t-slider__scale-item--disabled"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            60
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--disabled"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            80
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--disabled"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            100
+          </div>
+        </div>
+        <div
+          class="t-slider__line t-slider__line--default t-slider__line--disabled"
+          style="right: 0px; left: 0px;"
+        >
+          <div
+            class="t-slider__dot t-slider__dot--left"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+          <div
+            class="t-slider__dot t-slider__dot--right"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+>>>>>>> 2bfa127 (feat(slider): update slider demo, alignment vue mobile)
       </div>
     </div>
   </div>
 </div>
 `;
 
+<<<<<<< HEAD
 exports[`csr snapshot test > csr test src/stepper/_example/status.tsx 1`] = `
 <div>
   <div
@@ -39713,12 +40135,130 @@ exports[`csr snapshot test > csr test src/stepper/_example/status.tsx 1`] = `
             fill="currentColor"
           />
         </svg>
+=======
+exports[`csr snapshot test > csr test src/slider/_example/label.tsx 1`] = `
+<div>
+  <div
+    class="wrapper-label"
+  >
+    <div
+      class="t-slider t-slider--top"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--default"
+      >
+        <div
+          class="t-slider__line t-slider__line--default t-slider__line--single"
+          style="width: 0px;"
+        >
+          <div
+            class="t-slider__dot"
+          >
+            <div
+              class="t-slider__dot-value"
+            >
+              10
+            </div>
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="wrapper-label"
+  >
+    <div
+      class="t-slider t-slider--top t-slider--range"
+    >
+      <text
+        class="t-slider__range-extreme t-slider__range-extreme--min"
+      >
+        0
+      </text>
+      <div
+        class="t-slider__bar t-slider__bar--default"
+      >
+        <div
+          class="t-slider__line t-slider__line--default"
+          style="right: 0px; left: 0px;"
+        >
+          <div
+            class="t-slider__dot t-slider__dot--left"
+          >
+            <div
+              class="t-slider__dot-value"
+            >
+              20
+            </div>
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+          <div
+            class="t-slider__dot t-slider__dot--right"
+          >
+            <div
+              class="t-slider__dot-value"
+            >
+              60
+            </div>
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+      <text
+        class="t-slider__value t-slider__value--max"
+      >
+        100
+      </text>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/slider/_example/range.tsx 1`] = `
+<div>
+  <div
+    class="wrapper-base"
+  >
+    <div
+      class="t-slider t-slider--range"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--default"
+      >
+        <div
+          class="t-slider__line t-slider__line--default"
+          style="right: 0px; left: 0px;"
+        >
+          <div
+            class="t-slider__dot t-slider__dot--left"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+          <div
+            class="t-slider__dot t-slider__dot--right"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+>>>>>>> 2bfa127 (feat(slider): update slider demo, alignment vue mobile)
       </div>
     </div>
   </div>
 </div>
 `;
 
+<<<<<<< HEAD
 exports[`csr snapshot test > csr test src/stepper/_example/theme.tsx 1`] = `
 <div>
   <div
@@ -39848,6 +40388,182 @@ exports[`csr snapshot test > csr test src/stepper/_example/theme.tsx 1`] = `
             fill="currentColor"
           />
         </svg>
+=======
+exports[`csr snapshot test > csr test src/slider/_example/step.tsx 1`] = `
+<div>
+  <div
+    class="wrapper-base"
+  >
+    <div
+      class="t-slider t-slider--top"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--default"
+      >
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            5
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            6
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            7
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            8
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            9
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            10
+          </div>
+        </div>
+        <div
+          class="t-slider__line t-slider__line--default t-slider__line--single"
+          style="width: 0px;"
+        >
+          <div
+            class="t-slider__dot"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="wrapper-base"
+  >
+    <div
+      class="t-slider t-slider--top t-slider--range"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--default"
+      >
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            0
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            20
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            40
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            60
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            80
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            100
+          </div>
+        </div>
+        <div
+          class="t-slider__line t-slider__line--default"
+          style="right: 0px; left: 0px;"
+        >
+          <div
+            class="t-slider__dot t-slider__dot--left"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+          <div
+            class="t-slider__dot t-slider__dot--right"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+>>>>>>> 2bfa127 (feat(slider): update slider demo, alignment vue mobile)
       </div>
     </div>
   </div>
@@ -51778,13 +52494,13 @@ exports[`ssr snapshot test > ssr test src/button/_example/test.tsx 1`] = `"<div>
 
 exports[`ssr snapshot test > ssr test src/button/_example/theme.tsx 1`] = `"<div class="section-theme"><div class="row"><button type="button" class="t-button t-button--size-large t-button--base t-button--default t-button--rectangle"><span class="t-button__content"> <!-- -->填充按钮</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--default t-button--rectangle"><span class="t-button__content"> <!-- -->描边按钮</span></button><button type="button" class="t-button t-button--size-large t-button--dashed t-button--default t-button--rectangle"><span class="t-button__content"> <!-- -->虚框按钮</span></button><button type="button" class="t-button t-button--size-large t-button--text t-button--default t-button--rectangle"><span class="t-button__content"> <!-- -->文字按钮</span></button></div><div class="row"><button type="button" class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->填充按钮</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->描边按钮</span></button><button type="button" class="t-button t-button--size-large t-button--dashed t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->虚框按钮</span></button><button type="button" class="t-button t-button--size-large t-button--text t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->文字按钮</span></button></div><div class="row"><button type="button" class="t-button t-button--size-large t-button--base t-button--danger t-button--rectangle"><span class="t-button__content"> <!-- -->填充按钮</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--danger t-button--rectangle"><span class="t-button__content"> <!-- -->描边按钮</span></button><button type="button" class="t-button t-button--size-large t-button--dashed t-button--danger t-button--rectangle"><span class="t-button__content"> <!-- -->虚框按钮</span></button><button type="button" class="t-button t-button--size-large t-button--text t-button--danger t-button--rectangle"><span class="t-button__content"> <!-- -->文字按钮</span></button></div><div class="row"><button type="button" class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"><span class="t-button__content"> <!-- -->填充按钮</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--light t-button--rectangle"><span class="t-button__content"> <!-- -->描边按钮</span></button><button type="button" class="t-button t-button--size-large t-button--dashed t-button--light t-button--rectangle"><span class="t-button__content"> <!-- -->虚框按钮</span></button><button type="button" class="t-button t-button--size-large t-button--text t-button--light t-button--rectangle"><span class="t-button__content"> <!-- -->文字按钮</span></button></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/cell/_example/base.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Cell 单元格</h1><p class="tdesign-mobile-demo-header__summary">一行内容/功能的垂直排列方式。一行项目左侧为主要内容展示区域，右侧可增加更多操作内容</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 类型</h2><p class="tdesign-mobile-demo-block__summary">单行单元格</p></div><div class="tdesign-mobile-demo-block__slot"><div class="tdesign-grid-base"><div><div class="t-cell-group t-cell-group--default t-cell-group--bordered"><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<span class="t-cell--required"> *</span></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note"><div class="t-badge"><div class="t-badge__content"></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">16</div></div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note"><button class="t-switch"><span class="t-switch__text"></span><span class="t-switch__node"></span></button></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note">辅助信息</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 014 4v3H8V7a4 4 0 014-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12h13v8h-13v-8zM9 15h6v2H9v-2z"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02</h2><p class="tdesign-mobile-demo-block__summary">多行单元格</p></div><div class="tdesign-mobile-demo-block__slot"><div><div class="t-cell-group t-cell-group--default"><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<span class="t-cell--required"> *</span><div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note"><div class="t-badge"><div class="t-badge__content"></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">16</div></div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note"><button class="t-switch t-is-checked"><span class="t-switch__text"></span><span class="t-switch__node"></span></button></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note">辅助信息</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 014 4v3H8V7a4 4 0 014-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12h13v8h-13v-8zM9 15h6v2H9v-2z"></path></svg></div></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容</div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">多行高度不定，长文本自动换行，该选项的描述是一段很长的内容<div class="t-cell__description">一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容</div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><div class="t-avatar t-avatar--circle"><div class="t-avatar__inner"><img alt="" src="https://tdesign.gtimg.com/mobile/demos/avatar1.png"/></div></div></div></div><div class="t-cell__title">多行带头像<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><img src="https://tdesign.gtimg.com/mobile/demos/example4.png" class="t-cell__left-image"/></div><div class="t-cell__title">多行带图片<div class="t-cell__description">一段很长很长的内容文字</div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">03 组件样式</h2><p class="tdesign-mobile-demo-block__summary">卡片单元格</p></div><div class="tdesign-mobile-demo-block__slot"><div><div class="t-cell-group t-cell-group--card"><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 014 4v3H8V7a4 4 0 014-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12h13v8h-13v-8zM9 15h6v2H9v-2z"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-service"><path fill="currentColor" d="M2 11a10 10 0 1120 0v5.15C22 17.8 20.58 19 19 19h-3v-8h4a8 8 0 10-16 0h4v8H6.06A2 2 0 008 20.5h1.56c.32-.45.85-.75 1.44-.75h2a1.75 1.75 0 110 3.5h-2c-.6 0-1.12-.3-1.44-.75H8a4 4 0 01-3.99-3.66A2.85 2.85 0 012 16.15V11zm4 6v-4H4v3.15c0 .4.37.85 1 .85h1zm14-4h-2v4h1c.63 0 1-.45 1-.85V13z"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-internet"><path fill="currentColor" d="M3.05 11a9 9 0 016.28-7.6 16.9 16.9 0 00-2.3 7.6H3.05zM11 1.05a11 11 0 000 21.9l.01.01.43.03a12.48 12.48 0 001.14 0l.43-.03a11 11 0 000-21.91v-.01L12.57 1a11.16 11.16 0 00-1.14 0l-.43.03zM12 3c1.7 2.26 2.77 5 2.97 8H9.03c.2-3 1.27-5.74 2.97-8zM7.03 13a16.9 16.9 0 002.3 7.6A9 9 0 013.05 13h3.98zM12 21c-1.7-2.26-2.77-5-2.97-8h5.94c-.2 3-1.27 5.74-2.97 8zm2.67-.4a16.9 16.9 0 002.3-7.6h3.98a9 9 0 01-6.28 7.6zm2.3-9.6a16.9 16.9 0 00-2.3-7.6 9 9 0 016.28 7.6h-3.98z"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div></div></div></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/cell/_example/base.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Cell 单元格</h1><p class="tdesign-mobile-demo-header__summary">一行内容/功能的垂直排列方式。一行项目左侧为主要内容展示区域，右侧可增加更多操作内容</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 类型</h2><p class="tdesign-mobile-demo-block__summary">单行单元格</p></div><div class="tdesign-mobile-demo-block__slot"><div class="tdesign-grid-base"><div><div class="t-cell-group t-cell-group--default t-cell-group--bordered"><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<span class="t-cell--required"> *</span></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note"><div class="t-badge"><div class="t-badge__content"></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">16</div></div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note"><button class="t-switch"><span class="t-switch__text"></span><span class="t-switch__node"></span></button></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note">辅助信息</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02</h2><p class="tdesign-mobile-demo-block__summary">多行单元格</p></div><div class="tdesign-mobile-demo-block__slot"><div><div class="t-cell-group t-cell-group--default"><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<span class="t-cell--required"> *</span><div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note"><div class="t-badge"><div class="t-badge__content"></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">16</div></div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note"><button class="t-switch t-is-checked"><span class="t-switch__text"></span><span class="t-switch__node"></span></button></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note">辅助信息</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容</div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">多行高度不定，长文本自动换行，该选项的描述是一段很长的内容<div class="t-cell__description">一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容</div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><div class="t-avatar t-avatar--circle"><div class="t-avatar__inner"><img alt="" src="https://tdesign.gtimg.com/mobile/demos/avatar1.png"/></div></div></div></div><div class="t-cell__title">多行带头像<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><img src="https://tdesign.gtimg.com/mobile/demos/example4.png" class="t-cell__left-image"/></div><div class="t-cell__title">多行带图片<div class="t-cell__description">一段很长很长的内容文字</div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">03 组件样式</h2><p class="tdesign-mobile-demo-block__summary">卡片单元格</p></div><div class="tdesign-mobile-demo-block__slot"><div><div class="t-cell-group t-cell-group--card"><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-service"><path fill="currentColor" d="M2 11a10 10 0 1120 0v5.15C22 17.8 20.58 19 19 19h-3v-8h4a8 8 0 10-16 0h4v8H6.06A2 2 0 008 20.5h1.56c.32-.45.85-.75 1.44-.75h2a1.75 1.75 0 110 3.5h-2c-.6 0-1.12-.3-1.44-.75H8a4 4 0 01-3.99-3.66A2.85 2.85 0 012 16.15V11zm4 6v-4H4v3.15c0 .4.37.85 1 .85h1zm14-4h-2v4h1c.63 0 1-.45 1-.85V13z"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-internet"><path fill="currentColor" d="M3.05 11a9 9 0 016.28-7.6 16.9 16.9 0 00-2.3 7.6H3.05zM11 1.05a11 11 0 000 21.9l.01.01.43.03a12.48 12.48 0 001.14 0l.43-.03a11 11 0 000-21.91v-.01L12.57 1a11.16 11.16 0 00-1.14 0l-.43.03zM12 3c1.7 2.26 2.77 5 2.97 8H9.03c.2-3 1.27-5.74 2.97-8zM7.03 13a16.9 16.9 0 002.3 7.6A9 9 0 013.05 13h3.98zM12 21c-1.7-2.26-2.77-5-2.97-8h5.94c-.2 3-1.27 5.74-2.97 8zm2.67-.4a16.9 16.9 0 002.3-7.6h3.98a9 9 0 01-6.28 7.6zm2.3-9.6a16.9 16.9 0 00-2.3-7.6 9 9 0 016.28 7.6h-3.98z"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div></div></div></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/cell/_example/group.tsx 1`] = `"<div><div class="t-cell-group t-cell-group--card"><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 014 4v3H8V7a4 4 0 014-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12h13v8h-13v-8zM9 15h6v2H9v-2z"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-service"><path fill="currentColor" d="M2 11a10 10 0 1120 0v5.15C22 17.8 20.58 19 19 19h-3v-8h4a8 8 0 10-16 0h4v8H6.06A2 2 0 008 20.5h1.56c.32-.45.85-.75 1.44-.75h2a1.75 1.75 0 110 3.5h-2c-.6 0-1.12-.3-1.44-.75H8a4 4 0 01-3.99-3.66A2.85 2.85 0 012 16.15V11zm4 6v-4H4v3.15c0 .4.37.85 1 .85h1zm14-4h-2v4h1c.63 0 1-.45 1-.85V13z"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-internet"><path fill="currentColor" d="M3.05 11a9 9 0 016.28-7.6 16.9 16.9 0 00-2.3 7.6H3.05zM11 1.05a11 11 0 000 21.9l.01.01.43.03a12.48 12.48 0 001.14 0l.43-.03a11 11 0 000-21.91v-.01L12.57 1a11.16 11.16 0 00-1.14 0l-.43.03zM12 3c1.7 2.26 2.77 5 2.97 8H9.03c.2-3 1.27-5.74 2.97-8zM7.03 13a16.9 16.9 0 002.3 7.6A9 9 0 013.05 13h3.98zM12 21c-1.7-2.26-2.77-5-2.97-8h5.94c-.2 3-1.27 5.74-2.97 8zm2.67-.4a16.9 16.9 0 002.3-7.6h3.98a9 9 0 01-6.28 7.6zm2.3-9.6a16.9 16.9 0 00-2.3-7.6 9 9 0 016.28 7.6h-3.98z"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/cell/_example/group.tsx 1`] = `"<div><div class="t-cell-group t-cell-group--card"><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-service"><path fill="currentColor" d="M2 11a10 10 0 1120 0v5.15C22 17.8 20.58 19 19 19h-3v-8h4a8 8 0 10-16 0h4v8H6.06A2 2 0 008 20.5h1.56c.32-.45.85-.75 1.44-.75h2a1.75 1.75 0 110 3.5h-2c-.6 0-1.12-.3-1.44-.75H8a4 4 0 01-3.99-3.66A2.85 2.85 0 012 16.15V11zm4 6v-4H4v3.15c0 .4.37.85 1 .85h1zm14-4h-2v4h1c.63 0 1-.45 1-.85V13z"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-internet"><path fill="currentColor" d="M3.05 11a9 9 0 016.28-7.6 16.9 16.9 0 00-2.3 7.6H3.05zM11 1.05a11 11 0 000 21.9l.01.01.43.03a12.48 12.48 0 001.14 0l.43-.03a11 11 0 000-21.91v-.01L12.57 1a11.16 11.16 0 00-1.14 0l-.43.03zM12 3c1.7 2.26 2.77 5 2.97 8H9.03c.2-3 1.27-5.74 2.97-8zM7.03 13a16.9 16.9 0 002.3 7.6A9 9 0 013.05 13h3.98zM12 21c-1.7-2.26-2.77-5-2.97-8h5.94c-.2 3-1.27 5.74-2.97 8zm2.67-.4a16.9 16.9 0 002.3-7.6h3.98a9 9 0 01-6.28 7.6zm2.3-9.6a16.9 16.9 0 00-2.3-7.6 9 9 0 016.28 7.6h-3.98z"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/cell/_example/multiple.tsx 1`] = `"<div><div class="t-cell-group t-cell-group--default"><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<span class="t-cell--required"> *</span><div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note"><div class="t-badge"><div class="t-badge__content"></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">16</div></div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note"><button class="t-switch t-is-checked"><span class="t-switch__text"></span><span class="t-switch__node"></span></button></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note">辅助信息</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 014 4v3H8V7a4 4 0 014-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12h13v8h-13v-8zM9 15h6v2H9v-2z"></path></svg></div></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容</div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">多行高度不定，长文本自动换行，该选项的描述是一段很长的内容<div class="t-cell__description">一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容</div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><div class="t-avatar t-avatar--circle"><div class="t-avatar__inner"><img alt="" src="https://tdesign.gtimg.com/mobile/demos/avatar1.png"/></div></div></div></div><div class="t-cell__title">多行带头像<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><img src="https://tdesign.gtimg.com/mobile/demos/example4.png" class="t-cell__left-image"/></div><div class="t-cell__title">多行带图片<div class="t-cell__description">一段很长很长的内容文字</div></div></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/cell/_example/multiple.tsx 1`] = `"<div><div class="t-cell-group t-cell-group--default"><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<span class="t-cell--required"> *</span><div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note"><div class="t-badge"><div class="t-badge__content"></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">16</div></div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note"><button class="t-switch t-is-checked"><span class="t-switch__text"></span><span class="t-switch__node"></span></button></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__note">辅助信息</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<div class="t-cell__description">一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容</div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">多行高度不定，长文本自动换行，该选项的描述是一段很长的内容<div class="t-cell__description">一段很长很长的内容文字，长文本自动换行，该选项的描述是一段很长的内容</div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><div class="t-avatar t-avatar--circle"><div class="t-avatar__inner"><img alt="" src="https://tdesign.gtimg.com/mobile/demos/avatar1.png"/></div></div></div></div><div class="t-cell__title">多行带头像<div class="t-cell__description">一段很长很长的内容文字</div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><img src="https://tdesign.gtimg.com/mobile/demos/example4.png" class="t-cell__left-image"/></div><div class="t-cell__title">多行带图片<div class="t-cell__description">一段很长很长的内容文字</div></div></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/cell/_example/single.tsx 1`] = `"<div class="tdesign-grid-base"><div><div class="t-cell-group t-cell-group--default t-cell-group--bordered"><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<span class="t-cell--required"> *</span></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note"><div class="t-badge"><div class="t-badge__content"></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">16</div></div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note"><button class="t-switch"><span class="t-switch__text"></span><span class="t-switch__node"></span></button></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note">辅助信息</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 014 4v3H8V7a4 4 0 014-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12h13v8h-13v-8zM9 15h6v2H9v-2z"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/cell/_example/single.tsx 1`] = `"<div class="tdesign-grid-base"><div><div class="t-cell-group t-cell-group--default t-cell-group--bordered"><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题<span class="t-cell--required"> *</span></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note"><div class="t-badge"><div class="t-badge__content"></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">16</div></div></div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note"><button class="t-switch"><span class="t-switch__text"></span><span class="t-switch__node"></span></button></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"></div><div class="t-cell__title">单行标题</div><div class="t-cell__note">辅助信息</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div><div class="t-cell t-cell--middle"><div class="t-cell__left"><div class="t-cell__left-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-lock-on"><path fill="currentColor" d="M12 3a4 4 0 00-4 4v3h8V7a4 4 0 00-4-4zm6 7V7A6 6 0 006 7v3H3.5v12h17V10H18zM5.5 12v8h13v-8h-13zM9 15h6v2H9v-2z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></div></div><div class="t-cell__title">单行标题</div><div class="t-cell__right"><div class="t-cell__right-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-chevron-right"><path fill="currentColor" d="M8.09 17.5l5.5-5.5-5.5-5.5L9.5 5.09 16.41 12 9.5 18.91 8.09 17.5z"></path></svg></div></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/checkbox/_example/all.tsx 1`] = `"<div class="t-checkbox-group"><span><div class="t-checkbox t-checkbox--left t-checkbox--checked t-checkbox--block"><div class="t-checkbox__icon t-checkbox__icon--left t-checkbox__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-checkbox__icon-wrapper"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-checkbox__content"><div class="t-checkbox__title t-checkbox__title--checked" style="-webkit-line-clamp:3">全选</div><div class="t-checkbox__description" style="-webkit-line-clamp:5"></div></div><div class="t-checkbox__border t-checkbox__border--left"></div></div><div class="t-checkbox t-checkbox--left t-checkbox--checked t-checkbox--block"><div class="t-checkbox__icon t-checkbox__icon--left t-checkbox__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-checkbox__icon-wrapper"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-checkbox__content"><div class="t-checkbox__title t-checkbox__title--checked" style="-webkit-line-clamp:3">多选</div><div class="t-checkbox__description" style="-webkit-line-clamp:5"></div></div><div class="t-checkbox__border t-checkbox__border--left"></div></div><div class="t-checkbox t-checkbox--left t-checkbox--checked t-checkbox--block"><div class="t-checkbox__icon t-checkbox__icon--left t-checkbox__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-checkbox__icon-wrapper"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-checkbox__content"><div class="t-checkbox__title t-checkbox__title--checked" style="-webkit-line-clamp:3">多选</div><div class="t-checkbox__description" style="-webkit-line-clamp:5"></div></div><div class="t-checkbox__border t-checkbox__border--left"></div></div><div class="t-checkbox t-checkbox--left t-checkbox--checked t-checkbox--block"><div class="t-checkbox__icon t-checkbox__icon--left t-checkbox__icon--checked"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-check-circle-filled t-checkbox__icon-wrapper"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM7.5 10.59l3 3 6-6L17.91 9l-7.41 7.41L6.09 12l1.41-1.41z"></path></svg></div><div class="t-checkbox__content"><div class="t-checkbox__title t-checkbox__title--checked" style="-webkit-line-clamp:3">多选</div><div class="t-checkbox__description" style="-webkit-line-clamp:5">单选描述信息单选描述信息单选描述信息单选描述信息单选描述信息单选描述信息单选描述信息</div></div><div class="t-checkbox__border t-checkbox__border--left"></div></div></span></div>"`;
 
@@ -51948,7 +52664,7 @@ exports[`ssr snapshot test > ssr test src/loading/_example/fullscreen.tsx 1`] = 
 
 exports[`ssr snapshot test > ssr test src/loading/_example/horz.tsx 1`] = `"<div class="t-loading t-loading--center" style="font-size:20px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div><div class="t-loading t-loading--center" style="font-size:20px"><span style="animation:t-rotate 0.8s infinite linear;animation-timing-function:steps(12);animation-direction:normal" class="t-loading__spinner"><i class="t-loading__spinner--line t-loading__spinner--line-1"></i><i class="t-loading__spinner--line t-loading__spinner--line-2"></i><i class="t-loading__spinner--line t-loading__spinner--line-3"></i><i class="t-loading__spinner--line t-loading__spinner--line-4"></i><i class="t-loading__spinner--line t-loading__spinner--line-5"></i><i class="t-loading__spinner--line t-loading__spinner--line-6"></i><i class="t-loading__spinner--line t-loading__spinner--line-7"></i><i class="t-loading__spinner--line t-loading__spinner--line-8"></i><i class="t-loading__spinner--line t-loading__spinner--line-9"></i><i class="t-loading__spinner--line t-loading__spinner--line-10"></i><i class="t-loading__spinner--line t-loading__spinner--line-11"></i><i class="t-loading__spinner--line t-loading__spinner--line-12"></i></span><span class="t-loading__text">加载中...</span></div>"`;
 
-exports[`ssr snapshot test > ssr test src/loading/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Loading 加载</h1><p class="tdesign-mobile-demo-header__summary">用于表示页面或操作的加载状态，给予用户反馈的同时减缓等待的焦虑感，由一个或一组反馈动效组成。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 类型</h2><p class="tdesign-mobile-demo-block__summary">纯图标</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="loading-demo--flex"><div class="t-loading t-loading--center" style="font-size:20px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg></div><div class="t-loading t-loading--center" style="font-size:20px"><span style="animation:t-rotate 0.8s infinite linear;animation-timing-function:steps(12);animation-direction:normal" class="t-loading__spinner"><i class="t-loading__spinner--line t-loading__spinner--line-1"></i><i class="t-loading__spinner--line t-loading__spinner--line-2"></i><i class="t-loading__spinner--line t-loading__spinner--line-3"></i><i class="t-loading__spinner--line t-loading__spinner--line-4"></i><i class="t-loading__spinner--line t-loading__spinner--line-5"></i><i class="t-loading__spinner--line t-loading__spinner--line-6"></i><i class="t-loading__spinner--line t-loading__spinner--line-7"></i><i class="t-loading__spinner--line t-loading__spinner--line-8"></i><i class="t-loading__spinner--line t-loading__spinner--line-9"></i><i class="t-loading__spinner--line t-loading__spinner--line-10"></i><i class="t-loading__spinner--line t-loading__spinner--line-11"></i><i class="t-loading__spinner--line t-loading__spinner--line-12"></i></span></div><div class="t-loading t-loading--center" style="font-size:40px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:40px;height:40px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">图标加文字横向</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="loading-demo--flex"><div class="t-loading t-loading--center" style="font-size:20px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div><div class="t-loading t-loading--center" style="font-size:20px"><span style="animation:t-rotate 0.8s infinite linear;animation-timing-function:steps(12);animation-direction:normal" class="t-loading__spinner"><i class="t-loading__spinner--line t-loading__spinner--line-1"></i><i class="t-loading__spinner--line t-loading__spinner--line-2"></i><i class="t-loading__spinner--line t-loading__spinner--line-3"></i><i class="t-loading__spinner--line t-loading__spinner--line-4"></i><i class="t-loading__spinner--line t-loading__spinner--line-5"></i><i class="t-loading__spinner--line t-loading__spinner--line-6"></i><i class="t-loading__spinner--line t-loading__spinner--line-7"></i><i class="t-loading__spinner--line t-loading__spinner--line-8"></i><i class="t-loading__spinner--line t-loading__spinner--line-9"></i><i class="t-loading__spinner--line t-loading__spinner--line-10"></i><i class="t-loading__spinner--line t-loading__spinner--line-11"></i><i class="t-loading__spinner--line t-loading__spinner--line-12"></i></span><span class="t-loading__text">加载中...</span></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">图标加文字竖向</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="loading-demo--flex"><div class="t-loading t-loading--center t-loading--vertical" style="font-size:20px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中</span></div><div class="t-loading t-loading--center t-loading--vertical" style="font-size:20px"><span style="animation:t-rotate 0.8s infinite linear;animation-timing-function:steps(12);animation-direction:normal" class="t-loading__spinner"><i class="t-loading__spinner--line t-loading__spinner--line-1"></i><i class="t-loading__spinner--line t-loading__spinner--line-2"></i><i class="t-loading__spinner--line t-loading__spinner--line-3"></i><i class="t-loading__spinner--line t-loading__spinner--line-4"></i><i class="t-loading__spinner--line t-loading__spinner--line-5"></i><i class="t-loading__spinner--line t-loading__spinner--line-6"></i><i class="t-loading__spinner--line t-loading__spinner--line-7"></i><i class="t-loading__spinner--line t-loading__spinner--line-8"></i><i class="t-loading__spinner--line t-loading__spinner--line-9"></i><i class="t-loading__spinner--line t-loading__spinner--line-10"></i><i class="t-loading__spinner--line t-loading__spinner--line-11"></i><i class="t-loading__spinner--line t-loading__spinner--line-12"></i></span><span class="t-loading__text">加载中...</span></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">纯文字</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="loading-demo--flex"><div class="t-loading t-loading--center" style="font-size:20px"><span class="t-loading__text t-loading__text--only">加载中...</span></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件尺寸</h2></div><div class="tdesign-mobile-demo-block__slot"><div class="loading-demo"><div class="loading-demo__summary mb-16">大尺寸</div><div class="t-loading t-loading--center" style="font-size:26px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div></div><div class="loading-demo"><div class="loading-demo__summary mt-24 mb-16">中尺寸</div><div class="t-loading t-loading--center" style="font-size:22px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div></div><div class="loading-demo"><div class="loading-demo__summary mt-24 mb-16">小尺寸</div><div class="t-loading t-loading--center" style="font-size:20px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">03 加载速度</h2><p class="tdesign-mobile-demo-block__summary">加载速度调整</p></div><div class="tdesign-mobile-demo-block__slot"><div class="loading-demo"><div class="t-loading t-loading--center" style="font-size:20px"><svg style="animation:t-spin 0.6s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div></div><div class="slider-wrap"><div class="t-slider-wrap"><div class="t-slider"><div class="t-slider__bar"></div><div class="t-slider__track" style="width:50%;left:0%"></div><div class="t-slider__handle" style="left:50%"></div></div><div class="t-slider-wrap__value">5</div></div></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/loading/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Loading 加载</h1><p class="tdesign-mobile-demo-header__summary">用于表示页面或操作的加载状态，给予用户反馈的同时减缓等待的焦虑感，由一个或一组反馈动效组成。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 类型</h2><p class="tdesign-mobile-demo-block__summary">纯图标</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="loading-demo--flex"><div class="t-loading t-loading--center" style="font-size:20px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg></div><div class="t-loading t-loading--center" style="font-size:20px"><span style="animation:t-rotate 0.8s infinite linear;animation-timing-function:steps(12);animation-direction:normal" class="t-loading__spinner"><i class="t-loading__spinner--line t-loading__spinner--line-1"></i><i class="t-loading__spinner--line t-loading__spinner--line-2"></i><i class="t-loading__spinner--line t-loading__spinner--line-3"></i><i class="t-loading__spinner--line t-loading__spinner--line-4"></i><i class="t-loading__spinner--line t-loading__spinner--line-5"></i><i class="t-loading__spinner--line t-loading__spinner--line-6"></i><i class="t-loading__spinner--line t-loading__spinner--line-7"></i><i class="t-loading__spinner--line t-loading__spinner--line-8"></i><i class="t-loading__spinner--line t-loading__spinner--line-9"></i><i class="t-loading__spinner--line t-loading__spinner--line-10"></i><i class="t-loading__spinner--line t-loading__spinner--line-11"></i><i class="t-loading__spinner--line t-loading__spinner--line-12"></i></span></div><div class="t-loading t-loading--center" style="font-size:40px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:40px;height:40px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">图标加文字横向</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="loading-demo--flex"><div class="t-loading t-loading--center" style="font-size:20px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div><div class="t-loading t-loading--center" style="font-size:20px"><span style="animation:t-rotate 0.8s infinite linear;animation-timing-function:steps(12);animation-direction:normal" class="t-loading__spinner"><i class="t-loading__spinner--line t-loading__spinner--line-1"></i><i class="t-loading__spinner--line t-loading__spinner--line-2"></i><i class="t-loading__spinner--line t-loading__spinner--line-3"></i><i class="t-loading__spinner--line t-loading__spinner--line-4"></i><i class="t-loading__spinner--line t-loading__spinner--line-5"></i><i class="t-loading__spinner--line t-loading__spinner--line-6"></i><i class="t-loading__spinner--line t-loading__spinner--line-7"></i><i class="t-loading__spinner--line t-loading__spinner--line-8"></i><i class="t-loading__spinner--line t-loading__spinner--line-9"></i><i class="t-loading__spinner--line t-loading__spinner--line-10"></i><i class="t-loading__spinner--line t-loading__spinner--line-11"></i><i class="t-loading__spinner--line t-loading__spinner--line-12"></i></span><span class="t-loading__text">加载中...</span></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">图标加文字竖向</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="loading-demo--flex"><div class="t-loading t-loading--center t-loading--vertical" style="font-size:20px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中</span></div><div class="t-loading t-loading--center t-loading--vertical" style="font-size:20px"><span style="animation:t-rotate 0.8s infinite linear;animation-timing-function:steps(12);animation-direction:normal" class="t-loading__spinner"><i class="t-loading__spinner--line t-loading__spinner--line-1"></i><i class="t-loading__spinner--line t-loading__spinner--line-2"></i><i class="t-loading__spinner--line t-loading__spinner--line-3"></i><i class="t-loading__spinner--line t-loading__spinner--line-4"></i><i class="t-loading__spinner--line t-loading__spinner--line-5"></i><i class="t-loading__spinner--line t-loading__spinner--line-6"></i><i class="t-loading__spinner--line t-loading__spinner--line-7"></i><i class="t-loading__spinner--line t-loading__spinner--line-8"></i><i class="t-loading__spinner--line t-loading__spinner--line-9"></i><i class="t-loading__spinner--line t-loading__spinner--line-10"></i><i class="t-loading__spinner--line t-loading__spinner--line-11"></i><i class="t-loading__spinner--line t-loading__spinner--line-12"></i></span><span class="t-loading__text">加载中...</span></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">纯文字</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="loading-demo--flex"><div class="t-loading t-loading--center" style="font-size:20px"><span class="t-loading__text t-loading__text--only">加载中...</span></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件尺寸</h2></div><div class="tdesign-mobile-demo-block__slot"><div class="loading-demo"><div class="loading-demo__summary mb-16">大尺寸</div><div class="t-loading t-loading--center" style="font-size:26px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div></div><div class="loading-demo"><div class="loading-demo__summary mt-24 mb-16">中尺寸</div><div class="t-loading t-loading--center" style="font-size:22px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div></div><div class="loading-demo"><div class="loading-demo__summary mt-24 mb-16">小尺寸</div><div class="t-loading t-loading--center" style="font-size:20px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">03 加载速度</h2><p class="tdesign-mobile-demo-block__summary">加载速度调整</p></div><div class="tdesign-mobile-demo-block__slot"><div class="loading-demo"><div class="t-loading t-loading--center" style="font-size:20px"><svg style="animation:t-spin 0.6s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div></div><div class="slider-wrap"><div class="t-slider"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/loading/_example/pure-text.tsx 1`] = `"<div class="t-loading t-loading--center" style="font-size:20px"><span class="t-loading__text t-loading__text--only">加载中...</span></div>"`;
 
@@ -51956,7 +52672,7 @@ exports[`ssr snapshot test > ssr test src/loading/_example/service.tsx 1`] = `"<
 
 exports[`ssr snapshot test > ssr test src/loading/_example/size.tsx 1`] = `"<div class="loading-demo"><div class="loading-demo__summary mb-16">大尺寸</div><div class="t-loading t-loading--center" style="font-size:26px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div></div><div class="loading-demo"><div class="loading-demo__summary mt-24 mb-16">中尺寸</div><div class="t-loading t-loading--center" style="font-size:22px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div></div><div class="loading-demo"><div class="loading-demo__summary mt-24 mb-16">小尺寸</div><div class="t-loading t-loading--center" style="font-size:20px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/loading/_example/speed.tsx 1`] = `"<div class="loading-demo"><div class="t-loading t-loading--center" style="font-size:20px"><svg style="animation:t-spin 0.6s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div></div><div class="slider-wrap"><div class="t-slider-wrap"><div class="t-slider"><div class="t-slider__bar"></div><div class="t-slider__track" style="width:50%;left:0%"></div><div class="t-slider__handle" style="left:50%"></div></div><div class="t-slider-wrap__value">5</div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/loading/_example/speed.tsx 1`] = `"<div class="loading-demo"><div class="t-loading t-loading--center" style="font-size:20px"><svg style="animation:t-spin 0.6s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中...</span></div></div><div class="slider-wrap"><div class="t-slider"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/loading/_example/vert.tsx 1`] = `"<div class="t-loading t-loading--center t-loading--vertical" style="font-size:20px"><svg style="animation:t-spin 0.8s linear infinite;animation-direction:normal" class="t-loading__gradient t-icon-loading" viewBox="0 0 14 14" version="1.1" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><foreignObject x="1" y="1" width="12" height="12"><div class="t-loading__gradient-conic"></div></foreignObject></svg><span class="t-loading__text">加载中</span></div><div class="t-loading t-loading--center t-loading--vertical" style="font-size:20px"><span style="animation:t-rotate 0.8s infinite linear;animation-timing-function:steps(12);animation-direction:normal" class="t-loading__spinner"><i class="t-loading__spinner--line t-loading__spinner--line-1"></i><i class="t-loading__spinner--line t-loading__spinner--line-2"></i><i class="t-loading__spinner--line t-loading__spinner--line-3"></i><i class="t-loading__spinner--line t-loading__spinner--line-4"></i><i class="t-loading__spinner--line t-loading__spinner--line-5"></i><i class="t-loading__spinner--line t-loading__spinner--line-6"></i><i class="t-loading__spinner--line t-loading__spinner--line-7"></i><i class="t-loading__spinner--line t-loading__spinner--line-8"></i><i class="t-loading__spinner--line t-loading__spinner--line-9"></i><i class="t-loading__spinner--line t-loading__spinner--line-10"></i><i class="t-loading__spinner--line t-loading__spinner--line-11"></i><i class="t-loading__spinner--line t-loading__spinner--line-12"></i></span><span class="t-loading__text">加载中...</span></div>"`;
 
@@ -52062,6 +52778,7 @@ exports[`ssr snapshot test > ssr test src/skeleton/_example/image-group.tsx 1`] 
 
 exports[`ssr snapshot test > ssr test src/skeleton/_example/theme.tsx 1`] = `"<div><div class="demo-section__desc">头像骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-circle t-skeleton--animation-none" style="width:48px;height:48px"></div></div></div></div></div><div><div class="demo-section__desc">图片骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-rect t-skeleton--animation-none" style="width:72px;height:72px"></div></div></div></div></div><div><div class="demo-section__desc">文本骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:24%;height:16px;margin-right:16px"></div><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:76%;height:16px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div></div></div></div><div><div class="demo-section__desc">段落骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:55%"></div></div></div></div></div>"`;
 
+<<<<<<< HEAD
 exports[`ssr snapshot test > ssr test src/stepper/_example/base.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="text" value="3.5" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="decimal"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/stepper/_example/index.tsx 1`] = `"<div class="stepper-container"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Stepper 步进器</h1><p class="tdesign-mobile-demo-header__summary">用于数量的增减</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 类型</h2><p class="tdesign-mobile-demo-block__summary">基础步进器</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="text" value="3.5" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="decimal"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件状态</h2><p class="tdesign-mobile-demo-block__summary">最大最小状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="999" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">禁用状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium t-stepper--filled-disabled" inputMode="numeric" disabled=""/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件样式</h2><p class="tdesign-mobile-demo-block__summary">步进器样式</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--outline t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--normal t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">步进器尺寸</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--large"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--large"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--large" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--large"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--small"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--small"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--small" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--small"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div></div>"`;
@@ -52073,6 +52790,19 @@ exports[`ssr snapshot test > ssr test src/stepper/_example/size.tsx 1`] = `"<div
 exports[`ssr snapshot test > ssr test src/stepper/_example/status.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium t-stepper--filled-disabled" inputMode="numeric" disabled=""/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/stepper/_example/theme.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--outline t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--normal t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
+=======
+exports[`ssr snapshot test > ssr test src/slider/_example/base.tsx 1`] = `"<div class="wrapper-base"><div class="t-slider"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/slider/_example/capsule.tsx 1`] = `"<div class="wrapper-capsule"><div class="t-slider"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider t-slider--top t-slider--range"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/slider/_example/disabled.tsx 1`] = `"<div class="wrapper-disabled"><div class="t-slider t-slider--disabled"><div class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"><div class="t-slider__line t-slider__line--default t-slider__line--single t-slider__line--disabled" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-disabled"></div><div class="wrapper-disabled"><div class="t-slider t-slider--disabled t-slider--range"><div class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"><div class="t-slider__line t-slider__line--default t-slider__line--disabled" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/slider/_example/label.tsx 1`] = `"<div class="wrapper-label"><div class="t-slider t-slider--top"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-value">10</div><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-label"><div class="t-slider t-slider--top t-slider--range"><text class="t-slider__range-extreme t-slider__range-extreme--min">0</text><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div></div></div><text class="t-slider__value t-slider__value--max">100</text></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/slider/_example/range.tsx 1`] = `"<div class="wrapper-base"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/slider/_example/step.tsx 1`] = `"<div class="wrapper-base"><div class="t-slider"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-base"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
+>>>>>>> 2bfa127 (feat(slider): update slider demo, alignment vue mobile)
 
 exports[`ssr snapshot test > ssr test src/sticky/_example/base.tsx 1`] = `"<div class="tdesign-demo-block-1"><div class="t-sticky"><div class="t-sticky__content"><button type="button" class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle custom-common-button"><span class="t-button__content"> <!-- -->基础吸顶</span></button></div></div></div>"`;
 
