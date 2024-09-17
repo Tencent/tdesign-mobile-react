@@ -37,7 +37,7 @@ const Stepper = forwardRef<HTMLDivElement, StepperProps>((originProps, ref) => {
   const [currentValue, setCurrentValue] = useDefault(value, defaultValue, onChange);
   const { classPrefix } = useConfig();
   const baseClass = `${classPrefix}-stepper`;
-  const inputStyle = inputWidth ? { width: `${props.inputWidth}px` } : '';
+  const inputStyle = inputWidth ? { width: `${props.inputWidth}px` } : {};
 
   const isDisabled = (type: 'minus' | 'plus') => {
     if (disabled) return true;
@@ -75,7 +75,7 @@ const Stepper = forwardRef<HTMLDivElement, StepperProps>((originProps, ref) => {
 
   const plusValue = () => {
     if (isDisabled('plus')) {
-      onOverlimit('plus');
+      onOverlimit?.('plus');
       return;
     }
     updateValue(formatValue(add(Number(currentValue), step)));
@@ -83,7 +83,7 @@ const Stepper = forwardRef<HTMLDivElement, StepperProps>((originProps, ref) => {
 
   const minusValue = () => {
     if (isDisabled('minus')) {
-      onOverlimit('minus');
+      onOverlimit?.('minus');
       return;
     }
     updateValue(formatValue(add(Number(currentValue), -step)));
@@ -125,7 +125,7 @@ const Stepper = forwardRef<HTMLDivElement, StepperProps>((originProps, ref) => {
         })}
         type={integer ? 'tel' : 'text'}
         inputMode={integer ? 'numeric' : 'decimal'}
-        style={inputStyle.value}
+        style={inputStyle}
         disabled={disableInput || disabled}
         readOnly={disableInput}
         onFocus={handleFocus}
