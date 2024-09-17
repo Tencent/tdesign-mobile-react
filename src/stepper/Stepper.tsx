@@ -1,4 +1,4 @@
-import React, { forwardRef, memo } from 'react';
+import React, { FormEvent, forwardRef, memo } from 'react';
 import classNames from 'classnames';
 import { AddIcon, RemoveIcon } from 'tdesign-icons-react';
 import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
@@ -89,8 +89,8 @@ const Stepper = forwardRef<HTMLDivElement, StepperProps>((originProps, ref) => {
     updateValue(formatValue(add(Number(currentValue), -step)));
   };
 
-  const handleInput = (e: Event) => {
-    const value = formatNumber((e.target as HTMLTextAreaElement).value, !integer);
+  const handleInput = (e: FormEvent<HTMLInputElement>) => {
+    const value = formatNumber((e.target as HTMLInputElement).value, !integer);
     setCurrentValue(value);
   };
 
