@@ -205,7 +205,7 @@ export default {
     {
       title: 'Stepper 步进器',
       name: 'Stepper',
-      component: () => import('tdesign-mobile-react/stepper/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/stepper/_example/index.tsx'),
     },
     {
       title: 'PullDownRefresh 下拉刷新',
