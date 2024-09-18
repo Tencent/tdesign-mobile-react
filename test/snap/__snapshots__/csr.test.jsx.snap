@@ -35535,7 +35535,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/base.tsx 1`] = `
         class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-remove 3__minus-icon"
+          class="t-icon t-icon-remove t-stepper__minus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -35557,7 +35557,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/base.tsx 1`] = `
         class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-add 3__plus-icon"
+          class="t-icon t-icon-add t-stepper__plus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -35577,7 +35577,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/base.tsx 1`] = `
         class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-remove 3.5__minus-icon"
+          class="t-icon t-icon-remove t-stepper__minus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -35599,7 +35599,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/base.tsx 1`] = `
         class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-add 3.5__plus-icon"
+          class="t-icon t-icon-add t-stepper__plus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -35665,7 +35665,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-remove 3__minus-icon"
+                class="t-icon t-icon-remove t-stepper__minus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -35687,7 +35687,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-add 3__plus-icon"
+                class="t-icon t-icon-add t-stepper__plus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -35707,7 +35707,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-remove 3.5__minus-icon"
+                class="t-icon t-icon-remove t-stepper__minus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -35729,7 +35729,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-add 3.5__plus-icon"
+                class="t-icon t-icon-add t-stepper__plus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -35775,7 +35775,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"
             >
               <svg
-                class="t-icon t-icon-remove 0__minus-icon"
+                class="t-icon t-icon-remove t-stepper__minus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -35797,7 +35797,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-add 0__plus-icon"
+                class="t-icon t-icon-add t-stepper__plus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -35817,7 +35817,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"
             >
               <svg
-                class="t-icon t-icon-remove 0__minus-icon"
+                class="t-icon t-icon-remove t-stepper__minus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -35839,7 +35839,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-add 0__plus-icon"
+                class="t-icon t-icon-add t-stepper__plus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -35859,7 +35859,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-remove 999__minus-icon"
+                class="t-icon t-icon-remove t-stepper__minus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -35881,7 +35881,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"
             >
               <svg
-                class="t-icon t-icon-add 999__plus-icon"
+                class="t-icon t-icon-add t-stepper__plus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -35922,7 +35922,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"
             >
               <svg
-                class="t-icon t-icon-remove 0__minus-icon"
+                class="t-icon t-icon-remove t-stepper__minus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -35945,7 +35945,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"
             >
               <svg
-                class="t-icon t-icon-add 0__plus-icon"
+                class="t-icon t-icon-add t-stepper__plus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -35991,7 +35991,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-remove 3__minus-icon"
+                class="t-icon t-icon-remove t-stepper__minus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -36013,7 +36013,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-add 3__plus-icon"
+                class="t-icon t-icon-add t-stepper__plus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -36033,7 +36033,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__minus t-stepper__minus--outline t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-remove 3__minus-icon"
+                class="t-icon t-icon-remove t-stepper__minus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -36055,7 +36055,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__plus t-stepper__plus--outline t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-add 3__plus-icon"
+                class="t-icon t-icon-add t-stepper__plus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -36075,7 +36075,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__minus t-stepper__minus--normal t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-remove 3__minus-icon"
+                class="t-icon t-icon-remove t-stepper__minus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -36097,7 +36097,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__plus t-stepper__plus--normal t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-add 3__plus-icon"
+                class="t-icon t-icon-add t-stepper__plus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -36138,7 +36138,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--large"
             >
               <svg
-                class="t-icon t-icon-remove 3__minus-icon"
+                class="t-icon t-icon-remove t-stepper__minus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -36160,7 +36160,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--large"
             >
               <svg
-                class="t-icon t-icon-add 3__plus-icon"
+                class="t-icon t-icon-add t-stepper__plus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -36180,7 +36180,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-remove 3__minus-icon"
+                class="t-icon t-icon-remove t-stepper__minus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -36202,7 +36202,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"
             >
               <svg
-                class="t-icon t-icon-add 3__plus-icon"
+                class="t-icon t-icon-add t-stepper__plus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -36222,7 +36222,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--small"
             >
               <svg
-                class="t-icon t-icon-remove 3__minus-icon"
+                class="t-icon t-icon-remove t-stepper__minus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -36244,7 +36244,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
               class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--small"
             >
               <svg
-                class="t-icon t-icon-add 3__plus-icon"
+                class="t-icon t-icon-add t-stepper__plus-icon"
                 fill="none"
                 height="1em"
                 viewBox="0 0 24 24"
@@ -36276,7 +36276,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/min-max.tsx 1`] = `
         class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"
       >
         <svg
-          class="t-icon t-icon-remove 0__minus-icon"
+          class="t-icon t-icon-remove t-stepper__minus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36298,7 +36298,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/min-max.tsx 1`] = `
         class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-add 0__plus-icon"
+          class="t-icon t-icon-add t-stepper__plus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36318,7 +36318,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/min-max.tsx 1`] = `
         class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"
       >
         <svg
-          class="t-icon t-icon-remove 0__minus-icon"
+          class="t-icon t-icon-remove t-stepper__minus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36340,7 +36340,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/min-max.tsx 1`] = `
         class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-add 0__plus-icon"
+          class="t-icon t-icon-add t-stepper__plus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36360,7 +36360,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/min-max.tsx 1`] = `
         class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-remove 999__minus-icon"
+          class="t-icon t-icon-remove t-stepper__minus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36382,7 +36382,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/min-max.tsx 1`] = `
         class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"
       >
         <svg
-          class="t-icon t-icon-add 999__plus-icon"
+          class="t-icon t-icon-add t-stepper__plus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36411,7 +36411,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/size.tsx 1`] = `
         class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--large"
       >
         <svg
-          class="t-icon t-icon-remove 3__minus-icon"
+          class="t-icon t-icon-remove t-stepper__minus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36433,7 +36433,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/size.tsx 1`] = `
         class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--large"
       >
         <svg
-          class="t-icon t-icon-add 3__plus-icon"
+          class="t-icon t-icon-add t-stepper__plus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36453,7 +36453,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/size.tsx 1`] = `
         class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-remove 3__minus-icon"
+          class="t-icon t-icon-remove t-stepper__minus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36475,7 +36475,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/size.tsx 1`] = `
         class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-add 3__plus-icon"
+          class="t-icon t-icon-add t-stepper__plus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36495,7 +36495,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/size.tsx 1`] = `
         class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--small"
       >
         <svg
-          class="t-icon t-icon-remove 3__minus-icon"
+          class="t-icon t-icon-remove t-stepper__minus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36517,7 +36517,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/size.tsx 1`] = `
         class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--small"
       >
         <svg
-          class="t-icon t-icon-add 3__plus-icon"
+          class="t-icon t-icon-add t-stepper__plus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36546,7 +36546,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/status.tsx 1`] = `
         class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"
       >
         <svg
-          class="t-icon t-icon-remove 0__minus-icon"
+          class="t-icon t-icon-remove t-stepper__minus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36569,7 +36569,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/status.tsx 1`] = `
         class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"
       >
         <svg
-          class="t-icon t-icon-add 0__plus-icon"
+          class="t-icon t-icon-add t-stepper__plus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36598,7 +36598,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/theme.tsx 1`] = `
         class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-remove 3__minus-icon"
+          class="t-icon t-icon-remove t-stepper__minus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36620,7 +36620,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/theme.tsx 1`] = `
         class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-add 3__plus-icon"
+          class="t-icon t-icon-add t-stepper__plus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36640,7 +36640,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/theme.tsx 1`] = `
         class="t-stepper__minus t-stepper__minus--outline t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-remove 3__minus-icon"
+          class="t-icon t-icon-remove t-stepper__minus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36662,7 +36662,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/theme.tsx 1`] = `
         class="t-stepper__plus t-stepper__plus--outline t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-add 3__plus-icon"
+          class="t-icon t-icon-add t-stepper__plus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36682,7 +36682,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/theme.tsx 1`] = `
         class="t-stepper__minus t-stepper__minus--normal t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-remove 3__minus-icon"
+          class="t-icon t-icon-remove t-stepper__minus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -36704,7 +36704,7 @@ exports[`csr snapshot test > csr test src/stepper/_example/theme.tsx 1`] = `
         class="t-stepper__plus t-stepper__plus--normal t-stepper__icon--medium"
       >
         <svg
-          class="t-icon t-icon-add 3__plus-icon"
+          class="t-icon t-icon-add t-stepper__plus-icon"
           fill="none"
           height="1em"
           viewBox="0 0 24 24"
@@ -47070,6 +47070,7 @@ exports[`ssr snapshot test > ssr test src/overlay/_example/base.tsx 1`] = `"<div
 
 exports[`ssr snapshot test > ssr test src/overlay/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Overlay 遮罩层</h1><p class="tdesign-mobile-demo-header__summary">通过遮罩层，可以强调部分内容</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件</h2><p class="tdesign-mobile-demo-block__summary">基础遮罩层</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->基础用法</span></button></div></div></div></div>"`;
 
+<<<<<<< HEAD
 exports[`ssr snapshot test > ssr test src/popover/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Popover 弹出气泡</h1><p class="tdesign-mobile-demo-header__summary">用于文字提示的气泡框。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2></div><div class="tdesign-mobile-demo-block__slot"><div><div class="popover-type-example"><div class="popover-type-example__summary mb-16">带箭头的弹出气泡</div><div class="popover-type-example__content mb-24"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->带箭头</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div><div class="popover-type-example"><div class="popover-type-example__summary mb-16">不带箭头的弹出气泡</div><div class="popover-type-example__content mb-24"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->不带箭头</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容</div></div></div></div><div class="popover-type-example"><div class="popover-type-example__summary mb-16">自定义内容弹出气泡</div><div class="custom popover-type-example__content mb-24"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->自定义内容</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark"><div class="custom__list"><div class="custom__item">选项<!-- -->1</div><div class="custom__item">选项<!-- -->2</div><div class="custom__item">选项<!-- -->3</div></div><div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件样式</h2></div><div class="tdesign-mobile-demo-block__slot"><div><div class="popover-theme-example"><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->深色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->浅色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--light">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->品牌色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--brand">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div><div class="popover-theme-example"><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->成功色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--success">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->警告色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--warning">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->错误色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--error">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__slot"><div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">顶部弹出气泡</div><div class="popover-placement-example__content row mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->顶部左</span></button></div><div data-popper-placement="top-left" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->顶部中</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->顶部右</span></button></div><div data-popper-placement="top-right" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">底部弹出气泡</div><div class="popover-placement-example__content row mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->底部左</span></button></div><div data-popper-placement="bottom-left" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->底部中</span></button></div><div data-popper-placement="bottom" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->底部右</span></button></div><div data-popper-placement="bottom-right" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">右侧弹出气泡</div><div class="popover-placement-example__content column mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->右侧上</span></button></div><div data-popper-placement="right-top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->右侧中</span></button></div><div data-popper-placement="right" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->右侧下</span></button></div><div data-popper-placement="right-bottom" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">左侧弹出气泡</div><div class="popover-placement-example__content column flex-end mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->左侧上</span></button></div><div data-popper-placement="left-top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->左侧中</span></button></div><div data-popper-placement="left" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->左侧下</span></button></div><div data-popper-placement="left-bottom" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/popover/_example/placement.tsx 1`] = `"<div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">顶部弹出气泡</div><div class="popover-placement-example__content row mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->顶部左</span></button></div><div data-popper-placement="top-left" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->顶部中</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->顶部右</span></button></div><div data-popper-placement="top-right" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">底部弹出气泡</div><div class="popover-placement-example__content row mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->底部左</span></button></div><div data-popper-placement="bottom-left" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->底部中</span></button></div><div data-popper-placement="bottom" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->底部右</span></button></div><div data-popper-placement="bottom-right" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">右侧弹出气泡</div><div class="popover-placement-example__content column mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->右侧上</span></button></div><div data-popper-placement="right-top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->右侧中</span></button></div><div data-popper-placement="right" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->右侧下</span></button></div><div data-popper-placement="right-bottom" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">左侧弹出气泡</div><div class="popover-placement-example__content column flex-end mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->左侧上</span></button></div><div data-popper-placement="left-top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->左侧中</span></button></div><div data-popper-placement="left" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->左侧下</span></button></div><div data-popper-placement="left-bottom" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div></div>"`;
@@ -47078,6 +47079,8 @@ exports[`ssr snapshot test > ssr test src/popover/_example/theme.tsx 1`] = `"<di
 
 exports[`ssr snapshot test > ssr test src/popover/_example/type.tsx 1`] = `"<div><div class="popover-type-example"><div class="popover-type-example__summary mb-16">带箭头的弹出气泡</div><div class="popover-type-example__content mb-24"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->带箭头</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div><div class="popover-type-example"><div class="popover-type-example__summary mb-16">不带箭头的弹出气泡</div><div class="popover-type-example__content mb-24"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->不带箭头</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容</div></div></div></div><div class="popover-type-example"><div class="popover-type-example__summary mb-16">自定义内容弹出气泡</div><div class="custom popover-type-example__content mb-24"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->自定义内容</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark"><div class="custom__list"><div class="custom__item">选项<!-- -->1</div><div class="custom__item">选项<!-- -->2</div><div class="custom__item">选项<!-- -->3</div></div><div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div>"`;
 
+=======
+>>>>>>> 124b729 (test(stepper): 更新单侧文件)
 exports[`ssr snapshot test > ssr test src/popup/_example/base.tsx 1`] = `"<div style="padding:0 16px"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block" style="margin:16px 0"><span class="t-button__content"> <!-- -->顶部弹出</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block" style="margin:16px 0"><span class="t-button__content"> <!-- -->左侧弹出</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block" style="margin:16px 0"><span class="t-button__content"> <!-- -->中间弹出</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block" style="margin:16px 0"><span class="t-button__content"> <!-- -->底部弹出</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block" style="margin:16px 0"><span class="t-button__content"> <!-- -->右侧弹出</span></button><div class="t-popup t-popup--top" style="display:none;animation-fill-mode:forwards;padding:100px"></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/popup/_example/custom-close.tsx 1`] = `"<button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->居中弹出层-带自定义关闭按钮</span></button><div class="t-popup t-popup--center" style="display:none;animation-fill-mode:forwards;width:240px;height:240px"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close-circle design-mobile-popup-demo__custom-close close-btn" style="font-size:32px" color="#fff"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zM7.4 15.18L10.6 12 7.4 8.82 8.82 7.4 12 10.6l3.18-3.19 1.42 1.42L13.4 12l3.19 3.18-1.42 1.42L12 13.4 8.82 16.6 7.4 15.18z"></path></svg></div>"`;
@@ -47136,17 +47139,17 @@ exports[`ssr snapshot test > ssr test src/skeleton/_example/image-group.tsx 1`] 
 
 exports[`ssr snapshot test > ssr test src/skeleton/_example/theme.tsx 1`] = `"<div><div class="demo-section__desc">头像骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-circle t-skeleton--animation-none" style="width:48px;height:48px"></div></div></div></div></div><div><div class="demo-section__desc">图片骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-rect t-skeleton--animation-none" style="width:72px;height:72px"></div></div></div></div></div><div><div class="demo-section__desc">文本骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:24%;height:16px;margin-right:16px"></div><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:76%;height:16px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div></div></div></div><div><div class="demo-section__desc">段落骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:55%"></div></div></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/stepper/_example/base.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3.5__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="text" value="3.5" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="decimal"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3.5__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/stepper/_example/base.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="text" value="3.5" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="decimal"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/stepper/_example/index.tsx 1`] = `"<div class="stepper-container"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Stepper 步进器</h1><p class="tdesign-mobile-demo-header__summary">用于数量的增减</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 类型</h2><p class="tdesign-mobile-demo-block__summary">基础步进器</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3.5__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="text" value="3.5" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="decimal"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3.5__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件状态</h2><p class="tdesign-mobile-demo-block__summary">最大最小状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 0__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 0__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 0__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 0__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 999__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="999" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 999__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">禁用状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 0__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium t-stepper--filled-disabled" inputMode="numeric" disabled=""/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 0__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件样式</h2><p class="tdesign-mobile-demo-block__summary">步进器样式</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--outline t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--normal t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">步进器尺寸</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--large"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--large"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--large" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--large"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--small"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--small"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--small" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--small"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/stepper/_example/index.tsx 1`] = `"<div class="stepper-container"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Stepper 步进器</h1><p class="tdesign-mobile-demo-header__summary">用于数量的增减</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 类型</h2><p class="tdesign-mobile-demo-block__summary">基础步进器</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="text" value="3.5" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="decimal"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件状态</h2><p class="tdesign-mobile-demo-block__summary">最大最小状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="999" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">禁用状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium t-stepper--filled-disabled" inputMode="numeric" disabled=""/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件样式</h2><p class="tdesign-mobile-demo-block__summary">步进器样式</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--outline t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--normal t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">步进器尺寸</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--large"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--large"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--large" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--large"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--small"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--small"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--small" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--small"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/stepper/_example/min-max.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 0__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 0__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 0__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 0__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 999__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="999" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 999__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/stepper/_example/min-max.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="999" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/stepper/_example/size.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--large"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--large"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--large" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--large"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--small"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--small"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--small" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--small"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/stepper/_example/size.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--large"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--large"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--large" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--large"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--small"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--small"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--small" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--small"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/stepper/_example/status.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 0__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium t-stepper--filled-disabled" inputMode="numeric" disabled=""/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 0__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/stepper/_example/status.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium t-stepper--filled-disabled" inputMode="numeric" disabled=""/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/stepper/_example/theme.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--outline t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove 3__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--normal t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add 3__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/stepper/_example/theme.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--outline t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--normal t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/sticky/_example/base.tsx 1`] = `"<div class="tdesign-demo-block-1"><div class="t-sticky"><div class="t-sticky__content"><button type="button" class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle custom-common-button"><span class="t-button__content"> <!-- -->基础吸顶</span></button></div></div></div>"`;
 
