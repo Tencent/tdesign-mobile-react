@@ -128,16 +128,15 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
           {treeOption.map((item) => (
             <Checkbox
               key={item.value}
-              class={`${treeSelectClass}__checkbox-item`}
+              className={`${treeSelectClass}__checkbox-item`}
               value={item.value}
               maxLabelRow={1}
               icon="line"
               borderless
               placement="right"
               disabled={item.disabled}
-            >
-              {item.label}
-            </Checkbox>
+              label={item.label}
+            />
           ))}
         </Checkbox.Group>
       );

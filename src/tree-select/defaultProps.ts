@@ -4,9 +4,4 @@
 
 import { TdTreeSelectProps } from './type';
 
-export const treeSelectDefaultProps: TdTreeSelectProps = {
-  filterable: false,
-  height: 336,
-  multiple: false,
-  options: [],
-};
+export const treeSelectDefaultProps: TdTreeSelectProps = { height: 336, multiple: false, options: [] };

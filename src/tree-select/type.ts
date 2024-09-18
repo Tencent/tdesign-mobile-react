@@ -8,11 +8,6 @@ import { TreeOptionData, TreeKeysType } from '../common';
 
 export interface TdTreeSelectProps<DataOption extends TreeOptionData = TreeOptionData> {
   /**
-   * 是否可搜索
-   * @default false
-   */
-  filterable?: boolean;
-  /**
    * 高度，默认单位为 px
    * @default 336
    */
