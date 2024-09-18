@@ -25316,34 +25316,6 @@ exports[`csr snapshot test > csr test src/overlay/_example/index.tsx 1`] = `
 </div>
 `;
 
-exports[`csr snapshot test > csr test src/popover/_example/base.tsx 1`] = `
-<div>
-  <div
-    class="demo-content"
-  >
-    <a
-      class="t-link t-link--medium t-link--default"
-      href="/mobile-react/overview"
-    >
-      <span
-        class="t-link__content"
-      >
-        跳转链接
-      </span>
-    </a>
-    <a
-      class="t-link t-link--medium t-link--default t-link--hover"
-    >
-      <span
-        class="t-link__content"
-      >
-        跳转链接
-      </span>
-    </a>
-  </div>
-</div>
-`;
-
 exports[`csr snapshot test > csr test src/popover/_example/index.tsx 1`] = `
 <div>
   <div
@@ -25355,12 +25327,12 @@ exports[`csr snapshot test > csr test src/popover/_example/index.tsx 1`] = `
       <h1
         class="tdesign-mobile-demo-header__title"
       >
-        Link 链接
+        Popover 弹出气泡
       </h1>
       <p
         class="tdesign-mobile-demo-header__summary"
       >
-        当功能使用图标即可表意清楚时，可使用纯图标悬浮按钮，例如：添加、发布。
+        用于文字提示的气泡框。
       </p>
     </div>
     <div
@@ -25374,218 +25346,157 @@ exports[`csr snapshot test > csr test src/popover/_example/index.tsx 1`] = `
         >
           01 组件类型
         </h2>
-        <p
-          class="tdesign-mobile-demo-block__summary"
-        >
-          基础文字链接
-        </p>
       </div>
       <div
         class="tdesign-mobile-demo-block__slot"
       >
-        <div
-          class="demo-content"
-        >
-          <a
-            class="t-link t-link--medium t-link--default"
-            href="/mobile-react/overview"
+        <div>
+          <div
+            class="popover-type-example"
           >
-            <span
-              class="t-link__content"
+            <div
+              class="popover-type-example__summary mb-16"
             >
-              跳转链接
-            </span>
-          </a>
-          <a
-            class="t-link t-link--medium t-link--default t-link--hover"
-          >
-            <span
-              class="t-link__content"
+              带箭头的弹出气泡
+            </div>
+            <div
+              class="popover-type-example__content mb-24"
             >
-              跳转链接
-            </span>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div
-      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
-    >
-      <div
-        class="tdesign-mobile-demo-block__header"
-      >
-        <p
-          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
-        >
-          下划线文字链接
-        </p>
-      </div>
-      <div
-        class="tdesign-mobile-demo-block__slot"
-      >
-        <div
-          class="demo-content"
-        >
-          <a
-            class="t-link t-link--medium t-link--primary t-link--underline"
-          >
-            <span
-              class="t-link__content"
-            >
-              跳转链接
-            </span>
-          </a>
-          <a
-            class="t-link t-link--medium t-link--default t-link--underline t-link--hover"
-          >
-            <span
-              class="t-link__content"
-            >
-              跳转链接
-            </span>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div
-      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
-    >
-      <div
-        class="tdesign-mobile-demo-block__header"
-      >
-        <p
-          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
-        >
-          前置图标文字链接
-        </p>
-      </div>
-      <div
-        class="tdesign-mobile-demo-block__slot"
-      >
-        <div
-          class="demo-content"
-        >
-          <a
-            class="t-link t-link--medium t-link--primary t-link--underline t-link--hover"
-          >
-            <span
-              class="t-link__prefix-icon"
-            >
-              <svg
-                class="t-icon t-icon-link"
-                fill="none"
-                height="1em"
-                viewBox="0 0 24 24"
-                width="1em"
+              <div
+                class="t-popover__wrapper"
               >
-                <path
-                  d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-            <span
-              class="t-link__content"
-            >
-              跳转链接
-            </span>
-          </a>
-          <a
-            class="t-link t-link--medium t-link--default t-link--underline t-link--hover"
-          >
-            <span
-              class="t-link__prefix-icon"
-            >
-              <svg
-                class="t-icon t-icon-link"
-                fill="none"
-                height="1em"
-                viewBox="0 0 24 24"
-                width="1em"
+                <button
+                  class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"
+                  type="button"
+                >
+                  <span
+                    class="t-button__content"
+                  >
+                     
+                    带箭头
+                  </span>
+                </button>
+              </div>
+              <div
+                class="t-popover"
+                data-popper-placement="top"
+                style="display: none;"
               >
-                <path
-                  d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-            <span
-              class="t-link__content"
-            >
-              跳转链接
-            </span>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div
-      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
-    >
-      <div
-        class="tdesign-mobile-demo-block__header"
-      >
-        <p
-          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
-        >
-          后置图标文字链接
-        </p>
-      </div>
-      <div
-        class="tdesign-mobile-demo-block__slot"
-      >
-        <div
-          class="demo-content"
-        >
-          <a
-            class="t-link t-link--medium t-link--primary t-link--underline"
+                <div
+                  class="t-popover__content t-popover--dark"
+                >
+                  弹出气泡内容
+                  <div
+                    class="t-popover__arrow"
+                    data-popper-arrow="true"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="popover-type-example"
           >
-            <span
-              class="t-link__content"
+            <div
+              class="popover-type-example__summary mb-16"
             >
-              跳转链接
-            </span>
-            <span
-              class="t-link__suffix-icon"
+              不带箭头的弹出气泡
+            </div>
+            <div
+              class="popover-type-example__content mb-24"
             >
-              <svg
-                class="t-icon t-icon-jump"
-                fill="none"
-                height="1em"
-                viewBox="0 0 24 24"
-                width="1em"
+              <div
+                class="t-popover__wrapper"
               >
-                <path
-                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </a>
-          <a
-            class="t-link t-link--medium t-link--default t-link--underline t-link--hover"
+                <button
+                  class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"
+                  type="button"
+                >
+                  <span
+                    class="t-button__content"
+                  >
+                     
+                    不带箭头
+                  </span>
+                </button>
+              </div>
+              <div
+                class="t-popover"
+                data-popper-placement="top"
+                style="display: none;"
+              >
+                <div
+                  class="t-popover__content t-popover--dark"
+                >
+                  弹出气泡内容
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="popover-type-example"
           >
-            <span
-              class="t-link__content"
+            <div
+              class="popover-type-example__summary mb-16"
             >
-              跳转链接
-            </span>
-            <span
-              class="t-link__suffix-icon"
+              自定义内容弹出气泡
+            </div>
+            <div
+              class="custom popover-type-example__content mb-24"
             >
-              <svg
-                class="t-icon t-icon-jump"
-                fill="none"
-                height="1em"
-                viewBox="0 0 24 24"
-                width="1em"
+              <div
+                class="t-popover__wrapper"
               >
-                <path
-                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </a>
+                <button
+                  class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"
+                  type="button"
+                >
+                  <span
+                    class="t-button__content"
+                  >
+                     
+                    自定义内容
+                  </span>
+                </button>
+              </div>
+              <div
+                class="t-popover"
+                data-popper-placement="top"
+                style="display: none;"
+              >
+                <div
+                  class="t-popover__content t-popover--dark"
+                >
+                  <div
+                    class="custom__list"
+                  >
+                    <div
+                      class="custom__item"
+                    >
+                      选项
+                      1
+                    </div>
+                    <div
+                      class="custom__item"
+                    >
+                      选项
+                      2
+                    </div>
+                    <div
+                      class="custom__item"
+                    >
+                      选项
+                      3
+                    </div>
+                  </div>
+                  <div
+                    class="t-popover__arrow"
+                    data-popper-arrow="true"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -25598,149 +25509,225 @@ exports[`csr snapshot test > csr test src/popover/_example/index.tsx 1`] = `
         <h2
           class="tdesign-mobile-demo-block__title"
         >
-          02 组件状态
+          02 组件样式
         </h2>
-        <p
-          class="tdesign-mobile-demo-block__summary"
-        >
-          不同主题
-        </p>
       </div>
       <div
         class="tdesign-mobile-demo-block__slot"
       >
-        <div
-          class="demo-content"
-        >
-          <a
-            class="t-link t-link--medium t-link--primary"
+        <div>
+          <div
+            class="popover-theme-example"
           >
-            <span
-              class="t-link__content"
+            <div
+              class="popover-theme-example__content"
             >
-              跳转链接
-            </span>
-            <span
-              class="t-link__suffix-icon"
-            >
-              <svg
-                class="t-icon t-icon-jump"
-                fill="none"
-                height="1em"
-                viewBox="0 0 24 24"
-                width="1em"
+              <div
+                class="t-popover__wrapper"
               >
-                <path
-                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </a>
-          <a
-            class="t-link t-link--medium t-link--default"
+                <button
+                  class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+                  type="button"
+                >
+                  <span
+                    class="t-button__content"
+                  >
+                     
+                    深色
+                  </span>
+                </button>
+              </div>
+              <div
+                class="t-popover"
+                data-popper-placement="top"
+                style="display: none;"
+              >
+                <div
+                  class="t-popover__content t-popover--dark"
+                >
+                  弹出气泡内容
+                  <div
+                    class="t-popover__arrow"
+                    data-popper-arrow="true"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="popover-theme-example__content"
+            >
+              <div
+                class="t-popover__wrapper"
+              >
+                <button
+                  class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+                  type="button"
+                >
+                  <span
+                    class="t-button__content"
+                  >
+                     
+                    浅色
+                  </span>
+                </button>
+              </div>
+              <div
+                class="t-popover"
+                data-popper-placement="top"
+                style="display: none;"
+              >
+                <div
+                  class="t-popover__content t-popover--light"
+                >
+                  弹出气泡内容
+                  <div
+                    class="t-popover__arrow"
+                    data-popper-arrow="true"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="popover-theme-example__content"
+            >
+              <div
+                class="t-popover__wrapper"
+              >
+                <button
+                  class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+                  type="button"
+                >
+                  <span
+                    class="t-button__content"
+                  >
+                     
+                    品牌色
+                  </span>
+                </button>
+              </div>
+              <div
+                class="t-popover"
+                data-popper-placement="top"
+                style="display: none;"
+              >
+                <div
+                  class="t-popover__content t-popover--brand"
+                >
+                  弹出气泡内容
+                  <div
+                    class="t-popover__arrow"
+                    data-popper-arrow="true"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="popover-theme-example"
           >
-            <span
-              class="t-link__content"
+            <div
+              class="popover-theme-example__content"
             >
-              跳转链接
-            </span>
-            <span
-              class="t-link__suffix-icon"
-            >
-              <svg
-                class="t-icon t-icon-jump"
-                fill="none"
-                height="1em"
-                viewBox="0 0 24 24"
-                width="1em"
+              <div
+                class="t-popover__wrapper"
               >
-                <path
-                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </a>
-          <a
-            class="t-link t-link--medium t-link--danger"
-          >
-            <span
-              class="t-link__content"
-            >
-              跳转链接
-            </span>
-            <span
-              class="t-link__suffix-icon"
-            >
-              <svg
-                class="t-icon t-icon-jump"
-                fill="none"
-                height="1em"
-                viewBox="0 0 24 24"
-                width="1em"
+                <button
+                  class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+                  type="button"
+                >
+                  <span
+                    class="t-button__content"
+                  >
+                     
+                    成功色
+                  </span>
+                </button>
+              </div>
+              <div
+                class="t-popover"
+                data-popper-placement="top"
+                style="display: none;"
               >
-                <path
-                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </a>
-        </div>
-        <div
-          class="demo-content"
-        >
-          <a
-            class="t-link t-link--medium t-link--success"
-          >
-            <span
-              class="t-link__content"
+                <div
+                  class="t-popover__content t-popover--success"
+                >
+                  弹出气泡内容
+                  <div
+                    class="t-popover__arrow"
+                    data-popper-arrow="true"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="popover-theme-example__content"
             >
-              跳转链接
-            </span>
-            <span
-              class="t-link__suffix-icon"
-            >
-              <svg
-                class="t-icon t-icon-jump"
-                fill="none"
-                height="1em"
-                viewBox="0 0 24 24"
-                width="1em"
+              <div
+                class="t-popover__wrapper"
               >
-                <path
-                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </a>
-          <a
-            class="t-link t-link--medium t-link--warning"
-          >
-            <span
-              class="t-link__content"
-            >
-              跳转链接
-            </span>
-            <span
-              class="t-link__suffix-icon"
-            >
-              <svg
-                class="t-icon t-icon-jump"
-                fill="none"
-                height="1em"
-                viewBox="0 0 24 24"
-                width="1em"
+                <button
+                  class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+                  type="button"
+                >
+                  <span
+                    class="t-button__content"
+                  >
+                     
+                    警告色
+                  </span>
+                </button>
+              </div>
+              <div
+                class="t-popover"
+                data-popper-placement="top"
+                style="display: none;"
               >
-                <path
-                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </a>
+                <div
+                  class="t-popover__content t-popover--warning"
+                >
+                  弹出气泡内容
+                  <div
+                    class="t-popover__arrow"
+                    data-popper-arrow="true"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="popover-theme-example__content"
+            >
+              <div
+                class="t-popover__wrapper"
+              >
+                <button
+                  class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+                  type="button"
+                >
+                  <span
+                    class="t-button__content"
+                  >
+                     
+                    错误色
+                  </span>
+                </button>
+              </div>
+              <div
+                class="t-popover"
+                data-popper-placement="top"
+                style="display: none;"
+              >
+                <div
+                  class="t-popover__content t-popover--error"
+                >
+                  弹出气泡内容
+                  <div
+                    class="t-popover__arrow"
+                    data-popper-arrow="true"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -25748,662 +25735,1311 @@ exports[`csr snapshot test > csr test src/popover/_example/index.tsx 1`] = `
       class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
     >
       <div
-        class="tdesign-mobile-demo-block__header"
-      >
-        <p
-          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
-        >
-          禁用状态
-        </p>
-      </div>
-      <div
         class="tdesign-mobile-demo-block__slot"
       >
+        <div>
+          <div
+            class="popover-placement-example"
+          >
+            <div
+              class="popover-placement-example__summary mb-16"
+            >
+              顶部弹出气泡
+            </div>
+            <div
+              class="popover-placement-example__content row mb-24"
+            >
+              <div
+                class="popover-placement-example__content__item"
+              >
+                <div
+                  class="t-popover__wrapper"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      顶部左
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="t-popover"
+                  data-popper-placement="top-left"
+                  style="display: none;"
+                >
+                  <div
+                    class="t-popover__content t-popover--dark"
+                  >
+                    弹出气泡内容
+                    <div
+                      class="t-popover__arrow"
+                      data-popper-arrow="true"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="popover-placement-example__content__item"
+              >
+                <div
+                  class="t-popover__wrapper"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      顶部中
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="t-popover"
+                  data-popper-placement="top"
+                  style="display: none;"
+                >
+                  <div
+                    class="t-popover__content t-popover--dark"
+                  >
+                    弹出气泡内容
+                    <div
+                      class="t-popover__arrow"
+                      data-popper-arrow="true"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="popover-placement-example__content__item"
+              >
+                <div
+                  class="t-popover__wrapper"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      顶部右
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="t-popover"
+                  data-popper-placement="top-right"
+                  style="display: none;"
+                >
+                  <div
+                    class="t-popover__content t-popover--dark"
+                  >
+                    弹出气泡内容
+                    <div
+                      class="t-popover__arrow"
+                      data-popper-arrow="true"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="popover-placement-example"
+          >
+            <div
+              class="popover-placement-example__summary mb-16"
+            >
+              底部弹出气泡
+            </div>
+            <div
+              class="popover-placement-example__content row mb-24"
+            >
+              <div
+                class="popover-placement-example__content__item"
+              >
+                <div
+                  class="t-popover__wrapper"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      底部左
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="t-popover"
+                  data-popper-placement="bottom-left"
+                  style="display: none;"
+                >
+                  <div
+                    class="t-popover__content t-popover--dark"
+                  >
+                    弹出气泡内容
+                    <div
+                      class="t-popover__arrow"
+                      data-popper-arrow="true"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="popover-placement-example__content__item"
+              >
+                <div
+                  class="t-popover__wrapper"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      底部中
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="t-popover"
+                  data-popper-placement="bottom"
+                  style="display: none;"
+                >
+                  <div
+                    class="t-popover__content t-popover--dark"
+                  >
+                    弹出气泡内容
+                    <div
+                      class="t-popover__arrow"
+                      data-popper-arrow="true"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="popover-placement-example__content__item"
+              >
+                <div
+                  class="t-popover__wrapper"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      底部右
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="t-popover"
+                  data-popper-placement="bottom-right"
+                  style="display: none;"
+                >
+                  <div
+                    class="t-popover__content t-popover--dark"
+                  >
+                    弹出气泡内容
+                    <div
+                      class="t-popover__arrow"
+                      data-popper-arrow="true"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="popover-placement-example"
+          >
+            <div
+              class="popover-placement-example__summary mb-16"
+            >
+              右侧弹出气泡
+            </div>
+            <div
+              class="popover-placement-example__content column mb-24"
+            >
+              <div
+                class="popover-placement-example__content__item"
+              >
+                <div
+                  class="t-popover__wrapper"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      右侧上
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="t-popover"
+                  data-popper-placement="right-top"
+                  style="display: none;"
+                >
+                  <div
+                    class="t-popover__content t-popover--dark"
+                  >
+                    气泡内容
+                    <div
+                      class="t-popover__arrow"
+                      data-popper-arrow="true"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="popover-placement-example__content__item"
+              >
+                <div
+                  class="t-popover__wrapper"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      右侧中
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="t-popover"
+                  data-popper-placement="right"
+                  style="display: none;"
+                >
+                  <div
+                    class="t-popover__content t-popover--dark"
+                  >
+                    气泡内容
+                    <div
+                      class="t-popover__arrow"
+                      data-popper-arrow="true"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="popover-placement-example__content__item"
+              >
+                <div
+                  class="t-popover__wrapper"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      右侧下
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="t-popover"
+                  data-popper-placement="right-bottom"
+                  style="display: none;"
+                >
+                  <div
+                    class="t-popover__content t-popover--dark"
+                  >
+                    气泡内容
+                    <div
+                      class="t-popover__arrow"
+                      data-popper-arrow="true"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="popover-placement-example"
+          >
+            <div
+              class="popover-placement-example__summary mb-16"
+            >
+              左侧弹出气泡
+            </div>
+            <div
+              class="popover-placement-example__content column flex-end mb-24"
+            >
+              <div
+                class="popover-placement-example__content__item"
+              >
+                <div
+                  class="t-popover__wrapper"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      左侧上
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="t-popover"
+                  data-popper-placement="left-top"
+                  style="display: none;"
+                >
+                  <div
+                    class="t-popover__content t-popover--dark"
+                  >
+                    气泡内容
+                    <div
+                      class="t-popover__arrow"
+                      data-popper-arrow="true"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="popover-placement-example__content__item"
+              >
+                <div
+                  class="t-popover__wrapper"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      左侧中
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="t-popover"
+                  data-popper-placement="left"
+                  style="display: none;"
+                >
+                  <div
+                    class="t-popover__content t-popover--dark"
+                  >
+                    气泡内容
+                    <div
+                      class="t-popover__arrow"
+                      data-popper-arrow="true"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="popover-placement-example__content__item"
+              >
+                <div
+                  class="t-popover__wrapper"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      左侧下
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="t-popover"
+                  data-popper-placement="left-bottom"
+                  style="display: none;"
+                >
+                  <div
+                    class="t-popover__content t-popover--dark"
+                  >
+                    气泡内容
+                    <div
+                      class="t-popover__arrow"
+                      data-popper-arrow="true"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/popover/_example/placement.tsx 1`] = `
+<div>
+  <div>
+    <div
+      class="popover-placement-example"
+    >
+      <div
+        class="popover-placement-example__summary mb-16"
+      >
+        顶部弹出气泡
+      </div>
+      <div
+        class="popover-placement-example__content row mb-24"
+      >
         <div
-          class="demo-content"
+          class="popover-placement-example__content__item"
         >
-          <a
-            class="t-link t-link--medium t-link--primary t-link--disabled"
+          <div
+            class="t-popover__wrapper"
           >
-            <span
-              class="t-link__content"
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+              type="button"
             >
-              跳转链接
-            </span>
-            <span
-              class="t-link__suffix-icon"
-            >
-              <svg
-                class="t-icon t-icon-jump"
-                fill="none"
-                height="1em"
-                viewBox="0 0 24 24"
-                width="1em"
+              <span
+                class="t-button__content"
               >
-                <path
-                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </a>
-          <a
-            class="t-link t-link--medium t-link--default t-link--disabled"
+                 
+                顶部左
+              </span>
+            </button>
+          </div>
+          <div
+            class="t-popover"
+            data-popper-placement="top-left"
+            style="display: none;"
           >
-            <span
-              class="t-link__content"
+            <div
+              class="t-popover__content t-popover--dark"
             >
-              跳转链接
-            </span>
-            <span
-              class="t-link__suffix-icon"
-            >
-              <svg
-                class="t-icon t-icon-jump"
-                fill="none"
-                height="1em"
-                viewBox="0 0 24 24"
-                width="1em"
-              >
-                <path
-                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </a>
-          <a
-            class="t-link t-link--medium t-link--danger t-link--disabled"
-          >
-            <span
-              class="t-link__content"
-            >
-              跳转链接
-            </span>
-            <span
-              class="t-link__suffix-icon"
-            >
-              <svg
-                class="t-icon t-icon-jump"
-                fill="none"
-                height="1em"
-                viewBox="0 0 24 24"
-                width="1em"
-              >
-                <path
-                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </a>
+              弹出气泡内容
+              <div
+                class="t-popover__arrow"
+                data-popper-arrow="true"
+              />
+            </div>
+          </div>
         </div>
         <div
-          class="demo-content"
+          class="popover-placement-example__content__item"
         >
-          <a
-            class="t-link t-link--medium t-link--success t-link--disabled"
+          <div
+            class="t-popover__wrapper"
           >
-            <span
-              class="t-link__content"
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+              type="button"
             >
-              跳转链接
-            </span>
-            <span
-              class="t-link__suffix-icon"
-            >
-              <svg
-                class="t-icon t-icon-jump"
-                fill="none"
-                height="1em"
-                viewBox="0 0 24 24"
-                width="1em"
+              <span
+                class="t-button__content"
               >
-                <path
-                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </a>
-          <a
-            class="t-link t-link--medium t-link--warning t-link--disabled"
+                 
+                顶部中
+              </span>
+            </button>
+          </div>
+          <div
+            class="t-popover"
+            data-popper-placement="top"
+            style="display: none;"
           >
-            <span
-              class="t-link__content"
+            <div
+              class="t-popover__content t-popover--dark"
             >
-              跳转链接
-            </span>
-            <span
-              class="t-link__suffix-icon"
+              弹出气泡内容
+              <div
+                class="t-popover__arrow"
+                data-popper-arrow="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="popover-placement-example__content__item"
+        >
+          <div
+            class="t-popover__wrapper"
+          >
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+              type="button"
             >
-              <svg
-                class="t-icon t-icon-jump"
-                fill="none"
-                height="1em"
-                viewBox="0 0 24 24"
-                width="1em"
+              <span
+                class="t-button__content"
               >
-                <path
-                  d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-          </a>
+                 
+                顶部右
+              </span>
+            </button>
+          </div>
+          <div
+            class="t-popover"
+            data-popper-placement="top-right"
+            style="display: none;"
+          >
+            <div
+              class="t-popover__content t-popover--dark"
+            >
+              弹出气泡内容
+              <div
+                class="t-popover__arrow"
+                data-popper-arrow="true"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div
-      class="tdesign-mobile-demo-block"
+      class="popover-placement-example"
     >
       <div
-        class="tdesign-mobile-demo-block__header"
+        class="popover-placement-example__summary mb-16"
       >
-        <h2
-          class="tdesign-mobile-demo-block__title"
-        >
-          03 组件样式
-        </h2>
-        <p
-          class="tdesign-mobile-demo-block__summary"
-        >
-          链接尺寸
-        </p>
+        底部弹出气泡
       </div>
       <div
-        class="tdesign-mobile-demo-block__slot"
+        class="popover-placement-example__content row mb-24"
       >
         <div
-          class="demo-content"
+          class="popover-placement-example__content__item"
         >
-          <a
-            class="t-link t-link--small t-link--primary"
+          <div
+            class="t-popover__wrapper"
           >
-            <span
-              class="t-link__content"
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+              type="button"
             >
-              S跳转链接
-            </span>
-          </a>
-          <a
-            class="t-link t-link--medium t-link--primary"
+              <span
+                class="t-button__content"
+              >
+                 
+                底部左
+              </span>
+            </button>
+          </div>
+          <div
+            class="t-popover"
+            data-popper-placement="bottom-left"
+            style="display: none;"
           >
-            <span
-              class="t-link__content"
+            <div
+              class="t-popover__content t-popover--dark"
             >
-              M跳转链接
-            </span>
-          </a>
-          <a
-            class="t-link t-link--large t-link--primary"
+              弹出气泡内容
+              <div
+                class="t-popover__arrow"
+                data-popper-arrow="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="popover-placement-example__content__item"
+        >
+          <div
+            class="t-popover__wrapper"
           >
-            <span
-              class="t-link__content"
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+              type="button"
             >
-              L跳转链接
-            </span>
-          </a>
+              <span
+                class="t-button__content"
+              >
+                 
+                底部中
+              </span>
+            </button>
+          </div>
+          <div
+            class="t-popover"
+            data-popper-placement="bottom"
+            style="display: none;"
+          >
+            <div
+              class="t-popover__content t-popover--dark"
+            >
+              弹出气泡内容
+              <div
+                class="t-popover__arrow"
+                data-popper-arrow="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="popover-placement-example__content__item"
+        >
+          <div
+            class="t-popover__wrapper"
+          >
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                底部右
+              </span>
+            </button>
+          </div>
+          <div
+            class="t-popover"
+            data-popper-placement="bottom-right"
+            style="display: none;"
+          >
+            <div
+              class="t-popover__content t-popover--dark"
+            >
+              弹出气泡内容
+              <div
+                class="t-popover__arrow"
+                data-popper-arrow="true"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-`;
-
-exports[`csr snapshot test > csr test src/popover/_example/linkSize.tsx 1`] = `
-<div>
-  <div
-    class="demo-content"
-  >
-    <a
-      class="t-link t-link--small t-link--primary"
+    <div
+      class="popover-placement-example"
     >
-      <span
-        class="t-link__content"
+      <div
+        class="popover-placement-example__summary mb-16"
       >
-        S跳转链接
-      </span>
-    </a>
-    <a
-      class="t-link t-link--medium t-link--primary"
-    >
-      <span
-        class="t-link__content"
+        右侧弹出气泡
+      </div>
+      <div
+        class="popover-placement-example__content column mb-24"
       >
-        M跳转链接
-      </span>
-    </a>
-    <a
-      class="t-link t-link--large t-link--primary"
-    >
-      <span
-        class="t-link__content"
-      >
-        L跳转链接
-      </span>
-    </a>
-  </div>
-</div>
-`;
-
-exports[`csr snapshot test > csr test src/popover/_example/prefix.tsx 1`] = `
-<div>
-  <div
-    class="demo-content"
-  >
-    <a
-      class="t-link t-link--medium t-link--primary t-link--underline t-link--hover"
-    >
-      <span
-        class="t-link__prefix-icon"
-      >
-        <svg
-          class="t-icon t-icon-link"
-          fill="none"
-          height="1em"
-          viewBox="0 0 24 24"
-          width="1em"
+        <div
+          class="popover-placement-example__content__item"
         >
-          <path
-            d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-      <span
-        class="t-link__content"
-      >
-        跳转链接
-      </span>
-    </a>
-    <a
-      class="t-link t-link--medium t-link--default t-link--underline t-link--hover"
-    >
-      <span
-        class="t-link__prefix-icon"
-      >
-        <svg
-          class="t-icon t-icon-link"
-          fill="none"
-          height="1em"
-          viewBox="0 0 24 24"
-          width="1em"
+          <div
+            class="t-popover__wrapper"
+          >
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                右侧上
+              </span>
+            </button>
+          </div>
+          <div
+            class="t-popover"
+            data-popper-placement="right-top"
+            style="display: none;"
+          >
+            <div
+              class="t-popover__content t-popover--dark"
+            >
+              气泡内容
+              <div
+                class="t-popover__arrow"
+                data-popper-arrow="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="popover-placement-example__content__item"
         >
-          <path
-            d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-      <span
-        class="t-link__content"
-      >
-        跳转链接
-      </span>
-    </a>
-  </div>
-</div>
-`;
-
-exports[`csr snapshot test > csr test src/popover/_example/status.tsx 1`] = `
-<div>
-  <div
-    class="demo-content"
-  >
-    <a
-      class="t-link t-link--medium t-link--primary t-link--disabled"
-    >
-      <span
-        class="t-link__content"
-      >
-        跳转链接
-      </span>
-      <span
-        class="t-link__suffix-icon"
-      >
-        <svg
-          class="t-icon t-icon-jump"
-          fill="none"
-          height="1em"
-          viewBox="0 0 24 24"
-          width="1em"
+          <div
+            class="t-popover__wrapper"
+          >
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                右侧中
+              </span>
+            </button>
+          </div>
+          <div
+            class="t-popover"
+            data-popper-placement="right"
+            style="display: none;"
+          >
+            <div
+              class="t-popover__content t-popover--dark"
+            >
+              气泡内容
+              <div
+                class="t-popover__arrow"
+                data-popper-arrow="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="popover-placement-example__content__item"
         >
-          <path
-            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </a>
-    <a
-      class="t-link t-link--medium t-link--default t-link--disabled"
+          <div
+            class="t-popover__wrapper"
+          >
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                右侧下
+              </span>
+            </button>
+          </div>
+          <div
+            class="t-popover"
+            data-popper-placement="right-bottom"
+            style="display: none;"
+          >
+            <div
+              class="t-popover__content t-popover--dark"
+            >
+              气泡内容
+              <div
+                class="t-popover__arrow"
+                data-popper-arrow="true"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="popover-placement-example"
     >
-      <span
-        class="t-link__content"
+      <div
+        class="popover-placement-example__summary mb-16"
       >
-        跳转链接
-      </span>
-      <span
-        class="t-link__suffix-icon"
+        左侧弹出气泡
+      </div>
+      <div
+        class="popover-placement-example__content column flex-end mb-24"
       >
-        <svg
-          class="t-icon t-icon-jump"
-          fill="none"
-          height="1em"
-          viewBox="0 0 24 24"
-          width="1em"
+        <div
+          class="popover-placement-example__content__item"
         >
-          <path
-            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </a>
-    <a
-      class="t-link t-link--medium t-link--danger t-link--disabled"
-    >
-      <span
-        class="t-link__content"
-      >
-        跳转链接
-      </span>
-      <span
-        class="t-link__suffix-icon"
-      >
-        <svg
-          class="t-icon t-icon-jump"
-          fill="none"
-          height="1em"
-          viewBox="0 0 24 24"
-          width="1em"
+          <div
+            class="t-popover__wrapper"
+          >
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                左侧上
+              </span>
+            </button>
+          </div>
+          <div
+            class="t-popover"
+            data-popper-placement="left-top"
+            style="display: none;"
+          >
+            <div
+              class="t-popover__content t-popover--dark"
+            >
+              气泡内容
+              <div
+                class="t-popover__arrow"
+                data-popper-arrow="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="popover-placement-example__content__item"
         >
-          <path
-            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </a>
-  </div>
-  <div
-    class="demo-content"
-  >
-    <a
-      class="t-link t-link--medium t-link--success t-link--disabled"
-    >
-      <span
-        class="t-link__content"
-      >
-        跳转链接
-      </span>
-      <span
-        class="t-link__suffix-icon"
-      >
-        <svg
-          class="t-icon t-icon-jump"
-          fill="none"
-          height="1em"
-          viewBox="0 0 24 24"
-          width="1em"
+          <div
+            class="t-popover__wrapper"
+          >
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                左侧中
+              </span>
+            </button>
+          </div>
+          <div
+            class="t-popover"
+            data-popper-placement="left"
+            style="display: none;"
+          >
+            <div
+              class="t-popover__content t-popover--dark"
+            >
+              气泡内容
+              <div
+                class="t-popover__arrow"
+                data-popper-arrow="true"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="popover-placement-example__content__item"
         >
-          <path
-            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </a>
-    <a
-      class="t-link t-link--medium t-link--warning t-link--disabled"
-    >
-      <span
-        class="t-link__content"
-      >
-        跳转链接
-      </span>
-      <span
-        class="t-link__suffix-icon"
-      >
-        <svg
-          class="t-icon t-icon-jump"
-          fill="none"
-          height="1em"
-          viewBox="0 0 24 24"
-          width="1em"
-        >
-          <path
-            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </a>
-  </div>
-</div>
-`;
-
-exports[`csr snapshot test > csr test src/popover/_example/suffix.tsx 1`] = `
-<div>
-  <div
-    class="demo-content"
-  >
-    <a
-      class="t-link t-link--medium t-link--primary t-link--underline"
-    >
-      <span
-        class="t-link__content"
-      >
-        跳转链接
-      </span>
-      <span
-        class="t-link__suffix-icon"
-      >
-        <svg
-          class="t-icon t-icon-jump"
-          fill="none"
-          height="1em"
-          viewBox="0 0 24 24"
-          width="1em"
-        >
-          <path
-            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </a>
-    <a
-      class="t-link t-link--medium t-link--default t-link--underline t-link--hover"
-    >
-      <span
-        class="t-link__content"
-      >
-        跳转链接
-      </span>
-      <span
-        class="t-link__suffix-icon"
-      >
-        <svg
-          class="t-icon t-icon-jump"
-          fill="none"
-          height="1em"
-          viewBox="0 0 24 24"
-          width="1em"
-        >
-          <path
-            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </a>
+          <div
+            class="t-popover__wrapper"
+          >
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                左侧下
+              </span>
+            </button>
+          </div>
+          <div
+            class="t-popover"
+            data-popper-placement="left-bottom"
+            style="display: none;"
+          >
+            <div
+              class="t-popover__content t-popover--dark"
+            >
+              气泡内容
+              <div
+                class="t-popover__arrow"
+                data-popper-arrow="true"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;
 
 exports[`csr snapshot test > csr test src/popover/_example/theme.tsx 1`] = `
 <div>
-  <div
-    class="demo-content"
-  >
-    <a
-      class="t-link t-link--medium t-link--primary"
+  <div>
+    <div
+      class="popover-theme-example"
     >
-      <span
-        class="t-link__content"
+      <div
+        class="popover-theme-example__content"
       >
-        跳转链接
-      </span>
-      <span
-        class="t-link__suffix-icon"
-      >
-        <svg
-          class="t-icon t-icon-jump"
-          fill="none"
-          height="1em"
-          viewBox="0 0 24 24"
-          width="1em"
+        <div
+          class="t-popover__wrapper"
         >
-          <path
-            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </a>
-    <a
-      class="t-link t-link--medium t-link--default"
+          <button
+            class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              深色
+            </span>
+          </button>
+        </div>
+        <div
+          class="t-popover"
+          data-popper-placement="top"
+          style="display: none;"
+        >
+          <div
+            class="t-popover__content t-popover--dark"
+          >
+            弹出气泡内容
+            <div
+              class="t-popover__arrow"
+              data-popper-arrow="true"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="popover-theme-example__content"
+      >
+        <div
+          class="t-popover__wrapper"
+        >
+          <button
+            class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              浅色
+            </span>
+          </button>
+        </div>
+        <div
+          class="t-popover"
+          data-popper-placement="top"
+          style="display: none;"
+        >
+          <div
+            class="t-popover__content t-popover--light"
+          >
+            弹出气泡内容
+            <div
+              class="t-popover__arrow"
+              data-popper-arrow="true"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="popover-theme-example__content"
+      >
+        <div
+          class="t-popover__wrapper"
+        >
+          <button
+            class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              品牌色
+            </span>
+          </button>
+        </div>
+        <div
+          class="t-popover"
+          data-popper-placement="top"
+          style="display: none;"
+        >
+          <div
+            class="t-popover__content t-popover--brand"
+          >
+            弹出气泡内容
+            <div
+              class="t-popover__arrow"
+              data-popper-arrow="true"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="popover-theme-example"
     >
-      <span
-        class="t-link__content"
+      <div
+        class="popover-theme-example__content"
       >
-        跳转链接
-      </span>
-      <span
-        class="t-link__suffix-icon"
-      >
-        <svg
-          class="t-icon t-icon-jump"
-          fill="none"
-          height="1em"
-          viewBox="0 0 24 24"
-          width="1em"
+        <div
+          class="t-popover__wrapper"
         >
-          <path
-            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </a>
-    <a
-      class="t-link t-link--medium t-link--danger"
-    >
-      <span
-        class="t-link__content"
-      >
-        跳转链接
-      </span>
-      <span
-        class="t-link__suffix-icon"
-      >
-        <svg
-          class="t-icon t-icon-jump"
-          fill="none"
-          height="1em"
-          viewBox="0 0 24 24"
-          width="1em"
+          <button
+            class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              成功色
+            </span>
+          </button>
+        </div>
+        <div
+          class="t-popover"
+          data-popper-placement="top"
+          style="display: none;"
         >
-          <path
-            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </a>
-  </div>
-  <div
-    class="demo-content"
-  >
-    <a
-      class="t-link t-link--medium t-link--success"
-    >
-      <span
-        class="t-link__content"
+          <div
+            class="t-popover__content t-popover--success"
+          >
+            弹出气泡内容
+            <div
+              class="t-popover__arrow"
+              data-popper-arrow="true"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="popover-theme-example__content"
       >
-        跳转链接
-      </span>
-      <span
-        class="t-link__suffix-icon"
-      >
-        <svg
-          class="t-icon t-icon-jump"
-          fill="none"
-          height="1em"
-          viewBox="0 0 24 24"
-          width="1em"
+        <div
+          class="t-popover__wrapper"
         >
-          <path
-            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </a>
-    <a
-      class="t-link t-link--medium t-link--warning"
-    >
-      <span
-        class="t-link__content"
-      >
-        跳转链接
-      </span>
-      <span
-        class="t-link__suffix-icon"
-      >
-        <svg
-          class="t-icon t-icon-jump"
-          fill="none"
-          height="1em"
-          viewBox="0 0 24 24"
-          width="1em"
+          <button
+            class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              警告色
+            </span>
+          </button>
+        </div>
+        <div
+          class="t-popover"
+          data-popper-placement="top"
+          style="display: none;"
         >
-          <path
-            d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </a>
+          <div
+            class="t-popover__content t-popover--warning"
+          >
+            弹出气泡内容
+            <div
+              class="t-popover__arrow"
+              data-popper-arrow="true"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="popover-theme-example__content"
+      >
+        <div
+          class="t-popover__wrapper"
+        >
+          <button
+            class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              错误色
+            </span>
+          </button>
+        </div>
+        <div
+          class="t-popover"
+          data-popper-placement="top"
+          style="display: none;"
+        >
+          <div
+            class="t-popover__content t-popover--error"
+          >
+            弹出气泡内容
+            <div
+              class="t-popover__arrow"
+              data-popper-arrow="true"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;
 
-exports[`csr snapshot test > csr test src/popover/_example/underline.tsx 1`] = `
+exports[`csr snapshot test > csr test src/popover/_example/type.tsx 1`] = `
 <div>
-  <div
-    class="demo-content"
-  >
-    <a
-      class="t-link t-link--medium t-link--primary t-link--underline"
+  <div>
+    <div
+      class="popover-type-example"
     >
-      <span
-        class="t-link__content"
+      <div
+        class="popover-type-example__summary mb-16"
       >
-        跳转链接
-      </span>
-    </a>
-    <a
-      class="t-link t-link--medium t-link--default t-link--underline t-link--hover"
+        带箭头的弹出气泡
+      </div>
+      <div
+        class="popover-type-example__content mb-24"
+      >
+        <div
+          class="t-popover__wrapper"
+        >
+          <button
+            class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              带箭头
+            </span>
+          </button>
+        </div>
+        <div
+          class="t-popover"
+          data-popper-placement="top"
+          style="display: none;"
+        >
+          <div
+            class="t-popover__content t-popover--dark"
+          >
+            弹出气泡内容
+            <div
+              class="t-popover__arrow"
+              data-popper-arrow="true"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="popover-type-example"
     >
-      <span
-        class="t-link__content"
+      <div
+        class="popover-type-example__summary mb-16"
       >
-        跳转链接
-      </span>
-    </a>
+        不带箭头的弹出气泡
+      </div>
+      <div
+        class="popover-type-example__content mb-24"
+      >
+        <div
+          class="t-popover__wrapper"
+        >
+          <button
+            class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              不带箭头
+            </span>
+          </button>
+        </div>
+        <div
+          class="t-popover"
+          data-popper-placement="top"
+          style="display: none;"
+        >
+          <div
+            class="t-popover__content t-popover--dark"
+          >
+            弹出气泡内容
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="popover-type-example"
+    >
+      <div
+        class="popover-type-example__summary mb-16"
+      >
+        自定义内容弹出气泡
+      </div>
+      <div
+        class="custom popover-type-example__content mb-24"
+      >
+        <div
+          class="t-popover__wrapper"
+        >
+          <button
+            class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              自定义内容
+            </span>
+          </button>
+        </div>
+        <div
+          class="t-popover"
+          data-popper-placement="top"
+          style="display: none;"
+        >
+          <div
+            class="t-popover__content t-popover--dark"
+          >
+            <div
+              class="custom__list"
+            >
+              <div
+                class="custom__item"
+              >
+                选项
+                1
+              </div>
+              <div
+                class="custom__item"
+              >
+                选项
+                2
+              </div>
+              <div
+                class="custom__item"
+              >
+                选项
+                3
+              </div>
+            </div>
+            <div
+              class="t-popover__arrow"
+              data-popper-arrow="true"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -45236,21 +45872,13 @@ exports[`ssr snapshot test > ssr test src/overlay/_example/base.tsx 1`] = `"<div
 
 exports[`ssr snapshot test > ssr test src/overlay/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Overlay 遮罩层</h1><p class="tdesign-mobile-demo-header__summary">通过遮罩层，可以强调部分内容</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件</h2><p class="tdesign-mobile-demo-block__summary">基础遮罩层</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->基础用法</span></button></div></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/popover/_example/base.tsx 1`] = `"<div class="demo-content"><a href="/mobile-react/overview" class="t-link t-link--medium t-link--default"><span class="t-link__content">跳转链接</span></a><a class="t-link t-link--medium t-link--default t-link--hover"><span class="t-link__content">跳转链接</span></a></div>"`;
+exports[`ssr snapshot test > ssr test src/popover/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Popover 弹出气泡</h1><p class="tdesign-mobile-demo-header__summary">用于文字提示的气泡框。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2></div><div class="tdesign-mobile-demo-block__slot"><div><div class="popover-type-example"><div class="popover-type-example__summary mb-16">带箭头的弹出气泡</div><div class="popover-type-example__content mb-24"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->带箭头</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div><div class="popover-type-example"><div class="popover-type-example__summary mb-16">不带箭头的弹出气泡</div><div class="popover-type-example__content mb-24"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->不带箭头</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容</div></div></div></div><div class="popover-type-example"><div class="popover-type-example__summary mb-16">自定义内容弹出气泡</div><div class="custom popover-type-example__content mb-24"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->自定义内容</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark"><div class="custom__list"><div class="custom__item">选项<!-- -->1</div><div class="custom__item">选项<!-- -->2</div><div class="custom__item">选项<!-- -->3</div></div><div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件样式</h2></div><div class="tdesign-mobile-demo-block__slot"><div><div class="popover-theme-example"><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->深色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->浅色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--light">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->品牌色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--brand">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div><div class="popover-theme-example"><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->成功色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--success">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->警告色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--warning">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->错误色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--error">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__slot"><div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">顶部弹出气泡</div><div class="popover-placement-example__content row mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->顶部左</span></button></div><div data-popper-placement="top-left" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->顶部中</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->顶部右</span></button></div><div data-popper-placement="top-right" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">底部弹出气泡</div><div class="popover-placement-example__content row mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->底部左</span></button></div><div data-popper-placement="bottom-left" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->底部中</span></button></div><div data-popper-placement="bottom" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->底部右</span></button></div><div data-popper-placement="bottom-right" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">右侧弹出气泡</div><div class="popover-placement-example__content column mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->右侧上</span></button></div><div data-popper-placement="right-top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->右侧中</span></button></div><div data-popper-placement="right" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->右侧下</span></button></div><div data-popper-placement="right-bottom" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">左侧弹出气泡</div><div class="popover-placement-example__content column flex-end mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->左侧上</span></button></div><div data-popper-placement="left-top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->左侧中</span></button></div><div data-popper-placement="left" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->左侧下</span></button></div><div data-popper-placement="left-bottom" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div></div></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/popover/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Link 链接</h1><p class="tdesign-mobile-demo-header__summary">当功能使用图标即可表意清楚时，可使用纯图标悬浮按钮，例如：添加、发布。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">基础文字链接</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-content"><a href="/mobile-react/overview" class="t-link t-link--medium t-link--default"><span class="t-link__content">跳转链接</span></a><a class="t-link t-link--medium t-link--default t-link--hover"><span class="t-link__content">跳转链接</span></a></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">下划线文字链接</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-content"><a class="t-link t-link--medium t-link--primary t-link--underline"><span class="t-link__content">跳转链接</span></a><a class="t-link t-link--medium t-link--default t-link--underline t-link--hover"><span class="t-link__content">跳转链接</span></a></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">前置图标文字链接</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-content"><a class="t-link t-link--medium t-link--primary t-link--underline t-link--hover"><span class="t-link__prefix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-link"><path fill="currentColor" d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"></path></svg></span><span class="t-link__content">跳转链接</span></a><a class="t-link t-link--medium t-link--default t-link--underline t-link--hover"><span class="t-link__prefix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-link"><path fill="currentColor" d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"></path></svg></span><span class="t-link__content">跳转链接</span></a></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">后置图标文字链接</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-content"><a class="t-link t-link--medium t-link--primary t-link--underline"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--default t-link--underline t-link--hover"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件状态</h2><p class="tdesign-mobile-demo-block__summary">不同主题</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-content"><a class="t-link t-link--medium t-link--primary"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--default"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--danger"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div><div class="demo-content"><a class="t-link t-link--medium t-link--success"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--warning"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">禁用状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-content"><a class="t-link t-link--medium t-link--primary t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--default t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--danger t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div><div class="demo-content"><a class="t-link t-link--medium t-link--success t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--warning t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">03 组件样式</h2><p class="tdesign-mobile-demo-block__summary">链接尺寸</p></div><div class="tdesign-mobile-demo-block__slot"><div class="demo-content"><a class="t-link t-link--small t-link--primary"><span class="t-link__content">S跳转链接</span></a><a class="t-link t-link--medium t-link--primary"><span class="t-link__content">M跳转链接</span></a><a class="t-link t-link--large t-link--primary"><span class="t-link__content">L跳转链接</span></a></div></div></div></div>"`;
+exports[`ssr snapshot test > ssr test src/popover/_example/placement.tsx 1`] = `"<div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">顶部弹出气泡</div><div class="popover-placement-example__content row mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->顶部左</span></button></div><div data-popper-placement="top-left" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->顶部中</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->顶部右</span></button></div><div data-popper-placement="top-right" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">底部弹出气泡</div><div class="popover-placement-example__content row mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->底部左</span></button></div><div data-popper-placement="bottom-left" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->底部中</span></button></div><div data-popper-placement="bottom" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->底部右</span></button></div><div data-popper-placement="bottom-right" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">右侧弹出气泡</div><div class="popover-placement-example__content column mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->右侧上</span></button></div><div data-popper-placement="right-top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->右侧中</span></button></div><div data-popper-placement="right" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->右侧下</span></button></div><div data-popper-placement="right-bottom" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div><div class="popover-placement-example"><div class="popover-placement-example__summary mb-16">左侧弹出气泡</div><div class="popover-placement-example__content column flex-end mb-24"><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->左侧上</span></button></div><div data-popper-placement="left-top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->左侧中</span></button></div><div data-popper-placement="left" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-placement-example__content__item"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-with--large"><span class="t-button__content"> <!-- -->左侧下</span></button></div><div data-popper-placement="left-bottom" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/popover/_example/linkSize.tsx 1`] = `"<div class="demo-content"><a class="t-link t-link--small t-link--primary"><span class="t-link__content">S跳转链接</span></a><a class="t-link t-link--medium t-link--primary"><span class="t-link__content">M跳转链接</span></a><a class="t-link t-link--large t-link--primary"><span class="t-link__content">L跳转链接</span></a></div>"`;
+exports[`ssr snapshot test > ssr test src/popover/_example/theme.tsx 1`] = `"<div><div class="popover-theme-example"><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->深色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->浅色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--light">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->品牌色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--brand">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div><div class="popover-theme-example"><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->成功色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--success">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->警告色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--warning">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div><div class="popover-theme-example__content"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle button-width--small"><span class="t-button__content"> <!-- -->错误色</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--error">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div>"`;
 
-exports[`ssr snapshot test > ssr test src/popover/_example/prefix.tsx 1`] = `"<div class="demo-content"><a class="t-link t-link--medium t-link--primary t-link--underline t-link--hover"><span class="t-link__prefix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-link"><path fill="currentColor" d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"></path></svg></span><span class="t-link__content">跳转链接</span></a><a class="t-link t-link--medium t-link--default t-link--underline t-link--hover"><span class="t-link__prefix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-link"><path fill="currentColor" d="M13.3 3.96a4.77 4.77 0 116.74 6.75l-3.03 3.03-1.41-1.42 3.03-3.03a2.77 2.77 0 10-3.92-3.92L11.68 8.4 10.26 7l3.03-3.03zM15.4 10L10 15.41 8.58 14 14 8.59 15.4 10zm-7 1.68L5.36 14.7a2.77 2.77 0 103.92 3.92l3.03-3.03L13.74 17l-3.03 3.03a4.77 4.77 0 11-6.75-6.75l3.03-3.03 1.41 1.42z"></path></svg></span><span class="t-link__content">跳转链接</span></a></div>"`;
-
-exports[`ssr snapshot test > ssr test src/popover/_example/status.tsx 1`] = `"<div class="demo-content"><a class="t-link t-link--medium t-link--primary t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--default t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--danger t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div><div class="demo-content"><a class="t-link t-link--medium t-link--success t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--warning t-link--disabled"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div>"`;
-
-exports[`ssr snapshot test > ssr test src/popover/_example/suffix.tsx 1`] = `"<div class="demo-content"><a class="t-link t-link--medium t-link--primary t-link--underline"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--default t-link--underline t-link--hover"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div>"`;
-
-exports[`ssr snapshot test > ssr test src/popover/_example/theme.tsx 1`] = `"<div class="demo-content"><a class="t-link t-link--medium t-link--primary"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--default"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--danger"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div><div class="demo-content"><a class="t-link t-link--medium t-link--success"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a><a class="t-link t-link--medium t-link--warning"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21V3h7.1v2H5v14h14v-5.1h2V21H3zm7.59-9l7-7H13V3h8v8h-2V6.41l-7 7L10.59 12z"></path></svg></span></a></div>"`;
-
-exports[`ssr snapshot test > ssr test src/popover/_example/underline.tsx 1`] = `"<div class="demo-content"><a class="t-link t-link--medium t-link--primary t-link--underline"><span class="t-link__content">跳转链接</span></a><a class="t-link t-link--medium t-link--default t-link--underline t-link--hover"><span class="t-link__content">跳转链接</span></a></div>"`;
+exports[`ssr snapshot test > ssr test src/popover/_example/type.tsx 1`] = `"<div><div class="popover-type-example"><div class="popover-type-example__summary mb-16">带箭头的弹出气泡</div><div class="popover-type-example__content mb-24"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->带箭头</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容<div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div><div class="popover-type-example"><div class="popover-type-example__summary mb-16">不带箭头的弹出气泡</div><div class="popover-type-example__content mb-24"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->不带箭头</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark">弹出气泡内容</div></div></div></div><div class="popover-type-example"><div class="popover-type-example__summary mb-16">自定义内容弹出气泡</div><div class="custom popover-type-example__content mb-24"><div class="t-popover__wrapper"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->自定义内容</span></button></div><div data-popper-placement="top" class="t-popover" style="display:none"><div class="t-popover__content t-popover--dark"><div class="custom__list"><div class="custom__item">选项<!-- -->1</div><div class="custom__item">选项<!-- -->2</div><div class="custom__item">选项<!-- -->3</div></div><div class="t-popover__arrow" data-popper-arrow="true"></div></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/popup/_example/base.tsx 1`] = `"<div style="padding:0 16px"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block" style="margin:16px 0"><span class="t-button__content"> <!-- -->顶部弹出</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block" style="margin:16px 0"><span class="t-button__content"> <!-- -->左侧弹出</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block" style="margin:16px 0"><span class="t-button__content"> <!-- -->中间弹出</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block" style="margin:16px 0"><span class="t-button__content"> <!-- -->底部弹出</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block" style="margin:16px 0"><span class="t-button__content"> <!-- -->右侧弹出</span></button><div class="t-popup t-popup--top" style="display:none;animation-fill-mode:forwards;padding:100px"></div></div>"`;
 
