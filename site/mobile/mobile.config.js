@@ -262,5 +262,10 @@ export default {
       name: 'table',
       component: () => import('tdesign-mobile-react/table/_example/index.tsx'),
     },
+    {
+      title: 'Empty 空状态',
+      name: 'empty',
+      component: () => import('tdesign-mobile-react/empty/_example/index.tsx'),
+    },
   ],
 };

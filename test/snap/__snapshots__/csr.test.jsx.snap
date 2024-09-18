@@ -10013,6 +10013,335 @@ exports[`csr snapshot test > csr test src/divider/_example/theme.tsx 1`] = `
 </div>
 `;
 
+exports[`csr snapshot test > csr test src/empty/_example/base.tsx 1`] = `
+<div>
+  <div
+    class="t-empty"
+  >
+    <div
+      class="t-empty__thumb"
+    >
+      <div
+        class="t-empty__icon"
+      >
+        <svg
+          class="t-icon t-icon-info-circle-filled"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M12 23a11 11 0 100-22 11 11 0 000 22zM11 8.5v-2h2v2h-2zm2 1.5v7.5h-2V10h2z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      class="t-empty__description"
+    >
+      描述文字
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/empty/_example/buttonEmpty.tsx 1`] = `
+<div>
+  <div
+    class="t-empty"
+  >
+    <div
+      class="t-empty__thumb"
+    >
+      <div
+        class="t-empty__icon"
+      >
+        <svg
+          class="t-icon t-icon-info-circle-filled"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M12 23a11 11 0 100-22 11 11 0 000 22zM11 8.5v-2h2v2h-2zm2 1.5v7.5h-2V10h2z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      class="t-empty__description"
+    >
+      描述文字
+    </div>
+    <div
+      class="t-empty__actions"
+    >
+      <button
+        class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"
+        type="button"
+      >
+        <span
+          class="t-button__content"
+        >
+           
+          操作按钮
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/empty/_example/imageEmpty.tsx 1`] = `
+<div>
+  <div
+    class="t-empty"
+  >
+    <div
+      class="t-empty__thumb"
+    >
+      <div
+        class="t-image t-image--square"
+      >
+        <div
+          class="t-image__mask"
+        >
+          <div
+            class="t-loading t-loading--center"
+            style="font-size: 20px;"
+          >
+            <div
+              class="t-loading__dots"
+              style="animation-duration: 800ms; width: 20px; height: 20px;"
+            >
+              <div
+                class="t-loading__dot"
+                style="animation-duration: 0.8s; animation-delay: 0s;"
+              />
+              <div
+                class="t-loading__dot"
+                style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+              />
+              <div
+                class="t-loading__dot"
+                style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+              />
+            </div>
+          </div>
+        </div>
+        <img
+          class="t-image__img t-image--fit-fill t-image--position-center"
+          src="https://tdesign.gtimg.com/mobile/demos/empty1.png"
+        />
+      </div>
+    </div>
+    <div
+      class="t-empty__description"
+    >
+      描述文字
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/empty/_example/index.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-demo"
+  >
+    <div
+      class="tdesign-mobile-demo-header"
+    >
+      <h1
+        class="tdesign-mobile-demo-header__title"
+      >
+        Empty 空状态
+      </h1>
+      <p
+        class="tdesign-mobile-demo-header__summary"
+      >
+        用于空状态时的占位提示。
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          图标空状态
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="t-empty"
+        >
+          <div
+            class="t-empty__thumb"
+          >
+            <div
+              class="t-empty__icon"
+            >
+              <svg
+                class="t-icon t-icon-info-circle-filled"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M12 23a11 11 0 100-22 11 11 0 000 22zM11 8.5v-2h2v2h-2zm2 1.5v7.5h-2V10h2z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            class="t-empty__description"
+          >
+            描述文字
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          自定义图片空状态
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="t-empty"
+        >
+          <div
+            class="t-empty__thumb"
+          >
+            <div
+              class="t-image t-image--square"
+            >
+              <div
+                class="t-image__mask"
+              >
+                <div
+                  class="t-loading t-loading--center"
+                  style="font-size: 20px;"
+                >
+                  <div
+                    class="t-loading__dots"
+                    style="animation-duration: 800ms; width: 20px; height: 20px;"
+                  >
+                    <div
+                      class="t-loading__dot"
+                      style="animation-duration: 0.8s; animation-delay: 0s;"
+                    />
+                    <div
+                      class="t-loading__dot"
+                      style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                    />
+                    <div
+                      class="t-loading__dot"
+                      style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <img
+                class="t-image__img t-image--fit-fill t-image--position-center"
+                src="https://tdesign.gtimg.com/mobile/demos/empty1.png"
+              />
+            </div>
+          </div>
+          <div
+            class="t-empty__description"
+          >
+            描述文字
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          带操作空状态
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="t-empty"
+        >
+          <div
+            class="t-empty__thumb"
+          >
+            <div
+              class="t-empty__icon"
+            >
+              <svg
+                class="t-icon t-icon-info-circle-filled"
+                fill="none"
+                height="1em"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="M12 23a11 11 0 100-22 11 11 0 000 22zM11 8.5v-2h2v2h-2zm2 1.5v7.5h-2V10h2z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            class="t-empty__description"
+          >
+            描述文字
+          </div>
+          <div
+            class="t-empty__actions"
+          >
+            <button
+              class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                操作按钮
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`csr snapshot test > csr test src/grid/_example/badge.tsx 1`] = `
 <div>
   <div
@@ -44756,6 +45085,14 @@ exports[`ssr snapshot test > ssr test src/divider/_example/base.tsx 1`] = `"<div
 exports[`ssr snapshot test > ssr test src/divider/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Divider 分割符</h1><p class="tdesign-mobile-demo-header__summary">用于分割、组织、细化有一定逻辑的组织元素内容和页面结构。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="divider-demo__title">水平分割线</div><div class="t-divider t-divider--horizontal t-divider--center" role="separator"><div class="t-divider__content"></div></div><div class="divider-demo__title">带文字水平分割线</div><div class="t-divider t-divider--horizontal t-divider--left" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--center" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--right" role="separator"><div class="t-divider__content">文字信息</div></div><div class="divider-demo__title" style="margin-bottom:10px">垂直分割线</div><div class="divider-wrapper"><span>文字信息</span><div class="t-divider t-divider--vertical t-divider--center" role="separator"><div class="t-divider__content"></div></div><span>文字信息</span><div class="t-divider t-divider--vertical t-divider--center" role="separator"><div class="t-divider__content"></div></div><span>文字信息</span></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件状态</h2></div><div class="tdesign-mobile-demo-block__slot with-padding"><div><div class="divider-demo__title">虚线样式</div><div class="t-divider t-divider--horizontal t-divider--center t-divider--dashed" role="separator"><div class="t-divider__content"></div></div><div class="t-divider t-divider--horizontal t-divider--left t-divider--dashed" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--center t-divider--dashed" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--right t-divider--dashed" role="separator"><div class="t-divider__content">文字信息</div></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/divider/_example/theme.tsx 1`] = `"<div><div class="divider-demo__title">虚线样式</div><div class="t-divider t-divider--horizontal t-divider--center t-divider--dashed" role="separator"><div class="t-divider__content"></div></div><div class="t-divider t-divider--horizontal t-divider--left t-divider--dashed" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--center t-divider--dashed" role="separator"><div class="t-divider__content">文字信息</div></div><div class="t-divider t-divider--horizontal t-divider--right t-divider--dashed" role="separator"><div class="t-divider__content">文字信息</div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/empty/_example/base.tsx 1`] = `"<div class="t-empty"><div class="t-empty__thumb"><div class="t-empty__icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-info-circle-filled"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM11 8.5v-2h2v2h-2zm2 1.5v7.5h-2V10h2z"></path></svg></div></div><div class="t-empty__description">描述文字</div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/empty/_example/buttonEmpty.tsx 1`] = `"<div class="t-empty"><div class="t-empty__thumb"><div class="t-empty__icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-info-circle-filled"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM11 8.5v-2h2v2h-2zm2 1.5v7.5h-2V10h2z"></path></svg></div></div><div class="t-empty__description">描述文字</div><div class="t-empty__actions"><button type="button" class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->操作按钮</span></button></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/empty/_example/imageEmpty.tsx 1`] = `"<div class="t-empty"><div class="t-empty__thumb"><div class="t-image t-image--square"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/empty1.png"/></div></div><div class="t-empty__description">描述文字</div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/empty/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Empty 空状态</h1><p class="tdesign-mobile-demo-header__summary">用于空状态时的占位提示。</p></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">图标空状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-empty"><div class="t-empty__thumb"><div class="t-empty__icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-info-circle-filled"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM11 8.5v-2h2v2h-2zm2 1.5v7.5h-2V10h2z"></path></svg></div></div><div class="t-empty__description">描述文字</div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">自定义图片空状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-empty"><div class="t-empty__thumb"><div class="t-image t-image--square"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/empty1.png"/></div></div><div class="t-empty__description">描述文字</div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">带操作空状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-empty"><div class="t-empty__thumb"><div class="t-empty__icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-info-circle-filled"><path fill="currentColor" d="M12 23a11 11 0 100-22 11 11 0 000 22zM11 8.5v-2h2v2h-2zm2 1.5v7.5h-2V10h2z"></path></svg></div></div><div class="t-empty__description">描述文字</div><div class="t-empty__actions"><button type="button" class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->操作按钮</span></button></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/grid/_example/badge.tsx 1`] = `"<div class="t-grid grid-demo" style="padding:undefinedpx;grid-template-columns:repeat(4, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-badge"><div class="t-badge__content"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-badge--basic t-badge--dot t-badge--medium t-badge--circle t-has-count"></div></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-badge"><div class="t-badge__content"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">8</div></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-badge"><div class="t-badge__content"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">13</div></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题五字内</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-badge"><div class="t-badge__content"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">NEW</div></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题五字内</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div></div>"`;
 
