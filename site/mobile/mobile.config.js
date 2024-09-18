@@ -125,7 +125,7 @@ export default {
     {
       title: 'Checkbox 多选框',
       name: 'checkbox',
-      component: () => import('tdesign-mobile-react/checkbox/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/checkbox/_example/index.tsx'),
     },
     {
       title: 'Dialog 对话框',
