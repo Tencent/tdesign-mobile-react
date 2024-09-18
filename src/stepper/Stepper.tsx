@@ -116,7 +116,7 @@ const Stepper = forwardRef<HTMLDivElement, StepperProps>((originProps, ref) => {
         })}
         onClick={minusValue}
       >
-        <RemoveIcon className={`${currentValue}__minus-icon`} />
+        <RemoveIcon className={`${baseClass}__minus-icon`} />
       </div>
       <input
         value={currentValue}
@@ -139,7 +139,7 @@ const Stepper = forwardRef<HTMLDivElement, StepperProps>((originProps, ref) => {
         })}
         onClick={plusValue}
       >
-        <AddIcon className={`${currentValue}__plus-icon`} />
+        <AddIcon className={`${baseClass}__plus-icon`} />
       </div>
     </div>,
   );
