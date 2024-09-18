@@ -1,8 +1,15 @@
-import React, { FC, HTMLAttributes, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
-import useConfig from '../_util/useConfig';
-import { TdTabsProps } from './type';
+import type { FC, HTMLAttributes, CSSProperties } from 'react';
+import Sticky from '../sticky';
+import Badge from '../badge';
+import { TdTabPanelProps, TdTabsProps } from './type';
 import TabPanel from './TabPanel';
+import useConfig from '../_util/useConfig';
+import { usePrefixClass } from '../hooks/useClass';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { tabsDefaultProps } from './defaultProps';
+import parseTNode from '../_util/parseTNode';
 import TabContext from './context';
 
 type TabsHTMLAttrs = Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'style'>;
@@ -10,149 +17,255 @@ export interface TabsProps extends TdTabsProps, TabsHTMLAttrs {}
 
 const Tabs: FC<TabsProps> = (props) => {
   const {
-    className = '',
-    style,
+    bottomLineMode,
     children,
-    content,
-    defaultValue = '',
-    list = [],
+    list,
     animation,
-    placement,
-    showBottomLine = true,
+    spaceEvenly,
+    showBottomLine,
     size,
-    change,
-  } = props;
-  const [activeKey, setActiveKey] = useState<number | string>('');
+    theme,
+    stickyProps,
+    swipeable,
+    onChange,
+    onClick,
+    onScroll,
+    value,
+    defaultValue,
+  } = useDefaultProps<TabsProps>(props, tabsDefaultProps);
+  const tabsClass = usePrefixClass('tabs');
+  const tabsClasses = useMemo(
+    () =>
+      classnames({
+        [tabsClass]: true,
+        [`${size}`]: size,
+      }),
+    [size, tabsClass],
+  );
+
+  const itemProps = useMemo<Array<TdTabPanelProps>>(() => {
+    if (list && list.length > 0) {
+      return list;
+    }
+
+    const propsArr = [];
+
+    React.Children.forEach(children, (child: JSX.Element) => {
+      if (child.type.displayName === TabPanel.displayName) {
+        propsArr.push(child.props);
+      }
+    });
+
+    return propsArr;
+  }, [list, children]);
+
+  const [activeKey, setActiveKey] = useState<number | string>(
+    defaultValue || defaultValue === 0 ? defaultValue : value,
+  );
   const [lineStyle, setLineStyle] = useState({});
-  const [wrapWidth, setWrapWidth] = useState(0);
-
   const { classPrefix } = useConfig();
-  const tabPrefix = classPrefix || 't';
-  const horiRef = useRef(null);
-  const wrapRef = useRef(null);
-  const vetiRef = useRef(null);
+  const activeClass = `${tabsClass}__item--active`;
+  const navScrollRef = useRef<HTMLDivElement>(null);
+  const navWrapRef = useRef<HTMLDivElement>(null);
+  const navLineRef = useRef<HTMLDivElement>(null);
 
-  const onChange = (value) => {
-    setActiveKey(value);
-    change && change(value);
+  const [startX, setStartX] = useState(0);
+  const [startY, setStartY] = useState(0);
+  const [endX, setEndX] = useState(0);
+  const [endY, setEndY] = useState(0);
+  const [canMove, setCanMove] = useState(true);
+  const tabIndex = useMemo(() => {
+    let index = 0;
+    for (let i = 0; i < itemProps.length; i++) {
+      if (itemProps[i].value === activeKey) {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }, [activeKey, itemProps]);
+
+  const currentIndex = useMemo(() => itemProps.map((p) => p.value).indexOf(activeKey), [activeKey, itemProps]);
+
+  const moveToActiveTab = () => {
+    if (navWrapRef.current && navLineRef.current && showBottomLine) {
+      const tab = navWrapRef.current.querySelector<HTMLElement>(`.${activeClass}`);
+      if (!tab) return;
+      const line = navLineRef.current;
+      const tabInner = tab.querySelector<HTMLElement>(`.${classPrefix}-badge`);
+      const style: CSSProperties = {};
+      if (bottomLineMode === 'auto') {
+        style.width = `${Number(tabInner?.offsetWidth)}px`;
+        style.transform = `translateX(${Number(tab?.offsetLeft) + Number(tabInner?.offsetLeft)}px)`;
+      } else if (bottomLineMode === 'full') {
+        style.width = `${Number(tab?.offsetWidth)}px`;
+        style.transform = `translateX(${Number(tab?.offsetLeft)}px)`;
+      } else {
+        style.transform = `translateX(${
+          Number(tab?.offsetLeft) + (Number(tab?.offsetWidth) - Number(line?.offsetWidth)) / 2
+        }px)`;
+      }
+
+      if (animation) {
+        style.transitionDuration = `${animation.duration}ms`;
+      }
+
+      setLineStyle(style);
+    }
+  };
+
+  const handleTabClick = (item: TdTabPanelProps) => {
+    const { value, disabled } = item;
+    if (disabled || activeKey === value) {
+      return false;
+    }
+    setActiveKey(item.value);
+    if (onChange) {
+      onChange(item.value, parseTNode(item.label).toString());
+    }
+    if (onClick) {
+      onClick(item.value, parseTNode(item.label).toString());
+    }
+    setTimeout(() => {
+      moveToActiveTab();
+    }, 0);
+  };
+
+  const handlerScroll = (context: { scrollTop: number; isFixed: boolean }) => {
+    const { scrollTop, isFixed } = context;
+    if (stickyProps) {
+      onScroll?.(scrollTop, isFixed);
+    }
+  };
+
+  // 手势滑动开始
+  const handleTouchstart = (e: React.TouchEvent) => {
+    if (!swipeable) return;
+    setStartX(e.targetTouches[0].clientX);
+    setStartY(e.targetTouches[0].clientY);
+  };
+
+  const handleTouchmove = (e: React.TouchEvent) => {
+    if (!swipeable) return;
+    if (!canMove) return;
+    setEndX(e.targetTouches[0].clientX);
+    setEndY(e.targetTouches[0].clientY);
+
+    const dValueX = Math.abs(startX - endX);
+    const dValueY = Math.abs(startY - endY);
+    if (tabIndex >= 0 && tabIndex < itemProps.length) {
+      if (dValueX > dValueY) {
+        // if (typeof e.cancelable !== 'boolean' || e.cancelable) {
+        //   e.preventDefault();
+        // }
+        if (dValueX <= 40) return;
+        if (startX > endX) {
+          // 向左划
+          if (tabIndex >= itemProps.length - 1) return;
+          setCanMove(false);
+          handleTabClick(itemProps[tabIndex + 1]);
+        } else if (startX < endX) {
+          // 向右划
+          if (tabIndex <= 0) return;
+          setCanMove(false);
+          handleTabClick(itemProps[tabIndex - 1]);
+        }
+      }
+    }
+  };
+
+  // 手势滑动结束
+  const handleTouchend = () => {
+    if (!swipeable) return;
+    setCanMove(true);
+    setStartX(0);
+    setEndX(0);
+    setStartY(0);
+    setEndY(0);
   };
 
   useEffect(() => {
-    if (placement === 'left' || placement === 'right') {
-      const vetiIndfo = vetiRef.current?.getBoundingClientRect();
-      if (vetiIndfo) {
-        const { height } = vetiIndfo || {};
-        const offsetTop = vetiRef.current?.offsetTop;
-        const sTop = wrapRef.current?.scrollTop;
-        const linePosition = offsetTop + sTop;
-        const lStyle = {
-          width: '2px',
-          height: `${height}px`,
-          left: 0,
-          top: `${linePosition}px`,
-        };
-        const rStyle = {
-          width: '2px',
-          height: `${height}px`,
-          right: 0,
-          top: `${linePosition}px`,
-        };
-        if (placement === 'left') {
-          setLineStyle(lStyle);
-        }
-        if (placement === 'right') {
-          setLineStyle(rStyle);
-        }
-      }
-    } else {
-      const eleInfo = horiRef.current?.getBoundingClientRect();
-      if (eleInfo) {
-        const sLeft = wrapRef.current?.scrollLeft;
-        const { width, left } = eleInfo || {};
-        const linePosition = left + sLeft;
-        const warpEle = wrapRef?.current;
-        warpEle.scrollLeft = linePosition - wrapWidth / 2;
+    window.addEventListener('resize', moveToActiveTab, false);
+    const timeout = setTimeout(() => {
+      moveToActiveTab();
+    }, 300);
 
-        const tbStyle = {
-          width: `${width}px`,
-          left: `${linePosition}px`,
-        };
-        setLineStyle(tbStyle);
-      }
-    }
-  }, [activeKey, wrapWidth, placement, defaultValue, tabPrefix]);
-
-  useEffect(() => {
-    const warapWidth = wrapRef.current?.getBoundingClientRect().width;
-    setWrapWidth(warapWidth);
+    return () => {
+      window.removeEventListener('resize', moveToActiveTab);
+      clearTimeout(timeout);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (activeKey) return;
-    if (defaultValue) {
-      onChange(defaultValue);
-      return;
-    }
-    if (list.length > 0) {
-      onChange(list[0]?.value);
-      return;
-    }
-    if (!children) return;
-    if (Array.isArray(children)) {
-      onChange(children[0]?.props?.value);
-    } else {
-      onChange(children?.props.value);
-    }
+    setTimeout(() => {
+      moveToActiveTab();
+    }, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tabPrefix, defaultValue]);
+  }, [value]);
+
+  const renderNav = () =>
+    itemProps.map((item, index) => {
+      const { badgeProps } = item;
+      return (
+        <div
+          key={item.value}
+          className={classnames({
+            [`${tabsClass}__item ${tabsClass}__item--top`]: true,
+            [`${tabsClass}__item--evenly`]: spaceEvenly,
+            [`${activeClass}`]: item.value === activeKey,
+            [`${tabsClass}__item--disabled`]: item.disabled,
+            [`${tabsClass}__item--${theme}`]: true,
+          })}
+          onClick={() => handleTabClick(item)}
+        >
+          <Badge {...badgeProps}>
+            <div
+              className={classnames({
+                [`${tabsClass}__item-inner ${tabsClass}__item-inner--${theme}`]: true,
+                [`${tabsClass}__item-inner--active`]: theme === 'tag' && item.value === activeKey,
+              })}
+            >
+              <div>{parseTNode(item.label)}</div>
+            </div>
+          </Badge>
+          {theme === 'card' && index === currentIndex - 1 && <div className={`${tabsClass}__item-prefix`}></div>}
+          {theme === 'card' && index === currentIndex + 1 && <div className={`${tabsClass}__item-suffix`}></div>}
+        </div>
+      );
+    });
 
   return (
-    <div
-      className={classnames(
-        [`${tabPrefix}-tabs`, className],
-        size === 'large' && `${tabPrefix}-size-l`,
-        size === 'small' && `${tabPrefix}-size-s`,
-        placement && `${tabPrefix}-is-${placement}`,
-      )}
-      style={style}
-    >
-      <div ref={wrapRef} className={classnames(`${tabPrefix}-tabs__nav `, `${tabPrefix}-is-scrollable `)}>
-        <div className={classnames(`${tabPrefix}-tabs__nav-wrap`, `${tabPrefix}-tabs__nav-container`)}>
-          <TabContext.Provider value={{ activeKey, vetiRef, horiRef, onChange }}>
-            {children}
-            {list &&
-              list.length > 0 &&
-              list.map((item) => (
-                <TabPanel key={item.value} value={item.value} label={item.label} disabled={item.disabled}></TabPanel>
-              ))}
-          </TabContext.Provider>
-          {showBottomLine && (
-            <div
-              style={{
-                ...animation,
-                ...lineStyle,
-              }}
-              className={`${tabPrefix}-tabs__nav-line`}
-            ></div>
-          )}
+    <div className={tabsClasses}>
+      <Sticky {...stickyProps} onScroll={handlerScroll}>
+        <div className={`${tabsClass}__nav`}>
+          <div
+            ref={navScrollRef}
+            className={`${tabsClass}__scroll ${tabsClass}__scroll--top ${tabsClass}__scroll--${theme}`}
+          >
+            <div ref={navWrapRef} className={`${tabsClass}__wrapper ${tabsClass}__wrapper--${theme}`}>
+              {renderNav()}
+              {theme === 'line' && showBottomLine && (
+                <div
+                  ref={navLineRef}
+                  style={lineStyle}
+                  className={`${tabsClass}__track ${tabsClass}__track--top`}
+                ></div>
+              )}
+            </div>
+          </div>
         </div>
+      </Sticky>
+      <div
+        className={`${tabsClass}__content`}
+        onTouchStart={handleTouchstart}
+        onTouchMove={handleTouchmove}
+        onTouchEnd={handleTouchend}
+      >
+        <TabContext.Provider value={{ activeKey }}>{children}</TabContext.Provider>
       </div>
-      {(children || content) && (
-        <div
-          className={classnames(
-            `${tabPrefix}-tabs__content`,
-            (placement === 'left' || placement === 'right') && `${tabPrefix}-tabs__panel`,
-          )}
-        >
-          {children &&
-            Array.isArray(children) &&
-            children.map((item) => <>{activeKey === item?.props?.value && <>{item.props.children}</>}</>)}
-          {children && typeof children === 'object' && <>{children?.props?.children}</>}
-          {content}
-        </div>
-      )}
     </div>
   );
 };
-
+Tabs.displayName = 'Tabs';
 export default Tabs;
