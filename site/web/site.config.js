@@ -251,6 +251,12 @@ export default {
           component: () => import('tdesign-mobile-react/count-down/count-down.md'),
         },
         {
+          title: 'Empty 空状态',
+          name: 'empty',
+          path: '/mobile-react/components/empty',
+          component: () => import('tdesign-mobile-react/empty/empty.md'),
+        },
+        {
           title: 'Image 图片',
           name: 'image',
           path: '/mobile-react/components/image',
