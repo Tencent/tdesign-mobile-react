@@ -41,6 +41,7 @@ export * from './cell';
 export * from './count-down';
 export * from './grid';
 export * from './image';
+export * from './image-viewer';
 export * from './skeleton';
 export * from './sticky';
 export * from './swiper';
