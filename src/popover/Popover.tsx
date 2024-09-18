@@ -10,12 +10,15 @@ import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { popoverDefaultProps } from './defaultProps';
 import { parseContentTNode } from '../_util/parseTNode';
+import useDefault from '../_util/useDefault';
 
 export interface PopoverProps extends TdPopoverProps, StyledProps {}
 
 const Popover: React.FC<PopoverProps> = (props) => {
   const {
     closeOnClickOutside,
+    className,
+    style,
     content,
     placement,
     showArrow,
@@ -23,10 +26,11 @@ const Popover: React.FC<PopoverProps> = (props) => {
     triggerElement,
     children,
     visible,
+    defaultVisible,
     onVisibleChange,
   } = useDefaultProps<PopoverProps>(props, popoverDefaultProps);
 
-  const [currentVisible, setVisible] = useState(visible);
+  const [currentVisible, setVisible] = useDefault(visible, defaultVisible, onVisibleChange);
   const [active, setActive] = useState(visible);
   const referenceRef = useRef<HTMLDivElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
@@ -126,12 +130,8 @@ const Popover: React.FC<PopoverProps> = (props) => {
   };
 
   const updateVisible = (visible) => {
-    setVisible((pre) => {
-      if (pre !== visible) {
-        onVisibleChange?.(visible);
-      }
-      return visible;
-    });
+    if (visible === currentVisible) return;
+    setVisible(visible);
   };
 
   const onClickAway = () => {
@@ -150,6 +150,7 @@ const Popover: React.FC<PopoverProps> = (props) => {
 
   useEffect(() => {
     setVisible(visible);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 
   useEffect(() => {
@@ -185,7 +186,12 @@ const Popover: React.FC<PopoverProps> = (props) => {
 
   return (
     <>
-      <div ref={referenceRef} className={`${popoverClass}__wrapper`} onClick={onClickReference}>
+      <div
+        ref={referenceRef}
+        className={classNames(`${popoverClass}__wrapper`, className)}
+        style={style}
+        onClick={onClickReference}
+      >
         {children}
         {triggerElement}
       </div>

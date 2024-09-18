@@ -31,7 +31,7 @@ export default () => {
         <div className="popover-type-example__summary mb-16">不带箭头的弹出气泡</div>
         <div className="popover-type-example__content mb-24">
           <Popover
-            visible={visible}
+            defaultVisible={visible}
             placement="top"
             theme="dark"
             showArrow={false}
