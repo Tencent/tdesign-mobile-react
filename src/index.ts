@@ -61,6 +61,7 @@ export * from './popup';
 export * from './pull-down-refresh';
 export * from './toast';
 export * from './drawer';
+export * from './popover';
 
 /**
  * 二期组件
