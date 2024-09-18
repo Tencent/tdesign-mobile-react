@@ -128,7 +128,6 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
           {treeOption.map((item) => (
             <Checkbox
               key={item.value}
-              className={`${treeSelectClass}__checkbox-item`}
               value={item.value}
               maxLabelRow={1}
               icon="line"
@@ -143,15 +142,10 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
     }
     return (
       <>
-        <RadioGroup
-          value={innerValue[level]}
-          className={`${treeSelectClass}__radio`}
-          onChange={(val) => onRootChange(level as TreeLevel, val)}
-        >
+        <RadioGroup value={innerValue[level]} onChange={(val) => onRootChange(level as TreeLevel, val)}>
           {treeOption.map((item) => (
             <Radio
               key={item.value}
-              className={`${treeSelectClass}__radio-item`}
               value={item.value}
               icon="line"
               maxLabelRow={1}
