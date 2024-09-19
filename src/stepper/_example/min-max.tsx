@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Stepper } from 'tdesign-mobile-react';
 
 export default function MinMax() {
+  const [value, setValue] = useState(3);
+
   const onChange = ($event: number) => {
+    setValue($event);
     console.log(`change to ${$event}`);
   };
   const onBlur = ($event: number) => {
@@ -16,7 +19,7 @@ export default function MinMax() {
     <div className="stepper-example">
       <Stepper defaultValue={0} theme="filled" />
       <Stepper
-        defaultValue={0}
+        value={value}
         theme="filled"
         step={1}
         min={0}

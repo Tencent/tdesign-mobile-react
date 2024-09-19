@@ -1,15 +1,15 @@
 import React, { FormEvent, forwardRef, memo } from 'react';
 import classNames from 'classnames';
 import { AddIcon, RemoveIcon } from 'tdesign-icons-react';
-import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
-import useDefault from 'tdesign-mobile-react/_util/useDefault';
-import { formatNumber } from 'tdesign-mobile-react/_util/formatNumber';
-import useConfig from '../_util/useConfig';
+import { usePrefixClass } from '../hooks/useClass';
+import useDefaultProps from '../hooks/useDefaultProps';
+import useDefault from '../_util/useDefault';
+import { formatNumber } from '../_util/formatNumber';
+import { StyledProps } from '../common';
 import { TdStepperProps } from './type';
-import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import { stepperDefaultProps } from './defaultProps';
 
-export interface StepperProps extends TdStepperProps, NativeProps {}
+export interface StepperProps extends TdStepperProps, StyledProps {}
 
 const Stepper = forwardRef<HTMLDivElement, StepperProps>((originProps, ref) => {
   const props = useDefaultProps(originProps, stepperDefaultProps);
@@ -31,13 +31,13 @@ const Stepper = forwardRef<HTMLDivElement, StepperProps>((originProps, ref) => {
     onChange,
     onFocus,
     onOverlimit,
-    ...otherProps
   } = props;
 
   const [currentValue, setCurrentValue] = useDefault(value, defaultValue, onChange);
-  const { classPrefix } = useConfig();
-  const baseClass = `${classPrefix}-stepper`;
-  const inputStyle = inputWidth ? { width: `${props.inputWidth}px` } : {};
+
+  const stepperClass = usePrefixClass('stepper');
+
+  const inputStyle = inputWidth ? { width: `${inputWidth}px` } : {};
 
   const isDisabled = (type: 'minus' | 'plus') => {
     if (disabled) return true;
@@ -107,22 +107,31 @@ const Stepper = forwardRef<HTMLDivElement, StepperProps>((originProps, ref) => {
     onBlur(Number(currentValue));
   };
 
-  return withNativeProps(
-    props,
-    <div className={classNames(baseClass, `${baseClass}--${size}`, className)} style={style} {...otherProps} ref={ref}>
+  return (
+    <div className={classNames(stepperClass, `${stepperClass}--${size}`, className)} style={style} ref={ref}>
       <div
-        className={classNames(`${baseClass}__minus`, `${baseClass}__minus--${theme}`, `${baseClass}__icon--${size}`, {
-          [`${baseClass}--${theme}-disabled`]: disabled || Number(currentValue) <= props.min,
-        })}
+        className={classNames(
+          `${stepperClass}__minus`,
+          `${stepperClass}__minus--${theme}`,
+          `${stepperClass}__icon--${size}`,
+          {
+            [`${stepperClass}--${theme}-disabled`]: disabled || Number(currentValue) <= props.min,
+          },
+        )}
         onClick={minusValue}
       >
-        <RemoveIcon className={`${baseClass}__minus-icon`} />
+        <RemoveIcon className={`${stepperClass}__minus-icon`} />
       </div>
       <input
         value={currentValue}
-        className={classNames(`${baseClass}__input`, `${baseClass}__input--${theme}`, `${baseClass}__input--${size}`, {
-          [`${baseClass}--${theme}-disabled`]: disabled,
-        })}
+        className={classNames(
+          `${stepperClass}__input`,
+          `${stepperClass}__input--${theme}`,
+          `${stepperClass}__input--${size}`,
+          {
+            [`${stepperClass}--${theme}-disabled`]: disabled,
+          },
+        )}
         type={integer ? 'tel' : 'text'}
         inputMode={integer ? 'numeric' : 'decimal'}
         style={inputStyle}
@@ -134,18 +143,22 @@ const Stepper = forwardRef<HTMLDivElement, StepperProps>((originProps, ref) => {
         onChange={handleChange}
       />
       <div
-        className={classNames(`${baseClass}__plus`, `${baseClass}__plus--${theme}`, `${baseClass}__icon--${size}`, {
-          [`${baseClass}--${theme}-disabled`]: disabled || Number(currentValue) >= max,
-        })}
+        className={classNames(
+          `${stepperClass}__plus`,
+          `${stepperClass}__plus--${theme}`,
+          `${stepperClass}__icon--${size}`,
+          {
+            [`${stepperClass}--${theme}-disabled`]: disabled || Number(currentValue) >= max,
+          },
+        )}
         onClick={plusValue}
       >
-        <AddIcon className={`${baseClass}__plus-icon`} />
+        <AddIcon className={`${stepperClass}__plus-icon`} />
       </div>
-    </div>,
+    </div>
   );
 });
 
-Stepper.defaultProps = stepperDefaultProps as StepperProps;
 Stepper.displayName = 'Stepper';
 
 export default memo(Stepper);
