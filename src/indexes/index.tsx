@@ -10,4 +10,5 @@ export * from './type';
 
 export const Indexes = _Indexes;
 export const IndexesAnchor = _IndexesAnchor;
+
 export default Indexes;

@@ -235,4 +235,6 @@ const Indexes: React.FC<IndexesProps> = (props) => {
   );
 };
 
+Indexes.displayName = 'Link';
+
 export default Indexes;
