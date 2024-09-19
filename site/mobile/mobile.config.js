@@ -195,7 +195,7 @@ export default {
     {
       title: 'Drawer 抽屉',
       name: 'drawer',
-      component: () => import('tdesign-mobile-react/drawer/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/drawer/_example/index.tsx'),
     },
     {
       title: 'Collapse 折叠面板',
