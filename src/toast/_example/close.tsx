@@ -19,17 +19,14 @@ export default function () {
   };
 
   return (
-    <ul className="toast-container">
-      <li>
-        <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={showToast}>
-          显示提示
-        </Button>
-      </li>
-      <li>
-        <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={hideToast}>
-          关闭提示
-        </Button>
-      </li>
-    </ul>
+    <div className="toast-demo">
+      <Button block theme="primary" variant="outline" size="large" onClick={showToast}>
+        显示提示
+      </Button>
+
+      <Button block theme="primary" variant="outline" size="large" onClick={hideToast}>
+        关闭提示
+      </Button>
+    </div>
   );
 }

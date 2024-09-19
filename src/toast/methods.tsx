@@ -33,7 +33,7 @@ const createToast = (props: ToastOptions) => {
       message: props,
     };
   }
-  const config = { ...defaultProps, ...cur };
+  const config = { ...defaultProps, ...cur } as TdToastProps;
 
   clear();
 

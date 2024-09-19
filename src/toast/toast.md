@@ -10,7 +10,7 @@ className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
 direction | String | row | 图标排列方式。可选项：row/column | N
 duration | Number | 2000 | 弹窗显示毫秒数 | N
-icon | TNode | - | 自定义图标。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+icon | TElement | - | 自定义图标。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 message | TNode | - | 弹窗显示文字。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 overlayProps | Object | {} | 遮罩层属性，透传至 Overlay。TS 类型：`OverlayProps `，[Overlay API Documents](./overlay?tab=api)。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/toast/type.ts) | N
 placement | String | middle | 弹窗展示位置。可选项： top/middle/bottom | N

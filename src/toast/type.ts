@@ -5,7 +5,7 @@
  * */
 
 import { OverlayProps } from '../overlay';
-import { TNode } from '../common';
+import { TNode, TElement } from '../common';
 
 export interface TdToastProps {
   /**
@@ -21,7 +21,7 @@ export interface TdToastProps {
   /**
    * 自定义图标
    */
-  icon?: TNode;
+  icon?: TElement;
   /**
    * 弹窗显示文字
    */

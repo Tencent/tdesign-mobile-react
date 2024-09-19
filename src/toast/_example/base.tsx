@@ -25,32 +25,26 @@ export default function () {
   };
 
   return (
-    <ul className="toast-container">
-      <li>
-        <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={onlyText}>
-          纯文本
-        </Button>
-      </li>
-      <li>
-        <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={textMaxHeight}>
-          多行文字
-        </Button>
-      </li>
-      <li>
-        <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={iconHori}>
-          带横向图标
-        </Button>
-      </li>
-      <li>
-        <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={iconColumn}>
-          带竖向图标
-        </Button>
-      </li>
-      <li>
-        <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={iconLoading}>
-          加载状态
-        </Button>
-      </li>
-    </ul>
+    <div className="toast-demo">
+      <Button block theme="primary" variant="outline" size="large" onClick={onlyText}>
+        纯文本
+      </Button>
+
+      <Button block theme="primary" variant="outline" size="large" onClick={textMaxHeight}>
+        多行文字
+      </Button>
+
+      <Button block theme="primary" variant="outline" size="large" onClick={iconHori}>
+        带横向图标
+      </Button>
+
+      <Button block theme="primary" variant="outline" size="large" onClick={iconColumn}>
+        带竖向图标
+      </Button>
+
+      <Button block theme="primary" variant="outline" size="large" onClick={iconLoading}>
+        加载状态
+      </Button>
+    </div>
   );
 }

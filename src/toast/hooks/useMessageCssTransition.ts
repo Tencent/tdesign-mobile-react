@@ -37,7 +37,7 @@ const useMessageCssTransition = ({ contentRef, classPrefix, el }: UseMessageCssT
         if (el instanceof Element) {
           const unmountResult = ReactDOM.unmountComponentAtNode(el);
           if (unmountResult) {
-            (el as any).parentNode.removeChild(el);
+            (el as any).parentNode?.removeChild(el);
           }
         }
       }, 0);

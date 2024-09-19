@@ -1,24 +1,34 @@
 import React, { FC, useRef, useState, useEffect } from 'react';
-import { Icon } from 'tdesign-icons-react';
+import { LoadingIcon, CheckCircleIcon, CloseCircleIcon } from 'tdesign-icons-react';
 import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import Overlay from '../overlay';
 import useMessageCssTransition from './hooks/useMessageCssTransition';
 import useConfig from '../_util/useConfig';
 import { TdToastProps } from './type';
-import { IconType } from './constant';
+import { StyledProps } from '../common';
 import { toastDefaultProps } from './defaultProps';
+import { usePrefixClass } from '../hooks/useClass';
+import { useLockScroll } from '../hooks/useLockScroll';
 import useDefaultProps from '../hooks/useDefaultProps';
 import parseTNode from '../_util/parseTNode';
 
-interface ToastProps extends TdToastProps {
+interface ToastProps extends TdToastProps, StyledProps {
   children?: React.ReactNode;
   el: React.ReactNode;
 }
 
-const Toast: FC<TdToastProps> = (originProps: ToastProps) => {
+const themeIconMap = {
+  loading: <LoadingIcon />,
+  success: <CheckCircleIcon />,
+  error: <CloseCircleIcon />,
+};
+
+const Toast: FC<ToastProps> = (originProps) => {
   const props = useDefaultProps<ToastProps>(originProps, toastDefaultProps);
   const {
+    className,
+    style,
     direction,
     placement,
     icon,
@@ -31,16 +41,20 @@ const Toast: FC<TdToastProps> = (originProps: ToastProps) => {
     el,
     onClose,
   } = props;
+
   const { classPrefix } = useConfig();
-  const cls = `${classPrefix}-overflow-hidden`;
-  const toastClass = `${classPrefix}-toast`;
+  const toastClass = usePrefixClass('toast');
   const iconClasses = classNames([
     {
       [`${toastClass}__icon--${direction}`]: direction,
     },
   ]);
 
-  const TIcon = icon ? parseTNode(icon) : theme && <Icon name={IconType[theme]} />;
+  const renderIconNode = () => {
+    if (icon) return parseTNode(icon);
+    return themeIconMap[theme];
+  };
+
   const containerClass = classNames([
     `${toastClass}`,
     `${toastClass}__content`,
@@ -48,18 +62,19 @@ const Toast: FC<TdToastProps> = (originProps: ToastProps) => {
     {
       [`${toastClass}--${direction}`]: direction,
       [`${toastClass}__content--${direction}`]: direction,
-      [`${toastClass}--loading`]: props.theme === 'loading',
+      [`${toastClass}--loading`]: theme === 'loading',
     },
+    className,
   ]);
   const topOptions = {
     top: '25%',
     bottom: '75%',
   };
-  const computedStyle = { top: topOptions[placement] ?? '45%' };
+  const computedStyle = { ...style, top: topOptions[placement] ?? '45%' };
 
   const textClasses = classNames([
+    `${toastClass}__text`,
     {
-      [`${toastClass}__text`]: !TIcon,
       [`${toastClass}__text--${direction}`]: direction,
     },
   ]);
@@ -74,6 +89,8 @@ const Toast: FC<TdToastProps> = (originProps: ToastProps) => {
 
   const [toastVisible, setToastVisible] = useState<boolean>(true);
 
+  useLockScroll(contentRef, toastVisible && preventScrollThrough, toastClass);
+
   useEffect(() => {
     let timer = null;
     if (duration) {
@@ -86,13 +103,6 @@ const Toast: FC<TdToastProps> = (originProps: ToastProps) => {
       clearTimeout(timer);
     };
   }, [duration, onClose]);
-
-  useEffect(() => {
-    preventScrollThrough && document.body.classList.add(cls);
-    return () => {
-      preventScrollThrough && document.body.classList.remove(cls);
-    };
-  }, [preventScrollThrough, cls]);
 
   const getCustomOverlayProps = () => {
     const toastOverlayProps = {
@@ -110,7 +120,7 @@ const Toast: FC<TdToastProps> = (originProps: ToastProps) => {
       {showOverlay && <Overlay {...getCustomOverlayProps()} />}
       <CSSTransition in={toastVisible} appear {...cssTransitionState.props} unmountOnExit>
         <div className={containerClass} ref={contentRef} style={computedStyle}>
-          {TIcon && <div className={iconClasses}>{TIcon}</div>}
+          <div className={iconClasses}>{renderIconNode()}</div>
           {message && <div className={textClasses}>{parseTNode(message)}</div>}
         </div>
       </CSSTransition>

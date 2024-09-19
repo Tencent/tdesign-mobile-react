@@ -16,22 +16,16 @@ export default function () {
   };
 
   return (
-    <ul className="toast-container">
-      <li>
-        <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={successColumn}>
-          成功提示
-        </Button>
-      </li>
-      <li>
-        <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={warningColumn}>
-          警告提示
-        </Button>
-      </li>
-      <li>
-        <Button className="toast-btn" theme="primary" variant="outline" size="large" onClick={errorColumn}>
-          错误提示
-        </Button>
-      </li>
-    </ul>
+    <div className="toast-demo">
+      <Button block theme="primary" variant="outline" size="large" onClick={successColumn}>
+        成功提示
+      </Button>
+      <Button block theme="primary" variant="outline" size="large" onClick={warningColumn}>
+        警告提示
+      </Button>
+      <Button block theme="primary" variant="outline" size="large" onClick={errorColumn}>
+        错误提示
+      </Button>
+    </div>
   );
 }
