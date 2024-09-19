@@ -36,10 +36,8 @@ export default function Base() {
   };
 
   return (
-    <div className="button-demo">
-      <Button size="large" variant="outline" block onClick={showDrawer}>
-        命令行调用
-      </Button>
-    </div>
+    <Button theme="primary" size="large" variant="outline" block onClick={showDrawer}>
+      命令行调用
+    </Button>
   );
 }

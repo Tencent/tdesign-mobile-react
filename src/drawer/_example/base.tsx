@@ -32,8 +32,9 @@ export default function Base() {
   ];
 
   return (
-    <div className="button-demo">
+    <>
       <Button
+        theme="primary"
         size="large"
         variant="outline"
         block
@@ -44,6 +45,6 @@ export default function Base() {
         基础抽屉
       </Button>
       <Drawer visible={openBase} items={baseSidebar} closeOnOverlayClick onClose={onClose} />
-    </div>
+    </>
   );
 }

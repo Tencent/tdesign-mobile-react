@@ -2,10 +2,9 @@ import React, { useEffect, useState, useImperativeHandle, forwardRef } from 'rea
 import classNames from 'classnames';
 import Popup from '../popup';
 import { TdDrawerProps, DrawerItem } from './type';
-
-import useConfig from '../_util/useConfig';
 import parseTNode from '../_util/parseTNode';
 import { StyledProps } from '../common';
+import { usePrefixClass } from '../hooks/useClass';
 import useSetState from '../hooks/useSetState';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { drawerDefaultProps } from './defaultProps';
@@ -58,8 +57,7 @@ const Drawer: React.FC<DrawerProps> = forwardRef((originProps, ref) => {
     },
   }));
 
-  const { classPrefix } = useConfig();
-  const name = `${classPrefix}-drawer`;
+  const drawerClass = usePrefixClass('drawer');
 
   const handleClose = () => {
     onClose?.('overlay');
@@ -86,19 +84,11 @@ const Drawer: React.FC<DrawerProps> = forwardRef((originProps, ref) => {
   }, [visible]);
 
   const renderTitleNode = () => {
-    if (!title) {
-      return null;
-    }
     const titleNode = parseTNode(title);
-    return <div className={`${name}__title`}>{titleNode}</div>;
+    return <div className={`${drawerClass}__title`}>{titleNode}</div>;
   };
 
-  const renderFooterNode = () => {
-    if (!footer) {
-      return null;
-    }
-    return <div className={`${name}__footer`}>{footer}</div>;
-  };
+  const renderFooterNode = () => <div className={`${drawerClass}__footer`}>{footer}</div>;
 
   return (
     <Popup
@@ -108,26 +98,26 @@ const Drawer: React.FC<DrawerProps> = forwardRef((originProps, ref) => {
       zIndex={zIndex}
       onVisibleChange={handleOverlayClick}
     >
-      <div className={classNames(name, className)} style={{ ...style }}>
-        {renderTitleNode()}
-        <div className={`${name}__sidebar`}>
+      <div className={classNames(drawerClass, className)} style={{ ...style }}>
+        {title && renderTitleNode()}
+        <div className={`${drawerClass}__sidebar`}>
           {items?.map((item, index) => {
             const { title, icon } = item;
             return (
               <div
                 key={title}
-                className={`${name}__sidebar-item`}
+                className={`${drawerClass}__sidebar-item`}
                 onClick={(e) => {
                   handleItemClick(index, item, e);
                 }}
               >
-                {!!icon && <span className={`${name}__sidebar-item-icon`}>{icon}</span>}
-                <div className={`${name}__sidebar-item-title`}>{title}</div>
+                {!!icon && <span className={`${drawerClass}__sidebar-item-icon`}>{icon}</span>}
+                <div className={`${drawerClass}__sidebar-item-title`}>{title}</div>
               </div>
             );
           })}
         </div>
-        {renderFooterNode()}
+        {footer && renderFooterNode()}
       </div>
     </Popup>
   );

@@ -3,10 +3,12 @@ import { DrawerPlugin as _DrawerPlugin } from './plugin';
 
 import './style';
 
+export type { DrawerProps } from './Drawer';
 export * from './type';
 
 export const Drawer = _Drawer;
+
 export const drawer = _DrawerPlugin;
 export const DrawerPlugin = _DrawerPlugin;
 
-export default { Drawer };
+export default Drawer;

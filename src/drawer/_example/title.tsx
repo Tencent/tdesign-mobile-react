@@ -32,8 +32,9 @@ export default function Base() {
   ];
 
   return (
-    <div className="button-demo">
+    <>
       <Button
+        theme="primary"
         size="large"
         variant="outline"
         block
@@ -51,6 +52,6 @@ export default function Base() {
         closeOnOverlayClick
         onClose={onClose}
       />
-    </div>
+    </>
   );
 }

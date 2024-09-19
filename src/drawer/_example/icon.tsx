@@ -40,8 +40,9 @@ export default function IconPage() {
   ];
 
   return (
-    <div className="button-demo">
+    <>
       <Button
+        theme="primary"
         size="large"
         variant="outline"
         block
@@ -52,6 +53,6 @@ export default function IconPage() {
         带图标抽屉
       </Button>
       <Drawer visible={openBase} items={baseSidebar} closeOnOverlayClick onClose={onClose} />
-    </div>
+    </>
   );
 }
