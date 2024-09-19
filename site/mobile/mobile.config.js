@@ -180,7 +180,7 @@ export default {
     {
       title: 'SwipeCell 滑动单元格',
       name: 'swipe-cell',
-      component: () => import('tdesign-mobile-react/swipe-cell/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/swipe-cell/_example/index.tsx'),
     },
     {
       title: 'Tag 标签',
