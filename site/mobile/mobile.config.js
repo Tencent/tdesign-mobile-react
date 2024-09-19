@@ -190,7 +190,7 @@ export default {
     {
       title: 'Toast 轻提示',
       name: 'toast',
-      component: () => import('tdesign-mobile-react/toast/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/toast/_example/index.tsx'),
     },
     {
       title: 'Drawer 抽屉',
