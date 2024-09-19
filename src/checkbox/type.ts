@@ -5,14 +5,19 @@
  * */
 
 import { TNode } from '../common';
-import { ChangeEvent, MouseEvent } from 'react';
+import { ChangeEvent } from 'react';
 
 export interface TdCheckboxProps {
   /**
-   * 多选框和内容相对位置
-   * @default left
+   * 是否为块级元素
+   * @default true
    */
-  align?: 'left' | 'right';
+  block?: boolean;
+  /**
+   * 是否开启无边框模式
+   * @default false
+   */
+  borderless?: boolean;
   /**
    * 用于标识是否为「全选选项」。单独使用无效，需在 CheckboxGroup 中使用
    * @default false
@@ -41,13 +46,14 @@ export interface TdCheckboxProps {
    */
   contentDisabled?: boolean;
   /**
-   * 是否禁用组件
+   * 是否禁用组件。如果父组件存在 CheckboxGroup，默认值由 CheckboxGroup.disabled 控制。优先级：Checkbox.disabled > CheckboxGroup.disabled > Form.disabled
    */
   disabled?: boolean;
   /**
-   * 自定义选中图标和非选中图标。示例：[选中态图标，非选中态图标]
+   * 自定义选中图标和非选中图标。使用 Array 时表示：[选中态图标，非选中态图标]。使用 String 时，值为 circle 表示填充圆形图标、值为 line 表示描边型图标、值为 rectangle 表示填充矩形图标。
+   * @default 'circle'
    */
-  icon?: Array<TNode>;
+  icon?: 'circle' | 'line' | 'rectangle' | boolean | Array<TNode | String>;
   /**
    * 是否为半选
    * @default false
@@ -73,6 +79,11 @@ export interface TdCheckboxProps {
    */
   name?: string;
   /**
+   * 多选框和内容相对位置
+   * @default left
+   */
+  placement?: 'left' | 'right';
+  /**
    * 只读状态
    * @default false
    */
@@ -80,17 +91,16 @@ export interface TdCheckboxProps {
   /**
    * 多选框的值
    */
-  value?: string | number;
+  value?: string | number | boolean;
   /**
    * 值变化时触发
    */
-  onChange?: (checked: boolean, context: { e: ChangeEvent<HTMLDivElement> | MouseEvent<HTMLDivElement> }) => void;
+  onChange?: (checked: boolean, context: { e: ChangeEvent<HTMLInputElement> }) => void;
 }
 
-export interface TdCheckboxGroupProps {
+export interface TdCheckboxGroupProps<T = CheckboxGroupValue> {
   /**
-   * 是否禁用组件
-   * @default false
+   * 是否禁用组件。优先级：Form.disabled < CheckboxGroup.disabled < Checkbox.disabled
    */
   disabled?: boolean;
   /**
@@ -104,29 +114,35 @@ export interface TdCheckboxGroupProps {
   name?: string;
   /**
    * 以配置形式设置子元素。示例1：`['北京', '上海']` ，示例2: `[{ label: '全选', checkAll: true }, { label: '上海', value: 'shanghai' }]`。checkAll 值为 true 表示当前选项为「全选选项」
-   * @default []
    */
   options?: Array<CheckboxOption>;
   /**
    * 选中值
    * @default []
    */
-  value?: CheckboxGroupValue;
+  value?: T;
   /**
    * 选中值，非受控属性
    * @default []
    */
-  defaultValue?: CheckboxGroupValue;
+  defaultValue?: T;
   /**
-   * 值变化时触发，`context.current` 表示当前变化的数据项，如果是全选则为空；`context.type` 表示引起选中数据变化的是选中或是取消选中
+   * 值变化时触发。`context.current` 表示当前变化的数据项，如果是全选则为空；`context.type` 表示引起选中数据变化的是选中或是取消选中，`context.option` 表示当前变化的数据项
    */
-  onChange?: (value: CheckboxGroupValue, context: CheckboxGroupChangeContext) => void;
+  onChange?: (value: T, context: CheckboxGroupChangeContext) => void;
 }
 
 export type CheckboxOption = string | number | CheckboxOptionObj;
 
-export interface CheckboxOptionObj { label?: string | TNode; value?: string | number; disabled?: boolean; name?: string; checkAll?: true };
+export interface CheckboxOptionObj extends TdCheckboxProps {
+  text?: string;
+}
 
-export type CheckboxGroupValue = Array<string | number>;
+export type CheckboxGroupValue = Array<string | number | boolean>;
 
-export interface CheckboxGroupChangeContext { e: ChangeEvent<HTMLDivElement> | MouseEvent<HTMLDivElement>; current:    | TdCheckboxProps; type: 'check' | 'uncheck' };
+export interface CheckboxGroupChangeContext {
+  e: Event;
+  current: string | number;
+  option: CheckboxOption | TdCheckboxProps;
+  type: 'check' | 'uncheck';
+}

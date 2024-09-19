@@ -2,68 +2,119 @@
 
 /**
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
- * updated at 2022-01-07 16:30:49
  * */
-import { CSSProperties } from 'react';
-import { TNode } from '../common';
 
-export interface TdTabPanelProps {
-  /**
-   * 触发元素，同 triggerElement
-   */
-  children?: TNode;
-  /**
-   * 标签名
-   */
-  label: string;
-  /**
-   * 标签值
-   */
-  value: string | number;
-  /**
-   * 是否禁用
-   */
-  disabled?: boolean;
-}
+import { StickyProps } from '../sticky';
+import { TNode, TElement } from '../common';
 
 export interface TdTabsProps {
   /**
-   * 触发元素，同 triggerElement
+   * 动画效果设置。其中 duration 表示动画时长
    */
-  children?: any;
+  animation?: TabAnimation;
   /**
-   * 容器内容
+   * 激活下划线的模式
+   * @default fixed
    */
-  content?: TNode;
+  bottomLineMode?: 'fixed' | 'auto' | 'full';
   /**
-   * 默认选中值
+   * 组件子元素
    */
-  defaultValue?: number | string;
+  children?: TElement;
   /**
    * 选项卡列表
-   * @default []
    */
   list?: Array<TdTabPanelProps>;
   /**
-   * 动画效果设置
-   */
-  animation?: CSSProperties;
-  /**
-   * 选项卡位置
-   * @default 'top'
-   */
-  placement?: 'left' | 'right' | 'bottom';
-  /**
-   * 是否展示底部激活条
+   * 是否展示底部激活线条
    * @default true
    */
   showBottomLine?: boolean;
   /**
-   * 尺寸大小
+   * 组件尺寸
+   * @default medium
    */
-  size?: 'large' | 'small' | 'default';
+  size?: 'medium' | 'large';
+  /**
+   * 选项卡头部空间是否均分
+   * @default true
+   */
+  spaceEvenly?: boolean;
+  /**
+   * 是否开启粘性布局
+   * @default false
+   */
+  sticky?: boolean;
+  /**
+   * 透传至 Sticky 组件
+   */
+  stickyProps?: StickyProps;
+  /**
+   * 是否可以滑动切换
+   * @default true
+   */
+  swipeable?: boolean;
+  /**
+   * 标签的样式
+   * @default line
+   */
+  theme?: 'line' | 'tag' | 'card';
+  /**
+   * 激活的选项卡值
+   */
+  value?: TabValue;
+  /**
+   * 激活的选项卡值，非受控属性
+   */
+  defaultValue?: TabValue;
   /**
    * 激活的选项卡发生变化时触发
    */
-  change?: (value) => void;
+  onChange?: (value: TabValue, label: string) => void;
+  /**
+   * 点击选项卡时触发
+   */
+  onClick?: (value: TabValue, label: string) => void;
+  /**
+   * 页面滚动时触发
+   */
+  onScroll?: (scrollTop: number, isFixed: boolean) => void;
 }
+
+export interface TdTabPanelProps {
+  /**
+   * 透传至 Badge 组件
+   */
+  badgeProps?: object;
+  /**
+   * 选项卡内容隐藏时是否销毁
+   * @default true
+   */
+  destroyOnHide?: boolean;
+  /**
+   * 是否禁用当前选项卡
+   * @default false
+   */
+  disabled?: boolean;
+  /**
+   * 选项卡名称，可自定义选项卡导航内容
+   */
+  label?: TNode;
+  /**
+   * 是否启用选项卡懒加载
+   * @default false
+   */
+  lazy?: boolean;
+  /**
+   * 用于自定义选项卡面板内容
+   */
+  panel?: TNode;
+  /**
+   * 选项卡的值，唯一标识
+   */
+  value?: TabValue;
+}
+
+export type TabAnimation = { duration: number } & Record<string, any>;
+
+export type TabValue = string | number;

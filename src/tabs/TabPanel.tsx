@@ -1,48 +1,40 @@
-import React, { FC, useContext } from 'react';
-import classnames from 'classnames';
-import useConfig from '../_util/useConfig';
+import React, { FC, useContext, useEffect, useMemo, useState } from 'react';
 import { TdTabPanelProps } from './type';
 import TabContext from './context';
+import { usePrefixClass } from '../hooks/useClass';
+import parseTNode from '../_util/parseTNode';
 
 const TabPanel: FC<TdTabPanelProps> = (props) => {
-  const { value, label, disabled } = props;
+  const { value, lazy, destroyOnHide, children, panel } = props;
 
-  const { classPrefix } = useConfig();
-  const tabPrefix = classPrefix || '';
+  const tabPanelClass = usePrefixClass('tab-panel');
+  const tabClass = usePrefixClass('tabs');
   const tabProps = useContext(TabContext);
-  const { activeKey, horiRef, vetiRef, onChange } = tabProps;
+  const { activeKey } = tabProps;
+  const isActive = useMemo(() => value === activeKey, [activeKey, value]);
+  const [isMount, setIsMount] = useState(lazy ? isActive : true);
 
-  const change = () => {
-    if (disabled) return;
-    onChange && onChange(value);
-  };
+  useEffect(() => {
+    if (isActive) {
+      if (!isMount) {
+        setIsMount(true);
+      }
+    } else if (destroyOnHide) {
+      setIsMount(false);
+    }
+  }, [destroyOnHide, isActive, isMount, lazy]);
+
   return (
-    <div
-      ref={(ref) => {
-        if (activeKey === value) {
-          vetiRef.current = ref;
-        }
-      }}
-      className={classnames(
-        `${tabPrefix}-tabs__nav-item`,
-        activeKey === value && `${tabPrefix}-is-active`,
-        disabled && `${tabPrefix}-is-disabled`,
-      )}
-      key={value}
-      onClick={() => change()}
-    >
-      <span
-        ref={(ref) => {
-          if (activeKey === value) {
-            horiRef.current = ref;
-          }
-        }}
-        className={`${tabPrefix}-tabs__nav-item-btn`}
+    isMount && (
+      <div
+        style={{ display: isActive ? 'block' : 'none' }}
+        className={`${tabPanelClass} ${tabClass}__panel`}
+        key={value}
       >
-        {label}
-      </span>
-    </div>
+        {parseTNode(children, panel)}
+      </div>
+    )
   );
 };
-
+TabPanel.displayName = 'TabPanel';
 export default TabPanel;
