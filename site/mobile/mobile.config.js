@@ -63,7 +63,7 @@ export default {
     {
       title: 'Slider 滑动选择器',
       name: 'slider',
-      component: () => import('tdesign-mobile-react/slider/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/slider/_example/index.tsx'),
     },
     {
       title: 'Radio 单选框',
