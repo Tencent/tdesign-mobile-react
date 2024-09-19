@@ -38648,7 +38648,1568 @@ exports[`csr snapshot test > csr test src/skeleton/_example/theme.tsx 1`] = `
 </div>
 `;
 
-<<<<<<< HEAD
+exports[`csr snapshot test > csr test src/slider/_example/base.tsx 1`] = `
+<div>
+  <div
+    class="wrapper-base"
+  >
+    <div
+      class="t-slider"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--default"
+      >
+        <div
+          class="t-slider__line t-slider__line--default t-slider__line--single"
+          style="width: 0px;"
+        >
+          <div
+            class="t-slider__dot"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/slider/_example/capsule.tsx 1`] = `
+<div>
+  <div
+    class="wrapper-capsule"
+  >
+    <div
+      class="t-slider"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--capsule"
+      >
+        <div
+          class="t-slider__line t-slider__line--capsule t-slider__line--single"
+          style="width: 2.2px;"
+        >
+          <div
+            class="t-slider__dot"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="wrapper-capsule"
+  >
+    <div
+      class="t-slider t-slider--range"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--capsule"
+      >
+        <div
+          class="t-slider__line t-slider__line--capsule"
+          style="right: 0px; left: -5px;"
+        >
+          <div
+            class="t-slider__dot t-slider__dot--left"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+          <div
+            class="t-slider__dot t-slider__dot--right"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="wrapper-capsule"
+  >
+    <div
+      class="t-slider t-slider--top t-slider--range"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--capsule"
+      >
+        <div
+          class="t-slider__line t-slider__line--capsule"
+          style="right: 0px; left: -5px;"
+        >
+          <div
+            class="t-slider__dot t-slider__dot--left"
+          >
+            <div
+              class="t-slider__dot-value"
+            >
+              40
+            </div>
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+          <div
+            class="t-slider__dot t-slider__dot--right"
+          >
+            <div
+              class="t-slider__dot-value"
+            >
+              60
+            </div>
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="wrapper-capsule"
+  >
+    <div
+      class="t-slider t-slider--top"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--capsule t-slider__bar--marks"
+      >
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active t-slider__scale-item--hidden"
+          style="left: 10px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            0
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+          style="left: 5px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            20
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            40
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active t-slider__scale-item--hidden"
+          style="left: -6px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            60
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule"
+          style="left: -11px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            80
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
+          style="left: -16px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            100
+          </div>
+        </div>
+        <div
+          class="t-slider__line t-slider__line--capsule t-slider__line--single"
+          style="width: -5.6px;"
+        >
+          <div
+            class="t-slider__dot"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="wrapper-capsule"
+  >
+    <div
+      class="t-slider t-slider--top t-slider--range"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--capsule t-slider__bar--marks"
+      >
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
+          style="left: 10px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            0
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+          style="left: 5px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            20
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            40
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+          style="left: -6px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            60
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+          style="left: -11px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            80
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
+          style="left: -16px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--capsule"
+          >
+            100
+          </div>
+        </div>
+        <div
+          class="t-slider__line t-slider__line--capsule"
+          style="right: -5px; left: -10px;"
+        >
+          <div
+            class="t-slider__dot t-slider__dot--left"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+          <div
+            class="t-slider__dot t-slider__dot--right"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/slider/_example/disabled.tsx 1`] = `
+<div>
+  <div
+    class="wrapper-disabled"
+  >
+    <div
+      class="t-slider t-slider--disabled"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"
+      >
+        <div
+          class="t-slider__line t-slider__line--default t-slider__line--single t-slider__line--disabled"
+          style="width: 0px;"
+        >
+          <div
+            class="t-slider__dot"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="wrapper-disabled"
+  >
+    <div
+      class="t-slider t-slider--top t-slider--disabled t-slider--range"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"
+      >
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--disabled"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            0
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active t-slider__scale-item--disabled"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            20
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active t-slider__scale-item--disabled"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            40
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active t-slider__scale-item--disabled"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            60
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--disabled"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            80
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--disabled"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            100
+          </div>
+        </div>
+        <div
+          class="t-slider__line t-slider__line--default t-slider__line--disabled"
+          style="right: 0px; left: 0px;"
+        >
+          <div
+            class="t-slider__dot t-slider__dot--left"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+          <div
+            class="t-slider__dot t-slider__dot--right"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/slider/_example/index.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-demo"
+  >
+    <div
+      class="tdesign-mobile-demo-header"
+    >
+      <h1
+        class="tdesign-mobile-demo-header__title"
+      >
+        Slider 滑动选择器
+      </h1>
+      <p
+        class="tdesign-mobile-demo-header__summary"
+      >
+        用于选择横轴上的数值、区间、档位
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          01 类型
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          单游标滑块
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="wrapper-base"
+        >
+          <div
+            class="t-slider"
+          >
+            <div
+              class="t-slider__bar t-slider__bar--default"
+            >
+              <div
+                class="t-slider__line t-slider__line--default t-slider__line--single"
+                style="width: 0px;"
+              >
+                <div
+                  class="t-slider__dot"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          双游标滑块
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="wrapper-base"
+        >
+          <div
+            class="t-slider t-slider--range"
+          >
+            <div
+              class="t-slider__bar t-slider__bar--default"
+            >
+              <div
+                class="t-slider__line t-slider__line--default"
+                style="right: 0px; left: 0px;"
+              >
+                <div
+                  class="t-slider__dot t-slider__dot--left"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+                <div
+                  class="t-slider__dot t-slider__dot--right"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          带数值单游标/双游标滑块
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="wrapper-label"
+        >
+          <div
+            class="t-slider t-slider--top"
+          >
+            <div
+              class="t-slider__bar t-slider__bar--default"
+            >
+              <div
+                class="t-slider__line t-slider__line--default t-slider__line--single"
+                style="width: 0px;"
+              >
+                <div
+                  class="t-slider__dot"
+                >
+                  <div
+                    class="t-slider__dot-value"
+                  >
+                    10
+                  </div>
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="wrapper-label"
+        >
+          <div
+            class="t-slider t-slider--top t-slider--range"
+          >
+            <text
+              class="t-slider__range-extreme t-slider__range-extreme--min"
+            >
+              0
+            </text>
+            <div
+              class="t-slider__bar t-slider__bar--default"
+            >
+              <div
+                class="t-slider__line t-slider__line--default"
+                style="right: 0px; left: 0px;"
+              >
+                <div
+                  class="t-slider__dot t-slider__dot--left"
+                >
+                  <div
+                    class="t-slider__dot-value"
+                  >
+                    20
+                  </div>
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+                <div
+                  class="t-slider__dot t-slider__dot--right"
+                >
+                  <div
+                    class="t-slider__dot-value"
+                  >
+                    60
+                  </div>
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+              </div>
+            </div>
+            <text
+              class="t-slider__value t-slider__value--max"
+            >
+              100
+            </text>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          带刻度单游标/双游标滑块
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="wrapper-base"
+        >
+          <div
+            class="t-slider t-slider--top"
+          >
+            <div
+              class="t-slider__bar t-slider__bar--default"
+            >
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  5
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  6
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  7
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  8
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  9
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  10
+                </div>
+              </div>
+              <div
+                class="t-slider__line t-slider__line--default t-slider__line--single"
+                style="width: 0px;"
+              >
+                <div
+                  class="t-slider__dot"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="wrapper-base"
+        >
+          <div
+            class="t-slider t-slider--top t-slider--range"
+          >
+            <div
+              class="t-slider__bar t-slider__bar--default"
+            >
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  0
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  20
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  40
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  60
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  80
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  100
+                </div>
+              </div>
+              <div
+                class="t-slider__line t-slider__line--default"
+                style="right: 0px; left: 0px;"
+              >
+                <div
+                  class="t-slider__dot t-slider__dot--left"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+                <div
+                  class="t-slider__dot t-slider__dot--right"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          02 组件状态
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          滑块禁用状态
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="wrapper-disabled"
+        >
+          <div
+            class="t-slider t-slider--disabled"
+          >
+            <div
+              class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"
+            >
+              <div
+                class="t-slider__line t-slider__line--default t-slider__line--single t-slider__line--disabled"
+                style="width: 0px;"
+              >
+                <div
+                  class="t-slider__dot"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="wrapper-disabled"
+        >
+          <div
+            class="t-slider t-slider--top t-slider--disabled t-slider--range"
+          >
+            <div
+              class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"
+            >
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--disabled"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  0
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active t-slider__scale-item--disabled"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  20
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active t-slider__scale-item--disabled"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  40
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active t-slider__scale-item--disabled"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  60
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--disabled"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  80
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--disabled"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--default"
+                >
+                  100
+                </div>
+              </div>
+              <div
+                class="t-slider__line t-slider__line--default t-slider__line--disabled"
+                style="right: 0px; left: 0px;"
+              >
+                <div
+                  class="t-slider__dot t-slider__dot--left"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+                <div
+                  class="t-slider__dot t-slider__dot--right"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          03 特殊样式
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          胶囊型滑块
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="wrapper-capsule"
+        >
+          <div
+            class="t-slider"
+          >
+            <div
+              class="t-slider__bar t-slider__bar--capsule"
+            >
+              <div
+                class="t-slider__line t-slider__line--capsule t-slider__line--single"
+                style="width: 2.2px;"
+              >
+                <div
+                  class="t-slider__dot"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="wrapper-capsule"
+        >
+          <div
+            class="t-slider t-slider--range"
+          >
+            <div
+              class="t-slider__bar t-slider__bar--capsule"
+            >
+              <div
+                class="t-slider__line t-slider__line--capsule"
+                style="right: 0px; left: -5px;"
+              >
+                <div
+                  class="t-slider__dot t-slider__dot--left"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+                <div
+                  class="t-slider__dot t-slider__dot--right"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="wrapper-capsule"
+        >
+          <div
+            class="t-slider t-slider--top t-slider--range"
+          >
+            <div
+              class="t-slider__bar t-slider__bar--capsule"
+            >
+              <div
+                class="t-slider__line t-slider__line--capsule"
+                style="right: 0px; left: -5px;"
+              >
+                <div
+                  class="t-slider__dot t-slider__dot--left"
+                >
+                  <div
+                    class="t-slider__dot-value"
+                  >
+                    40
+                  </div>
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+                <div
+                  class="t-slider__dot t-slider__dot--right"
+                >
+                  <div
+                    class="t-slider__dot-value"
+                  >
+                    60
+                  </div>
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="wrapper-capsule"
+        >
+          <div
+            class="t-slider t-slider--top"
+          >
+            <div
+              class="t-slider__bar t-slider__bar--capsule t-slider__bar--marks"
+            >
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active t-slider__scale-item--hidden"
+                style="left: 10px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--capsule"
+                >
+                  0
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+                style="left: 5px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--capsule"
+                >
+                  20
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--capsule"
+                >
+                  40
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active t-slider__scale-item--hidden"
+                style="left: -6px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--capsule"
+                >
+                  60
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule"
+                style="left: -11px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--capsule"
+                >
+                  80
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
+                style="left: -16px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--capsule"
+                >
+                  100
+                </div>
+              </div>
+              <div
+                class="t-slider__line t-slider__line--capsule t-slider__line--single"
+                style="width: -5.6px;"
+              >
+                <div
+                  class="t-slider__dot"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="wrapper-capsule"
+        >
+          <div
+            class="t-slider t-slider--top t-slider--range"
+          >
+            <div
+              class="t-slider__bar t-slider__bar--capsule t-slider__bar--marks"
+            >
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
+                style="left: 10px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--capsule"
+                >
+                  0
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+                style="left: 5px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--capsule"
+                >
+                  20
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+                style="left: 0px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--capsule"
+                >
+                  40
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+                style="left: -6px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--capsule"
+                >
+                  60
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
+                style="left: -11px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--capsule"
+                >
+                  80
+                </div>
+              </div>
+              <div
+                class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
+                style="left: -16px; transform: translateX(-50%);"
+              >
+                <div
+                  class="t-slider__scale-desc t-slider__scale-desc--capsule"
+                >
+                  100
+                </div>
+              </div>
+              <div
+                class="t-slider__line t-slider__line--capsule"
+                style="right: -5px; left: -10px;"
+              >
+                <div
+                  class="t-slider__dot t-slider__dot--left"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+                <div
+                  class="t-slider__dot t-slider__dot--right"
+                >
+                  <div
+                    class="t-slider__dot-slider"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/slider/_example/label.tsx 1`] = `
+<div>
+  <div
+    class="wrapper-label"
+  >
+    <div
+      class="t-slider t-slider--top"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--default"
+      >
+        <div
+          class="t-slider__line t-slider__line--default t-slider__line--single"
+          style="width: 0px;"
+        >
+          <div
+            class="t-slider__dot"
+          >
+            <div
+              class="t-slider__dot-value"
+            >
+              10
+            </div>
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="wrapper-label"
+  >
+    <div
+      class="t-slider t-slider--top t-slider--range"
+    >
+      <text
+        class="t-slider__range-extreme t-slider__range-extreme--min"
+      >
+        0
+      </text>
+      <div
+        class="t-slider__bar t-slider__bar--default"
+      >
+        <div
+          class="t-slider__line t-slider__line--default"
+          style="right: 0px; left: 0px;"
+        >
+          <div
+            class="t-slider__dot t-slider__dot--left"
+          >
+            <div
+              class="t-slider__dot-value"
+            >
+              20
+            </div>
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+          <div
+            class="t-slider__dot t-slider__dot--right"
+          >
+            <div
+              class="t-slider__dot-value"
+            >
+              60
+            </div>
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+      <text
+        class="t-slider__value t-slider__value--max"
+      >
+        100
+      </text>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/slider/_example/range.tsx 1`] = `
+<div>
+  <div
+    class="wrapper-base"
+  >
+    <div
+      class="t-slider t-slider--range"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--default"
+      >
+        <div
+          class="t-slider__line t-slider__line--default"
+          style="right: 0px; left: 0px;"
+        >
+          <div
+            class="t-slider__dot t-slider__dot--left"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+          <div
+            class="t-slider__dot t-slider__dot--right"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/slider/_example/step.tsx 1`] = `
+<div>
+  <div
+    class="wrapper-base"
+  >
+    <div
+      class="t-slider t-slider--top"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--default"
+      >
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            5
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            6
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            7
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            8
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            9
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            10
+          </div>
+        </div>
+        <div
+          class="t-slider__line t-slider__line--default t-slider__line--single"
+          style="width: 0px;"
+        >
+          <div
+            class="t-slider__dot"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="wrapper-base"
+  >
+    <div
+      class="t-slider t-slider--top t-slider--range"
+    >
+      <div
+        class="t-slider__bar t-slider__bar--default"
+      >
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            0
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            20
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            40
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            60
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            80
+          </div>
+        </div>
+        <div
+          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
+          style="left: 0px; transform: translateX(-50%);"
+        >
+          <div
+            class="t-slider__scale-desc t-slider__scale-desc--default"
+          >
+            100
+          </div>
+        </div>
+        <div
+          class="t-slider__line t-slider__line--default"
+          style="right: 0px; left: 0px;"
+        >
+          <div
+            class="t-slider__dot t-slider__dot--left"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+          <div
+            class="t-slider__dot t-slider__dot--right"
+          >
+            <div
+              class="t-slider__dot-slider"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`csr snapshot test > csr test src/stepper/_example/base.tsx 1`] = `
 <div>
   <div
@@ -39382,29 +40943,6 @@ exports[`csr snapshot test > csr test src/stepper/_example/index.tsx 1`] = `
                 />
               </svg>
             </div>
-=======
-exports[`csr snapshot test > csr test src/slider/_example/base.tsx 1`] = `
-<div>
-  <div
-    class="wrapper-base"
-  >
-    <div
-      class="t-slider"
-    >
-      <div
-        class="t-slider__bar t-slider__bar--default"
-      >
-        <div
-          class="t-slider__line t-slider__line--default t-slider__line--single"
-          style="width: 0px;"
-        >
-          <div
-            class="t-slider__dot"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
->>>>>>> 2bfa127 (feat(slider): update slider demo, alignment vue mobile)
           </div>
         </div>
       </div>
@@ -39413,7 +40951,6 @@ exports[`csr snapshot test > csr test src/slider/_example/base.tsx 1`] = `
 </div>
 `;
 
-<<<<<<< HEAD
 exports[`csr snapshot test > csr test src/stepper/_example/min-max.tsx 1`] = `
 <div>
   <div
@@ -39543,285 +41080,12 @@ exports[`csr snapshot test > csr test src/stepper/_example/min-max.tsx 1`] = `
             fill="currentColor"
           />
         </svg>
-=======
-exports[`csr snapshot test > csr test src/slider/_example/capsule.tsx 1`] = `
-<div>
-  <div
-    class="wrapper-capsule"
-  >
-    <div
-      class="t-slider"
-    >
-      <div
-        class="t-slider__bar t-slider__bar--capsule"
-      >
-        <div
-          class="t-slider__line t-slider__line--capsule t-slider__line--single"
-          style="width: 2.2px;"
-        >
-          <div
-            class="t-slider__dot"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="wrapper-capsule"
-  >
-    <div
-      class="t-slider t-slider--range"
-    >
-      <div
-        class="t-slider__bar t-slider__bar--capsule"
-      >
-        <div
-          class="t-slider__line t-slider__line--capsule"
-          style="right: 0px; left: -5px;"
-        >
-          <div
-            class="t-slider__dot t-slider__dot--left"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-          <div
-            class="t-slider__dot t-slider__dot--right"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="wrapper-capsule"
-  >
-    <div
-      class="t-slider t-slider--top t-slider--range"
-    >
-      <div
-        class="t-slider__bar t-slider__bar--capsule"
-      >
-        <div
-          class="t-slider__line t-slider__line--capsule"
-          style="right: 0px; left: -5px;"
-        >
-          <div
-            class="t-slider__dot t-slider__dot--left"
-          >
-            <div
-              class="t-slider__dot-value"
-            >
-              40
-            </div>
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-          <div
-            class="t-slider__dot t-slider__dot--right"
-          >
-            <div
-              class="t-slider__dot-value"
-            >
-              60
-            </div>
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="wrapper-capsule"
-  >
-    <div
-      class="t-slider t-slider--top"
-    >
-      <div
-        class="t-slider__bar t-slider__bar--capsule t-slider__bar--marks"
-      >
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
-          style="left: 10px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--capsule"
-          >
-            0
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule"
-          style="left: 5px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--capsule"
-          >
-            20
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--capsule"
-          >
-            40
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
-          style="left: -6px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--capsule"
-          >
-            60
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule"
-          style="left: -11px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--capsule"
-          >
-            80
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
-          style="left: -16px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--capsule"
-          >
-            100
-          </div>
-        </div>
-        <div
-          class="t-slider__line t-slider__line--capsule t-slider__line--single"
-          style="width: -5.6px;"
-        >
-          <div
-            class="t-slider__dot"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="wrapper-capsule"
-  >
-    <div
-      class="t-slider t-slider--top t-slider--range"
-    >
-      <div
-        class="t-slider__bar t-slider__bar--capsule t-slider__bar--marks"
-      >
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
-          style="left: 10px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--capsule"
-          >
-            0
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
-          style="left: 5px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--capsule"
-          >
-            20
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--capsule"
-          >
-            40
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
-          style="left: -6px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--capsule"
-          >
-            60
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--active"
-          style="left: -11px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--capsule"
-          >
-            80
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--capsule t-slider__scale-item--hidden"
-          style="left: -16px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--capsule"
-          >
-            100
-          </div>
-        </div>
-        <div
-          class="t-slider__line t-slider__line--capsule"
-          style="right: -5px; left: -10px;"
-        >
-          <div
-            class="t-slider__dot t-slider__dot--left"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-          <div
-            class="t-slider__dot t-slider__dot--right"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-        </div>
->>>>>>> 2bfa127 (feat(slider): update slider demo, alignment vue mobile)
       </div>
     </div>
   </div>
 </div>
 `;
 
-<<<<<<< HEAD
 exports[`csr snapshot test > csr test src/stepper/_example/size.tsx 1`] = `
 <div>
   <div
@@ -39951,132 +41215,12 @@ exports[`csr snapshot test > csr test src/stepper/_example/size.tsx 1`] = `
             fill="currentColor"
           />
         </svg>
-=======
-exports[`csr snapshot test > csr test src/slider/_example/disabled.tsx 1`] = `
-<div>
-  <div
-    class="wrapper-disabled"
-  >
-    <div
-      class="t-slider t-slider--disabled"
-    >
-      <div
-        class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"
-      >
-        <div
-          class="t-slider__line t-slider__line--default t-slider__line--single t-slider__line--disabled"
-          style="width: 0px;"
-        >
-          <div
-            class="t-slider__dot"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="wrapper-disabled"
-  />
-  <div
-    class="wrapper-disabled"
-  >
-    <div
-      class="t-slider t-slider--top t-slider--disabled t-slider--range"
-    >
-      <div
-        class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"
-      >
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--disabled"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            0
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active t-slider__scale-item--disabled"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            20
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active t-slider__scale-item--disabled"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            40
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active t-slider__scale-item--disabled"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            60
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--disabled"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            80
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--disabled"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            100
-          </div>
-        </div>
-        <div
-          class="t-slider__line t-slider__line--default t-slider__line--disabled"
-          style="right: 0px; left: 0px;"
-        >
-          <div
-            class="t-slider__dot t-slider__dot--left"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-          <div
-            class="t-slider__dot t-slider__dot--right"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-        </div>
->>>>>>> 2bfa127 (feat(slider): update slider demo, alignment vue mobile)
       </div>
     </div>
   </div>
 </div>
 `;
 
-<<<<<<< HEAD
 exports[`csr snapshot test > csr test src/stepper/_example/status.tsx 1`] = `
 <div>
   <div
@@ -40123,130 +41267,12 @@ exports[`csr snapshot test > csr test src/stepper/_example/status.tsx 1`] = `
             fill="currentColor"
           />
         </svg>
-=======
-exports[`csr snapshot test > csr test src/slider/_example/label.tsx 1`] = `
-<div>
-  <div
-    class="wrapper-label"
-  >
-    <div
-      class="t-slider t-slider--top"
-    >
-      <div
-        class="t-slider__bar t-slider__bar--default"
-      >
-        <div
-          class="t-slider__line t-slider__line--default t-slider__line--single"
-          style="width: 0px;"
-        >
-          <div
-            class="t-slider__dot"
-          >
-            <div
-              class="t-slider__dot-value"
-            >
-              10
-            </div>
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="wrapper-label"
-  >
-    <div
-      class="t-slider t-slider--top t-slider--range"
-    >
-      <text
-        class="t-slider__range-extreme t-slider__range-extreme--min"
-      >
-        0
-      </text>
-      <div
-        class="t-slider__bar t-slider__bar--default"
-      >
-        <div
-          class="t-slider__line t-slider__line--default"
-          style="right: 0px; left: 0px;"
-        >
-          <div
-            class="t-slider__dot t-slider__dot--left"
-          >
-            <div
-              class="t-slider__dot-value"
-            >
-              20
-            </div>
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-          <div
-            class="t-slider__dot t-slider__dot--right"
-          >
-            <div
-              class="t-slider__dot-value"
-            >
-              60
-            </div>
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-        </div>
-      </div>
-      <text
-        class="t-slider__value t-slider__value--max"
-      >
-        100
-      </text>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`csr snapshot test > csr test src/slider/_example/range.tsx 1`] = `
-<div>
-  <div
-    class="wrapper-base"
-  >
-    <div
-      class="t-slider t-slider--range"
-    >
-      <div
-        class="t-slider__bar t-slider__bar--default"
-      >
-        <div
-          class="t-slider__line t-slider__line--default"
-          style="right: 0px; left: 0px;"
-        >
-          <div
-            class="t-slider__dot t-slider__dot--left"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-          <div
-            class="t-slider__dot t-slider__dot--right"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-        </div>
->>>>>>> 2bfa127 (feat(slider): update slider demo, alignment vue mobile)
       </div>
     </div>
   </div>
 </div>
 `;
 
-<<<<<<< HEAD
 exports[`csr snapshot test > csr test src/stepper/_example/theme.tsx 1`] = `
 <div>
   <div
@@ -40376,182 +41402,6 @@ exports[`csr snapshot test > csr test src/stepper/_example/theme.tsx 1`] = `
             fill="currentColor"
           />
         </svg>
-=======
-exports[`csr snapshot test > csr test src/slider/_example/step.tsx 1`] = `
-<div>
-  <div
-    class="wrapper-base"
-  >
-    <div
-      class="t-slider t-slider--top"
-    >
-      <div
-        class="t-slider__bar t-slider__bar--default"
-      >
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            5
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            6
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            7
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            8
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            9
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            10
-          </div>
-        </div>
-        <div
-          class="t-slider__line t-slider__line--default t-slider__line--single"
-          style="width: 0px;"
-        >
-          <div
-            class="t-slider__dot"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="wrapper-base"
-  >
-    <div
-      class="t-slider t-slider--top t-slider--range"
-    >
-      <div
-        class="t-slider__bar t-slider__bar--default"
-      >
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            0
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            20
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            40
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default t-slider__scale-item--active"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            60
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            80
-          </div>
-        </div>
-        <div
-          class="t-slider__scale-item t-slider__scale-item t-slider__scale-item--default"
-          style="left: 0px; transform: translateX(-50%);"
-        >
-          <div
-            class="t-slider__scale-desc t-slider__scale-desc--default"
-          >
-            100
-          </div>
-        </div>
-        <div
-          class="t-slider__line t-slider__line--default"
-          style="right: 0px; left: 0px;"
-        >
-          <div
-            class="t-slider__dot t-slider__dot--left"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-          <div
-            class="t-slider__dot t-slider__dot--right"
-          >
-            <div
-              class="t-slider__dot-slider"
-            />
-          </div>
-        </div>
->>>>>>> 2bfa127 (feat(slider): update slider demo, alignment vue mobile)
       </div>
     </div>
   </div>
@@ -52766,7 +53616,20 @@ exports[`ssr snapshot test > ssr test src/skeleton/_example/image-group.tsx 1`] 
 
 exports[`ssr snapshot test > ssr test src/skeleton/_example/theme.tsx 1`] = `"<div><div class="demo-section__desc">头像骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-circle t-skeleton--animation-none" style="width:48px;height:48px"></div></div></div></div></div><div><div class="demo-section__desc">图片骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-rect t-skeleton--animation-none" style="width:72px;height:72px"></div></div></div></div></div><div><div class="demo-section__desc">文本骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:24%;height:16px;margin-right:16px"></div><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:76%;height:16px"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div></div></div></div><div><div class="demo-section__desc">段落骨架屏</div><div class="demo-section__content"><div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none"></div></div><div class="t-skeleton__row"><div class="t-skeleton__col t-skeleton--type-text t-skeleton--animation-none" style="width:55%"></div></div></div></div></div>"`;
 
-<<<<<<< HEAD
+exports[`ssr snapshot test > ssr test src/slider/_example/base.tsx 1`] = `"<div class="wrapper-base"><div class="t-slider"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/slider/_example/capsule.tsx 1`] = `"<div class="wrapper-capsule"><div class="t-slider"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider t-slider--top t-slider--range"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/slider/_example/disabled.tsx 1`] = `"<div class="wrapper-disabled"><div class="t-slider t-slider--disabled"><div class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"><div class="t-slider__line t-slider__line--default t-slider__line--single t-slider__line--disabled" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-disabled"><div class="t-slider t-slider--disabled t-slider--range"><div class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"><div class="t-slider__line t-slider__line--default t-slider__line--disabled" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/slider/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Slider 滑动选择器</h1><p class="tdesign-mobile-demo-header__summary">用于选择横轴上的数值、区间、档位</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 类型</h2><p class="tdesign-mobile-demo-block__summary">单游标滑块</p></div><div class="tdesign-mobile-demo-block__slot"><div class="wrapper-base"><div class="t-slider"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">双游标滑块</p></div><div class="tdesign-mobile-demo-block__slot"><div class="wrapper-base"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">带数值单游标/双游标滑块</p></div><div class="tdesign-mobile-demo-block__slot"><div class="wrapper-label"><div class="t-slider t-slider--top"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-value">10</div><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-label"><div class="t-slider t-slider--top t-slider--range"><text class="t-slider__range-extreme t-slider__range-extreme--min">0</text><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div></div></div><text class="t-slider__value t-slider__value--max">100</text></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">带刻度单游标/双游标滑块</p></div><div class="tdesign-mobile-demo-block__slot"><div class="wrapper-base"><div class="t-slider"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-base"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件状态</h2><p class="tdesign-mobile-demo-block__summary">滑块禁用状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="wrapper-disabled"><div class="t-slider t-slider--disabled"><div class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"><div class="t-slider__line t-slider__line--default t-slider__line--single t-slider__line--disabled" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-disabled"><div class="t-slider t-slider--disabled t-slider--range"><div class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"><div class="t-slider__line t-slider__line--default t-slider__line--disabled" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">03 特殊样式</h2><p class="tdesign-mobile-demo-block__summary">胶囊型滑块</p></div><div class="tdesign-mobile-demo-block__slot"><div class="wrapper-capsule"><div class="t-slider"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider t-slider--top t-slider--range"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/slider/_example/label.tsx 1`] = `"<div class="wrapper-label"><div class="t-slider t-slider--top"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-value">10</div><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-label"><div class="t-slider t-slider--top t-slider--range"><text class="t-slider__range-extreme t-slider__range-extreme--min">0</text><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div></div></div><text class="t-slider__value t-slider__value--max">100</text></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/slider/_example/range.tsx 1`] = `"<div class="wrapper-base"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/slider/_example/step.tsx 1`] = `"<div class="wrapper-base"><div class="t-slider"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-base"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
+
 exports[`ssr snapshot test > ssr test src/stepper/_example/base.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="text" value="3.5" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="decimal"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/stepper/_example/index.tsx 1`] = `"<div class="stepper-container"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Stepper 步进器</h1><p class="tdesign-mobile-demo-header__summary">用于数量的增减</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 类型</h2><p class="tdesign-mobile-demo-block__summary">基础步进器</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="text" value="3.5" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="decimal"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件状态</h2><p class="tdesign-mobile-demo-block__summary">最大最小状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="999" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">禁用状态</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium t-stepper--filled-disabled" inputMode="numeric" disabled=""/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件样式</h2><p class="tdesign-mobile-demo-block__summary">步进器样式</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--outline t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--normal t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">步进器尺寸</p></div><div class="tdesign-mobile-demo-block__slot"><div class="stepper-example"><div class="t-stepper t-stepper--large"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--large"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--large" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--large"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--small"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--small"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--small" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--small"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div></div></div></div>"`;
@@ -52778,19 +53641,6 @@ exports[`ssr snapshot test > ssr test src/stepper/_example/size.tsx 1`] = `"<div
 exports[`ssr snapshot test > ssr test src/stepper/_example/status.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="0" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium t-stepper--filled-disabled" inputMode="numeric" disabled=""/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium t-stepper--filled-disabled"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/stepper/_example/theme.tsx 1`] = `"<div class="stepper-example"><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--filled t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--filled t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--outline t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--outline t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><div class="t-stepper t-stepper--medium"><div class="t-stepper__minus t-stepper__minus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-remove t-stepper__minus-icon"><path fill="currentColor" d="M4 11h16v2H4v-2z"></path></svg></div><input type="tel" value="3" class="t-stepper__input t-stepper__input--normal t-stepper__input--medium" inputMode="numeric"/><div class="t-stepper__plus t-stepper__plus--normal t-stepper__icon--medium"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add t-stepper__plus-icon"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div></div>"`;
-=======
-exports[`ssr snapshot test > ssr test src/slider/_example/base.tsx 1`] = `"<div class="wrapper-base"><div class="t-slider"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
-
-exports[`ssr snapshot test > ssr test src/slider/_example/capsule.tsx 1`] = `"<div class="wrapper-capsule"><div class="t-slider"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider t-slider--top t-slider--range"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-capsule"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--capsule"><div class="t-slider__line t-slider__line--capsule" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
-
-exports[`ssr snapshot test > ssr test src/slider/_example/disabled.tsx 1`] = `"<div class="wrapper-disabled"><div class="t-slider t-slider--disabled"><div class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"><div class="t-slider__line t-slider__line--default t-slider__line--single t-slider__line--disabled" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-disabled"></div><div class="wrapper-disabled"><div class="t-slider t-slider--disabled t-slider--range"><div class="t-slider__bar t-slider__bar--default t-slider__bar--disabled"><div class="t-slider__line t-slider__line--default t-slider__line--disabled" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
-
-exports[`ssr snapshot test > ssr test src/slider/_example/label.tsx 1`] = `"<div class="wrapper-label"><div class="t-slider t-slider--top"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-value">10</div><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-label"><div class="t-slider t-slider--top t-slider--range"><text class="t-slider__range-extreme t-slider__range-extreme--min">0</text><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-value">0</div><div class="t-slider__dot-slider"></div></div></div></div><text class="t-slider__value t-slider__value--max">100</text></div></div>"`;
-
-exports[`ssr snapshot test > ssr test src/slider/_example/range.tsx 1`] = `"<div class="wrapper-base"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
-
-exports[`ssr snapshot test > ssr test src/slider/_example/step.tsx 1`] = `"<div class="wrapper-base"><div class="t-slider"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default t-slider__line--single" style="width:0px"><div class="t-slider__dot"><div class="t-slider__dot-slider"></div></div></div></div></div></div><div class="wrapper-base"><div class="t-slider t-slider--range"><div class="t-slider__bar t-slider__bar--default"><div class="t-slider__line t-slider__line--default" style="left:undefinedpx;right:0px"><div class="t-slider__dot t-slider__dot--left"><div class="t-slider__dot-slider"></div></div><div class="t-slider__dot t-slider__dot--right"><div class="t-slider__dot-slider"></div></div></div></div></div></div>"`;
->>>>>>> 2bfa127 (feat(slider): update slider demo, alignment vue mobile)
 
 exports[`ssr snapshot test > ssr test src/sticky/_example/base.tsx 1`] = `"<div class="tdesign-demo-block-1"><div class="t-sticky"><div class="t-sticky__content"><button type="button" class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle custom-common-button"><span class="t-button__content"> <!-- -->基础吸顶</span></button></div></div></div>"`;
 

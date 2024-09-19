@@ -6,17 +6,32 @@ import cloneDeep from 'lodash/cloneDeep';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import useDefault from '../_util/useDefault';
-import { NativeProps } from '../_util/withNativeProps';
+import { StyledProps } from '../common';
 import { SliderValue, TdSliderProps } from './type';
 import { sliderDefaultProps } from './defaultProps';
-import { trimSingleValue, trimValue } from './helper';
+import { trimSingleValue, trimValue } from './utils';
 import { BLOCK_SIZE, BORDER_WIDTH } from './constants';
 
-export interface SliderProps extends TdSliderProps, NativeProps {}
+export interface SliderProps extends TdSliderProps, StyledProps {}
 
 const Slider: FC<SliderProps> = (props) => {
-  const { disabled, max, min, range, step, theme, value, defaultValue, marks, showExtremeValue, label, onChange } =
-    useDefaultProps(props, sliderDefaultProps);
+  const {
+    className,
+    style,
+    disabled,
+    max,
+    min,
+    range,
+    step,
+    theme,
+    value,
+    defaultValue,
+    marks,
+    showExtremeValue,
+    label,
+    onChange,
+  } = useDefaultProps(props, sliderDefaultProps);
+
   const [scaleArray, setScaleArray] = useState<any[]>([]);
   const [scaleTextArray, setScaleTextArray] = useState<any[]>([]);
   const [isScale, setIsScale] = useState<boolean>(false);
@@ -35,11 +50,16 @@ const Slider: FC<SliderProps> = (props) => {
   const scope = Number(max) - Number(min);
 
   const rootClassName = usePrefixClass('slider');
-  const containerClassName = classNames(rootClassName, {
-    [`${rootClassName}--top`]: label || scaleTextArray.length,
-    [`${rootClassName}--disabled`]: disabled,
-    [`${rootClassName}--range`]: range,
-  });
+
+  const containerClassName = classNames(
+    rootClassName,
+    {
+      [`${rootClassName}--top`]: label || scaleTextArray.length,
+      [`${rootClassName}--disabled`]: disabled,
+      [`${rootClassName}--range`]: range,
+    },
+    className,
+  );
   const sliderLineClassName = classNames(`${rootClassName}__bar`, `${rootClassName}__bar--${theme}`, {
     [`${rootClassName}__bar--disabled`]: disabled,
     [`${rootClassName}__bar--marks`]: isScale && theme === 'capsule',
@@ -282,8 +302,9 @@ const Slider: FC<SliderProps> = (props) => {
           `${rootClassName}__scale-item`,
           `${rootClassName}__scale-item--${theme}`,
           {
-            [`${rootClassName}__scale-item--active`]: !range && Number(innerValue) >= item.val,
-            [`${rootClassName}__scale-item--active`]: range && dotTopValue[1] >= item.val && item.val >= dotTopValue[0],
+            [`${rootClassName}__scale-item--active`]:
+              (!range && Number(innerValue) >= item.val) ||
+              (range && dotTopValue[1] >= item.val && item.val >= dotTopValue[0]),
             [`${rootClassName}__scale-item--disabled`]: disabled,
             [`${rootClassName}__scale-item--hidden`]:
               ((index === 0 || index === scaleArray.length - 1) && theme === 'capsule') || innerValue === item.val,
@@ -369,7 +390,7 @@ const Slider: FC<SliderProps> = (props) => {
   );
 
   return (
-    <div ref={rootRef} className={containerClassName}>
+    <div ref={rootRef} className={containerClassName} style={style}>
       {renderMinText()}
       <div ref={sliderLineRef} className={sliderLineClassName} onClick={range ? handleRangeClick : handleSingleClick}>
         {renderScale()}
@@ -379,5 +400,7 @@ const Slider: FC<SliderProps> = (props) => {
     </div>
   );
 };
+
+Slider.displayName = 'Slider';
 
 export default Slider;

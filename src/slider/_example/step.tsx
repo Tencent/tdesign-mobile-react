@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Slider } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function StepDemo() {
   const [value, setValue] = useState<number>(6.5);
