@@ -1,27 +1,18 @@
-import React, {
-  ReactNode,
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-  useLayoutEffect,
-  useMemo,
-  memo,
-  useState,
-} from 'react';
+import React, { forwardRef, useImperativeHandle, useRef, useLayoutEffect, useMemo, useState } from 'react';
+import type { ReactNode } from 'react';
 import isArray from 'lodash/isArray';
 import isBoolean from 'lodash/isBoolean';
 import classNames from 'classnames';
 import { useClickAway } from 'ahooks';
 import { useDrag } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
-import Button from '../button';
-import useConfig from '../_util/useConfig';
 import nearest from '../_util/nearest';
-import withNativeProps, { NativeProps } from '../_util/withNativeProps';
+import withNativeProps from '../_util/withNativeProps';
 import { TdSwipeCellProps, SwipeActionItem, Sure } from './type';
 import { swipeCellDefaultProps } from './defaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
-import { Styles } from '../common';
+import { Styles, StyledProps } from '../common';
 
 import './style';
 
@@ -31,7 +22,7 @@ export interface SwipeCellRef {
   close: (immediate?: boolean) => void;
 }
 
-export interface SwipeCellProps extends TdSwipeCellProps, NativeProps {}
+export interface SwipeCellProps extends TdSwipeCellProps, StyledProps {}
 
 const threshold = '50%';
 
@@ -72,9 +63,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   // 记录dragging和初始化expanded状态
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const ctx = useMemo(() => ({ dragging: false, lastExpanded: '', initialExpanded: isOpened }), []);
-  const { classPrefix } = useConfig();
-  const name = `${classPrefix}-swipe-cell`;
-
+  const swipeCellClass = usePrefixClass('swipe-cell');
   const onChange = (side?: SideType) => {
     if (side !== ctx.lastExpanded) {
       props.onChange?.(side);
@@ -230,7 +219,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   const renderActions = (actions: SwipeActionItem[] | ReactNode, side: SideType) => {
     if (isArray(actions)) {
       return actions.map((action, index) => {
-        const btnClass = classNames([`${name}__content`, action.className || '']);
+        const btnClass = classNames([`${swipeCellClass}__content`, action.className || '']);
         const style = { height: '100%', ...action.style };
         const { icon: btnIcon, text: btnText, ...buttonProps } = action;
 
@@ -242,8 +231,8 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
             {...buttonProps}
             onClick={() => onActionClick(action, side)}
           >
-            {btnIcon && <span className={`${name}__icon`}>{btnIcon}</span>}
-            {btnText && <span className={`${name}__text`}>{btnText}</span>}
+            {btnIcon && <span className={`${swipeCellClass}__icon`}>{btnIcon}</span>}
+            {btnText && <span className={`${swipeCellClass}__text`}>{btnText}</span>}
           </div>
         );
       });
@@ -272,7 +261,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     props,
     <div
       {...bind()}
-      className={classNames(name, className)}
+      className={classNames(swipeCellClass, className)}
       ref={rootRef}
       style={style}
       onClickCapture={(e) => {
@@ -282,16 +271,16 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
         }
       }}
     >
-      <animated.div className={`${name}__wrapper`} style={{ x }}>
+      <animated.div className={`${swipeCellClass}__wrapper`} style={{ x }}>
         {left && (
-          <div className={`${name}__left`} ref={leftRef}>
+          <div className={`${swipeCellClass}__left`} ref={leftRef}>
             {renderSureContent()}
             {renderActions(left, 'left')}
           </div>
         )}
         {content}
         {right && (
-          <div className={`${name}__right`} ref={rightRef}>
+          <div className={`${swipeCellClass}__right`} ref={rightRef}>
             {renderSureContent()}
             {renderActions(right, 'right')}
           </div>
@@ -301,7 +290,6 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   );
 });
 
-SwipeCell.defaultProps = swipeCellDefaultProps;
 SwipeCell.displayName = 'SwipeCell';
 
-export default memo(SwipeCell);
+export default SwipeCell;
