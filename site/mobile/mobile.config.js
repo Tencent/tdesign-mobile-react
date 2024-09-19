@@ -220,7 +220,7 @@ export default {
     {
       title: 'Indexes 索引',
       name: 'indexes',
-      component: () => import('tdesign-mobile-react/indexes/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/indexes/_example/index.tsx'),
     },
     {
       title: 'Picker 选择器',
