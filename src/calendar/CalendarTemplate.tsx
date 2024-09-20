@@ -7,9 +7,11 @@ import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { calendarDefaultProps } from './defaultProps';
 import { CalendarContext, CalendarProps } from './Calendar';
+import { useLocaleReceiver } from '../locale/LocalReceiver';
 
 const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref) => {
   const calendarClass = usePrefixClass('calendar');
+  const [local, t] = useLocaleReceiver('calendar');
   const context = useContext(CalendarContext);
   const props = useDefaultProps(context ? context.inject(_props) : _props, calendarDefaultProps);
 
@@ -39,8 +41,7 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
     : new Date(today.getFullYear(), today.getMonth() + 6, today.getDate());
 
   const days = useMemo(() => {
-    // TODO: 国际化
-    const raw = ['日', '一', '二', '三', '四', '五', '六'];
+    const raw = local.weekdays;
     const ans = [];
     let i = firstDayOfWeek % 7;
     while (ans.length < 7) {
@@ -48,14 +49,14 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
       i = (i + 1) % 7;
     }
     return ans;
-  }, [firstDayOfWeek]);
+  }, [firstDayOfWeek, local.weekdays]);
 
   const confirmBtn = useMemo(() => {
     if (typeof props.confirmBtn === 'string') {
-      return { content: props.confirmBtn || '确定' };
+      return { content: props.confirmBtn || local.confirm };
     }
     return props.confirmBtn;
-  }, [props.confirmBtn]);
+  }, [local.confirm, props.confirmBtn]);
 
   const getDate = (year: number, month: number, day: number) => new Date(year, month, day);
 
@@ -159,7 +160,12 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
 
           if (startDate && isSameDate({ year, month, date }, startDate)) return 'start';
           if (endDate && isSameDate({ year, month, date }, endDate)) return 'end';
-          if (startDate && endDate && curDate.getTime() > startDate.getTime() && curDate.getTime() < endDate.getTime())
+          if (
+            startDate &&
+            endDate &&
+            curDate.getTime() > new Date(startDate).getTime() &&
+            curDate.getTime() < new Date(endDate).getTime()
+          )
             return 'centre';
         }
       }
@@ -241,7 +247,7 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
 
   return (
     <div ref={ref} className={`${className}`}>
-      <div className={`${calendarClass}__title`}>{props.title || '请选择日期'}</div>
+      <div className={`${calendarClass}__title`}>{props.title || local.title}</div>
       {props.usePopup && <CloseIcon className={`${calendarClass}__close-btn`} size={24} onClick={handleClose} />}
       <div className={`${calendarClass}__days`}>
         {days.map((item, index) => (
@@ -255,7 +261,7 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
         {months.map((item, index) => (
           <>
             <div className={`${calendarClass}__month`} key={index}>
-              {item.year} / {item.month}
+              {t(local.monthTitle, { year: item.year, month: local.months[item.month] })}
             </div>
             <div className={`${calendarClass}__dates`} key={index}>
               {new Array((item.weekdayOfFirstDay - firstDayOfWeek + 7) % 7).fill(0).map((emptyItem, index) => (
