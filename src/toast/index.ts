@@ -6,12 +6,28 @@ import './style';
 
 export * from './type';
 
-const { fail, success, loading, warning, createToast } = methods.default;
-export const Toast = (props: TdToastProps) => createToast(props);
+type ToastApi = {
+  /** 展示提示 */
+  (options?: Partial<TdToastProps> | string): void;
+  /** 展示加载提示 */
+  loading: (options?: Partial<TdToastProps> | string) => void;
+  /** 展示成功提示 */
+  success: (options?: Partial<TdToastProps> | string) => void;
+  /** 展示失败提示 */
+  error: (options?: Partial<TdToastProps> | string) => void;
+  /** 关闭提示 */
+  clear: () => void;
+};
 
-export default attachMethodsToComponent(Toast, {
-  fail,
+const { success, loading, error, createToast, clear } = methods.default;
+const innerToast = (props: TdToastProps) => createToast(props);
+
+export const ToastPlugin: ToastApi = attachMethodsToComponent(innerToast, {
   success,
+  error,
   loading,
-  warning,
+  clear,
 });
+
+export const Toast = ToastPlugin;
+export default ToastPlugin;

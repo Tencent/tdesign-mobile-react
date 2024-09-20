@@ -123,17 +123,17 @@ export default function mdToReact(options) {
                     mdSegment.componentName
                   }" ></td-contributors>
                 </div>
-                <div style={isShow('api')} name="API" dangerouslySetInnerHTML={{ __html: \`${
-                  mdSegment.apiMd
-                }\` }}></div>
-                <div style={isShow('design')} name="DESIGN" dangerouslySetInnerHTML={{ __html: \`${
-                  mdSegment.designMd
-                }\` }}></div>
+                <div style={isShow('api')} name="API" dangerouslySetInnerHTML={{ __html: ${JSON.stringify(
+                  mdSegment.apiMd,
+                )} }}></div>
+                <div style={isShow('design')} name="DESIGN" dangerouslySetInnerHTML={{ __html: ${JSON.stringify(
+                  mdSegment.designMd,
+                )}  }}></div>
               </>
             ) : <div name="DOC" className="${mdSegment.docClass}">${mdSegment.docMd.replace(
-    /class=/g,
-    'className=',
-  )}</div>
+              /class=/g,
+              'className=',
+            )}</div>
           }
           <div style={{ marginTop: 48 }}>
             <td-doc-history time="${mdSegment.lastUpdated}"></td-doc-history>
@@ -193,11 +193,6 @@ function customRender({ source, file, md }) {
   demoMd = demoMd.replace(/`([^`]+)`/g, (str, codeStr) => {
     codeStr = codeStr.replace(/"/g, "'");
     return `<td-code text="${codeStr}"></td-code>`;
-  });
-
-  apiMd = apiMd.replace(/`([^`]+)`/g, (str, codeStr) => {
-    codeStr = codeStr.replace(/\|/g, '\\|');
-    return `\`${codeStr}\``;
   });
 
   const mdSegment = {

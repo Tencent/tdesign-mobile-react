@@ -1,3 +1,68 @@
 .checkbox-demo {
   background-color: #fff;
 }
+.theme-card {
+  border-radius: 12px;
+  margin: 0 16px;
+  overflow: hidden;
+}
+.box {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--bg-color-demo, #fff);
+}
+
+.card {
+  position: relative;
+  margin: 16px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1.5px solid var(--bg-color-demo, #fff);
+}
+.card--active {
+  border-color: #0052d9;
+}
+.card--active::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  border: 14px solid #0052d9;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+}
+.card__icon {
+  color: #fff;
+  position: absolute;
+  left: 1.5px;
+  top: 1.5px;
+  z-index: 1;
+}
+/* 横向布局 */
+.horizontal-box {
+  width: calc(100% - 32px);
+  display: flex;
+  align-items: center;
+  margin: 16px;
+}
+
+.horizontal-box .card {
+  flex: 1;
+  margin: 0;
+}
+
+.horizontal-box .card + .card {
+  margin-left: 12px;
+}
+
+.horizontal-box .card::after {
+  border-width: 12px;
+}
+
+.horizontal-box .card__icon {
+  font-size: 12px;
+}

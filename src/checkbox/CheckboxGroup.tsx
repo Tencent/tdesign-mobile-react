@@ -1,11 +1,14 @@
-import React, { ReactElement, useEffect, useMemo, useState } from 'react';
+import React, { FC, ReactElement, useEffect, useMemo, useState } from 'react';
 import isNumber from 'lodash/isNumber';
 import classNames from 'classnames';
-import { CheckboxOption, CheckboxOptionObj, TdCheckboxProps, TdCheckboxGroupProps } from './type';
+import { CheckboxOption, CheckboxOptionObj, TdCheckboxGroupProps } from './type';
 import { StyledProps } from '../common';
-import useConfig from '../_util/useConfig';
+
 import useDefault from '../_util/useDefault';
 import Checkbox, { CheckContext, CheckContextValue } from './Checkbox';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { checkboxGroupDefaultProps } from './defaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 
 export interface CheckboxGroupProps extends TdCheckboxGroupProps, StyledProps {
   children?: React.ReactNode;
@@ -18,27 +21,19 @@ const getCheckboxValue = (v: CheckboxOption): string | number => {
       return v as string | number;
     case 'object': {
       const vs = v as CheckboxOptionObj;
-      return vs.value;
+      return vs.value as string | number;
     }
     default:
       return undefined;
   }
 };
 
-export function CheckboxGroup(props: CheckboxGroupProps) {
-  const { classPrefix } = useConfig();
-  const { 
-    value, 
-    defaultValue, 
-    disabled, 
-    className, 
-    max, 
-    options = [], 
-    name,
-    style,
-    children, 
-    onChange, 
-  } = props;
+const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
+  const checkboxGroulClass = usePrefixClass('checkbox-group');
+  const { value, defaultValue, disabled, className, max, options, name, style, children, onChange } = useDefaultProps(
+    props,
+    checkboxGroupDefaultProps,
+  );
 
   const internalOptions =
     Array.isArray(options) && options.length > 0
@@ -91,7 +86,7 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
       return {
         ...checkProps,
         name,
-        checked: checkProps.checkAll ? checkAllChecked : checkedSet.has(checkValue),
+        checked: checkProps.checkAll ? checkAllChecked || checkedSet.size !== 0 : checkedSet.has(checkValue),
         indeterminate: checkProps.checkAll ? indeterminate : checkProps.indeterminate,
         disabled: checkProps.disabled || disabled || (checkedSet.size >= localMax && !checkedSet.has(checkValue)),
         onChange(checked, { e }) {
@@ -115,9 +110,10 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
           }
 
           setInternalValue(Array.from(checkedSet), {
-            e,
-            current: checkProps.checkAll ? undefined : (checkValue as TdCheckboxProps), 
-            type: checked ? 'check' : 'uncheck' 
+            e: e as any,
+            current: checkProps.checkAll ? undefined : (checkValue as string | number),
+            type: checked ? 'check' : 'uncheck',
+            option: checkProps,
           });
         },
       };
@@ -125,43 +121,47 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
   };
 
   // options 和 children 的抉择,在未明确说明时，暂时以 options 优先
-  const useOptions = Array.isArray(options) && options.length !== 0;
+  const isOptions = Array.isArray(options) && options.length !== 0;
+
+  const checkboxNode = () =>
+    options.map((v, index) => {
+      const type = typeof v;
+      switch (type) {
+        case 'number' || 'string': {
+          const vs = v as number | string;
+          return (
+            <Checkbox key={vs} label={vs} value={vs}>
+              {v}
+            </Checkbox>
+          );
+        }
+        case 'object': {
+          const vs = v as CheckboxOptionObj;
+          // CheckAll 的 checkBox 不存在 value,故用 checkAll_index 来保证尽量不和用户的 value 冲突.
+          return vs.checkAll ? (
+            <Checkbox {...(v as Object)} key={`checkAll_${index}`} indeterminate={indeterminate} />
+          ) : (
+            <Checkbox {...(v as Object)} key={vs.value.toString()} disabled={vs.disabled || disabled} />
+          );
+        }
+        default:
+          return null;
+      }
+    });
 
   return (
-    <div className={classNames(`${classPrefix}-checkbox-group`, className)} style={style}>
-      <div className={`${classPrefix}-cell-group`}>
-        <div className={`${classPrefix}cell-group__container`}>
-          <CheckContext.Provider value={context}>
-            {useOptions
-              ? options.map((v, index) => {
-                const type = typeof v;
-                switch (type) {
-                  case 'number' || 'string': {
-                    const vs = v as number | string;
-                    return (
-                      <Checkbox key={vs} label={vs} value={vs}>
-                        {v}
-                      </Checkbox>
-                    );
-                  }
-                  case 'object': {
-                    const vs = v as CheckboxOptionObj;
-                    // CheckAll 的 checkBox 不存在 value,故用 checkAll_index 来保证尽量不和用户的 value 冲突.
-                    return vs.checkAll ? (
-                      <Checkbox {...v as Object} key={`checkAll_${index}`} indeterminate={indeterminate} />
-                    ) : (
-                      <Checkbox {...v as Object} key={vs.value} disabled={vs.disabled || disabled} />
-                    );
-                  }
-                  default:
-                    return null;
-                }
-              })
-              : children}
-          </CheckContext.Provider>
-        </div>
-      </div>
+    <div className={classNames(checkboxGroulClass, className)} style={style}>
+      {isOptions ? (
+        <span>
+          <CheckContext.Provider value={context}>{checkboxNode()}</CheckContext.Provider>
+        </span>
+      ) : (
+        <CheckContext.Provider value={context}>{children}</CheckContext.Provider>
+      )}
     </div>
-  )
-}
+  );
+};
+
+CheckboxGroup.displayName = 'CheckboxGroup';
+
 export default CheckboxGroup;

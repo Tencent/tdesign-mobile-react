@@ -1,21 +1,23 @@
-.tdesign-mobile-demo {
-  background-color: #ffffff;
-  padding-bottom: 62px;
-  .tdesign-demo-block-wrap {
-    padding: 0 16px 8px;
-    min-height: 48px;
-    display: flex;
-
-    &__title {
-      width: 30%;
-    }
-
-    &-flex {
-      display: flex;
-    }
-
-    &__slider {
-      width: 70%;
-    }
+.wrapper {
+  &-base,
+  &-disabled,
+  &-label,
+  &-capsule {
+    background: var(--bg-color-demo, #fff);
+    padding: 18px 0;
   }
+
+  &-capsule {
+    padding: 16px 0;
+  }
+
+  &-capsule,
+  &-disabled,
+  &-label {
+    margin-top: 16px;
+  }
+}
+
+.tdesign-mobile-demo {
+  background: #f6f6f6;
 }

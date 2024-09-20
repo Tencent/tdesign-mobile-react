@@ -5,6 +5,21 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.7.0 `2024-09-20` 
+### ❗ Breaking Changes
+- `Checkbox`: 组件重构，新增 `readonly` 属性 @epoll-j ([#504](https://github.com/Tencent/tdesign-mobile-react/pull/504))
+- `Drawer`: 组件重构，新增 `attach`、`title` 和 `footer` 等属性，并支持函数式调用 @novlan1 ([#488](https://github.com/Tencent/tdesign-mobile-react/pull/488))
+- `SwipeCell`: 组件重构，移除 `expanded` 属性，新增 `opened` 属性 @novlan1 ([#492](https://github.com/Tencent/tdesign-mobile-react/pull/492))
+- `Indexes`:  组件重构，移除 `list`, `height` 属性，`select`  事件参数有变更，新增`indexList`,  `sticky` 与 `stickyOffset` 等属性，新增 `change`  事件，新增`IndexesAnchor`子组件； @Lyan-u ([#513](https://github.com/Tencent/tdesign-mobile-react/pull/513))
+- `Stepper`: 组件重构，新增 `integer` 和 `size` 属性，新增 `focus` 事件 @taninsist ([#525](https://github.com/Tencent/tdesign-mobile-react/pull/525))
+- `Slider`: 组件重构，新增 `theme` 属性，`dragend` 事件参数有调整 @slatejack ([#522](https://github.com/Tencent/tdesign-mobile-react/pull/522))
+- `Tabs`: 组件重构，新增`bottomLineMode `、`spaceEvenly `属性，新增`onClick`、`onScroll `事件 @epoll-j ([#515](https://github.com/Tencent/tdesign-mobile-react/pull/515))
+- `Toast`: 组件重构，新增 `style`、`className`、`showOverlay` 和 `overlayProps` 等属性，新增 `close` 事件 @novlan1 ([#494](https://github.com/Tencent/tdesign-mobile-react/pull/494))
+### 🚀 Features
+- `Empty`: 新增 `Empty` 组件 @epoll-j ([#505](https://github.com/Tencent/tdesign-mobile-react/pull/505))
+- `Popover`: 新增 `Popover` 组件 @epoll-j ([#510](https://github.com/Tencent/tdesign-mobile-react/pull/510))
+ 
+
 ## 🌈 0.6.1 `2024-09-04` 
 ### 🚀 Features
 - `Icon`: 更新图标库版本到 `0.3.5` ，`lock-on` 图标存在更新 @liweijie0812 ([#507](https://github.com/Tencent/tdesign-mobile-react/pull/507))
