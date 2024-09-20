@@ -1,5 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
 import classNames from 'classnames';
+import isArray from 'lodash/isArray';
 import Loading from '../loading';
 import { TdSwitchProps, SwitchValue } from './type';
 import { switchDefaultProps } from './defaultProps';
@@ -42,7 +43,7 @@ const Switch = forwardRef<HTMLDivElement, SwitchProps>((originalProps, ref) => {
 
   const dotClasses = classNames(`${switchClass}__dot`, `${switchClass}__dot--${props.size}`, {
     [`${switchClass}__dot--checked`]: checked,
-    [`${switchClass}__dot--plain`]: label?.length !== 2 && !loading,
+    [`${switchClass}__dot--plain`]: isArray(label) && label.length !== 2 && !loading,
   });
 
   const labelClasses = classNames(`${switchClass}__label`, `${switchClass}__label--${size}`, {
