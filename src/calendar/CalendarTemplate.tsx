@@ -260,24 +260,22 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
 
       <div className={`${calendarClass}__months`} style={{ overflow: 'auto' }}>
         {months.map((item, index) => (
-          <React.Fragment key={index}>
+          <React.Fragment key={`month-${item.year}-${item.month}-${index}`}>
             <div className={`${calendarClass}__month`}>
               {t(local.monthTitle, { year: item.year, month: local.months[item.month] })}
             </div>
             <div className={`${calendarClass}__dates`}>
-              {new Array((item.weekdayOfFirstDay - firstDayOfWeek + 7) % 7).fill(0).map((emptyItem, index) => (
-                <div key={index} />
+              {new Array((item.weekdayOfFirstDay - firstDayOfWeek + 7) % 7).fill(0).map((_, emptyIndex) => (
+                <div key={`empty-${item.year}-${item.month}-${emptyIndex}`} /> // 为空 div 添加唯一 key
               ))}
               {item.months.map((dateItem, dateIndex) => (
-                <>
-                  <div
-                    key={`${index}_${dateIndex}`}
-                    className={getDateItemClass(dateItem)}
-                    onClick={() => handleSelect(item.year, item.month, dateItem.day, dateItem)}
-                  >
-                    {renderCell(dateItem)}
-                  </div>
-                </>
+                <div
+                  key={`date-${item.year}-${item.month}-${dateIndex}`} // 确保 key 唯一
+                  className={getDateItemClass(dateItem)}
+                  onClick={() => handleSelect(item.year, item.month, dateItem.day, dateItem)}
+                >
+                  {renderCell(dateItem)}
+                </div>
               ))}
             </div>
           </React.Fragment>
