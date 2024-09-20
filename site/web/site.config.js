@@ -226,6 +226,12 @@ export default {
           path: '/mobile-react/components/upload',
           component: () => import('tdesign-mobile-react/upload/upload.md'),
         },
+        {
+          title: 'Calendar 日历',
+          name: 'calendar',
+          path: '/mobile-react/components/calendar',
+          component: () => import('tdesign-mobile-react/calendar/calendar.md'),
+        },
       ],
     },
     {

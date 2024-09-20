@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext, useMemo, forwardRef } from 'rea
 import { CloseIcon } from 'tdesign-icons-react';
 import Button from '../button';
 import { TDateType, TCalendarValue } from './type';
-
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { calendarDefaultProps } from './defaultProps';
@@ -15,8 +14,8 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
   const context = useContext(CalendarContext);
   const props = useDefaultProps(context ? context.inject(_props) : _props, calendarDefaultProps);
 
-  const [selectedDate, setSelectedDate] = useState<number | Date | TCalendarValue[]>(props.value);
-  const [firstDayOfWeek] = useState(props.firstDayOfWeek || 0);
+  const [selectedDate, setSelectedDate] = useState<number | Date | TCalendarValue[]>();
+  const firstDayOfWeek = props.firstDayOfWeek || 0;
 
   useEffect(() => {
     if (Array.isArray(props.value)) {
@@ -91,15 +90,16 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
   const handleSelect = (year, month, date, dateItem) => {
     if (dateItem.type === 'disabled') return;
     const selected = new Date(year, month, date);
+    let newSelected: TCalendarValue | TCalendarValue[];
     if (props.type === 'range' && Array.isArray(selectedDate)) {
       if (selectedDate.length === 1) {
         if (selectedDate[0] > selected) {
-          setSelectedDate([selected]);
+          newSelected = [selected];
         } else {
-          setSelectedDate([selectedDate[0], selected]);
+          newSelected = [selectedDate[0], selected];
         }
       } else {
-        setSelectedDate([selected]);
+        newSelected = [selected];
         if (!confirmBtn && selectedDate.length === 2) {
           props.onChange?.(new Date(selectedDate[0]));
         }
@@ -112,14 +112,15 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
       } else {
         newVal.push(selected);
       }
-      setSelectedDate(newVal);
+      newSelected = newVal;
     } else {
-      setSelectedDate(selected);
+      newSelected = selected;
       if (!confirmBtn) {
         props.onChange?.(selected);
       }
     }
-    props.onSelect?.(selectedDate[0]);
+    setSelectedDate(newSelected);
+    props.onSelect?.(newSelected as any);
   };
 
   // 计算月份
@@ -204,7 +205,7 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
 
   const handleConfirm = () => {
     props.onClose?.('confirm-btn');
-    props.onConfirm?.(new Date(selectedDate[0]));
+    props.onConfirm?.(new Date(Array.isArray(selectedDate) ? selectedDate[0] : selectedDate));
   };
 
   const handleClose = () => {
@@ -259,11 +260,11 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
 
       <div className={`${calendarClass}__months`} style={{ overflow: 'auto' }}>
         {months.map((item, index) => (
-          <>
-            <div className={`${calendarClass}__month`} key={index}>
+          <React.Fragment key={index}>
+            <div className={`${calendarClass}__month`}>
               {t(local.monthTitle, { year: item.year, month: local.months[item.month] })}
             </div>
-            <div className={`${calendarClass}__dates`} key={index}>
+            <div className={`${calendarClass}__dates`}>
               {new Array((item.weekdayOfFirstDay - firstDayOfWeek + 7) % 7).fill(0).map((emptyItem, index) => (
                 <div key={index} />
               ))}
@@ -279,7 +280,7 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
                 </>
               ))}
             </div>
-          </>
+          </React.Fragment>
         ))}
       </div>
       {props.usePopup && <div className={`${calendarClass}__footer`}>{renderConfirmBtn()}</div>}

@@ -20,11 +20,14 @@ const Calendar: FC<CalendarProps> = (_props) => {
   const calendarClass = usePrefixClass('calendar');
 
   const props = useDefaultProps(_props, calendarDefaultProps);
-  const { title, type, onClose, confirmBtn, usePopup, visible, value } = props;
+  const { title, type, onClose, confirmBtn, usePopup, visible, className, style } = props;
 
   const [currentVisible, setCurrentVisible] = useState(visible);
   const contextValue: CalendarContextValue = {
-    inject(props) {
+    inject(calendarProps) {
+      if (calendarProps.type) {
+        return calendarProps;
+      }
       return {
         ...props,
         onClose: (trigger) => {
@@ -56,21 +59,12 @@ const Calendar: FC<CalendarProps> = (_props) => {
   };
 
   useEffect(() => {
-    if (!usePopup) selectedValueIntoView();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
     setCurrentVisible(visible);
   }, [visible]);
 
-  useEffect(() => {
-    calendarTemplateRef.current.valueRef = value;
-  }, [value]);
-
   return (
     <CalendarContext.Provider value={contextValue}>
-      <div>
+      <div className={className} style={style}>
         {!usePopup ? (
           <CalendarTemplate ref={calendarTemplateRef} title={title} confirmBtn={confirmBtn} />
         ) : (
