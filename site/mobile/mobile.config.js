@@ -230,7 +230,7 @@ export default {
     {
       title: 'Textarea 多行文本框',
       name: 'textarea',
-      component: () => import('tdesign-mobile-react/textarea/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/textarea/_example/index.tsx'),
     },
     {
       title: 'Steps 步骤条',
