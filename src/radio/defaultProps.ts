@@ -16,6 +16,7 @@ export const radioDefaultProps: TdRadioProps = {
   maxContentRow: 5,
   maxLabelRow: 3,
   placement: 'left',
+  readonly: false,
   value: undefined,
 };
 

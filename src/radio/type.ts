@@ -7,7 +7,7 @@
 import { TNode, KeysType } from '../common';
 import { ChangeEvent } from 'react';
 
-export interface TdRadioProps {
+export interface TdRadioProps<T = RadioValue> {
   /**
    * 已废弃。复选框和内容相对位置
    * @default left
@@ -84,9 +84,14 @@ export interface TdRadioProps {
    */
   placement?: 'left' | 'right';
   /**
+   * 只读状态
+   * @default false
+   */
+  readonly?: boolean;
+  /**
    * 单选按钮的值
    */
-  value?: string | number | boolean;
+  value?: T;
   /**
    * 选中状态变化时触发
    */
@@ -140,9 +145,9 @@ export interface TdRadioGroupProps<T = RadioValue> {
    */
   defaultValue?: T;
   /**
-   * 选中值发生变化时触发
+   * 选中值发生变化时触发, `context.name` 指 RadioGroup 的 name 属性
    */
-  onChange?: (value: T, context: { e: ChangeEvent<HTMLDivElement> }) => void;
+  onChange?: (value: T, context: { e: ChangeEvent<HTMLDivElement>; name?: string }) => void;
 }
 
 export type RadioOption = string | number | RadioOptionObj;
