@@ -4,13 +4,16 @@ import uniqueId from 'lodash/uniqueId';
 import { useDrag } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
 import isBoolean from 'lodash/isBoolean';
+
 import { useDebounceFn } from 'ahooks';
 import Loading from '../loading';
-import withNativeProps, { NativeProps } from '../_util/withNativeProps';
+
+import { StyledProps } from '../common';
 import getScrollParent from '../_util/getScrollParent';
 import useDefault from '../_util/useDefault';
 import type { TdPullDownRefreshProps } from './type';
 import { pullDownRefreshDefaultProps } from './defaultProps';
+
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { convertUnit, reconvertUnit } from '../_util/convertUnit';
@@ -38,7 +41,7 @@ function getStatusText(status: PullStatusEnum, loadingTexts: string[]) {
   }
 }
 
-export interface PullDownRefreshProps extends TdPullDownRefreshProps, NativeProps {
+export interface PullDownRefreshProps extends TdPullDownRefreshProps, StyledProps {
   disabled?: boolean;
   onRefresh?: () => void;
   children?: React.ReactNode;
@@ -192,8 +195,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
   }
   const loadingHeight = convertUnit(loadingBarHeight);
 
-  return withNativeProps(
-    props,
+  return (
     <div className={classNames(name, className)} style={style} ref={rootRef}>
       <animated.div
         className={classNames(`${name}__track`, { [`${name}__track--loosing`]: status !== PullStatusEnum.pulling })}
@@ -212,7 +214,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
         </div>
         {children}
       </animated.div>
-    </div>,
+    </div>
   );
 };
 
