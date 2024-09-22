@@ -4,4 +4,4 @@
 
 import { TdNavbarProps } from './type';
 
-export const navbarDefaultProps: TdNavbarProps = { animation: true, fixed: true, leftIcon: false, visible: true };
+export const navbarDefaultProps: TdNavbarProps = { animation: true, fixed: true, leftArrow: false, visible: true };

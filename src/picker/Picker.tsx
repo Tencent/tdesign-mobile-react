@@ -1,11 +1,12 @@
 import React, { FC, useMemo } from 'react';
-import { Button, Popup } from 'tdesign-mobile-react';
 import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import PickerView, { getPickerViewDefaultValue } from './PickerView';
 import { pickerDefaultProps } from './defaultProps';
 import { TdPickerProps } from './type';
+import Button from '../button';
+import Popup from '../popup';
 
 export interface PickerProps extends TdPickerProps, NativeProps {}
 

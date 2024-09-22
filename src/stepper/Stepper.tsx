@@ -1,33 +1,27 @@
-import React, { FC } from 'react';
+import React, { FormEvent, forwardRef, memo } from 'react';
 import classNames from 'classnames';
-import identity from 'lodash/identity';
 import { AddIcon, RemoveIcon } from 'tdesign-icons-react';
-import useConfig from '../_util/useConfig';
+import { usePrefixClass } from '../hooks/useClass';
+import useDefaultProps from '../hooks/useDefaultProps';
 import useDefault from '../_util/useDefault';
+import { formatNumber } from '../_util/formatNumber';
+import { StyledProps } from '../common';
 import { TdStepperProps } from './type';
-import withNativeProps, { NativeProps } from '../_util/withNativeProps';
+import { stepperDefaultProps } from './defaultProps';
 
-export interface StepperProps extends TdStepperProps, NativeProps {}
+export interface StepperProps extends TdStepperProps, StyledProps {}
 
-const defaultProps = {
-  disabled: false,
-  disableInput: false,
-  max: 100,
-  min: 0,
-  step: 1,
-  theme: 'normal',
-  defaultValue: 0,
-  onBlur: identity,
-  onChange: identity,
-  onOverlimit: identity,
-};
-
-const Stepper: FC<StepperProps> = (props) => {
+const Stepper = forwardRef<HTMLDivElement, StepperProps>((originProps, ref) => {
+  const props = useDefaultProps(originProps, stepperDefaultProps);
   const {
-    disabled,
+    className,
+    style,
     disableInput,
+    disabled,
     inputWidth,
+    integer,
     max,
+    size,
     min,
     step,
     theme,
@@ -35,101 +29,136 @@ const Stepper: FC<StepperProps> = (props) => {
     defaultValue,
     onBlur,
     onChange,
+    onFocus,
     onOverlimit,
   } = props;
+
   const [currentValue, setCurrentValue] = useDefault(value, defaultValue, onChange);
-  const { classPrefix } = useConfig();
-  const name = `${classPrefix}-stepper`;
+
+  const stepperClass = usePrefixClass('stepper');
+
+  const inputStyle = inputWidth ? { width: `${inputWidth}px` } : {};
 
   const isDisabled = (type: 'minus' | 'plus') => {
     if (disabled) return true;
-    if (type === 'minus' && currentValue <= min) {
+    if (type === 'minus' && Number(currentValue) <= min) {
       return true;
     }
-    if (type === 'plus' && currentValue >= max) {
+    if (type === 'plus' && Number(currentValue) >= max) {
       return true;
     }
     return false;
   };
 
-  const formatValue = (value: number) =>
-    Math.max(Math.min(max, value, Number.MAX_SAFE_INTEGER), min, Number.MIN_SAFE_INTEGER);
-
-  const updateValue = (value: number) => {
-    setCurrentValue(formatValue(value));
-    onChange(value);
+  const getLen = (num: number) => {
+    const numStr = num.toString();
+    return numStr.indexOf('.') === -1 ? 0 : numStr.split('.')[1].length;
   };
 
-  const minusValue = () => {
-    if (isDisabled('minus')) {
-      onOverlimit('minus');
-      return;
-    }
-    updateValue(Number(currentValue) - step);
+  /**
+   * 精确加法
+   */
+  const add = (a: number, b: number) => {
+    const maxLen = Math.max(getLen(a), getLen(b));
+    const base = 10 ** maxLen;
+    return Math.round(a * base + b * base) / base;
+  };
+
+  const formatValue = (value: number) =>
+    Math.max(Math.min(max, value, Number.MAX_SAFE_INTEGER), min, Number.MIN_SAFE_INTEGER).toFixed(
+      Math.max(getLen(step), getLen(value)),
+    );
+
+  const updateValue = (value: TdStepperProps['value']) => {
+    setCurrentValue(formatNumber(`${value}`, !integer));
   };
 
   const plusValue = () => {
     if (isDisabled('plus')) {
-      onOverlimit('plus');
+      onOverlimit?.('plus');
       return;
     }
-    updateValue(Number(currentValue) + step);
+    updateValue(formatValue(add(Number(currentValue), step)));
   };
 
-  const handleChange = (e: React.FocusEvent<HTMLInputElement, Element>) => {
-    const { value } = e.currentTarget;
-    if (isNaN(Number(value))) return;
-    const formattedValue = formatValue(Number(value));
-    setCurrentValue(formattedValue);
-    onChange(formattedValue);
+  const minusValue = () => {
+    if (isDisabled('minus')) {
+      onOverlimit?.('minus');
+      return;
+    }
+    updateValue(formatValue(add(Number(currentValue), -step)));
   };
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
-    const { value } = e.currentTarget;
-    if (isNaN(Number(value))) return;
-    const formattedValue = formatValue(Number(value));
-    setCurrentValue(formattedValue);
-    onBlur(formattedValue);
+  const handleInput = (e: FormEvent<HTMLInputElement>) => {
+    const value = formatNumber((e.target as HTMLInputElement).value, !integer);
+    setCurrentValue(value);
   };
 
-  return withNativeProps(
-    props,
-    <div
-      className={classNames(name, {
-        [`${classPrefix}-is-disabled`]: disabled,
-        [`${name}__pure`]: theme === 'grey',
-        [`${name}__normal`]: theme !== 'grey',
-      })}
-    >
+  const handleChange = () => {
+    const formattedValue = formatValue(Number(currentValue));
+    updateValue(formattedValue);
+  };
+
+  const handleFocus = () => {
+    onFocus(Number(currentValue));
+  };
+
+  const handleBlur = () => {
+    onBlur(Number(currentValue));
+  };
+
+  return (
+    <div className={classNames(stepperClass, `${stepperClass}--${size}`, className)} style={style} ref={ref}>
       <div
-        className={classNames(`${name}__minus`, {
-          [`${classPrefix}-is-disabled`]: currentValue <= min,
-        })}
+        className={classNames(
+          `${stepperClass}__minus`,
+          `${stepperClass}__minus--${theme}`,
+          `${stepperClass}__icon--${size}`,
+          {
+            [`${stepperClass}--${theme}-disabled`]: disabled || Number(currentValue) <= props.min,
+          },
+        )}
         onClick={minusValue}
       >
-        <RemoveIcon className={`${name}__icon`} />
+        <RemoveIcon className={`${stepperClass}__minus-icon`} />
       </div>
       <input
-        className={`${name}__input`}
-        style={{ width: inputWidth || 50 }}
         value={currentValue}
-        onChange={handleChange}
+        className={classNames(
+          `${stepperClass}__input`,
+          `${stepperClass}__input--${theme}`,
+          `${stepperClass}__input--${size}`,
+          {
+            [`${stepperClass}--${theme}-disabled`]: disabled,
+          },
+        )}
+        type={integer ? 'tel' : 'text'}
+        inputMode={integer ? 'numeric' : 'decimal'}
+        style={inputStyle}
+        disabled={disableInput || disabled}
+        readOnly={disableInput}
+        onFocus={handleFocus}
         onBlur={handleBlur}
-        disabled={disabled || disableInput}
+        onInput={handleInput}
+        onChange={handleChange}
       />
       <div
-        className={classNames(`${name}__plus`, {
-          [`${classPrefix}-is-disabled`]: currentValue >= max,
-        })}
+        className={classNames(
+          `${stepperClass}__plus`,
+          `${stepperClass}__plus--${theme}`,
+          `${stepperClass}__icon--${size}`,
+          {
+            [`${stepperClass}--${theme}-disabled`]: disabled || Number(currentValue) >= max,
+          },
+        )}
         onClick={plusValue}
       >
-        <AddIcon className={`${name}__icon`} />
+        <AddIcon className={`${stepperClass}__plus-icon`} />
       </div>
-    </div>,
+    </div>
   );
-};
+});
 
-Stepper.defaultProps = defaultProps as StepperProps;
 Stepper.displayName = 'Stepper';
 
-export default Stepper;
+export default memo(Stepper);

@@ -1,61 +1,72 @@
 import React, { forwardRef } from 'react';
 import classnames from 'classnames';
-import { LoadingIcon } from 'tdesign-icons-react';
+import TLoading from '../loading';
 import useConfig from '../_util/useConfig';
+import parseTNode from '../_util/parseTNode';
 import { TdButtonProps } from './type';
-import noop from '../_util/noop';
 import { buttonDefaultProps } from './defaultProps';
+import useDefaultProps from '../hooks/useDefaultProps';
 
-export interface ButtonProps extends TdButtonProps, Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'content'> {}
+export interface ButtonProps
+  extends TdButtonProps,
+    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'content' | 'children'> {}
 
-const Button = forwardRef((props: ButtonProps, ref: React.Ref<HTMLButtonElement>) => {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((originProps, ref) => {
+  const props = useDefaultProps(originProps, buttonDefaultProps);
   const {
-    className = '',
+    className,
     style,
     block,
     children,
-    content = '',
+    content,
     disabled,
     ghost,
-    icon = null,
+    icon,
+    suffix,
     loading,
     shape,
     size,
     theme,
     type,
     variant,
-    onClick = noop,
+    onClick,
+    loadingProps,
   } = props;
   const { classPrefix } = useConfig();
+
+  const childNode = content || children;
 
   return (
     <button
       ref={ref}
       type={type}
       className={classnames(
-        [`${classPrefix}-button`, `${classPrefix}-button--${variant}`, `${classPrefix}-button--${theme}`, className],
+        [
+          `${classPrefix}-button`,
+          `${classPrefix}-button--size-${size}`,
+          `${classPrefix}-button--${variant}`,
+          `${classPrefix}-button--${theme}`,
+          `${classPrefix}-button--${shape}`,
+          className,
+        ],
         {
           [`${classPrefix}-button--ghost`]: ghost,
-          [`${classPrefix}-size-s`]: size === 'small',
-          [`${classPrefix}-size-default`]: size === 'medium',
-          [`${classPrefix}-size-l`]: size === 'large',
-          [`${classPrefix}-is-loading`]: loading,
-          [`${classPrefix}-is-disabled`]: disabled,
-          [`${classPrefix}-is-block`]: block,
+          [`${classPrefix}-button--loading`]: loading,
+          [`${classPrefix}-button--disabled`]: disabled,
+          [`${classPrefix}-button--block`]: block,
         },
-        [`${classPrefix}-button--shape-${shape}`],
       )}
       style={style}
       onClick={!loading && !disabled ? onClick : undefined}
       disabled={disabled || loading}
     >
-      {loading ? <LoadingIcon /> : icon}
-      {content || children ? <span className={`${classPrefix}-button__text`}> {content || children}</span> : ''}
+      {loading ? <TLoading inheritColor {...loadingProps} /> : parseTNode(icon)}
+      {childNode && <span className={`${classPrefix}-button__content`}> {parseTNode(childNode)}</span>}
+      {parseTNode(suffix)}
     </button>
   );
 });
 
 Button.displayName = 'Button';
-Button.defaultProps = buttonDefaultProps;
 
 export default Button;

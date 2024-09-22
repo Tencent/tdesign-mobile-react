@@ -6,12 +6,14 @@ import { ChevronRightIcon } from 'tdesign-icons-react';
 import { TdCellProps } from './type';
 import { cellDefaultProps } from './defaultProps';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
+import useDefaultProps from '../hooks/useDefaultProps';
 import useHover from '../hooks/useHover';
 import useConfig from '../_util/useConfig';
 
 export interface CellProps extends TdCellProps, NativeProps {}
 
-const Cell: React.FC<CellProps> = (props) => {
+const Cell: React.FC<CellProps> = (originProps) => {
+  const props = useDefaultProps(originProps, cellDefaultProps);
   const {
     align,
     arrow,
@@ -102,7 +104,6 @@ const Cell: React.FC<CellProps> = (props) => {
   );
 };
 
-Cell.defaultProps = cellDefaultProps;
 Cell.displayName = 'Cell';
 
 export default Cell;

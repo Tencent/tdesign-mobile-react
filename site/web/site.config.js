@@ -40,12 +40,23 @@ export default {
           path: '/mobile-react/components/fab',
           component: () => import('tdesign-mobile-react/fab/fab.md'),
         },
-
         {
           title: 'Icon 图标',
           name: 'icon',
           path: '/mobile-react/components/icon',
           component: () => import('tdesign-mobile-react/icon/icon.md'),
+        },
+        {
+          title: 'Layout 布局',
+          name: 'layout',
+          path: '/mobile-react/components/layout',
+          component: () => import('tdesign-mobile-react/layout/layout.md'),
+        },
+        {
+          title: 'Link 链接',
+          name: 'link',
+          path: '/mobile-react/components/link',
+          component: () => import('tdesign-mobile-react/link/link.md'),
         },
       ],
     },
@@ -112,6 +123,12 @@ export default {
           name: 'navbar',
           path: '/mobile-react/components/navbar',
           component: () => import('tdesign-mobile-react/navbar/navbar.md'),
+        },
+        {
+          title: 'SideBar 侧边栏',
+          name: 'side-bar',
+          path: '/mobile-react/components/side-bar',
+          component: () => import('tdesign-mobile-react/side-bar/side-bar.md'),
         },
         {
           title: 'Tabs 选项卡',
@@ -221,17 +238,23 @@ export default {
           path: '/mobile-react/components/badge',
           component: () => import('tdesign-mobile-react/badge/badge.md'),
         },
-        // {
-        //   title: 'Collapse 折叠面板',
-        //   name: 'collapse',
-        //   path: '/mobile-react/components/collapse',
-        //   component: () => import('tdesign-mobile-react/collapse/collapse.md'),
-        // },
+        {
+          title: 'Collapse 折叠面板',
+          name: 'collapse',
+          path: '/mobile-react/components/collapse',
+          component: () => import('tdesign-mobile-react/collapse/collapse.md'),
+        },
         {
           title: 'CountDown 倒计时',
           name: 'count-down',
           path: '/mobile-react/components/count-down',
           component: () => import('tdesign-mobile-react/count-down/count-down.md'),
+        },
+        {
+          title: 'Empty 空状态',
+          name: 'empty',
+          path: '/mobile-react/components/empty',
+          component: () => import('tdesign-mobile-react/empty/empty.md'),
         },
         {
           title: 'Image 图片',
@@ -281,6 +304,12 @@ export default {
           path: '/mobile-react/components/tag',
           component: () => import('tdesign-mobile-react/tag/tag.md'),
         },
+        {
+          title: 'Table 表格',
+          name: 'table',
+          path: '/mobile-react/components/table',
+          component: () => import('tdesign-mobile-react/table/table.md'),
+        },
       ],
     },
     {
@@ -329,6 +358,12 @@ export default {
           name: 'overlay',
           path: '/mobile-react/components/overlay',
           component: () => import('tdesign-mobile-react/overlay/overlay.md'),
+        },
+        {
+          title: 'Popover 弹出气泡',
+          name: 'popover',
+          path: '/mobile-react/components/popover',
+          component: () => import('tdesign-mobile-react/popover/popover.md'),
         },
         {
           title: 'Popup 弹出层',
