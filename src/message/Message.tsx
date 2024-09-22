@@ -10,15 +10,42 @@ import useMessageCssTransition from './hooks/useMessageCssTransition';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 
-import withNativeProps, { NativeProps } from '../_util/withNativeProps';
+import type { StyledProps } from '../common';
 import parseTNode from '../_util/parseTNode';
+import { convertUnit } from '../_util/convertUnit';
 import { messageDefaultProps } from './defaultProps';
 
 import Link from '../link';
 
-export interface MessageProps extends TdMessageProps, NativeProps {
+export interface MessageProps extends TdMessageProps, StyledProps {
   container?: Element;
 }
+
+interface IInnerState {
+  duration: number;
+  offset: number;
+  listWidth: number;
+  itemWidth: number;
+  scroll: {
+    marquee: boolean;
+    speed: number;
+    loop: number;
+    delay: number;
+  };
+}
+
+const changeNumToStr = (arr: TdMessageProps['offset'] = []) => arr.map((item) => convertUnit(item));
+
+const getMessageStylesOffset = (offset: TdMessageProps['offset']) => {
+  const arr = changeNumToStr(offset);
+  return offset
+    ? {
+        top: arr[0],
+        right: arr[1],
+        left: arr[1],
+      }
+    : {};
+};
 
 const Message: React.FC<MessageProps> = (originProps) => {
   const props = useDefaultProps(originProps, messageDefaultProps);
@@ -53,18 +80,7 @@ const Message: React.FC<MessageProps> = (originProps) => {
    * duration为0时，取消倒计时
    */
   const [messageDuration] = useState<number | null>(duration || null);
-  const [state, setState] = useState<{
-    duration: number;
-    offset: number;
-    listWidth: number;
-    itemWidth: number;
-    scroll: {
-      marquee: boolean;
-      speed: number;
-      loop: number;
-      delay: number;
-    };
-  }>({
+  const [state, setState] = useState<IInnerState>({
     duration: 0,
     offset: 0,
     listWidth: 0,
@@ -86,20 +102,6 @@ const Message: React.FC<MessageProps> = (originProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 
-  const changeNumToStr = (arr: TdMessageProps['offset'] = []) =>
-    arr.map((item) => (typeof item === 'number' ? `${item}px` : item));
-
-  const getMessageStylesOffset = (offset: TdMessageProps['offset']) => {
-    const arr = changeNumToStr(offset);
-    return offset
-      ? {
-          top: arr[0],
-          right: arr[1],
-          left: arr[1],
-        }
-      : {};
-  };
-
   const contentRef = useRef<HTMLDivElement>(null);
   const textWrapRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
@@ -116,7 +118,7 @@ const Message: React.FC<MessageProps> = (originProps) => {
   }, messageDuration);
 
   const handleScrolling = () => {
-    if (!props?.marquee || (isObject(props?.marquee) && (props?.marquee as MessageMarquee))?.loop === 0) {
+    if (!marquee || (isObject(marquee) && (marquee as MessageMarquee))?.loop === 0) {
       return;
     }
 
@@ -250,8 +252,7 @@ const Message: React.FC<MessageProps> = (originProps) => {
       closeBtn
     );
 
-  return withNativeProps(
-    props,
+  return (
     <CSSTransition in={messageVisible} appear {...cssTransitionState.props} unmountOnExit>
       <div
         className={classNames(`${name}`, className, `${name}--${theme}`, { [`${name}-align--${align}`]: !!align })}
@@ -276,11 +277,10 @@ const Message: React.FC<MessageProps> = (originProps) => {
         )}
         {closeButton}
       </div>
-    </CSSTransition>,
+    </CSSTransition>
   );
 };
 
-Message.defaultProps = messageDefaultProps;
 Message.displayName = 'Message';
 
 export default Message;
