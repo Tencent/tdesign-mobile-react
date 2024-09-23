@@ -8,9 +8,11 @@ export default function Base() {
       <Radio label="单选" value="idx0"></Radio>
       <Radio label="单选" value="idx1"></Radio>
       <Radio label="单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选" value="idx2"></Radio>
-      <Radio label="单选" value="idx3">
-        单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选
-      </Radio>
+      <Radio
+        label="单选"
+        value="idx3"
+        content="描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息"
+      ></Radio>
     </RadioGroup>
   );
 }
