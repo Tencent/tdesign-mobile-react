@@ -1,34 +1,15 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import { TdListProps } from './type';
 import useConfig from '../_util/useConfig';
 
 import TLoading from '../loading';
 import parseTNode from '../_util/parseTNode';
+import getScrollParent from '../_util/getScrollParent';
+import useWindowHeight from '../hooks/useWindowHeight';
 
 export interface ListProps extends TdListProps {
   required?: boolean;
   readonly?: boolean;
-}
-
-function isElement(node: Element) {
-  const ELEMENT_NODE_TYPE = 1;
-  return node.tagName !== 'HTML' && node.tagName !== 'BODY' && node.nodeType === ELEMENT_NODE_TYPE;
-}
-
-const overflowScrollReg = /scroll|auto/i;
-
-function getScrollParent(el: Element, root = window) {
-  let node = el;
-
-  while (node && node !== root && isElement(node)) {
-    const { overflowY } = window.getComputedStyle(node);
-    if (overflowScrollReg.test(overflowY)) {
-      return node;
-    }
-    node = node.parentNode as Element;
-  }
-
-  return root;
 }
 
 const List: React.FC<ListProps> = (props) => {
@@ -43,14 +24,6 @@ const List: React.FC<ListProps> = (props) => {
 
   const root = useRef(null);
 
-  const useWindowHeight = () => {
-    const [height, setHeight] = useState(window.innerHeight);
-    window.onresize = () => {
-      const height = window.innerHeight;
-      setHeight(height);
-    };
-    return height;
-  };
   const height = useWindowHeight();
 
   const onLoadMore = () => {
