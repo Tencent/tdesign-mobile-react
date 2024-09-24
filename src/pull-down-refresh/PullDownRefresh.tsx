@@ -201,9 +201,12 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
     }
   };
 
-  const trackStyle = {
-    transform: `translate3d(0, ${distance}px, 0)`,
-  };
+  const trackStyle = useMemo(
+    () => ({
+      transform: `translate3d(0, ${distance}px, 0)`,
+    }),
+    [distance],
+  );
 
   return (
     <div className={classNames(name, className)} style={style} ref={rootRef}>
