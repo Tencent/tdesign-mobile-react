@@ -8,6 +8,7 @@ export type { StepItemProps } from './StepItem';
 export * from './type';
 
 export const Steps = _Steps;
-(Steps as any).StepItem = _StepItem;
+export const StepItem = _StepItem;
+// (Steps as any).StepItem = _StepItem;
 
 export default Steps;

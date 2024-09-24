@@ -5,10 +5,17 @@
 import { TdStepsProps, TdStepItemProps } from './type';
 
 export const stepsDefaultProps: TdStepsProps = {
+  currentStatus: 'process',
   layout: 'horizontal',
   readonly: false,
-  separator: 'line',
+  sequence: 'positive',
   theme: 'default',
 };
 
-export const stepItemDefaultProps: TdStepItemProps = { icon: true, status: 'default' };
+export const stepItemDefaultProps: TdStepItemProps = {
+  content: '',
+  extra: '',
+  status: 'default',
+  title: '',
+  titleRight: '',
+};
