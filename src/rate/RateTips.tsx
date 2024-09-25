@@ -1,7 +1,7 @@
 import { useClickAway } from 'ahooks';
 import cx from 'classnames';
 import React, { ReactNode, useRef } from 'react';
-import useConfig from 'tdesign-mobile-react/_util/useConfig';
+import { usePrefixClass } from 'tdesign-mobile-react/hooks/useClass';
 import { TdRateProps } from './type';
 
 type Props = {
@@ -17,8 +17,7 @@ type Props = {
 };
 
 export const RateTips = (props: Props) => {
-  const { classPrefix } = useConfig();
-  const tipClass = `${classPrefix}-rate__tips`;
+  const tipClass = usePrefixClass('rate__tips');
 
   const { left, data, placement, onClickOutside } = props;
   const ref = useRef<HTMLDivElement | null>(null);

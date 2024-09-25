@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import React, { cloneElement, ReactNode, useMemo, useRef } from 'react';
 import { StarFilledIcon } from 'tdesign-icons-react';
-import useConfig from 'tdesign-mobile-react/_util/useConfig';
+import { usePrefixClass } from 'tdesign-mobile-react/hooks/useClass';
 import { TdRateProps } from './type';
 
 type Props = Required<Pick<TdRateProps, 'icon' | 'color'>> & {
@@ -13,8 +13,7 @@ type Props = Required<Pick<TdRateProps, 'icon' | 'color'>> & {
 };
 
 export const RateIcon = (props: Props) => {
-  const { classPrefix } = useConfig();
-  const iconClass = `${classPrefix}-rate__icon`;
+  const iconClass = usePrefixClass('rate__icon');
 
   const { size, icon, color, isCurrent, isSelected, isHalf, onClick } = props;
 
