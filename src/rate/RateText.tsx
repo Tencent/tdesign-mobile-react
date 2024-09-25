@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import React from 'react';
-import useConfig from 'tdesign-mobile-react/_util/useConfig';
+import { usePrefixClass } from 'tdesign-mobile-react/hooks/useClass';
 import { TdRateProps } from './type';
 
 type Props = {
@@ -9,9 +9,7 @@ type Props = {
 };
 
 export const RateText = (props: Props) => {
-  const { classPrefix } = useConfig();
-
-  const textClass = `${classPrefix}-rate__text`;
+  const textClass = usePrefixClass('rate__text');
 
   const { value, texts } = props;
 

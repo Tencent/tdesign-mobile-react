@@ -1,10 +1,10 @@
 import { useSize } from 'ahooks';
 import cx from 'classnames';
-import React, { FC, forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import useConfig from 'tdesign-mobile-react/_util/useConfig';
-import useDefault from 'tdesign-mobile-react/_util/useDefault';
-import { StyledProps } from 'tdesign-mobile-react/common';
-import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
+import React, { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { usePrefixClass } from 'tdesign-mobile-react/hooks/useClass';
+import useDefault from '../_util/useDefault';
+import type { StyledProps } from '../common';
+import useDefaultProps from '../hooks/useDefaultProps';
 import { rateDefaultProps } from './defaultProps';
 import { RateIcon } from './RateIcon';
 import { RateText } from './RateText';
@@ -13,14 +13,13 @@ import type { TdRateProps } from './type';
 
 export interface RateProps extends TdRateProps, StyledProps {}
 
-const converToNumber = (str: string | number, defaultValue = 0) => {
+const convertToNumber = (str: string | number, defaultValue = 0) => {
   const value = parseFloat(String(str));
   return isNaN(value) ? defaultValue : value;
 };
 
-const Rate: FC<RateProps> = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
-  const { classPrefix } = useConfig();
-  const rateClass = `${classPrefix}-rate`;
+const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
+  const rateClass = usePrefixClass('rate');
 
   const {
     style,
@@ -108,7 +107,7 @@ const Rate: FC<RateProps> = forwardRef<HTMLDivElement, RateProps>((props, ref) =
 
       // 计算
       const wrapRect = wrapEle.getBoundingClientRect();
-      const gapNum = converToNumber(gap);
+      const gapNum = convertToNumber(gap);
       const perWidth = (wrapRect.width + gapNum) / count;
       // 左边 - gap / 2 右边 + gap / 2
       const x = event.clientX - wrapRect.x + gapNum / 2;
@@ -144,7 +143,7 @@ const Rate: FC<RateProps> = forwardRef<HTMLDivElement, RateProps>((props, ref) =
       return 0;
     }
 
-    const gapNum = converToNumber(gap);
+    const gapNum = convertToNumber(gap);
     const perWidth = (wrapSize.width - (count - 1) * gapNum) / count;
     const index = Math.max(Math.min(Math.ceil(currentValue), count), 1) - 1;
 
@@ -183,7 +182,7 @@ const Rate: FC<RateProps> = forwardRef<HTMLDivElement, RateProps>((props, ref) =
               <RateIcon
                 key={index}
                 color={color}
-                size={converToNumber(size)}
+                size={convertToNumber(size)}
                 icon={icon}
                 isCurrent={currentValue === itemValue && tipsVisible}
                 // 整个 和 半个 都要选中
@@ -240,7 +239,7 @@ const Rate: FC<RateProps> = forwardRef<HTMLDivElement, RateProps>((props, ref) =
                   isCurrent={false}
                   isSelected={true}
                   isHalf={isHalf}
-                  size={converToNumber(size)}
+                  size={convertToNumber(size)}
                 />
               ),
               text: value,
