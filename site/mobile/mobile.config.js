@@ -235,7 +235,7 @@ export default {
     {
       title: 'Steps 步骤条',
       name: 'steps',
-      component: () => import('tdesign-mobile-react/steps/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/steps/_example/index.tsx'),
     },
     {
       title: 'TabBar 标签栏',
