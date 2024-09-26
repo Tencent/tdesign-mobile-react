@@ -47,8 +47,8 @@ const Steps: FC<StepsProps> = (props) => {
   }, []);
 
   const onClickItem = useCallback(
-    (cur, prev, e) => {
-      onChange(cur, prev, { e });
+    (cur, prev, context) => {
+      onChange(cur, prev, context);
     },
     [onChange],
   );

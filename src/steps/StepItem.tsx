@@ -130,7 +130,6 @@ const StepItem: FC<StepItemProps> = (props) => {
   const separatorClassName = useMemo(
     () =>
       classNames(
-        stepItemClass,
         `${stepItemClass}__line`,
         `${stepItemClass}__line--${currentStatus}`,
         `${stepItemClass}__line--${sequence}`,
@@ -171,7 +170,7 @@ const StepItem: FC<StepItemProps> = (props) => {
       <div className={contentClassName}>
         <div className={titleClassName}>
           {parseTNode(title)}
-          {parseTNode(titleRight)}
+          {layout === 'vertical' && parseTNode(titleRight)}
         </div>
         <div className={descriptionClassName}>{parseTNode(content) || parseTNode(children)}</div>
         <div className={extraClassName}>{parseTNode(extra)}</div>
