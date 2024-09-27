@@ -28,7 +28,7 @@ export default {
     {
       title: 'Input 输入框',
       name: 'input',
-      component: () => import('tdesign-mobile-react/input/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/input/_example/index.tsx'),
     },
     {
       title: 'Grid 宫格',
