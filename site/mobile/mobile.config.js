@@ -99,7 +99,7 @@ export default {
       title: 'Switch 开关',
       name: 'switch',
       path: '/switch',
-      component: () => import('tdesign-mobile-react/switch/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/switch/_example/index.tsx'),
     },
     {
       title: 'Cell 单元格',
