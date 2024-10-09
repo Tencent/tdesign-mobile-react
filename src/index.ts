@@ -55,6 +55,7 @@ export * from './empty';
  */
 export * from './back-top';
 export * from './dialog';
+export * from './dropdown-menu';
 export * from './loading';
 export * from './message';
 export * from './popup';
