@@ -13,7 +13,7 @@ export default function Demo() {
           new Promise((resolve) => {
             setCount(count + 1);
             setTimeout(() => {
-              resolve();
+              resolve(1);
             }, 1000);
           })
         }
