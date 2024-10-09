@@ -93,7 +93,7 @@ export default {
     {
       title: 'Message 消息通知',
       name: 'message',
-      component: () => import('tdesign-mobile-react/message/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/message/_example/index.tsx'),
     },
     {
       title: 'Switch 开关',
