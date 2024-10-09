@@ -17,24 +17,25 @@ export interface TdStepsProps {
    */
   defaultCurrent?: string | number;
   /**
+   * 用于控制 current 指向的步骤条的状态
+   * @default process
+   */
+  currentStatus?: 'default' | 'process' | 'finish' | 'error';
+  /**
    * 步骤条方向，有两种：横向和纵向
    * @default horizontal
    */
   layout?: 'horizontal' | 'vertical';
-  /**
-   * 步骤条数据列表（作用和 StepItem 效果一样）
-   */
-  options?: Array<TdStepItemProps>;
   /**
    * 只读状态
    * @default false
    */
   readonly?: boolean;
   /**
-   * 步骤条分割符
-   * @default line
+   * 步骤条顺序
+   * @default positive
    */
-  separator?: 'line' | 'dashed' | 'arrow';
+  sequence?: 'positive' | 'reverse';
   /**
    * 步骤条风格
    * @default default
@@ -61,12 +62,15 @@ export interface TdStepItemProps {
    */
   content?: TNode;
   /**
+   * 显示在步骤描述下方的额外内容，比如：操作项
+   */
+  extra?: TNode;
+  /**
    * 图标，默认显示内置图标，也可以自定义图标，值为 false 则不显示图标。优先级大于 `status` 定义的图标
-   * @default true
    */
   icon?: TNode;
   /**
-   * 当前步骤的状态
+   * 当前步骤的状态：默认状态（未开始）、进行中状态、完成状态、错误状态
    * @default default
    */
   status?: StepStatus;
@@ -75,6 +79,11 @@ export interface TdStepItemProps {
    * @default ''
    */
   title?: TNode;
+  /**
+   * 标题右侧数据 仅支持 layout = 'vertical' 时
+   * @default ''
+   */
+  titleRight?: TNode;
 }
 
 export type StepStatus = 'default' | 'process' | 'finish' | 'error';

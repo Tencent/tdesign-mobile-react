@@ -1,0 +1,1872 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Steps > Steps horizontalDemo demo 1`] = `
+<div>
+  <div
+    class="summary"
+  >
+    水平带序号步骤条
+  </div>
+  <div
+    class="steps-horizontal-demo-block"
+  >
+    <div
+      class="t-steps t-steps--horizontal t-steps--positive"
+    >
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__circle t-step-item__circle--finish"
+          >
+            <svg
+              class="t-icon t-icon-check"
+            >
+              <use
+                xlink:href="#t-icon-check"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--horizontal"
+          >
+            已完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--process"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__circle t-step-item__circle--process"
+          >
+            2
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--process t-step-item__title--horizontal"
+          >
+            当前步骤
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--process t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--process t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--process t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__circle t-step-item__circle--default"
+          >
+            3
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--horizontal"
+          >
+            未完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--default t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__circle t-step-item__circle--default"
+          >
+            4
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal t-step-item__content--last"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--horizontal"
+          >
+            未完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--horizontal"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="summary"
+  >
+    水平带图标步骤条
+  </div>
+  <div
+    class="steps-horizontal-demo-block"
+  >
+    <div
+      class="t-steps t-steps--horizontal t-steps--positive"
+    >
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__icon t-step-item__icon--finish"
+          >
+            <svg
+              class="t-icon t-icon-cart"
+              style="font-size: 20px;"
+            >
+              <use
+                xlink:href="#t-icon-cart"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--horizontal"
+          >
+            已完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--process"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__icon t-step-item__icon--process"
+          >
+            <svg
+              class="t-icon t-icon-cart"
+              style="font-size: 20px;"
+            >
+              <use
+                xlink:href="#t-icon-cart"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--process t-step-item__title--horizontal"
+          >
+            当前步骤
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--process t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--process t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--process t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__icon t-step-item__icon--default"
+          >
+            <svg
+              class="t-icon t-icon-cart"
+              style="font-size: 20px;"
+            >
+              <use
+                xlink:href="#t-icon-cart"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--horizontal"
+          >
+            未完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--default t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__icon t-step-item__icon--default"
+          >
+            <svg
+              class="t-icon t-icon-cart"
+              style="font-size: 20px;"
+            >
+              <use
+                xlink:href="#t-icon-cart"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal t-step-item__content--last"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--horizontal"
+          >
+            未完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--horizontal"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="summary"
+  >
+    水平简略步骤条
+  </div>
+  <div
+    class="steps-horizontal-demo-block"
+  >
+    <div
+      class="t-steps t-steps--horizontal t-steps--positive"
+    >
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--finish"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--horizontal"
+          >
+            已完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--process"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--process"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--process t-step-item__title--horizontal"
+          >
+            当前步骤
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--process t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--process t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--process t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--default"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--horizontal"
+          >
+            未完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--default t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--default"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal t-step-item__content--last"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--horizontal"
+          >
+            未完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--horizontal"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Steps > Steps specialDemo demo 1`] = `
+<div>
+  <div
+    class="summary"
+  >
+    垂直自定义步骤条
+  </div>
+  <div
+    class="steps-vertical-demo-block"
+  >
+    <div
+      class="t-steps t-steps--vertical t-steps--positive"
+    >
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--finish"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
+          >
+            已完成
+            <svg
+              class="t-icon t-icon-chevron-right"
+              color="rgba(0, 0, 0, .4)"
+              style="font-size: 22px;"
+            >
+              <use
+                xlink:href="#t-icon-chevron-right"
+              />
+            </svg>
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
+          />
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--vertical t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--finish"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
+          >
+            已完成
+            <svg
+              class="t-icon t-icon-chevron-right"
+              color="rgba(0, 0, 0, .4)"
+              style="font-size: 22px;"
+            >
+              <use
+                xlink:href="#t-icon-chevron-right"
+              />
+            </svg>
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
+          />
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--vertical t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--finish"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
+          >
+            已完成
+            <svg
+              class="t-icon t-icon-chevron-right"
+              color="rgba(0, 0, 0, .4)"
+              style="font-size: 22px;"
+            >
+              <use
+                xlink:href="#t-icon-chevron-right"
+              />
+            </svg>
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
+          />
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--vertical t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--process"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--process"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical t-step-item__content--last"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--process t-step-item__title--vertical"
+          >
+            当前步骤
+            <svg
+              class="t-icon t-icon-chevron-right"
+              color="rgba(0, 0, 0, .4)"
+              style="font-size: 22px;"
+            >
+              <use
+                xlink:href="#t-icon-chevron-right"
+              />
+            </svg>
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--process t-step-item__description--vertical"
+          />
+          <div
+            class="t-step-item__extra t-step-item__extra--process t-step-item__extra--vertical"
+          />
+        </div>
+      </div>
+    </div>
+    <button
+      class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"
+      style="margin-top: 32px; width: 100%;"
+      type="button"
+    >
+      <span
+        class="t-button__content"
+      >
+         
+        下一步
+      </span>
+    </button>
+  </div>
+  <div
+    class="summary"
+  >
+    纯展示步骤条
+  </div>
+  <div
+    class="steps-vertical-demo-block"
+  >
+    <div
+      class="t-steps t-steps--vertical t-steps--positive t-steps--readonly"
+    >
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--default t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--finish"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
+          >
+            步骤展示
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--vertical t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--default t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--finish"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
+          >
+            步骤展示
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--vertical t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--default t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--finish"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
+          >
+            步骤展示
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--vertical t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--default t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--finish"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical t-step-item__content--last"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
+          >
+            步骤展示
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--vertical"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Steps > Steps statusDemo demo 1`] = `
+<div>
+  <div
+    class="summary"
+  >
+    选项卡状态
+  </div>
+  <div
+    class="steps-horizontal-demo-block"
+  >
+    <div
+      class="t-steps t-steps--horizontal t-steps--positive"
+    >
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__circle t-step-item__circle--finish"
+          >
+            <svg
+              class="t-icon t-icon-check"
+            >
+              <use
+                xlink:href="#t-icon-check"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--horizontal"
+          >
+            已完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--error"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__circle t-step-item__circle--error"
+          >
+            <svg
+              class="t-icon t-icon-close"
+            >
+              <use
+                xlink:href="#t-icon-close"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--error t-step-item__title--horizontal"
+          >
+            当前步骤
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--error t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--error t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--error t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__circle t-step-item__circle--default"
+          >
+            3
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--horizontal"
+          >
+            未完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--default t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__circle t-step-item__circle--default"
+          >
+            4
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal t-step-item__content--last"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--horizontal"
+          >
+            未完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--horizontal"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="steps-horizontal-demo-block"
+  >
+    <div
+      class="t-steps t-steps--horizontal t-steps--positive"
+    >
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__icon t-step-item__icon--finish"
+          >
+            <svg
+              class="t-icon t-icon-cart"
+              style="font-size: 20px;"
+            >
+              <use
+                xlink:href="#t-icon-cart"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--horizontal"
+          >
+            已完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--error"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__icon t-step-item__icon--error"
+          >
+            <svg
+              class="t-icon t-icon-cart"
+              style="font-size: 20px;"
+            >
+              <use
+                xlink:href="#t-icon-cart"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--error t-step-item__title--horizontal"
+          >
+            当前步骤
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--error t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--error t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--error t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__icon t-step-item__icon--default"
+          >
+            <svg
+              class="t-icon t-icon-cart"
+              style="font-size: 20px;"
+            >
+              <use
+                xlink:href="#t-icon-cart"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--horizontal"
+          >
+            未完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--default t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__icon t-step-item__icon--default"
+          >
+            <svg
+              class="t-icon t-icon-cart"
+              style="font-size: 20px;"
+            >
+              <use
+                xlink:href="#t-icon-cart"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal t-step-item__content--last"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--horizontal"
+          >
+            未完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--horizontal"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="steps-horizontal-demo-block"
+  >
+    <div
+      class="t-steps t-steps--horizontal t-steps--positive"
+    >
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--finish"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--horizontal"
+          >
+            已完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--error"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--error"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--error t-step-item__title--horizontal"
+          >
+            当前步骤
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--error t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--error t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--error t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--default"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--horizontal"
+          >
+            未完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--horizontal"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--default t-step-item__line--positive t-step-item__line--horizontal t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--horizontal t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--horizontal"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--default"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--horizontal t-step-item__content--last"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--horizontal"
+          >
+            未完成
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--horizontal"
+          >
+            辅助信息
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--horizontal"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Steps > Steps verticalDemo demo 1`] = `
+<div>
+  <div
+    class="summary"
+  >
+    垂直带序号步骤条
+  </div>
+  <div
+    class="steps-vertical-demo-block"
+  >
+    <div
+      class="t-steps t-steps--vertical t-steps--positive"
+    >
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__circle t-step-item__circle--finish"
+          >
+            <svg
+              class="t-icon t-icon-check"
+            >
+              <use
+                xlink:href="#t-icon-check"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
+          >
+            已完成
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--vertical t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--process"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__circle t-step-item__circle--process"
+          >
+            2
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--process t-step-item__title--vertical"
+          >
+            当前步骤
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--process t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--process t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--process t-step-item__line--positive t-step-item__line--vertical t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__circle t-step-item__circle--default"
+          >
+            3
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
+          >
+            未完成步骤
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--default t-step-item__line--positive t-step-item__line--vertical t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__circle t-step-item__circle--default"
+          >
+            4
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical t-step-item__content--last"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
+          >
+            未完成步骤
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--vertical"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="summary"
+  >
+    垂直带图标步骤条
+  </div>
+  <div
+    class="steps-vertical-demo-block"
+  >
+    <div
+      class="t-steps t-steps--vertical t-steps--positive"
+    >
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__icon t-step-item__icon--finish"
+          >
+            <svg
+              class="t-icon t-icon-cart"
+              style="font-size: 20px;"
+            >
+              <use
+                xlink:href="#t-icon-cart"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
+          >
+            已完成
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--vertical t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--process"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__icon t-step-item__icon--process"
+          >
+            <svg
+              class="t-icon t-icon-cart"
+              style="font-size: 20px;"
+            >
+              <use
+                xlink:href="#t-icon-cart"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--process t-step-item__title--vertical"
+          >
+            当前步骤
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--process t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--process t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--process t-step-item__line--positive t-step-item__line--vertical t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__icon t-step-item__icon--default"
+          >
+            <svg
+              class="t-icon t-icon-cart"
+              style="font-size: 20px;"
+            >
+              <use
+                xlink:href="#t-icon-cart"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
+          >
+            未完成步骤
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--default t-step-item__line--positive t-step-item__line--vertical t-step-item__line--default"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__icon t-step-item__icon--default"
+          >
+            <svg
+              class="t-icon t-icon-cart"
+              style="font-size: 20px;"
+            >
+              <use
+                xlink:href="#t-icon-cart"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical t-step-item__content--last"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
+          >
+            未完成步骤
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--vertical"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="summary"
+  >
+    垂直简略步骤条
+  </div>
+  <div
+    class="steps-vertical-demo-block"
+  >
+    <div
+      class="t-steps t-steps--vertical t-steps--positive"
+    >
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--finish"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
+          >
+            已完成
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--vertical t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--process"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--process"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--process t-step-item__title--vertical"
+          >
+            当前步骤
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--process t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--process t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--process t-step-item__line--positive t-step-item__line--vertical t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--default"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
+          >
+            未完成步骤
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--default t-step-item__line--positive t-step-item__line--vertical t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--default"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical t-step-item__content--last"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
+          >
+            未完成步骤
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--vertical"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="summary"
+  >
+    垂直带可自定义此处内容步骤条
+  </div>
+  <div
+    class="steps-vertical-demo-block"
+  >
+    <div
+      class="t-steps t-steps--vertical t-steps--positive"
+    >
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--finish"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--finish"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
+          >
+            已完成
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--finish t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--finish t-step-item__line--positive t-step-item__line--vertical t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--process"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--process"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--process t-step-item__title--vertical"
+          >
+            当前步骤
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--process t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--process t-step-item__extra--vertical"
+          >
+            <div
+              class="t-image t-image--square"
+              style="width: 100%;"
+            >
+              <div
+                class="t-image__mask"
+              >
+                <div
+                  class="t-loading t-loading--center"
+                  style="font-size: 20px;"
+                >
+                  <div
+                    class="t-loading__dots"
+                    style="animation-duration: 800ms; width: 20px; height: 20px;"
+                  >
+                    <div
+                      class="t-loading__dot"
+                      style="animation-duration: 0.8s; animation-delay: 0s;"
+                    />
+                    <div
+                      class="t-loading__dot"
+                      style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                    />
+                    <div
+                      class="t-loading__dot"
+                      style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <img
+                alt="图标"
+                class="t-image__img t-image--fit-fill t-image--position-center"
+                src="https://tdesign.gtimg.com/mobile/demos/steps1.png"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--process t-step-item__line--positive t-step-item__line--vertical t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--default"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
+          >
+            未完成步骤
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--vertical"
+          />
+        </div>
+        <div
+          class="t-step-item__line t-step-item__line--default t-step-item__line--positive t-step-item__line--vertical t-step-item__line--dot"
+        />
+      </div>
+      <div
+        class="t-step-item t-step-item--vertical t-step-item--default"
+      >
+        <div
+          class="t-step-item__anchor t-step-item__anchor--vertical"
+        >
+          <div
+            class="t-step-item__dot t-step-item__dot--default"
+          />
+        </div>
+        <div
+          class="t-step-item__content t-step-item__content--vertical t-step-item__content--last"
+        >
+          <div
+            class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
+          >
+            未完成步骤
+            
+          </div>
+          <div
+            class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
+          >
+            可自定义此处内容
+          </div>
+          <div
+            class="t-step-item__extra t-step-item__extra--default t-step-item__extra--vertical"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
