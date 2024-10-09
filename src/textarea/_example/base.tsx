@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Textarea } from 'tdesign-mobile-react';
+import type { TextareaProps } from 'tdesign-mobile-react';
 
-export default function Events() {
-  const [value, onChange] = useState('');
+export default function Base() {
+  const [value, onChange] = useState<TextareaProps['value']>('');
 
   function onFocus(value, { e }) {
     console.log('onFocus: ', value, e);
@@ -13,13 +14,13 @@ export default function Events() {
 
   return (
     <Textarea
-      label="标签文字"
-      placeholder="请输入文字"
+      className="textarea-example"
       value={value}
+      placeholder="请输入文字"
       onFocus={onFocus}
       onBlur={onBlur}
       onChange={(value) => {
-        console.log('==value===', value);
+        console.log('value', value);
         onChange(value);
       }}
     />
