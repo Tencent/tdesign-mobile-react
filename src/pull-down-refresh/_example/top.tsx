@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PullDownRefresh, Skeleton } from 'tdesign-mobile-react';
+import { PullDownRefresh, Skeleton, type SkeletonRowCol } from 'tdesign-mobile-react';
 import './style/index.less';
 
 export default function Demo() {
@@ -9,10 +9,9 @@ export default function Demo() {
     console.log('val: ', val);
   };
 
-  const rowCols = [
+  const rowCols: SkeletonRowCol = [
     {
       height: '171px',
-      borderRadius: '8px',
     },
     [
       {
@@ -49,7 +48,7 @@ export default function Demo() {
           setValue(true);
           const p = new Promise((resolve) => {
             setTimeout(() => {
-              resolve();
+              resolve(1);
             }, 1000);
           });
           p.then(() => {
