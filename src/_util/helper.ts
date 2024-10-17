@@ -48,3 +48,18 @@ export function getCharacterLength(str: string, maxCharacter?: number) {
 export function pxCompat(param: string | number) {
   return typeof param === 'number' ? `${param}px` : param;
 }
+
+/**
+ * 修正 Unicode 最大字符长度
+ * '👨👨👨'.slice(0, 2) === '👨'
+ * limitUnicodeMaxLength('👨👨👨', 2) === '👨👨'
+ * @param str
+ * @param maxLength
+ * @param oldStr
+ * @returns {string}
+ */
+export function limitUnicodeMaxLength(str?: string, maxLength?: number, oldStr?: string): string {
+  // 旧字符满足字数要求则返回
+  if ([...(oldStr ?? '')].slice().length === maxLength) return oldStr || '';
+  return [...(str ?? '')].slice(0, maxLength).join('');
+}

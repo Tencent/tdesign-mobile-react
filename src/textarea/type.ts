@@ -9,24 +9,43 @@ import { FocusEvent, FormEvent } from 'react';
 
 export interface TdTextareaProps {
   /**
+   * 超出maxlength或maxcharacter之后是否还允许输入
+   * @default false
+   */
+  allowInputOverMax?: boolean;
+  /**
    * 自动聚焦，拉起键盘
    * @default false
    */
   autofocus?: boolean;
   /**
-   * 是否自动增高，值为 autosize 时，style.height 不生效
+   * 高度自动撑开。 autosize = true 表示组件高度自动撑开，同时，依旧允许手动拖高度。如果设置了 autosize.maxRows 或者 autosize.minRows 则不允许手动调整高度
    * @default false
    */
   autosize?: boolean | { minRows?: number; maxRows?: number };
   /**
-   * 是否禁用文本框
+   * 是否显示外边框
    * @default false
    */
+  bordered?: boolean;
+  /**
+   * 是否禁用文本框
+   */
   disabled?: boolean;
+  /**
+   * 显示文本计数器，如 0/140。当 `maxlength < 0 && maxcharacter < 0` 成立时， indicator无效
+   * @default false
+   */
+  indicator?: boolean;
   /**
    * 左侧文本
    */
   label?: TNode;
+  /**
+   * 标题输入框布局方式
+   * @default horizontal
+   */
+  layout?: 'vertical' | 'horizontal';
   /**
    * 用户最多可以输入的字符个数，一个中文汉字表示两个字符长度
    */
@@ -44,6 +63,11 @@ export interface TdTextareaProps {
    * 占位符
    */
   placeholder?: string;
+  /**
+   * 只读状态
+   * @default false
+   */
+  readonly?: boolean;
   /**
    * 文本框值
    */
@@ -63,7 +87,7 @@ export interface TdTextareaProps {
   /**
    * 获得焦点时触发
    */
-  onFocus?: (value: TextareaValue, context : { e: FocusEvent<HTMLTextAreaElement> }) => void;
+  onFocus?: (value: TextareaValue, context: { e: FocusEvent<HTMLTextAreaElement> }) => void;
 }
 
 export type TextareaValue = string | number;
