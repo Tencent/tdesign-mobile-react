@@ -17,7 +17,7 @@ clearTrigger | String | always | 清空图标触发方式，仅在输入框有�
 clearable | Boolean | false | 是否可清空 | N
 disabled | Boolean | undefined | 是否禁用输入框 | N
 errorMessage | String | - | 已废弃。错误提示文本，值为空不显示（废弃属性，如果需要，请更为使用 status 和 tips） | N
-format | Function | - | 【开发中】指定输入框展示值的格式。TS 类型：`InputFormatType` `type InputFormatType = (value: InputValue) => string`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/input/type.ts) | N
+format | Function | - | 指定输入框展示值的格式。TS 类型：`InputFormatType` `type InputFormatType = (value: InputValue) => string`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/input/type.ts) | N
 label | TNode | - | 左侧文本。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 layout | String | horizontal | 标题输入框布局方式。可选项：vertical/horizontal | N
 maxcharacter | Number | - | 用户最多可以输入的字符个数，一个中文汉字表示两个字符长度。`maxcharacter` 和 `maxlength` 二选一使用 | N
