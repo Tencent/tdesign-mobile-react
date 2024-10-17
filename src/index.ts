@@ -46,6 +46,8 @@ export * from './sticky';
 export * from './swiper';
 export * from './swipe-cell';
 export * from './tag';
+
+export * from './list';
 export * from './result';
 export * from './table';
 export * from './empty';

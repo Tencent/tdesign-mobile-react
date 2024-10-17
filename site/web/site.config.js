@@ -262,12 +262,12 @@ export default {
           path: '/mobile-react/components/image',
           component: () => import('tdesign-mobile-react/image/image.md'),
         },
-        // {
-        //   title: 'List 列表',
-        //   name: 'list',
-        //   path: '/mobile-react/components/list',
-        //   component: () => import('tdesign-mobile-react/list/list.md'),
-        // },
+        {
+          title: 'List 列表',
+          name: 'list',
+          path: '/mobile-react/components/list',
+          component: () => import('tdesign-mobile-react/list/list.md'),
+        },
         // {
         //   title: 'ImageViewer 图片预览',
         //   name: 'image-viewer',
