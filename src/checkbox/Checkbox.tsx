@@ -29,7 +29,7 @@ export interface CheckContextValue {
 
 export const CheckContext = React.createContext<CheckContextValue>(null);
 
-const Checkbox = forwardRef((_props: CheckBoxProps) => {
+const Checkbox = forwardRef<HTMLDivElement, CheckBoxProps>((_props, ref) => {
   const context = useContext(CheckContext);
   const props = useDefaultProps(context ? context.inject(_props) : _props, checkboxDefaultProps);
   const { classPrefix } = useConfig();
@@ -167,22 +167,20 @@ const Checkbox = forwardRef((_props: CheckBoxProps) => {
   );
 
   return (
-    <>
-      <div className={checkboxClassName} onClick={handleClick}>
-        {icon && renderIconNode()}
-        {renderCheckBoxContent()}
-        {/* 下边框 */}
-        {!borderless && (
-          <div className={`${classPrefixCheckBox}__border ${classPrefixCheckBox}__border--${placement}`}></div>
-        )}
-      </div>
-    </>
+    <div ref={ref} className={checkboxClassName} onClick={handleClick}>
+      {icon && renderIconNode()}
+      {renderCheckBoxContent()}
+      {/* 下边框 */}
+      {!borderless && (
+        <div className={`${classPrefixCheckBox}__border ${classPrefixCheckBox}__border--${placement}`}></div>
+      )}
+    </div>
   );
 });
 
 Checkbox.displayName = 'Checkbox';
 
 export default forwardRefWithStatics(
-  (props: TdCheckboxProps, ref: Ref<HTMLInputElement>) => <Checkbox ref={ref} {...props} />,
+  (props: TdCheckboxProps, ref: Ref<HTMLDivElement>) => <Checkbox ref={ref} {...props} />,
   { Group: CheckboxGroup },
 );
