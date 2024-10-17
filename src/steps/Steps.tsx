@@ -1,12 +1,13 @@
-import React, { FC, useMemo } from 'react';
-import classnames from 'classnames';
+import React, { FC, useCallback, useMemo, useState } from 'react';
+import classNames from 'classnames';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import useDefault from '../_util/useDefault';
+import parseTNode from '../_util/parseTNode';
+import { usePrefixClass } from '../hooks/useClass';
+import useDefaultProps from '../hooks/useDefaultProps';
 import { TdStepsProps } from './type';
-import useConfig from '../_util/useConfig';
 import { stepsDefaultProps } from './defaultProps';
-import StepsContext from './StepsContext';
-import StepItem from './StepItem';
+import { StepsProvider } from './StepsContext';
 
 export interface StepsProps extends TdStepsProps, NativeProps {}
 
@@ -16,51 +17,66 @@ const Steps: FC<StepsProps> = (props) => {
     layout,
     readonly,
     theme,
-    separator,
     current,
     defaultCurrent,
+    sequence,
+    currentStatus,
     onChange: onCurrentChange,
-    options,
-  } = props;
+  } = useDefaultProps(props, stepsDefaultProps);
 
-  const { classPrefix } = useConfig();
-
-  const name = `${classPrefix}-steps`;
+  const stepsClass = usePrefixClass('steps');
 
   const [value, onChange] = useDefault(current, defaultCurrent, onCurrentChange);
 
-  const stepItemList = useMemo(() => {
-    if (options) {
-      return options.map((item, index: number) => <StepItem key={index} {...item} index={index} />);
-    }
-    return React.Children.map(children, (child: JSX.Element, index: number) =>
-      React.cloneElement(child, {
-        index,
+  const [childrenNodes, setChildrenNodes] = useState<HTMLElement[]>([]);
+
+  const stepsClassName = useMemo(
+    () =>
+      classNames(stepsClass, `${stepsClass}--${layout}`, `${stepsClass}--${sequence}`, {
+        [`${stepsClass}--readonly`]: readonly,
       }),
-    );
-  }, [children, options]);
+    [stepsClass, layout, sequence, readonly],
+  );
+
+  const relation = useCallback((ele: HTMLElement) => {
+    ele && setChildrenNodes((prev) => [...prev, ele]);
+  }, []);
+
+  const removeRelation = useCallback((ele: HTMLElement) => {
+    setChildrenNodes((prev) => prev.filter((item) => item !== ele));
+  }, []);
+
+  const onClickItem = useCallback(
+    (cur, prev, context) => {
+      onChange(cur, prev, context);
+    },
+    [onChange],
+  );
+
+  const memoProviderValues = useMemo(
+    () => ({
+      childrenNodes,
+      current: value,
+      relation,
+      removeRelation,
+      onClickItem,
+      currentStatus,
+      layout,
+      readonly,
+      theme,
+      sequence,
+    }),
+    [childrenNodes, value, relation, removeRelation, onClickItem, currentStatus, layout, readonly, theme, sequence],
+  );
 
   return withNativeProps(
     props,
-    <StepsContext.Provider value={{ value, readonly, theme, layout, onChange }}>
-      <div
-        className={classnames(
-          name,
-          `${name}--${layout}`,
-          `${name}--${theme}-anchor`,
-          `${name}--${separator}-separator`,
-          {
-            [`${name}--readonly`]: readonly,
-          },
-        )}
-      >
-        {stepItemList}
-      </div>
-    </StepsContext.Provider>,
+    <StepsProvider value={memoProviderValues}>
+      <div className={stepsClassName}>{parseTNode(children)}</div>
+    </StepsProvider>,
   );
 };
 
 Steps.displayName = 'Steps';
-Steps.defaultProps = stepsDefaultProps;
 
 export default Steps;
