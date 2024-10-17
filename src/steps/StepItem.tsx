@@ -1,11 +1,14 @@
 import React, { FC, useContext, useMemo } from 'react';
 import classnames from 'classnames';
-import { Icon } from 'tdesign-icons-react';
+import { CheckIcon, CloseIcon } from 'tdesign-icons-react';
+import isNumber from 'lodash/isNumber';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import { TdStepItemProps } from './type';
-import useConfig from '../_util/useConfig';
 import { stepItemDefaultProps } from './defaultProps';
 import StepsContext from './StepsContext';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
+import parseTNode from '../_util/parseTNode';
 
 export enum StepItemStatusEnum {
   DEFAULT = 'default',
@@ -29,96 +32,154 @@ export interface StepItemProps extends TdStepItemProps, NativeProps {
 }
 
 const StepItem: FC<StepItemProps> = (props) => {
-  const { title, content, icon, status, index, children } = props;
+  const { title, titleRight, extra, content, icon, status, index, children } = useDefaultProps(
+    props,
+    stepItemDefaultProps,
+  );
 
-  const { value, readonly, theme, layout, onChange } = useContext(StepsContext);
+  const {
+    value,
+    readonly,
+    theme,
+    layout,
+    currentStatus: contextStatus,
+    onChange,
+    sequence,
+    itemList,
+  } = useContext(StepsContext);
 
-  const { classPrefix } = useConfig();
+  const stepItemClass = usePrefixClass('step-item');
+  const dot = useMemo(() => theme === StepThemeEnum.DOT, [theme]);
 
-  const name = `${classPrefix}-step`;
+  const isLastChild = useMemo(
+    () => index === (sequence === 'positive' ? itemList.length - 1 : 0),
+    [index, itemList.length, sequence],
+  );
 
-  const dot = useMemo(() => theme === StepThemeEnum.DOT && layout === StepLayoutEnum.VERTICAL, [theme, layout]);
+  const currentStatus = useMemo(() => {
+    if (status !== StepItemStatusEnum.DEFAULT) return status;
+    if (index === value) return contextStatus;
+    if (isNumber(value) && index < value) return StepItemStatusEnum.FINISH;
+    return status;
+  }, [contextStatus, index, status, value]);
+
+  const rootClassName = useMemo(
+    () =>
+      classnames(stepItemClass, `${stepItemClass}--${layout}`, {
+        [`${stepItemClass}--default`]: readonly,
+        [`${stepItemClass}--${currentStatus}`]: currentStatus,
+      }),
+    [currentStatus, layout, readonly, stepItemClass],
+  );
+  const iconWrapperClassName = useMemo(
+    () => classnames(`${stepItemClass}__anchor`, `${stepItemClass}__anchor--${layout}`),
+    [layout, stepItemClass],
+  );
+  const dotClass = useMemo(
+    () => classnames(`${stepItemClass}__dot`, `${stepItemClass}__dot--${currentStatus}`),
+    [currentStatus, stepItemClass],
+  );
+
+  const iconClassName = useMemo(
+    () =>
+      classnames(``, {
+        [`${stepItemClass}__icon`]: icon,
+        [`${stepItemClass}__icon--${currentStatus}`]: icon,
+        [`${stepItemClass}__circle`]: !icon,
+        [`${stepItemClass}__circle--${currentStatus}`]: !icon,
+      }),
+    [currentStatus, icon, stepItemClass],
+  );
+
+  const contentClass = useMemo(
+    () =>
+      classnames(`${stepItemClass}__content`, `${stepItemClass}__content--${layout}`, {
+        [`${stepItemClass}__content--${layout}`]: isLastChild,
+        [`${stepItemClass}__content--last`]: isLastChild,
+      }),
+    [isLastChild, layout, stepItemClass],
+  );
+  const tilteClass = useMemo(
+    () =>
+      classnames(
+        `${stepItemClass}__title`,
+        `${stepItemClass}__title--${currentStatus}`,
+        `${stepItemClass}__title--${layout}`,
+      ),
+    [currentStatus, layout, stepItemClass],
+  );
+  const descriptionClass = useMemo(
+    () =>
+      classnames(
+        `${stepItemClass}__description`,
+        `${stepItemClass}__description--${currentStatus}`,
+        `${stepItemClass}__description--${layout}`,
+      ),
+    [currentStatus, layout, stepItemClass],
+  );
+  const extraClass = useMemo(
+    () =>
+      classnames(
+        `${stepItemClass}__extra`,
+        `${stepItemClass}__extra--${currentStatus}`,
+        `${stepItemClass}__extra--${layout}`,
+      ),
+    [currentStatus, layout, stepItemClass],
+  );
+  const separatorClass = useMemo(
+    () =>
+      classnames(
+        stepItemClass,
+        `${stepItemClass}__line`,
+        `${stepItemClass}__line--${currentStatus}`,
+        `${stepItemClass}__line--${layout}`,
+        `${stepItemClass}__line--${theme}`,
+        `${stepItemClass}__line--${sequence}`,
+      ),
+    [currentStatus, layout, sequence, stepItemClass, theme],
+  );
 
   const onStepClick = (e) => {
-    if (readonly || dot) return;
+    if (readonly) return;
     const currentValue = index;
     onChange(currentValue, value, { e });
   };
 
-  const innerClassName = useMemo(() => {
-    if (typeof icon === 'boolean') {
-      return `${name}__inner`;
-    }
-    return classnames(`${name}__inner`, `${name}__inner__icon`);
-  }, [name, icon]);
-
-  const iconContent = useMemo(() => {
-    if (dot) {
-      return '';
+  const renderIconContent = () => {
+    if (icon) {
+      return parseTNode(icon);
     }
 
-    if (status === StepItemStatusEnum.ERROR) {
-      return <Icon name="close" />;
+    if (currentStatus === StepItemStatusEnum.ERROR) {
+      return <CloseIcon />;
     }
 
-    if (index < value && readonly) {
-      return <Icon name="check" />;
+    if (currentStatus === StepItemStatusEnum.FINISH) {
+      return <CheckIcon />;
     }
 
-    if (typeof icon === 'boolean') {
-      return index + 1;
-    }
-
-    if (typeof icon === 'string') {
-      return <Icon name={icon} size="24" />;
-    }
-
-    return icon;
-  }, [status, index, value, readonly, icon, dot]);
-
-  const currentStatus = useMemo(() => {
-    if (status !== StepItemStatusEnum.DEFAULT) {
-      return status;
-    }
-    if (+value === index) {
-      return StepItemStatusEnum.PROCESS;
-    }
-    if (+value > index) {
-      return StepItemStatusEnum.FINISH;
-    }
-    return '';
-  }, [value, index, status]);
+    return index + 1;
+  };
 
   return withNativeProps(
     props,
-    <div
-      className={classnames(`${name}`, {
-        [`${name}--default`]: !readonly,
-        [`${name}--${currentStatus}`]: currentStatus,
-      })}
-    >
-      <div className={innerClassName}>
-        <div className={`${name}-icon`}>
-          <div
-            className={classnames(`${name}-icon__number`, {
-              [`${name}-icon__dot`]: dot,
-            })}
-            onClick={onStepClick}
-          >
-            {iconContent}
-          </div>
-        </div>
-        <div className={`${name}-content`}>
-          <div className={`${name}-title`}>{title}</div>
-          <div className={`${name}-description`}>{content || children}</div>
-          <div className={`${name}-extra`} />
-        </div>
+    <div className={rootClassName} onClick={onStepClick}>
+      <div className={iconWrapperClassName}>
+        {dot ? <div className={dotClass}></div> : <div className={iconClassName}>{renderIconContent()}</div>}
       </div>
+      <div className={contentClass}>
+        <div className={tilteClass}>
+          {parseTNode(title)}
+          {parseTNode(titleRight)}
+        </div>
+        <div className={descriptionClass}>{parseTNode(children || content)}</div>
+        <div className={extraClass}>{parseTNode(extra)}</div>
+      </div>
+      {!isLastChild && <div className={separatorClass}></div>}
     </div>,
   );
 };
 
 StepItem.displayName = 'StepItem';
-StepItem.defaultProps = stepItemDefaultProps;
 
 export default StepItem;

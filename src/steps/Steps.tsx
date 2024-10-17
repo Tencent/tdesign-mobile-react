@@ -3,10 +3,11 @@ import classnames from 'classnames';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import useDefault from '../_util/useDefault';
 import { TdStepsProps } from './type';
-import useConfig from '../_util/useConfig';
 import { stepsDefaultProps } from './defaultProps';
 import StepsContext from './StepsContext';
 import StepItem from './StepItem';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 
 export interface StepsProps extends TdStepsProps, NativeProps {}
 
@@ -16,17 +17,14 @@ const Steps: FC<StepsProps> = (props) => {
     layout,
     readonly,
     theme,
-    separator,
+    sequence,
     current,
     defaultCurrent,
+    currentStatus,
     onChange: onCurrentChange,
     options,
-  } = props;
-
-  const { classPrefix } = useConfig();
-
-  const name = `${classPrefix}-steps`;
-
+  } = useDefaultProps(props, stepsDefaultProps);
+  const stepsClass = usePrefixClass('steps');
   const [value, onChange] = useDefault(current, defaultCurrent, onCurrentChange);
 
   const stepItemList = useMemo(() => {
@@ -42,17 +40,13 @@ const Steps: FC<StepsProps> = (props) => {
 
   return withNativeProps(
     props,
-    <StepsContext.Provider value={{ value, readonly, theme, layout, onChange }}>
+    <StepsContext.Provider
+      value={{ value, readonly, theme, layout, onChange, currentStatus, sequence, itemList: stepItemList }}
+    >
       <div
-        className={classnames(
-          name,
-          `${name}--${layout}`,
-          `${name}--${theme}-anchor`,
-          `${name}--${separator}-separator`,
-          {
-            [`${name}--readonly`]: readonly,
-          },
-        )}
+        className={classnames(stepsClass, `${stepsClass}--${layout}`, `${stepsClass}--${sequence}`, {
+          [`${stepsClass}--readonly`]: readonly,
+        })}
       >
         {stepItemList}
       </div>
@@ -61,6 +55,5 @@ const Steps: FC<StepsProps> = (props) => {
 };
 
 Steps.displayName = 'Steps';
-Steps.defaultProps = stepsDefaultProps;
 
 export default Steps;
