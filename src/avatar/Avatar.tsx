@@ -16,6 +16,7 @@ export interface AvatarProps extends TdAvatarProps, StyledProps {}
 
 const Avatar: FC<AvatarProps> = (props) => {
   const {
+    className,
     size = '',
     shape = 'circle',
     icon,
@@ -38,12 +39,13 @@ const Avatar: FC<AvatarProps> = (props) => {
 
   const avatarClasses = cls(
     rootClassName,
-    `${rootClassName}-${isCustomSize ? 'medium' : sizeValue}`,
-    `${rootClassName}-${shapeValue}`,
+    `${rootClassName}--${isCustomSize ? 'medium' : sizeValue}`,
+    `${rootClassName}--${shapeValue}`,
     {
       [`${rootClassName}--border ${rootClassName}--border-${isCustomSize ? 'medium' : sizeValue}`]: hasAvatarGroupProps,
     },
   );
+  const containerClassName = cls(`${rootClassName}__wrapper`, className);
 
   const customSize = isCustomSize
     ? {
@@ -68,7 +70,7 @@ const Avatar: FC<AvatarProps> = (props) => {
   };
 
   return (
-    <div className={`${rootClassName}__wrapper`}>
+    <div className={containerClassName}>
       <div className={`${rootClassName}__badge`}>
         <Badge {...badgeProps}>
           <div className={avatarClasses} style={customSize}>
