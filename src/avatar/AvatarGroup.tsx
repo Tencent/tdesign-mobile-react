@@ -47,7 +47,11 @@ const AvatarGroup = (props: AvatarGroupProps) => {
     const showAvatarList = validChildren.slice(0, max);
     const renderCollapseAvatar = () => parseTNode(collapseAvatar);
     showAvatarList.push(
-      <div className={`${rootClassName}__collapse--default`} onClick={handleCollapsedItemClick}>
+      <div
+        key="avatar-group-extension"
+        className={`${rootClassName}__collapse--default`}
+        onClick={handleCollapsedItemClick}
+      >
         <Avatar size={showAvatarList[0].props.size || size} shape={shape}>
           {renderCollapseAvatar() || `+${validChildren.length - max}`}
         </Avatar>

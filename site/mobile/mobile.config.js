@@ -215,7 +215,7 @@ export default {
     {
       title: 'Avatar 头像',
       name: 'avatar',
-      component: () => import('tdesign-mobile-react/avatar/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/avatar/_example/index.tsx'),
     },
     {
       title: 'Indexes 索引',
