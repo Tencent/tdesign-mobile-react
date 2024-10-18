@@ -3,12 +3,13 @@ import type { AvatarGroupProps } from './AvatarGroup';
 
 export const AvatarGroupContext = React.createContext(null);
 
-export function AvatarGroupContextProvider(props: Pick<AvatarGroupProps, 'size' | 'children'>) {
-  const memoSize = useMemo(
+export function AvatarGroupContextProvider(props: Pick<AvatarGroupProps, 'size' | 'children' | 'shape'>) {
+  const memoInfo = useMemo(
     () => ({
       size: props.size,
+      shape: props.shape,
     }),
-    [props.size],
+    [props.size, props.shape],
   );
-  return <AvatarGroupContext.Provider value={memoSize}>{props.children}</AvatarGroupContext.Provider>;
+  return <AvatarGroupContext.Provider value={memoInfo}>{props.children}</AvatarGroupContext.Provider>;
 }
