@@ -4,8 +4,10 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TdBadgeProps } from '../badge';
-import { TNode, TElement } from '../common';
+import { BadgeProps } from '../badge';
+import { ImageProps } from '../image';
+import { TNode, TElement, ShapeEnum } from '../common';
+import { MouseEvent } from 'react';
 
 export interface TdAvatarProps {
   /**
@@ -16,7 +18,11 @@ export interface TdAvatarProps {
   /**
    * 头像右上角提示信息，继承 Badge 组件的全部特性。如：小红点，或者数字
    */
-  badgeProps?: TdBadgeProps;
+  badgeProps?: BadgeProps;
+  /**
+   * 子元素内容，同 content
+   */
+  children?: TNode;
   /**
    * 加载失败时隐藏图片
    * @default false
@@ -32,19 +38,22 @@ export interface TdAvatarProps {
    */
   image?: string;
   /**
-   * 形状
-   * @default circle
+   * 透传至 Image 组件
    */
-  shape?: ShapeEnum ;
+  imageProps?: ImageProps;
   /**
-   * 尺寸，示例值：small/medium/large/24px/38px 等，默认为 large
+   * 形状。优先级高于 AvatarGroup.shape 。Avatar 单独存在时，默认值为 circle。如果父组件 AvatarGroup 存在，默认值便由 AvatarGroup.shape 决定
+   */
+  shape?: ShapeEnum;
+  /**
+   * 尺寸，示例值：small/medium/large/24px/38px 等。优先级高于 AvatarGroup.size 。Avatar 单独存在时，默认值为 medium。如果父组件 AvatarGroup 存在，默认值便由 AvatarGroup.size 决定
    * @default ''
    */
   size?: string;
   /**
    * 图片加载失败时触发
    */
-  onError?: () => void;
+  onError?: (context: { e: Event }) => void;
 }
 
 export interface TdAvatarGroupProps {
@@ -62,12 +71,18 @@ export interface TdAvatarGroupProps {
    */
   max?: number;
   /**
+   * 形状。优先级低于 Avatar.shape
+   */
+  shape?: ShapeEnum;
+  /**
    * 尺寸，示例值：small/medium/large/24px/38px 等。优先级低于 Avatar.size
-   * @default medium
+   * @default ''
    */
   size?: string;
+  /**
+   * 点击头像折叠元素触发
+   */
+  onCollapsedItemClick?: (context: { e: MouseEvent<HTMLSpanElement> }) => void;
 }
-
-export type ShapeEnum = 'circle' | 'round';
 
 export type CascadingValue = 'left-up' | 'right-up';

@@ -1,89 +1,83 @@
-import React, { useContext, useMemo, Ref, useState } from 'react';
+import type { FC } from 'react';
+import React, { useContext } from 'react';
 import cls from 'classnames';
-import type { TdAvatarProps } from './type';
-import Badge from '../badge/index';
-import { StyledProps } from '../common';
-import { ConfigContext } from '../config-provider';
-import useSizeHook from './hooks/useSizeHooks';
-import AvatarGroup from './AvatarGroup';
-import forwardRefWithStatics from '../_util/forwardRefWithStatics';
+import Image from 'tdesign-mobile-react/image';
+import Badge from 'tdesign-mobile-react/badge';
 import { AvatarGroupContext } from './AvatarGroupContext';
+import { isValidSize } from '../_common/js/avatar/utils';
+import parseTNode from '../_util/parseTNode';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
+import { avatarDefaultProps } from './defaultProps';
+import type { TdAvatarProps } from './type';
+import type { StyledProps } from '../common';
 
-export interface AvatarProps extends TdAvatarProps, StyledProps {
-  children?: React.ReactNode;
-}
+export interface AvatarProps extends TdAvatarProps, StyledProps {}
 
-const Avatar = forwardRefWithStatics(
-  (props: AvatarProps, ref: Ref<HTMLDivElement>) => {
-    const {
-      size = '',
-      shape = 'circle',
-      icon,
-      children,
-      hideOnLoadFailed = false,
-      image = '',
-      badgeProps,
-      alt = '',
-      onError,
-      className,
-      ...restProps
-    } = props;
-    const { size: avatarGroupSize } = useContext(AvatarGroupContext) || {};
-    const sizeCls = useSizeHook(size || avatarGroupSize);
-    const [sizeValue] = useState(size || avatarGroupSize);
-    const { classPrefix } = useContext(ConfigContext);
-    const baseAvatarCls = `${classPrefix}-avatar`;
+const Avatar: FC<AvatarProps> = (props) => {
+  const {
+    size = '',
+    shape = 'circle',
+    icon,
+    children,
+    hideOnLoadFailed = false,
+    image = '',
+    badgeProps,
+    alt = '',
+    imageProps,
+    onError,
+  } = useDefaultProps(props, avatarDefaultProps);
+  const avatarGroupProps = useContext(AvatarGroupContext) || {};
+  const rootClassName = usePrefixClass('avatar');
 
-    const isIconOnly = icon && !children;
+  const { size: avatarGroupSize, shape: avatarGroupShape } = avatarGroupProps;
+  const hasAvatarGroupProps = Object.keys(avatarGroupProps).length > 0;
+  const shapeValue = shape || avatarGroupShape || 'circle';
+  const sizeValue = size || avatarGroupSize;
+  const isCustomSize = !isValidSize(sizeValue);
 
-    const avatarCls = cls(
-      baseAvatarCls,
-      {
-        [sizeCls]: true,
-        [`${baseAvatarCls}--${shape}`]: shape,
-      },
-      className,
-    );
+  const avatarClasses = cls(
+    rootClassName,
+    `${rootClassName}-${isCustomSize ? 'medium' : sizeValue}`,
+    `${rootClassName}-${shapeValue}`,
+    {
+      [`${rootClassName}--border ${rootClassName}--border-${isCustomSize ? 'medium' : sizeValue}`]: hasAvatarGroupProps,
+    },
+  );
 
-    // size 没有命中原有 size 规则且 size 仍有值， 推断为 size 值
-    const customSize = useMemo(() => {
-      if (sizeCls === '' && sizeValue) {
-        return {
-          width: sizeValue,
-          height: sizeValue,
-        };
+  const customSize = isCustomSize
+    ? {
+        height: sizeValue,
+        width: sizeValue,
+        'font-size': `${(Number.parseInt(sizeValue, 10) / 8) * 3 + 2}px`,
       }
-      return {};
-    }, [sizeCls, sizeValue]);
+    : {};
 
-    const iconCls = `${baseAvatarCls}__icon`;
-    const badgeCls = `${baseAvatarCls}__badge`;
-    const innerCls = `${baseAvatarCls}__inner`;
+  const handleImgLoaderError = (context: any) => {
+    onError?.(context);
+  };
 
-    const renderIcon = <div className={iconCls}>{icon}</div>;
-    const renderImage = <img style={customSize} alt={alt} src={image} onError={onError}></img>;
-    const renderContent = <>{children}</>;
-    const renderBadge = <Badge {...badgeProps}></Badge>;
+  const renderAvatar = () => {
+    if (image && !hideOnLoadFailed) {
+      return <Image src={image} alt={alt} {...imageProps} onError={handleImgLoaderError} />;
+    }
+    if (icon) {
+      return <div className={`${rootClassName}__icon`}>{icon}</div>;
+    }
+    return parseTNode(children);
+  };
 
-    const isShowImage = image && !hideOnLoadFailed;
-    const isShowBadge = !!badgeProps;
-
-    return (
-      <div ref={ref} className={avatarCls} style={customSize} {...restProps}>
-        <div className={innerCls}>
-          {isShowImage && renderImage}
-          {!isShowImage && isIconOnly && renderIcon}
-          {!isShowImage && !isIconOnly && renderContent}
-        </div>
-        {isShowBadge && <div className={badgeCls}>{renderBadge}</div>}
+  return (
+    <div className={`${rootClassName}__wrapper`}>
+      <div className={`${rootClassName}__badge`}>
+        <Badge {...badgeProps}>
+          <div className={avatarClasses} style={customSize}>
+            {renderAvatar()}
+          </div>
+        </Badge>
       </div>
-    );
-  },
-  {
-    Group: AvatarGroup,
-  },
-);
-
-Avatar.displayName = 'Avatar';
+    </div>
+  );
+};
 
 export default Avatar;

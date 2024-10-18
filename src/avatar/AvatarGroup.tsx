@@ -1,10 +1,15 @@
-import React, { forwardRef, Ref, useContext, useEffect, useMemo, useState } from 'react';
+import type { MouseEvent } from 'react';
+import React from 'react';
 import cls from 'classnames';
-import { ShapeEnum, TdAvatarGroupProps } from './type';
-import { StyledProps } from '../common';
-import { ConfigContext } from '../config-provider';
 import Avatar from './Avatar';
 import { AvatarGroupContextProvider } from './AvatarGroupContext';
+import parseTNode from '../_util/parseTNode';
+import { isValidSize } from '../_common/js/avatar/utils';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
+import { avatarGroupDefaultProps } from './defaultProps';
+import type { TdAvatarGroupProps } from './type';
+import type { StyledProps } from '../common';
 
 export interface AvatarGroupProps extends TdAvatarGroupProps, StyledProps {
   children?: React.ReactNode;
@@ -14,67 +19,51 @@ function getValidChildren(children: React.ReactNode) {
   return React.Children.toArray(children).filter((child) => React.isValidElement(child)) as React.ReactElement[];
 }
 
-const AvatarGroup = forwardRef((props: AvatarGroupProps, ref: Ref<HTMLDivElement>) => {
-  const { cascading, children, max, collapseAvatar, size, className, ...restProps } = props;
-  const { classPrefix } = useContext(ConfigContext);
-  const [isShowEllipsisContent, setIsShowEllipsisContent] = useState(false);
-  const [lastOneShape, setLastOneShape] = useState<ShapeEnum>('circle');
+const AvatarGroup = (props: AvatarGroupProps) => {
+  const { cascading, children, size, shape, max, collapseAvatar, onCollapsedItemClick } = useDefaultProps(
+    props,
+    avatarGroupDefaultProps,
+  );
+  const rootClassName = usePrefixClass('avatar-group');
 
-  const baseAvatarGroupCls = `${classPrefix}-avatar-group`;
+  const direction = cascading ? cascading.split('-')[0] : 'right';
+  const isCustomSize = !isValidSize(size);
 
-  const avatarGroupCls = cls(
-    baseAvatarGroupCls,
-    {
-      [`${classPrefix}-avatar--offset-right`]: cascading === 'right-up',
-      [`${classPrefix}-avatar--offset-left`]: cascading === 'left-up',
-    },
-    className,
+  const avatarGroupClasses = cls(
+    rootClassName,
+    `${rootClassName}-offset-${direction}`,
+    `${rootClassName}-offset-${direction}-${isCustomSize ? 'medium' : size}`,
   );
 
-  const validChildren = getValidChildren(children);
-  const childrenCount = validChildren.length;
-  const childrenWithinMax = max ? validChildren.slice(0, max) : validChildren;
+  const handleCollapsedItemClick = (e: MouseEvent<HTMLSpanElement>) => {
+    onCollapsedItemClick?.({ e });
+  };
 
-  const renderCollapseAvatar = useMemo(() => {
-    const popupNum = `+${childrenCount - max}`;
-    return collapseAvatar || popupNum;
-  }, [collapseAvatar, max, childrenCount]);
-
-  const ellipsisSize = useMemo(
-    () => childrenWithinMax[childrenWithinMax.length - 1]?.props.size || props.size,
-    [childrenWithinMax, props.size],
-  );
-
-  useEffect(() => {
-    if (max && childrenCount > max) {
-      setIsShowEllipsisContent(true);
-    } else {
-      setIsShowEllipsisContent(false);
+  const renderAvatar = () => {
+    const validChildren = getValidChildren(children);
+    if (validChildren.length <= max) {
+      return validChildren;
     }
-  }, [max, childrenCount]);
-
-  useEffect(() => {
-    if (
-      childrenWithinMax.length > 0 &&
-      childrenWithinMax?.[childrenWithinMax.length - 1]?.props?.shape !== lastOneShape
-    ) {
-      setLastOneShape(childrenWithinMax[childrenWithinMax.length - 1].props.shape);
-    }
-  }, [childrenWithinMax, lastOneShape]);
+    const showAvatarList = validChildren.slice(0, max);
+    const renderCollapseAvatar = () => parseTNode(collapseAvatar);
+    showAvatarList.push(
+      <div className={`${rootClassName}__collapse--default`} onClick={handleCollapsedItemClick}>
+        <Avatar size={showAvatarList[0].props.size || size} shape={shape}>
+          {renderCollapseAvatar() || `+${validChildren.length - max}`}
+        </Avatar>
+      </div>,
+    );
+    return showAvatarList;
+  };
 
   return (
-    <div className={avatarGroupCls} ref={ref} {...restProps}>
-      <AvatarGroupContextProvider size={size}>
-        {childrenWithinMax}
-        {isShowEllipsisContent ? (
-          <Avatar shape={lastOneShape} size={ellipsisSize}>
-            {renderCollapseAvatar}
-          </Avatar>
-        ) : null}
+    <div className={avatarGroupClasses}>
+      <AvatarGroupContextProvider size={size} shape={shape}>
+        {renderAvatar()}
       </AvatarGroupContextProvider>
     </div>
   );
-});
+};
 
 AvatarGroup.displayName = 'AvatarGroup';
 
