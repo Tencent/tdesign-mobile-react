@@ -342,6 +342,12 @@ export default {
           component: () => import('tdesign-mobile-react/drawer/drawer.md'),
         },
         {
+          title: 'Guide 引导',
+          name: 'guide',
+          path: '/mobile-react/components/guide',
+          component: () => import('tdesign-mobile-react/guide/guide.md'),
+        },
+        {
           title: 'Loading 加载',
           name: 'loading',
           path: '/mobile-react/components/loading',
