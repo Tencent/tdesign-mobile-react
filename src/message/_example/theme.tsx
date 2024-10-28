@@ -1,23 +1,28 @@
 import React from 'react';
-import { Message, Button } from 'tdesign-mobile-react';
+import { type MessageThemeList, Message, Button } from 'tdesign-mobile-react';
 
 export default function () {
-  const contents = ['普通通知', '警示提示通知', '成功提示通知', '错误提示通知'];
+  const contents = ['普通通知', '成功通知', '警示通知', '错误通知'];
 
-  const messages = [
+  const messages: Array<{
+    duration?: number;
+    content: string;
+    icon: boolean;
+    theme?: MessageThemeList;
+  }> = [
     {
       duration: 3000,
       content: '这是一条普通消息通知',
       icon: true,
     },
     {
-      theme: 'warning',
-      content: '这是一条需要用户关注到的警示通知',
+      theme: 'success',
+      content: '这是一条需要成功的提示消息',
       icon: true,
     },
     {
-      theme: 'success',
-      content: '这是一条需要成功的提示消息',
+      theme: 'warning',
+      content: '这是一条需要用户关注到的警示通知',
       icon: true,
     },
     {

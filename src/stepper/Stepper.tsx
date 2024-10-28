@@ -1,4 +1,4 @@
-import React, { FormEvent, forwardRef, memo } from 'react';
+import React, { forwardRef, memo } from 'react';
 import classNames from 'classnames';
 import { AddIcon, RemoveIcon } from 'tdesign-icons-react';
 import { usePrefixClass } from '../hooks/useClass';
@@ -89,22 +89,22 @@ const Stepper = forwardRef<HTMLDivElement, StepperProps>((originProps, ref) => {
     updateValue(formatValue(add(Number(currentValue), -step)));
   };
 
-  const handleInput = (e: FormEvent<HTMLInputElement>) => {
-    const value = formatNumber((e.target as HTMLInputElement).value, !integer);
-    setCurrentValue(value);
-  };
-
-  const handleChange = () => {
-    const formattedValue = formatValue(Number(currentValue));
-    updateValue(formattedValue);
+  const handleChange = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+    const { value } = e.currentTarget;
+    if (isNaN(Number(value))) return;
+    setCurrentValue(formatNumber(value, !integer));
   };
 
   const handleFocus = () => {
-    onFocus(Number(currentValue));
+    onFocus?.(Number(currentValue));
   };
 
-  const handleBlur = () => {
-    onBlur(Number(currentValue));
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+    const { value } = e.currentTarget;
+    if (isNaN(Number(value))) return;
+    const formattedValue = formatValue(Number(value));
+    setCurrentValue(formattedValue);
+    onBlur?.(formattedValue);
   };
 
   return (
@@ -139,7 +139,6 @@ const Stepper = forwardRef<HTMLDivElement, StepperProps>((originProps, ref) => {
         readOnly={disableInput}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        onInput={handleInput}
         onChange={handleChange}
       />
       <div
