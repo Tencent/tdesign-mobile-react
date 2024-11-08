@@ -51,7 +51,7 @@ const Avatar: FC<AvatarProps> = (props) => {
     ? {
         height: sizeValue,
         width: sizeValue,
-        'font-size': `${(Number.parseInt(sizeValue, 10) / 8) * 3 + 2}px`,
+        fontSize: `${(Number.parseInt(sizeValue, 10) / 8) * 3 + 2}px`,
       }
     : {};
 
