@@ -18915,6 +18915,1504 @@ exports[`csr snapshot test > csr test src/grid/_example/scroll.tsx 1`] = `
 </div>
 `;
 
+exports[`csr snapshot test > csr test src/guide/_example/base.tsx 1`] = `
+<div>
+  <div
+    class="guide-demo"
+  >
+    <button
+      class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__content"
+      >
+         
+        用户引导
+      </span>
+    </button>
+    <div
+      class="t-popup t-popup--bottom"
+      style="display: none; animation-fill-mode: forwards; height: 100vh; border-radius: 0;"
+    >
+      <div>
+        <div
+          class="guide-container base-guide"
+        >
+          <div
+            class="main-title"
+          >
+            <div
+              class="title-major"
+            >
+              用户引导标题
+            </div>
+            <div
+              class="title-sub"
+            >
+              按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。
+            </div>
+          </div>
+          <div
+            class="field label-field"
+          >
+            <div
+              class="t-input t-input--layout-vertical"
+            >
+              <div
+                class="t-input__wrap--prefix"
+              >
+                <div
+                  class="t-input__label"
+                >
+                  标签文字
+                </div>
+              </div>
+              <div
+                class="t-input__wrap"
+              >
+                <div
+                  class="t-input__content t-input--default"
+                >
+                  <input
+                    class="t-input__control t-input--default"
+                    maxlength="-1"
+                    placeholder="请输入内容"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="field"
+          >
+            <div
+              class="t-input t-input--layout-vertical"
+            >
+              <div
+                class="t-input__wrap--prefix"
+              >
+                <div
+                  class="t-input__label"
+                >
+                  标签文字
+                </div>
+              </div>
+              <div
+                class="t-input__wrap"
+              >
+                <div
+                  class="t-input__content t-input--default"
+                >
+                  <input
+                    class="t-input__control t-input--default"
+                    maxlength="-1"
+                    placeholder="请输入内容"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="action"
+          >
+            <button
+              class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                重置
+              </span>
+            </button>
+            <button
+              class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                确定
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/guide/_example/custom-popover.tsx 1`] = `
+<div>
+  <div
+    class="guide-demo"
+  >
+    <button
+      class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__content"
+      >
+         
+        用户引导
+      </span>
+    </button>
+    <div
+      class="t-popup t-popup--bottom"
+      style="display: none; animation-fill-mode: forwards; height: 100vh; border-radius: 0;"
+    >
+      <div>
+        <div
+          class="guide-container custom-popover"
+        >
+          <div
+            class="main-title"
+          >
+            <div
+              class="title-major"
+            >
+              用户引导标题
+            </div>
+            <div
+              class="title-sub"
+            >
+              按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。
+            </div>
+          </div>
+          <div
+            class="field label-field"
+          >
+            <div
+              class="t-input t-input--layout-vertical"
+            >
+              <div
+                class="t-input__wrap--prefix"
+              >
+                <div
+                  class="t-input__label"
+                >
+                  标签文字
+                </div>
+              </div>
+              <div
+                class="t-input__wrap"
+              >
+                <div
+                  class="t-input__content t-input--default"
+                >
+                  <input
+                    class="t-input__control t-input--default"
+                    maxlength="-1"
+                    placeholder="请输入内容"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="field"
+          >
+            <div
+              class="t-input t-input--layout-vertical"
+            >
+              <div
+                class="t-input__wrap--prefix"
+              >
+                <div
+                  class="t-input__label"
+                >
+                  标签文字
+                </div>
+              </div>
+              <div
+                class="t-input__wrap"
+              >
+                <div
+                  class="t-input__content t-input--default"
+                >
+                  <input
+                    class="t-input__control t-input--default"
+                    maxlength="-1"
+                    placeholder="请输入内容"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="action"
+          >
+            <button
+              class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                重置
+              </span>
+            </button>
+            <button
+              class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                确定
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/guide/_example/dialog.tsx 1`] = `
+<div>
+  <div
+    class="guide-demo"
+  >
+    <button
+      class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__content"
+      >
+         
+        用户引导
+      </span>
+    </button>
+    <div
+      class="t-popup t-popup--bottom"
+      style="display: none; animation-fill-mode: forwards; height: 100vh; border-radius: 0;"
+    >
+      <div>
+        <div
+          class="guide-container dialog-guide"
+        >
+          <div
+            class="main-title"
+          >
+            <div
+              class="title-major"
+            >
+              用户引导标题
+            </div>
+            <div
+              class="title-sub"
+            >
+              按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。
+            </div>
+          </div>
+          <div
+            class="field label-field"
+          >
+            <div
+              class="t-input t-input--layout-vertical"
+            >
+              <div
+                class="t-input__wrap--prefix"
+              >
+                <div
+                  class="t-input__label"
+                >
+                  标签文字
+                </div>
+              </div>
+              <div
+                class="t-input__wrap"
+              >
+                <div
+                  class="t-input__content t-input--default"
+                >
+                  <input
+                    class="t-input__control t-input--default"
+                    maxlength="-1"
+                    placeholder="请输入内容"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="field"
+          >
+            <div
+              class="t-input t-input--layout-vertical"
+            >
+              <div
+                class="t-input__wrap--prefix"
+              >
+                <div
+                  class="t-input__label"
+                >
+                  标签文字
+                </div>
+              </div>
+              <div
+                class="t-input__wrap"
+              >
+                <div
+                  class="t-input__content t-input--default"
+                >
+                  <input
+                    class="t-input__control t-input--default"
+                    maxlength="-1"
+                    placeholder="请输入内容"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="action"
+          >
+            <button
+              class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                重置
+              </span>
+            </button>
+            <button
+              class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                确定
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/guide/_example/dialog-body.tsx 1`] = `
+<div>
+  <div
+    class="dialog-body"
+  >
+    <p>
+      用户引导的说明文案
+    </p>
+    <div
+      class="img-wrapper"
+    >
+      <img
+        alt="demo"
+        src="https://tdesign.gtimg.com/demo/demo-image-1.png"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/guide/_example/index.tsx 1`] = `
+<div>
+  <div
+    class="picker-demo"
+    style="padding-bottom: 12px;"
+  >
+    <div
+      class="tdesign-mobile-demo-header"
+    >
+      <h1
+        class="tdesign-mobile-demo-header__title"
+      >
+        Guide 引导
+      </h1>
+      <p
+        class="tdesign-mobile-demo-header__summary"
+      >
+        逐步骤进行指引或解释说明的组件，常用于用户不熟悉的或需进行特别强调的页面。
+      </p>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <h2
+          class="tdesign-mobile-demo-block__title"
+        >
+          01 组件类型
+        </h2>
+        <p
+          class="tdesign-mobile-demo-block__summary"
+        >
+          基础引导
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="guide-demo"
+        >
+          <button
+            class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              用户引导
+            </span>
+          </button>
+          <div
+            class="t-popup t-popup--bottom"
+            style="display: none; animation-fill-mode: forwards; height: 100vh; border-radius: 0;"
+          >
+            <div>
+              <div
+                class="guide-container base-guide"
+              >
+                <div
+                  class="main-title"
+                >
+                  <div
+                    class="title-major"
+                  >
+                    用户引导标题
+                  </div>
+                  <div
+                    class="title-sub"
+                  >
+                    按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。
+                  </div>
+                </div>
+                <div
+                  class="field label-field"
+                >
+                  <div
+                    class="t-input t-input--layout-vertical"
+                  >
+                    <div
+                      class="t-input__wrap--prefix"
+                    >
+                      <div
+                        class="t-input__label"
+                      >
+                        标签文字
+                      </div>
+                    </div>
+                    <div
+                      class="t-input__wrap"
+                    >
+                      <div
+                        class="t-input__content t-input--default"
+                      >
+                        <input
+                          class="t-input__control t-input--default"
+                          maxlength="-1"
+                          placeholder="请输入内容"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="field"
+                >
+                  <div
+                    class="t-input t-input--layout-vertical"
+                  >
+                    <div
+                      class="t-input__wrap--prefix"
+                    >
+                      <div
+                        class="t-input__label"
+                      >
+                        标签文字
+                      </div>
+                    </div>
+                    <div
+                      class="t-input__wrap"
+                    >
+                      <div
+                        class="t-input__content t-input--default"
+                      >
+                        <input
+                          class="t-input__control t-input--default"
+                          maxlength="-1"
+                          placeholder="请输入内容"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="action"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      重置
+                    </span>
+                  </button>
+                  <button
+                    class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      确定
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          不带遮罩的引导
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="guide-demo"
+        >
+          <button
+            class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              用户引导
+            </span>
+          </button>
+          <div
+            class="t-popup t-popup--bottom"
+            style="display: none; animation-fill-mode: forwards; height: 100vh; border-radius: 0;"
+          >
+            <div
+              class="guide-container no-mask"
+            >
+              <div
+                class="main-title"
+              >
+                <div
+                  class="title-major"
+                >
+                  用户引导标题
+                </div>
+                <div
+                  class="title-sub"
+                >
+                  按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。
+                </div>
+              </div>
+              <div
+                class="field label-field"
+              >
+                <div
+                  class="t-input t-input--layout-vertical"
+                >
+                  <div
+                    class="t-input__wrap--prefix"
+                  >
+                    <div
+                      class="t-input__label"
+                    >
+                      标签文字
+                    </div>
+                  </div>
+                  <div
+                    class="t-input__wrap"
+                  >
+                    <div
+                      class="t-input__content t-input--default"
+                    >
+                      <input
+                        class="t-input__control t-input--default"
+                        maxlength="-1"
+                        placeholder="请输入内容"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="field"
+              >
+                <div
+                  class="t-input t-input--layout-vertical"
+                >
+                  <div
+                    class="t-input__wrap--prefix"
+                  >
+                    <div
+                      class="t-input__label"
+                    >
+                      标签文字
+                    </div>
+                  </div>
+                  <div
+                    class="t-input__wrap"
+                  >
+                    <div
+                      class="t-input__content t-input--default"
+                    >
+                      <input
+                        class="t-input__control t-input--default"
+                        maxlength="-1"
+                        placeholder="请输入内容"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="action"
+              >
+                <button
+                  class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"
+                  type="button"
+                >
+                  <span
+                    class="t-button__content"
+                  >
+                     
+                    重置
+                  </span>
+                </button>
+                <button
+                  class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"
+                  type="button"
+                >
+                  <span
+                    class="t-button__content"
+                  >
+                     
+                    确定
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          弹窗形式的引导
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="guide-demo"
+        >
+          <button
+            class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              用户引导
+            </span>
+          </button>
+          <div
+            class="t-popup t-popup--bottom"
+            style="display: none; animation-fill-mode: forwards; height: 100vh; border-radius: 0;"
+          >
+            <div>
+              <div
+                class="guide-container dialog-guide"
+              >
+                <div
+                  class="main-title"
+                >
+                  <div
+                    class="title-major"
+                  >
+                    用户引导标题
+                  </div>
+                  <div
+                    class="title-sub"
+                  >
+                    按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。
+                  </div>
+                </div>
+                <div
+                  class="field label-field"
+                >
+                  <div
+                    class="t-input t-input--layout-vertical"
+                  >
+                    <div
+                      class="t-input__wrap--prefix"
+                    >
+                      <div
+                        class="t-input__label"
+                      >
+                        标签文字
+                      </div>
+                    </div>
+                    <div
+                      class="t-input__wrap"
+                    >
+                      <div
+                        class="t-input__content t-input--default"
+                      >
+                        <input
+                          class="t-input__control t-input--default"
+                          maxlength="-1"
+                          placeholder="请输入内容"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="field"
+                >
+                  <div
+                    class="t-input t-input--layout-vertical"
+                  >
+                    <div
+                      class="t-input__wrap--prefix"
+                    >
+                      <div
+                        class="t-input__label"
+                      >
+                        标签文字
+                      </div>
+                    </div>
+                    <div
+                      class="t-input__wrap"
+                    >
+                      <div
+                        class="t-input__content t-input--default"
+                      >
+                        <input
+                          class="t-input__control t-input--default"
+                          maxlength="-1"
+                          placeholder="请输入内容"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="action"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      重置
+                    </span>
+                  </button>
+                  <button
+                    class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      确定
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          气泡与弹窗混合的引导
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="guide-demo"
+        >
+          <button
+            class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              用户引导
+            </span>
+          </button>
+          <div
+            class="t-popup t-popup--bottom"
+            style="display: none; animation-fill-mode: forwards; height: 100vh; border-radius: 0;"
+          >
+            <div>
+              <div
+                class="guide-container popover-dialog-guide"
+              >
+                <div
+                  class="main-title"
+                >
+                  <div
+                    class="title-major"
+                  >
+                    用户引导标题
+                  </div>
+                  <div
+                    class="title-sub"
+                  >
+                    按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。
+                  </div>
+                </div>
+                <div
+                  class="field label-field"
+                >
+                  <div
+                    class="t-input t-input--layout-vertical"
+                  >
+                    <div
+                      class="t-input__wrap--prefix"
+                    >
+                      <div
+                        class="t-input__label"
+                      >
+                        标签文字
+                      </div>
+                    </div>
+                    <div
+                      class="t-input__wrap"
+                    >
+                      <div
+                        class="t-input__content t-input--default"
+                      >
+                        <input
+                          class="t-input__control t-input--default"
+                          maxlength="-1"
+                          placeholder="请输入内容"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="field"
+                >
+                  <div
+                    class="t-input t-input--layout-vertical"
+                  >
+                    <div
+                      class="t-input__wrap--prefix"
+                    >
+                      <div
+                        class="t-input__label"
+                      >
+                        标签文字
+                      </div>
+                    </div>
+                    <div
+                      class="t-input__wrap"
+                    >
+                      <div
+                        class="t-input__content t-input--default"
+                      >
+                        <input
+                          class="t-input__control t-input--default"
+                          maxlength="-1"
+                          placeholder="请输入内容"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="action"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      重置
+                    </span>
+                  </button>
+                  <button
+                    class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      确定
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"
+    >
+      <div
+        class="tdesign-mobile-demo-block__header"
+      >
+        <p
+          class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle"
+        >
+          自定义气泡
+        </p>
+      </div>
+      <div
+        class="tdesign-mobile-demo-block__slot"
+      >
+        <div
+          class="guide-demo"
+        >
+          <button
+            class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              用户引导
+            </span>
+          </button>
+          <div
+            class="t-popup t-popup--bottom"
+            style="display: none; animation-fill-mode: forwards; height: 100vh; border-radius: 0;"
+          >
+            <div>
+              <div
+                class="guide-container custom-popover"
+              >
+                <div
+                  class="main-title"
+                >
+                  <div
+                    class="title-major"
+                  >
+                    用户引导标题
+                  </div>
+                  <div
+                    class="title-sub"
+                  >
+                    按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。
+                  </div>
+                </div>
+                <div
+                  class="field label-field"
+                >
+                  <div
+                    class="t-input t-input--layout-vertical"
+                  >
+                    <div
+                      class="t-input__wrap--prefix"
+                    >
+                      <div
+                        class="t-input__label"
+                      >
+                        标签文字
+                      </div>
+                    </div>
+                    <div
+                      class="t-input__wrap"
+                    >
+                      <div
+                        class="t-input__content t-input--default"
+                      >
+                        <input
+                          class="t-input__control t-input--default"
+                          maxlength="-1"
+                          placeholder="请输入内容"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="field"
+                >
+                  <div
+                    class="t-input t-input--layout-vertical"
+                  >
+                    <div
+                      class="t-input__wrap--prefix"
+                    >
+                      <div
+                        class="t-input__label"
+                      >
+                        标签文字
+                      </div>
+                    </div>
+                    <div
+                      class="t-input__wrap"
+                    >
+                      <div
+                        class="t-input__content t-input--default"
+                      >
+                        <input
+                          class="t-input__control t-input--default"
+                          maxlength="-1"
+                          placeholder="请输入内容"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="action"
+                >
+                  <button
+                    class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      重置
+                    </span>
+                  </button>
+                  <button
+                    class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"
+                    type="button"
+                  >
+                    <span
+                      class="t-button__content"
+                    >
+                       
+                      确定
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/guide/_example/my-popover.tsx 1`] = `
+<div>
+  <div
+    class="my-popover"
+  >
+    <svg
+      class="t-icon t-icon-arrow-up pop-icon"
+      fill="none"
+      height="1em"
+      viewBox="0 0 24 24"
+      width="1em"
+    >
+      <path
+        d="M11 19.5V7.91l-4.5 4.5L5.09 11 12 4.09 18.91 11l-1.41 1.41-4.5-4.5V19.5h-2z"
+        fill="currentColor"
+      />
+    </svg>
+    <p
+      class="popover-desc"
+    >
+      自定义的图形或说明文案，用来解释或指导该功能使用。
+    </p>
+    <div
+      class="popover-action"
+    >
+      <button
+        class="t-button t-button--size-extra-small t-button--base t-button--light t-button--rectangle"
+        type="button"
+      >
+        <span
+          class="t-button__content"
+        >
+           
+           
+          跳过
+           
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/guide/_example/no-mask.tsx 1`] = `
+<div>
+  <div
+    class="guide-demo"
+  >
+    <button
+      class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__content"
+      >
+         
+        用户引导
+      </span>
+    </button>
+    <div
+      class="t-popup t-popup--bottom"
+      style="display: none; animation-fill-mode: forwards; height: 100vh; border-radius: 0;"
+    >
+      <div
+        class="guide-container no-mask"
+      >
+        <div
+          class="main-title"
+        >
+          <div
+            class="title-major"
+          >
+            用户引导标题
+          </div>
+          <div
+            class="title-sub"
+          >
+            按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。
+          </div>
+        </div>
+        <div
+          class="field label-field"
+        >
+          <div
+            class="t-input t-input--layout-vertical"
+          >
+            <div
+              class="t-input__wrap--prefix"
+            >
+              <div
+                class="t-input__label"
+              >
+                标签文字
+              </div>
+            </div>
+            <div
+              class="t-input__wrap"
+            >
+              <div
+                class="t-input__content t-input--default"
+              >
+                <input
+                  class="t-input__control t-input--default"
+                  maxlength="-1"
+                  placeholder="请输入内容"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="field"
+        >
+          <div
+            class="t-input t-input--layout-vertical"
+          >
+            <div
+              class="t-input__wrap--prefix"
+            >
+              <div
+                class="t-input__label"
+              >
+                标签文字
+              </div>
+            </div>
+            <div
+              class="t-input__wrap"
+            >
+              <div
+                class="t-input__content t-input--default"
+              >
+                <input
+                  class="t-input__control t-input--default"
+                  maxlength="-1"
+                  placeholder="请输入内容"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="action"
+        >
+          <button
+            class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              重置
+            </span>
+          </button>
+          <button
+            class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"
+            type="button"
+          >
+            <span
+              class="t-button__content"
+            >
+               
+              确定
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/guide/_example/popover-dialog.tsx 1`] = `
+<div>
+  <div
+    class="guide-demo"
+  >
+    <button
+      class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"
+      type="button"
+    >
+      <span
+        class="t-button__content"
+      >
+         
+        用户引导
+      </span>
+    </button>
+    <div
+      class="t-popup t-popup--bottom"
+      style="display: none; animation-fill-mode: forwards; height: 100vh; border-radius: 0;"
+    >
+      <div>
+        <div
+          class="guide-container popover-dialog-guide"
+        >
+          <div
+            class="main-title"
+          >
+            <div
+              class="title-major"
+            >
+              用户引导标题
+            </div>
+            <div
+              class="title-sub"
+            >
+              按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。
+            </div>
+          </div>
+          <div
+            class="field label-field"
+          >
+            <div
+              class="t-input t-input--layout-vertical"
+            >
+              <div
+                class="t-input__wrap--prefix"
+              >
+                <div
+                  class="t-input__label"
+                >
+                  标签文字
+                </div>
+              </div>
+              <div
+                class="t-input__wrap"
+              >
+                <div
+                  class="t-input__content t-input--default"
+                >
+                  <input
+                    class="t-input__control t-input--default"
+                    maxlength="-1"
+                    placeholder="请输入内容"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="field"
+          >
+            <div
+              class="t-input t-input--layout-vertical"
+            >
+              <div
+                class="t-input__wrap--prefix"
+              >
+                <div
+                  class="t-input__label"
+                >
+                  标签文字
+                </div>
+              </div>
+              <div
+                class="t-input__wrap"
+              >
+                <div
+                  class="t-input__content t-input--default"
+                >
+                  <input
+                    class="t-input__control t-input--default"
+                    maxlength="-1"
+                    placeholder="请输入内容"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="action"
+          >
+            <button
+              class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                重置
+              </span>
+            </button>
+            <button
+              class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                确定
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`csr snapshot test > csr test src/icon/_example/base.tsx 1`] = `
 <div>
   <div
@@ -59590,6 +61088,22 @@ exports[`ssr snapshot test > ssr test src/grid/_example/icon.tsx 1`] = `"<div cl
 exports[`ssr snapshot test > ssr test src/grid/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Grid 宫格</h1><p class="tdesign-mobile-demo-header__summary">用于功能入口布局，将页面或特定区域切分成若干等大的区块，形成若干功能入口。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">基础宫格</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-grid grid-demo" style="padding:undefinedpx;grid-template-columns:repeat(5, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:20%"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:20%"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:20%"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:20%"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:20%"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">最多四个字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div></div><div class="t-grid grid-demo" style="padding:undefinedpx;grid-template-columns:repeat(4, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">最多五个字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div></div><div class="t-grid grid-demo" style="padding:undefinedpx;grid-template-columns:repeat(3, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">最多六个文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">带描述宫格</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-grid grid-demo" style="padding:undefinedpx;grid-template-columns:repeat(3, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">最多六个文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述最多六字</div></div></div></div><div class="t-grid grid-demo" style="padding:undefinedpx;grid-template-columns:repeat(2, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:50%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:50%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">带边框宫格</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-grid grid-demo t-grid--bordered" style="padding:undefinedpx;grid-template-columns:repeat(3, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">最多六个文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述最多六字</div></div></div><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:33.333333333333336%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">最多六个文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述最多六字</div></div></div></div><div class="t-grid grid-demo t-grid--bordered" style="padding:undefinedpx;grid-template-columns:repeat(2, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:50%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical t-grid-item--bordered" style="text-align:center;flex-basis:50%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">带徽标宫格</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-grid grid-demo" style="padding:undefinedpx;grid-template-columns:repeat(4, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-badge"><div class="t-badge__content"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-badge--basic t-badge--dot t-badge--medium t-badge--circle t-has-count"></div></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-badge"><div class="t-badge__content"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">8</div></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-badge"><div class="t-badge__content"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">13</div></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题五字内</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-badge"><div class="t-badge__content"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count">NEW</div></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题五字内</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">可滑动宫格</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-grid grid-demo t-grid--auto-size"><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件样式</h2><p class="tdesign-mobile-demo-block__summary">可传图标的宫格</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-grid grid-demo" style="padding:undefinedpx;grid-template-columns:repeat(4, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="icon-wrapper"><svg class="t-icon t-icon-share" style="font-size:24px"><use xlink:href="#t-icon-share"></use></svg></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">分享</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="icon-wrapper"><svg class="t-icon t-icon-star" style="font-size:24px"><use xlink:href="#t-icon-star"></use></svg></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">收藏</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="icon-wrapper"><svg class="t-icon t-icon-download" style="font-size:24px"><use xlink:href="#t-icon-download"></use></svg></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">保存</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="icon-wrapper"><svg class="t-icon t-icon-edit" style="font-size:24px"><use xlink:href="#t-icon-edit"></use></svg></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">编辑</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">卡片宫格</p></div><div class="tdesign-mobile-demo-block__slot"><div class="t-grid grid-demo t-grid--card" style="padding:undefinedpx;grid-template-columns:repeat(4, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述文字</div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center;flex-basis:25%"><div class="t-grid-item__image t-grid-item__image--middle"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--middle">最多六个文字</div><div class="t-grid-item__description t-grid-item__description--vertical">描述最多六字</div></div></div></div><div class="t-grid grid-demo t-grid--card" style="padding:undefinedpx;grid-template-columns:repeat(2, 1fr);grid-gap:undefinedpx"><div class="t-grid-item t-grid-item--horizontal" style="text-align:center;flex-basis:50%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--horizontal"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--horizontal">描述文字</div></div></div><div class="t-grid-item t-grid-item--horizontal" style="text-align:center;flex-basis:50%"><div class="t-grid-item__image t-grid-item__image--large"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--horizontal"><div class="t-grid-item__title t-grid-item__title--large">标题文字</div><div class="t-grid-item__description t-grid-item__description--horizontal">描述文字</div></div></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/grid/_example/scroll.tsx 1`] = `"<div class="t-grid grid-demo t-grid--auto-size"><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div><div class="t-grid-item t-grid-item--vertical" style="text-align:center"><div class="t-grid-item__image t-grid-item__image--small"><div class="t-image t-image--round"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/example1.png"/></div></div><div class="t-grid-item__content t-grid-item__content--vertical"><div class="t-grid-item__title t-grid-item__title--small">标题文字</div><div class="t-grid-item__description t-grid-item__description--vertical"></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/guide/_example/base.tsx 1`] = `"<div class="guide-demo"><button type="button" class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->用户引导</span></button><div class="t-popup t-popup--bottom" style="display:none;animation-fill-mode:forwards;height:100vh;border-radius:0"><div><div class="guide-container base-guide"><div class="main-title"><div class="title-major">用户引导标题</div><div class="title-sub">按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。</div></div><div class="field label-field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="action"><button type="button" class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"><span class="t-button__content"> <!-- -->重置</span></button><button type="button" class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->确定</span></button></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/guide/_example/custom-popover.tsx 1`] = `"<div class="guide-demo"><button type="button" class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->用户引导</span></button><div class="t-popup t-popup--bottom" style="display:none;animation-fill-mode:forwards;height:100vh;border-radius:0"><div><div class="guide-container custom-popover"><div class="main-title"><div class="title-major">用户引导标题</div><div class="title-sub">按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。</div></div><div class="field label-field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="action"><button type="button" class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"><span class="t-button__content"> <!-- -->重置</span></button><button type="button" class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->确定</span></button></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/guide/_example/dialog.tsx 1`] = `"<div class="guide-demo"><button type="button" class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->用户引导</span></button><div class="t-popup t-popup--bottom" style="display:none;animation-fill-mode:forwards;height:100vh;border-radius:0"><div><div class="guide-container dialog-guide"><div class="main-title"><div class="title-major">用户引导标题</div><div class="title-sub">按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。</div></div><div class="field label-field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="action"><button type="button" class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"><span class="t-button__content"> <!-- -->重置</span></button><button type="button" class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->确定</span></button></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/guide/_example/dialog-body.tsx 1`] = `"<div class="dialog-body"><p>用户引导的说明文案</p><div class="img-wrapper"><img src="https://tdesign.gtimg.com/demo/demo-image-1.png" alt="demo"/></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/guide/_example/index.tsx 1`] = `"<div class="picker-demo" style="padding-bottom:12px"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Guide 引导</h1><p class="tdesign-mobile-demo-header__summary">逐步骤进行指引或解释说明的组件，常用于用户不熟悉的或需进行特别强调的页面。</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">基础引导</p></div><div class="tdesign-mobile-demo-block__slot"><div class="guide-demo"><button type="button" class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->用户引导</span></button><div class="t-popup t-popup--bottom" style="display:none;animation-fill-mode:forwards;height:100vh;border-radius:0"><div><div class="guide-container base-guide"><div class="main-title"><div class="title-major">用户引导标题</div><div class="title-sub">按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。</div></div><div class="field label-field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="action"><button type="button" class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"><span class="t-button__content"> <!-- -->重置</span></button><button type="button" class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->确定</span></button></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">不带遮罩的引导</p></div><div class="tdesign-mobile-demo-block__slot"><div class="guide-demo"><button type="button" class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->用户引导</span></button><div class="t-popup t-popup--bottom" style="display:none;animation-fill-mode:forwards;height:100vh;border-radius:0"><div class="guide-container no-mask"><div class="main-title"><div class="title-major">用户引导标题</div><div class="title-sub">按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。</div></div><div class="field label-field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="action"><button type="button" class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"><span class="t-button__content"> <!-- -->重置</span></button><button type="button" class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->确定</span></button></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">弹窗形式的引导</p></div><div class="tdesign-mobile-demo-block__slot"><div class="guide-demo"><button type="button" class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->用户引导</span></button><div class="t-popup t-popup--bottom" style="display:none;animation-fill-mode:forwards;height:100vh;border-radius:0"><div><div class="guide-container dialog-guide"><div class="main-title"><div class="title-major">用户引导标题</div><div class="title-sub">按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。</div></div><div class="field label-field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="action"><button type="button" class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"><span class="t-button__content"> <!-- -->重置</span></button><button type="button" class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->确定</span></button></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">气泡与弹窗混合的引导</p></div><div class="tdesign-mobile-demo-block__slot"><div class="guide-demo"><button type="button" class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->用户引导</span></button><div class="t-popup t-popup--bottom" style="display:none;animation-fill-mode:forwards;height:100vh;border-radius:0"><div><div class="guide-container popover-dialog-guide"><div class="main-title"><div class="title-major">用户引导标题</div><div class="title-sub">按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。</div></div><div class="field label-field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="action"><button type="button" class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"><span class="t-button__content"> <!-- -->重置</span></button><button type="button" class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->确定</span></button></div></div></div></div></div></div></div><div class="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle"><div class="tdesign-mobile-demo-block__header"><p class="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">自定义气泡</p></div><div class="tdesign-mobile-demo-block__slot"><div class="guide-demo"><button type="button" class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->用户引导</span></button><div class="t-popup t-popup--bottom" style="display:none;animation-fill-mode:forwards;height:100vh;border-radius:0"><div><div class="guide-container custom-popover"><div class="main-title"><div class="title-major">用户引导标题</div><div class="title-sub">按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。</div></div><div class="field label-field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="action"><button type="button" class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"><span class="t-button__content"> <!-- -->重置</span></button><button type="button" class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->确定</span></button></div></div></div></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/guide/_example/my-popover.tsx 1`] = `"<div class="my-popover"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-arrow-up pop-icon"><path fill="currentColor" d="M11 19.5V7.91l-4.5 4.5L5.09 11 12 4.09 18.91 11l-1.41 1.41-4.5-4.5V19.5h-2z"></path></svg><p class="popover-desc">自定义的图形或说明文案，用来解释或指导该功能使用。</p><div class="popover-action"><button type="button" class="t-button t-button--size-extra-small t-button--base t-button--light t-button--rectangle"><span class="t-button__content"> <!-- --> <!-- -->跳过<!-- --> </span></button></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/guide/_example/no-mask.tsx 1`] = `"<div class="guide-demo"><button type="button" class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->用户引导</span></button><div class="t-popup t-popup--bottom" style="display:none;animation-fill-mode:forwards;height:100vh;border-radius:0"><div class="guide-container no-mask"><div class="main-title"><div class="title-major">用户引导标题</div><div class="title-sub">按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。</div></div><div class="field label-field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="action"><button type="button" class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"><span class="t-button__content"> <!-- -->重置</span></button><button type="button" class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->确定</span></button></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/guide/_example/popover-dialog.tsx 1`] = `"<div class="guide-demo"><button type="button" class="t-button t-button--size-medium t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->用户引导</span></button><div class="t-popup t-popup--bottom" style="display:none;animation-fill-mode:forwards;height:100vh;border-radius:0"><div><div class="guide-container popover-dialog-guide"><div class="main-title"><div class="title-major">用户引导标题</div><div class="title-sub">按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。</div></div><div class="field label-field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="field"><div class="t-input t-input--layout-vertical"><div class="t-input__wrap--prefix"><div class="t-input__label">标签文字</div></div><div class="t-input__wrap"><div class="t-input__content t-input--default"><input type="text" class="t-input__control t-input--default" placeholder="请输入内容" maxLength="-1"/></div></div></div></div><div class="action"><button type="button" class="t-button t-button--size-large t-button--base t-button--light t-button--rectangle"><span class="t-button__content"> <!-- -->重置</span></button><button type="button" class="t-button t-button--size-large t-button--base t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->确定</span></button></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/icon/_example/base.tsx 1`] = `"<div class="t-demo-iconfont"><div class="t-demo-row"><p>How do you feel today?</p><i class="t-icon t-icon-sneer"></i><i class="t-icon t-icon-unhappy"></i><i class="t-icon t-icon-excited"></i><i class="t-icon t-icon-surprised"></i><i class="t-icon t-icon-giggle"></i></div><br/><div class="t-demo-row"><p>What is your favourite food?</p><i style="color:orange" class="t-icon t-icon-tangerinr"></i><i style="color:green" class="t-icon t-icon-bamboo-shoot"></i><i style="color:red" class="t-icon t-icon-apple"></i><i style="color:#0052D9" class="t-icon t-icon-milk"></i><i style="color:pink" class="t-icon t-icon-peach"></i></div><br/><div class="t-demo-row"><p>How much icons does TDesign Icon includes?</p><i style="color:red" class="t-icon t-icon-numbers-1"></i><i style="color:green" class="t-icon t-icon-numbers-2"></i><i style="color:orange" class="t-icon t-icon-numbers-0"></i><i style="color:#0052d9" class="t-icon t-icon-numbers-3"></i></div></div>"`;
 

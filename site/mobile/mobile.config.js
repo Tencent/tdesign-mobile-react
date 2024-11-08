@@ -272,5 +272,10 @@ export default {
       name: 'empty',
       component: () => import('tdesign-mobile-react/empty/_example/index.tsx'),
     },
+    {
+      title: 'Guide 引导',
+      name: 'guide',
+      component: () => import('tdesign-mobile-react/guide/_example/index.tsx'),
+    },
   ],
 };
