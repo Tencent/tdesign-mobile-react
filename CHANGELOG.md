@@ -5,6 +5,16 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.8.0 `2024-10-17` 
+### ❗ Breaking Changes
+- `Switch`: 组件重构，移除 `colors` 属性，`change` 事件参数有调整 @anlyyao ([#527](https://github.com/Tencent/tdesign-mobile-react/pull/527))
+- `PullDownRefresh`: 组件重构，`maxBarHeight` 与 `loadingBarHeight` 属性扩展支持 `string` 类型，并新增 `onRefresh`、`onScrolltolower` 和 `onTimeout` 等属性 @novlan1 ([#479](https://github.com/Tencent/tdesign-mobile-react/pull/479))
+- `Message`: 组件重构，新增 `align`、`link`、`marquee`、`offset`、`onCloseBtnClick`、`onDurationEnd` 以及 `onLinkClick` 等属性，并移除 `onClose`、`onClosed`、`onOpen`、`onOpened` 与 `onVisibleChange` 等属性 @novlan1 ([#477](https://github.com/Tencent/tdesign-mobile-react/pull/477))
+### 🚀 Features
+- `Input`: 支持 `format` 属性 @anlyyao ([#533](https://github.com/Tencent/tdesign-mobile-react/pull/533))
+### 🐞 Bug Fixes
+- `Stepper`: 修复无法直接输入的问题 @anlyyao ([#537](https://github.com/Tencent/tdesign-mobile-react/pull/537))
+
 ## 🌈 0.7.0 `2024-09-20` 
 ### ❗ Breaking Changes
 - `Checkbox`: 组件重构，新增 `readonly` 属性 @epoll-j ([#504](https://github.com/Tencent/tdesign-mobile-react/pull/504))

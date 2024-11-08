@@ -75,8 +75,10 @@ const Cell: React.FC<CellProps> = (originProps) => {
     }
     return (
       <div className={`${name}__title`}>
-        {title}
-        {required && <span className={`${name}--required`}>&nbsp;*</span>}
+        <div className={`${name}__title-text`}>
+          {title}
+          {required && <span className={`${name}--required`}>&nbsp;*</span>}
+        </div>
         {description && <div className={`${name}__description`}>{description}</div>}
       </div>
     );

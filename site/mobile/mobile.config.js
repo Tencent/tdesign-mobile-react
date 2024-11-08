@@ -28,7 +28,7 @@ export default {
     {
       title: 'Input 输入框',
       name: 'input',
-      component: () => import('tdesign-mobile-react/input/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/input/_example/index.tsx'),
     },
     {
       title: 'Grid 宫格',
@@ -93,13 +93,13 @@ export default {
     {
       title: 'Message 消息通知',
       name: 'message',
-      component: () => import('tdesign-mobile-react/message/_example/base.jsx'),
+      component: () => import('tdesign-mobile-react/message/_example/index.tsx'),
     },
     {
       title: 'Switch 开关',
       name: 'switch',
       path: '/switch',
-      component: () => import('tdesign-mobile-react/switch/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/switch/_example/index.tsx'),
     },
     {
       title: 'Cell 单元格',
@@ -210,12 +210,12 @@ export default {
     {
       title: 'PullDownRefresh 下拉刷新',
       name: 'pull-down-refresh',
-      component: () => import('tdesign-mobile-react/pull-down-refresh/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/pull-down-refresh/_example/index.tsx'),
     },
     {
       title: 'Avatar 头像',
       name: 'avatar',
-      component: () => import('tdesign-mobile-react/avatar/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/avatar/_example/index.tsx'),
     },
     {
       title: 'Indexes 索引',
@@ -230,7 +230,7 @@ export default {
     {
       title: 'Textarea 多行文本框',
       name: 'textarea',
-      component: () => import('tdesign-mobile-react/textarea/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/textarea/_example/index.tsx'),
     },
     {
       title: 'Steps 步骤条',
@@ -271,6 +271,11 @@ export default {
       title: 'Empty 空状态',
       name: 'empty',
       component: () => import('tdesign-mobile-react/empty/_example/index.tsx'),
+    },
+    {
+      title: 'Guide 引导',
+      name: 'guide',
+      component: () => import('tdesign-mobile-react/guide/_example/index.tsx'),
     },
   ],
 };
