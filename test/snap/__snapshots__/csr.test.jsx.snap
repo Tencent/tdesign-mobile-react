@@ -8236,38 +8236,7 @@ exports[`csr snapshot test > csr test src/count-down/_example/base.tsx 1`] = `
     </text>
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--default t-count-down--medium"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
   </div>
   <div
     class="demo-count-down"
@@ -8279,38 +8248,7 @@ exports[`csr snapshot test > csr test src/count-down/_example/base.tsx 1`] = `
     </text>
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--default t-count-down--medium"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
   </div>
   <div
     class="demo-count-down"
@@ -8322,38 +8260,7 @@ exports[`csr snapshot test > csr test src/count-down/_example/base.tsx 1`] = `
     </text>
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--square t-count-down--medium"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
   </div>
   <div
     class="demo-count-down"
@@ -8365,38 +8272,7 @@ exports[`csr snapshot test > csr test src/count-down/_example/base.tsx 1`] = `
     </text>
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--round t-count-down--medium"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
   </div>
   <div
     class="demo-count-down"
@@ -8408,38 +8284,7 @@ exports[`csr snapshot test > csr test src/count-down/_example/base.tsx 1`] = `
     </text>
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--round t-count-down--medium"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
   </div>
   <div
     class="demo-count-down"
@@ -8451,38 +8296,7 @@ exports[`csr snapshot test > csr test src/count-down/_example/base.tsx 1`] = `
     </text>
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--default t-count-down--medium custom"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
   </div>
 </div>
 `;
@@ -8531,38 +8345,7 @@ exports[`csr snapshot test > csr test src/count-down/_example/index.tsx 1`] = `
           </text>
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--default t-count-down--medium"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
         </div>
         <div
           class="demo-count-down"
@@ -8574,38 +8357,7 @@ exports[`csr snapshot test > csr test src/count-down/_example/index.tsx 1`] = `
           </text>
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--default t-count-down--medium"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
         </div>
         <div
           class="demo-count-down"
@@ -8617,38 +8369,7 @@ exports[`csr snapshot test > csr test src/count-down/_example/index.tsx 1`] = `
           </text>
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--square t-count-down--medium"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
         </div>
         <div
           class="demo-count-down"
@@ -8660,38 +8381,7 @@ exports[`csr snapshot test > csr test src/count-down/_example/index.tsx 1`] = `
           </text>
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--round t-count-down--medium"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
         </div>
         <div
           class="demo-count-down"
@@ -8703,38 +8393,7 @@ exports[`csr snapshot test > csr test src/count-down/_example/index.tsx 1`] = `
           </text>
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--round t-count-down--medium"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
         </div>
         <div
           class="demo-count-down"
@@ -8746,38 +8405,7 @@ exports[`csr snapshot test > csr test src/count-down/_example/index.tsx 1`] = `
           </text>
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--default t-count-down--medium custom"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
         </div>
       </div>
     </div>
@@ -8811,106 +8439,13 @@ exports[`csr snapshot test > csr test src/count-down/_example/index.tsx 1`] = `
           </text>
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--default t-count-down--small"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--default t-count-down--medium"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--default t-count-down--large"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
         </div>
         <div
           class="demo-count-down"
@@ -8922,116 +8457,13 @@ exports[`csr snapshot test > csr test src/count-down/_example/index.tsx 1`] = `
           </text>
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--default t-count-down--small"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--default t-count-down--medium"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                000
-              </span>
-              
-            </div>
-          </div>
+          />
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--default t-count-down--large"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
         </div>
         <div
           class="demo-count-down"
@@ -9043,106 +8475,13 @@ exports[`csr snapshot test > csr test src/count-down/_example/index.tsx 1`] = `
           </text>
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--square t-count-down--small"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--square t-count-down--medium"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--square t-count-down--large"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
         </div>
         <div
           class="demo-count-down"
@@ -9154,106 +8493,13 @@ exports[`csr snapshot test > csr test src/count-down/_example/index.tsx 1`] = `
           </text>
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--round t-count-down--small"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--round t-count-down--medium"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--round t-count-down--large"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
         </div>
         <div
           class="demo-count-down"
@@ -9265,106 +8511,13 @@ exports[`csr snapshot test > csr test src/count-down/_example/index.tsx 1`] = `
           </text>
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--round t-count-down--small"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--round t-count-down--medium"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
           <div
             class="demo-count-down-content"
-          >
-            <div
-              class="t-count-down t-count-down--round t-count-down--large"
-            >
-              <span
-                class="t-count-down__item"
-              >
-                01
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                36
-              </span>
-              <span
-                class="t-count-down__split t-count-down__split--dot"
-              >
-                :
-              </span>
-              <span
-                class="t-count-down__item"
-              >
-                00
-              </span>
-              
-            </div>
-          </div>
+          />
         </div>
       </div>
     </div>
@@ -9384,106 +8537,13 @@ exports[`csr snapshot test > csr test src/count-down/_example/size.tsx 1`] = `
     </text>
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--default t-count-down--small"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--default t-count-down--medium"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--default t-count-down--large"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
   </div>
   <div
     class="demo-count-down"
@@ -9495,116 +8555,13 @@ exports[`csr snapshot test > csr test src/count-down/_example/size.tsx 1`] = `
     </text>
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--default t-count-down--small"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--default t-count-down--medium"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          000
-        </span>
-        
-      </div>
-    </div>
+    />
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--default t-count-down--large"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
   </div>
   <div
     class="demo-count-down"
@@ -9616,106 +8573,13 @@ exports[`csr snapshot test > csr test src/count-down/_example/size.tsx 1`] = `
     </text>
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--square t-count-down--small"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--square t-count-down--medium"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--square t-count-down--large"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
   </div>
   <div
     class="demo-count-down"
@@ -9727,106 +8591,13 @@ exports[`csr snapshot test > csr test src/count-down/_example/size.tsx 1`] = `
     </text>
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--round t-count-down--small"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--round t-count-down--medium"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--round t-count-down--large"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
   </div>
   <div
     class="demo-count-down"
@@ -9838,106 +8609,13 @@ exports[`csr snapshot test > csr test src/count-down/_example/size.tsx 1`] = `
     </text>
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--round t-count-down--small"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--round t-count-down--medium"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
     <div
       class="demo-count-down-content"
-    >
-      <div
-        class="t-count-down t-count-down--round t-count-down--large"
-      >
-        <span
-          class="t-count-down__item"
-        >
-          01
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          36
-        </span>
-        <span
-          class="t-count-down__split t-count-down__split--dot"
-        >
-          :
-        </span>
-        <span
-          class="t-count-down__item"
-        >
-          00
-        </span>
-        
-      </div>
-    </div>
+    />
   </div>
 </div>
 `;

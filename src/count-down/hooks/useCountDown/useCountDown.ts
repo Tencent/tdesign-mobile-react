@@ -26,20 +26,22 @@ export const useCountDown = (params: UseCountdownParams) => {
     timeText: '',
     status: EnumCountDownStatus.inActive,
   });
-  const interval = millisecond ? 30 : 1000;
   const ctxRef = useRef({ timerId: 0, remainTime: time });
 
   const clearCountDown = () => {
     const currentTimerId = ctxRef.current.timerId;
     if (currentTimerId) {
-      currentTimerId && clearInterval(currentTimerId);
+      window.cancelAnimationFrame(currentTimerId);
       ctxRef.current.timerId = 0;
       setCountDownData((state) => ({ ...state, status: EnumCountDownStatus.inActive }));
     }
   };
+  let previousFrameTimestamp = 0;
 
-  const tick = (reset = false) => {
-    let nextRemainTime = reset ? time : ctxRef.current.remainTime - interval;
+  const tick = (timestamp, reset = false) => {
+    const delta = timestamp - (previousFrameTimestamp || timestamp);
+
+    let nextRemainTime = reset ? time : ctxRef.current.remainTime - delta;
     ctxRef.current.remainTime = nextRemainTime;
 
     let nextStatus = EnumCountDownStatus.active;
@@ -48,31 +50,35 @@ export const useCountDown = (params: UseCountdownParams) => {
       clearCountDown();
       nextStatus = EnumCountDownStatus.finished;
       onFinish?.();
+      window.cancelAnimationFrame(ctxRef.current.timerId);
+    } else {
+      (ctxRef.current as any).timerId = window.requestAnimationFrame(tick);
     }
 
     const countDownData = {
       ...transformTime(nextRemainTime, format),
       status: nextStatus,
     };
+
     onChange?.(countDownData.timeData);
     setCountDownData(countDownData);
+
+    previousFrameTimestamp = timestamp;
   };
 
-  const startCountDown = () => {
+  const startCountDown = (reset = false) => {
     clearCountDown();
-    (ctxRef.current as any).timerId = setInterval(() => tick(), interval);
+    (ctxRef.current as any).timerId = window.requestAnimationFrame((timestamp) => tick(timestamp, reset));
   };
 
   useEffect(() => {
-    tick(true);
-    startCountDown();
+    startCountDown(true);
     return clearCountDown;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [time, millisecond, interval, format]);
+  }, [time, millisecond, format]);
 
   const start = () => {
     if (status === EnumCountDownStatus.active) return;
-    tick();
     startCountDown();
   };
 
@@ -83,9 +89,9 @@ export const useCountDown = (params: UseCountdownParams) => {
 
   const reset = () => {
     clearCountDown();
-    tick(true);
+
     if (autoStart) {
-      startCountDown();
+      startCountDown(true);
     } else {
       setCountDownData((state) => ({ ...state, status: EnumCountDownStatus.inActive }));
     }
