@@ -23,7 +23,7 @@ export interface TextareaRefInterface extends React.RefObject<unknown> {
   textareaElement: HTMLTextAreaElement;
 }
 
-const Textarea = forwardRef((originProps: TextareaProps, ref: TextareaRefInterface) => {
+const Textarea = forwardRef<TextareaProps, TextareaRefInterface>((originProps, ref) => {
   const props = useDefaultProps<TextareaProps>(originProps, textareaDefaultProps);
   const {
     className,
@@ -45,21 +45,23 @@ const Textarea = forwardRef((originProps: TextareaProps, ref: TextareaRefInterfa
 
   const textareaClass = usePrefixClass('textarea');
 
-  const [value = '', setValue] = useDefault(props.value, defaultValue, props.onChange);
+  const [value, setValue] = useDefault(props.value, defaultValue, props.onChange);
   const [textareaStyle, setTextareaStyle] = useState({});
+  const [composingValue, setComposingValue] = useState<string>('');
   const composingRef = useRef(false);
   const textareaRef: React.RefObject<HTMLTextAreaElement> = useRef();
   const wrapperRef: React.RefObject<HTMLDivElement> = useRef();
 
   const textareaLength = useMemo(() => {
+    const realValue = composingRef.current ? composingValue : (value ?? '');
     if (typeof maxcharacter !== 'undefined') {
-      const { length = 0 } = getCharacterLength(String(value), maxcharacter) as {
+      const { length = 0 } = getCharacterLength(String(realValue), maxcharacter) as {
         length: number;
       };
       return length;
     }
-    return String(value).length || 0;
-  }, [value, maxcharacter]);
+    return String(realValue).length || 0;
+  }, [value, maxcharacter, composingRef, composingValue]);
 
   const textareaPropsNames = Object.keys(otherProps).filter((key) => !/^on[A-Z]/.test(key));
   const textareaProps = textareaPropsNames.reduce(
@@ -106,16 +108,25 @@ const Textarea = forwardRef((originProps: TextareaProps, ref: TextareaRefInterfa
   }, [autosize, props.rows]);
 
   const inputValueChangeHandle = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    const { target } = e;
-    let val = (target as HTMLInputElement).value;
-    if (!allowInputOverMax && !composingRef.current) {
-      val = limitUnicodeMaxLength(val, maxlength);
-      if (maxcharacter && maxcharacter >= 0) {
-        const stringInfo = getCharacterLength(val, maxcharacter);
-        val = typeof stringInfo === 'object' && stringInfo.characters;
+    let { value: newStr } = e.target as HTMLInputElement;
+
+    if (value === newStr) return; // 避免在Firefox中重复触发
+
+    if (composingRef.current) {
+      setComposingValue(newStr);
+    } else {
+      if (!allowInputOverMax) {
+        newStr = limitUnicodeMaxLength(newStr, maxlength);
+        if (maxcharacter && maxcharacter >= 0) {
+          const stringInfo = getCharacterLength(newStr, maxcharacter);
+          newStr = typeof stringInfo === 'object' && stringInfo.characters;
+        }
       }
+
+      // 中文输入结束，同步 composingValue
+      setComposingValue(newStr);
+      setValue(newStr, { e });
     }
-    setValue(val, { e });
   };
 
   const handleCompositionStart = () => {
@@ -138,7 +149,7 @@ const Textarea = forwardRef((originProps: TextareaProps, ref: TextareaRefInterfa
     textareaElement: textareaRef.current,
   }));
 
-  const renderLabel = () => label && <div className={`${textareaClass}__label`}> {parseTNode(label)} </div>;
+  const renderLabel = () => <div className={`${textareaClass}__label`}> {parseTNode(label)} </div>;
 
   const renderIndicator = () => {
     const isShowIndicator = indicator && (maxcharacter || maxlength);
@@ -150,14 +161,14 @@ const Textarea = forwardRef((originProps: TextareaProps, ref: TextareaRefInterfa
 
   return (
     <div ref={wrapperRef} className={textareaClasses} style={style}>
-      {renderLabel()}
+      {label && renderLabel()}
       <div className={`${textareaClass}__wrapper`}>
         <textarea
           {...textareaProps}
           {...eventProps}
           className={textareaInnerClasses}
           style={textareaStyle}
-          value={value}
+          value={composingRef.current ? composingValue : value}
           readOnly={readonly}
           autoFocus={autofocus}
           disabled={disabled}
