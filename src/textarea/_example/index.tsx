@@ -4,10 +4,13 @@ import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import Base from './base';
 import Label from './label';
 import Autosize from './autosize';
-import Events from './events';
-import Status from './status';
+import Events from './custom';
+import Disable from './disable';
 import Maxlength from './maxlength';
 import Maxcharacter from './maxcharacter';
+import Card from './card';
+
+import './style/index.less';
 
 export default function () {
   return (
@@ -22,16 +25,19 @@ export default function () {
       <TDemoBlock summary="自动增高多行文本框">
         <Autosize />
       </TDemoBlock>
-      <TDemoBlock title="02 状态" summary="禁用多行文本框">
-        <Status />
-      </TDemoBlock>
-      <TDemoBlock title="03 字符限制" summary="设置最大字符个数">
+      <TDemoBlock summary="设置字符数限制">
         <Maxlength />
       </TDemoBlock>
-      <TDemoBlock summary="设置最大字符个数，一个汉字表示两个字符">
+      <TDemoBlock>
         <Maxcharacter />
       </TDemoBlock>
-      <TDemoBlock title="04 事件" summary="带事件文本框">
+      <TDemoBlock title="02 状态" summary="禁用状态">
+        <Disable />
+      </TDemoBlock>
+      <TDemoBlock title="03 组件样式" summary="竖排样式">
+        <Card />
+      </TDemoBlock>
+      <TDemoBlock title="04 特殊样式" summary="标签外置输入框">
         <Events />
       </TDemoBlock>
     </div>

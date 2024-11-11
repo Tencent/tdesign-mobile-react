@@ -215,7 +215,7 @@ export default {
     {
       title: 'Avatar 头像',
       name: 'avatar',
-      component: () => import('tdesign-mobile-react/avatar/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/avatar/_example/index.tsx'),
     },
     {
       title: 'Indexes 索引',
@@ -230,7 +230,7 @@ export default {
     {
       title: 'Textarea 多行文本框',
       name: 'textarea',
-      component: () => import('tdesign-mobile-react/textarea/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/textarea/_example/index.tsx'),
     },
     {
       title: 'Steps 步骤条',
@@ -271,6 +271,11 @@ export default {
       title: 'Empty 空状态',
       name: 'empty',
       component: () => import('tdesign-mobile-react/empty/_example/index.tsx'),
+    },
+    {
+      title: 'Guide 引导',
+      name: 'guide',
+      component: () => import('tdesign-mobile-react/guide/_example/index.tsx'),
     },
   ],
 };

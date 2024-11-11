@@ -5,6 +5,15 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.9.0 `2024-11-11` 
+### ❗ Breaking Changes
+- `Textarea`: 组件重构，新增 `allowInputOverMax`，`bordered` 与 `readonly` 等属性 @anlyyao ([#526](https://github.com/Tencent/tdesign-mobile-react/pull/526))
+- `Avatar`: 组件重构，新增 `imageProps` 属性 @slatejack ([#541](https://github.com/Tencent/tdesign-mobile-react/pull/541))
+### 🚀 Features
+- `Guide`: 新增 `Guide` 组件 @novlan1 ([#535](https://github.com/Tencent/tdesign-mobile-react/pull/535))
+### 🐞 Bug Fixes
+- `CountDown`: 修复毫秒级计算器计算错误 @novlan1 ([#542](https://github.com/Tencent/tdesign-mobile-react/pull/542))
+
 ## 🌈 0.8.0 `2024-10-17` 
 ### ❗ Breaking Changes
 - `Switch`: 组件重构，移除 `colors` 属性，`change` 事件参数有调整 @anlyyao ([#527](https://github.com/Tencent/tdesign-mobile-react/pull/527))
