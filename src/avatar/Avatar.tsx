@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import React, { useContext } from 'react';
 import cls from 'classnames';
-import Image from 'tdesign-mobile-react/image';
-import Badge from 'tdesign-mobile-react/badge';
+import Image from '../image';
+import Badge from '../badge';
 import { AvatarGroupContext } from './AvatarGroupContext';
 import { isValidSize } from '../_common/js/avatar/utils';
 import parseTNode from '../_util/parseTNode';
