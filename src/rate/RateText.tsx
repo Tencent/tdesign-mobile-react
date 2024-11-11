@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import React from 'react';
-import { usePrefixClass } from 'tdesign-mobile-react/hooks/useClass';
+import { usePrefixClass } from '../hooks/useClass';
 import { TdRateProps } from './type';
 
 type Props = {
