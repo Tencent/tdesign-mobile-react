@@ -1,9 +1,9 @@
-import { canUseDom } from './canUseDom';
+import { canUseDocument } from './dom';
 
 // eslint-disable-next-line
 export let supportsPassive = false;
 
-if (canUseDom) {
+if (canUseDocument) {
   try {
     const opts = {};
     Object.defineProperty(opts, 'passive', {
