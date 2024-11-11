@@ -73,7 +73,7 @@ export default {
     {
       title: 'Rate 评分',
       name: 'rate',
-      component: () => import('tdesign-mobile-react/rate/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/rate/_example/index.tsx'),
     },
     {
       title: 'Search 搜索框',
