@@ -1,4 +1,4 @@
-import type { MouseEvent } from 'react';
+import type { ChangeEvent, MouseEvent } from 'react';
 import { useRef, useState } from 'react';
 import isString from 'lodash/isString';
 import isFunction from 'lodash/isFunction';
@@ -266,8 +266,8 @@ export default function useUpload(props: TdUploadProps) {
     }
   };
 
-  const onNormalFileChange = (e: Event) => {
-    const fileList = getFileList((e.target as HTMLInputElement).files as FileList);
+  const onNormalFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const fileList = getFileList(e.target.files as FileList);
     onFileChange?.(fileList);
   };
 
