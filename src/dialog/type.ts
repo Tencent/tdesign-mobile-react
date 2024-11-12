@@ -4,8 +4,8 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TdButtonProps } from '../button';
 import { ButtonProps } from '../button';
+import { OverlayProps } from '../overlay';
 import { TNode, Styles } from '../common';
 import { MouseEvent } from 'react';
 
@@ -13,7 +13,7 @@ export interface TdDialogProps {
   /**
    * 操作栏
    */
-  actions?: Array<TdButtonProps>;
+  actions?: Array<ButtonProps>;
   /**
    * 多按钮排列方式
    * @default horizontal
@@ -21,19 +21,26 @@ export interface TdDialogProps {
   buttonLayout?: 'horizontal' | 'vertical';
   /**
    * 取消按钮，可自定义。值为 null 则不显示取消按钮。值类型为字符串，则表示自定义按钮文本，值类型为 Object 则表示透传 Button 组件属性。使用 TNode 自定义按钮时，需自行控制取消事件
-   * @default ''
    */
-  cancelBtn?: ButtonProps | TNode;
+  cancelBtn?: ButtonProps | TNode | null;
+  /**
+   * 多按钮排列方式。可选项：true/false
+   * @default false
+   */
+  closeBtn?: boolean;
   /**
    * 点击蒙层时是否触发关闭事件
-   * @default true
+   * @default false
    */
   closeOnOverlayClick?: boolean;
   /**
    * 确认按钮。值为 null 则不显示确认按钮。值类型为字符串，则表示自定义按钮文本，值类型为 Object 则表示透传 Button 组件属性。使用 TNode 自定义按钮时，需自行控制确认事件
-   * @default ''
    */
-  confirmBtn?: ButtonProps | TNode;
+  confirmBtn?: ButtonProps | TNode | null;
+  /**
+   * 确认按钮加载状态
+   */
+  confirmLoading?: boolean;
   /**
    * 内容
    */
@@ -43,6 +50,15 @@ export interface TdDialogProps {
    * @default false
    */
   destroyOnClose?: boolean;
+  /**
+   * 中间自定义内容
+   */
+  middle?: TNode;
+  /**
+   * 透传至 Overlay 组件
+   * @default {}
+   */
+  overlayProps?: OverlayProps;
   /**
    * 防止滚动穿透
    * @default true
@@ -58,10 +74,17 @@ export interface TdDialogProps {
    */
   title?: TNode;
   /**
+   * 顶部自定义内容
+   */
+  top?: TNode;
+  /**
    * 控制对话框是否显示
-   * @default false
    */
   visible?: boolean;
+  /**
+   * 对话框宽度，示例：320, '500px', '80%'
+   */
+  width?: string | number;
   /**
    * 对话框层级，Web 侧样式默认为 2500，移动端和小程序样式默认为 1500
    */
@@ -104,27 +127,34 @@ export interface DialogInstance {
   /**
    * 销毁弹框
    */
-  destroy?: () => void;
+  destroy: () => void;
   /**
    * 隐藏弹框
    */
-  hide?: () => void;
+  hide: () => void;
+  /**
+   * 设置确认按钮加载状态
+   */
+  setConfirmLoading: (loading: boolean) => void;
   /**
    * 显示弹框
    */
-  show?: () => void;
+  show: () => void;
   /**
    * 更新弹框内容
    */
-  update?: (props: DialogOptions) => void;
+  update: (props: DialogOptions) => void;
 }
 
-export type DialogEventSource = 'cancel' | 'overlay';
+export type DialogEventSource = 'cancel' | 'overlay' | 'close-btn';
 
-export interface DialogCloseContext { trigger: DialogEventSource; e: MouseEvent<HTMLElement> };
+export interface DialogCloseContext {
+  trigger: DialogEventSource;
+  e: MouseEvent<HTMLElement>;
+}
 
 export type DialogMethod = (options?: DialogOptions) => DialogInstance;
 
 export type DialogConfirmMethod = (options?: DialogOptions) => DialogInstance;
 
-export type DialogAlertMethod = (options?: Omit<DialogOptions, 'confirmBtn'>) => DialogInstance;
+export type DialogAlertMethod = (options?: Omit<DialogOptions, 'cancelBtn'>) => DialogInstance;
