@@ -49,6 +49,12 @@ export function show(props: DialogShowProps): DialogInstance {
       update: (opts) => {
         setOptions(opts);
       },
+      destroy: () => {
+        destroy();
+      },
+      setConfirmLoading: (loading) => {
+        setOptions({ ...options, confirmLoading: loading });
+      },
     }));
 
     return (
@@ -69,6 +75,7 @@ export function show(props: DialogShowProps): DialogInstance {
     show: ref.current?.show,
     update: ref.current?.update,
     destroy,
+    setConfirmLoading: ref.current?.setConfirmLoading,
   };
 }
 
