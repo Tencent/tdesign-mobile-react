@@ -53,9 +53,11 @@ export default function useUpload(props: TdUploadProps) {
     requestMethod,
     onChange,
     onCancelUpload,
+    onFail,
     onOneFileFail,
     onOneFileSuccess,
     onProgress,
+    onSuccess,
     onSelectChange,
     onWaitingUploadFilesChange,
     onValidate,
@@ -315,14 +317,14 @@ export default function useUpload(props: TdUploadProps) {
       ({ status, data, list, failedFiles }) => {
         setUploading(false);
         if (status === 'success') {
-          if (props.autoUpload) {
+          if (autoUpload) {
             setUploadValue([...(data?.files as UploadFile[])], {
               trigger: 'add',
               file: (data?.files as UploadFile[])[0],
             });
           }
           xhrReq.current = [];
-          props.onSuccess?.({
+          onSuccess?.({
             fileList: data?.files,
             currentFiles: files,
             file: files[0],
@@ -334,7 +336,7 @@ export default function useUpload(props: TdUploadProps) {
             XMLHttpRequest: data?.XMLHttpRequest,
           });
         } else if (failedFiles?.[0]) {
-          props.onFail?.({
+          onFail?.({
             e: data?.event,
             file: failedFiles[0],
             failedFiles,

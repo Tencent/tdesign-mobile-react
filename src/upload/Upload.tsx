@@ -1,6 +1,7 @@
 import type { MouseEvent } from 'react';
 import React from 'react';
 import { AddIcon, CloseCircleIcon, CloseIcon, LoadingIcon } from 'tdesign-icons-react';
+import classNames from 'classnames';
 import type { TdUploadProps, UploadFile } from './type';
 import type { StyledProps } from '../common';
 import Image from '../image';
@@ -16,12 +17,11 @@ export interface UploadProps extends TdUploadProps, StyledProps {}
 const Upload: React.FC<UploadProps> = (props) => {
   const rootClassName = usePrefixClass('upload');
   const { globalConfig } = useConfig();
-  const { onPreview, onClickUpload, addContent, accept, children, files, max, multiple, imageProps } = useDefaultProps(
-    props,
-    uploadDefaultProps,
-  );
+  const { onPreview, onClickUpload, addContent, accept, children, className, files, max, multiple, imageProps } =
+    useDefaultProps(props, uploadDefaultProps);
   const { displayFiles, inputRef, disabled, onNormalFileChange, onInnerRemove } = useUpload(props);
   const uploadGlobalConfig = globalConfig.upload;
+  const containerClassName = classNames(rootClassName, className);
 
   const handlePreview = (e: MouseEvent, file: UploadFile, index: number) => {
     onPreview?.({
@@ -100,7 +100,7 @@ const Upload: React.FC<UploadProps> = (props) => {
     ));
 
   return (
-    <div className={`${rootClassName}`}>
+    <div className={containerClassName}>
       {renderDisplayFiles()}
       {renderContent()}
       <input
