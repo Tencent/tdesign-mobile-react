@@ -8,7 +8,8 @@ const LazyDemo = lazy(() => import('./Demo'));
 
 const { docs: routerList } = JSON.parse(JSON.stringify(siteConfig).replace(/component:.+/g, ''));
 
-const registryUrl = 'https://mirrors.tencent.com/npm/tdesign-mobile-react';
+const registryUrl =
+  'https://service-edbzjd6y-1257786608.hk.apigw.tencentcs.com/release/npm/versions/tdesign-mobile-react';
 const currentVersion = packageJson.version.replace(/\./g, '_');
 
 const docRoutes = getRoute(siteConfig.docs, []);
@@ -75,7 +76,7 @@ function Components() {
       requestAnimationFrame(() => {
         const isComponent = /\/components\//.test(detail);
         tdDocContentRef.current.mobileBodyStyle = {
-          paddingRight: isComponent ? '400px' : ""
+          paddingRight: isComponent ? '400px' : '',
         };
         tdDocContentRef.current.pageStatus = 'show';
         window.scrollTo(0, 0);
