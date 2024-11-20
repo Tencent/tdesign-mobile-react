@@ -123,6 +123,11 @@ export default {
       component: () => import('tdesign-mobile-react/sticky/_example/index.tsx'),
     },
     {
+      title: 'ActionSheet 动作面板',
+      name: 'action-sheet',
+      component: () => import('tdesign-mobile-react/action-sheet/_example/mobile.jsx'),
+    },
+    {
       title: 'BackTop 返回顶部',
       name: 'back-top',
       component: () => import('tdesign-mobile-react/back-top/_example/index.tsx'),
