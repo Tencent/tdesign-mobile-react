@@ -31,6 +31,7 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
     borderless,
     clearable,
     clearTrigger,
+    enterkeyhint,
     disabled,
     format,
     label,
@@ -39,6 +40,7 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
     name,
     placeholder,
     prefixIcon,
+    spellCheck,
     suffix,
     suffixIcon,
     tips,
@@ -216,6 +218,8 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
             placeholder={placeholder}
             readOnly={readonly}
             maxLength={resultMaxLength || -1}
+            enterKeyHint={enterkeyhint}
+            spellCheck={spellCheck}
             onFocus={handleFocus}
             onBlur={handleBlur}
             onInput={handleInput}
