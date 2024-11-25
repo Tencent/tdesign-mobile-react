@@ -47,6 +47,10 @@ export interface TdInputProps {
    */
   disabled?: boolean;
   /**
+   * 用于控制回车键样式，此 API 仅在部分浏览器支持，HTML5 原生属性，[点击查看详情](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/enterkeyhint)
+   */
+  enterkeyhint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
+  /**
    * 指定输入框展示值的格式
    */
   format?: InputFormatType;
@@ -84,6 +88,11 @@ export interface TdInputProps {
    * 只读状态
    */
   readonly?: boolean;
+  /**
+   * 是否开启拼写检查，HTML5 原生属性，[点击查看详情](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/spellcheck)
+   * @default false
+   */
+  spellcheck?: boolean;
   /**
    * 输入框状态
    * @default default
