@@ -16,7 +16,7 @@ export const inputDefaultProps: TdInputProps = {
   layout: 'horizontal',
   placeholder: undefined,
   readonly: undefined,
-  spellCheck: false,
+  spellcheck: false,
   status: 'default',
   type: 'text',
 };
