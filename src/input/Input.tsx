@@ -40,7 +40,7 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
     name,
     placeholder,
     prefixIcon,
-    spellCheck,
+    spellcheck,
     suffix,
     suffixIcon,
     tips,
@@ -219,7 +219,7 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
             readOnly={readonly}
             maxLength={resultMaxLength || -1}
             enterKeyHint={enterkeyhint}
-            spellCheck={spellCheck}
+            spellCheck={spellcheck}
             onFocus={handleFocus}
             onBlur={handleBlur}
             onInput={handleInput}
