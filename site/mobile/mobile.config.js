@@ -68,12 +68,12 @@ export default {
     {
       title: 'Radio 单选框',
       name: 'radio',
-      component: () => import('tdesign-mobile-react/radio/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/radio/_example/index.tsx'),
     },
     {
       title: 'Rate 评分',
       name: 'rate',
-      component: () => import('tdesign-mobile-react/rate/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/rate/_example/index.tsx'),
     },
     {
       title: 'Search 搜索框',
