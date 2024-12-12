@@ -48,8 +48,7 @@ const RadioGroup: FC<RadioGroupProps> = (props) => {
           if (typeof radioProps.onChange === 'function') {
             radioProps.onChange(checked, { e });
           }
-          // @ts-ignore
-          setInternalValue(radioProps.value, { e });
+          setInternalValue(radioProps.value, { e, name: props.name });
         },
       };
     },
