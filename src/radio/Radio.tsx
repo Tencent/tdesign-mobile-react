@@ -11,7 +11,7 @@ import useDefaultProps from '../hooks/useDefaultProps';
 import { radioDefaultProps } from './defaultProps';
 
 export interface RadioProps extends TdRadioProps {
-  ref?: Ref<HTMLDivElement>;
+  ref?: Ref<HTMLInputElement>;
 }
 
 export interface RadioContextValue {
@@ -26,7 +26,7 @@ const getLimitRow = (row: number): CSSProperties => ({
   WebkitLineClamp: row,
 });
 
-const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
+const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLInputElement>) => {
   const radioClass = usePrefixClass('radio');
   const inputRef = useRef();
   const context = useContext(RadioContext);
@@ -39,7 +39,7 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
     content,
     defaultChecked,
     contentDisabled,
-    placement,
+    placement = 'left',
     disabled,
     icon,
     label,
@@ -153,6 +153,6 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
 });
 
 export default forwardRefWithStatics(
-  (props: RadioProps, ref: Ref<HTMLDivElement>) => <Radio ref={ref} {...props}></Radio>,
+  (props: RadioProps, ref: Ref<HTMLInputElement>) => <Radio ref={ref} {...props}></Radio>,
   { Group: RadioGroup },
 );
