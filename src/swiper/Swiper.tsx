@@ -1,365 +1,487 @@
-import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { StyledProps } from 'tdesign-mobile-react/common';
+import React, { RefObject, useEffect, useMemo, useRef, useState } from 'react';
+import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
+import { usePrefixClass } from 'tdesign-mobile-react/hooks/useClass';
+import { useSwipe } from 'tdesign-mobile-react/_util/useSwipe';
+import isNumber from 'lodash/isNumber';
+import isObject from 'lodash/isObject';
 import classNames from 'classnames';
-import { Icon } from 'tdesign-icons-react';
-import { TdSwiperProps, SwiperChangeSource } from './type';
-import { StyledProps } from '../common';
-import noop from '../_util/noop';
-import useConfig from '../_util/useConfig';
+import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
+import forwardRefWithStatics from 'tdesign-mobile-react/_util/forwardRefWithStatics';
+import useDefault from 'tdesign-mobile-react/_util/useDefault';
+import { SwiperChangeSource, SwiperNavigation, TdSwiperProps } from './type';
+import { swiperDefaultProps } from './defaultProps';
+import SwiperContext from './SwiperContext';
 import SwiperItem from './SwiperItem';
-import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 
 export interface SwiperProps extends TdSwiperProps, StyledProps {
   children?: React.ReactNode;
 }
 
-const Swiper = forwardRefWithStatics((props: SwiperProps) => {
-  const {
-    // animation = 'slide', // 轮播切换动画效果类型（暂时没用）
-    autoplay = true, // 是否自动播放
-    current, // 当前轮播在哪一项（下标）
-    defaultCurrent = 0, // 当前轮播在哪一项（下标），非受控属性
-    direction = 'horizontal', // 轮播滑动方向，包括横向滑动和纵向滑动两个方向
-    duration = 300, // 滑动动画时长
-    height = 180,
-    interval = 5000, // 轮播间隔时间
-    onChange = noop, // 轮播切换时触发
-    loop = true,
-    navigation = null, // 导航器全部配置
-    className,
-    style,
-    children,
-  } = props;
+// 轮播状态
+enum SwiperStatus {
+  IDLE = 'idle', // 空闲状态
+  SWITCHING = 'switching', // 切换状态
+}
 
-  const { classPrefix } = useConfig();
-  const swiperBaseClassName = `${classPrefix}-swiper`;
-  const switchClassName = classNames(swiperBaseClassName, className);
+const Swiper = forwardRefWithStatics(
+  (originProps: SwiperProps) => {
+    const props = useDefaultProps<SwiperProps>(originProps, swiperDefaultProps);
+    const {
+      type,
+      children,
+      autoplay,
+      current,
+      defaultCurrent,
+      direction,
+      duration,
+      interval,
+      loop,
+      navigation,
+      onChange,
+      onClick,
+    } = props;
 
-  const [currentIndex, setCurrentIndex] = useState(defaultCurrent + 1);
-  const [moveStartSite, setMoveStartSite] = useState<null | number>(null); // 滑动state
-  const [touchMoveDistance, setTouchMoveDistance] = useState(0);
-  const [swiperOuterWidth, setSwiperOuterWidth] = useState(0); // swiper外层宽度
-  const [containerWidth, setContainerWidth] = useState(0);
-  const [animation, setAnimation] = useState(true);
-  const swiperTimer = useRef(null); // 计时器指针
-  const isHovering = useRef(false);
-  const swiper = useRef<HTMLDivElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+    const swiperClass = usePrefixClass('swiper');
+    const swiperNavClass = usePrefixClass('swiper-nav');
+    const navCtrlActive = useRef(false); // 导航控制按钮激活状态
+    const rootDiv = useRef<HTMLDivElement>(); // 根节点
+    const swiperContainer = useRef<HTMLDivElement>(); // swiper容器节点
+    const swiperSource = useRef<SwiperChangeSource>('autoplay'); // swiper变化来源
+    const currentIndex = useRef(defaultCurrent || current || 0); // 当前轮播页索引
+    const previousIndex = useRef(currentIndex.current); // 上一次轮播页索引
+    const items = useRef<
+      {
+        element: RefObject<HTMLDivElement>;
+        updateTranslateStyle: (style: string) => void;
+        updateClassNameSuffix: (extraClassName: string) => void;
+      }[]
+    >([]); // swiper子项
 
-  useEffect(() => {
-    if (swiper) {
-      setContainerWidth(swiper.current.clientWidth);
-      if (direction === 'vertical') {
-        setSwiperOuterWidth(swiper.current.clientHeight);
-      } else {
-        setSwiperOuterWidth(swiper.current.clientWidth);
-      }
-    }
-  }, [direction]);
+    const [containerAnimating, setContainerAnimating] = useState(false); // 是否处在轮播动画状态
+    const [containerTransform, setContainerTransform] = useState(''); // 轮播容器transform样式
+    const [containerHeight, setContainerHeight] = useState<number | string>('auto'); // 轮播容器高度
+    const [, setCurrentIndex] = useDefault(current, defaultCurrent, (index) => {
+      if (!items.current?.length) return;
+      currentIndex.current = index;
+    });
 
-  // 用于控制 wrap 位移
-  const wrapDisplacement = useMemo(() => `-${currentIndex * 100 - (touchMoveDistance / swiperOuterWidth) * 100}%`, [
-    currentIndex,
-    touchMoveDistance,
-    swiperOuterWidth,
-  ]);
+    const isVertical = useMemo(() => direction === 'vertical', [direction]); // 轮播滑动方向(垂直)
+    const directionAxis = useMemo(() => (isVertical ? 'Y' : 'X'), [isVertical]); // 轮播滑动方向轴
 
-  /** ************************************************************
-   * 获取children，并创建子节点
-   */
-  // 过滤SwiperItem的子元素
-  const childrenList = useMemo(
-    () =>
-      React.Children.toArray(children).filter(
-        (child: JSX.Element) => child.type.displayName === SwiperItem.displayName,
-      ),
-    [children],
-  );
+    const previousMargin = useMemo(
+      () => (isNumber(props.previousMargin) ? `${props.previousMargin}px` : props.previousMargin),
+      [props.previousMargin],
+    );
 
-  const childrenLength = childrenList.length;
+    const nextMargin = useMemo(
+      () => (isNumber(props.nextMargin) ? `${props.nextMargin}px` : props.nextMargin),
+      [props.nextMargin],
+    );
 
-  //   // 创建渲染用的节点列表
-  const swiperItemList = childrenList.map((child: JSX.Element, index: number) =>
-    React.cloneElement(child, {
-      value: index,
-      style: { height: `${height}px`, width: `${containerWidth}px` },
-      className: `${classPrefix}-swiper__item`,
-      ...child.props,
-    }),
-  );
-
-  // 子节点不为空时，复制第一个子节点到列表最后，复制最后一个节点到列表最前（为了滑动创建的占位元素）
-  if (childrenLength > 0) {
-    const firstEle = swiperItemList[0];
-    const lastEle = swiperItemList[childrenLength - 1];
-    swiperItemList.push(React.cloneElement(firstEle, { ...firstEle.props, key: `${firstEle.key}-cloned` }));
-    swiperItemList.unshift(React.cloneElement(lastEle, { ...lastEle.props, key: `${lastEle.key}-cloned` }));
-  }
-
-  const swiperItemLength = swiperItemList.length;
-
-  /** ************************************************************
-   * 处理默认跳转 及 动画逻辑
-   */
-  // 统一跳转处理函数
-  const swiperTo = useCallback(
-    (index: number, context: { source: SwiperChangeSource }) => {
-      // 若禁止循环播放
-      if (!loop) {
-        if (index === childrenLength + 1) {
-          setAnimation(true);
-          setCurrentIndex(1);
-          onChange(0, context);
-          return;
-        }
-      }
-      // 事件通知
-      if (index === childrenLength + 1) {
-        onChange(0, context);
-      } else if (index === 0) {
-        onChange(childrenLength - 1, context);
-      } else {
-        onChange((index % (childrenLength + 1)) - 1, context);
-      }
-
-      // 设置内部 index
-      setAnimation(true);
-      setCurrentIndex(index);
-    },
-    [childrenLength, onChange, loop],
-  );
-
-  // 定时器
-  const setTimer = useCallback(() => {
-    if (autoplay && interval > 0) {
-      swiperTimer.current = setTimeout(
-        () => {
-          swiperTo(currentIndex + 1, { source: 'autoplay' });
-        },
-        currentIndex === 1 ? interval - (duration + 50) : interval, // 当 index 为 1 的时候，表明刚从克隆的最后一项跳转过来，已经经历了duration + 50 的间隔时间，减去即可
+    const isSwiperNavigation = useMemo(() => {
+      if (!navigation) return false;
+      const { minShowNum, paginationPosition, placement, showControls, type } = navigation as any;
+      return (
+        minShowNum !== undefined ||
+        paginationPosition !== undefined ||
+        placement !== undefined ||
+        showControls !== undefined ||
+        type !== undefined
       );
-    }
-  }, [autoplay, currentIndex, duration, interval, swiperTo]);
+    }, [navigation]);
 
-  const clearTimer = useCallback(() => {
-    if (swiperTimer.current) {
-      clearTimeout(swiperTimer.current);
-      swiperTimer.current = null;
-    }
-  }, []);
-
-  // 监听 current 参数变化
-  useEffect(() => {
-    if (current && (current < 0 || current >= childrenLength)) return;
-    if (current !== undefined) {
-      swiperTo(current + 1, { source: '' });
-    }
-  }, [current, childrenLength, swiperTo]);
-
-  // 在非鼠标 hover 状态时，添加切换下一个组件的定时器
-  useEffect(() => {
-    // 设置自动播放的定时器
-    if (!isHovering.current) {
-      clearTimer();
-      setTimer();
-    }
-  }, [clearTimer, setTimer]);
-
-  // 动画完成后取消 css 属性
-  useEffect(() => {
-    setTimeout(() => {
-      setAnimation(false);
-      // 如果当前在最后一个（占位）元素，则立刻跳转至第2个（第一个真实）元素
-      if (currentIndex + 1 >= swiperItemLength) {
-        setCurrentIndex(1);
+    const enableNavigation = useMemo(() => {
+      if (isSwiperNavigation) {
+        const nav = navigation as SwiperNavigation;
+        return nav?.minShowNum ? items.current.length > nav?.minShowNum : true;
       }
-      // 如果当前在第一个（占位）元素，则立刻跳到最后一个（倒数第二个真实）元素
-      if (currentIndex === 0) {
-        setCurrentIndex(swiperItemLength - 2);
-      }
-    }, duration + 50); // 多 50ms 的间隔时间防止动画未执行完就跳转了
-  }, [currentIndex, swiperItemLength, duration, direction]);
+      return isObject(navigation);
+    }, [isSwiperNavigation, navigation]);
 
-  /** ******************************************************************
-   * 触摸事件处理方法
-   */
-  // 触摸滑动事件 - 开始
-  const handleTouchStart = (e: React.TouchEvent) => {
-    e.stopPropagation();
-    isHovering.current = true;
-    clearTimer();
-    if (direction === 'vertical') {
-      setMoveStartSite(e.touches[0].clientY);
-    } else {
-      setMoveStartSite(e.touches[0].clientX);
-    }
-  };
+    const isBottomPagination = useMemo(() => {
+      if (!isSwiperNavigation || !enableNavigation) return false;
+      const nav = navigation as SwiperNavigation;
+      return (
+        (!nav?.paginationPosition || nav?.paginationPosition === 'bottom') &&
+        (nav?.type === 'dots' || nav?.type === 'dots-bar')
+      );
+    }, [enableNavigation, isSwiperNavigation, navigation]);
 
-  // 触摸滑动事件 - 滑动中
-  const handleTouchMove = useCallback(
-    (e: React.TouchEvent) => {
-      e.stopPropagation();
+    const navPlacement = useMemo(() => {
+      if (!isSwiperNavigation) return undefined;
+      const nav = navigation as SwiperNavigation;
+      return nav.placement;
+    }, [isSwiperNavigation, navigation]);
 
-      if (moveStartSite) {
-        if (direction === 'vertical') {
-          const nowDistence = e.touches[0].clientY - moveStartSite;
-          if (
-            !loop &&
-            ((currentIndex === 1 && nowDistence > 0) || (currentIndex === childrenLength && nowDistence < 0))
-          ) {
-            return;
-          }
-          setTouchMoveDistance(nowDistence);
-        } else {
-          const nowDistence = e.touches[0].clientX - moveStartSite;
-          if (
-            !loop &&
-            ((currentIndex === 1 && nowDistence > 0) || (currentIndex === childrenLength && nowDistence < 0))
-          ) {
-            return;
-          }
-          setTouchMoveDistance(nowDistence);
-        }
-      }
-    },
-    [setTouchMoveDistance, moveStartSite, direction, currentIndex, loop, childrenLength],
-  );
+    const rootClass = useMemo(
+      () => [
+        `${swiperClass}`,
+        `${swiperClass}--${type}`,
+        `${isBottomPagination && navPlacement ? `${swiperClass}--${navPlacement}` : ''}`,
+      ],
+      [swiperClass, type, isBottomPagination, navPlacement],
+    );
 
-  // 触摸滑动事件 - 结束
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    e.stopPropagation();
-    if (touchMoveDistance / swiperOuterWidth <= -0.3) {
-      // swiperTo(currentIndex + 1, { source: 'touch' });
-      // 这里不用 swiperTo 是防止滑动距离不够返回当前页动画会失效
-      setCurrentIndex(currentIndex + 1);
-      onChange(currentIndex === childrenLength ? 0 : currentIndex, { source: 'touch' });
-    }
+    const swiperStatus = useRef(SwiperStatus.IDLE); // 轮播状态
+    const frameId = useRef(0); // 轮播帧id
+    const lastTick = useRef(0); // 上一帧记录的时间戳
+    const swiperStartTick = useRef(0); // 轮播开始时间戳
+    const [tempStopAutoPlay, setTempStopAutoPlay] = useState(false); // 临时停止自动播放
+    const tempStopAutoPlayRef = useRef(tempStopAutoPlay); // 临时停止自动播放引用
+    const locateSwiperTimer = useRef<any>();
 
-    if (touchMoveDistance / swiperOuterWidth >= 0.3) {
-      // swiperTo(currentIndex - 1, { source: 'touch' });
-      setCurrentIndex(currentIndex - 1);
-      onChange(currentIndex - 1 === 0 ? 2 : currentIndex - 2, { source: 'touch' });
-    }
-    setAnimation(true);
-    setTouchMoveDistance(0);
-    // 将 TouchMoveDistance 重置为0后，要关闭动画，否则在下一次自动触发动画时滑动操作会有bug
-    setTimeout(() => {
-      setAnimation(false);
-    }, duration + 50);
-    isHovering.current = false;
-    setTimer();
-  };
-
-  /**
-   * 点击两侧的滑动控制按钮事件
-   */
-  const clickSlideBtn = useCallback(
-    (flag: 'left' | 'right') => {
-      if (flag === 'left') {
-        if (!loop && currentIndex === 1) return;
-        if (currentIndex === 0) {
-          swiperTo(childrenLength - 1, { source: 'touch' });
-        } else {
-          swiperTo(currentIndex - 1, { source: 'touch' });
-        }
-      } else if (flag === 'right') {
-        if (!loop && currentIndex === childrenLength) return;
-        if (currentIndex === childrenLength + 1) {
-          swiperTo(2, { source: 'touch' });
-        } else {
-          swiperTo(currentIndex + 1, { source: 'touch' });
-        }
-      }
-    },
-    [currentIndex, swiperTo, childrenLength, loop],
-  );
-
-  // navigation.type === 'fraction' 时当前滚动值
-  const fractionCurrent = useMemo(() => {
-    if (currentIndex < 1) {
-      return childrenLength;
-    }
-    if (currentIndex > childrenLength) {
-      return 1;
-    }
-    return currentIndex;
-  }, [childrenLength, currentIndex]);
-
-  // 构造 css 对象
-  // 加入了 translateZ 属性是为了使移动的 div 单独列为一个 layer 以提高滑动性能，参考：https://segmentfault.com/a/1190000010364647
-  let wrapperStyle = {};
-  if (direction === 'vertical') {
-    wrapperStyle = {
-      height: `${swiperItemLength * 100}%`,
-      top: wrapDisplacement,
-      transition: animation ? `top ${duration / 1000}s` : '',
-      flexDirection: 'column',
+    const updateContainerTransfrom = (axis: string, step: number) => {
+      setContainerTransform(() => `translate${axis}(${100 * step}%)`);
     };
-  } else {
-    wrapperStyle = {
-      width: `${swiperItemLength * 100}%`,
-      left: wrapDisplacement,
-      transition: animation ? `left ${duration / 1000}s` : '',
-      flexDirection: 'row',
-    };
-  }
 
-  return (
-    <div ref={swiper} className={switchClassName} style={{ overflow: 'hidden', height: `${height}px`, ...style }}>
-      {/* 渲染子节点 */}
+    const forceContainerHeight = (height: number | string) => {
+      setContainerHeight(() => (isNumber(height) ? `${height}px` : height));
+    };
+
+    const setContainerOffset = (offset: { x: number; y: number }) => {
+      const { x, y } = offset;
+      const width = rootDiv.current?.offsetWidth ?? 0;
+      const height = rootDiv.current?.offsetHeight ?? 0;
+      let step = 0;
+      if (!isVertical && width !== 0) {
+        step = x / width;
+      } else if (isVertical && height !== 0) {
+        step = y / height;
+      }
+
+      step = step > 1 || step < -1 ? step / Math.abs(step) : step;
+      updateContainerTransfrom(directionAxis, step);
+    };
+
+    const caculateSwiperItemIndex = (index: number) => {
+      let step = 0;
+      let itemIndex = index;
+      const max = items.current.length;
+
+      if (index < 0) {
+        itemIndex = loop ? (index + max) % max : 0;
+      } else if (index >= max) {
+        itemIndex = loop ? (index - max) % max : max - 1;
+      }
+
+      if (itemIndex !== currentIndex.current) {
+        const distance = (itemIndex - currentIndex.current + max) % max;
+        step = distance <= max / 2 ? distance : distance - max;
+      }
+      return { index: itemIndex, step };
+    };
+
+    const updateSwiperItemPosition = (axis: string) => {
+      if (items.current.length <= 1) return;
+      const lastItemIndex = items.current.length - 1;
+      const activeIndex = currentIndex.current;
+      items.current.forEach((item, index) => {
+        let step = index - activeIndex;
+        if (activeIndex === lastItemIndex && index === 0) {
+          // lastItem
+          step = 1;
+        } else if (activeIndex === 0 && index === lastItemIndex && index !== 1) {
+          // firstItem
+          step = -1;
+        }
+        item.updateTranslateStyle(`translate${axis}(${step * 100}%)`);
+      });
+    };
+
+    const updateSwiperItemClassName = (activeIndex: number) => {
+      const lastItemIndex = items.current.length - 1;
+      items.current.forEach((item, index) => {
+        let step = index - activeIndex;
+        if (activeIndex === lastItemIndex && index === 0) {
+          // lastItem
+          step = 1;
+        } else if (activeIndex === 0 && index === lastItemIndex && index !== 1) {
+          // firstItem
+          step = -1;
+        }
+        switch (step) {
+          case -1:
+            item.updateClassNameSuffix(`--prev`);
+            break;
+          case 0:
+            item.updateClassNameSuffix(`--active`);
+            break;
+          case 1:
+            item.updateClassNameSuffix(`--next`);
+            break;
+          default:
+            item.updateClassNameSuffix('');
+            break;
+        }
+      });
+    };
+
+    const locateSwiperItemEnd = () => {
+      navCtrlActive.current = false;
+      setTempStopAutoPlay(() => false);
+      setContainerAnimating(() => false);
+      updateContainerTransfrom(directionAxis, 0);
+      updateSwiperItemPosition(directionAxis);
+      onChange?.(currentIndex.current, { source: swiperSource.current });
+    };
+
+    const addLocateSwiperTimer = () => {
+      locateSwiperTimer.current = setTimeout(() => {
+        locateSwiperItemEnd();
+        locateSwiperTimer.current = null;
+      }, duration);
+    };
+
+    const removeLocateSwiperTimer = () => {
+      if (!locateSwiperTimer.current) return;
+      locateSwiperItemEnd();
+      clearTimeout(locateSwiperTimer.current);
+      locateSwiperTimer.current = null;
+    };
+
+    const locateSwiperItem = (locateIndex: number, source: SwiperChangeSource) => {
+      removeLocateSwiperTimer();
+      swiperSource.current = source;
+      const { index, step } = caculateSwiperItemIndex(locateIndex);
+      console.log(
+        `[Swiper].locateSwiperItem, currentIndex=${currentIndex.current}, nextIndex = ${index}, step = ${step}`,
+      );
+      previousIndex.current = index;
+      setCurrentIndex(index);
+      setContainerAnimating(() => true);
+      updateContainerTransfrom(directionAxis, -step);
+      updateSwiperItemClassName(index);
+      addLocateSwiperTimer();
+    };
+
+    const goPrev = (source: SwiperChangeSource) => {
+      navCtrlActive.current = true;
+      setTempStopAutoPlay(() => true);
+      locateSwiperItem(currentIndex.current - 1, source);
+    };
+
+    const goNext = (source: SwiperChangeSource) => {
+      navCtrlActive.current = true;
+      setTempStopAutoPlay(() => true);
+      locateSwiperItem(currentIndex.current + 1, source);
+    };
+
+    const onItemClick = () => {
+      onClick?.(currentIndex.current ?? 0);
+    };
+
+    const changeSwiperStatus = (nextStatus: SwiperStatus) => {
+      if (swiperStatus.current === SwiperStatus.IDLE && nextStatus === SwiperStatus.SWITCHING) {
+        locateSwiperItem(currentIndex.current + 1, 'autoplay');
+      }
+      swiperStatus.current = nextStatus;
+    };
+
+    const onUpdate = (timestamp: number) => {
+      if (tempStopAutoPlayRef.current) return;
+
+      lastTick.current = lastTick.current || timestamp;
+      swiperStartTick.current = swiperStartTick.current || timestamp;
+
+      if (lastTick.current - swiperStartTick.current >= interval) {
+        changeSwiperStatus(SwiperStatus.SWITCHING);
+        if (lastTick.current - swiperStartTick.current >= interval + duration) {
+          changeSwiperStatus(SwiperStatus.IDLE);
+          swiperStartTick.current = timestamp;
+        }
+      }
+
+      lastTick.current = timestamp;
+
+      if (autoplay) {
+        frameId.current = window.requestAnimationFrame(onUpdate);
+      }
+    };
+
+    const memoProviderValues = useMemo(
+      () => ({
+        forceContainerHeight: (height: number) => {
+          if (!props.height) {
+            forceContainerHeight(height);
+          }
+        },
+        addChild: (
+          element: RefObject<HTMLDivElement>,
+          updateTranslateStyle: (style: string) => void,
+          updateClassNameSuffix: (classNameSuffix: string) => void,
+        ) => {
+          items.current.push({ element, updateTranslateStyle, updateClassNameSuffix });
+        },
+        removeChild: (element: RefObject<HTMLDivElement>) => {
+          if (!element) return;
+          const index = items.current.findIndex((item) => item.element === element);
+          if (index === -1) return;
+          items.current.splice(index, 1);
+          if (items.current.length > 0) {
+            locateSwiperItem(currentIndex.current + 1, 'autoplay');
+          }
+        },
+      }),
+      [],
+    );
+
+    const { offset } = useSwipe(swiperContainer.current, {
+      onSwipeStart: () => {
+        if (navCtrlActive.current || !items.current.length) return;
+        setTempStopAutoPlay(() => true);
+        setContainerAnimating(() => false);
+      },
+
+      onSwipe: () => {
+        if (navCtrlActive.current || !items.current.length) return;
+        setContainerOffset(offset());
+      },
+
+      onSwipeEnd: () => {
+        if (navCtrlActive.current || !items.current.length) return;
+        const { x, y } = offset();
+        if ((!isVertical && x < -100) || (isVertical && y < -100)) {
+          locateSwiperItem(currentIndex.current + 1, 'touch');
+        } else if ((!isVertical && x > 100) || (isVertical && y > 100)) {
+          locateSwiperItem(currentIndex.current - 1, 'touch');
+        } else {
+          console.log('[Swiper] onSwipeEnd, currentIndex = ', currentIndex.current);
+          locateSwiperItem(currentIndex.current, 'touch');
+        }
+      },
+    });
+
+    useEffect(() => {
+      if (current === previousIndex.current) return;
+      locateSwiperItem(current, swiperSource.current);
+    }, [current, previousIndex]);
+
+    useEffect(() => {
+      if (props.height) {
+        forceContainerHeight(props.height);
+        return;
+      }
+      if (!items.current.length) return;
+      const rect = items.current[0].element.current.getBoundingClientRect();
+      if (rect) {
+        forceContainerHeight(rect.height);
+      }
+    }, [props.height]);
+
+    useEffect(() => {
+      lastTick.current = 0;
+      swiperStartTick.current = 0;
+      tempStopAutoPlayRef.current = tempStopAutoPlay;
+      if (frameId.current !== 0) {
+        window.cancelAnimationFrame(frameId.current);
+        frameId.current = 0;
+      }
+      if (!tempStopAutoPlay && autoplay) {
+        frameId.current = window.requestAnimationFrame(onUpdate);
+      }
+    }, [autoplay, interval, duration, tempStopAutoPlay]);
+
+    const controlsNav = (navigation: SwiperNavigation) => {
+      if (!isVertical && !!navigation?.showControls) {
+        return (
+          <span className={`${swiperNavClass}__btn`}>
+            <span className={`${swiperNavClass}__btn--prev`} onClick={() => goPrev('nav')} />
+            <span className={`${swiperNavClass}__btn--next`} onClick={() => goNext('nav')} />
+          </span>
+        );
+      }
+    };
+
+    // dots
+    const dots = (navigation: SwiperNavigation) => {
+      if (['dots', 'dots-bar'].includes(navigation?.type || '')) {
+        return (
+          <>
+            {items.current.map((_: any, index: number) => (
+              <span
+                key={`page${index}`}
+                className={classNames(
+                  `${swiperNavClass}__${navigation?.type}-item`,
+                  index === currentIndex.current ? `${swiperNavClass}__${navigation?.type}-item--active` : '',
+                  `${swiperNavClass}__${navigation?.type}-item--${direction}`,
+                )}
+              />
+            ))}
+          </>
+        );
+      }
+    };
+
+    // fraction
+    const fraction = (navigation: SwiperNavigation) => {
+      if (navigation?.type === 'fraction') {
+        return <span>{`${(currentIndex.current ?? 0) + 1}/${items.current.length}`}</span>;
+      }
+    };
+
+    const typeNav = (navigation: SwiperNavigation) => {
+      if ('type' in navigation) {
+        return (
+          <span
+            className={classNames(
+              `${swiperNavClass}--${direction}`,
+              `${swiperNavClass}__${navigation?.type || ''}`,
+              `${swiperNavClass}--${navigation?.paginationPosition || 'bottom'}`,
+              `${isBottomPagination && navigation?.placement ? `${swiperNavClass}--${navigation?.placement} ` : ''}`,
+            )}
+          >
+            {dots(navigation)}
+            {fraction(navigation)}
+          </span>
+        );
+      }
+    };
+
+    const swiperNav = () => {
+      if (!enableNavigation) return '';
+      if (isSwiperNavigation) {
+        return (
+          <>
+            {controlsNav(navigation as SwiperNavigation)}
+            {typeNav(navigation as SwiperNavigation)}
+          </>
+        );
+      }
+      return isObject(navigation) ? '' : parseTNode(navigation);
+    };
+
+    return (
       <div
-        ref={wrapperRef}
-        className={`${classPrefix}-swiper__container`}
-        style={wrapperStyle}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
+        ref={rootDiv}
+        className={classNames(rootClass)}
+        style={{
+          paddingTop: containerHeight,
+        }}
       >
-        {swiperItemList}
+        <div
+          ref={swiperContainer}
+          className={classNames(`${swiperClass}__container--card`)}
+          style={{
+            left: previousMargin,
+            right: nextMargin,
+            flexDirection: !isVertical ? 'row' : 'column',
+            transition: containerAnimating ? `transform ${duration}ms` : 'none',
+            transform: containerTransform,
+            height: containerHeight,
+          }}
+          onClick={onItemClick}
+        >
+          <SwiperContext.Provider value={memoProviderValues}>{parseTNode(children)}</SwiperContext.Provider>
+        </div>
+        {swiperNav()}
       </div>
-      {navigation && childrenLength < navigation?.minShowNum ? null : (
-        <>
-          {/* 渲染底部导航 */}
-          {navigation && 'type' in navigation && (
-            <span
-              className={classNames(
-                `${classPrefix}-swiper__pagination`,
-                `${classPrefix}-swiper__pagination-${navigation.type}`,
-              )}
-            >
-              {(['dots', 'dots-bar'].includes(navigation.type) &&
-                childrenList.map((_: JSX.Element, i: number) => (
-                  <span
-                    key={i}
-                    className={classNames(
-                      `${classPrefix}-swiper-dot`,
-                      i + 1 === currentIndex % (childrenLength + 1) ? `${classPrefix}-swiper-dot--active` : '',
-                    )}
-                    onClick={() => swiperTo(i + 1, { source: 'touch' })}
-                  />
-                ))) ||
-                null}
-              {(navigation.type === 'fraction' && <span>{`${fractionCurrent}/${childrenLength}`}</span>) || null}
-            </span>
-          )}
-          {/* 渲染左右两边的按钮 */}
-          {(direction === 'horizontal' && navigation && navigation.showSlideBtn && (
-            <span>
-              <span className={`${classPrefix}-swiper__btn btn-prev`} onClick={() => clickSlideBtn('left')}>
-                <Icon name="chevron-left" size={16} />
-              </span>
-              <span className={`${classPrefix}-swiper__btn btn-next`} onClick={() => clickSlideBtn('right')}>
-                <Icon name="chevron-right" size={16} />
-              </span>
-            </span>
-          )) ||
-            null}
-        </>
-      )}
-    </div>
-  );
-}, {
-  SwiperItem
-});
+    );
+  },
+  {
+    SwiperItem,
+  },
+);
 
 Swiper.displayName = 'Swiper';
 
