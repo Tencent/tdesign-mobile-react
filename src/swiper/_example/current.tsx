@@ -51,7 +51,7 @@ export default function Base() {
         <Button
           size="small"
           theme="primary"
-          content={`跳转到第${getNextIndex(current)}项`}
+          content={`跳转到第${getNextIndex(current) + 1}项`}
           onClick={onClickBtn}
         ></Button>
       </div>

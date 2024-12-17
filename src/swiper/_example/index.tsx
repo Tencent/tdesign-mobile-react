@@ -10,7 +10,7 @@ import OutsideDemo from './outside';
 import VerticalDemo from './vertical';
 import AnimationDemo from './animation';
 import CardDemo from './card';
-// import CurrentDemo from './current';
+import CurrentDemo from './current';
 
 export default function Base() {
   return (
@@ -19,6 +19,9 @@ export default function Base() {
         title="Swiper 轮播图"
         summary="用于循环轮播一组图片或内容，也可以滑动进行切换，轮播动效时间可以设置"
       />
+      <TDemoBlock title="01 组件类型" summary="点状（dots)">
+        <BaseDemo />
+      </TDemoBlock>
       <TDemoBlock title="01 组件类型" summary="点状（dots)">
         <BaseDemo />
       </TDemoBlock>
@@ -31,9 +34,9 @@ export default function Base() {
       <TDemoBlock summary="切换按钮（controls)">
         <ControlDemo />
       </TDemoBlock>
-      {/* <TDemoBlock summary="手动跳转(current)">
+      <TDemoBlock summary="手动跳转(current)">
         <CurrentDemo />
-      </TDemoBlock> */}
+      </TDemoBlock>
       <TDemoBlock summary="卡片式（Cards）">
         <CardDemo />
       </TDemoBlock>
