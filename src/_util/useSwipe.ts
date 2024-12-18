@@ -48,7 +48,7 @@ export function useSwipe(target: EventTarget | null | undefined, options = {} as
   const coordsStart = useRef<Position>({ x: 0, y: 0 }); // 用于存储触摸起始位置的坐标
   const coordsEnd = useRef<Position>({ x: 0, y: 0 }); // 用于存储触摸结束位置的坐标
   const coordsOffset = useRef<Position>({ x: 0, y: 0 }); // 用于存储滑动偏移量
-  const { threshold = 50, onSwipe, onSwipeEnd, onSwipeStart, listenerOptions = { passive: true } } = options;
+  const { threshold = 0, onSwipe, onSwipeEnd, onSwipeStart, listenerOptions = { passive: true } } = options;
 
   const updateOffset = useCallback(() => {
     coordsOffset.current = {
