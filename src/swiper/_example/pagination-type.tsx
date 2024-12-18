@@ -30,7 +30,7 @@ export default function Base() {
         duration={500}
         autoplay={true}
         defaultCurrent={3}
-        navigation={{ type: 'dots' }}
+        navigation={{ type: 'fraction' }}
       >
         {swiperItems()}
       </Swiper>
