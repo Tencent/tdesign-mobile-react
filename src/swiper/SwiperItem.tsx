@@ -17,7 +17,7 @@ const SwiperItem: FC<SwiperItemProps> = (originProps) => {
   const imageHostClass = `${swiperItemClass}--image-host`;
   const { addChild, removeChild, forceContainerHeight } = useContext(SwiperContext);
   const [rootStyle, setRootStyle] = useState(style);
-  const ref = useRef<HTMLDivElement>(null);
+  const hostRef = useRef<HTMLDivElement>(null);
   const [classNameSuffix, setClassNameSuffix] = useState('');
 
   const updateTranslateStyle = useCallback(
@@ -32,11 +32,11 @@ const SwiperItem: FC<SwiperItemProps> = (originProps) => {
   };
 
   useEffect(() => {
-    addChild(ref, updateTranslateStyle, updateClassNameSuffix);
-    const rect = ref.current?.getBoundingClientRect();
+    addChild({ divRef: hostRef, updateTranslateStyle, updateClassNameSuffix });
+    const rect = hostRef.current?.getBoundingClientRect();
     forceContainerHeight(rect?.height);
     return () => {
-      removeChild(ref);
+      removeChild(hostRef);
     };
   }, [addChild, forceContainerHeight, removeChild, updateTranslateStyle]);
 
@@ -52,7 +52,7 @@ const SwiperItem: FC<SwiperItemProps> = (originProps) => {
 
   return (
     <div className={itemClassName} style={rootStyle}>
-      <div className={hostClassName} ref={ref}>
+      <div className={hostClassName} ref={hostRef}>
         {parseTNode(children)}
       </div>
     </div>

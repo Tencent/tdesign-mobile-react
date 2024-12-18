@@ -31,7 +31,7 @@ export default function Base() {
           interval={3000}
           duration={500}
           autoplay={true}
-          defaultCurrent={3}
+          defaultCurrent={1}
           previousMargin="34px"
           nextMargin="34px"
           navigation={{ type: 'dots', placement: 'outside' }}
@@ -46,7 +46,7 @@ export default function Base() {
           interval={3000}
           duration={500}
           autoplay={true}
-          defaultCurrent={3}
+          defaultCurrent={1}
           previousMargin="34px"
           nextMargin="34px"
           navigation={{ type: 'dots', placement: 'outside' }}
@@ -61,7 +61,7 @@ export default function Base() {
           interval={3000}
           duration={500}
           autoplay={true}
-          defaultCurrent={3}
+          defaultCurrent={1}
           previousMargin="34px"
           nextMargin="34px"
           navigation={{ type: 'dots', placement: 'outside' }}

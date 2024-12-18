@@ -28,7 +28,7 @@ export default function Base() {
         interval={3000}
         duration={500}
         autoplay={true}
-        defaultCurrent={3}
+        defaultCurrent={1}
         navigation={{ type: 'dots', placement: 'outside' }}
       >
         {swiperItems()}

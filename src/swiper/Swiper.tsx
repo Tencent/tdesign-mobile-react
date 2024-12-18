@@ -12,7 +12,7 @@ import { useSwipe } from 'tdesign-mobile-react/_util/useSwipe';
 import { SwiperChangeSource, SwiperNavigation, TdSwiperProps } from './type';
 import { swiperDefaultProps } from './defaultProps';
 import SwiperItem from './SwiperItem';
-import SwiperContext from './SwiperContext';
+import SwiperContext, { SwiperItemReference } from './SwiperContext';
 
 export interface SwiperProps extends TdSwiperProps, StyledProps {
   children?: React.ReactNode;
@@ -26,6 +26,7 @@ enum SwiperStatus {
   ENDDRAG = 'enddrag', // 结束拖拽
 }
 
+// swiper组件的动态style
 interface SwiperStyleState {
   left?: string;
   right?: string;
@@ -52,6 +53,10 @@ const Swiper = forwardRefWithStatics(
       onClick,
     } = props;
 
+    const NONE_SUFFIX = '';
+    const ACTIVE_SUFFIX = '--active';
+    const PREV_SUFFIX = '--prev';
+    const NEXT_SUFFIX = '--next';
     const SWIPE_THRESHOLD = 0.3; // 滑动阈值
     const currentIsNull = originProps.current === undefined;
     const swiperClass = usePrefixClass('swiper');
@@ -62,13 +67,7 @@ const Swiper = forwardRefWithStatics(
     const swiperSource = useRef<SwiperChangeSource>('autoplay'); // swiper变化来源
     const previousIndex = useRef(current || defaultCurrent || 0); // 上一次轮播页索引
     const nextIndex = useRef(previousIndex.current);
-    const items = useRef<
-      {
-        element: RefObject<HTMLDivElement>;
-        updateTranslateStyle: (style: string) => void;
-        updateClassNameSuffix: (extraClassName: string) => void;
-      }[]
-    >([]); // swiper子项
+    const items = useRef<SwiperItemReference[]>([]); // swiper子项
     const [itemCount, setItemCount] = useState(0); // 轮播子项数量
 
     const isVertical = useMemo(() => direction === 'vertical', [direction]); // 轮播滑动方向(垂直)
@@ -153,10 +152,26 @@ const Swiper = forwardRefWithStatics(
     });
     const [dotIndex, setDotIndex] = useState(previousIndex.current); // 当前索引
 
+    const getRect = (element: HTMLDivElement) => {
+      const width = element?.offsetWidth ?? 0;
+      const height = element?.offsetHeight ?? 0;
+      return { width, height };
+    };
+
+    const generateTransform = (axis: string, step: number) => `translate${axis}(${100 * step}%)`;
+
+    const updateItemTranslateStyle = useCallback((itemRef: SwiperItemReference, axis: string, step: number) => {
+      itemRef?.updateTranslateStyle(generateTransform(axis, step));
+    }, []);
+
+    const updateItemClassNameSuffix = useCallback((itemRef: SwiperItemReference, suffix: string) => {
+      itemRef?.updateClassNameSuffix(suffix);
+    }, []);
+
     const updateContainerTransfrom = (axis: string, step: number) => {
       setSwiperStyle((prevState) => ({
         ...prevState,
-        transform: `translate${axis}(${100 * step}%)`,
+        transform: generateTransform(axis, step),
       }));
     };
 
@@ -167,57 +182,87 @@ const Swiper = forwardRefWithStatics(
       }));
     };
 
-    const updateSwiperItemPosition = (axis: string, activeIndex: number, loop: boolean) => {
-      if (items.current.length <= 1) return;
-      const lastIndex = items.current.length - 1;
-      items.current.forEach((item, index) => {
-        let step = index - activeIndex;
-        if (loop) {
-          if (activeIndex === 0 && index === lastIndex) {
-            step = -1;
-          } else if (activeIndex === lastIndex && index === 0) {
-            step = 1;
+    const updateSwiperItemPosition = useCallback(
+      (axis: string, activeIndex: number, loop: boolean) => {
+        if (items.current.length <= 1) return;
+        const lastIndex = items.current.length - 1;
+        items.current.forEach((item, index) => {
+          let step = index - activeIndex;
+          if (loop) {
+            if (activeIndex === 0 && index === lastIndex) {
+              step = -1;
+            } else if (activeIndex === lastIndex && index === 0) {
+              step = 1;
+            }
           }
-        }
-        item.updateTranslateStyle(`translate${axis}(${step * 100}%)`);
-      });
-    };
+          updateItemTranslateStyle(item, axis, step);
+        });
+      },
+      [updateItemTranslateStyle],
+    );
 
-    const updateSwiperItemClassName = (activeIndex: number, loop: boolean) => {
-      const lastIndex = items.current.length - 1;
-      items.current.forEach((item, index) => {
-        let step = index - activeIndex;
-        if (loop) {
-          if (activeIndex === 0 && index === lastIndex) {
-            step = -1;
-          } else if (activeIndex === lastIndex && index === 0) {
-            step = 1;
+    const updateSwiperItemClassName = useCallback(
+      (activeIndex: number, loop: boolean) => {
+        const lastIndex = items.current.length - 1;
+        items.current.forEach((item, index) => {
+          let step = index - activeIndex;
+          if (loop) {
+            if (activeIndex === 0 && index === lastIndex) {
+              step = -1;
+            } else if (activeIndex === lastIndex && index === 0) {
+              step = 1;
+            }
           }
+          switch (step) {
+            case -1:
+              updateItemClassNameSuffix(item, PREV_SUFFIX);
+              break;
+            case 0:
+              updateItemClassNameSuffix(item, ACTIVE_SUFFIX);
+              break;
+            case 1:
+              updateItemClassNameSuffix(item, NEXT_SUFFIX);
+              break;
+            default:
+              updateItemClassNameSuffix(item, NONE_SUFFIX);
+              break;
+          }
+        });
+      },
+      [updateItemClassNameSuffix],
+    );
+
+    const checkSwipeItemInvisible = (activeIndex: number, axis: string, distance: number, loop: boolean) => {
+      const max = items.current.length;
+      if (max <= 1 || distance === 0 || !loop) return;
+      const prevIndex = (activeIndex + max - 1) % max;
+      const nextIndex = (activeIndex + max + 1) % max;
+      let step = 1;
+      if (distance > 0) {
+        const pItem = items.current[prevIndex];
+        updateItemClassNameSuffix(pItem, PREV_SUFFIX);
+        updateItemTranslateStyle(pItem, axis, -step);
+        if (max > 2 && distance > 0.5) {
+          step += 1;
+          const ppItem = items.current[(prevIndex + max - 1) % max];
+          updateItemClassNameSuffix(ppItem, PREV_SUFFIX);
+          updateItemTranslateStyle(ppItem, axis, -step);
         }
-        switch (step) {
-          case -1:
-            item.updateClassNameSuffix(`--prev`);
-            break;
-          case 0:
-            item.updateClassNameSuffix(`--active`);
-            break;
-          case 1:
-            item.updateClassNameSuffix(`--next`);
-            break;
-          default:
-            item.updateClassNameSuffix('');
-            break;
-        }
-      });
+        return;
+      }
+
+      const nItem = items.current[nextIndex];
+      updateItemClassNameSuffix(nItem, NEXT_SUFFIX);
+      updateItemTranslateStyle(nItem, axis, step);
+      if (max > 2 && distance < -0.5) {
+        step += 1;
+        const nnItem = items.current[(nextIndex + max + 1) % max];
+        updateItemClassNameSuffix(nnItem, NEXT_SUFFIX);
+        updateItemTranslateStyle(nnItem, axis, step);
+      }
     };
 
-    const getRect = (element: HTMLDivElement) => {
-      const width = element?.offsetWidth ?? 0;
-      const height = element?.offsetHeight ?? 0;
-      return { width, height };
-    };
-
-    const setContainerOffset = (offset: { x: number; y: number }) => {
+    const setContainerOffset = (activeIndex: number, loop: boolean, offset: { x: number; y: number }) => {
       const { x, y } = offset;
       const { width, height } = getRect(swiperContainer.current);
       let step = 0;
@@ -227,6 +272,7 @@ const Swiper = forwardRefWithStatics(
         step = y / height;
       }
 
+      checkSwipeItemInvisible(activeIndex, directionAxis, step, loop);
       step = step > 1 || step < -1 ? step / Math.abs(step) : step;
       updateContainerTransfrom(directionAxis, step);
     };
@@ -291,11 +337,11 @@ const Swiper = forwardRefWithStatics(
         setSwiperStyle((prevState) => ({
           ...prevState,
           transition: `transform ${duration}ms`,
-          transform: `translate${axis}(${-step * 100}%)`,
+          transform: generateTransform(axis, -step),
         }));
         setSwiperStatus(SwiperStatus.SWITCHING);
       },
-      [caculateSwiperItemIndex, duration, loop],
+      [caculateSwiperItemIndex, duration, loop, updateSwiperItemClassName],
     );
 
     // 退出切换状态
@@ -306,7 +352,7 @@ const Swiper = forwardRefWithStatics(
         enterIdle(axis);
         setItemChange((prevState) => !prevState);
       },
-      [caculateItemIndex, enterIdle, loop],
+      [caculateItemIndex, enterIdle, loop, updateSwiperItemPosition],
     );
 
     // 上一页
@@ -342,7 +388,7 @@ const Swiper = forwardRefWithStatics(
       onSwipe: () => {
         if (navCtrlActive.current || !items.current.length) return;
         if (swiperStatus !== SwiperStatus.STARTDRAG) return;
-        setContainerOffset(offset());
+        setContainerOffset(previousIndex.current, loop, offset());
       },
       onSwipeEnd: () => {
         if (navCtrlActive.current || !items.current.length) return;
@@ -367,7 +413,7 @@ const Swiper = forwardRefWithStatics(
       updateSwiperItemClassName(previousIndex.current, loop);
       setDotIndex(() => previousIndex.current);
       updateSwiperItemPosition(directionAxis, previousIndex.current, loop);
-    }, [caculateItemIndex, directionAxis, enterSwitching, loop]);
+    }, [caculateItemIndex, directionAxis, enterSwitching, loop, updateSwiperItemClassName, updateSwiperItemPosition]);
 
     useEffect(() => {
       if (currentIsNull) return;
@@ -389,7 +435,7 @@ const Swiper = forwardRefWithStatics(
         return;
       }
       if (!items.current.length) return;
-      const rect = items.current[0].element.current.getBoundingClientRect();
+      const rect = items.current[0].divRef.current.getBoundingClientRect();
       if (rect) {
         forceContainerHeight(rect.height);
       }
@@ -434,17 +480,13 @@ const Swiper = forwardRefWithStatics(
             forceContainerHeight(height);
           }
         },
-        addChild: (
-          element: RefObject<HTMLDivElement>,
-          updateTranslateStyle: (style: string) => void,
-          updateClassNameSuffix: (classNameSuffix: string) => void,
-        ) => {
-          items.current.push({ element, updateTranslateStyle, updateClassNameSuffix });
+        addChild: (ref: SwiperItemReference) => {
+          items.current.push(ref);
           setItemCount(items.current.length);
         },
-        removeChild: (element: RefObject<HTMLDivElement>) => {
-          if (!element) return;
-          const index = items.current.findIndex((item) => item.element === element);
+        removeChild: (divRef: RefObject<HTMLDivElement>) => {
+          if (!divRef) return;
+          const index = items.current.findIndex((item) => item.divRef === divRef);
           if (index === -1) return;
           items.current.splice(index, 1);
           setItemCount(items.current.length);

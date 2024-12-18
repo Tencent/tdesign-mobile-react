@@ -47,7 +47,7 @@ export default function Base() {
         interval={interval}
         duration={duration}
         autoplay={!!autoPlay}
-        defaultCurrent={3}
+        defaultCurrent={1}
         direction="vertical"
         navigation={{ type: 'dots', paginationPosition: 'right' }}
       >

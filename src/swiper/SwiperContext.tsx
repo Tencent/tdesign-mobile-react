@@ -1,12 +1,14 @@
 import React, { RefObject } from 'react';
 
+export interface SwiperItemReference {
+  divRef: RefObject<HTMLDivElement>;
+  updateTranslateStyle: (style: string) => void;
+  updateClassNameSuffix: (extraClassName: string) => void;
+}
+
 interface SwiperContextProps {
-  addChild?: (
-    item: RefObject<HTMLDivElement>,
-    updateTranslateStyle: (style: string) => void,
-    updateClassNameSuffix: (classNameSuffix: string) => void,
-  ) => void;
-  removeChild?: (element: RefObject<HTMLDivElement>) => void;
+  addChild?: (ref: SwiperItemReference) => void;
+  removeChild?: (divRef: RefObject<HTMLDivElement>) => void;
   forceContainerHeight?: (height: number | string) => void;
 }
 
