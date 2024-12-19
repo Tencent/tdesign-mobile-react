@@ -1,0 +1,57 @@
+
+.t-swiper {
+  &-item {
+    &--image-host {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      overflow: hidden;
+      justify-content: center;
+      position: relative;
+
+      & > * {
+        border-radius: 8px;
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+        max-width: none;
+        object-fit: cover;
+      }
+    }
+  }
+  
+  &__container--card {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+
+  &--card {
+    .t-swiper-item {
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      z-index: 0;
+      &--active{
+        z-index: 1;
+      }
+    }
+
+    .t-swiper-item--image-host {
+      transition: all 0.3s ease;
+    }
+
+    .t-swiper-item--image-host--prev{
+      right: 6px;
+    }
+
+    .t-swiper-item--image-host--next{
+      left: 6px;
+    }
+  }
+}
