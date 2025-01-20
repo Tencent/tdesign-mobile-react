@@ -10,6 +10,7 @@ import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 
 export interface SwiperProps extends TdSwiperProps, StyledProps {
   children?: React.ReactNode;
+  touchable?: Boolean;
 }
 
 const Swiper = forwardRefWithStatics(
@@ -29,6 +30,7 @@ const Swiper = forwardRefWithStatics(
       className,
       style,
       children,
+      touchable = true, // 是否可以通过手势滑动
     } = props;
 
     const { classPrefix } = useConfig();
@@ -179,11 +181,15 @@ const Swiper = forwardRefWithStatics(
       }, duration + 50); // 多 50ms 的间隔时间防止动画未执行完就跳转了
     }, [currentIndex, swiperItemLength, duration, direction]);
 
-    /** ******************************************************************
-     * 触摸事件处理方法
-     */
     // 触摸滑动事件 - 开始
     const handleTouchStart = (e: React.TouchEvent) => {
+      if (
+        !touchable ||
+        // avoid resetting position on multi-finger touch
+        e.touches.length > 1
+      )
+        return;
+
       e.stopPropagation();
       isHovering.current = true;
       clearTimer();
@@ -197,6 +203,7 @@ const Swiper = forwardRefWithStatics(
     // 触摸滑动事件 - 滑动中
     const handleTouchMove = useCallback(
       (e: React.TouchEvent) => {
+        if (!touchable) return;
         e.stopPropagation();
 
         if (moveStartSite) {
@@ -221,11 +228,12 @@ const Swiper = forwardRefWithStatics(
           }
         }
       },
-      [setTouchMoveDistance, moveStartSite, direction, currentIndex, loop, childrenLength],
+      [setTouchMoveDistance, moveStartSite, direction, currentIndex, loop, childrenLength, touchable],
     );
 
     // 触摸滑动事件 - 结束
     const handleTouchEnd = (e: React.TouchEvent) => {
+      if (!touchable) return;
       e.stopPropagation();
       if (touchMoveDistance / swiperOuterWidth <= -0.3) {
         // swiperTo(currentIndex + 1, { source: 'touch' });
