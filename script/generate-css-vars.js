@@ -45,8 +45,8 @@ const matchReg = /(?<=var).*?(?=;)/g;
 const cssVariableHeadContent = `\n\n### CSS Variables\n\n组件提供了下列 CSS 变量，可用于自定义样式。\n名称 | 默认值 | 描述 \n-- | -- | --\n`;
 const cssVariableHeadContentEn = `\n\n### CSS Variables\n\nThe component provides the following CSS variables, which can be used to customize styles.\nName | Default Value | Description \n-- | -- | --\n`;
 
-fs.appendFileSync(resolveCwd(`src/_common/docs/mobile/api/${COMPONENT_NAME}.md`), cssVariableHeadContent);
-fs.appendFileSync(resolveCwd(`src/_common/docs/mobile/api/${COMPONENT_NAME}.en-US.md`), cssVariableHeadContentEn);
+fs.appendFileSync(resolveCwd(`src/${COMPONENT_NAME}/${COMPONENT_NAME}.md`), cssVariableHeadContent);
+fs.appendFileSync(resolveCwd(`src/${COMPONENT_NAME}/${COMPONENT_NAME}.en-US.md`), cssVariableHeadContentEn);
 
 // 读取 less 文件内容
 lessPath.forEach((item) => {
@@ -65,8 +65,9 @@ lessPath.forEach((item) => {
         )} | - \n`;
       });
 
-      fs.appendFileSync(resolveCwd(`src/_common/docs/mobile/api/${COMPONENT_NAME}.md`), cssVariableBodyContent);
-      fs.appendFileSync(resolveCwd(`src/_common/docs/mobile/api/${COMPONENT_NAME}.en-US.md`), cssVariableBodyContent);
+      // src/notice-bar/notice-bar.en-US.md
+      fs.appendFileSync(resolveCwd(`src/${COMPONENT_NAME}/${COMPONENT_NAME}.md`), cssVariableBodyContent);
+      fs.appendFileSync(resolveCwd(`src/${COMPONENT_NAME}/${COMPONENT_NAME}.en-US.md`), cssVariableBodyContent);
     });
   }
 });
