@@ -28,10 +28,10 @@ export default function Base() {
               <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper1.png" />
             </Swiper.SwiperItem>
             <Swiper.SwiperItem>
-              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/site/swiper/04.png" />
+              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper2.png" />
             </Swiper.SwiperItem>
             <Swiper.SwiperItem>
-              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/site/swiper/05.png" />
+              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper1.png" />
             </Swiper.SwiperItem>
           </Swiper>
         </div>
@@ -47,10 +47,10 @@ export default function Base() {
               <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper1.png" />
             </Swiper.SwiperItem>
             {/* <Swiper.SwiperItem>
-              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/site/swiper/04.png" />
+              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper2.png" />
             </Swiper.SwiperItem>
             <Swiper.SwiperItem>
-              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/site/swiper/05.png" />
+              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper1.png" />
             </Swiper.SwiperItem> */}
           </Swiper>
         </div>
@@ -66,10 +66,10 @@ export default function Base() {
               <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper1.png" />
             </Swiper.SwiperItem>
             <Swiper.SwiperItem>
-              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/site/swiper/04.png" />
+              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper2.png" />
             </Swiper.SwiperItem>
             <Swiper.SwiperItem>
-              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/site/swiper/05.png" />
+              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper1.png" />
             </Swiper.SwiperItem>
           </Swiper>
         </div>
@@ -85,10 +85,10 @@ export default function Base() {
               <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper1.png" />
             </Swiper.SwiperItem>
             <Swiper.SwiperItem>
-              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/site/swiper/04.png" />
+              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper2.png" />
             </Swiper.SwiperItem>
             <Swiper.SwiperItem>
-              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/site/swiper/05.png" />
+              <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper1.png" />
             </Swiper.SwiperItem>
           </Swiper>
         </div>
