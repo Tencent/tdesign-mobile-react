@@ -39,7 +39,7 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
     content,
     defaultChecked,
     contentDisabled,
-    placement,
+    placement = 'left',
     disabled,
     icon,
     label,

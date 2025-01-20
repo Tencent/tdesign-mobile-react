@@ -15,8 +15,7 @@ export const radioDefaultProps: TdRadioProps = {
   icon: 'circle',
   maxContentRow: 5,
   maxLabelRow: 3,
-  placement: 'left',
-  readonly: false,
+  readonly: undefined,
   value: undefined,
 };
 
@@ -26,4 +25,5 @@ export const radioGroupDefaultProps: TdRadioGroupProps = {
   disabled: undefined,
   icon: 'circle',
   placement: 'left',
+  readonly: undefined,
 };
