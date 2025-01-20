@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseDemo from './base';
-import IconDemo from './icon';
+import IconDemo from './iconDemo';
 import SuffixIcon from './suffixIcon';
 import Event from './event';
 import CustomDemo from './custom';
