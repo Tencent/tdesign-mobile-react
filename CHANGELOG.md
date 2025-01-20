@@ -5,6 +5,18 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.10.0 `2025-01-20` 
+### 🚀 Features
+- `Radio`: 组件重构，新增 `block`、`borderless`、`placement` 与 `readonly` 等属性 @byq1213 ([#468](https://github.com/Tencent/tdesign-mobile-react/pull/468))
+- `RadioGroup`: 组件重构，新增 `allowUncheck`、`borderless`、`keys` 、`placement`  与 `readonly` 等属性 @byq1213 ([#468](https://github.com/Tencent/tdesign-mobile-react/pull/468)) @liweijie0812 ([#555](https://github.com/Tencent/tdesign-mobile-react/pull/555))
+- `Rate`: 组件重构，废弃 `variant` 属性， 新增 `placement`  与 `icon` 属性 @ming680 ([#493](https://github.com/Tencent/tdesign-mobile-react/pull/493))
+- `Input`: 新增 `enterkeyhint` API 用于控制回车键样式，此 API 仅在部分浏览器支持，HTML5 原生属性。新增 `spellcheck` API 是否开启拼写检查，HTML5 原生属性 @liweijie0812 ([#553](https://github.com/Tencent/tdesign-mobile-react/pull/553))
+- `Icon`: 新增`logo-alipay`、`logo-behance-filled`等图标，修改`logo-wecom`图标，移除不合理的`logo-wecom-filled`图标，并优化部分图标的绘制路径 @uyarn @tdesign-bot ([#559](https://github.com/Tencent/tdesign-mobile-react/pull/559))
+- `Swiper`: 新增 `touchable` 属性 @anlyyao ([#565](https://github.com/Tencent/tdesign-mobile-react/pull/565))
+### 🐞 Bug Fixes
+- `Swiper`: 修复缺少 `ref` 传递导致的控制台报错问题 @cc-weng ([#534](https://github.com/Tencent/tdesign-mobile-react/pull/534))
+
+
 ## 🌈 0.9.0 `2024-11-11` 
 ### ❗ Breaking Changes
 - `Textarea`: 组件重构，新增 `allowInputOverMax`，`bordered` 与 `readonly` 等属性 @anlyyao ([#526](https://github.com/Tencent/tdesign-mobile-react/pull/526))
