@@ -277,5 +277,10 @@ export default {
       name: 'guide',
       component: () => import('tdesign-mobile-react/guide/_example/index.tsx'),
     },
+    {
+      title: 'ColorPicker 颜色选择器',
+      name: 'color-picker',
+      component: () => import('tdesign-mobile-react/color-picker/_example/index.tsx'),
+    },
   ],
 };

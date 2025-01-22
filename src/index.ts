@@ -31,6 +31,7 @@ export * from './stepper';
 export * from './switch';
 export * from './textarea';
 export * from './upload';
+export * from './color-picker';
 
 /**
  * 数据展示（11个）

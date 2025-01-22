@@ -154,6 +154,12 @@ export default {
           path: '/mobile-react/components/checkbox',
           component: () => import('tdesign-mobile-react/checkbox/checkbox.md'),
         },
+        {
+          title: 'ColorPicker 颜色选择器',
+          name: 'color-picker',
+          path: '/mobile-react/components/color-picker',
+          component: () => import('tdesign-mobile-react/color-picker/color-picker.md'),
+        },
         // {
         //   title: 'DateTimePicker 时间选择器',
         //   name: 'date-time-picker',
