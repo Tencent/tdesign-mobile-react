@@ -1,8 +1,8 @@
 import React, { FC, TouchEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { Popup } from 'tdesign-mobile-react';
+import { ColorPickerChangeTrigger, Popup } from 'tdesign-mobile-react';
 import classNames from 'classnames';
 import { usePrefixClass } from '../hooks/useClass';
-import { Color, Coordinate } from '../_common/js/color-picker';
+import { Color, Coordinate, getColorObject } from '../_common/js/color-picker';
 import {
   DEFAULT_COLOR,
   SATURATION_PANEL_DEFAULT_HEIGHT,
@@ -32,8 +32,11 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
     style,
     value,
     defaultValue,
+    onChange,
+    onClose,
+    onPaletteBarChange,
   } = useDefaultProps(props, colorPickerDefaultProps);
-  const { showOverlay = false, zIndex = 11500, overlayProps } = popupProps;
+  const { showOverlay = true, zIndex = 11500, overlayProps } = popupProps;
   const [show, setShow] = useState<boolean>(false);
   const [formatList, setFormatList] = useState([]);
   const [innerSwatchList, setInnerSwatchList] = useState([]);
@@ -63,6 +66,8 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
     color: '',
     left: '0%',
   });
+  const saturationElementRef = useRef<HTMLDivElement>(null);
+  const sliderElementRef = useRef<HTMLDivElement>(null);
   const hasInit = useRef<boolean>(false);
   const color = useRef<Color>(null);
   const timer = useRef(null);
@@ -116,26 +121,23 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
 
   const getEleRect = useCallback(
     (format: ColorPickerProps['format']) => {
-      Promise.all([
-        document.querySelector(`.${rootClassName}__saturation`),
-        document.querySelector(`.${rootClassName}__slider`),
-      ]).then(([saturationRect, sliderRect]) => {
-        setPanelRect({
-          width: saturationRect.clientWidth || SATURATION_PANEL_DEFAULT_WIDTH,
-          height: saturationRect.clientHeight || SATURATION_PANEL_DEFAULT_HEIGHT,
-          left: saturationRect.clientLeft || 0,
-          top: saturationRect.clientTop || 0,
-        });
-        setSilderRect({
-          left: sliderRect.clientLeft || 0,
-          width: sliderRect.clientWidth || SLIDER_DEFAULT_WIDTH,
-        });
-        setTimeout(() => {
-          setCoreStyle(format);
-        });
+      const saturationRect = saturationElementRef.current.getBoundingClientRect();
+      const sliderRect = sliderElementRef.current.getBoundingClientRect();
+      setPanelRect({
+        width: saturationRect.width || SATURATION_PANEL_DEFAULT_WIDTH,
+        height: saturationRect.height || SATURATION_PANEL_DEFAULT_HEIGHT,
+        left: saturationRect.left || 0,
+        top: saturationRect.top || 0,
+      });
+      setSilderRect({
+        left: sliderRect.left || 0,
+        width: sliderRect.width || SLIDER_DEFAULT_WIDTH,
+      });
+      setTimeout(() => {
+        setCoreStyle(format);
       });
     },
-    [rootClassName, setCoreStyle],
+    [setCoreStyle],
   );
 
   useEffect(() => {
@@ -145,14 +147,13 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
   useEffect(() => {
     function init() {
       const innerValue = value || defaultValue;
-      if (!innerValue) {
-        return;
-      }
       const result = innerValue || DEFAULT_COLOR;
       color.current = new Color(result);
       color.current.update(result);
-      getEleRect(format);
       hasInit.current = true;
+      setTimeout(() => {
+        getEleRect(format);
+      });
     }
 
     if (hasInit.current) {
@@ -179,7 +180,7 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
 
   useEffect(() => {
     if (timer.current) {
-      clearTimeout(timer.current);
+      return;
     }
 
     if (usePopup && show) {
@@ -187,7 +188,11 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
         getEleRect(format);
       }, 350);
     }
-  }, [usePopup, show, format, getEleRect]);
+
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, [usePopup, show, getEleRect, format]);
 
   function getSaturationAndValueByCoordinate(coordinate: Coordinate) {
     const { width, height } = panelRect;
@@ -215,33 +220,46 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
     } else {
       color.current.hue = value;
     }
+    emitColorChange(isAlpha ? 'palette-alpha-bar' : 'palette-hue-bar');
     setCoreStyle(format);
   }
 
   function handleSliderDrag(e: TouchEvent, isAlpha = false) {
-    const { width } = this.data.sliderRect;
-    const coordinate = getCoordinate(e, this.data.sliderRect);
+    const { width } = sliderRect;
+    const coordinate = getCoordinate(e, sliderRect);
     const { x } = coordinate;
     const maxValue = isAlpha ? ALPHA_MAX : HUE_MAX;
 
     let value = Math.round((x / width) * maxValue * 100) / 100;
-    if (value < 0) value = 0;
-    if (value > maxValue) value = maxValue;
+    if (value < 0) {
+      value = 0;
+    }
+    if (value > maxValue) {
+      value = maxValue;
+    }
     handleChangeSlider({ value, isAlpha });
   }
 
   function onChangeSaturation({ saturation, value }) {
     const { saturation: sat, value: val } = color.current;
+    let changeTrigger: ColorPickerChangeTrigger = 'palette-saturation-brightness';
     if (value !== val && saturation !== sat) {
       color.current.saturation = saturation;
       color.current.value = value;
+      changeTrigger = 'palette-saturation-brightness';
     } else if (saturation !== sat) {
       color.current.saturation = saturation;
+      changeTrigger = 'palette-saturation';
     } else if (value !== val) {
       color.current.value = value;
+      changeTrigger = 'palette-brightness';
     } else {
       return;
     }
+    emitColorChange(changeTrigger);
+    onPaletteBarChange?.({
+      color: getColorObject(color.current),
+    });
     setCoreStyle(format);
   }
 
@@ -261,10 +279,23 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
     }
   }
 
+  function formatValue() {
+    return color.current.getFormatsColorMap()[format] || color.current.css;
+  }
+
+  function emitColorChange(trigger: ColorPickerChangeTrigger) {
+    const value = formatValue();
+    onChange?.(value, {
+      trigger,
+      color: getColorObject(color.current),
+    });
+  }
+
   const handleVisibleChange = () => {
     if (autoClose) {
       setShow(false);
     }
+    onClose?.('overlay');
   };
   const onTouchStart = (e: TouchEvent, dragType: string) => {
     handleDiffDrag(dragType, e);
@@ -282,6 +313,7 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
   const handleSwatchClicked = (swatch: string) => {
     color.current.update(swatch);
     setCoreStyle(format);
+    emitColorChange('preset');
   };
 
   const renderPicker = () => {
@@ -301,9 +333,9 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
         />
         <div
           className={`${rootClassName}__slider`}
-          onTouchStart={(e) => onTouchStart(e, 'hue-slider')}
-          onTouchMove={(e) => onTouchMove(e, 'hue-slider')}
-          onTouchEnd={(e) => onTouchEnd(e, 'hue-slider')}
+          onTouchStart={(e) => onTouchStart(e, 'alpha-slider')}
+          onTouchMove={(e) => onTouchMove(e, 'alpha-slider')}
+          onTouchEnd={(e) => onTouchEnd(e, 'alpha-slider')}
         >
           <div
             className={`${rootClassName}__rail`}
@@ -318,6 +350,7 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
       <>
         <div
           className={`${rootClassName}__saturation`}
+          ref={saturationElementRef}
           style={{ background: `hsl(${sliderInfo}, 100%, 50%)` }}
           onTouchStart={(e) => onTouchStart(e, 'saturation')}
           onTouchMove={(e) => onTouchMove(e, 'saturation')}
@@ -325,7 +358,24 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
         >
           <div
             className={`${rootClassName}__thumb`}
-            style={{ top: `${saturationThumbStyle.top}px`, left: `${saturationThumbStyle.left}px` }}
+            style={
+              saturationThumbStyle.color
+                ? {
+                    top: `${saturationThumbStyle.top}`,
+                    left: `${saturationThumbStyle.left}`,
+                    color: `${saturationThumbStyle.color}`,
+                  }
+                : { top: `${saturationThumbStyle.top}`, left: `${saturationThumbStyle.left}` }
+            }
+            onTouchStart={(e) => {
+              e.stopPropagation();
+            }}
+            onTouchMove={(e) => {
+              e.stopPropagation();
+            }}
+            onTouchEnd={(e) => {
+              e.stopPropagation();
+            }}
           />
         </div>
         <div className={`${rootClassName}__sliders-wrapper`}>
@@ -335,9 +385,10 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
             >
               <div
                 className={`${rootClassName}__slider`}
-                onTouchStart={(e) => onTouchStart(e, 'alpha-slider')}
-                onTouchMove={(e) => onTouchMove(e, 'alpha-slider')}
-                onTouchEnd={(e) => onTouchEnd(e, 'alpha-slider')}
+                ref={sliderElementRef}
+                onTouchStart={(e) => onTouchStart(e, 'hue-slider')}
+                onTouchMove={(e) => onTouchMove(e, 'hue-slider')}
+                onTouchEnd={(e) => onTouchEnd(e, 'hue-slider')}
               >
                 <div className={`${rootClassName}__rail`} />
                 <div

@@ -6,9 +6,7 @@ import { PanelRectType } from '../types';
 
 export const getCoordinate = (e: TouchEvent, rect: PanelRectType, isPopup?: boolean) => {
   const { pageX, pageY, clientY } = e?.changedTouches?.[0] || {};
-
-  const offsetY = isPopup ? rect.top : e.currentTarget?.scrollTop;
-
+  const offsetY = isPopup ? rect.top : (e.target as HTMLElement).offsetTop;
   return {
     x: Math.min(Math.max(0, pageX - rect.left), rect.width),
     y: Math.min(Math.max(0, (isPopup ? clientY : pageY) - offsetY), rect.height),
@@ -41,7 +39,7 @@ export const getFormatList = (format: ColorPickerProps['format'], color: Color) 
 
 export const genSwatchList = (prop: ColorPickerProps['swatchColors']) => {
   if (prop === undefined) {
-    return DEFAULT_SYSTEM_SWATCH_COLORS;
+    return DEFAULT_SYSTEM_SWATCH_COLORS.slice(0, 10);
   }
   if (!prop || !prop.length) {
     return [];
