@@ -121,6 +121,9 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
 
   const getEleRect = useCallback(
     (format: ColorPickerProps['format']) => {
+      if (!saturationElementRef.current || !sliderElementRef.current) {
+        return;
+      }
       const saturationRect = saturationElementRef.current.getBoundingClientRect();
       const sliderRect = sliderElementRef.current.getBoundingClientRect();
       setPanelRect({
