@@ -1,10 +1,4 @@
----
-title: Cell 宫格
-description: 用于各个类别行的信息展示。
-spline: base
-isComponent: true
-toc: false
----
+:: BASE_DOC ::
 
 ## API
 
