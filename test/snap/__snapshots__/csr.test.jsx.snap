@@ -35008,7 +35008,7 @@ exports[`csr snapshot test > csr test src/notice-bar/_example/mobile.tsx 1`] = `
           >
             <div
               class="t-swiper t-notice-bar__content--vertical"
-              style="overflow: hidden;"
+              style="overflow: hidden; height: var(--td-notice-bar-height, 22px);"
             >
               <div
                 class="t-swiper__container"
@@ -35164,7 +35164,7 @@ exports[`csr snapshot test > csr test src/notice-bar/_example/scrolling.tsx 1`] 
     >
       <div
         class="t-swiper t-notice-bar__content--vertical"
-        style="overflow: hidden;"
+        style="overflow: hidden; height: var(--td-notice-bar-height, 22px);"
       >
         <div
           class="t-swiper__container"
