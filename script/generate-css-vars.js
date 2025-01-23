@@ -5,7 +5,7 @@ function resolveCwd(...args) {
   args.unshift(process.cwd());
   return path.join(...args);
 }
-
+// node script/generate-css-vars.js --NAME Cell
 const COMPONENT_NAME = process.argv[process.argv.indexOf('--NAME') + 1]; // 在 --NAME 后面
 
 // 组件名作为参数传入
