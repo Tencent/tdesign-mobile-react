@@ -66517,6 +66517,701 @@ exports[`csr snapshot test > csr test src/toast/_example/theme.tsx 1`] = `
 </div>
 `;
 
+exports[`csr snapshot test > csr test src/upload/_example/base.tsx 1`] = `
+<div>
+  <div
+    class="upload-demo"
+  >
+    <h3
+      class="upload-title"
+    >
+      上传图片
+    </h3>
+    <div
+      class="t-upload"
+    >
+      <div
+        class="t-upload__item t-upload__item--add"
+      >
+        <div
+          class="t-upload__add-icon"
+        >
+          <svg
+            class="t-icon t-icon-add"
+            fill="none"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+          >
+            <path
+              d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+      <input
+        accept="image/png"
+        hidden=""
+        type="file"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/upload/_example/custom.tsx 1`] = `
+<div>
+  <div
+    class="upload-demo"
+  >
+    <div
+      class="upload-title"
+    >
+      请上传身份证人像面
+    </div>
+    <div
+      class="upload-content"
+    >
+      <div
+        class="t-upload front"
+      >
+        <div
+          class="t-upload__item t-upload__item--add"
+        >
+          <div
+            class="t-upload__add-icon"
+          >
+            <div
+              class="add-content"
+            >
+              <div
+                class="t-image t-image--square content-img"
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  alt=""
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/upload3.png"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <input
+          accept="image/png"
+          hidden=""
+          type="file"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      class="upload-title"
+    >
+      请上传身份证国徽面
+    </div>
+    <div
+      class="upload-content"
+    >
+      <div
+        class="t-upload reverse"
+      >
+        <div
+          class="t-upload__item t-upload__item--add"
+        >
+          <div
+            class="t-upload__add-icon"
+          >
+            <div
+              class="add-content"
+            >
+              <div
+                class="t-image t-image--square content-img"
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  alt=""
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/upload3.png"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <input
+          accept="image/png"
+          hidden=""
+          type="file"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/upload/_example/multiple.tsx 1`] = `
+<div>
+  <div
+    class="upload-demo"
+  >
+    <div
+      class="upload-title"
+    >
+      多选上传
+    </div>
+    <div
+      class="t-upload"
+    >
+      <div
+        class="t-upload__item"
+      >
+        <div>
+          <div
+            class="t-image t-image--round t-upload__image"
+          >
+            <div
+              class="t-image__mask"
+            >
+              <div
+                class="t-loading t-loading--center"
+                style="font-size: 20px;"
+              >
+                <div
+                  class="t-loading__dots"
+                  style="animation-duration: 800ms; width: 20px; height: 20px;"
+                >
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0s;"
+                  />
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                  />
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                  />
+                </div>
+              </div>
+            </div>
+            <img
+              class="t-image__img t-image--fit-fill t-image--position-center"
+              src="https://tdesign.gtimg.com/mobile/demos/upload4.png"
+            />
+          </div>
+        </div>
+        <svg
+          class="t-icon t-icon-close t-upload__delete-btn"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M7.05 5.64L12 10.59l4.95-4.95 1.41 1.41L13.41 12l4.95 4.95-1.41 1.41L12 13.41l-4.95 4.95-1.41-1.41L10.59 12 5.64 7.05l1.41-1.41z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="t-upload__item"
+      >
+        <div>
+          <div
+            class="t-image t-image--round t-upload__image"
+          >
+            <div
+              class="t-image__mask"
+            >
+              <div
+                class="t-loading t-loading--center"
+                style="font-size: 20px;"
+              >
+                <div
+                  class="t-loading__dots"
+                  style="animation-duration: 800ms; width: 20px; height: 20px;"
+                >
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0s;"
+                  />
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                  />
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                  />
+                </div>
+              </div>
+            </div>
+            <img
+              class="t-image__img t-image--fit-fill t-image--position-center"
+              src="https://tdesign.gtimg.com/mobile/demos/upload6.png"
+            />
+          </div>
+        </div>
+        <svg
+          class="t-icon t-icon-close t-upload__delete-btn"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M7.05 5.64L12 10.59l4.95-4.95 1.41 1.41L13.41 12l4.95 4.95-1.41 1.41L12 13.41l-4.95 4.95-1.41-1.41L10.59 12 5.64 7.05l1.41-1.41z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="t-upload__item"
+      >
+        <div>
+          <div
+            class="t-image t-image--round t-upload__image"
+          >
+            <div
+              class="t-image__mask"
+            >
+              <div
+                class="t-loading t-loading--center"
+                style="font-size: 20px;"
+              >
+                <div
+                  class="t-loading__dots"
+                  style="animation-duration: 800ms; width: 20px; height: 20px;"
+                >
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0s;"
+                  />
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                  />
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                  />
+                </div>
+              </div>
+            </div>
+            <img
+              class="t-image__img t-image--fit-fill t-image--position-center"
+              src="https://tdesign.gtimg.com/mobile/demos/upload4.png"
+            />
+          </div>
+        </div>
+        <svg
+          class="t-icon t-icon-close t-upload__delete-btn"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M7.05 5.64L12 10.59l4.95-4.95 1.41 1.41L13.41 12l4.95 4.95-1.41 1.41L12 13.41l-4.95 4.95-1.41-1.41L10.59 12 5.64 7.05l1.41-1.41z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="t-upload__item t-upload__item--add"
+      >
+        <div
+          class="t-upload__add-icon"
+        >
+          <svg
+            class="t-icon t-icon-add"
+            fill="none"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+          >
+            <path
+              d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+      <input
+        hidden=""
+        multiple=""
+        type="file"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/upload/_example/status.tsx 1`] = `
+<div>
+  <div
+    class="upload-demo"
+  >
+    <div
+      class="upload-title"
+    >
+      上传图片
+    </div>
+    <div
+      class="t-upload"
+    >
+      <div
+        class="t-upload__item"
+      >
+        <div>
+          <div
+            class="t-image t-image--round t-upload__image"
+          >
+            <div
+              class="t-image__mask"
+            >
+              <div
+                class="t-loading t-loading--center"
+                style="font-size: 20px;"
+              >
+                <div
+                  class="t-loading__dots"
+                  style="animation-duration: 800ms; width: 20px; height: 20px;"
+                >
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0s;"
+                  />
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                  />
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                  />
+                </div>
+              </div>
+            </div>
+            <img
+              class="t-image__img t-image--fit-fill t-image--position-center"
+              src="https://tdesign.gtimg.com/mobile/demos/upload6.png"
+            />
+          </div>
+        </div>
+        <div
+          class="t-upload__progress-mask"
+        >
+          <svg
+            class="t-icon t-icon-loading t-upload__progress-loading"
+            fill="none"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+          >
+            <path
+              d="M12 2.25a9.75 9.75 0 000 19.5v-2.44A7.31 7.31 0 1119.31 12h2.44A9.75 9.75 0 0012 2.25z"
+              fill="currentColor"
+              fill-opacity="0.9"
+            />
+          </svg>
+          <div
+            class="t-upload__progress-text"
+          >
+            上传中...
+          </div>
+        </div>
+        <svg
+          class="t-icon t-icon-close t-upload__delete-btn"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M7.05 5.64L12 10.59l4.95-4.95 1.41 1.41L13.41 12l4.95 4.95-1.41 1.41L12 13.41l-4.95 4.95-1.41-1.41L10.59 12 5.64 7.05l1.41-1.41z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="t-upload__item"
+      >
+        <div>
+          <div
+            class="t-image t-image--round t-upload__image"
+          >
+            <div
+              class="t-image__mask"
+            >
+              <div
+                class="t-loading t-loading--center"
+                style="font-size: 20px;"
+              >
+                <div
+                  class="t-loading__dots"
+                  style="animation-duration: 800ms; width: 20px; height: 20px;"
+                >
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0s;"
+                  />
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                  />
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                  />
+                </div>
+              </div>
+            </div>
+            <img
+              class="t-image__img t-image--fit-fill t-image--position-center"
+              src="https://tdesign.gtimg.com/mobile/demos/upload4.png"
+            />
+          </div>
+        </div>
+        <div
+          class="t-upload__progress-mask"
+        >
+          <svg
+            class="t-icon t-icon-loading t-upload__progress-loading"
+            fill="none"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+          >
+            <path
+              d="M12 2.25a9.75 9.75 0 000 19.5v-2.44A7.31 7.31 0 1119.31 12h2.44A9.75 9.75 0 0012 2.25z"
+              fill="currentColor"
+              fill-opacity="0.9"
+            />
+          </svg>
+          <div
+            class="t-upload__progress-text"
+          >
+            68%
+          </div>
+        </div>
+        <svg
+          class="t-icon t-icon-close t-upload__delete-btn"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M7.05 5.64L12 10.59l4.95-4.95 1.41 1.41L13.41 12l4.95 4.95-1.41 1.41L12 13.41l-4.95 4.95-1.41-1.41L10.59 12 5.64 7.05l1.41-1.41z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="t-upload__item t-upload__item--add"
+      >
+        <div
+          class="t-upload__add-icon"
+        >
+          <svg
+            class="t-icon t-icon-add"
+            fill="none"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+          >
+            <path
+              d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+      <input
+        accept="image/png"
+        hidden=""
+        multiple=""
+        type="file"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    class="upload-demo__title"
+  >
+    上传失败
+  </div>
+  <div
+    class="upload-demo"
+  >
+    <div
+      class="upload-title"
+    >
+      上传图片
+    </div>
+    <div
+      class="t-upload"
+    >
+      <div
+        class="t-upload__item"
+      >
+        <div>
+          <div
+            class="t-image t-image--round t-upload__image"
+          >
+            <div
+              class="t-image__mask"
+            >
+              <div
+                class="t-loading t-loading--center"
+                style="font-size: 20px;"
+              >
+                <div
+                  class="t-loading__dots"
+                  style="animation-duration: 800ms; width: 20px; height: 20px;"
+                >
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0s;"
+                  />
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                  />
+                  <div
+                    class="t-loading__dot"
+                    style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                  />
+                </div>
+              </div>
+            </div>
+            <img
+              class="t-image__img t-image--fit-fill t-image--position-center"
+              src="https://tdesign.gtimg.com/mobile/demos/upload4.png"
+            />
+          </div>
+        </div>
+        <div
+          class="t-upload__progress-mask"
+        >
+          <svg
+            class="t-icon t-icon-close-circle"
+            fill="none"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+          >
+            <path
+              d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zM7.4 15.18L10.6 12 7.4 8.82 8.82 7.4 12 10.6l3.18-3.19 1.42 1.42L13.4 12l3.19 3.18-1.42 1.42L12 13.4 8.82 16.6 7.4 15.18z"
+              fill="currentColor"
+            />
+          </svg>
+          <div
+            class="t-upload__progress-text"
+          >
+            上传失败
+          </div>
+        </div>
+        <svg
+          class="t-icon t-icon-close t-upload__delete-btn"
+          fill="none"
+          height="1em"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M7.05 5.64L12 10.59l4.95-4.95 1.41 1.41L13.41 12l4.95 4.95-1.41 1.41L12 13.41l-4.95 4.95-1.41-1.41L10.59 12 5.64 7.05l1.41-1.41z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="t-upload__item t-upload__item--add"
+      >
+        <div
+          class="t-upload__add-icon"
+        >
+          <svg
+            class="t-icon t-icon-add"
+            fill="none"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+          >
+            <path
+              d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+      <input
+        hidden=""
+        multiple=""
+        type="file"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`ssr snapshot test > ssr test src/avatar/_example/action.tsx 1`] = `"<div class="avatar-group-demo"><div class="t-avatar-group t-avatar-group-offset-right t-avatar-group-offset-right-medium"><div class="t-avatar__wrapper"><div class="t-avatar__badge"><div class="t-badge"><div class="t-badge__content"><div class="t-avatar t-avatar--medium t-avatar--circle t-avatar--border t-avatar--border-medium" style="font-size:NaNpx"><div class="t-image t-image--square"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/avatar1.png" alt=""/></div></div></div></div></div></div><div class="t-avatar__wrapper"><div class="t-avatar__badge"><div class="t-badge"><div class="t-badge__content"><div class="t-avatar t-avatar--medium t-avatar--circle t-avatar--border t-avatar--border-medium" style="font-size:NaNpx"><div class="t-image t-image--square"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/avatar2.png" alt=""/></div></div></div></div></div></div><div class="t-avatar__wrapper"><div class="t-avatar__badge"><div class="t-badge"><div class="t-badge__content"><div class="t-avatar t-avatar--medium t-avatar--circle t-avatar--border t-avatar--border-medium" style="font-size:NaNpx"><div class="t-image t-image--square"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/avatar3.png" alt=""/></div></div></div></div></div></div><div class="t-avatar__wrapper"><div class="t-avatar__badge"><div class="t-badge"><div class="t-badge__content"><div class="t-avatar t-avatar--medium t-avatar--circle t-avatar--border t-avatar--border-medium" style="font-size:NaNpx"><div class="t-image t-image--square"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/avatar4.png" alt=""/></div></div></div></div></div></div><div class="t-avatar__wrapper"><div class="t-avatar__badge"><div class="t-badge"><div class="t-badge__content"><div class="t-avatar t-avatar--medium t-avatar--circle t-avatar--border t-avatar--border-medium" style="font-size:NaNpx"><div class="t-image t-image--square"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/avatar5.png" alt=""/></div></div></div></div></div></div><div class="t-avatar-group__collapse--default"><div class="t-avatar__wrapper"><div class="t-avatar__badge"><div class="t-badge"><div class="t-badge__content"><div class="t-avatar t-avatar--medium t-avatar--circle t-avatar--border t-avatar--border-medium" style="font-size:NaNpx"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-user-add" style="font-size:24px"><path fill="currentColor" d="M11.5 4a3.5 3.5 0 100 7 3.5 3.5 0 000-7zM6 7.5a5.5 5.5 0 1111 0 5.5 5.5 0 01-11 0zM19 13v4h4v2h-4v4h-2v-4h-4v-2h4v-4h2zM8 16a4 4 0 00-4 4h8.05v2H2v-2a6 6 0 016-6h4v2H8z"></path></svg></div></div></div></div></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/avatar/_example/badgeAvatar.tsx 1`] = `"<div class="avatar-demo"><div class="t-avatar__wrapper avatar-example"><div class="t-avatar__badge"><div class="t-badge"><div class="t-badge__content"><div class="t-avatar t-avatar--medium t-avatar--circle" style="font-size:NaNpx"><div class="t-image t-image--square"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/avatar1.png" alt=""/></div></div></div><div class="t-badge--basic t-badge--dot t-badge--medium t-badge--circle t-has-count" style="right:4px;top:4px"></div></div></div></div><div class="t-avatar__wrapper avatar-example external-class-content"><div class="t-avatar__badge"><div class="t-badge"><div class="t-badge__content"><div class="t-avatar t-avatar--medium t-avatar--circle" style="font-size:NaNpx">A</div></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count" style="right:6px;top:6px">8</div></div></div></div><div class="t-avatar__wrapper avatar-example"><div class="t-avatar__badge"><div class="t-badge"><div class="t-badge__content"><div class="t-avatar t-avatar--medium t-avatar--circle" style="font-size:NaNpx"><div class="t-avatar__icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-user"><path fill="currentColor" d="M12 4a3.5 3.5 0 100 7 3.5 3.5 0 000-7zM6.5 7.5a5.5 5.5 0 1111 0 5.5 5.5 0 01-11 0zM3 19a5 5 0 015-5h8a5 5 0 015 5v3H3v-3zm5-3a3 3 0 00-3 3v1h14v-1a3 3 0 00-3-3H8z"></path></svg></div></div></div><div class="t-badge--basic t-badge--medium t-badge--circle t-badge--count t-has-count" style="right:6px;top:6px">12</div></div></div></div></div>"`;
@@ -67064,3 +67759,11 @@ exports[`ssr snapshot test > ssr test src/toast/_example/cover.tsx 1`] = `"<div 
 exports[`ssr snapshot test > ssr test src/toast/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="tdesign-mobile-demo-header"><h1 class="tdesign-mobile-demo-header__title">Toast 轻提示</h1><p class="tdesign-mobile-demo-header__summary">用于轻量级反馈或提示，不会打断用户操作</p></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 组件类型</h2><p class="tdesign-mobile-demo-block__summary">基础提示</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="toast-demo"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->纯文本</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->多行文字</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->带横向图标</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->带竖向图标</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->加载状态</span></button></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">02 组件状态</h2><p class="tdesign-mobile-demo-block__summary">内置主题</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="toast-demo"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->成功提示</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->警告提示</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->错误提示</span></button></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">03 显示遮罩</h2><p class="tdesign-mobile-demo-block__summary">弹窗可显示遮罩，禁止滑动和点击</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="toast-demo"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->禁止滑动和点击</span></button></div></div></div><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">04 手动关闭</h2><p class="tdesign-mobile-demo-block__summary">手动关闭轻提示</p></div><div class="tdesign-mobile-demo-block__slot with-padding"><div class="toast-demo"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->显示提示</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->关闭提示</span></button></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/toast/_example/theme.tsx 1`] = `"<div class="toast-demo"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->成功提示</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->警告提示</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle t-button--block"><span class="t-button__content"> <!-- -->错误提示</span></button></div>"`;
+
+exports[`ssr snapshot test > ssr test src/upload/_example/base.tsx 1`] = `"<div class="upload-demo"><h3 class="upload-title">上传图片</h3><div class="t-upload"><div class="t-upload__item t-upload__item--add"><div class="t-upload__add-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add" style="font-size:28"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><input type="file" hidden="" accept="image/png"/></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/upload/_example/custom.tsx 1`] = `"<div class="upload-demo"><div class="upload-title">请上传身份证人像面</div><div class="upload-content"><div class="t-upload front"><div class="t-upload__item t-upload__item--add"><div class="t-upload__add-icon"><div class="add-content"><div class="t-image t-image--square content-img"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/upload3.png" alt=""/></div></div></div></div><input type="file" hidden="" accept="image/png"/></div></div><div class="upload-title">请上传身份证国徽面</div><div class="upload-content"><div class="t-upload reverse"><div class="t-upload__item t-upload__item--add"><div class="t-upload__add-icon"><div class="add-content"><div class="t-image t-image--square content-img"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/upload3.png" alt=""/></div></div></div></div><input type="file" hidden="" accept="image/png"/></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/upload/_example/multiple.tsx 1`] = `"<div class="upload-demo"><div class="upload-title">多选上传</div><div class="t-upload"><div class="t-upload__item"><div><div class="t-image t-image--round t-upload__image"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/upload4.png"/></div></div><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close t-upload__delete-btn"><path fill="currentColor" d="M7.05 5.64L12 10.59l4.95-4.95 1.41 1.41L13.41 12l4.95 4.95-1.41 1.41L12 13.41l-4.95 4.95-1.41-1.41L10.59 12 5.64 7.05l1.41-1.41z"></path></svg></div><div class="t-upload__item"><div><div class="t-image t-image--round t-upload__image"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/upload6.png"/></div></div><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close t-upload__delete-btn"><path fill="currentColor" d="M7.05 5.64L12 10.59l4.95-4.95 1.41 1.41L13.41 12l4.95 4.95-1.41 1.41L12 13.41l-4.95 4.95-1.41-1.41L10.59 12 5.64 7.05l1.41-1.41z"></path></svg></div><div class="t-upload__item"><div><div class="t-image t-image--round t-upload__image"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/upload4.png"/></div></div><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close t-upload__delete-btn"><path fill="currentColor" d="M7.05 5.64L12 10.59l4.95-4.95 1.41 1.41L13.41 12l4.95 4.95-1.41 1.41L12 13.41l-4.95 4.95-1.41-1.41L10.59 12 5.64 7.05l1.41-1.41z"></path></svg></div><div class="t-upload__item t-upload__item--add"><div class="t-upload__add-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add" style="font-size:28"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><input type="file" hidden="" multiple=""/></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/upload/_example/status.tsx 1`] = `"<div class="upload-demo"><div class="upload-title">上传图片</div><div class="t-upload"><div class="t-upload__item"><div><div class="t-image t-image--round t-upload__image"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/upload6.png"/></div></div><div class="t-upload__progress-mask"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-loading t-upload__progress-loading" style="font-size:24"><path fill="currentColor" d="M12 2.25a9.75 9.75 0 000 19.5v-2.44A7.31 7.31 0 1119.31 12h2.44A9.75 9.75 0 0012 2.25z" fill-opacity="0.9"></path></svg><div class="t-upload__progress-text">上传中...</div></div><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close t-upload__delete-btn"><path fill="currentColor" d="M7.05 5.64L12 10.59l4.95-4.95 1.41 1.41L13.41 12l4.95 4.95-1.41 1.41L12 13.41l-4.95 4.95-1.41-1.41L10.59 12 5.64 7.05l1.41-1.41z"></path></svg></div><div class="t-upload__item"><div><div class="t-image t-image--round t-upload__image"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/upload4.png"/></div></div><div class="t-upload__progress-mask"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-loading t-upload__progress-loading" style="font-size:24"><path fill="currentColor" d="M12 2.25a9.75 9.75 0 000 19.5v-2.44A7.31 7.31 0 1119.31 12h2.44A9.75 9.75 0 0012 2.25z" fill-opacity="0.9"></path></svg><div class="t-upload__progress-text">68%</div></div><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close t-upload__delete-btn"><path fill="currentColor" d="M7.05 5.64L12 10.59l4.95-4.95 1.41 1.41L13.41 12l4.95 4.95-1.41 1.41L12 13.41l-4.95 4.95-1.41-1.41L10.59 12 5.64 7.05l1.41-1.41z"></path></svg></div><div class="t-upload__item t-upload__item--add"><div class="t-upload__add-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add" style="font-size:28"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><input type="file" hidden="" multiple="" accept="image/png"/></div></div><div class="upload-demo__title">上传失败</div><div class="upload-demo"><div class="upload-title">上传图片</div><div class="t-upload"><div class="t-upload__item"><div><div class="t-image t-image--round t-upload__image"><div class="t-image__mask"><div class="t-loading t-loading--center" style="color:inherit;font-size:20px"><div class="t-loading__dots" style="animation-play-state:;animation-direction:;animation-duration:800ms;width:20px;height:20px"><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.26666666666666666s"></div><div class="t-loading__dot" style="animation-duration:0.8s;animation-delay:0.5333333333333333s"></div></div></div></div><img class="t-image__img t-image--fit-fill t-image--position-center" src="https://tdesign.gtimg.com/mobile/demos/upload4.png"/></div></div><div class="t-upload__progress-mask"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close-circle" style="font-size:24"><path fill="currentColor" d="M12 21a9 9 0 100-18 9 9 0 000 18zm11-9a11 11 0 11-22 0 11 11 0 0122 0zM7.4 15.18L10.6 12 7.4 8.82 8.82 7.4 12 10.6l3.18-3.19 1.42 1.42L13.4 12l3.19 3.18-1.42 1.42L12 13.4 8.82 16.6 7.4 15.18z"></path></svg><div class="t-upload__progress-text">上传失败</div></div><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close t-upload__delete-btn"><path fill="currentColor" d="M7.05 5.64L12 10.59l4.95-4.95 1.41 1.41L13.41 12l4.95 4.95-1.41 1.41L12 13.41l-4.95 4.95-1.41-1.41L10.59 12 5.64 7.05l1.41-1.41z"></path></svg></div><div class="t-upload__item t-upload__item--add"><div class="t-upload__add-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-add" style="font-size:28"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2z"></path></svg></div></div><input type="file" hidden="" multiple=""/></div></div>"`;
