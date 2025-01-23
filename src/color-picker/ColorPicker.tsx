@@ -1,5 +1,5 @@
 import React, { FC, TouchEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { ColorPickerChangeTrigger, Popup } from 'tdesign-mobile-react';
+import { ColorPickerChangeTrigger } from 'tdesign-mobile-react';
 import classNames from 'classnames';
 import { usePrefixClass } from '../hooks/useClass';
 import { Color, Coordinate, getColorObject } from '../_common/js/color-picker';
@@ -20,24 +20,8 @@ import { ALPHA_MAX, HUE_MAX } from './constants';
 export interface ColorPickerProps extends TdColorPickerProps, StyledProps {}
 
 const ColorPicker: FC<ColorPickerProps> = (props) => {
-  const {
-    autoClose,
-    format,
-    usePopup,
-    visible,
-    popupProps,
-    type,
-    enableAlpha,
-    swatchColors,
-    style,
-    value,
-    defaultValue,
-    onChange,
-    onClose,
-    onPaletteBarChange,
-  } = useDefaultProps(props, colorPickerDefaultProps);
-  const { showOverlay = true, zIndex = 11500, overlayProps } = popupProps;
-  const [show, setShow] = useState<boolean>(false);
+  const { format, type, enableAlpha, swatchColors, style, value, defaultValue, fixed, onChange, onPaletteBarChange } =
+    useDefaultProps(props, colorPickerDefaultProps);
   const [formatList, setFormatList] = useState([]);
   const [innerSwatchList, setInnerSwatchList] = useState([]);
   const [showPrimaryColorPreview] = useState(false);
@@ -70,7 +54,6 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
   const sliderElementRef = useRef<HTMLDivElement>(null);
   const hasInit = useRef<boolean>(false);
   const color = useRef<Color>(null);
-  const timer = useRef(null);
   const isMultiple = type === 'multiple';
   const rootClassName = usePrefixClass('color-picker');
   const contentClassName = classNames(`${rootClassName}__body`, `${rootClassName}__body--${type}`);
@@ -144,10 +127,6 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
   );
 
   useEffect(() => {
-    setShow(visible);
-  }, [visible]);
-
-  useEffect(() => {
     function init() {
       const innerValue = value || defaultValue;
       const result = innerValue || DEFAULT_COLOR;
@@ -156,7 +135,7 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
       hasInit.current = true;
       setTimeout(() => {
         getEleRect(format);
-      });
+      }, 350);
     }
 
     if (hasInit.current) {
@@ -181,22 +160,6 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
     setInnerSwatchList(genSwatchList(swatchColors));
   }, [swatchColors]);
 
-  useEffect(() => {
-    if (timer.current) {
-      return;
-    }
-
-    if (usePopup && show) {
-      timer.current = setTimeout(() => {
-        getEleRect(format);
-      }, 350);
-    }
-
-    return () => {
-      clearTimeout(timer.current);
-    };
-  }, [usePopup, show, getEleRect, format]);
-
   function getSaturationAndValueByCoordinate(coordinate: Coordinate) {
     const { width, height } = panelRect;
     const { x, y } = coordinate;
@@ -212,7 +175,7 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
   }
 
   function handleSaturationDrag(e: TouchEvent) {
-    const coordinate = getCoordinate(e, panelRect, usePopup);
+    const coordinate = getCoordinate(e, panelRect, fixed);
     const { saturation, value } = getSaturationAndValueByCoordinate(coordinate);
     onChangeSaturation({ saturation, value });
   }
@@ -294,12 +257,6 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
     });
   }
 
-  const handleVisibleChange = () => {
-    if (autoClose) {
-      setShow(false);
-    }
-    onClose?.('overlay');
-  };
   const onTouchStart = (e: TouchEvent, dragType: string) => {
     handleDiffDrag(dragType, e);
   };
@@ -457,20 +414,7 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
       </div>
     );
 
-    const renderPopupPicker = () => (
-      <Popup
-        visible={show}
-        showOverlay={showOverlay}
-        zIndex={zIndex}
-        overlayProps={overlayProps}
-        placement="bottom"
-        onVisibleChange={handleVisibleChange}
-      >
-        {renderColorPicker()}
-      </Popup>
-    );
-
-    return usePopup ? renderPopupPicker() : renderColorPicker();
+    return renderColorPicker();
   };
 
   return renderPicker();

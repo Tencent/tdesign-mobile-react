@@ -4,12 +4,12 @@ import { Color } from '../../_common/js/color-picker';
 import { ColorPickerProps } from '../ColorPicker';
 import { PanelRectType } from '../types';
 
-export const getCoordinate = (e: TouchEvent, rect: PanelRectType, isPopup?: boolean) => {
+export const getCoordinate = (e: TouchEvent, rect: PanelRectType, isFixed?: boolean) => {
   const { pageX, pageY, clientY } = e?.changedTouches?.[0] || {};
-  const offsetY = isPopup ? rect.top : (e.target as HTMLElement).offsetTop;
+  const offsetY = isFixed ? rect.top : (e.target as HTMLElement).offsetTop;
   return {
     x: Math.min(Math.max(0, pageX - rect.left), rect.width),
-    y: Math.min(Math.max(0, (isPopup ? clientY : pageY) - offsetY), rect.height),
+    y: Math.min(Math.max(0, (isFixed ? clientY : pageY) - offsetY), rect.height),
   };
 };
 
