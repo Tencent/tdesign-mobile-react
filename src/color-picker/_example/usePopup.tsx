@@ -22,9 +22,7 @@ export default function () {
   return (
     <>
       <Popup showOverlay placement="bottom" visible={visible} onVisibleChange={onClose}>
-        {visible ? (
-          <ColorPicker enableAlpha fixed type="multiple" onChange={onChange} onPaletteBarChange={onPaletteBarChange} />
-        ) : null}
+        <ColorPicker enableAlpha fixed type="multiple" onChange={onChange} onPaletteBarChange={onPaletteBarChange} />
       </Popup>
       <div className="row">
         <Button block size="large" variant="outline" theme="primary" onClick={handlePopup}>

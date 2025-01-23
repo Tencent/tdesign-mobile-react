@@ -50,6 +50,7 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
     color: '',
     left: '0%',
   });
+  const resizeObserverRef = useRef<ResizeObserver>(null);
   const saturationElementRef = useRef<HTMLDivElement>(null);
   const sliderElementRef = useRef<HTMLDivElement>(null);
   const hasInit = useRef<boolean>(false);
@@ -127,15 +128,29 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
   );
 
   useEffect(() => {
+    if (!saturationElementRef.current) {
+      return;
+    }
+    resizeObserverRef.current = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (entry.contentRect.width && entry.contentRect.height) {
+        getEleRect(format);
+      }
+    });
+    resizeObserverRef.current.observe(saturationElementRef.current);
+    return () => {
+      resizeObserverRef.current?.disconnect?.();
+    };
+  }, [format, getEleRect]);
+
+  useEffect(() => {
     function init() {
       const innerValue = value || defaultValue;
       const result = innerValue || DEFAULT_COLOR;
       color.current = new Color(result);
       color.current.update(result);
       hasInit.current = true;
-      setTimeout(() => {
-        getEleRect(format);
-      }, 350);
+      getEleRect(format);
     }
 
     if (hasInit.current) {
