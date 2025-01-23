@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ColorObject, ColorPicker, ColorPickerTrigger } from 'tdesign-mobile-react';
+import { ColorObject, ColorPicker, ColorPickerTrigger, Popup } from 'tdesign-mobile-react';
 import Button from 'tdesign-mobile-react/button';
 
 export default function () {
@@ -7,9 +7,11 @@ export default function () {
   const onChange = (value: string) => {
     console.log('change', value);
   };
-  const onClose = (target: ColorPickerTrigger) => {
-    console.log('close', target);
-    setVisible(false);
+  const onClose = (visible: boolean, target: ColorPickerTrigger) => {
+    console.log('close', visible, target);
+    if (!visible) {
+      setVisible(false);
+    }
   };
   const onPaletteBarChange = (e: { color: ColorObject }) => {
     console.log('onPaletteBarChange', e.color);
@@ -19,15 +21,11 @@ export default function () {
   };
   return (
     <>
-      <ColorPicker
-        usePopup
-        enableAlpha
-        visible={visible}
-        type="multiple"
-        onChange={onChange}
-        onClose={onClose}
-        onPaletteBarChange={onPaletteBarChange}
-      />
+      <Popup showOverlay placement="bottom" visible={visible} onVisibleChange={onClose}>
+        {visible ? (
+          <ColorPicker enableAlpha fixed type="multiple" onChange={onChange} onPaletteBarChange={onPaletteBarChange} />
+        ) : null}
+      </Popup>
       <div className="row">
         <Button block size="large" variant="outline" theme="primary" onClick={handlePopup}>
           弹窗形式的颜色选择器
