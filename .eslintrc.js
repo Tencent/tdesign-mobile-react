@@ -73,6 +73,6 @@ module.exports = {
     'func-names': 'off',
     'consistent-return': 'off',
     'default-case': 'off',
-    'lodash/import-scope': [2, 'method'],
+    'lodash/import-scope': [2, 'member'],
   },
 };
