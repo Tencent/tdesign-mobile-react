@@ -73,5 +73,16 @@ module.exports = {
     'func-names': 'off',
     'consistent-return': 'off',
     'default-case': 'off',
+    'no-restricted-imports': [
+      'error',
+      {
+        paths: [
+          {
+            name: 'lodash',
+            message: 'Please use lodash-es instead.',
+          },
+        ],
+      },
+    ],
   },
 };
