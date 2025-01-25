@@ -1,7 +1,6 @@
 import React, { useRef, useState, type ReactNode, useEffect, useMemo } from 'react';
 import classNames from 'classnames';
-import uniqueId from 'lodash/uniqueId';
-import isBoolean from 'lodash/isBoolean';
+import { uniqueId, isBoolean } from 'lodash-es';
 
 import { useDebounceFn } from 'ahooks';
 import Loading from '../loading';

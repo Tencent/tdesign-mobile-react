@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback } from 'react';
 import classnames from 'classnames';
-import isString from 'lodash/isString';
+import { isString } from 'lodash-es';
 import { ChevronRightIcon } from 'tdesign-icons-react';
 
 import parseTNode from '../_util/parseTNode';

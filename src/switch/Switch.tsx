@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
 import classNames from 'classnames';
-import isArray from 'lodash/isArray';
+import { isArray } from 'lodash-es';
 import Loading from '../loading';
 import { TdSwitchProps, SwitchValue } from './type';
 import { switchDefaultProps } from './defaultProps';

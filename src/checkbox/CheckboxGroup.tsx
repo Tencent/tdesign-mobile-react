@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, useEffect, useMemo, useState } from 'react';
-import isNumber from 'lodash/isNumber';
+import { isNumber } from 'lodash-es';
 import classNames from 'classnames';
 import { CheckboxOption, CheckboxOptionObj, TdCheckboxGroupProps } from './type';
 import { StyledProps } from '../common';

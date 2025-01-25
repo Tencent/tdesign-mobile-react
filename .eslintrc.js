@@ -7,7 +7,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react-hooks', 'lodash'],
+  plugins: ['@typescript-eslint', 'react-hooks'],
   env: {
     browser: true,
     node: true,
@@ -73,6 +73,16 @@ module.exports = {
     'func-names': 'off',
     'consistent-return': 'off',
     'default-case': 'off',
-    'lodash/import-scope': [2, 'method'],
+    'no-restricted-imports': [
+      'error',
+      {
+        paths: [
+          {
+            name: 'lodash',
+            message: 'Please use lodash-es instead.',
+          },
+        ],
+      },
+    ],
   },
 };

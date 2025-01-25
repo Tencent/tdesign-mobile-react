@@ -1,8 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import type { MouseEvent, TouchEvent } from 'react';
 import classNames from 'classnames';
-import isFunction from 'lodash/isFunction';
-import cloneDeep from 'lodash/cloneDeep';
+import { cloneDeep, isFunction } from 'lodash-es';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import useDefault from '../_util/useDefault';

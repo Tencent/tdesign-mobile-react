@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import classNames from 'classnames';
 import { useTimeout } from 'ahooks';
-import isObject from 'lodash/isObject';
+import { isObject } from 'lodash-es';
 import { CSSTransition } from 'react-transition-group';
 import { Icon } from 'tdesign-icons-react';
 

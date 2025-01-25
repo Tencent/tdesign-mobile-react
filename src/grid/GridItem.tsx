@@ -1,8 +1,6 @@
 import React, { FC, useContext, useMemo } from 'react';
 import cls from 'classnames';
-import isString from 'lodash/isString';
-import isObject from 'lodash/isObject';
-import isFunction from 'lodash/isFunction';
+import { isFunction, isString, isObject } from 'lodash-es';
 import useConfig from '../_util/useConfig';
 import parseTNode from '../_util/parseTNode';
 import useDefaultProps from '../hooks/useDefaultProps';

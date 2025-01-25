@@ -1,7 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
 import classNames from 'classnames';
-import isNumber from 'lodash/isNumber';
-import isString from 'lodash/isString';
+import { isNumber, isString } from 'lodash-es';
 import type { StyledProps } from '../common';
 import type { TdBadgeProps } from './type';
 import { badgeDefaultProps } from './defaultProps';

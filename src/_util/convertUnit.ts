@@ -1,4 +1,4 @@
-import isNumber from 'lodash/isNumber';
+import { isNumber } from 'lodash-es';
 
 export const convertUnit = (val: string | number | undefined) => {
   if (val == null) return 0;

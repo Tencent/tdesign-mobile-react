@@ -1,7 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useRef, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
-import isArray from 'lodash/isArray';
-import isBoolean from 'lodash/isBoolean';
+import { isArray, isBoolean } from 'lodash-es';
 import classNames from 'classnames';
 import { useClickAway } from 'ahooks';
 import { useDrag } from '@use-gesture/react';

@@ -1,7 +1,6 @@
-import isFunction from 'lodash/isFunction';
-import isString from 'lodash/isString';
+import { isFunction, isString } from 'lodash-es';
 
-import { ScrollContainerElement, ScrollContainer } from '../common'
+import { ScrollContainerElement, ScrollContainer } from '../common';
 
 export function resolveContainer(getContainer: ScrollContainerElement | ScrollContainer): ScrollContainerElement {
   if (isString(getContainer)) {
