@@ -9,7 +9,7 @@ import { TdGuideProps, GuideCrossProps } from './type';
 
 import Portal from '../common/Portal';
 import { SizeEnum, StyledProps } from '../common';
-import setStyle from '../_common/js/utils/set-style';
+import setStyle from '../_common/js/utils/setStyle';
 
 import { usePrefixClass } from '../hooks/useClass';
 import useDefault from '../_util/useDefault';
