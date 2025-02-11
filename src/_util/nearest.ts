@@ -1,4 +1,4 @@
-import isNumber from 'lodash/isNumber';
+import { isNumber } from 'lodash-es';
 
 export interface nearestParams {
   items: number[]; // 一组数字

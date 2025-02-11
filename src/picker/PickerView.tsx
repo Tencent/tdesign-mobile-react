@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import isUndefined from 'lodash/isUndefined';
+import { isUndefined } from 'lodash-es';
 import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
