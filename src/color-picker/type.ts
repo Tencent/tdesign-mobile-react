@@ -4,8 +4,6 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TElement } from '../common';
-
 export interface TdColorPickerProps {
   /**
    * 自动关闭。在点击遮罩层时自动关闭，不需要手动设置 visible
@@ -28,18 +26,10 @@ export interface TdColorPickerProps {
    */
   fixed?: boolean;
   /**
-   * 底部插槽，仅在 `usePopup` 为 `true` 时有效
-   */
-  footer?: TElement;
-  /**
    * 格式化色值。`enableAlpha` 为真时，`RGBA/HSLA/HSVA` 等值有效
    * @default RGB
    */
   format?: 'RGB' | 'RGBA' | 'HSL' | 'HSLA' | 'HSB' | 'HSV' | 'HSVA' | 'HEX' | 'CMYK' | 'CSS';
-  /**
-   * 顶部插槽，仅在 `usePopup` 为 `true` 时有效
-   */
-  header?: TElement;
   /**
    * 系统预设的颜色样例，值为 `null` 或 `[]` 则不显示系统色，值为 `undefined` 会显示组件内置的系统默认色
    */
@@ -60,11 +50,6 @@ export interface TdColorPickerProps {
    */
   defaultValue?: string;
   /**
-   * 是否显示颜色选择器。`usePopup` 为 true 时有效
-   * @default false
-   */
-  visible?: boolean;
-  /**
    * 选中的色值发生变化时触发，第一个参数 `value` 表示新色值，`context.color` 表示当前调色板控制器的色值，`context.trigger` 表示触发颜色变化的来源
    */
   onChange?: (value: string, context: { color: ColorObject; trigger: ColorPickerChangeTrigger }) => void;
@@ -80,15 +65,7 @@ export interface TdColorPickerProps {
 
 export type TypeEnum = 'base' | 'multiple';
 
-export type ColorPickerChangeTrigger =
-  | 'palette-saturation-brightness'
-  | 'palette-saturation'
-  | 'palette-brightness'
-  | 'palette-hue-bar'
-  | 'palette-alpha-bar'
-  | 'input'
-  | 'preset'
-  | 'recent';
+export type ColorPickerChangeTrigger = 'palette-hue-bar' | 'palette-alpha-bar' | 'preset';
 
 export type ColorPickerTrigger = 'overlay';
 

@@ -11,5 +11,4 @@ export const colorPickerDefaultProps: TdColorPickerProps = {
   fixed: false,
   format: 'RGB',
   type: 'base',
-  visible: false,
 };

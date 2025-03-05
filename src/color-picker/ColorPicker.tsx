@@ -223,21 +223,16 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
 
   function onChangeSaturation({ saturation, value }) {
     const { saturation: sat, value: val } = color.current;
-    let changeTrigger: ColorPickerChangeTrigger = 'palette-saturation-brightness';
     if (value !== val && saturation !== sat) {
       color.current.saturation = saturation;
       color.current.value = value;
-      changeTrigger = 'palette-saturation-brightness';
     } else if (saturation !== sat) {
       color.current.saturation = saturation;
-      changeTrigger = 'palette-saturation';
     } else if (value !== val) {
       color.current.value = value;
-      changeTrigger = 'palette-brightness';
     } else {
       return;
     }
-    emitColorChange(changeTrigger);
     onPaletteBarChange?.({
       color: getColorObject(color.current),
     });
