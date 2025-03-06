@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, useEffect, useMemo, useState } from 'react';
-import { isNumber } from 'lodash-es';
+import { isNumber, get as lodashGet } from 'lodash-es';
 import classNames from 'classnames';
 import { CheckboxOption, CheckboxOptionObj, TdCheckboxGroupProps } from './type';
 import { StyledProps } from '../common';
@@ -17,7 +17,8 @@ export interface CheckboxGroupProps extends TdCheckboxGroupProps, StyledProps {
 // 将 checkBox 的 value 转换为 string|number
 const getCheckboxValue = (v: CheckboxOption): string | number => {
   switch (typeof v) {
-    case 'number' || 'string':
+    case 'number':
+    case 'string':
       return v as string | number;
     case 'object': {
       const vs = v as CheckboxOptionObj;
@@ -29,11 +30,22 @@ const getCheckboxValue = (v: CheckboxOption): string | number => {
 };
 
 const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
-  const checkboxGroulClass = usePrefixClass('checkbox-group');
-  const { value, defaultValue, disabled, className, max, options, name, style, children, onChange } = useDefaultProps(
-    props,
-    checkboxGroupDefaultProps,
-  );
+  const checkboxGroupClass = usePrefixClass('checkbox-group');
+  const {
+    value,
+    defaultValue,
+    disabled,
+    className,
+    max,
+    options,
+    name,
+    style,
+    children,
+    borderless,
+    readonly = false,
+    keys,
+    onChange,
+  } = useDefaultProps(props, checkboxGroupDefaultProps);
 
   const internalOptions =
     Array.isArray(options) && options.length > 0
@@ -89,6 +101,8 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
         checked: checkProps.checkAll ? checkAllChecked || checkedSet.size !== 0 : checkedSet.has(checkValue),
         indeterminate: checkProps.checkAll ? indeterminate : checkProps.indeterminate,
         disabled: checkProps.disabled || disabled || (checkedSet.size >= localMax && !checkedSet.has(checkValue)),
+        borderless: checkProps.borderless || borderless,
+        readonly: checkProps.readonly || readonly,
         onChange(checked, { e }) {
           if (typeof checkProps.onChange === 'function') {
             checkProps.onChange(checked, { e });
@@ -124,24 +138,31 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
   const isOptions = Array.isArray(options) && options.length !== 0;
 
   const checkboxNode = () =>
-    options.map((v, index) => {
-      const type = typeof v;
+    options.map((item, index) => {
+      const type = typeof item;
       switch (type) {
-        case 'number' || 'string': {
-          const vs = v as number | string;
+        case 'number':
+        case 'string': {
+          const vs = item as number | string;
           return (
             <Checkbox key={vs} label={vs} value={vs}>
-              {v}
+              {item}
             </Checkbox>
           );
         }
         case 'object': {
-          const vs = v as CheckboxOptionObj;
+          const vs = item as CheckboxOptionObj;
           // CheckAll 的 checkBox 不存在 value,故用 checkAll_index 来保证尽量不和用户的 value 冲突.
           return vs.checkAll ? (
-            <Checkbox {...(v as Object)} key={`checkAll_${index}`} indeterminate={indeterminate} />
+            <Checkbox {...vs} key={`checkAll_${index}`} indeterminate={indeterminate} />
           ) : (
-            <Checkbox {...(v as Object)} key={vs.value.toString()} disabled={vs.disabled || disabled} />
+            <Checkbox
+              {...vs}
+              key={`${lodashGet(item, keys?.value ?? 'value', '')}${index}`}
+              label={lodashGet(item, keys?.label ?? 'label', vs.text || '')}
+              value={lodashGet(item, keys?.value ?? 'value')}
+              disabled={lodashGet(item, keys?.disabled ?? 'disabled')}
+            />
           );
         }
         default:
@@ -150,7 +171,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
     });
 
   return (
-    <div className={classNames(checkboxGroulClass, className)} style={style}>
+    <div className={classNames(checkboxGroupClass, className)} style={style}>
       {isOptions ? (
         <span>
           <CheckContext.Provider value={context}>{checkboxNode()}</CheckContext.Provider>
