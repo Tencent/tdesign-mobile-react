@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
-import isNumber from 'lodash/isNumber';
-import isArray from 'lodash/isArray';
+import { isArray, isNumber } from 'lodash-es';
 import { SkeletonRowCol, SkeletonRowColObj, TdSkeletonProps } from './type';
 import { StyledProps, Styles } from '../common';
 import { skeletonDefaultProps } from './defaultProps';

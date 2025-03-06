@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef } from 'react';
-import isFunction from 'lodash/isFunction';
-import get from 'lodash/get';
+import { get, isFunction } from 'lodash-es';
 import cx from 'classnames';
 
 import { StyledProps } from '../common';

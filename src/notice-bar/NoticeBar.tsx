@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { InfoCircleFilledIcon, CheckCircleFilledIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
-import isObject from 'lodash/isObject';
-import isArray from 'lodash/isArray';
+import { isArray, isObject } from 'lodash-es';
 import parseTNode from '../_util/parseTNode';
 import Swiper from '../swiper';
 import SwiperItem from '../swiper/SwiperItem';
