@@ -6,11 +6,6 @@
 
 export interface TdColorPickerProps {
   /**
-   * 自动关闭。在点击遮罩层时自动关闭，不需要手动设置 visible
-   * @default true
-   */
-  autoClose?: boolean;
-  /**
    * 是否可清空
    * @default false
    */
