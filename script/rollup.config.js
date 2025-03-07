@@ -187,10 +187,13 @@ const libConfig = {
   },
 };
 
+const cjsExternalException = ['lodash-es'];
+const cjsExternal = externalDeps.concat(externalPeerDeps).filter((value) => !cjsExternalException.includes(value));
+
 // commonjs 导出规范，不带 css 样式
 const cjsConfig = {
   input: inputList,
-  external: externalDeps.concat(externalPeerDeps),
+  external: cjsExternal,
   plugins: [multiInput()].concat(getPlugins()),
   output: {
     banner,
@@ -215,7 +218,7 @@ const umdConfig = {
     banner,
     format: 'umd',
     exports: 'named',
-    globals: { react: 'React', lodash: '_' },
+    globals: { react: 'React' },
     sourcemap: true,
     file: `dist/${name}.js`,
   },
@@ -235,7 +238,7 @@ const umdMinConfig = {
     banner,
     format: 'umd',
     exports: 'named',
-    globals: { react: 'React', lodash: '_' },
+    globals: { react: 'React' },
     sourcemap: true,
     file: `dist/${name}.min.js`,
   },

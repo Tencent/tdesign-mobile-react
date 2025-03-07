@@ -6,7 +6,7 @@ import { TdCheckboxProps, TdCheckboxGroupProps } from './type';
 
 export const checkboxDefaultProps: TdCheckboxProps = {
   block: true,
-  borderless: false,
+  borderless: undefined,
   checkAll: false,
   defaultChecked: false,
   disabled: undefined,
@@ -15,11 +15,13 @@ export const checkboxDefaultProps: TdCheckboxProps = {
   maxContentRow: 5,
   maxLabelRow: 3,
   placement: 'left',
-  readonly: false,
+  readonly: undefined,
 };
 
 export const checkboxGroupDefaultProps: TdCheckboxGroupProps = {
+  borderless: false,
   disabled: undefined,
   max: undefined,
+  readonly: undefined,
   defaultValue: [],
 };

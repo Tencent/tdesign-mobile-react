@@ -1,5 +1,4 @@
-import isFunction from 'lodash/isFunction';
-import isString from 'lodash/isString';
+import { isFunction, isString } from 'lodash-es';
 
 const trim = (str: string): string => (str || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '');
 

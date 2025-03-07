@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
 import cls from 'classnames';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import { StyledProps } from '../common';
 import useDefaultProps from '../hooks/useDefaultProps';
 

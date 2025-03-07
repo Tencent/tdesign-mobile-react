@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import classnames from 'classnames';
 import TLoading from '../loading';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import parseTNode from '../_util/parseTNode';
 import { TdButtonProps } from './type';
 import { buttonDefaultProps } from './defaultProps';

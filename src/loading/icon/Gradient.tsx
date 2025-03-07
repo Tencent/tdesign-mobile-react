@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames';
-import useConfig from '../../_util/useConfig';
+import useConfig from '../../hooks/useConfig';
 /* eslint-disable */
 import circleAdapter from '../../_common/js/loading/circle-adapter'; // @ts-ignore
 

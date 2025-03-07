@@ -5,6 +5,19 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.11.0 `2025-03-07` 
+### 🚨 Breaking Changes
+- `Steps`: 组件重构，移除 `options` 和 `separator` 属性，新增 `currentStatus`、`sequence` 属性，存在 DOM 调整 @Lyan-u ([#532](https://github.com/Tencent/tdesign-mobile-react/pull/532))
+- `StepItem`: 组件重构，新增 ` titleRight`、`extra` 属性，存在 DOM 调整 @Lyan-u ([#532](https://github.com/Tencent/tdesign-mobile-react/pull/532))
+### 🚀 Features
+- `ColorPicker`: 新增 `ColorPicker` 组件 @slatejack ([#569](https://github.com/Tencent/tdesign-mobile-react/pull/569))
+- `CheckboxGroup`: 新增 `borderless`、`readonly` 和 `keys` 属性 @liweijie0812 ([#572](https://github.com/Tencent/tdesign-mobile-react/pull/572))
+- `Calendar`: 新增 `Calendar` 日历组件 @epoll-j ([#528](https://github.com/Tencent/tdesign-mobile-react/pull/528))
+- `TreeSelect`: 新增 `TreeSelect` 组件 @epoll-j ([#523](https://github.com/Tencent/tdesign-mobile-react/pull/523))
+- `ConfigProvider`: 新增 `ConfigProvider` 组件 @anlyyao ([#574](https://github.com/Tencent/tdesign-mobile-react/pull/574))
+### 🐞 Bug Fixes
+- `Cell`: 修复部分样式错误，并更新 `align` 属性描述 @liweijie0812 ([#568](https://github.com/Tencent/tdesign-mobile-react/pull/568))
+
 ## 🌈 0.10.0 `2025-01-20` 
 ### 🚀 Features
 - `Radio`: 组件重构，新增 `block`、`borderless`、`placement` 与 `readonly` 等属性 @byq1213 ([#468](https://github.com/Tencent/tdesign-mobile-react/pull/468))
