@@ -190,7 +190,7 @@ function customRender({ source, file, md }) {
   let [demoMd = '', apiMd = ''] = content.split(pageData.apiFlag);
 
   // fix table | render error
-  demoMd = demoMd.replace(/`([^`]+)`/g, (str, codeStr) => {
+  demoMd = demoMd.replace(/`([^`\r\n]+)`/g, (str, codeStr) => {
     codeStr = codeStr.replace(/"/g, "'");
     return `<td-code text="${codeStr}"></td-code>`;
   });

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { TdDividerProps } from './type';
 import { dividerDefaultProps } from './defaultProps';
 import { StyledProps } from '../common';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
 import parseTNode from '../_util/parseTNode';
 

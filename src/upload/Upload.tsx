@@ -15,7 +15,7 @@ import {
 import request from '../_common/js/upload/xhr';
 import useDefault from '../_util/useDefault';
 import { StyledProps } from '../common';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import { TdUploadFile } from '.';
 import { urlCreator, removeProperty, removePropertyAtArray, getNewestUidFactory } from './util';
 
@@ -345,10 +345,7 @@ const Upload: React.FC<UploadProps> = (props) => {
               <img src={file.url} className={`${uploadBaseClassNames}__card-image`} alt={file.name} />
               {file.status === 'fail' && (
                 <div className={`${uploadBaseClassNames}__card-mask`}>
-                    <RefreshIcon
-                      key="refresh-icon"
-                      size={24}
-                      onClick={() => handleReloadFile(file)} />
+                  <RefreshIcon key="refresh-icon" size={24} onClick={() => handleReloadFile(file)} />
                 </div>
               )}
             </div>

@@ -11,7 +11,7 @@ import {
 import { isString } from 'lodash-es';
 import { StyledProps } from '../common';
 import { TdProgressProps } from './type';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import getBackgroundColor from '../_util/linearGradient';
 import { progressDefaultProps } from './defaultProps';
 import useDefaultProps from '../hooks/useDefaultProps';

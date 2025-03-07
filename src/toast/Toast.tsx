@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import Overlay from '../overlay';
 import useMessageCssTransition from './hooks/useMessageCssTransition';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import { TdToastProps } from './type';
 import { StyledProps } from '../common';
 import { toastDefaultProps } from './defaultProps';

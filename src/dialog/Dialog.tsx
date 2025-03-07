@@ -5,7 +5,7 @@ import useUnmountedRef from 'ahooks/lib/useUnmountedRef';
 import Overlay from '../overlay';
 import { ButtonProps, TdButtonProps } from '../button';
 import { StyledProps, TNode } from '../common';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import withStopPropagation, { PropagationEvent } from '../_util/withStopPropagation';
 import { TdDialogProps } from './type';
 import DialogActionBtn from './DialogActionBtn';

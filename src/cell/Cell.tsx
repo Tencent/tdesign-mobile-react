@@ -9,7 +9,7 @@ import { cellDefaultProps } from './defaultProps';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import useDefaultProps from '../hooks/useDefaultProps';
 import useHover from '../hooks/useHover';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 
 export interface CellProps extends TdCellProps, NativeProps {}
 

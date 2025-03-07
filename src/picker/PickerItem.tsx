@@ -3,7 +3,7 @@ import { useDebounceEffect } from 'ahooks';
 import { isUndefined } from 'lodash-es';
 import { useDrag } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import nearest from '../_util/nearest';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import PickerContext from './picker-context';

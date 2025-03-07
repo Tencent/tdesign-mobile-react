@@ -4,7 +4,7 @@ import { Icon } from 'tdesign-icons-react';
 import { TdSwiperProps, SwiperChangeSource } from './type';
 import { StyledProps } from '../common';
 import noop from '../_util/noop';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import SwiperItem from './SwiperItem';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 

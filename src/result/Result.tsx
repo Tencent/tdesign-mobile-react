@@ -4,11 +4,10 @@ import { InfoCircleIcon, CheckCircleIcon, CloseCircleIcon } from 'tdesign-icons-
 import { TdResultProps } from './type';
 import { resultDefaultProps } from './defaultProps';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
 
-export interface ResultProps extends TdResultProps, NativeProps {
-}
+export interface ResultProps extends TdResultProps, NativeProps {}
 
 const Result: React.FC<ResultProps> = (props) => {
   const { description, image, theme, title } = useDefaultProps(props, resultDefaultProps);

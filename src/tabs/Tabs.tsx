@@ -5,7 +5,7 @@ import Sticky from '../sticky';
 import Badge from '../badge';
 import { TdTabPanelProps, TdTabsProps } from './type';
 import TabPanel from './TabPanel';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { tabsDefaultProps } from './defaultProps';
