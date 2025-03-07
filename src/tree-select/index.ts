@@ -1,8 +1,9 @@
 import _TreeSelect from './tree-select';
-import { TdTreeSelectProps } from './type';
 
 import './style';
 
+export type { TreeSelectProps } from './tree-select';
 export * from './type';
-export type TreeSelectProps = TdTreeSelectProps;
+
 export const TreeSelect = _TreeSelect;
+export default TreeSelect;
