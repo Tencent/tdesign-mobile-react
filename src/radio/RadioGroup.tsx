@@ -1,14 +1,12 @@
 import React, { useRef } from 'react';
-import type { FC, ReactNode } from 'react';
+import type { FC } from 'react';
+import { StyledProps } from '../common';
 import useConfig from '../_util/useConfig';
 import Radio, { RadioContext, RadioContextValue, RadioProps } from './Radio';
 import useDefault from '../_util/useDefault';
 import type { TdRadioGroupProps } from './type';
 
-export interface RadioGroupProps extends TdRadioGroupProps {
-  children?: ReactNode;
-  className: string;
-}
+export interface RadioGroupProps extends TdRadioGroupProps, StyledProps {}
 
 const RadioGroup: FC<RadioGroupProps> = (props) => {
   const { classPrefix } = useConfig();
