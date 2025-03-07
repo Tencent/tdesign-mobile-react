@@ -77,6 +77,6 @@ const Calendar: FC<CalendarProps> = (_props) => {
   );
 };
 
-Calendar.displayName = 'Calendar'
+Calendar.displayName = 'Calendar';
 
 export default Calendar;
