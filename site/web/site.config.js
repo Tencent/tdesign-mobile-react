@@ -227,6 +227,12 @@ export default {
           component: () => import('tdesign-mobile-react/upload/upload.md'),
         },
         {
+          title: 'TreeSelect 树形选择',
+          name: 'tree-select',
+          path: '/mobile-react/components/tree-select',
+          component: () => import('tdesign-mobile-react/tree-select/tree-select.md'),
+        },
+        {
           title: 'Calendar 日历',
           name: 'calendar',
           path: '/mobile-react/components/calendar',

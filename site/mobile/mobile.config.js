@@ -268,6 +268,11 @@ export default {
       component: () => import('tdesign-mobile-react/table/_example/index.tsx'),
     },
     {
+      title: 'TreeSelect 树形选择',
+      name: 'tree-select',
+      component: () => import('tdesign-mobile-react/tree-select/_example/index.tsx'),
+    },
+    {
       title: 'Empty 空状态',
       name: 'empty',
       component: () => import('tdesign-mobile-react/empty/_example/index.tsx'),
