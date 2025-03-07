@@ -1,26 +1,13 @@
 import { useRef } from 'react';
-import identity from 'lodash/identity';
 import ReactDOM from 'react-dom';
 
 interface UseMessageCssTransitionParams {
   contentRef: React.MutableRefObject<HTMLDivElement>;
   classPrefix: String;
-  onEnter: () => void;
-  onEntered: () => void;
-  onExit: () => void;
-  onExited: () => void;
   container: HTMLElement;
 }
 
-const useMessageCssTransition = ({
-  contentRef,
-  classPrefix,
-  onEnter = identity,
-  onEntered = identity,
-  onExit = identity,
-  onExited = identity,
-  container,
-}: UseMessageCssTransitionParams) => {
+const useMessageCssTransition = ({ contentRef, classPrefix, container }: UseMessageCssTransitionParams) => {
   const timerRef = useRef(null);
 
   const contentEle = contentRef?.current;
@@ -29,14 +16,11 @@ const useMessageCssTransition = ({
 
   const defaultEvents = {
     onEnter: handleEnter,
-    onEntered,
-    onExit,
     onExited: handleExited,
   };
 
   function handleEnter() {
     clearTimeout(timerRef.current);
-    onEnter();
     if (contentEle && contentEle.style.display === 'none') {
       contentEle.style.display = 'block';
     }
@@ -51,11 +35,14 @@ const useMessageCssTransition = ({
         if (contentEle && contentEle.style.display === 'block') {
           contentEle.style.display = 'none';
         }
-        if (container && ReactDOM.unmountComponentAtNode(container)) {
-          container.parentNode.removeChild(container);
+        // 删除createElement创建的div元素
+        if (container instanceof Element) {
+          const unmountResult = ReactDOM.unmountComponentAtNode(container);
+          if (unmountResult) {
+            container.parentNode.removeChild(container);
+          }
         }
       }, 0);
-      onExited();
     }
   }
 

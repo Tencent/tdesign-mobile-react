@@ -1,7 +1,6 @@
-import React, { forwardRef, useImperativeHandle, useRef, useLayoutEffect, useMemo, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
-import isArray from 'lodash/isArray';
-import isBoolean from 'lodash/isBoolean';
+import { isArray, isBoolean } from 'lodash-es';
 import classNames from 'classnames';
 import { useClickAway } from 'ahooks';
 import { useDrag } from '@use-gesture/react';
@@ -12,6 +11,7 @@ import { TdSwipeCellProps, SwipeActionItem, Sure } from './type';
 import { swipeCellDefaultProps } from './defaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
+import useLayoutEffect from '../hooks/useLayoutEffect';
 import { Styles, StyledProps } from '../common';
 
 import './style';

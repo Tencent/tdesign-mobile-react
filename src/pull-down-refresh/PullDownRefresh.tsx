@@ -1,16 +1,19 @@
-import React, { useRef, useState, ReactNode, useEffect } from 'react';
+import React, { useRef, useState, type ReactNode, useEffect, useMemo } from 'react';
 import classNames from 'classnames';
-import identity from 'lodash/identity';
-import uniqueId from 'lodash/uniqueId';
-import { useDrag } from '@use-gesture/react';
-import { useSpring, animated } from '@react-spring/web';
-import isBoolean from 'lodash/isBoolean';
+import { uniqueId, isBoolean } from 'lodash-es';
+
+import { useDebounceFn } from 'ahooks';
 import Loading from '../loading';
-import useConfig from '../_util/useConfig';
-import withNativeProps, { NativeProps } from '../_util/withNativeProps';
-import getScrollParent from '../_util/getScrollParent';
-import delay from '../_util/delay';
-import { TdPullDownRefreshProps } from './type';
+
+import { StyledProps } from '../common';
+import useDefault from '../_util/useDefault';
+import type { TdPullDownRefreshProps } from './type';
+import { pullDownRefreshDefaultProps } from './defaultProps';
+
+import { usePrefixClass } from '../hooks/useClass';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { convertUnit, reconvertUnit } from '../_util/convertUnit';
+import { useTouch, isReachTop, easeDistance } from './useTouch';
 
 export enum PullStatusEnum {
   normal,
@@ -35,54 +38,41 @@ function getStatusText(status: PullStatusEnum, loadingTexts: string[]) {
   }
 }
 
-export interface PullDownRefreshProps extends TdPullDownRefreshProps, NativeProps {
-  disabled?: boolean;
-  threshold?: number;
-  onRefresh?: () => Promise<unknown>;
+export interface PullDownRefreshProps extends TdPullDownRefreshProps, StyledProps {
+  children?: React.ReactNode;
 }
 
-const defaultProps = {
-  loadingBarHeight: 50,
-  loadingTexts: ['下拉刷新', '松手刷新', '正在刷新', '刷新完成'],
-  maxBarHeight: 80,
-  threshold: 50,
-  refreshTimeout: 3000,
-  disabled: false,
-  onRefresh: () => delay(2000),
-  onTimeout: identity,
-};
-
-const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
+const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
+  const props = useDefaultProps<PullDownRefreshProps>(originProps, pullDownRefreshDefaultProps);
   const {
+    className,
+    style,
     children,
-    disabled,
     loadingTexts,
     loadingProps,
     loadingBarHeight,
     maxBarHeight,
-    threshold,
     refreshTimeout,
     onRefresh,
     onTimeout,
-    value,
-    onChange,
+    value: propsValue,
+    defaultValue,
+    onChange: propsOnChange,
+    onScrolltolower,
   } = props;
   const [status, originalSetStatus] = useState(PullStatusEnum.normal);
   const rootRef = useRef<HTMLDivElement>(null);
-  const scrollParentRef = useRef<Element | Window>(null);
-  const { classPrefix } = useConfig();
-  const name = `${classPrefix}-pull-down-refresh`;
+  const [value, onChange] = useDefault(propsValue, defaultValue, propsOnChange);
+
+  const name = usePrefixClass('pull-down-refresh');
+  const touch = useTouch();
+  const loadingHeight = convertUnit(loadingBarHeight);
+  const pureLoadingHeight = reconvertUnit(loadingBarHeight);
+
   const setStatus = (nextStatus: PullStatusEnum) => {
     if (nextStatus !== status) originalSetStatus(nextStatus);
   };
-
-  const [{ y }, api] = useSpring(
-    () => ({
-      y: 0,
-      config: { tension: 300, friction: 30, clamp: true },
-    }),
-    [],
-  );
+  const [distance, setDistance] = useState(0);
 
   useEffect(() => {
     if (onChange) {
@@ -90,7 +80,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
     }
     if (isBoolean(value) && !value) {
       setStatus(PullStatusEnum.success);
-      api.start({ y: 0 });
+      setDistance(0);
     } else if (value) {
       setStatus(PullStatusEnum.loading);
     }
@@ -98,14 +88,37 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
+  const { run } = useDebounceFn(
+    () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop; // 滚动高度
+      const { clientHeight, scrollHeight } = document.documentElement; // 可视区域/屏幕高度， 页面高度
+      const distance = 20; // 距离视窗 20 时，开始触发
+      if (scrollTop + clientHeight >= scrollHeight - distance) {
+        onScrolltolower?.();
+      }
+    },
+    {
+      leading: true,
+      trailing: false,
+      wait: 300,
+    },
+  );
+
+  useEffect(() => {
+    window.addEventListener('scroll', run);
+    return () => {
+      window.removeEventListener('scroll', run);
+    };
+  }, [run]);
+
   const doRefresh = async () => {
     setStatus(PullStatusEnum.loading);
-    api.start({ y: loadingBarHeight });
+    setDistance(pureLoadingHeight);
     try {
       const timeoutId = uniqueId(`${name}-timeout_`);
       let timeoutTid: any;
       const res = await Promise.race([
-        onRefresh(),
+        onRefresh?.(),
         new Promise((resolve) => {
           timeoutTid = setTimeout(() => {
             resolve(timeoutId);
@@ -118,81 +131,109 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (props) => {
         setStatus(PullStatusEnum.success);
       }
     } finally {
-      api.start({
-        to: async (next) => {
-          await next({ y: 0 });
-          setStatus(PullStatusEnum.normal);
-        },
-      });
+      setTimeout(() => {
+        setStatus(PullStatusEnum.normal);
+        setDistance(0);
+      }, 300);
     }
   };
-
-  const handleRefresh = () => {
-    if (!isBoolean(value)) {
-      doRefresh();
-    }
-    onRefresh();
-  };
-
-  useDrag(
-    (state) => {
-      const [, offsetY] = state.offset;
-      if (state.first) {
-        scrollParentRef.current = getScrollParent(rootRef.current);
-        setStatus(PullStatusEnum.pulling);
-      }
-      if (!scrollParentRef.current) return;
-      if (state.last) {
-        if (status === PullStatusEnum.loosing) {
-          handleRefresh();
-        } else {
-          setStatus(PullStatusEnum.normal);
-          api.start({ y: 0 });
-        }
-      } else {
-        setStatus(offsetY >= threshold ? PullStatusEnum.loosing : PullStatusEnum.pulling);
-        api.start({ y: offsetY, immediate: true });
-      }
-    },
-    {
-      target: rootRef,
-      from: [0, y.get()],
-      bounds: { top: 0, bottom: maxBarHeight },
-      pointer: { touch: true },
-      axis: 'y',
-      enabled: !disabled && status !== PullStatusEnum.loading,
-    },
-  );
 
   const statusText = getStatusText(status, loadingTexts);
-  let statusNode: ReactNode = statusText;
+  let statusNode: ReactNode = <div className={`${name}__text`}>{statusText}</div>;
   if (status === PullStatusEnum.loading) {
-    statusNode = (
-      <Loading
-        className={`${name}__loading`}
-        text={<span className={`${name}__loading-icon`}>{statusText}</span>}
-        {...loadingProps}
-      />
-    );
+    statusNode = <Loading text={statusText} size="24px" {...loadingProps} />;
   }
 
-  return withNativeProps(
-    props,
-    <div className={name} ref={rootRef}>
-      <animated.div className={`${name}__track`} style={{ y }}>
-        <div
-          className={classNames(`${name}__loading`, `${name}__loading-icon`, `${name}__max`)}
-          style={{ height: loadingBarHeight }}
-        >
-          {statusNode}
+  const loading = useMemo(() => status === PullStatusEnum.loading, [status]);
+
+  let touchDir: -1 | 0 | 1;
+  const touchThreshold = 5;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    e.stopPropagation();
+    if (!isReachTop(e) || loading) return;
+
+    setDistance(0);
+    touch.start(e);
+    touchDir = 0;
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    e.stopPropagation();
+    if (!isReachTop(e) || loading) return;
+    touch.move(e);
+
+    const { diffY, diffX } = touch;
+    const absX = Math.abs(diffX);
+    const absY = Math.abs(diffY);
+
+    if (!touchDir && absX < touchThreshold && absY < touchThreshold) {
+      return;
+    }
+    if (!touchDir && absX < absY) {
+      touchDir = -1;
+    } else if (!touchDir && absX >= absY) {
+      touchDir = 1;
+    }
+
+    // 左右移动时，不进行后续操作
+    if (touchDir === 1) return;
+
+    const nextDistance = easeDistance(diffY, pureLoadingHeight);
+
+    if (nextDistance >= 0 && nextDistance < reconvertUnit(maxBarHeight)) {
+      setDistance(nextDistance);
+    }
+
+    setStatus(absY >= pureLoadingHeight ? PullStatusEnum.loosing : PullStatusEnum.pulling);
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    e.stopPropagation();
+    if (!isReachTop(e) || loading) return;
+
+    if (status === PullStatusEnum.loosing) {
+      doRefresh();
+      props.onRefresh?.();
+    } else {
+      setDistance(0);
+    }
+  };
+
+  const trackStyle = useMemo(
+    () => ({
+      transform: `translate3d(0, ${distance}px, 0)`,
+    }),
+    [distance],
+  );
+
+  return (
+    <div className={classNames(name, className)} style={style} ref={rootRef}>
+      <div
+        className={classNames(`${name}__track`, { [`${name}__track--loosing`]: status !== PullStatusEnum.pulling })}
+        style={trackStyle}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+        onTouchCancel={onTouchEnd}
+      >
+        <div className={`${name}__tips`}>
+          <div
+            className={`${name}__loading`}
+            style={{
+              height: loadingHeight,
+              maxHeight: loadingHeight,
+            }}
+          >
+            {statusNode}
+          </div>
         </div>
         {children}
-      </animated.div>
-    </div>,
+      </div>
+    </div>
   );
 };
 
-PullDownRefresh.defaultProps = defaultProps;
 PullDownRefresh.displayName = 'PullDownRefresh';
 
 export default PullDownRefresh;

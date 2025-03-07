@@ -154,6 +154,12 @@ export default {
           path: '/mobile-react/components/checkbox',
           component: () => import('tdesign-mobile-react/checkbox/checkbox.md'),
         },
+        {
+          title: 'ColorPicker 颜色选择器',
+          name: 'color-picker',
+          path: '/mobile-react/components/color-picker',
+          component: () => import('tdesign-mobile-react/color-picker/color-picker.md'),
+        },
         // {
         //   title: 'DateTimePicker 时间选择器',
         //   name: 'date-time-picker',
@@ -340,6 +346,12 @@ export default {
           name: 'drawer',
           path: '/mobile-react/components/drawer',
           component: () => import('tdesign-mobile-react/drawer/drawer.md'),
+        },
+        {
+          title: 'Guide 引导',
+          name: 'guide',
+          path: '/mobile-react/components/guide',
+          component: () => import('tdesign-mobile-react/guide/guide.md'),
         },
         {
           title: 'Loading 加载',

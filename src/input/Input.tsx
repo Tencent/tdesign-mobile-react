@@ -1,6 +1,7 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import type { FocusEvent, TouchEvent, CompositionEvent, FormEvent } from 'react';
 import classNames from 'classnames';
+import { isFunction } from 'lodash-es';
 import { CloseCircleFilledIcon, BrowseOffIcon, BrowseIcon } from 'tdesign-icons-react';
 import useDefault from '../_util/useDefault';
 import parseTNode from '../_util/parseTNode';
@@ -9,9 +10,10 @@ import { getCharacterLength } from '../_common/js/utils/helper';
 import useConfig from '../_util/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { TdInputProps } from './type';
-import withNativeProps, { NativeProps } from '../_util/withNativeProps';
+import { StyledProps } from '../common';
+import withNativeProps from '../_util/withNativeProps';
 
-export interface InputProps extends TdInputProps, NativeProps {
+export interface InputProps extends TdInputProps, StyledProps {
   required?: boolean;
   readonly?: boolean;
 }
@@ -29,13 +31,16 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
     borderless,
     clearable,
     clearTrigger,
+    enterkeyhint,
     disabled,
+    format,
     label,
     layout,
     maxlength,
     name,
     placeholder,
     prefixIcon,
+    spellcheck,
     suffix,
     suffixIcon,
     tips,
@@ -129,25 +134,31 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
     inputValueChangeHandle(e);
   };
 
-  const handleClear = (e: TouchEvent) => {
+  const handleClear = (e: TouchEvent<HTMLInputElement>) => {
     e.preventDefault();
     setInnerValue('');
     focus();
-    onClear?.({ e: e as TouchEvent<HTMLInputElement> });
+    onClear?.({ e });
   };
 
-  const handleFocus = (e: FocusEvent) => {
+  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
     focused.current = true;
-    onFocus?.(innerValue, { e: e as FocusEvent<HTMLInputElement> });
+    onFocus?.(innerValue, { e });
   };
 
-  const handleBlur = (e: FocusEvent) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     focused.current = false;
-    onBlur?.(innerValue, { e: e as FocusEvent<HTMLInputElement> });
+
+    // 失焦时处理 format
+    if (isFunction(format)) {
+      setInnerValue(format(innerValue));
+    }
+
+    onBlur?.(innerValue, { e });
   };
 
-  const handleCompositionend = (e: CompositionEvent) => {
-    inputValueChangeHandle(e as CompositionEvent<HTMLInputElement>);
+  const handleCompositionend = (e: CompositionEvent<HTMLInputElement>) => {
+    inputValueChangeHandle(e);
   };
 
   const handlePwdIconClick = () => {
@@ -207,6 +218,8 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
             placeholder={placeholder}
             readOnly={readonly}
             maxLength={resultMaxLength || -1}
+            enterKeyHint={enterkeyhint}
+            spellCheck={spellcheck}
             onFocus={handleFocus}
             onBlur={handleBlur}
             onInput={handleInput}

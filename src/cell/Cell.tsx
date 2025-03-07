@@ -1,8 +1,9 @@
 import React, { useMemo, useCallback } from 'react';
 import classnames from 'classnames';
-import isString from 'lodash/isString';
+import { isString } from 'lodash-es';
 import { ChevronRightIcon } from 'tdesign-icons-react';
 
+import parseTNode from '../_util/parseTNode';
 import { TdCellProps } from './type';
 import { cellDefaultProps } from './defaultProps';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
@@ -37,12 +38,11 @@ const Cell: React.FC<CellProps> = (originProps) => {
   const classNames = useMemo(
     () => [
       `${name}`,
-      `${name}--${align}`,
       {
         [`${name}--borderless`]: !bordered,
       },
     ],
-    [align, bordered, name],
+    [bordered, name],
   );
 
   const hoverDisabled = useMemo(() => !hover, [hover]);
@@ -55,39 +55,41 @@ const Cell: React.FC<CellProps> = (originProps) => {
     [onClick],
   );
 
-  const readerImage = () => {
+  const renderImage = () => {
     if (isString(image)) {
       return <img src={image} className={`${name}__left-image`} />;
     }
-    return image;
+    return parseTNode(image);
   };
 
-  const readerLeft = () => (
+  const renderLeft = () => (
     <div className={`${name}__left`}>
-      {leftIcon && <div className={`${name}__left-icon`}>{leftIcon}</div>}
-      {readerImage()}
+      {leftIcon && <div className={`${name}__left-icon`}>{parseTNode(leftIcon)}</div>}
+      {renderImage()}
     </div>
   );
 
-  const readerTitle = () => {
+  const renderTitle = () => {
     if (!title) {
       return null;
     }
     return (
       <div className={`${name}__title`}>
-        {title}
-        {required && <span className={`${name}--required`}>&nbsp;*</span>}
-        {description && <div className={`${name}__description`}>{description}</div>}
+        <div className={`${name}__title-text`}>
+          {parseTNode(title)}
+          {required && <span className={`${name}--required`}>&nbsp;*</span>}
+        </div>
+        {description && <div className={`${name}__description`}>{parseTNode(description)}</div>}
       </div>
     );
   };
-  const readerRight = () => {
-    const Icon = arrow ? <ChevronRightIcon /> : rightIcon;
+  const renderRight = () => {
+    const Icon = arrow ? <ChevronRightIcon /> : parseTNode(rightIcon);
     if (!Icon) {
       return null;
     }
     return (
-      <div className={`${name}__right`}>
+      <div className={classnames(`${name}__right`, `${name}__right--${align}`)}>
         <div className={`${name}__right-icon`}>{Icon}</div>
       </div>
     );
@@ -96,10 +98,10 @@ const Cell: React.FC<CellProps> = (originProps) => {
   return withNativeProps(
     props,
     <div ref={ref} className={classnames(classNames)} onClick={handleClick}>
-      {readerLeft()}
-      {readerTitle()}
-      {note ? <div className={`${name}__note`}>{note}</div> : children}
-      {readerRight()}
+      {renderLeft()}
+      {renderTitle()}
+      {note ? <div className={`${name}__note`}>{parseTNode(note)}</div> : parseTNode(children)}
+      {renderRight()}
     </div>,
   );
 };

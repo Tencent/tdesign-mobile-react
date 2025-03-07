@@ -5,6 +5,7 @@ import { TdCellGroupProps } from './type';
 import { cellGroupDefaultProps } from './defaultProps';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import useDefaultProps from '../hooks/useDefaultProps';
+import parseTNode from '../_util/parseTNode';
 
 export type CellGroupProps = TdCellGroupProps & NativeProps;
 
@@ -29,7 +30,7 @@ const CellGroup: React.FC<CellGroupProps> = (originProps) => {
     props,
     <div>
       {title && <div className={`${name}__title`}>{title}</div>}
-      <div className={classnames(classNames)}>{children}</div>
+      <div className={classnames(classNames)}>{parseTNode(children)}</div>
     </div>,
   );
 };

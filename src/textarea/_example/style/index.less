@@ -1,0 +1,47 @@
+.textarea-example {
+  height: 128px;
+}
+
+.card,
+.textarea-example {
+  &__card {
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+
+  &__summary {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 16px;
+    line-height: 22px;
+  }
+
+  .card {
+    border-radius: 9px;
+    margin: 0 16px 24px;
+  }
+  .textarea {
+    height: 156px;
+  }
+}
+
+.custom,
+.textarea-example {
+  &__custom {
+    padding: 16px 16px 24px;
+    background-color: var(--bg-color-demo, #fff);
+  }
+
+  &__label {
+    display: block;
+    color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+    font-size: 12px;
+    line-height: 20px;
+    padding-bottom: 8px;
+  }
+
+  .textarea {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}

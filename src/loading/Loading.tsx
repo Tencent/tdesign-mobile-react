@@ -6,6 +6,7 @@ import { StyledProps } from '../common';
 import Spinner from './icon/Spinner';
 import Gradient from './icon/Gradient';
 import Portal from '../common/Portal';
+import { canUseDocument } from '../_util/dom';
 import { useLockScroll } from '../hooks/useLockScroll';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
@@ -43,7 +44,7 @@ const Loading: React.FC<LoadingProps> = (props) => {
   const fullClass = `${loadingClass}--full`;
   const relativeClass = `${loadingClass}__parent`;
 
-  useLockScroll(loadingRef, loading && fullscreen && preventScrollThrough, loadingClass);
+  useLockScroll(loadingRef, canUseDocument && loading && fullscreen && preventScrollThrough, loadingClass);
 
   // 当延时加载delay有值时，值会发生变化
   const [reloading, setReloading] = useState(!delay && loading);

@@ -1,9 +1,10 @@
-import React, { FC, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import useConfig from '../_util/useConfig';
 import { TdStickyProps } from './type';
 import { stickyDefaultProps } from './defaultProps';
 import { resolveContainer } from '../_util/getContainer';
 import useDefaultProps from '../hooks/useDefaultProps';
+import useLayoutEffect from '../hooks/useLayoutEffect';
 
 const Sticky: FC<TdStickyProps> = (originProps) => {
   const props = useDefaultProps(originProps, stickyDefaultProps);

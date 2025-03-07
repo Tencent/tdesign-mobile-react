@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import isEmpty from 'lodash/isEmpty';
+import { isEmpty } from 'lodash-es';
 import { Picker, PickerItem, Cell } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import './style/index.less';

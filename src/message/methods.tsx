@@ -1,24 +1,58 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MessageThemeList, TdMessageProps } from './type';
-import { defaultProps } from './constant';
+import { MessageThemeList, MessageActionOptionsType } from './type';
+import { messageDefaultProps } from './defaultProps';
 import Message from './Message';
 
-const createMessage = (props, theme?: MessageThemeList) => {
-  const config = { ...defaultProps, ...props };
-  let container = document.getElementById('#t-message');
-  if (container && ReactDOM.unmountComponentAtNode(container)) {
-    container.parentNode.removeChild(container);
+const isBrowser = typeof window !== 'undefined';
+
+const instanceMap: Map<Element, Record<string, Element>> = new Map();
+
+function destroy(context: Element, root: Element) {
+  if (context.contains(root)) {
+    context.removeChild(root);
+    if (instanceMap.has(root)) {
+      instanceMap.delete(root);
+    }
   }
-  container = document.createElement('div');
-  container.id = '#t-message';
-  document.body.appendChild(container);
-  ReactDOM.render(<Message {...{ ...config, theme, container }} />, container);
+}
+
+const createMessage = (props, theme?: MessageThemeList) => {
+  const config = {
+    ...messageDefaultProps,
+    visible: true,
+    context: isBrowser ? document.body : null,
+    ...props,
+  };
+  const { context } = config;
+  if (!context) {
+    console.error('未找到组件, 请确认 context 是否正确');
+    return;
+  }
+
+  const root = document.createElement('div');
+  context.appendChild(root);
+
+  instanceMap.set(root, {
+    context,
+  });
+
+  ReactDOM.render(<Message {...{ ...config, theme, container: root }} />, root);
+};
+
+const closeAll = () => {
+  if (instanceMap instanceof Map) {
+    for (const [key, value] of instanceMap) {
+      const { context } = value;
+      destroy(context as Element, key);
+    }
+  }
 };
 
 export default {
-  info: (props: TdMessageProps) => createMessage(props, 'info'),
-  success: (props: TdMessageProps) => createMessage(props, 'success'),
-  warning: (props: TdMessageProps) => createMessage(props, 'warning'),
-  error: (props: TdMessageProps) => createMessage(props, 'error'),
+  info: (props: MessageActionOptionsType) => createMessage(props, 'info'),
+  success: (props: MessageActionOptionsType) => createMessage(props, 'success'),
+  warning: (props: MessageActionOptionsType) => createMessage(props, 'warning'),
+  error: (props: MessageActionOptionsType) => createMessage(props, 'error'),
+  closeAll,
 };
