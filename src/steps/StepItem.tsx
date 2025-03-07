@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect, useMemo, useRef, MouseEvent } from 'react';
 import classNames from 'classnames';
-import { Icon } from 'tdesign-icons-react';
+import { CheckIcon, CloseIcon } from 'tdesign-icons-react';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import parseTNode from '../_util/parseTNode';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -144,28 +144,27 @@ const StepItem: FC<StepItemProps> = (props) => {
     onClickItem(index, current, { e });
   };
 
-  const iconContent = useMemo(() => {
+  const renderIconContent = () => {
     if (icon) {
       return parseTNode(icon);
     }
-    const iconDefault = {
-      check: <Icon name="check" />,
-      close: <Icon name="close" />,
-    };
+
     if (currentStatus === StepItemStatusEnum.ERROR) {
-      return iconDefault.close;
+      return <CloseIcon />;
     }
+
     if (currentStatus === StepItemStatusEnum.FINISH) {
-      return iconDefault.check;
+      return <CheckIcon />;
     }
+
     return index + 1;
-  }, [icon, currentStatus, index]);
+  };
 
   return withNativeProps(
     props,
     <div ref={stepItemRef} className={rootClassName} onClick={onStepClick}>
       <div className={iconWrapperClassName}>
-        {dot ? <div className={dotClassName}></div> : <div className={iconClassName}>{iconContent}</div>}
+        {dot ? <div className={dotClassName}></div> : <div className={iconClassName}>{renderIconContent()}</div>}
       </div>
       <div className={contentClassName}>
         <div className={titleClassName}>
