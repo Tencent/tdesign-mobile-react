@@ -77,3 +77,5 @@ export * from './notice-bar';
  * 辅助功能组件
  */
 export * from './overlay';
+
+export * from './config-provider';

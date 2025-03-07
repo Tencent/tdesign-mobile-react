@@ -25,6 +25,7 @@ export default ({ mode }) =>
         '@doc': path.resolve(__dirname, './doc'),
         '@components': path.resolve(__dirname, './src/components'),
         '@common': path.resolve(__dirname, '../src/_common'),
+        'tdesign-mobile-react/es': path.resolve(__dirname, '../src'),
         'tdesign-mobile-react': path.resolve(__dirname, '../src'),
         '@test/utils': path.resolve(__dirname, '../test/utils'),
       },

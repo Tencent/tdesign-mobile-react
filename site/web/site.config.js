@@ -25,6 +25,18 @@ export default {
       ],
     },
     {
+      title: '全局配置',
+      type: 'component',
+      children: [
+        {
+          title: '全局特性配置',
+          name: 'button',
+          path: '/mobile-react/components/config-provider',
+          component: () => import('tdesign-mobile-react/config-provider/config-provider.md'),
+        },
+      ],
+    },
+    {
       title: '基础组件',
       type: 'component', // 组件文档
       children: [

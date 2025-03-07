@@ -1,30 +1,26 @@
 import { createContext } from 'react';
-import merge from 'lodash/merge';
+import { merge } from 'lodash-es';
 import defaultLocale from '../locale/zh_CN';
-import defaultConfig from '../_common/js/global-config/default-config';
+import defaultConfig from '../_common/js/global-config/mobile/default-config';
+import { GlobalConfigProvider } from './type';
 
 export const defaultClassPrefix = 't';
 
-export interface Config {
-  /**
-   * 组件类名前缀
-   *
-   * @default 't'
-   */
-  classPrefix?: string;
-  /**
-   * 全局配置
-   */
-  globalConfig?: Locale;
-}
+type DefaultGlobalConfig = Partial<GlobalConfigProvider>;
 
-export const defaultContext = {
+export const defaultGlobalConfig: DefaultGlobalConfig = {
   classPrefix: defaultClassPrefix,
-  globalConfig: merge({}, defaultConfig, defaultLocale),
+  ...merge({}, defaultLocale, defaultConfig),
 };
 
 export type Locale = typeof defaultLocale;
 
-const ConfigContext = createContext<Config>(defaultContext);
+export const defaultContext = {
+  globalConfig: defaultGlobalConfig,
+};
+
+export type Config = typeof defaultContext;
+
+const ConfigContext = createContext(defaultContext);
 
 export default ConfigContext;

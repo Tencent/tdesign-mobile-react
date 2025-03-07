@@ -12,7 +12,7 @@ import {
 import { TdCheckboxProps } from './type';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import CheckboxGroup from './CheckboxGroup';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import useDefault from '../_util/useDefault';
 import { parseContentTNode } from '../_util/parseTNode';
 import { usePrefixClass } from '../hooks/useClass';

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import { TdLinkProps } from './type';
 import { StyledProps } from '../common';
 import parseTNode from '../_util/parseTNode';

@@ -292,5 +292,10 @@ export default {
       name: 'color-picker',
       component: () => import('tdesign-mobile-react/color-picker/_example/index.tsx'),
     },
+    {
+      title: 'ConfigProvider 全局特性配置',
+      name: 'config-provider',
+      component: () => import('tdesign-mobile-react/config-provider/_example/index.tsx'),
+    },
   ],
 };

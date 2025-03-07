@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import { isUndefined } from 'lodash-es';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import useDefault from '../_util/useDefault';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import PickerContext from './picker-context';

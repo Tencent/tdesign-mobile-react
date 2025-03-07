@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import type { FC } from 'react';
 import { StyledProps } from '../common';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import Radio, { RadioContext, RadioContextValue, RadioProps } from './Radio';
 import useDefault from '../_util/useDefault';
 import type { TdRadioGroupProps } from './type';
