@@ -26184,6 +26184,7 @@ exports[`csr snapshot test > csr test src/color-picker/_example/format.tsx 1`] =
             >
               <div
                 class="t-color-picker__slider-padding"
+                style="background: linear-gradient(90deg, rgba(0,0,0,.0) 0%, rgba(0,0,0,.0) 93%, rgb(123, 214, 11) 93%, rgb(123, 214, 11) 100%;"
               />
               <div
                 class="t-color-picker__slider"
@@ -26512,6 +26513,7 @@ exports[`csr snapshot test > csr test src/color-picker/_example/index.tsx 1`] = 
                 >
                   <div
                     class="t-color-picker__slider-padding"
+                    style="background: linear-gradient(90deg, rgba(0,0,0,.0) 0%, rgba(0,0,0,.0) 93%, rgb(0, 31, 151) 93%, rgb(0, 31, 151) 100%;"
                   />
                   <div
                     class="t-color-picker__slider"
@@ -26716,6 +26718,7 @@ exports[`csr snapshot test > csr test src/color-picker/_example/index.tsx 1`] = 
                   >
                     <div
                       class="t-color-picker__slider-padding"
+                      style="background: linear-gradient(90deg, rgba(0,0,0,.0) 0%, rgba(0,0,0,.0) 93%, rgb(0, 31, 151) 93%, rgb(0, 31, 151) 100%;"
                     />
                     <div
                       class="t-color-picker__slider"
@@ -26994,6 +26997,7 @@ exports[`csr snapshot test > csr test src/color-picker/_example/index.tsx 1`] = 
                   >
                     <div
                       class="t-color-picker__slider-padding"
+                      style="background: linear-gradient(90deg, rgba(0,0,0,.0) 0%, rgba(0,0,0,.0) 93%, rgb(123, 214, 11) 93%, rgb(123, 214, 11) 100%;"
                     />
                     <div
                       class="t-color-picker__slider"
@@ -27185,6 +27189,7 @@ exports[`csr snapshot test > csr test src/color-picker/_example/multiple.tsx 1`]
           >
             <div
               class="t-color-picker__slider-padding"
+              style="background: linear-gradient(90deg, rgba(0,0,0,.0) 0%, rgba(0,0,0,.0) 93%, rgb(0, 31, 151) 93%, rgb(0, 31, 151) 100%;"
             />
             <div
               class="t-color-picker__slider"
@@ -27386,6 +27391,7 @@ exports[`csr snapshot test > csr test src/color-picker/_example/usePopup.tsx 1`]
             >
               <div
                 class="t-color-picker__slider-padding"
+                style="background: linear-gradient(90deg, rgba(0,0,0,.0) 0%, rgba(0,0,0,.0) 93%, rgb(0, 31, 151) 93%, rgb(0, 31, 151) 100%;"
               />
               <div
                 class="t-color-picker__slider"
@@ -53025,7 +53031,7 @@ exports[`csr snapshot test > csr test src/notice-bar/_example/mobile.tsx 1`] = `
           >
             <div
               class="t-swiper t-notice-bar__content--vertical"
-              style="overflow: hidden;"
+              style="overflow: hidden; height: var(--td-notice-bar-height, 22px);"
             >
               <div
                 class="t-swiper__container"
@@ -53181,7 +53187,7 @@ exports[`csr snapshot test > csr test src/notice-bar/_example/scrolling.tsx 1`] 
     >
       <div
         class="t-swiper t-notice-bar__content--vertical"
-        style="overflow: hidden;"
+        style="overflow: hidden; height: var(--td-notice-bar-height, 22px);"
       >
         <div
           class="t-swiper__container"
