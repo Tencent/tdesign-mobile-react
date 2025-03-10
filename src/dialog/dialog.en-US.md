@@ -14,7 +14,6 @@ cancelBtn | TNode | - | Typescript：`string \| ButtonProps \| TNode \| null`，
 closeBtn | Boolean | false | \- | N
 closeOnOverlayClick | Boolean | false | \- | N
 confirmBtn | TNode | - | Typescript：`string \| ButtonProps \| TNode \| null`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-confirmLoading | Boolean | undefined | confirm button loading status | N
 content | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 destroyOnClose | Boolean | false | \- | N
 middle | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
@@ -46,7 +45,6 @@ name | params | return | description
 -- | -- | -- | --
 destroy | \- | \- | required
 hide | \- | \- | required
-setConfirmLoading | `(loading: boolean)` | \- | required。set confirm button loading status
 show | \- | \- | required
 update | `(props: DialogOptions)` | \- | required
 

@@ -60,11 +60,12 @@ const Feedback = React.memo(() => {
       </Button>
       <Dialog
         {...alertProps}
+        closeOnOverlayClick={true}
         onClose={() => {
-          setAlertProps({ visible: false });
+          setAlertProps({ ...alertProps, visible: false });
         }}
         onConfirm={() => {
-          setAlertProps({ visible: false });
+          setAlertProps({ ...alertProps, visible: false });
         }}
       />
     </div>

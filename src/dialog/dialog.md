@@ -14,7 +14,6 @@ cancelBtn | TNode | - | 取消按钮，可自定义。值为 null 则不显示�
 closeBtn | Boolean | false | 多按钮排列方式。可选项：true/false | N
 closeOnOverlayClick | Boolean | false | 点击蒙层时是否触发关闭事件 | N
 confirmBtn | TNode | - | 确认按钮。值为 null 则不显示确认按钮。值类型为字符串，则表示自定义按钮文本，值类型为 Object 则表示透传 Button 组件属性。使用 TNode 自定义按钮时，需自行控制确认事件。TS 类型：`string \| ButtonProps \| TNode \| null`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-confirmLoading | Boolean | undefined | 确认按钮加载状态 | N
 content | TNode | - | 内容。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 destroyOnClose | Boolean | false | 是否在关闭弹框的时候销毁子元素 | N
 middle | TNode | - | 中间自定义内容。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
@@ -46,7 +45,6 @@ style | Object | - | 弹框 style 属性，输入 [CSSStyleDeclaration.cssText](
 -- | -- | -- | --
 destroy | \- | \- | 必需。销毁弹框
 hide | \- | \- | 必需。隐藏弹框
-setConfirmLoading | `(loading: boolean)` | \- | 必需。设置确认按钮加载状态
 show | \- | \- | 必需。显示弹框
 update | `(props: DialogOptions)` | \- | 必需。更新弹框内容
 

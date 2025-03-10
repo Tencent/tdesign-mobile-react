@@ -46,10 +46,10 @@ const ConfirmUsage = React.memo(() => {
       <Dialog
         {...alertProps}
         onClose={() => {
-          setAlertProps({ visible: false });
+          setAlertProps({ ...alertProps, visible: false });
         }}
         onConfirm={() => {
-          setAlertProps({ visible: false });
+          setAlertProps({ ...alertProps, visible: false });
         }}
       />
     </div>

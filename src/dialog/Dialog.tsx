@@ -96,7 +96,6 @@ export const Dialog: React.FC<DialogProps> = (props) => {
       }
 
       if (closeOnOverlayClick && typeof onClose === 'function') {
-        setActive(false);
         onClose({ trigger: 'overlay', e });
       }
     },
@@ -108,14 +107,12 @@ export const Dialog: React.FC<DialogProps> = (props) => {
       if (typeof onClose === 'function') {
         onClose({ trigger: 'close-btn', e });
       }
-      setActive(false);
     },
     [onClose],
   );
 
   const onCancelButtonClickHandle = useCallback(
     (e) => {
-      setActive(false);
       if (typeof onClose === 'function') {
         onClose({ trigger: 'cancel', e });
       }
@@ -128,7 +125,6 @@ export const Dialog: React.FC<DialogProps> = (props) => {
 
   const onConfirmButtonClickHandle = useCallback(
     (e) => {
-      setActive(false);
       if (typeof onConfirm === 'function') {
         onConfirm(e);
       }
