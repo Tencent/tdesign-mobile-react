@@ -25,6 +25,18 @@ export default {
       ],
     },
     {
+      title: '全局配置',
+      type: 'component',
+      children: [
+        {
+          title: '全局特性配置',
+          name: 'button',
+          path: '/mobile-react/components/config-provider',
+          component: () => import('tdesign-mobile-react/config-provider/config-provider.md'),
+        },
+      ],
+    },
+    {
       title: '基础组件',
       type: 'component', // 组件文档
       children: [
@@ -154,6 +166,12 @@ export default {
           path: '/mobile-react/components/checkbox',
           component: () => import('tdesign-mobile-react/checkbox/checkbox.md'),
         },
+        {
+          title: 'ColorPicker 颜色选择器',
+          name: 'color-picker',
+          path: '/mobile-react/components/color-picker',
+          component: () => import('tdesign-mobile-react/color-picker/color-picker.md'),
+        },
         // {
         //   title: 'DateTimePicker 时间选择器',
         //   name: 'date-time-picker',
@@ -219,6 +237,18 @@ export default {
           name: 'upload',
           path: '/mobile-react/components/upload',
           component: () => import('tdesign-mobile-react/upload/upload.md'),
+        },
+        {
+          title: 'TreeSelect 树形选择',
+          name: 'tree-select',
+          path: '/mobile-react/components/tree-select',
+          component: () => import('tdesign-mobile-react/tree-select/tree-select.md'),
+        },
+        {
+          title: 'Calendar 日历',
+          name: 'calendar',
+          path: '/mobile-react/components/calendar',
+          component: () => import('tdesign-mobile-react/calendar/calendar.md'),
         },
       ],
     },

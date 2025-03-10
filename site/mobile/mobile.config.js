@@ -73,7 +73,7 @@ export default {
     {
       title: 'Rate 评分',
       name: 'rate',
-      component: () => import('tdesign-mobile-react/rate/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/rate/_example/index.tsx'),
     },
     {
       title: 'Search 搜索框',
@@ -235,7 +235,7 @@ export default {
     {
       title: 'Steps 步骤条',
       name: 'steps',
-      component: () => import('tdesign-mobile-react/steps/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/steps/_example/index.tsx'),
     },
     {
       title: 'TabBar 标签栏',
@@ -268,14 +268,34 @@ export default {
       component: () => import('tdesign-mobile-react/table/_example/index.tsx'),
     },
     {
+      title: 'TreeSelect 树形选择',
+      name: 'tree-select',
+      component: () => import('tdesign-mobile-react/tree-select/_example/index.tsx'),
+    },
+    {
       title: 'Empty 空状态',
       name: 'empty',
       component: () => import('tdesign-mobile-react/empty/_example/index.tsx'),
     },
     {
+      title: 'Calendar 日历',
+      name: 'calendar',
+      component: () => import('tdesign-mobile-react/calendar/_example/index.tsx'),
+    },
+    {
       title: 'Guide 引导',
       name: 'guide',
       component: () => import('tdesign-mobile-react/guide/_example/index.tsx'),
+    },
+    {
+      title: 'ColorPicker 颜色选择器',
+      name: 'color-picker',
+      component: () => import('tdesign-mobile-react/color-picker/_example/index.tsx'),
+    },
+    {
+      title: 'ConfigProvider 全局特性配置',
+      name: 'config-provider',
+      component: () => import('tdesign-mobile-react/config-provider/_example/index.tsx'),
     },
   ],
 };

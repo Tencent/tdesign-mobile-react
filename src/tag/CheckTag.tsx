@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react';
 import { Icon } from 'tdesign-icons-react';
 import parseTNode from '../_util/parseTNode';
 import { StyledProps } from '../common';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import useDefault from '../_util/useDefault';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { checkTagDefaultProps } from './defaultProps';

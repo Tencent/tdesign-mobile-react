@@ -1,13 +1,13 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import type { FocusEvent, TouchEvent, CompositionEvent, FormEvent } from 'react';
 import classNames from 'classnames';
-import isFunction from 'lodash/isFunction';
+import { isFunction } from 'lodash-es';
 import { CloseCircleFilledIcon, BrowseOffIcon, BrowseIcon } from 'tdesign-icons-react';
 import useDefault from '../_util/useDefault';
 import parseTNode from '../_util/parseTNode';
 import { inputDefaultProps } from './defaultProps';
 import { getCharacterLength } from '../_common/js/utils/helper';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { TdInputProps } from './type';
 import { StyledProps } from '../common';
@@ -31,6 +31,7 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
     borderless,
     clearable,
     clearTrigger,
+    enterkeyhint,
     disabled,
     format,
     label,
@@ -39,6 +40,7 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
     name,
     placeholder,
     prefixIcon,
+    spellcheck,
     suffix,
     suffixIcon,
     tips,
@@ -216,6 +218,8 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
             placeholder={placeholder}
             readOnly={readonly}
             maxLength={resultMaxLength || -1}
+            enterKeyHint={enterkeyhint}
+            spellCheck={spellcheck}
             onFocus={handleFocus}
             onBlur={handleBlur}
             onInput={handleInput}

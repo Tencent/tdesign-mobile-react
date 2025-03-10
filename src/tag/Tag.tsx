@@ -4,7 +4,7 @@ import { Icon } from 'tdesign-icons-react';
 import parseTNode from '../_util/parseTNode';
 import { StyledProps } from '../common';
 import useDefaultProps from '../hooks/useDefaultProps';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import { tagDefaultProps } from './defaultProps';
 import { TdTagProps } from './type';
 

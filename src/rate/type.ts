@@ -4,6 +4,8 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
+import { TNode } from '../common';
+
 export interface TdRateProps {
   /**
    * 是否允许半选
@@ -22,22 +24,30 @@ export interface TdRateProps {
   count?: number;
   /**
    * 是否禁用评分
-   * @default false
    */
   disabled?: boolean;
   /**
    * 评分图标的间距
-   * @default 6
+   * @default 8
    */
-  gap?: number;
+  gap?: string | number;
+  /**
+   * 自定义评分图标，[选中图标，未选中图标]
+   */
+  icon?: Array<TNode | Function>;
+  /**
+   * 选择评分弹框的位置，值为空字符表示不显示评分弹框
+   * @default top
+   */
+  placement?: 'top' | 'bottom' | '';
   /**
    * 是否显示对应的辅助文字
    * @default false
    */
   showText?: boolean;
   /**
-   * 评分图标的大小，示例：`20`
-   * @default ''
+   * 评分图标的大小
+   * @default 24px
    */
   size?: string;
   /**
@@ -55,11 +65,6 @@ export interface TdRateProps {
    * @default 0
    */
   defaultValue?: number;
-  /**
-   * 形状类型，有描边类型和填充类型两种
-   * @default outline
-   */
-  variant?: 'outline' | 'filled';
   /**
    * 评分数改变时触发
    */

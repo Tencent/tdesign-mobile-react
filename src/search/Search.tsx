@@ -4,7 +4,7 @@ import { CloseCircleFilledIcon, SearchIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
 import useDefault from '../_util/useDefault';
 import parseTNode from '../_util/parseTNode';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import type { TdSearchProps } from './type';
 import type { StyledProps } from '../common';
 import { searchDefaultProps } from './defaultProps';

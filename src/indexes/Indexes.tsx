@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import throttle from 'lodash/throttle';
+import { throttle } from 'lodash-es';
 import cls from 'classnames';
 import { TdIndexesProps } from './type';
 import { StyledProps } from '../common';

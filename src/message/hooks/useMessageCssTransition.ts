@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-// import identity from 'lodash/identity';
 import ReactDOM from 'react-dom';
 
 interface UseMessageCssTransitionParams {

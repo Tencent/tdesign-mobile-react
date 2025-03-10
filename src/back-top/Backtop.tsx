@@ -2,10 +2,10 @@ import React, { useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import { useScroll, useMount, useBoolean } from 'ahooks';
 import smoothscroll from 'smoothscroll-polyfill';
-import isString from 'lodash/isString';
+import { isString } from 'lodash-es';
 import { Icon } from 'tdesign-icons-react';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
-import useConfig from '../_util/useConfig';
+import useConfig from '../hooks/useConfig';
 import { TdBackTopProps } from './type';
 
 export type ThemeList = 'round' | 'half-round' | 'round-dark' | 'half-round-dark';

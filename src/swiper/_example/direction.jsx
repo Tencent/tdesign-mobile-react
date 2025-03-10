@@ -6,13 +6,13 @@ export default function () {
     <>
       <Swiper direction="vertical">
         <Swiper.SwiperItem>
-          <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/site/swiper/01.png" />
+          <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper1.png" />
         </Swiper.SwiperItem>
         <Swiper.SwiperItem>
-          <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/site/swiper/02.png" />
+          <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper2.png" />
         </Swiper.SwiperItem>
         <Swiper.SwiperItem>
-          <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/site/swiper/03.png" />
+          <img style={{ height: '100%' }} src="https://tdesign.gtimg.com/mobile/demos/swiper1.png" />
         </Swiper.SwiperItem>
       </Swiper>
     </>

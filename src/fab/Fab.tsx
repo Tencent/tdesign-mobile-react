@@ -1,9 +1,9 @@
-import React, { useMemo, useContext, forwardRef, Ref } from 'react';
+import React, { useMemo, forwardRef, Ref } from 'react';
 import classNames from 'classnames';
 import Button, { ButtonProps } from '../button';
 import { TdFabProps } from './type';
 import { StyledProps } from '../common';
-import { ConfigContext } from '../config-provider';
+import useConfig from '../hooks/useConfig';
 
 export interface FabProps extends TdFabProps, StyledProps {}
 
@@ -14,7 +14,7 @@ const Fab: React.FC<FabProps> = forwardRef((props, ref: Ref<HTMLButtonElement>) 
     theme: 'primary',
   };
 
-  const { classPrefix } = useContext(ConfigContext);
+  const { classPrefix } = useConfig();
   const name = useMemo(() => `${classPrefix}-fab`, [classPrefix]);
 
   // 外层样式类

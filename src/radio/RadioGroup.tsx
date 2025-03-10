@@ -1,18 +1,28 @@
 import React, { useRef } from 'react';
-import type { FC, ReactNode } from 'react';
-import useConfig from '../_util/useConfig';
+import type { FC } from 'react';
+import { StyledProps } from '../common';
+import useConfig from '../hooks/useConfig';
 import Radio, { RadioContext, RadioContextValue, RadioProps } from './Radio';
 import useDefault from '../_util/useDefault';
 import type { TdRadioGroupProps } from './type';
 
-export interface RadioGroupProps extends TdRadioGroupProps {
-  children?: ReactNode;
-  className: string;
-}
+export interface RadioGroupProps extends TdRadioGroupProps, StyledProps {}
 
 const RadioGroup: FC<RadioGroupProps> = (props) => {
   const { classPrefix } = useConfig();
-  const { disabled, options, value, defaultValue, children, onChange, allowUncheck, borderless, className } = props;
+  const {
+    disabled,
+    options,
+    value,
+    defaultValue,
+    children,
+    readonly,
+    onChange,
+    allowUncheck,
+    borderless,
+    className,
+    placement,
+  } = props;
   const groupRef = useRef(null);
   const [internalValue, setInternalValue] = useDefault(value, defaultValue, onChange);
 
@@ -28,14 +38,15 @@ const RadioGroup: FC<RadioGroupProps> = (props) => {
           typeof radioProps.value !== 'undefined' &&
           internalValue === radioProps.value,
         disabled: radioProps.disabled || disabled,
+        readonly: radioProps.readonly || readonly,
         allowUncheck: radioProps.allowUncheck || allowUncheck,
         borderless: radioProps.borderless || borderless,
+        placement: radioProps.placement || placement,
         onChange: (checked, { e }) => {
           if (typeof radioProps.onChange === 'function') {
             radioProps.onChange(checked, { e });
           }
-          // @ts-ignore
-          setInternalValue(radioProps.value, { e });
+          setInternalValue(radioProps.value, { e, name: props.name });
         },
       };
     },

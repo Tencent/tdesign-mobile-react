@@ -1,8 +1,7 @@
 import React from 'react';
 import type { CSSProperties, ReactElement } from 'react';
 import cls from 'classnames';
-import keys from 'lodash/keys';
-import assign from 'lodash/assign';
+import { assign, keys } from 'lodash-es';
 
 export interface NativeProps<S extends string = never> {
   className?: string;

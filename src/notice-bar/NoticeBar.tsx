@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { InfoCircleFilledIcon, CheckCircleFilledIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
-import isObject from 'lodash/isObject';
-import isArray from 'lodash/isArray';
+import { isArray, isObject } from 'lodash-es';
 import parseTNode from '../_util/parseTNode';
 import Swiper from '../swiper';
 import SwiperItem from '../swiper/SwiperItem';
@@ -14,7 +13,9 @@ import useDefaultProps from '../hooks/useDefaultProps';
 import { noticeBarDefaultProps } from './defaultProps';
 import noop from '../_util/noop';
 
-export interface NoticeBarProps extends TdNoticeBarProps, StyledProps {}
+export interface NoticeBarProps extends TdNoticeBarProps, StyledProps {
+  touchable?: Boolean;
+}
 
 type IconType = ReturnType<typeof InfoCircleFilledIcon>;
 
@@ -108,6 +109,7 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
     theme = 'info',
     visible,
     defaultVisible,
+    touchable = false,
     onClick,
   } = useDefaultProps(props, noticeBarDefaultProps);
 
@@ -179,7 +181,7 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
     setTimeout(() => {
       const listDOMWidth = listDOM.current?.getBoundingClientRect().width;
       const itemDOMWidth = itemDOM.current?.getBoundingClientRect().width;
-      if (itemDOMWidth > listDOMWidth) {
+      if (marquee || itemDOMWidth > listDOMWidth) {
         updateAnimationFrame({
           offset: -itemDOMWidth,
           duration: itemDOMWidth / animationSettingValue.current.scroll.speed,
@@ -273,7 +275,8 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
             loop
             direction={direction}
             duration={2000}
-            height={22}
+            touchable={touchable}
+            style={{ height: 'var(--td-notice-bar-height, 22px)' }}
           >
             {content.map((item, index) => (
               <SwiperItem key={index}>
