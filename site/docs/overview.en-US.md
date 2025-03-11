@@ -116,6 +116,7 @@ spline: explain
     </a>
   </div>
 </section>
+
 <h3>Form<em class="tag">14</em></h3>
 <section class="image-group">
   <div class="image-wrapper">
@@ -158,8 +159,8 @@ spline: explain
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-form.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-form-dark.png" />
       <p class="name">Form</p>
-    </a> -->
-  </div>
+    </a>
+  </div>-->
   <div class="image-wrapper">
     <a class="item" href="./components/input-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-input.png" />

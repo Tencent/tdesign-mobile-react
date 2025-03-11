@@ -164,10 +164,17 @@ const DEFAULT_TABS = [
   { tab: 'design', name: '指南' },
 ];
 
+const DEFAULT_EN_TABS = [
+  { tab: 'demo', name: 'DEMO' },
+  { tab: 'api', name: 'API' },
+  { tab: 'design', name: 'Guideline' },
+];
+
 // 解析 markdown 内容
 function customRender({ source, file, md }) {
   let { content, data } = matter(source);
   // console.log('data', data);
+  const isEn = file.endsWith('en-US.md');
 
   // md top data
   const pageData = {
@@ -177,7 +184,7 @@ function customRender({ source, file, md }) {
     description: '',
     isComponent: false,
     tdDocHeader: true,
-    tdDocTabs: DEFAULT_TABS,
+    tdDocTabs: !isEn ? DEFAULT_TABS : DEFAULT_EN_TABS,
     apiFlag: /#+\s*API/i,
     docClass: '',
     lastUpdated: Math.round(fs.statSync(file).mtimeMs),
@@ -185,7 +192,7 @@ function customRender({ source, file, md }) {
   };
 
   // md filename
-  const reg = file.match(/src\/[\w-]+\/([\w-]+)\.md/);
+  const reg = file.match(/([\w-]+)\.?([\w-]+)?\.md/);
   const componentName = reg && reg[1];
 
   // split md
