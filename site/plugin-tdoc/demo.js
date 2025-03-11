@@ -25,7 +25,17 @@ export default function renderDemo(md, container) {
         const demoCodeDefName = `Demo${demoPathOnlyLetters}Code`;
 
         const tpl = `
-            <td-doc-demo code={${demoCodeDefName}} show-code mode="open" demo-name="${demoName}" component-name="${componentName.trim()}"></td-doc-demo>
+            <td-doc-demo
+              code={${demoCodeDefName}}
+              show-code
+              mode="open"
+              demo-name="${demoName}"
+              component-name="${componentName.trim()}"
+            >
+              <div slot="action">
+                <Stackblitz demoName="${demoName}" componentName="${componentName}" code={${demoCodeDefName}} />
+              </div>
+            </td-doc-demo>
           `;
 
         // eslint-disable-next-line no-param-reassign

@@ -22,7 +22,8 @@ export default ({ mode }) =>
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '../'),
-        '@doc': path.resolve(__dirname, './doc'),
+        '@docs': path.resolve(__dirname, './docs'),
+        '@web': path.resolve(__dirname, './web'),
         '@components': path.resolve(__dirname, './src/components'),
         '@common': path.resolve(__dirname, '../src/_common'),
         'tdesign-mobile-react/es': path.resolve(__dirname, '../src'),

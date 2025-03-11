@@ -22,6 +22,8 @@ export default function mdToReact(options) {
     import { useLocation, useNavigate } from 'react-router-dom';
     import Prismjs from 'prismjs';
     import 'prismjs/components/prism-bash.js';
+    import Stackblitz from '@web/components/stackblitz/index.jsx';
+
     ${demoCodesDefsStr}
 
     function useQuery() {
