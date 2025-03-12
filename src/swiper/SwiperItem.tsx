@@ -1,8 +1,8 @@
 import React, { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
-import { usePrefixClass } from 'tdesign-mobile-react/hooks/useClass';
-import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
 import classNames from 'classnames';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
+import parseTNode from '../_util/parseTNode';
 import { StyledProps } from '../common';
 import SwiperContext from './SwiperContext';
 
