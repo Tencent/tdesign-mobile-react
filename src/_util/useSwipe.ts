@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { preventDefault } from 'tdesign-mobile-react/guide/utils/shared';
-import isObject from 'lodash/isObject';
+import { isObject } from 'lodash-es';
+import { preventDefault } from '../guide/utils/shared';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {};
