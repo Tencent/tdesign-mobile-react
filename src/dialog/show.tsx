@@ -49,6 +49,9 @@ export function show(props: DialogShowProps): DialogInstance {
       update: (opts) => {
         setOptions(opts);
       },
+      destroy: () => {
+        destroy();
+      },
     }));
 
     return (
