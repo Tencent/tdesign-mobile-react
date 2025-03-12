@@ -5,6 +5,15 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.12.0 `2025-03-12` 
+### 🚨 Breaking Changes
+- `Dialog`: 新增 `closeBtn`、`width`、`overlayProps` 属性和 `middle`、`top` 插槽，存在 `DOM` 调整 @epoll-j ([#548](https://github.com/Tencent/tdesign-mobile-react/pull/548))
+- `Swiper`: 组件重构，存在 `DOM` 调整。新增 `nextMargin`、`previousMargin` 和 `click` 事件。并对 `navigation` 属性进行功能增强，新增 `paginationPosition`、`showControls` 属性，移除 `showSlideBtn` 属性 @xifanTT ([#557](https://github.com/Tencent/tdesign-mobile-react/pull/557))
+### 🐞 Bug Fixes
+- `ColorPicker`:  修复组件 `es` 产物缺样式文件入口 @anlyyao ([#577](https://github.com/Tencent/tdesign-mobile-react/pull/577))
+### 🚧 Others
+- `Site`: 站点接入 `stackblitz` 和中英文切换能力 @anlyyao ([#579](https://github.com/Tencent/tdesign-mobile-react/pull/579))
+
 ## 🌈 0.11.0 `2025-03-07` 
 ### 🚨 Breaking Changes
 - `Steps`: 组件重构，移除 `options` 和 `separator` 属性，新增 `currentStatus`、`sequence` 属性，存在 DOM 调整 @Lyan-u ([#532](https://github.com/Tencent/tdesign-mobile-react/pull/532))
