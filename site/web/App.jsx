@@ -44,7 +44,7 @@ function Components() {
   const tdDocAsideRef = useRef();
   const tdDocContentRef = useRef();
   const tdSelectRef = useRef();
-  const tdDocSearch = useRef();
+  // const tdDocSearch = useRef();
 
   const [version] = useState(currentVersion);
 
@@ -68,7 +68,7 @@ function Components() {
 
   useEffect(() => {
     tdHeaderRef.current.framework = 'react';
-    tdDocSearch.current.docsearchInfo = { indexName: 'tdesign_doc_react_mobile' };
+    // tdDocSearch.current.docsearchInfo = { indexName: 'tdesign_doc_react_mobile' };
 
     const isEn = window.location.pathname.endsWith('en');
 
@@ -104,7 +104,8 @@ function Components() {
   return (
     <td-doc-layout>
       <td-header ref={tdHeaderRef} slot="header" platform="mobile">
-        <td-doc-search slot="search" ref={tdDocSearch} />
+        {/* 暂时注释，等 algolia 重新更新后可直接放开 */}
+        {/* <td-doc-search slot="search" ref={tdDocSearch} />  */}
       </td-header>
       <td-doc-aside ref={tdDocAsideRef} title="React for Mobile">
         <td-select ref={tdSelectRef} value={version} slot="extra"></td-select>
