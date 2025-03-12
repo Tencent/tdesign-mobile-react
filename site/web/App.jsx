@@ -1,18 +1,25 @@
 import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Navigate, Route, useLocation, useNavigate, Outlet } from 'react-router-dom';
+import semver from 'semver';
 import siteConfig from './site.config';
 import { getRoute, filterVersions } from './utils';
 import packageJson from '@/package.json';
 
 const LazyDemo = lazy(() => import('./Demo'));
 
-const { docs: routerList } = JSON.parse(JSON.stringify(siteConfig).replace(/component:.+/g, ''));
+const { docs, enDocs } = JSON.parse(JSON.stringify(siteConfig).replace(/component:.+/g, ''));
+
+const docsMap = {
+  zh: docs,
+  en: enDocs,
+};
 
 const registryUrl =
   'https://service-edbzjd6y-1257786608.hk.apigw.tencentcs.com/release/npm/versions/tdesign-mobile-react';
 const currentVersion = packageJson.version.replace(/\./g, '_');
 
-const docRoutes = getRoute(siteConfig.docs, []);
+// eslint-disable-next-line import/no-named-as-default-member
+const docRoutes = [...getRoute(siteConfig.docs, []), ...getRoute(siteConfig.enDocs, [])];
 const renderRouter = docRoutes.map((nav, i) => {
   const LazyCom = lazy(nav.component);
 
@@ -36,37 +43,36 @@ function Components() {
   const tdHeaderRef = useRef();
   const tdDocAsideRef = useRef();
   const tdDocContentRef = useRef();
-  const tdDocSearch = useRef();
+  const tdSelectRef = useRef();
+  // const tdDocSearch = useRef();
 
-  const [versionOptions, setVersionOptions] = useState([]);
   const [version] = useState(currentVersion);
-
-  function changeVersion(version) {
-    if (version === currentVersion) return;
-    const historyUrl = `//${version}-tdesign-mobile-react.surge.sh`;
-    window.open(historyUrl, '_blank');
-  }
 
   function initHistoryVersions() {
     fetch(registryUrl)
       .then((res) => res.json())
       .then((res) => {
         const options = [];
-        const versions = filterVersions(Object.keys(res.versions).filter((v) => !v.includes('alpha')));
+        const versions = filterVersions(Object.keys(res.versions));
 
         versions.forEach((v) => {
           const nums = v.split('.');
+          if (nums[0] === '0' && nums[1] < 21) return false;
 
           options.unshift({ label: v, value: v.replace(/\./g, '_') });
         });
-        setVersionOptions(options);
+
+        tdSelectRef.current.options = options.sort((a, b) => (semver.gt(a.label, b.label) ? -1 : 1));
       });
   }
 
   useEffect(() => {
     tdHeaderRef.current.framework = 'react';
-    // tdDocSearch.current.docsearchInfo = { indexName: 'tdesign_doc_mobile_react' };
-    tdDocAsideRef.current.routerList = routerList;
+    // tdDocSearch.current.docsearchInfo = { indexName: 'tdesign_doc_react_mobile' };
+
+    const isEn = window.location.pathname.endsWith('en');
+
+    tdDocAsideRef.current.routerList = isEn ? docsMap.en : docsMap.zh;
     tdDocAsideRef.current.onchange = ({ detail }) => {
       if (location.pathname === detail) return;
       tdDocContentRef.current.pageStatus = 'hidden';
@@ -83,20 +89,26 @@ function Components() {
       });
     };
 
-    // initHistoryVersions();
+    tdSelectRef.current.onchange = ({ detail }) => {
+      const { value: version } = detail;
+      if (version === currentVersion) return;
+
+      const historyUrl = `https://${version}-tdesign-mobile-react.surge.sh`;
+      window.open(historyUrl, '_blank');
+      tdSelectRef.current.value = currentVersion;
+    };
+
+    initHistoryVersions();
   }, [location, navigate]);
 
   return (
     <td-doc-layout>
       <td-header ref={tdHeaderRef} slot="header" platform="mobile">
-        {/* <td-doc-search slot="search" ref={tdDocSearch} /> */}
+        {/* 暂时注释，等 algolia 重新更新后可直接放开 */}
+        {/* <td-doc-search slot="search" ref={tdDocSearch} />  */}
       </td-header>
       <td-doc-aside ref={tdDocAsideRef} title="React for Mobile">
-        {/* {versionOptions.length ? (
-          <div slot="extra">
-            <Select popupProps={{ zIndex: 800 }} value={version} options={versionOptions} onChange={changeVersion} />
-          </div>
-        ) : null} */}
+        <td-select ref={tdSelectRef} value={version} slot="extra"></td-select>
       </td-doc-aside>
 
       <td-doc-content ref={tdDocContentRef} platform="mobile">
@@ -111,8 +123,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<Navigate replace to="/mobile-react/getting-started" />} />
-        <Route exact path="/mobile-react" element={<Navigate replace to="/mobile-react/getting-started" />} />
+        <Route exact path="/" element={<Navigate replace to="/mobile-react/overview" />} />
+        <Route exact path="/mobile-react" element={<Navigate replace to="/mobile-react/overview" />} />
         <Route
           path="/mobile-react/demos/*"
           element={
@@ -124,7 +136,7 @@ function App() {
         <Route path="/mobile-react/*" element={<Components />}>
           {renderRouter}
         </Route>
-        <Route path="*" element={<Navigate replace to="/mobile-react/getting-started" />} />
+        <Route path="*" element={<Navigate replace to="/mobile-react/overview" />} />
       </Routes>
     </BrowserRouter>
   );

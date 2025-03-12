@@ -1,6 +1,6 @@
 {
   "name": "tdesign-mobile-react",
-  "version": "0.12.0-beta",
+  "version": "0.12.0",
   "description": "TDesign Component for Mobile React",
   "title": "tdesign-mobile-react",
   "main": "cjs/index.js",
@@ -150,8 +150,9 @@
     "rollup-plugin-styles": "^3.14.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.2",
+    "semver": "^7.7.1",
     "tdesign-icons-view": "^0.3.4",
-    "tdesign-site-components": "^0.15.4",
+    "tdesign-site-components": "^0.15.6",
     "typescript": "^4.5.3",
     "vite": "^2.7.0",
     "vite-plugin-pwa": "^0.11.11",

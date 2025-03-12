@@ -135,7 +135,7 @@ export default {
     {
       title: 'Dialog 对话框',
       name: 'dialog',
-      component: () => import('tdesign-mobile-react/dialog/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/dialog/_example/index.tsx'),
     },
     {
       title: 'Loading 加载中',
@@ -145,7 +145,7 @@ export default {
     {
       title: 'Swiper 轮播',
       name: 'swiper',
-      component: () => import('tdesign-mobile-react/swiper/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/swiper/_example/index.tsx'),
     },
     {
       title: 'Navbar 导航栏',

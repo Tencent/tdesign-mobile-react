@@ -1,13 +1,3 @@
-.button-demo {
-  padding: 10px;
-
-  .t-button {
-    width: 100%;
-    margin-bottom: 10px;
-    // margin: 0 10px 10px 0;
-  }
-}
-
 .tdesign-mobile-demo {
   background-color: #ffffff;
   padding-bottom: 62px;
@@ -35,6 +25,43 @@
         border-radius: 50%;
         background: #aaa;
       }
+    }
+  }
+}
+
+.wrapper-base {
+  padding-top: 16px;
+  display: flex;
+  align-items: baseline;
+  .t-slider{
+    flex: 1;
+    font-size: 12px;
+  }
+  .__label{
+    color: #00000066;
+    font-family: "PingFang SC";
+    font-size: 10px;
+    font-style: normal;
+    line-height: 16px;
+   }
+}
+
+.card-height {
+  .t-swiper-item--image-host{
+    height: 128px;
+    &--active {
+      height: 192px;
+    }
+  }
+}
+
+.card-prev-next {
+  .t-swiper-item--image-host {
+    &--prev{
+      right: -36px;
+    }
+    &--next{
+      left: -36px;
     }
   }
 }
