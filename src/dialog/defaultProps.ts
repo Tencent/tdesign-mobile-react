@@ -8,7 +8,6 @@ export const dialogDefaultProps: TdDialogProps = {
   buttonLayout: 'horizontal',
   closeBtn: false,
   closeOnOverlayClick: false,
-  confirmLoading: undefined,
   destroyOnClose: false,
   overlayProps: {},
   preventScrollThrough: true,

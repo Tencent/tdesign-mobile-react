@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import get from 'lodash/get';
-import isString from 'lodash/isString';
+import { isString, get } from 'lodash-es';
 import { CloseIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
 import Popup from '../popup';

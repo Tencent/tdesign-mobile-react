@@ -6,7 +6,7 @@
 
 import { ButtonProps } from '../button';
 import { OverlayProps } from '../overlay';
-import { TNode, Styles } from '../common';
+import { TNode, TElement, Styles } from '../common';
 import { MouseEvent } from 'react';
 
 export interface TdDialogProps {
@@ -38,10 +38,6 @@ export interface TdDialogProps {
    */
   confirmBtn?: ButtonProps | TNode | null;
   /**
-   * 确认按钮加载状态
-   */
-  confirmLoading?: boolean;
-  /**
    * 内容
    */
   content?: TNode;
@@ -53,7 +49,7 @@ export interface TdDialogProps {
   /**
    * 中间自定义内容
    */
-  middle?: TNode;
+  middle?: TElement;
   /**
    * 透传至 Overlay 组件
    * @default {}
@@ -76,7 +72,7 @@ export interface TdDialogProps {
   /**
    * 顶部自定义内容
    */
-  top?: TNode;
+  top?: TElement;
   /**
    * 控制对话框是否显示
    */
@@ -132,10 +128,6 @@ export interface DialogInstance {
    * 隐藏弹框
    */
   hide: () => void;
-  /**
-   * 设置确认按钮加载状态
-   */
-  setConfirmLoading: (loading: boolean) => void;
   /**
    * 显示弹框
    */
