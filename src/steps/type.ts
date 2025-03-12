@@ -28,7 +28,6 @@ export interface TdStepsProps {
   layout?: 'horizontal' | 'vertical';
   /**
    * 只读状态
-   * @default false
    */
   readonly?: boolean;
   /**
@@ -62,11 +61,12 @@ export interface TdStepItemProps {
    */
   content?: TNode;
   /**
-   * 显示在步骤描述下方的额外内容，比如：操作项
+   * 步骤条自定义内容
    */
   extra?: TNode;
   /**
    * 图标，默认显示内置图标，也可以自定义图标，值为 false 则不显示图标。优先级大于 `status` 定义的图标
+   * @default true
    */
   icon?: TNode;
   /**
