@@ -56,13 +56,13 @@ function Components() {
         const versions = filterVersions(Object.keys(res.versions));
 
         versions.forEach((v) => {
-          const nums = v.split('.');
-          if (nums[0] === '0' && nums[1] < 21) return false;
-
           options.unshift({ label: v, value: v.replace(/\./g, '_') });
         });
 
-        tdSelectRef.current.options = options.sort((a, b) => (semver.gt(a.label, b.label) ? -1 : 1));
+        tdSelectRef.current.options = options;
+      })
+      .catch((err) => {
+        console.error('获取版本号异常', err);
       });
   }
 
