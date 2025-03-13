@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Navigate, Route, useLocation, useNavigate, Outlet } from 'react-router-dom';
-import semver from 'semver';
 import siteConfig from './site.config';
 import { getRoute, filterVersions } from './utils';
 import packageJson from '@/package.json';
