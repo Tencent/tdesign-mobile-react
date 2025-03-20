@@ -1,6 +1,5 @@
 import React from 'react';
 import { Toast, Button } from 'tdesign-mobile-react';
-import { ErrorCircleIcon } from 'tdesign-icons-react';
 
 export default function () {
   const successColumn = () => {
@@ -8,7 +7,7 @@ export default function () {
   };
 
   const warningColumn = () => {
-    Toast({ message: '轻提示文字内容', icon: <ErrorCircleIcon />, direction: 'column' });
+    Toast({ message: '轻提示文字内容', theme: 'warning', direction: 'column' });
   };
 
   const errorColumn = () => {
