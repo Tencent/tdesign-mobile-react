@@ -23,7 +23,7 @@ export interface TextareaRefInterface extends React.RefObject<unknown> {
   textareaElement: HTMLTextAreaElement;
 }
 
-const Textarea = forwardRef<TextareaProps, TextareaRefInterface>((originProps, ref) => {
+const Textarea = forwardRef<TextareaRefInterface, TextareaProps>((originProps, ref) => {
   const props = useDefaultProps<TextareaProps>(originProps, textareaDefaultProps);
   const {
     className,
