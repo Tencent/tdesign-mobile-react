@@ -9,10 +9,10 @@ export default function () {
   return (
     <>
       <Fab
-        icon={<Icon name="add" />}
+        icon={<Icon name="add" size={24} />}
         text="按钮文字"
+        draggable="vertical"
         style={{ right: '16px', bottom: '32px' }}
-        buttonProps={{ variant: 'outline' }}
         onClick={onClick}
       />
     </>

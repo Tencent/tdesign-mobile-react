@@ -245,7 +245,7 @@ export default {
     {
       title: 'Fab 悬浮按钮',
       name: 'fab',
-      component: () => import('tdesign-mobile-react/fab/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/fab/_example/index.tsx'),
     },
     {
       title: 'NoticeBar 公告栏',
