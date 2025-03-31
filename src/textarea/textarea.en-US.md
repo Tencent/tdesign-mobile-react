@@ -20,9 +20,11 @@ maxcharacter | Number | - | \- | N
 maxlength | Number | - | \- | N
 name | String | - | \- | N
 placeholder | String | undefined | \- | N
-readonly | Boolean | false | \- | N
+readonly | Boolean | undefined | \- | N
 value | String / Number | - | Typescript：`TextareaValue` `type TextareaValue = string \| number`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/textarea/type.ts) | N
 defaultValue | String / Number | - | uncontrolled property。Typescript：`TextareaValue` `type TextareaValue = string \| number`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/textarea/type.ts) | N
 onBlur | Function |  | Typescript：`(value: TextareaValue, context: { e: FocusEvent }) => void`<br/> | N
 onChange | Function |  | Typescript：`(value: TextareaValue, context?: { e?: InputEvent }) => void`<br/> | N
+onCompositionend | Function |  | Typescript：`(value: string, context: { e: CompositionEvent }) => void`<br/>trigger on compositionend | N
+onCompositionstart | Function |  | Typescript：`(value: string, context: { e: CompositionEvent }) => void`<br/>trigger on compositionstart | N
 onFocus | Function |  | Typescript：`(value: TextareaValue, context : { e: FocusEvent }) => void`<br/> | N

@@ -51,6 +51,7 @@ const createToast = (props: ToastOptions) => {
 export default {
   createToast,
   success: (props: ToastOptions) => createToast({ ...getToastProps(props), theme: ToastThemeListEnum.success }),
+  warning: (props: ToastOptions) => createToast({ ...getToastProps(props), theme: ToastThemeListEnum.warning }),
   error: (props: ToastOptions) => createToast({ ...getToastProps(props), theme: ToastThemeListEnum.error }),
   loading: (props: ToastOptions) => createToast({ ...getToastProps(props), theme: ToastThemeListEnum.loading }),
   clear,

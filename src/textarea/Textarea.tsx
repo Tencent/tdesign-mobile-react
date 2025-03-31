@@ -23,7 +23,7 @@ export interface TextareaRefInterface extends React.RefObject<unknown> {
   textareaElement: HTMLTextAreaElement;
 }
 
-const Textarea = forwardRef<TextareaProps, TextareaRefInterface>((originProps, ref) => {
+const Textarea = forwardRef<TextareaRefInterface, TextareaProps>((originProps, ref) => {
   const props = useDefaultProps<TextareaProps>(originProps, textareaDefaultProps);
   const {
     className,
@@ -40,6 +40,8 @@ const Textarea = forwardRef<TextareaProps, TextareaRefInterface>((originProps, r
     label,
     indicator,
     readonly,
+    onCompositionstart,
+    onCompositionend,
     ...otherProps
   } = props;
 
@@ -47,13 +49,12 @@ const Textarea = forwardRef<TextareaProps, TextareaRefInterface>((originProps, r
 
   const [value, setValue] = useDefault(props.value, defaultValue, props.onChange);
   const [textareaStyle, setTextareaStyle] = useState({});
-  const [composingValue, setComposingValue] = useState<string>('');
   const composingRef = useRef(false);
   const textareaRef: React.RefObject<HTMLTextAreaElement> = useRef();
   const wrapperRef: React.RefObject<HTMLDivElement> = useRef();
 
   const textareaLength = useMemo(() => {
-    const realValue = composingRef.current ? composingValue : (value ?? '');
+    const realValue = value ?? '';
     if (typeof maxcharacter !== 'undefined') {
       const { length = 0 } = getCharacterLength(String(realValue), maxcharacter) as {
         length: number;
@@ -61,7 +62,7 @@ const Textarea = forwardRef<TextareaProps, TextareaRefInterface>((originProps, r
       return length;
     }
     return String(realValue).length || 0;
-  }, [value, maxcharacter, composingRef, composingValue]);
+  }, [value, maxcharacter]);
 
   const textareaPropsNames = Object.keys(otherProps).filter((key) => !/^on[A-Z]/.test(key));
   const textareaProps = textareaPropsNames.reduce(
@@ -112,32 +113,34 @@ const Textarea = forwardRef<TextareaProps, TextareaRefInterface>((originProps, r
 
     if (value === newStr) return; // 避免在Firefox中重复触发
 
-    if (composingRef.current) {
-      setComposingValue(newStr);
-    } else {
-      if (!allowInputOverMax) {
-        newStr = limitUnicodeMaxLength(newStr, maxlength);
-        if (maxcharacter && maxcharacter >= 0) {
-          const stringInfo = getCharacterLength(newStr, maxcharacter);
-          newStr = typeof stringInfo === 'object' && stringInfo.characters;
-        }
+    if (!allowInputOverMax && !composingRef.current) {
+      newStr = limitUnicodeMaxLength(newStr, maxlength);
+      if (maxcharacter && maxcharacter >= 0) {
+        const stringInfo = getCharacterLength(newStr, maxcharacter);
+        newStr = typeof stringInfo === 'object' && stringInfo.characters;
       }
-
-      // 中文输入结束，同步 composingValue
-      setComposingValue(newStr);
-      setValue(newStr, { e });
     }
+
+    setValue(newStr, { e });
   };
 
-  const handleCompositionStart = () => {
+  const handleCompositionStart = (e: React.CompositionEvent<HTMLTextAreaElement>) => {
     composingRef.current = true;
+    const {
+      currentTarget: { value },
+    } = e;
+    onCompositionstart?.(value, { e });
   };
 
-  const handleCompositionEnd = (e) => {
+  const handleCompositionEnd = (e: React.CompositionEvent<HTMLTextAreaElement>) => {
     if (composingRef.current) {
       composingRef.current = false;
       inputValueChangeHandle(e);
     }
+    const {
+      currentTarget: { value },
+    } = e;
+    onCompositionend?.(value, { e });
   };
 
   useEffect(() => {
@@ -168,7 +171,7 @@ const Textarea = forwardRef<TextareaProps, TextareaRefInterface>((originProps, r
           {...eventProps}
           className={textareaInnerClasses}
           style={textareaStyle}
-          value={composingRef.current ? composingValue : value}
+          value={value}
           readOnly={readonly}
           autoFocus={autofocus}
           disabled={disabled}

@@ -13,5 +13,5 @@ export const textareaDefaultProps: TdTextareaProps = {
   indicator: false,
   layout: 'horizontal',
   placeholder: undefined,
-  readonly: false,
+  readonly: undefined,
 };
