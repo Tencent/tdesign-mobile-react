@@ -20,9 +20,11 @@ maxcharacter | Number | - | 用户最多可以输入的字符个数，一个中�
 maxlength | Number | - | 用户最多可以输入的字符个数 | N
 name | String | - | 名称，HTML 元素原生属性 | N
 placeholder | String | undefined | 占位符 | N
-readonly | Boolean | false | 只读状态 | N
+readonly | Boolean | undefined | 只读状态 | N
 value | String / Number | - | 文本框值。TS 类型：`TextareaValue` `type TextareaValue = string \| number`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/textarea/type.ts) | N
 defaultValue | String / Number | - | 文本框值。非受控属性。TS 类型：`TextareaValue` `type TextareaValue = string \| number`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/textarea/type.ts) | N
 onBlur | Function |  | TS 类型：`(value: TextareaValue, context: { e: FocusEvent }) => void`<br/>失去焦点时触发 | N
 onChange | Function |  | TS 类型：`(value: TextareaValue, context?: { e?: InputEvent }) => void`<br/>输入内容变化时触发 | N
+onCompositionend | Function |  | TS 类型：`(value: string, context: { e: CompositionEvent }) => void`<br/>中文输入结束时触发 | N
+onCompositionstart | Function |  | TS 类型：`(value: string, context: { e: CompositionEvent }) => void`<br/>中文输入开始时触发 | N
 onFocus | Function |  | TS 类型：`(value: TextareaValue, context : { e: FocusEvent }) => void`<br/>获得焦点时触发 | N
