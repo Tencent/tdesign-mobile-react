@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Navigate, Route, useLocation, useNavigate, Outlet } from 'react-router-dom';
-import siteConfig from './site.config';
-import { getRoute, filterVersions } from './utils';
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+
 import packageJson from '@/package.json';
+import siteConfig from './site.config';
+import { filterVersions, getRoute } from './utils';
 
 const LazyDemo = lazy(() => import('./Demo'));
 
@@ -114,6 +115,8 @@ function Components() {
         <Outlet />
         <td-doc-footer slot="doc-footer" platform="mobile"></td-doc-footer>
       </td-doc-content>
+
+      <td-theme-generator device="mobile" />
     </td-doc-layout>
   );
 }

@@ -1,5 +1,5 @@
 .tdesign-mobile-demo {
-  background-color: #f6f6f6;
+  background-color: var(--bg-color-demo);
   font-family: 'PingFang SC';
   padding-bottom: 28px;
   box-sizing: border-box;
@@ -9,21 +9,19 @@
     font-weight: 700;
     line-height: 32px;
     padding: 24px 16px 0;
-    color: rgba(0, 0, 0, 0.9);
   }
 
   .summary {
     font-size: 14px;
-    color: rgba(0, 0, 0, 0.6);
     margin: 8px 16px 0;
     line-height: 22px;
   }
 
   &-block {
     margin: 32px 0 0;
+    color: var(--text-primary);
 
     &__header {
-      color: #000;
       margin: 0 16px;
     }
 
@@ -37,7 +35,7 @@
       margin-top: 8px;
       font-size: 14px;
       white-space: pre-line;
-      color: rgba(0, 0, 0, 0.6);
+      color: var(--text-secondary);
       line-height: 22px;
     }
 
@@ -65,13 +63,13 @@
     font-weight: 700;
     line-height: 32px;
     padding: 24px 16px 0;
-    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-primary);
   }
 
   &__summary {
     font-size: 14px;
-    color: rgba(0, 0, 0, 0.6);
     margin: 8px 16px 0;
     line-height: 22px;
+    color: var(--text-secondary);
   }
 }
