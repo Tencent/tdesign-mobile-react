@@ -111,7 +111,7 @@ const Drawer: React.FC<DrawerProps> = forwardRef((originProps, ref) => {
                   handleItemClick(index, item, e);
                 }}
               >
-                {!!icon && <span className={`${drawerClass}__sidebar-item-icon`}>{icon}</span>}
+                {!!icon && <span className={`${drawerClass}__sidebar-item-icon`}>{parseTNode(icon)}</span>}
                 <div className={`${drawerClass}__sidebar-item-title`}>{title}</div>
               </div>
             );

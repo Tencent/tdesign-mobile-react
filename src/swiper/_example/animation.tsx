@@ -49,7 +49,7 @@ export default function Base() {
         autoplay={!!autoPlay}
         defaultCurrent={1}
         direction="vertical"
-        navigation={{ type: 'dots', paginationPosition: 'right' }}
+        navigation={{ type: 'dots', paginationPosition: 'right' } as any}
       >
         {swiperItems()}
       </Swiper>

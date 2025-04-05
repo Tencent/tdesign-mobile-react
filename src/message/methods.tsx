@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'tdesign-mobile-react/_util/react-render';
 import { MessageThemeList, MessageActionOptionsType } from './type';
 import { messageDefaultProps } from './defaultProps';
 import Message from './Message';
@@ -37,7 +37,7 @@ const createMessage = (props, theme?: MessageThemeList) => {
     context,
   });
 
-  ReactDOM.render(<Message {...{ ...config, theme, container: root }} />, root);
+  render(<Message {...{ ...config, theme, container: root }} />, root);
 };
 
 const closeAll = () => {

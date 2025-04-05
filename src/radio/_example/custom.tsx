@@ -9,7 +9,7 @@ export default function () {
   return (
     <>
       <TDemoBlock summary="单选框尺寸规格">
-        <RadioGroup value={defaultValue} onChange={(value) => setDefaultValue(value)}>
+        <RadioGroup value={defaultValue} onChange={(value: number) => setDefaultValue(value)}>
           {Array.from(Array(3), (_, key) => (
             <div className={`card ${defaultValue === key ? 'card--active' : ''}`} key={key}>
               {defaultValue === key && <Icon name="check" color="#fff" className="card__icon" />}
@@ -25,7 +25,11 @@ export default function () {
         </RadioGroup>
       </TDemoBlock>
       <TDemoBlock summary="横向卡片单选框">
-        <RadioGroup className="horizontal-box" value={defaultValueH} onChange={(value) => setDefaultValueH(value)}>
+        <RadioGroup
+          className="horizontal-box"
+          value={defaultValueH}
+          onChange={(value: number) => setDefaultValueH(value)}
+        >
           {Array.from(Array(3), (_, key) => (
             <div className={`card ${defaultValueH === key ? 'card--active' : ''}`} key={key}>
               {defaultValueH === key && <Icon name="check" color="#fff" className="card__icon" />}

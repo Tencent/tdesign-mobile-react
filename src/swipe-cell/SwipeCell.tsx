@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { useClickAway } from 'ahooks';
 import { useDrag } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
+import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
 import nearest from '../_util/nearest';
 import withNativeProps from '../_util/withNativeProps';
 import { TdSwipeCellProps, SwipeActionItem, Sure } from './type';
@@ -220,7 +221,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     if (isArray(actions)) {
       return actions.map((action, index) => {
         const btnClass = classNames([`${swipeCellClass}__content`, action.className || '']);
-        const style = { height: '100%', ...action.style };
+        const style = { height: '100%', ...(action as any).style };
         const { icon: btnIcon, text: btnText, ...buttonProps } = action;
 
         return (
@@ -252,7 +253,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
         left: 0,
         right: 0,
       };
-      return <div style={{ ...style }}>{curSure.content}</div>;
+      return <div style={{ ...style }}>{parseTNode(curSure.content)}</div>;
     }
     return null;
   };
@@ -275,14 +276,14 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
         {left && (
           <div className={`${swipeCellClass}__left`} ref={leftRef}>
             {renderSureContent()}
-            {renderActions(left, 'left')}
+            {renderActions(left as any, 'left')}
           </div>
         )}
-        {content}
+        {parseTNode(content)}
         {right && (
           <div className={`${swipeCellClass}__right`} ref={rightRef}>
             {renderSureContent()}
-            {renderActions(right, 'right')}
+            {renderActions(right as any, 'right')}
           </div>
         )}
       </animated.div>

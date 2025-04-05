@@ -27,8 +27,8 @@ export default function Demo() {
   }));
 
   const pureIcon = [
-    { icon: editIcon, className: 'btn edit-btn', onClick: handleEdit },
-    { icon: delIcon, className: 'btn delete-btn', onClick: handleDelete },
+    { icon: editIcon, text: '', className: 'btn edit-btn', onClick: handleEdit },
+    { icon: delIcon, text: '', className: 'btn delete-btn', onClick: handleDelete },
   ];
 
   return (
