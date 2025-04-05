@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
-import { SwipeCell, Cell, Toast, SwipeCellInstanceFunctions } from 'tdesign-mobile-react';
+import { SwipeCell, Cell, Toast, SwipeCellRef } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function Demo() {
-  const ref = useRef<SwipeCellInstanceFunctions>();
+  const ref = useRef<SwipeCellRef>(null);
   const handleClick = (message = 'click') => {
     Toast({
       message,

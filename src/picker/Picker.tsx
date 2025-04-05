@@ -1,4 +1,6 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, ReactNode, useMemo } from 'react';
+import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
+import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
 import useConfig from '../hooks/useConfig';
 import useDefault from '../_util/useDefault';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
@@ -8,7 +10,9 @@ import { TdPickerProps } from './type';
 import Button from '../button';
 import Popup from '../popup';
 
-export interface PickerProps extends TdPickerProps, NativeProps {}
+export interface PickerProps extends TdPickerProps, NativeProps {
+  children?: ReactNode;
+}
 
 const Picker: FC<PickerProps> = (props) => {
   const {
@@ -24,7 +28,7 @@ const Picker: FC<PickerProps> = (props) => {
     onCancel,
     onConfirm,
     onChange,
-  } = props;
+  } = useDefaultProps(props, pickerDefaultProps);
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-picker`;
 
@@ -51,7 +55,7 @@ const Picker: FC<PickerProps> = (props) => {
               </Button>
             </div>
           ) : (
-            header
+            parseTNode(header)
           )}
           {/* TODO:popup集成惰性加载后可移除条件渲染 */}
           {visible && (
@@ -66,7 +70,6 @@ const Picker: FC<PickerProps> = (props) => {
   );
 };
 
-Picker.defaultProps = pickerDefaultProps;
 Picker.displayName = 'Picker';
 
 export default Picker;

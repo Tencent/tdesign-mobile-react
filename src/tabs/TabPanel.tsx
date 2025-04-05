@@ -1,10 +1,14 @@
-import React, { FC, useContext, useEffect, useMemo, useState } from 'react';
+import React, { FC, ReactNode, useContext, useEffect, useMemo, useState } from 'react';
 import { TdTabPanelProps } from './type';
 import TabContext from './context';
 import { usePrefixClass } from '../hooks/useClass';
 import parseTNode from '../_util/parseTNode';
 
-const TabPanel: FC<TdTabPanelProps> = (props) => {
+export interface TabPanelProps extends TdTabPanelProps {
+  children?: ReactNode;
+}
+
+const TabPanel: FC<TabPanelProps> = (props) => {
   const { value, lazy, destroyOnHide, children, panel } = props;
 
   const tabPanelClass = usePrefixClass('tab-panel');

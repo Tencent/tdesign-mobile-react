@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render, unmount } from 'tdesign-mobile-react/_util/react-render';
 import Loading, { LoadingProps } from './Loading';
 import { LoadingInstance, TdLoadingProps } from './type';
 
@@ -28,13 +28,13 @@ export const LoadingPlugin: LoadingPluginMethod = (options) => {
     ...props,
   };
 
-  ReactDOM.render(<Loading {...defaultProps} attach={null}></Loading>, div);
+  render(<Loading {...defaultProps} attach={null}></Loading>, div);
 
   container.appendChild(div);
 
   return {
     hide: () => {
-      ReactDOM.unmountComponentAtNode(div);
+      unmount(div);
       div.remove();
     },
   };

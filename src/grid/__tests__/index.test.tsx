@@ -135,7 +135,7 @@ describe('GridItem', () => {
       };
       const { container } = render(
         <Grid>
-          <GridItem image={imgProps} />
+          <GridItem image={imgProps as any} />
         </Grid>,
       );
       const $imgContainer = container.querySelector(`.${name}-item__image`);

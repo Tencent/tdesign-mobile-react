@@ -18,8 +18,10 @@ export default function () {
     },
   ];
   return (
-    <RadioGroup className="theme-card" value={defaultValue} onChange={setDefaultValue}>
-      {options.map((opt) => <Radio value={opt.value} label={opt.label} key={opt.value}></Radio>)}
+    <RadioGroup className="theme-card" value={defaultValue} onChange={(value: string) => setDefaultValue(value)}>
+      {options.map((opt) => (
+        <Radio value={opt.value} label={opt.label} key={opt.value}></Radio>
+      ))}
     </RadioGroup>
   );
 }

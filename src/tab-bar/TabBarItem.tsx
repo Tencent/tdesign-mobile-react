@@ -129,7 +129,7 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
     icon &&
     React.cloneElement(icon, {
       style: { fontSize: iconSize },
-    });
+    } as any);
 
   return (
     <div className={tabItemCls} ref={ref}>

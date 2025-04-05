@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext, useMemo, forwardRef } from 'react';
 import { CloseIcon } from 'tdesign-icons-react';
+import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
 import Button from '../button';
 import { TDateType, TCalendarValue } from './type';
 import { usePrefixClass } from '../hooks/useClass';
@@ -228,7 +229,7 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
     );
   };
 
-  const renderConfirmBtn = () => {
+  const renderConfirmBtn = (): any => {
     if (confirmBtn && typeof confirmBtn !== 'object') {
       return confirmBtn;
     }
@@ -236,7 +237,7 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
       return confirmBtn;
     }
     if (confirmBtn && typeof confirmBtn === 'object') {
-      return <Button block theme="primary" {...confirmBtn} onClick={handleConfirm} />;
+      return <Button block theme="primary" {...(confirmBtn as any)} onClick={handleConfirm} />;
     }
   };
 
@@ -248,7 +249,7 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
 
   return (
     <div ref={ref} className={`${className}`}>
-      <div className={`${calendarClass}__title`}>{props.title || local.title}</div>
+      <div className={`${calendarClass}__title`}>{parseTNode(props.title, null, local.title)}</div>
       {props.usePopup && <CloseIcon className={`${calendarClass}__close-btn`} size={24} onClick={handleClose} />}
       <div className={`${calendarClass}__days`}>
         {days.map((item, index) => (

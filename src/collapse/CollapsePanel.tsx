@@ -80,7 +80,7 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
   const renderRightIcon = () => {
     const showIcon = expandIcon || parent?.expandIcon;
     const icon = showIcon === true ? renderDefaultIcon() : showIcon;
-    return <div className={`${collapsePanelClass}__header-icon`}>{icon}</div>;
+    return <div className={`${collapsePanelClass}__header-icon`}>{parseTNode(icon)}</div>;
   };
 
   /** 面板内容区， */

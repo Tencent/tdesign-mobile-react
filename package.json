@@ -93,8 +93,8 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^20.14.11",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "17.0.2",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
     "@types/react-transition-group": "^4.4.4",
     "@types/tinycolor2": "^1.4.6",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
@@ -136,8 +136,8 @@
     "postcss": "^8.4.5",
     "prettier": "^3.3.3",
     "prismjs": "^1.25.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-router-dom": "^6.2.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.55.0",
@@ -153,16 +153,16 @@
     "tdesign-icons-view": "^0.3.5",
     "tdesign-site-components": "^0.15.6",
     "tdesign-theme-generator": "^1.1.0",
-    "typescript": "^4.5.3",
+    "typescript": "5.2.2",
     "vite": "^2.7.0",
     "vite-plugin-pwa": "^0.11.11",
     "vite-plugin-tdoc": "^2.0.0",
-    "vitest": "^2.0.3",
+    "vitest": "^2.1.9",
     "workbox-precaching": "^6.3.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@react-spring/web": "9.6.1",
+    "@react-spring/web": "^9.7.5",
     "@use-gesture/react": "^10.2.10",
     "ahooks": "^3.1.9",
     "classnames": "^2.3.1",
@@ -185,5 +185,6 @@
       "prettier --write",
       "npm run lint:fix"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.6.4+sha512.da3d715bfd22a9a105e6e8088cfc7826699332ded60c423b14ec613a185f1602206702ff0fe4c438cb15c979081ce4cb02568e364b15174503a63c7a8e2a5f6c"
 }

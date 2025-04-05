@@ -3,7 +3,7 @@ import { BackTop, Button } from 'tdesign-mobile-react';
 import './style/index.less';
 
 export default function Base({ visible, onClose, container }) {
-  const [theme, setTheme] = useState({
+  const [theme, setTheme] = useState<{ theme: 'round' | 'half-round'; text: string }>({
     theme: 'round',
     text: '顶部',
   });

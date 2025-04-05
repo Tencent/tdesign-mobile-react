@@ -67,8 +67,10 @@ const GridItem: FC<GridItemProp> = (prop) => {
         {badge ? <Badge {...badge}>{gridItemImage}</Badge> : gridItemImage}
       </div>
       <div className={cls([`${name}__content`, `${name}__content--${layout}`])}>
-        <div className={cls([`${name}__title`, `${name}__title--${size}`])}>{text}</div>
-        <div className={cls([`${name}__description`, `${name}__description--${layout}`])}>{description}</div>
+        <div className={cls([`${name}__title`, `${name}__title--${size}`])}>{parseTNode(text)}</div>
+        <div className={cls([`${name}__description`, `${name}__description--${layout}`])}>
+          {parseTNode(description)}
+        </div>
       </div>
     </div>
   );

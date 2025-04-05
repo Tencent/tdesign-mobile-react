@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, ReactNode } from 'react';
 import classNames from 'classnames';
 import {
   CloseIcon,
@@ -9,6 +9,7 @@ import {
   ErrorCircleFilledIcon,
 } from 'tdesign-icons-react';
 import { isString } from 'lodash-es';
+import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
 import { StyledProps } from '../common';
 import { TdProgressProps } from './type';
 import useConfig from '../hooks/useConfig';
@@ -17,7 +18,9 @@ import { progressDefaultProps } from './defaultProps';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { PRO_THEME, CIRCLE_SIZE_PX, STATUS_ICON, PLUMP_SEPARATE } from './constants';
 
-export interface ProgressProps extends TdProgressProps, StyledProps {}
+export interface ProgressProps extends TdProgressProps, StyledProps {
+  children?: ReactNode;
+}
 
 const Progress = forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
   const { classPrefix } = useConfig();
@@ -71,7 +74,7 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
         );
       }
     } else {
-      info = <div className={`${progressClass}__info`}>{label}</div>;
+      info = <div className={`${progressClass}__info`}>{parseTNode(label)}</div>;
     }
     return info;
   };
