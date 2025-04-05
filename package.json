@@ -154,7 +154,7 @@
     "tdesign-site-components": "^0.15.6",
     "tdesign-theme-generator": "^1.1.0",
     "typescript": "5.2.2",
-    "vite": "^2.7.0",
+    "vite": "^5.4.7",
     "vite-plugin-pwa": "^0.11.11",
     "vite-plugin-tdoc": "^2.0.0",
     "vitest": "^2.1.9",
@@ -185,6 +185,5 @@
       "prettier --write",
       "npm run lint:fix"
     ]
-  },
-  "packageManager": "pnpm@10.6.4+sha512.da3d715bfd22a9a105e6e8088cfc7826699332ded60c423b14ec613a185f1602206702ff0fe4c438cb15c979081ce4cb02568e364b15174503a63c7a8e2a5f6c"
+  }
 }

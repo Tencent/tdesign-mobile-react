@@ -36,7 +36,8 @@ interface SwiperStyleState {
 }
 
 const Swiper = forwardRefWithStatics(
-  (originProps: SwiperProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  (originProps: SwiperProps, _ref: any) => {
     const props = useDefaultProps<SwiperProps>(originProps, swiperDefaultProps);
     const {
       type,
