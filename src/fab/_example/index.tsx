@@ -4,7 +4,7 @@ import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './style/index.less';
 import BaseDemo from './base';
-import TextDemo from './text';
+import TextDemo from './advance';
 
 export default function FabDemo() {
   const [type, setType] = useState('base');
