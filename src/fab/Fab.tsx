@@ -82,8 +82,8 @@ const Fab: React.FC<FabProps> = forwardRef((props) => {
   };
 
   const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    // e.stopPropagation();
-    // e.preventDefault?.();
+    e.stopPropagation();
+    e.preventDefault?.();
 
     if (!props.draggable) {
       return;
