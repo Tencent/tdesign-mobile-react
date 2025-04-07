@@ -13,17 +13,20 @@ type ToastApi = {
   loading: (options?: Partial<TdToastProps> | string) => void;
   /** 展示成功提示 */
   success: (options?: Partial<TdToastProps> | string) => void;
+  /** 展示警告提示 */
+  warning: (options?: Partial<TdToastProps> | string) => void;
   /** 展示失败提示 */
   error: (options?: Partial<TdToastProps> | string) => void;
   /** 关闭提示 */
   clear: () => void;
 };
 
-const { success, loading, error, createToast, clear } = methods.default;
+const { success, warning, loading, error, createToast, clear } = methods.default;
 const innerToast = (props: TdToastProps) => createToast(props);
 
 export const ToastPlugin: ToastApi = attachMethodsToComponent(innerToast, {
   success,
+  warning,
   error,
   loading,
   clear,

@@ -30,7 +30,6 @@ function Components() {
   const location = useLocation();
   const name = location.pathname.slice(1);
   const title = getCurrentRoute(siteConfig.docs, name)?.title;
-  console.log('title', title)
 
   return (
     <>
