@@ -11,6 +11,7 @@ const Fab: React.FC<FabProps> = forwardRef((props) => {
   const { buttonProps, icon = null, text, onClick } = props;
 
   const fabButtonRef = useRef(null);
+  const fabRef = useRef<HTMLDivElement>(null);
 
   const [fabButtonSize, setFabButtonSize] = useState({
     width: 0,
@@ -32,7 +33,7 @@ const Fab: React.FC<FabProps> = forwardRef((props) => {
     x: 16,
     y: 32,
   });
-  const [switchPos, setSwitchPos] = useState({
+  let switchPos = {
     hasMoved: false, // exclude click event
     x: btnSwitchPos.x, // right
     y: btnSwitchPos.y, // bottom
@@ -40,7 +41,7 @@ const Fab: React.FC<FabProps> = forwardRef((props) => {
     startY: 0,
     endX: 0,
     endY: 0,
-  });
+  };
 
   const { classPrefix } = useConfig();
   const name = useMemo(() => `${classPrefix}-fab`, [classPrefix]);
@@ -58,11 +59,11 @@ const Fab: React.FC<FabProps> = forwardRef((props) => {
   const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     props.onDragStart?.({ e });
 
-    setSwitchPos({
+    switchPos = {
       ...switchPos,
-      startX: e.touches[0].pageX,
-      startY: e.touches[0].pageY,
-    });
+      startX: e.touches[0].clientX,
+      startY: e.touches[0].clientY,
+    };
   };
 
   const getSwitchButtonSafeAreaXY = (x: number, y: number) => {
@@ -81,9 +82,17 @@ const Fab: React.FC<FabProps> = forwardRef((props) => {
     return [resultX, resultY];
   };
 
-  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+  const onTouchMove = (e: TouchEvent) => {
+    if (!switchPos.hasMoved) {
+      switchPos = {
+        ...switchPos,
+        startX: e.touches[0].clientX,
+        startY: e.touches[0].clientY,
+      };
+    }
+
     e.stopPropagation();
-    e.preventDefault?.();
+    e.preventDefault();
 
     if (!props.draggable) {
       return;
@@ -92,8 +101,9 @@ const Fab: React.FC<FabProps> = forwardRef((props) => {
     if (e.touches.length <= 0) {
       return;
     }
-    const offsetX = e.touches[0].pageX - switchPos.startX;
-    const offsetY = e.touches[0].pageY - switchPos.startY;
+
+    const offsetX = e.touches[0].clientX - switchPos.startX;
+    const offsetY = e.touches[0].clientY - switchPos.startY;
     const x = Math.floor(switchPos.x - offsetX);
     const y = Math.floor(switchPos.y - offsetY);
 
@@ -110,17 +120,23 @@ const Fab: React.FC<FabProps> = forwardRef((props) => {
       toChangeData.y = newY;
       toChangePos.endY = newY;
     }
-    setSwitchPos(toChangePos);
+    switchPos = toChangePos;
     setBtnSwitchPos(toChangeData);
   };
 
+  useEffect(() => {
+    const fab = fabRef.current;
+    fab && fab.addEventListener('touchmove', onTouchMove, { passive: false });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const setSwitchPosition = (switchX: number, switchY: number) => {
     const [newSwitchX, newSwitchY] = getSwitchButtonSafeAreaXY(switchX, switchY);
-    setSwitchPos({
+    switchPos = {
       ...switchPos,
       x: newSwitchX,
       y: newSwitchY,
-    });
+    };
 
     if (props.draggable !== 'vertical') {
       setBtnSwitchPos({
@@ -141,22 +157,22 @@ const Fab: React.FC<FabProps> = forwardRef((props) => {
       return;
     }
     props.onDragEnd?.({ e });
-    setSwitchPos({
+    switchPos = {
       ...switchPos,
       startX: 0,
       startY: 0,
       hasMoved: false,
-    });
+    };
     setSwitchPosition(switchPos.endX, switchPos.endY);
   };
 
   return (
     <div
+      ref={fabRef}
       className={name}
       style={props.draggable && fabButtonSize.width ? { ...fabStyle } : props.style}
       onClick={onClickHandle}
       onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
       <Button
