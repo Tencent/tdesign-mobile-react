@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'tdesign-mobile-react/_util/react-render';
+import { render } from '../_util/react-render';
 import { MessageThemeList, MessageActionOptionsType } from './type';
 import { messageDefaultProps } from './defaultProps';
 import Message from './Message';

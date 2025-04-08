@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import type { TNode } from 'tdesign-mobile-react/common';
+import type { TNode } from '../common';
 import type { CollapseValue } from './type';
 
 export interface CollapseContextValue {

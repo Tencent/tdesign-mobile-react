@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, useMemo } from 'react';
-import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
-import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
+import useDefaultProps from '../hooks/useDefaultProps';
+import parseTNode from '../_util/parseTNode';
 import useConfig from '../hooks/useConfig';
 import useDefault from '../_util/useDefault';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';

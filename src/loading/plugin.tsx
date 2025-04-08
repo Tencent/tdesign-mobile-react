@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, unmount } from 'tdesign-mobile-react/_util/react-render';
+import { render, unmount } from '../_util/react-render';
 import Loading, { LoadingProps } from './Loading';
 import { LoadingInstance, TdLoadingProps } from './type';
 

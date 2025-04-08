@@ -2,7 +2,7 @@ import React, { createContext, forwardRef, useContext, useRef } from 'react';
 import type { CSSProperties, Ref } from 'react';
 import classNames from 'classnames';
 import { CheckIcon, CheckCircleFilledIcon } from 'tdesign-icons-react';
-import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
+import parseTNode from '../_util/parseTNode';
 import { usePrefixClass } from '../hooks/useClass';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import useDefault from '../_util/useDefault';

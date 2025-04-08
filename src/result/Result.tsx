@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { InfoCircleIcon, CheckCircleIcon, CloseCircleIcon } from 'tdesign-icons-react';
-import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
+import parseTNode from '../_util/parseTNode';
 import { TdResultProps } from './type';
 import { resultDefaultProps } from './defaultProps';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';

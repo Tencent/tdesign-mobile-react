@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
-import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
+import parseTNode from '../_util/parseTNode';
 import { TdLoadingProps } from './type';
 import { loadingDefaultProps } from './defaultProps';
 import { StyledProps } from '../common';

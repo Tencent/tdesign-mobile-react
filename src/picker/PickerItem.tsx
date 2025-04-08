@@ -2,7 +2,7 @@ import React, { FC, useRef, memo, useCallback, useContext, useMemo, useState } f
 import { useDebounceEffect } from 'ahooks';
 import { isUndefined } from 'lodash-es';
 import { useDrag } from '@use-gesture/react';
-import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
+import useDefaultProps from '../hooks/useDefaultProps';
 import useConfig from '../hooks/useConfig';
 import nearest from '../_util/nearest';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
@@ -139,7 +139,7 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
       },
     },
   );
-  console.log('y', y);
+
   return withNativeProps(
     props,
     <div className={name} ref={rootRef}>

@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { unmount } from 'tdesign-mobile-react/_util/react-render';
+import { unmount } from '../../_util/react-render';
 
 interface UseMessageCssTransitionParams {
   contentRef: React.MutableRefObject<HTMLDivElement>;

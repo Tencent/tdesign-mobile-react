@@ -9,7 +9,7 @@ import {
   ErrorCircleFilledIcon,
 } from 'tdesign-icons-react';
 import { isString } from 'lodash-es';
-import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
+import parseTNode from '../_util/parseTNode';
 import { StyledProps } from '../common';
 import { TdProgressProps } from './type';
 import useConfig from '../hooks/useConfig';

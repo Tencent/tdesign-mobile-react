@@ -2,7 +2,7 @@ import React, { forwardRef, useRef } from 'react';
 import { get, isFunction } from 'lodash-es';
 import cx from 'classnames';
 
-import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
+import parseTNode from '../_util/parseTNode';
 import { StyledProps } from '../common';
 import useClassName from './hooks/useClassName';
 import useStyle, { formatCSSUnit } from './hooks/useStyle';

@@ -4,7 +4,7 @@ import { isArray, isBoolean } from 'lodash-es';
 import classNames from 'classnames';
 import { useClickAway } from 'ahooks';
 import { useDrag } from '@use-gesture/react';
-import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
+import parseTNode from '../_util/parseTNode';
 import nearest from '../_util/nearest';
 import withNativeProps from '../_util/withNativeProps';
 import { TdSwipeCellProps, SwipeActionItem, Sure } from './type';

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext, useMemo, forwardRef } from 'react';
 import { CloseIcon } from 'tdesign-icons-react';
-import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
+import parseTNode from '../_util/parseTNode';
 import Button from '../button';
 import { TDateType, TCalendarValue } from './type';
 import { usePrefixClass } from '../hooks/useClass';

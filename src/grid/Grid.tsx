@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
 import cls from 'classnames';
-import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
+import parseTNode from '../_util/parseTNode';
 import useConfig from '../hooks/useConfig';
 import { StyledProps } from '../common';
 import useDefaultProps from '../hooks/useDefaultProps';

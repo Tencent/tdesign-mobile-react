@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'tdesign-mobile-react/_util/react-render';
+import { render } from '../_util/react-render';
 import { TdToastProps, ToastOptions } from './type';
 import { defaultProps, ToastThemeListEnum } from './constant';
 import Toast from './Toast';

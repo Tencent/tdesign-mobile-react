@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import { render, unmount } from 'tdesign-mobile-react/_util/react-render';
+import { render, unmount } from '../_util/react-render';
 import Drawer, { DrawerProps } from './Drawer';
 import { DrawerInstance, TdDrawerProps, DrawerOptions } from './type';
 
