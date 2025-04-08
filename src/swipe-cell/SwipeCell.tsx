@@ -4,7 +4,7 @@ import { isArray, isBoolean } from 'lodash-es';
 import classNames from 'classnames';
 import { useClickAway } from 'ahooks';
 import { useDrag } from '@use-gesture/react';
-import { useSpring, animated } from '@react-spring/web';
+import { useSpring, motion } from 'motion/react';
 import parseTNode from 'tdesign-mobile-react/_util/parseTNode';
 import nearest from '../_util/nearest';
 import withNativeProps from '../_util/withNativeProps';
@@ -82,16 +82,17 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     return 0;
   };
 
-  const [{ x }, api] = useSpring(
-    () => ({
-      x: 0,
-      config: { tension: 200, friction: 30 },
-    }),
-    [],
-  );
+  const x = useSpring(0, {
+    stiffness: 200,
+    damping: 30,
+  });
 
   const close = (immediate = false) => {
-    api.start({ x: 0, immediate });
+    if (immediate) {
+      x.jump(0);
+    } else {
+      x.set(0);
+    }
     onChange();
     if (curSure.content) {
       setTimeout(() => {
@@ -105,11 +106,13 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   };
 
   const expand = (side: SideType = 'right', immediate = false) => {
-    const x = getSideOffsetX(side);
-    api.start({
-      x,
-      immediate,
-    });
+    const offsetX = getSideOffsetX(side);
+    if (immediate) {
+      x.jump(offsetX);
+    } else {
+      x.set(offsetX);
+    }
+
     onChange(side);
   };
 
@@ -145,10 +148,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
           ctx.dragging = false;
         });
       } else {
-        api.start({
-          x: offsetX,
-          immediate: true,
-        });
+        x.jump(offsetX);
       }
     },
     {
@@ -272,7 +272,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
         }
       }}
     >
-      <animated.div className={`${swipeCellClass}__wrapper`} style={{ x }}>
+      <motion.div className={`${swipeCellClass}__wrapper`} style={{ x }}>
         {left && (
           <div className={`${swipeCellClass}__left`} ref={leftRef}>
             {renderSureContent()}
@@ -286,7 +286,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
             {renderActions(right as any, 'right')}
           </div>
         )}
-      </animated.div>
+      </motion.div>
     </div>,
   );
 });

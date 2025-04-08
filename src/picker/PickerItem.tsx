@@ -2,7 +2,7 @@ import React, { FC, useRef, memo, useCallback, useContext, useMemo } from 'react
 import { useDebounceEffect } from 'ahooks';
 import { isUndefined } from 'lodash-es';
 import { useDrag } from '@use-gesture/react';
-import { useSpring, animated } from '@react-spring/web';
+import { useSpring, motion } from 'motion/react';
 import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
 import useConfig from '../hooks/useConfig';
 import nearest from '../_util/nearest';
@@ -52,13 +52,17 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
       .map((_, index) => index * itemHeight - yCompensation);
   }, [count, getControlItemHeight, getControlYCompensation]);
 
-  const [{ y }, api] = useSpring(() => ({
-    from: { y: 0 },
-    config: {
-      tension: 400,
-      mass: 0.8,
-    },
-  }));
+  // const [{ y }, api] = useSpring(() => ({
+  //   from: { y: 0 },
+  //   config: {
+  //     tension: 400,
+  //     mass: 0.8,
+  //   },
+  // }));
+
+  const y = useSpring(0, {
+    stiffness: 5,
+  });
 
   const srollTo = useCallback(
     (index: number, immediate = false) => {
@@ -69,9 +73,14 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
       } else if (index >= offsetYList.length) {
         nextIndex = offsetYList.length - 1;
       }
-      api.start({ y: offsetYList[nextIndex], immediate });
+      const offsetY = offsetYList[nextIndex];
+      if (immediate) {
+        y.jump(-offsetY);
+      } else {
+        y.set(-offsetY);
+      }
     },
-    [api, getOffsetYList],
+    [getOffsetYList, y],
   );
 
   const handleChange = (value: number | string) => {
@@ -87,11 +96,11 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
       if (currentIndex >= 0) {
         srollTo(currentIndex, isUndefined(lastIndexRef.current));
       } else {
-        api.start({ y: 0 });
+        y.set(0);
       }
       lastIndexRef.current = currentIndex;
     },
-    [api, currentIndex, srollTo],
+    [y, currentIndex, srollTo],
     { wait: 100 },
   );
 
@@ -109,23 +118,19 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
         const nextIndex = offsetYList.findIndex((item) => item === nextOffsetY);
         if (isUndefined(value)) {
           lastIndexRef.current = nextIndex;
-          api.start({
-            to: async (next) => {
-              await next({ y: nextOffsetY });
-              handleChange(options[nextIndex].value);
-            },
-          });
+          y.set(-nextOffsetY);
+          handleChange(options[nextIndex].value);
         } else {
           // 受控模式,onChange回调后等待value更新，如果不更新回退到原处
           handleChange(options[nextIndex].value);
           setTimeout(() => {
             if (lastIndex === lastIndexRef.current) {
-              api.start({ y: offsetYList[lastIndex] || 0 });
+              y.set(-offsetYList[lastIndex] || 0);
             }
           }, 100);
         }
       } else {
-        api.start({ y: offsetY });
+        y.set(-offsetY);
       }
     },
     {
@@ -150,17 +155,17 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
       },
     },
   );
-
+  console.log('y', y);
   return withNativeProps(
     props,
     <div className={name} ref={rootRef}>
-      <animated.div ref={controlRef} className={`${name}__wrapper`} style={{ y: y.to((y) => -y) }}>
+      <motion.div ref={controlRef} className={`${name}__wrapper`} style={{ y }}>
         {options.map((item) => (
           <div key={item.value} className={`${name}__item`}>
             {(formatter && formatter(item)) || item.label}
           </div>
         ))}
-      </animated.div>
+      </motion.div>
     </div>,
   );
 });
