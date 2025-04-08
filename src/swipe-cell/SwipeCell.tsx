@@ -4,7 +4,6 @@ import { isArray, isBoolean } from 'lodash-es';
 import classNames from 'classnames';
 import { useClickAway } from 'ahooks';
 import { useDrag } from '@use-gesture/react';
-import { useSpring, animated } from '@react-spring/web';
 import nearest from '../_util/nearest';
 import withNativeProps from '../_util/withNativeProps';
 import { TdSwipeCellProps, SwipeActionItem, Sure } from './type';
@@ -81,16 +80,10 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     return 0;
   };
 
-  const [{ x }, api] = useSpring(
-    () => ({
-      x: 0,
-      config: { tension: 200, friction: 30 },
-    }),
-    [],
-  );
+  const [x, setX] = useState(0);
 
-  const close = (immediate = false) => {
-    api.start({ x: 0, immediate });
+  const close = () => {
+    setX(0);
     onChange();
     if (curSure.content) {
       setTimeout(() => {
@@ -103,12 +96,9 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     }
   };
 
-  const expand = (side: SideType = 'right', immediate = false) => {
+  const expand = (side: SideType = 'right') => {
     const x = getSideOffsetX(side);
-    api.start({
-      x,
-      immediate,
-    });
+    setX(x);
     onChange(side);
   };
 
@@ -144,14 +134,11 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
           ctx.dragging = false;
         });
       } else {
-        api.start({
-          x: offsetX,
-          immediate: true,
-        });
+        setX(offsetX);
       }
     },
     {
-      from: () => [x.get(), 0],
+      from: () => [x, 0],
       bounds: () => ({
         left: getSideOffsetX('right'),
         right: getSideOffsetX('left'),
@@ -176,19 +163,18 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
       // 初始化 expanded，等待 dom 加载完，获取 left/right 宽度后无动画设置展开状态
       // 防止 left/right 为列表时，获取真实宽度有误
       setTimeout(() => {
-        expand(side as SideType, !!ctx.initialExpanded);
+        expand(side as SideType);
       }, 100);
     } else {
       close();
     }
-    delete ctx.initialExpanded;
     // 可以保证expand，close正常执行
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opened, rootRef.current]);
 
   useClickAway(
     () => {
-      if (x.get() !== 0) {
+      if (x !== 0) {
         close();
       }
     },
@@ -271,7 +257,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
         }
       }}
     >
-      <animated.div className={`${swipeCellClass}__wrapper`} style={{ x }}>
+      <div className={`${swipeCellClass}__wrapper`} style={{ transform: `translateX(${x}px)` }}>
         {left && (
           <div className={`${swipeCellClass}__left`} ref={leftRef}>
             {renderSureContent()}
@@ -285,7 +271,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
             {renderActions(right, 'right')}
           </div>
         )}
-      </animated.div>
+      </div>
     </div>,
   );
 });
