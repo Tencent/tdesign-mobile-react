@@ -382,12 +382,14 @@ export const docs = [
         component: () => import('tdesign-mobile-react/image/image.md'),
         componentEn: () => import('tdesign-mobile-react/image/image.en-US.md'),
       },
-      // {
-      //   title: 'ImageViewer 图片预览',
-      //   name: 'image-viewer',
-      //   path: '/mobile-react/components/image-viewer',
-      //   component: () => import('tdesign-mobile-react/image-viewer/image-viewer.md'),
-      // },
+      {
+        title: 'ImageViewer 图片预览',
+        titleEn: 'ImageViewer',
+        name: 'ImageViewer',
+        path: '/mobile-react/components/image-viewer',
+        component: () => import('tdesign-mobile-react/image-viewer/image-viewer.md'),
+        componentEn: () => import('tdesign-mobile-react/image-viewer/image-viewer.en-US.md'),
+      },
       // {
       //   title: 'List 列表',
       //   name: 'list',

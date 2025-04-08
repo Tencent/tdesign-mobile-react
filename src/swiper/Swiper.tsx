@@ -39,6 +39,7 @@ const Swiper = forwardRefWithStatics(
   (originProps: SwiperProps) => {
     const props = useDefaultProps<SwiperProps>(originProps, swiperDefaultProps);
     const {
+      className,
       type,
       children,
       autoplay,
@@ -130,11 +131,12 @@ const Swiper = forwardRefWithStatics(
 
     const rootClass = useMemo(
       () => [
+        className,
         `${swiperClass}`,
         `${swiperClass}--${type}`,
         `${isBottomPagination && navPlacement ? `${swiperClass}--${navPlacement}` : ''}`,
       ],
-      [swiperClass, type, isBottomPagination, navPlacement],
+      [swiperClass, type, isBottomPagination, navPlacement, className],
     );
 
     const intervalTimer = useRef<any>(); // 轮播计时器
@@ -572,7 +574,7 @@ const Swiper = forwardRefWithStatics(
         ref={rootDiv}
         className={classNames(rootClass)}
         style={{
-          paddingTop: swiperStyle.height,
+          height: swiperStyle.height,
         }}
       >
         <div
