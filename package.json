@@ -170,7 +170,7 @@
     "lodash-es": "^4.17.21",
     "react-transition-group": "^4.4.2",
     "smoothscroll-polyfill": "^0.4.4",
-    "tdesign-icons-react": "^0.4.4",
+    "tdesign-icons-react": "^0.5.0-alpha.1",
     "tinycolor2": "^1.6.0"
   },
   "config": {
