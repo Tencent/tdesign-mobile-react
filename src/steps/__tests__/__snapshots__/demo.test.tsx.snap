@@ -647,7 +647,6 @@ exports[`Steps > Steps specialDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
           >
             步骤展示
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
@@ -679,7 +678,6 @@ exports[`Steps > Steps specialDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
           >
             步骤展示
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
@@ -711,7 +709,6 @@ exports[`Steps > Steps specialDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
           >
             步骤展示
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
@@ -743,7 +740,6 @@ exports[`Steps > Steps specialDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
           >
             步骤展示
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
@@ -1223,7 +1219,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
           >
             已完成
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
@@ -1255,7 +1250,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--process t-step-item__title--vertical"
           >
             当前步骤
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--process t-step-item__description--vertical"
@@ -1287,7 +1281,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
           >
             未完成步骤
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
@@ -1319,7 +1312,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
           >
             未完成步骤
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
@@ -1370,7 +1362,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
           >
             已完成
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
@@ -1411,7 +1402,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--process t-step-item__title--vertical"
           >
             当前步骤
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--process t-step-item__description--vertical"
@@ -1452,7 +1442,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
           >
             未完成步骤
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
@@ -1493,7 +1482,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
           >
             未完成步骤
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
@@ -1535,7 +1523,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
           >
             已完成
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
@@ -1567,7 +1554,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--process t-step-item__title--vertical"
           >
             当前步骤
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--process t-step-item__description--vertical"
@@ -1599,7 +1585,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
           >
             未完成步骤
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
@@ -1631,7 +1616,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
           >
             未完成步骤
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
@@ -1673,7 +1657,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--finish t-step-item__title--vertical"
           >
             已完成
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--finish t-step-item__description--vertical"
@@ -1705,7 +1688,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--process t-step-item__title--vertical"
           >
             当前步骤
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--process t-step-item__description--vertical"
@@ -1774,7 +1756,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
           >
             未完成步骤
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
@@ -1806,7 +1787,6 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
             class="t-step-item__title t-step-item__title--default t-step-item__title--vertical"
           >
             未完成步骤
-            
           </div>
           <div
             class="t-step-item__description t-step-item__description--default t-step-item__description--vertical"
