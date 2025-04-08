@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { isString, get } from 'lodash-es';
 import { CloseIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
@@ -11,7 +11,9 @@ import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 import parseTNode from '../_util/parseTNode';
 
-export interface DialogProps extends TdDialogProps, StyledProps {}
+export interface DialogProps extends TdDialogProps, StyledProps {
+  children?: ReactNode;
+}
 
 export const Dialog: React.FC<DialogProps> = (props) => {
   const {
@@ -132,7 +134,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
   );
 
   const renderContentNode = () => {
-    const contentNode = parseTNode(children, null, content);
+    const contentNode = parseTNode(children, null, parseTNode(content));
     if (!contentNode) {
       return null;
     }
@@ -145,7 +147,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
   };
 
   const renderActionsNode = () => {
-    const actionsNode = parseTNode(actions);
+    const actionsNode = parseTNode(actions as any);
     if (actionsNode && actionsBtnProps) {
       return actionsBtnProps.map((item, index) => (
         <Button key={index} {...item} className={buttonClass} onClick={onCancelButtonClickHandle}></Button>
@@ -154,14 +156,14 @@ export const Dialog: React.FC<DialogProps> = (props) => {
   };
 
   const renderCancelButtonNode = () => {
-    const cancelButtonNode = parseTNode(cancelBtn);
+    const cancelButtonNode = parseTNode(cancelBtn as any);
     if (!actions && cancelButtonNode) {
       return <Button {...cancelBtnProps} className={buttonClass} onClick={onCancelButtonClickHandle}></Button>;
     }
   };
 
   const renderConfirmButtonNode = () => {
-    const confirmButtonNode = parseTNode(confirmBtn);
+    const confirmButtonNode = parseTNode(confirmBtn as any);
     if (!actions && confirmButtonNode) {
       return <Button {...confirmBtnProps} className={buttonClass} onClick={onConfirmButtonClickHandle}></Button>;
     }

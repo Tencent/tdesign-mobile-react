@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, ReactNode } from 'react';
 import classNames from 'classnames';
 import { useTimeout } from 'ahooks';
 import { isObject } from 'lodash-es';
@@ -19,6 +19,7 @@ import Link from '../link';
 
 export interface MessageProps extends TdMessageProps, StyledProps {
   container?: Element;
+  children?: ReactNode;
 }
 
 interface IInnerState {
@@ -275,7 +276,7 @@ const Message: React.FC<MessageProps> = (originProps) => {
             {getLinkContent()}
           </div>
         )}
-        {closeButton}
+        {parseTNode(closeButton as any)}
       </div>
     </CSSTransition>
   );

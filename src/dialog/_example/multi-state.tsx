@@ -30,7 +30,7 @@ const MultiStateUsage = React.memo(() => {
             content: '告知当前状态、信息和解决方法',
             confirmBtn,
             cancelBtn,
-          });
+          } as any);
         }}
       >
         文字按钮

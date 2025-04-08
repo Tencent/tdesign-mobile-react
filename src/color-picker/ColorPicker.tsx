@@ -1,5 +1,4 @@
 import React, { FC, TouchEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { ColorPickerChangeTrigger } from 'tdesign-mobile-react';
 import classNames from 'classnames';
 import { usePrefixClass } from '../hooks/useClass';
 import { Color, Coordinate, getColorObject } from '../_common/js/color-picker';
@@ -12,7 +11,7 @@ import {
 import { PanelRectType } from './types';
 import { genSwatchList, getCoordinate, getFormatList } from './helper/format';
 import type { StyledProps } from '../common';
-import type { TdColorPickerProps } from './type';
+import type { TdColorPickerProps, ColorPickerChangeTrigger } from './type';
 import { colorPickerDefaultProps } from './defaultProps';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { ALPHA_MAX, HUE_MAX } from './constants';

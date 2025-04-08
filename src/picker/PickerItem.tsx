@@ -2,6 +2,7 @@ import React, { FC, useRef, memo, useCallback, useContext, useMemo, useState } f
 import { useDebounceEffect } from 'ahooks';
 import { isUndefined } from 'lodash-es';
 import { useDrag } from '@use-gesture/react';
+import useDefaultProps from '../hooks/useDefaultProps';
 import useConfig from '../hooks/useConfig';
 import nearest from '../_util/nearest';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
@@ -17,12 +18,12 @@ export interface PickerItemProps extends TdPickerItemProps, NativeProps {
 }
 
 const PickerItem: FC<PickerItemProps> = memo((props) => {
-  const { options, value, defaultValue, itemIndex, formatter } = props;
+  const { options, value, defaultValue, itemIndex, formatter } = useDefaultProps(props, pickerItemDefaultProps);
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-picker-item`;
   const rootRef = useRef<HTMLDivElement>(null);
   const controlRef = useRef<HTMLDivElement>(null);
-  const lastIndexRef = useRef<number | undefined>();
+  const lastIndexRef = useRef<number | undefined>(null);
   const pickerContext = useContext(PickerContext);
 
   const count = options.length;
@@ -160,7 +161,6 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
   );
 });
 
-PickerItem.defaultProps = pickerItemDefaultProps;
 PickerItem.displayName = 'PickerItem';
 
 export default PickerItem;

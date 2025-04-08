@@ -5,7 +5,8 @@
  * */
 
 import { StickyProps } from '../sticky';
-import { TNode, TElement } from '../common';
+import { TNode } from '../common';
+import { ReactNode } from 'react';
 
 export interface TdTabsProps {
   /**
@@ -20,7 +21,7 @@ export interface TdTabsProps {
   /**
    * 组件子元素
    */
-  children?: TElement;
+  children?: ReactNode;
   /**
    * 选项卡列表
    */

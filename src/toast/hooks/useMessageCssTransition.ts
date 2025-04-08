@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import ReactDOM from 'react-dom';
+import { unmount } from '../../_util/react-render';
 
 interface UseMessageCssTransitionParams {
   contentRef: React.MutableRefObject<HTMLDivElement>;
@@ -35,7 +35,7 @@ const useMessageCssTransition = ({ contentRef, classPrefix, el }: UseMessageCssT
         }
         // 删除createElement创建的div元素
         if (el instanceof Element) {
-          const unmountResult = ReactDOM.unmountComponentAtNode(el);
+          const unmountResult = unmount(el);
           if (unmountResult) {
             (el as any).parentNode?.removeChild(el);
           }

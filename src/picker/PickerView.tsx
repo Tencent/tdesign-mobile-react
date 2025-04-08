@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, ReactNode, useMemo } from 'react';
 import { isUndefined } from 'lodash-es';
 import useConfig from '../hooks/useConfig';
 import useDefault from '../_util/useDefault';
@@ -10,7 +10,7 @@ export const getPickerViewDefaultValue = (defaultValue: Array<PickerValue>, chil
   const result = (defaultValue || []).slice(0);
   React.Children.forEach(children, (child, index) => {
     if (React.isValidElement(child) && isUndefined(result[index])) {
-      const childOptions = child.props.options || [];
+      const childOptions = (child.props as any).options || [];
       const optionsCount = childOptions.length;
       const optionsIndex = Math.max(0, optionsCount <= 2 ? optionsCount - 1 : 2);
       result[index] = childOptions[optionsIndex]?.value;
@@ -19,7 +19,9 @@ export const getPickerViewDefaultValue = (defaultValue: Array<PickerValue>, chil
   return result;
 };
 
-export interface PickerViewProps extends Pick<TdPickerProps, 'value' | 'defaultValue' | 'onChange'>, NativeProps {}
+export interface PickerViewProps extends Pick<TdPickerProps, 'value' | 'defaultValue' | 'onChange'>, NativeProps {
+  children?: ReactNode;
+}
 
 const PickerView: FC<PickerViewProps> = (props) => {
   const { value, defaultValue, onChange, children } = props;

@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { ChevronLeftIcon } from 'tdesign-icons-react';
 import ClassNames from 'classnames';
 import { usePrefixClass } from '../hooks/useClass';
@@ -9,7 +9,9 @@ import { navbarDefaultProps } from './defaultProps';
 import parseTNode from '../_util/parseTNode';
 import useDefaultProps from '../hooks/useDefaultProps';
 
-export interface NavbarProps extends TdNavbarProps, StyledProps {}
+export interface NavbarProps extends TdNavbarProps, StyledProps {
+  children?: ReactNode;
+}
 
 const Navbar: React.FC<NavbarProps> = (originProps) => {
   const props = useDefaultProps(originProps, navbarDefaultProps);

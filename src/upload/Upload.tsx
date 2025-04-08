@@ -54,7 +54,7 @@ const Upload: React.FC<UploadProps> = (props) => {
   const { classPrefix } = useConfig();
   const [fileList, onChange] = useDefault<Array<TdUploadFile>, any[]>(files, defaultFiles || [], props.onChange);
 
-  const uploadRef = useRef<HTMLInputElement>();
+  const uploadRef = useRef<HTMLInputElement>(null);
 
   const formatFiles = (files: File[] = []): TdUploadFile[] =>
     files.map((fileRaw) => {
