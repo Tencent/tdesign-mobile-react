@@ -168,7 +168,6 @@
     "dayjs": "^1.11.13",
     "hoist-non-react-statics": "^3.3.2",
     "lodash-es": "^4.17.21",
-    "motion": "^12.6.3",
     "react-transition-group": "^4.4.2",
     "smoothscroll-polyfill": "^0.4.4",
     "tdesign-icons-react": "^0.4.4",

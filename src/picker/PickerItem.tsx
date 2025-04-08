@@ -1,8 +1,7 @@
-import React, { FC, useRef, memo, useCallback, useContext, useMemo } from 'react';
+import React, { FC, useRef, memo, useCallback, useContext, useMemo, useState } from 'react';
 import { useDebounceEffect } from 'ahooks';
 import { isUndefined } from 'lodash-es';
 import { useDrag } from '@use-gesture/react';
-import { useSpring, motion } from 'motion/react';
 import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
 import useConfig from '../hooks/useConfig';
 import nearest from '../_util/nearest';
@@ -52,20 +51,10 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
       .map((_, index) => index * itemHeight - yCompensation);
   }, [count, getControlItemHeight, getControlYCompensation]);
 
-  // const [{ y }, api] = useSpring(() => ({
-  //   from: { y: 0 },
-  //   config: {
-  //     tension: 400,
-  //     mass: 0.8,
-  //   },
-  // }));
+  const [y, setY] = useState(0);
 
-  const y = useSpring(0, {
-    stiffness: 5,
-  });
-
-  const srollTo = useCallback(
-    (index: number, immediate = false) => {
+  const scrollTo = useCallback(
+    (index: number) => {
       const offsetYList = getOffsetYList();
       let nextIndex = index;
       if (index < 0) {
@@ -73,14 +62,9 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
       } else if (index >= offsetYList.length) {
         nextIndex = offsetYList.length - 1;
       }
-      const offsetY = offsetYList[nextIndex];
-      if (immediate) {
-        y.jump(-offsetY);
-      } else {
-        y.set(-offsetY);
-      }
+      setY(offsetYList[nextIndex]);
     },
-    [getOffsetYList, y],
+    [getOffsetYList],
   );
 
   const handleChange = (value: number | string) => {
@@ -94,13 +78,13 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
     () => {
       if (currentIndex === lastIndexRef.current) return;
       if (currentIndex >= 0) {
-        srollTo(currentIndex, isUndefined(lastIndexRef.current));
+        scrollTo(currentIndex);
       } else {
-        y.set(0);
+        setY(0);
       }
       lastIndexRef.current = currentIndex;
     },
-    [y, currentIndex, srollTo],
+    [currentIndex, scrollTo],
     { wait: 100 },
   );
 
@@ -118,25 +102,25 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
         const nextIndex = offsetYList.findIndex((item) => item === nextOffsetY);
         if (isUndefined(value)) {
           lastIndexRef.current = nextIndex;
-          y.set(-nextOffsetY);
+          setY(nextOffsetY);
           handleChange(options[nextIndex].value);
         } else {
           // 受控模式,onChange回调后等待value更新，如果不更新回退到原处
           handleChange(options[nextIndex].value);
           setTimeout(() => {
             if (lastIndex === lastIndexRef.current) {
-              y.set(-offsetYList[lastIndex] || 0);
+              setY(offsetYList[lastIndex] || 0);
             }
           }, 100);
         }
       } else {
-        y.set(-offsetY);
+        setY(offsetY);
       }
     },
     {
       target: rootRef,
       axis: 'y',
-      from: () => [0, y.get()],
+      from: () => [0, y],
       transform: ([x, y]) => [x, -y],
       filterTaps: true,
       pointer: { touch: true },
@@ -159,13 +143,20 @@ const PickerItem: FC<PickerItemProps> = memo((props) => {
   return withNativeProps(
     props,
     <div className={name} ref={rootRef}>
-      <motion.div ref={controlRef} className={`${name}__wrapper`} style={{ y }}>
+      <div
+        ref={controlRef}
+        className={`${name}__wrapper`}
+        style={{
+          transition: 'transform 0.3s ease-in-out',
+          transform: `translateY(${-y}px)`,
+        }}
+      >
         {options.map((item) => (
           <div key={item.value} className={`${name}__item`}>
             {(formatter && formatter(item)) || item.label}
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>,
   );
 });
