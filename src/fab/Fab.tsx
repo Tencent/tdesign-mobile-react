@@ -1,13 +1,16 @@
-import React, { useMemo, forwardRef, useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { reconvertUnit } from '../_util/convertUnit';
 import Button from '../button';
 import { TdFabProps } from './type';
+import { fabDefaultProps } from './defaultProps';
 import { StyledProps } from '../common';
-import useConfig from '../hooks/useConfig';
+import { usePrefixClass } from '../hooks/useClass';
+import useDefaultProps from '../hooks/useDefaultProps';
 
 export interface FabProps extends TdFabProps, StyledProps {}
 
-const Fab: React.FC<FabProps> = forwardRef((props) => {
+const Fab: React.FC<FabProps> = (originProps) => {
+  const props = useDefaultProps(originProps, fabDefaultProps);
   const { buttonProps, icon = null, text, onClick } = props;
 
   const fabButtonRef = useRef(null);
@@ -43,10 +46,9 @@ const Fab: React.FC<FabProps> = forwardRef((props) => {
     endY: 0,
   };
 
-  const { classPrefix } = useConfig();
-  const name = useMemo(() => `${classPrefix}-fab`, [classPrefix]);
+  const fabClass = usePrefixClass('fab');
 
-  const onClickHandle = (e) => {
+  const onClickHandle = (e: React.MouseEvent<HTMLDivElement>) => {
     onClick({ e });
   };
 
@@ -169,7 +171,7 @@ const Fab: React.FC<FabProps> = forwardRef((props) => {
   return (
     <div
       ref={fabRef}
-      className={name}
+      className={fabClass}
       style={props.draggable && fabButtonSize.width ? { ...fabStyle } : props.style}
       onClick={onClickHandle}
       onTouchStart={onTouchStart}
@@ -180,7 +182,7 @@ const Fab: React.FC<FabProps> = forwardRef((props) => {
         size="large"
         theme="primary"
         shape={props.text ? 'round' : 'circle'}
-        className={`${name}__button`}
+        className={`${fabClass}__button`}
         {...(buttonProps as TdFabProps['buttonProps'])}
         icon={icon}
       >
@@ -188,7 +190,7 @@ const Fab: React.FC<FabProps> = forwardRef((props) => {
       </Button>
     </div>
   );
-});
+};
 
 Fab.displayName = 'Fab';
 export default Fab;
