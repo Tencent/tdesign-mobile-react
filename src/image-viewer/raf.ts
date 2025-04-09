@@ -1,9 +1,9 @@
 let raf = (callback: FrameRequestCallback) => +setTimeout(callback, 16);
-let caf = (num: number) => clearTimeout(num);
+let clear = (num: number) => clearTimeout(num);
 
 if (typeof window !== 'undefined' && 'requestAnimationFrame' in window) {
   raf = (callback: FrameRequestCallback) => window.requestAnimationFrame(callback);
-  caf = (handle: number) => window.cancelAnimationFrame(handle);
+  clear = (handle: number) => window.cancelAnimationFrame(handle);
 }
 
 let rafUUID = 0;
@@ -44,7 +44,7 @@ const wrapperRaf = (callback: () => void, times = 1): number => {
 wrapperRaf.cancel = (id: number) => {
   const realId = rafIds.get(id);
   cleanup(id);
-  return caf(realId);
+  return clear(realId);
 };
 
 if (process.env.NODE_ENV !== 'production') {

@@ -24,7 +24,7 @@ function fixPoint(key: 'x' | 'y', start: number, width: number, clientWidth: num
 }
 
 /**
- * Fix positon x,y point when
+ * Fix position x,y point when
  *
  * Ele width && height < client
  * - Back origin
