@@ -1,5 +1,7 @@
 import React, { MouseEvent, useRef, useState } from 'react';
 import { CloseIcon, DeleteIcon } from 'tdesign-icons-react';
+import { CSSTransition } from 'react-transition-group';
+import { CSSTransitionClassNames } from 'react-transition-group/CSSTransition';
 import { TdImageViewerProps, ImageInfo } from './type';
 import { StyledProps } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
@@ -32,6 +34,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
 
   const swiperRootRef = useRef<HTMLDivElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
+  const duration = 300;
 
   const beforeClose = () => {
     setInnerState({
@@ -48,6 +51,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
 
   const imageViewerClass = usePrefixClass('image-viewer');
   const handleClose = (e: MouseEvent, trigger: 'overlay' | 'close-btn') => {
+    e.stopPropagation();
     beforeClose();
     setShow(false);
     onClose?.({ trigger, visible: false, index });
@@ -88,6 +92,8 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
   });
 
   const onSwiperChange = (index: number) => {
+    if (!show) return;
+
     if (currentIndex !== index) {
       const trigger = currentIndex < index ? 'next' : 'prev';
       setCurrentIndex(index, { trigger });
@@ -103,8 +109,21 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
     return zooming || dragging ? { transitionDuration: '0s' } : { transitionDuration: '0.3s' };
   };
 
+  const animationClassNames: CSSTransitionClassNames = {
+    enterActive: 'fade-enter-active',
+    exitActive: 'fade-leave-active',
+  };
+
   return (
-    show && (
+    <CSSTransition
+      in={show}
+      timeout={duration}
+      appear
+      unmountOnExit={true}
+      mountOnEnter
+      classNames={animationClassNames}
+      nodeRef={rootRef}
+    >
       <div ref={rootRef} className={imageViewerClass}>
         <div className={`${imageViewerClass}__mask`} onClick={(e) => handleClose(e, 'overlay')}></div>
         <TSwiper
@@ -151,7 +170,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
           </div>
         </div>
       </div>
-    )
+    </CSSTransition>
   );
 };
 

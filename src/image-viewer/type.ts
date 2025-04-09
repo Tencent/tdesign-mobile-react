@@ -63,7 +63,7 @@ export interface TdImageViewerProps {
   /**
    * 预览图片切换时触发，`context.prev` 切换到上一张图片，`context.next` 切换到下一张图片
    */
-  onIndexChange?: (index: number, context: { trigger: 'prev' | 'next' | 'current' }) => void;
+  onIndexChange?: (index: number, context: { trigger: 'prev' | 'next' }) => void;
 }
 
 export interface ImageInfo {

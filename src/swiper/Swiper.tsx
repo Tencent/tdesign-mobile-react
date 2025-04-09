@@ -418,7 +418,6 @@ const Swiper = forwardRefWithStatics(
 
     useEffect(() => {
       if (currentIsNull) return;
-      console.log(`[Swiper].current = ${current}, previousIndex = ${previousIndex.current}`);
       nextIndex.current = calculateItemIndex(current, items.current.length, loop);
       if (previousIndex.current !== nextIndex.current) {
         enterSwitching(directionAxis);

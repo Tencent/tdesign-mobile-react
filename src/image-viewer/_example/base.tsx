@@ -9,13 +9,17 @@ const images = [
 export default function BaseDemo() {
   const [visible, setVisible] = useState(false);
 
+  const onIndexChange = (...args) => {
+    console.log('[onIndexChange]', args);
+  };
+
   return (
     <div className="image-example">
       <Button block size="large" variant="outline" theme="primary" onClick={() => setVisible(true)}>
         基础图片预览
       </Button>
 
-      <ImageViewer images={images} visible={visible} onClose={() => setVisible(false)} />
+      <ImageViewer images={images} visible={visible} onClose={() => setVisible(false)} onIndexChange={onIndexChange} />
     </div>
   );
 }
