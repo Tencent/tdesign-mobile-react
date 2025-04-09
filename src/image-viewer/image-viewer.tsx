@@ -1,4 +1,4 @@
-import React, { MouseEvent, useRef, useState } from 'react';
+import React, { MouseEvent, useRef, useState, useEffect } from 'react';
 import { CloseIcon, DeleteIcon } from 'tdesign-icons-react';
 import { CSSTransition } from 'react-transition-group';
 import { CSSTransitionClassNames } from 'react-transition-group/CSSTransition';
@@ -12,8 +12,16 @@ import { imageViewerDefaultProps } from './defaultProps';
 import { Swiper as TSwiper } from '../swiper';
 import parseTNode from '../_util/parseTNode';
 import TSwiperItem from '../swiper/SwiperItem';
+import { useImageTransform } from './transform';
+import { useTouchEvent } from './useTouchEvent';
 
 export interface ImageViewerProps extends TdImageViewerProps, StyledProps {}
+
+const MIN_SCALE = 1;
+const MAX_SCALE = 50;
+const movable = true;
+const BASE_SCALE_RATIO = 1;
+const scaleStep = 0.5;
 
 const ImageViewer: React.FC<ImageViewerProps> = (props) => {
   const { visible, defaultVisible, onClose, index, defaultIndex, onIndexChange, closeBtn, deleteBtn, onDelete } =
@@ -34,7 +42,40 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
 
   const swiperRootRef = useRef<HTMLDivElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
   const duration = 300;
+  const { transform, resetTransform, updateTransform, dispatchZoomChange } = useImageTransform(
+    imgRef,
+    MIN_SCALE,
+    MAX_SCALE,
+    // onTransform,
+  );
+  const { isTouching, onTouchStart, onTouchMove, onTouchEnd } = useTouchEvent(
+    imgRef,
+    movable,
+    show, // show
+    MIN_SCALE,
+    transform,
+    updateTransform,
+    dispatchZoomChange,
+  );
+
+  useEffect(() => {
+    if (!show) {
+      resetTransform('close');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [show]);
+
+  const onDoubleClick = (event: MouseEvent) => {
+    if (show) {
+      if (transform.scale !== 1) {
+        updateTransform({ x: 0, y: 0, scale: 1 }, 'doubleClick');
+      } else {
+        dispatchZoomChange(BASE_SCALE_RATIO + scaleStep, 'doubleClick', event.clientX, event.clientY);
+      }
+    }
+  };
 
   const beforeClose = () => {
     setInnerState({
@@ -100,14 +141,14 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
     }
   };
 
-  const getImageTransform = () => {
-    const { scale, draggedX, draggedY } = innerState;
-    return `matrix(${scale}, 0, 0, ${scale}, ${draggedX}, ${draggedY})`;
-  };
-  const getImageTransitionDuration = () => {
-    const { zooming, dragging } = innerState;
-    return zooming || dragging ? { transitionDuration: '0s' } : { transitionDuration: '0.3s' };
-  };
+  // const getImageTransform = () => {
+  //   const { scale, draggedX, draggedY } = innerState;
+  //   return `matrix(${scale}, 0, 0, ${scale}, ${draggedX}, ${draggedY})`;
+  // };
+  // const getImageTransitionDuration = () => {
+  //   const { zooming, dragging } = innerState;
+  //   return zooming || dragging ? { transitionDuration: '0s' } : { transitionDuration: '0.3s' };
+  // };
 
   const animationClassNames: CSSTransitionClassNames = {
     enterActive: 'fade-enter-active',
@@ -141,14 +182,26 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
               className={`${imageViewerClass}__swiper-item`}
               style={{ touchAction: 'none', alignItems: info.image.align, display: 'flex' }}
             >
-              <img
-                src={info.image.url}
-                style={{
+              {/* style={{
                   transform: index === innerState.touchIndex ? getImageTransform() : 'matrix(1, 0, 0, 1, 0, 0)',
                   ...getImageTransitionDuration(),
                   height: '100%',
+                }} */}
+              <img
+                src={info.image.url}
+                ref={imgRef}
+                style={{
+                  transform: `translate3d(${transform.x}px, ${transform.y}px, 0) scale3d(${
+                    transform.flipX ? '-' : ''
+                  }${transform.scale}, ${transform.flipY ? '-' : ''}${transform.scale}, 1) rotate(${transform.rotate}deg)`,
+                  transitionDuration: isTouching ? '0s' : '.3s',
                 }}
                 className={`${imageViewerClass}__img`}
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+                onTouchCancel={onTouchEnd}
+                onDoubleClick={onDoubleClick}
               />
             </TSwiperItem>
           ))}
