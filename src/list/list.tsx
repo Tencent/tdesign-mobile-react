@@ -1,30 +1,26 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect } from 'react';
+import { useMemoizedFn } from 'ahooks';
 import { TdListProps } from './type';
-import useConfig from '../_util/useConfig';
-
 import TLoading from '../loading';
+import type { StyledProps } from '../common';
 import parseTNode from '../_util/parseTNode';
 import getScrollParent from '../_util/getScrollParent';
-import useWindowHeight from '../hooks/useWindowHeight';
+import { usePrefixClass } from '../hooks/useClass';
+import useDefaultProps from '../hooks/useDefaultProps';
 
-export interface ListProps extends TdListProps {
-  required?: boolean;
-  readonly?: boolean;
-}
+export interface ListProps extends TdListProps, StyledProps {}
 
 const List: React.FC<ListProps> = (props) => {
-  const { classPrefix } = useConfig();
-  const { asyncLoading, header, footer, children } = props;
-  const name = classPrefix;
+  const { asyncLoading, header, footer, children, onScroll } = useDefaultProps(props, {});
+
+  const listClass = usePrefixClass('list');
 
   const LOADING_TEXT_MAP = {
     loading: '加载中', // TODO: i18n
     'load-more': '加载更多',
   };
 
-  const root = useRef(null);
-
-  const height = useWindowHeight();
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const onLoadMore = () => {
     if (asyncLoading === 'load-more') {
@@ -32,39 +28,37 @@ const List: React.FC<ListProps> = (props) => {
     }
   };
 
-  const handleScroll = useCallback((e: WheelEvent<HTMLDivElement> | Event): void => {
-    const scrollHeight =
-      (e.target as HTMLElement).scrollHeight ||
-      Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+  const handleScroll = useMemoizedFn((e: React.WheelEvent<HTMLDivElement> | Event): void => {
+    const targetElement = e.currentTarget as HTMLElement;
+    const { scrollTop, offsetHeight, scrollHeight } = targetElement;
+    const bottomDistance = scrollHeight - scrollTop - offsetHeight;
 
-    const scrollTop =
-      (e.target as HTMLElement).scrollTop || document.documentElement.scrollTop || document.body.scrollTop;
-
-    const offsetHeight = (e.target as HTMLElement).offsetHeight || height;
-    const bottomDistance = scrollHeight - (scrollTop + offsetHeight);
-    props.onScroll?.(bottomDistance, scrollTop);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    onScroll?.(bottomDistance, scrollTop);
+  });
 
   useEffect(() => {
-    const scorllParent = getScrollParent(root.current);
-    if (scorllParent === root.current) return;
-    scorllParent.addEventListener('scroll', handleScroll);
+    const element = wrapperRef.current;
+    if (!element) return;
+
+    const scrollParent = getScrollParent(element);
+    if (!scrollParent) return;
+
+    scrollParent.addEventListener('scroll', handleScroll);
     return () => {
       removeEventListener('scroll', handleScroll);
     };
-  }, [height, handleScroll]);
+  }, [handleScroll]);
 
   return (
-    <div ref={root} className={`${name}-list`} onScroll={(e) => handleScroll(e)}>
+    <div ref={wrapperRef} className={listClass}>
       {parseTNode(header)}
       {parseTNode(children)}
-      <div className={`${name}-list__loading--wrapper`} onClick={() => onLoadMore()}>
+      <div className={`${listClass}__loading--wrapper`} onClick={onLoadMore}>
         {typeof props.asyncLoading === 'string' && ['loading', 'load-more'].includes(props.asyncLoading) && (
           <TLoading
             indicator={props.asyncLoading === 'loading'}
             text={typeof props.asyncLoading === 'string' ? LOADING_TEXT_MAP[props.asyncLoading] : ''}
-            className={`${name}-list__loading`}
+            className={`${listClass}__loading`}
           />
         )}
       </div>

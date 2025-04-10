@@ -38,7 +38,7 @@ export default {
     {
       title: 'List 列表',
       name: 'list',
-      component: () => import('tdesign-mobile-react/list/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/list/_example/index.tsx'),
     },
     {
       title: 'Image 图片',
