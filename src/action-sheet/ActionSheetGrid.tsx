@@ -6,7 +6,7 @@ import type { ActionSheetItem } from './type';
 
 import { Grid, GridItem } from '../grid';
 import { Swiper, SwiperProps } from '../swiper';
-import useConfig from '../_util/useConfig';
+import { usePrefixClass } from '../hooks/useClass';
 
 type ActionSheetGridProps = Pick<ActionSheetProps, 'items' | 'align'> & {
   onSelected?: (idx: number) => void;
@@ -16,8 +16,8 @@ type ActionSheetGridProps = Pick<ActionSheetProps, 'items' | 'align'> & {
 
 export function ActionSheetGrid(props: ActionSheetGridProps) {
   const { items = [], count = 8, onSelected, gridHeight } = props;
-  const { classPrefix } = useConfig();
-  const cls = `${classPrefix}-action-sheet`;
+
+  const actionSheetClass = usePrefixClass('action-sheet');
 
   const [direction, setDirection] = useState<SwiperProps['direction']>('vertical');
 
@@ -40,14 +40,14 @@ export function ActionSheetGrid(props: ActionSheetGridProps) {
   return (
     <div
       className={cx({
-        [`${cls}__grid`]: true,
-        [`${cls}__grid--swiper`]: pageNum > 1,
-        [`${cls}__dots`]: pageNum > 1,
+        [`${actionSheetClass}__grid`]: true,
+        [`${actionSheetClass}__grid--swiper`]: pageNum > 1,
+        [`${actionSheetClass}__dots`]: pageNum > 1,
       })}
     >
       <Swiper
         autoplay={false}
-        className={cx(`${cls}__swiper-wrap--base`, pageNum > 1 && `${cls}__swiper-wrap`)}
+        className={cx(`${actionSheetClass}__swiper-wrap--base`, pageNum > 1 && `${actionSheetClass}__swiper-wrap`)}
         loop={false}
         navigation={pageNum > 1 ? { type: 'dots' } : undefined}
         direction={direction}

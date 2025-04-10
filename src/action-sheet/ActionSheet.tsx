@@ -5,8 +5,8 @@ import type { TdActionSheetProps } from './type';
 
 import { Button } from '../button';
 import { Popup } from '../popup';
-import useConfig from '../_util/useConfig';
 import useDefault from '../_util/useDefault';
+import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { actionSheetDefaultProps } from './defaultProps';
 import { ActionSheetList } from './ActionSheetList';
@@ -37,9 +37,7 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
     gridHeight,
   } = useDefaultProps<ActionSheetProps>(props, actionSheetDefaultProps);
 
-  const { classPrefix } = useConfig();
-
-  const cls = `${classPrefix}-action-sheet`;
+  const actionSheetClass = usePrefixClass('action-sheet');
 
   const [visible, onChange] = useDefault(visibleFromProps, defaultVisible, onVisibleChange);
 
@@ -60,7 +58,7 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
   return (
     <Popup
       visible={visible}
-      className={cls}
+      className={actionSheetClass}
       placement="bottom"
       onVisibleChange={(value) => {
         onChange(value);
@@ -69,13 +67,13 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
       }}
       showOverlay={showOverlay}
     >
-      <div className={cx(`${cls}__content`)}>
+      <div className={cx(`${actionSheetClass}__content`)}>
         {description ? (
           <p
             className={cx({
-              [`${cls}__description`]: true,
-              [`${cls}__description--left`]: align === 'left',
-              [`${cls}__description--grid`]: theme === 'grid',
+              [`${actionSheetClass}__description`]: true,
+              [`${actionSheetClass}__description--left`]: align === 'left',
+              [`${actionSheetClass}__description--grid`]: theme === 'grid',
             })}
           >
             {description}
@@ -92,9 +90,9 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
           />
         ) : null}
         {showCancel ? (
-          <div className={`${cls}__footer`}>
-            <div className={`${cls}__gap-${theme}`}></div>
-            <Button className={`${cls}__cancel`} variant="text" block onClick={handleCancel}>
+          <div className={`${actionSheetClass}__footer`}>
+            <div className={`${actionSheetClass}__gap-${theme}`}></div>
+            <Button className={`${actionSheetClass}__cancel`} variant="text" block onClick={handleCancel}>
               {cancelText}
             </Button>
           </div>
