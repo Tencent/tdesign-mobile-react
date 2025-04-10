@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, ReactNode } from 'react';
 import { useMemoizedFn } from 'ahooks';
+import classNames from 'classnames';
 import { TdListProps } from './type';
 import TLoading from '../loading';
 import type { StyledProps } from '../common';
@@ -8,10 +9,12 @@ import getScrollParent from '../_util/getScrollParent';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 
-export interface ListProps extends TdListProps, StyledProps {}
+export interface ListProps extends TdListProps, StyledProps {
+  children?: ReactNode;
+}
 
 const List: React.FC<ListProps> = (props) => {
-  const { asyncLoading, header, footer, children, onScroll } = useDefaultProps(props, {});
+  const { className, style, asyncLoading, header, footer, children, onScroll } = useDefaultProps(props, {});
 
   const listClass = usePrefixClass('list');
 
@@ -50,7 +53,7 @@ const List: React.FC<ListProps> = (props) => {
   }, [handleScroll]);
 
   return (
-    <div ref={wrapperRef} className={listClass}>
+    <div ref={wrapperRef} className={classNames(listClass, className)} style={style}>
       {parseTNode(header)}
       {parseTNode(children)}
       <div className={`${listClass}__loading--wrapper`} onClick={onLoadMore}>

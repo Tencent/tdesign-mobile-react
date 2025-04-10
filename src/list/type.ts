@@ -10,19 +10,15 @@ export interface TdListProps {
   /**
    * 自定义加载中。值为空不显示加载中，值为 'loading' 显示加载中状态，值为 'load-more' 显示加载更多状态。值类型为函数，则表示自定义加载状态呈现内容
    */
-  asyncLoading?: string | TNode;
+  asyncLoading?: TNode;
   /**
    * 底部
    */
-  footer?: string | TNode;
-  /**
-   * 子元素
-   */
-  children?: string | TNode;
+  footer?: TNode;
   /**
    * 头部
    */
-  header?: string | TNode;
+  header?: TNode;
   /**
    * 点击加载更多时触发
    */
