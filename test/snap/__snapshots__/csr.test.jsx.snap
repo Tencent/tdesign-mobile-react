@@ -50228,6 +50228,209 @@ exports[`csr snapshot test > csr test src/link/_example/underline.tsx 1`] = `
 </div>
 `;
 
+exports[`csr snapshot test > csr test src/list/_example/base.tsx 1`] = `
+<div>
+  <div
+    class="t-list"
+  >
+    <div
+      class="t-list__loading--wrapper"
+    />
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/list/_example/err-tip.tsx 1`] = `
+<div>
+  <div
+    class="t-list"
+  >
+    <div
+      class="t-list__loading--wrapper"
+    >
+      <div
+        class="t-loading t-loading--center t-list__loading"
+        style="font-size: 20px;"
+      >
+        <svg
+          class="t-loading__gradient t-icon-loading"
+          height="1em"
+          style="animation: t-spin 0.8s linear infinite; animation-direction: normal;"
+          version="1.1"
+          viewBox="0 0 14 14"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <foreignobject
+            height="12"
+            width="12"
+            x="1"
+            y="1"
+          >
+            <div
+              class="t-loading__gradient-conic"
+            />
+          </foreignobject>
+        </svg>
+        <span
+          class="t-loading__text"
+        >
+          加载中
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/list/_example/index.tsx 1`] = `
+<div>
+  <div
+    class="tdesign-mobile-demo"
+  >
+    <div
+      class="list-demo"
+    >
+      <div>
+        <h1
+          class="title"
+        >
+          List 列表
+        </h1>
+        <p
+          class="summary"
+        >
+          瀑布流滚动加载，用于展示同一类型信息的长列表。当列表即将滚动到底部时，会触发事件并加载更多列表项。
+        </p>
+        <div
+          class="tdesign-mobile-demo-block"
+        >
+          <div
+            class="tdesign-mobile-demo-block__header"
+          >
+            <h2
+              class="tdesign-mobile-demo-block__title"
+            >
+              01 类型
+            </h2>
+            <p
+              class="tdesign-mobile-demo-block__summary"
+            >
+              基础列表
+            </p>
+          </div>
+          <div
+            class="tdesign-mobile-demo-block__slot"
+          >
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                 
+                基础列表
+                 
+              </span>
+            </button>
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                下拉刷新
+              </span>
+            </button>
+            <button
+              class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"
+              type="button"
+            >
+              <span
+                class="t-button__content"
+              >
+                 
+                错误提示
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`csr snapshot test > csr test src/list/_example/pull-refresh.tsx 1`] = `
+<div>
+  <div
+    class="t-pull-down-refresh"
+  >
+    <div
+      class="t-pull-down-refresh__track t-pull-down-refresh__track--loosing"
+      style="transform: translate3d(0, 0px, 0);"
+    >
+      <div
+        class="t-pull-down-refresh__tips"
+      >
+        <div
+          class="t-pull-down-refresh__loading"
+          style="height: 50px; max-height: 50px;"
+        >
+          <div
+            class="t-pull-down-refresh__text"
+          >
+            刷新完成
+          </div>
+        </div>
+      </div>
+      <div
+        class="t-list"
+      >
+        <div
+          class="t-list__loading--wrapper"
+        >
+          <div
+            class="t-loading t-loading--center t-list__loading"
+            style="font-size: 20px;"
+          >
+            <svg
+              class="t-loading__gradient t-icon-loading"
+              height="1em"
+              style="animation: t-spin 0.8s linear infinite; animation-direction: normal;"
+              version="1.1"
+              viewBox="0 0 14 14"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <foreignobject
+                height="12"
+                width="12"
+                x="1"
+                y="1"
+              >
+                <div
+                  class="t-loading__gradient-conic"
+                />
+              </foreignobject>
+            </svg>
+            <span
+              class="t-loading__text"
+            >
+              加载中
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`csr snapshot test > csr test src/loading/_example/attach.tsx 1`] = `
 <div>
   <div
@@ -96577,6 +96780,14 @@ exports[`ssr snapshot test > ssr test src/link/_example/suffix.tsx 1`] = `"<div 
 exports[`ssr snapshot test > ssr test src/link/_example/theme.tsx 1`] = `"<div class="demo-content"><a class="t-link t-link--medium t-link--primary"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21L3 3L10.0909 3V5H5L5 19H19V13.9091H21V21H3ZM10.5858 12L17.5858 5L13 5V3L21 3L21 11H19V6.41421L12 13.4142L10.5858 12Z"></path></svg></span></a><a class="t-link t-link--medium t-link--default"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21L3 3L10.0909 3V5H5L5 19H19V13.9091H21V21H3ZM10.5858 12L17.5858 5L13 5V3L21 3L21 11H19V6.41421L12 13.4142L10.5858 12Z"></path></svg></span></a><a class="t-link t-link--medium t-link--danger"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21L3 3L10.0909 3V5H5L5 19H19V13.9091H21V21H3ZM10.5858 12L17.5858 5L13 5V3L21 3L21 11H19V6.41421L12 13.4142L10.5858 12Z"></path></svg></span></a></div><div class="demo-content"><a class="t-link t-link--medium t-link--success"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21L3 3L10.0909 3V5H5L5 19H19V13.9091H21V21H3ZM10.5858 12L17.5858 5L13 5V3L21 3L21 11H19V6.41421L12 13.4142L10.5858 12Z"></path></svg></span></a><a class="t-link t-link--medium t-link--warning"><span class="t-link__content">跳转链接</span><span class="t-link__suffix-icon"><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-jump"><path fill="currentColor" d="M3 21L3 3L10.0909 3V5H5L5 19H19V13.9091H21V21H3ZM10.5858 12L17.5858 5L13 5V3L21 3L21 11H19V6.41421L12 13.4142L10.5858 12Z"></path></svg></span></a></div>"`;
 
 exports[`ssr snapshot test > ssr test src/link/_example/underline.tsx 1`] = `"<div class="demo-content"><a class="t-link t-link--medium t-link--primary t-link--underline"><span class="t-link__content">跳转链接</span></a><a class="t-link t-link--medium t-link--default t-link--underline t-link--hover"><span class="t-link__content">跳转链接</span></a></div>"`;
+
+exports[`ssr snapshot test > ssr test src/list/_example/base.tsx 1`] = `"<div class="t-list"><div class="t-list__loading--wrapper"></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/list/_example/err-tip.tsx 1`] = `"<div class="t-list"><div class="t-list__loading--wrapper"></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/list/_example/index.tsx 1`] = `"<div class="tdesign-mobile-demo"><div class="list-demo"><div><h1 class="title">List 列表</h1><p class="summary">瀑布流滚动加载，用于展示同一类型信息的长列表。当列表即将滚动到底部时，会触发事件并加载更多列表项。</p><div class="tdesign-mobile-demo-block"><div class="tdesign-mobile-demo-block__header"><h2 class="tdesign-mobile-demo-block__title">01 类型</h2><p class="tdesign-mobile-demo-block__summary">基础列表</p></div><div class="tdesign-mobile-demo-block__slot"><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- --> <!-- -->基础列表<!-- --> </span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->下拉刷新</span></button><button type="button" class="t-button t-button--size-large t-button--outline t-button--primary t-button--rectangle"><span class="t-button__content"> <!-- -->错误提示</span></button></div></div></div></div></div>"`;
+
+exports[`ssr snapshot test > ssr test src/list/_example/pull-refresh.tsx 1`] = `"<div class="t-pull-down-refresh"><div class="t-pull-down-refresh__track t-pull-down-refresh__track--loosing" style="transform:translate3d(0, 0px, 0)"><div class="t-pull-down-refresh__tips"><div class="t-pull-down-refresh__loading" style="height:50px;max-height:50px"><div class="t-pull-down-refresh__text"></div></div></div><div class="t-list"><div class="t-list__loading--wrapper"></div></div></div></div>"`;
 
 exports[`ssr snapshot test > ssr test src/loading/_example/attach.tsx 1`] = `"<div class="loading-demo"><div id="alice" class="loading-attach-demo__title">Hello, I\`&#x27;m Alice. I\`&#x27;m going to be a front-end developer.</div><div class="t-switch t-switch--small"><div class="t-switch__dot t-switch__dot--small"><div class="t-switch__label t-switch__label--small">关</div></div></div></div>"`;
 

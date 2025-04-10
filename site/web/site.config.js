@@ -388,12 +388,12 @@ export const docs = [
       //   path: '/mobile-react/components/image-viewer',
       //   component: () => import('tdesign-mobile-react/image-viewer/image-viewer.md'),
       // },
-      // {
-      //   title: 'List 列表',
-      //   name: 'list',
-      //   path: '/mobile-react/components/list',
-      //   component: () => import('tdesign-mobile-react/list/list.md'),
-      // },
+      {
+        title: 'List 列表',
+        name: 'list',
+        path: '/mobile-react/components/list',
+        component: () => import('tdesign-mobile-react/list/list.md'),
+      },
       {
         title: 'Progress 进度条',
         titleEn: 'Progress',
