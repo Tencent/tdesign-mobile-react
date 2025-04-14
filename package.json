@@ -125,7 +125,7 @@
     "find-node-modules": "^2.1.2",
     "glob": "^10.4.5",
     "gray-matter": "^4.0.3",
-    "husky": "^7.0.4",
+    "husky": "^8.0.3",
     "inquirer": "^8.2.0",
     "jsdom": "^24.1.0",
     "less": "^4.1.2",
