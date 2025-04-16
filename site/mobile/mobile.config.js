@@ -230,7 +230,7 @@ export default {
     {
       title: 'Picker 选择器',
       name: 'picker',
-      component: () => import('tdesign-mobile-react/picker/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/picker/_example/mobile.tsx'),
     },
     {
       title: 'Textarea 多行文本框',

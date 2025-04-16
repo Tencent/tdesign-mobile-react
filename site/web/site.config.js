@@ -233,6 +233,7 @@ export const docs = [
         name: 'picker',
         path: '/mobile-react/components/picker',
         component: () => import('tdesign-mobile-react/picker/picker.md'),
+        componentEn: () => import('tdesign-mobile-react/picker/picker.en-US.md'),
       },
       {
         title: 'Radio 单选框',

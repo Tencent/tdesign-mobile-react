@@ -1,166 +1,146 @@
-import React, { FC, useRef, memo, useCallback, useContext, useMemo, useState } from 'react';
-import { useDebounceEffect } from 'ahooks';
-import { isUndefined } from 'lodash-es';
-import { useDrag } from '@use-gesture/react';
+import React, {
+  useRef,
+  useCallback,
+  useContext,
+  useMemo,
+  useImperativeHandle,
+  useEffect,
+  useState,
+  forwardRef,
+} from 'react';
+import { get as lodashGet } from 'lodash-es';
+import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
+import cls from 'classnames';
 import useConfig from '../hooks/useConfig';
-import nearest from '../_util/nearest';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
+import { PickerValue, PickerColumnItem, TdPickerProps } from './type';
+import Picker from './picker.class';
+import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import PickerContext from './picker-context';
-import { pickerItemDefaultProps } from './defaultProps';
-import { TdPickerItemProps, PickerValue } from './type';
 
-export interface PickerItemProps extends TdPickerItemProps, NativeProps {
+export interface PickerItemProps extends NativeProps {
+  renderLabel?: TdPickerProps['renderLabel'];
+  onPick?: (value: { value: string; index: number }) => void;
   value?: PickerValue;
-  defaultValue?: PickerValue;
-  onChange?: (value: PickerValue) => void;
-  itemIndex?: number;
+  options: PickerColumnItem[];
 }
 
-const PickerItem: FC<PickerItemProps> = memo((props) => {
-  const { options, value, defaultValue, itemIndex, formatter } = props;
+export type PickerItemExposeRef = {
+  setIndex: (index: number) => void;
+  setValue: (value: number | string | undefined) => void;
+  setOptions: () => void;
+  setUpdateItems: () => void;
+};
+
+const PickerItem = forwardRef<PickerItemExposeRef, PickerItemProps>((props, ref) => {
+  const { options, value, renderLabel } = useDefaultProps(props, {});
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-picker-item`;
-  const rootRef = useRef<HTMLDivElement>(null);
-  const controlRef = useRef<HTMLDivElement>(null);
-  const lastIndexRef = useRef<number | undefined>();
-  const pickerContext = useContext(PickerContext);
+  const itemClassName = `${name}__item`;
 
-  const count = options.length;
-  const currentIndex = useMemo(
-    () => options.findIndex((option) => (isUndefined(value) ? defaultValue : value) === option.value),
-    [options, defaultValue, value],
-  );
+  const pickerProps = useContext(PickerContext);
 
-  const getControlItemHeight = useCallback(() => {
-    if (!controlRef.current) return 0;
-    return controlRef.current.clientHeight / count;
-  }, [controlRef, count]);
+  const keys = useMemo(() => pickerProps && pickerProps.keys, [pickerProps]);
 
-  const getControlYCompensation = useCallback(() => {
-    if (!rootRef.current) return 0;
-    const controlItemHeight = getControlItemHeight();
-    return (rootRef.current.clientHeight - controlItemHeight) / 2;
-  }, [rootRef, getControlItemHeight]);
+  console.log('pickerProps', pickerProps, keys);
 
-  const getOffsetYList = useCallback(() => {
-    const itemHeight = getControlItemHeight();
-    const yCompensation = getControlYCompensation();
-    return Array(count)
-      .fill(0)
-      .map((_, index) => index * itemHeight - yCompensation);
-  }, [count, getControlItemHeight, getControlYCompensation]);
+  const picker = useRef<Picker | null>(null);
 
-  const [y, setY] = useState(0);
+  // const [, updateState] = useState(0);
 
-  const scrollTo = useCallback(
-    (index: number) => {
-      const offsetYList = getOffsetYList();
-      let nextIndex = index;
-      if (index < 0) {
-        nextIndex = 0;
-      } else if (index >= offsetYList.length) {
-        nextIndex = offsetYList.length - 1;
-      }
-      setY(offsetYList[nextIndex]);
-    },
-    [getOffsetYList],
-  );
+  // const forceUpdate = useCallback(() => updateState((pre) => pre + 1), []);
 
-  const handleChange = (value: number | string) => {
-    const pickerValue = pickerContext.value?.slice(0) || [];
-    pickerValue[itemIndex] = value;
-    pickerContext.onChange?.(pickerValue, itemIndex);
-    props.onChange?.(value);
-  };
+  function getIndexByValue(value: number | string | undefined) {
+    let defaultIndex = 0;
+    if (typeof value !== 'undefined') {
+      defaultIndex = options.findIndex((option) => value === option.value);
+    }
 
-  useDebounceEffect(
-    () => {
-      if (currentIndex === lastIndexRef.current) return;
-      if (currentIndex >= 0) {
-        scrollTo(currentIndex);
-      } else {
-        setY(0);
-      }
-      lastIndexRef.current = currentIndex;
-    },
-    [currentIndex, scrollTo],
-    { wait: 100 },
-  );
+    return Math.max(0, defaultIndex);
+  }
 
-  useDrag(
-    ({ offset: [, offsetY], direction: [, directionY], last }) => {
-      if (last) {
-        const offsetYList = getOffsetYList();
-        const lastIndex = lastIndexRef.current;
-        const nextOffsetY = nearest({
-          items: offsetYList,
-          target: offsetY,
-          threshold: 10,
-          direction: directionY as -1 | 1,
-        });
-        const nextIndex = offsetYList.findIndex((item) => item === nextOffsetY);
-        if (isUndefined(value)) {
-          lastIndexRef.current = nextIndex;
-          setY(nextOffsetY);
-          handleChange(options[nextIndex].value);
-        } else {
-          // 受控模式,onChange回调后等待value更新，如果不更新回退到原处
-          handleChange(options[nextIndex].value);
-          setTimeout(() => {
-            if (lastIndex === lastIndexRef.current) {
-              setY(offsetYList[lastIndex] || 0);
-            }
-          }, 100);
-        }
-      } else {
-        setY(offsetY);
-      }
-    },
-    {
-      target: rootRef,
-      axis: 'y',
-      from: () => [0, y],
-      transform: ([x, y]) => [x, -y],
-      filterTaps: true,
-      pointer: { touch: true },
-      rubberband: true,
-      preventDefault: true,
-      bounds: () => {
-        const controlYCompensation = getControlYCompensation();
-        let bottom: undefined | number;
-        if (controlRef.current) {
-          bottom = controlRef.current.clientHeight - controlYCompensation - getControlItemHeight();
-        }
-        return {
-          top: -controlYCompensation,
-          bottom,
+  function updatePickerWithNextTick(index: number) {
+    if (picker.current) {
+      picker.current.updateItems();
+      // forceUpdate();
+
+      picker.current.updateIndex(index, { isChange: false });
+    }
+  }
+
+  function setIndex(index: number) {
+    updatePickerWithNextTick(index);
+  }
+
+  function setValue(value: number | string | undefined) {
+    updatePickerWithNextTick(getIndexByValue(value));
+  }
+
+  const setOptions = () => picker.current?.update();
+  const setUpdateItems = () => picker.current?.updateItems();
+
+  const rootRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    if (!rootRef.current) return;
+    picker.current = new Picker({
+      el: rootRef.current,
+      defaultIndex: getIndexByValue(value) || 0,
+      keys,
+      defaultPickerColumns: options,
+      onChange: (index: number) => {
+        const curItem = props.options[index];
+        const value = lodashGet(curItem, keys?.value ?? 'value');
+        const changeValue = {
+          value,
+          index,
         };
+        props.onPick(changeValue);
       },
-    },
-  );
+      classPrefix,
+    });
+    return () => (picker.current = null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    // mounted 后
+    if (rootRef.current && picker.current) {
+      picker.current.updateOptions(props.options);
+      picker.current.updateItems();
+    }
+  }, [props.options]);
+
+  function renderOptions() {
+    if (options.length === 0) return null;
+
+    return options.map((option, index) => {
+      const optionItemCls = cls(itemClassName, {
+        [`${itemClassName}--disabled`]: lodashGet(option, keys.disabled ?? 'disabled'),
+      });
+      return (
+        <li key={index} className={optionItemCls}>
+          {renderLabel ? renderLabel(option) : lodashGet(option, keys?.label ?? 'label')}
+        </li>
+      );
+    });
+  }
+
+  useImperativeHandle(ref, () => ({
+    setIndex,
+    setValue,
+    setOptions,
+    setUpdateItems,
+  }));
 
   return withNativeProps(
     props,
-    <div className={name} ref={rootRef}>
-      <div
-        ref={controlRef}
-        className={`${name}__wrapper`}
-        style={{
-          transition: 'transform 0.3s ease-in-out',
-          transform: `translateY(${-y}px)`,
-        }}
-      >
-        {options.map((item) => (
-          <div key={item.value} className={`${name}__item`}>
-            {(formatter && formatter(item)) || item.label}
-          </div>
-        ))}
-      </div>
-    </div>,
+    <ul ref={rootRef} className={name}>
+      {renderOptions()}
+    </ul>,
   );
 });
 
-PickerItem.defaultProps = pickerItemDefaultProps;
 PickerItem.displayName = 'PickerItem';
 
 export default PickerItem;
