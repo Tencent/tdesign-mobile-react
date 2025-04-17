@@ -16,17 +16,17 @@ export default function Base() {
         title="ActionSheet 动作面板"
         summary="从底部弹出的模态框，提供和当前场景相关的操作动作，也支持提供信息输入和描述。"
       />
-      <TDemoBlock title="01 类型" summary="列表型">
+      <TDemoBlock title="01 类型" summary="列表型" padding>
         <ListExample />
       </TDemoBlock>
-      <TDemoBlock title="" summary="宫格型">
+      <TDemoBlock title="" summary="宫格型" padding>
         <GridExample />
         <GridMultipleExample />
       </TDemoBlock>
-      <TDemoBlock title="02 组件状态" summary="列表型选项状态">
+      <TDemoBlock title="02 组件状态" summary="列表型选项状态" padding>
         <StatusExample />
       </TDemoBlock>
-      <TDemoBlock title="03 组件样式" summary="列表型对齐方式">
+      <TDemoBlock title="03 组件样式" summary="列表型对齐方式" padding>
         <AlignExample />
       </TDemoBlock>
     </div>

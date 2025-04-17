@@ -10,6 +10,8 @@ type ActionSheetWithMethods = React.FC<ActionSheetProps> & {
   close: typeof close;
 };
 
+export * from './type';
+
 export const ActionSheet: ActionSheetWithMethods = attachMethodsToComponent(_ActionSheet, {
   show,
   close,

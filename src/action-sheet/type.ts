@@ -4,8 +4,9 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import type { BadgeProps } from '../badge';
-import type { TElement } from 'tdesign-mobile-react/common';
+import { BadgeProps } from '../badge';
+import { PopupProps } from '../popup';
+import { TNode } from '../common';
 import { MouseEvent } from 'react';
 
 export interface TdActionSheetProps {
@@ -31,14 +32,23 @@ export interface TdActionSheetProps {
   description?: string;
   /**
    * 菜单项
-   * @default []
    */
-  items: Array<string | ActionSheetItem>;
+  items?: Array<string | ActionSheetItem>;
+  /**
+   * 透传 Popup 组件全部属性
+   * @default {}
+   */
+  popupProps?: PopupProps;
   /**
    * 是否显示取消按钮
    * @default true
    */
   showCancel?: boolean;
+  /**
+   * 是否显示遮罩层
+   * @default true
+   */
+  showOverlay?: boolean;
   /**
    * 展示类型，列表和表格形式展示
    * @default list
@@ -48,7 +58,7 @@ export interface TdActionSheetProps {
    * 显示与隐藏
    * @default false
    */
-  visible: boolean;
+  visible?: boolean;
   /**
    * 显示与隐藏，非受控属性
    * @default false
@@ -61,7 +71,7 @@ export interface TdActionSheetProps {
   /**
    * 关闭时触发
    */
-  onClose?: (trigger: TriggerSource) => void;
+  onClose?: (trigger: ActionSheetTriggerSource) => void;
   /**
    * 选择菜单项时触发
    */
@@ -72,8 +82,8 @@ export interface ActionSheetItem {
   label: string;
   color?: string;
   disabled?: boolean;
-  icon?: string | TElement;
+  icon?: TNode;
   badge?: BadgeProps;
 }
 
-export type TriggerSource = 'overlay' | 'command' | 'select';
+export type ActionSheetTriggerSource = 'overlay' | 'command' | 'select';

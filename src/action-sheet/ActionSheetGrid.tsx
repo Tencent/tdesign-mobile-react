@@ -11,11 +11,10 @@ import { usePrefixClass } from '../hooks/useClass';
 type ActionSheetGridProps = Pick<ActionSheetProps, 'items' | 'align'> & {
   onSelected?: (idx: number) => void;
   count?: number;
-  gridHeight?: number;
 };
 
 export function ActionSheetGrid(props: ActionSheetGridProps) {
-  const { items = [], count = 8, onSelected, gridHeight } = props;
+  const { items = [], count = 8, onSelected } = props;
 
   const actionSheetClass = usePrefixClass('action-sheet');
 
@@ -51,11 +50,11 @@ export function ActionSheetGrid(props: ActionSheetGridProps) {
         loop={false}
         navigation={pageNum > 1 ? { type: 'dots' } : undefined}
         direction={direction}
-        height={gridHeight || (pageNum > 1 ? 208 : 196)}
+        height={pageNum > 1 ? 208 : 196}
       >
         {actionItems.map((item, idx1) => (
           <Swiper.SwiperItem key={idx1}>
-            <Grid gutter={0} column={gridColumn}>
+            <Grid gutter={0} column={gridColumn} style={{ width: '100%' }}>
               {item.map((it, idx2) => {
                 let label: string;
                 let image: React.ReactNode;

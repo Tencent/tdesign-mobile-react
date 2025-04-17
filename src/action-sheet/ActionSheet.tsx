@@ -1,45 +1,39 @@
 import React from 'react';
 import cx from 'classnames';
-
 import type { TdActionSheetProps } from './type';
-
 import { Button } from '../button';
 import { Popup } from '../popup';
-import useDefault from '../_util/useDefault';
+import { StyledProps } from '../common';
+import useControlled from '../hooks/useControlled';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { actionSheetDefaultProps } from './defaultProps';
 import { ActionSheetList } from './ActionSheetList';
 import { ActionSheetGrid } from './ActionSheetGrid';
 
-export type ActionSheetProps = TdActionSheetProps & {
-  showOverlay?: boolean;
-  onVisibleChange?: (value: boolean) => void;
-  gridHeight?: number;
-};
+export interface ActionSheetProps extends TdActionSheetProps, StyledProps {}
 
 export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
   const {
-    defaultVisible,
     items,
-    visible: visibleFromProps,
     theme,
     align,
     showOverlay,
     showCancel,
     cancelText,
     description,
+    popupProps,
     onClose,
     onSelected,
     onCancel,
-    onVisibleChange,
     count,
-    gridHeight,
   } = useDefaultProps<ActionSheetProps>(props, actionSheetDefaultProps);
 
   const actionSheetClass = usePrefixClass('action-sheet');
 
-  const [visible, onChange] = useDefault(visibleFromProps, defaultVisible, onVisibleChange);
+  const [visible, setVisible] = useControlled(props, 'visible', (visible, context) => {
+    !visible && onClose?.(context);
+  });
 
   const handleCancel = (ev) => {
     onCancel?.(ev);
@@ -50,20 +44,17 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
 
     onSelected?.(found, idx);
 
-    onClose?.('select');
-
-    onChange(false);
+    setVisible(false, { trigger: 'select' });
   };
 
   return (
     <Popup
+      {...popupProps}
       visible={visible}
       className={actionSheetClass}
       placement="bottom"
       onVisibleChange={(value) => {
-        onChange(value);
-
-        if (!value) onClose?.('overlay');
+        setVisible(value, { trigger: 'overlay' });
       }}
       showOverlay={showOverlay}
     >
@@ -80,20 +71,14 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
           </p>
         ) : null}
         {theme === 'list' ? <ActionSheetList items={items} align={align} onSelected={handleSelected} /> : null}
-        {theme === 'grid' && visible ? (
-          <ActionSheetGrid
-            items={items}
-            align={align}
-            onSelected={handleSelected}
-            count={count}
-            gridHeight={gridHeight}
-          />
+        {theme === 'grid' ? (
+          <ActionSheetGrid items={items} align={align} onSelected={handleSelected} count={count} />
         ) : null}
         {showCancel ? (
           <div className={`${actionSheetClass}__footer`}>
             <div className={`${actionSheetClass}__gap-${theme}`}></div>
             <Button className={`${actionSheetClass}__cancel`} variant="text" block onClick={handleCancel}>
-              {cancelText}
+              {cancelText || '取消'}
             </Button>
           </div>
         ) : null}
