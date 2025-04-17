@@ -8,14 +8,16 @@ import {
   CloseCircleFilledIcon,
   ErrorCircleFilledIcon,
 } from 'tdesign-icons-react';
-import { isString, toUpper } from 'lodash-es';
+import { isString } from 'lodash-es';
 import { StyledProps } from '../common';
 import { TdProgressProps } from './type';
 import useConfig from '../hooks/useConfig';
 import getBackgroundColor from '../_util/linearGradient';
 import { progressDefaultProps } from './defaultProps';
 import useDefaultProps from '../hooks/useDefaultProps';
-import { PRO_THEME, CIRCLE_SIZE_PX, STATUS_ICON, PLUMP_SEPARATE } from './constants';
+import { PRO_THEME, STATUS_ICON } from '../_common/js/progress/const';
+import { getDiameter, getCircleStokeWidth } from '../_common/js/progress/utils';
+import { PLUMP_SEPARATE } from './constants';
 
 export interface ProgressProps extends TdProgressProps, StyledProps {}
 
@@ -126,32 +128,10 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
       </div>
     );
   } else if (theme === PRO_THEME.CIRCLE) {
-    // 获取直径
-    const getDiameter = (): number => {
-      if (!size) return CIRCLE_SIZE_PX[toUpper('default')];
-      if (isString(size)) {
-        return CIRCLE_SIZE_PX[toUpper(size)];
-      }
-      return size;
-    };
-
-    // 获取环形进度条 环的宽度
-    const getCircleStokeWidth = (): number => {
-      if (!strokeWidth) {
-        if (size === 'micro') {
-          return 2;
-        }
-      }
-      if (typeof strokeWidth !== 'number' || Number.isNaN(strokeWidth)) {
-        return 6;
-      }
-      return strokeWidth;
-    };
-
     // 环形进度条尺寸(进度条占位空间，长宽占位)
-    const circleStokeWidth = getCircleStokeWidth();
+    const circleStokeWidth = getCircleStokeWidth(strokeWidth, size);
     // 直径
-    const diameter = getDiameter();
+    const diameter = getDiameter(size);
     // 半径
     const radius = diameter / 2;
     // 内环半径
