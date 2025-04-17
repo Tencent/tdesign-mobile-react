@@ -5,6 +5,8 @@ import BaseDemo from './base';
 import ImageEmptyDemo from './imageEmpty';
 import ButtonEmptyDemo from './buttonEmpty';
 
+import './style/index.less';
+
 export default function EmptyDemo() {
   return (
     <div className="tdesign-mobile-demo">

@@ -7,7 +7,7 @@ import './style/index.less';
 export default () => {
   const files = [
     {
-      url: 'https://tdesign.gtimg.com/site/upload1.png',
+      url: 'https://tdesign.gtimg.com/mobile/demos/example4.png',
       name: 'uploaded1.png',
       type: 'image',
     },

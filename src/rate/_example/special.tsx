@@ -6,7 +6,15 @@ export default function Special() {
   const texts = ['非常糟糕', '有些糟糕', '可以尝试', '可以前往', '推荐前往'];
 
   return (
-    <Cell style={{ overflow: 'initial', justifyContent: 'center', flexDirection: 'column', gap: '8px' }}>
+    <Cell
+      style={{
+        overflow: 'initial',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        gap: '8px',
+      }}
+    >
       <Rate
         size="30"
         texts={texts}
@@ -15,7 +23,7 @@ export default function Special() {
           setValue(value);
         }}
       />
-      <div>{texts[value - 1]}</div>
+      <div className={value > 3 ? 'desc desc--active' : 'desc'}>{texts[value - 1]}</div>
     </Cell>
   );
 }
