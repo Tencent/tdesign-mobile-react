@@ -263,6 +263,11 @@ export default {
       component: () => import('tdesign-mobile-react/result/_example/index.tsx'),
     },
     {
+      title: 'ActionSheet 动作面板',
+      name: 'action-sheet',
+      component: () => import('tdesign-mobile-react/action-sheet/_example/index.tsx'),
+    },
+    {
       title: 'Link 链接',
       name: 'link',
       component: () => import('tdesign-mobile-react/link/_example/index.tsx'),
@@ -301,6 +306,11 @@ export default {
       title: 'ConfigProvider 全局特性配置',
       name: 'config-provider',
       component: () => import('tdesign-mobile-react/config-provider/_example/index.tsx'),
+    },
+    {
+      title: 'ActionSheet 动作面板',
+      name: 'action-sheet',
+      component: () => import('tdesign-mobile-react/action-sheet/_example/index.tsx'),
     },
   ],
 };

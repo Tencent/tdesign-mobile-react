@@ -63,6 +63,7 @@ export * from './popup';
 export * from './pull-down-refresh';
 export * from './toast';
 export * from './drawer';
+export * from './action-sheet';
 export * from './popover';
 export * from './guide';
 
