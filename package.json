@@ -1,6 +1,6 @@
 {
   "name": "tdesign-mobile-react",
-  "version": "0.13.0-beta",
+  "version": "0.13.0",
   "description": "TDesign Component for Mobile React",
   "title": "tdesign-mobile-react",
   "main": "cjs/index.js",
@@ -162,14 +162,12 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@react-spring/web": "9.6.1",
     "@use-gesture/react": "^10.2.10",
     "ahooks": "^3.1.9",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.13",
     "hoist-non-react-statics": "^3.3.2",
     "lodash-es": "^4.17.21",
-    "react-spring": "9.6.1",
     "react-transition-group": "^4.4.2",
     "smoothscroll-polyfill": "^0.4.4",
     "tdesign-icons-react": "^0.4.4",

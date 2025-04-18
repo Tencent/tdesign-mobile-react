@@ -47,6 +47,7 @@ export * from './sticky';
 export * from './swiper';
 export * from './swipe-cell';
 export * from './tag';
+export * from './list';
 export * from './result';
 export * from './table';
 export * from './empty';
@@ -62,6 +63,7 @@ export * from './popup';
 export * from './pull-down-refresh';
 export * from './toast';
 export * from './drawer';
+export * from './action-sheet';
 export * from './popover';
 export * from './guide';
 

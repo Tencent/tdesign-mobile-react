@@ -388,12 +388,12 @@ export const docs = [
       //   path: '/mobile-react/components/image-viewer',
       //   component: () => import('tdesign-mobile-react/image-viewer/image-viewer.md'),
       // },
-      // {
-      //   title: 'List 列表',
-      //   name: 'list',
-      //   path: '/mobile-react/components/list',
-      //   component: () => import('tdesign-mobile-react/list/list.md'),
-      // },
+      {
+        title: 'List 列表',
+        name: 'list',
+        path: '/mobile-react/components/list',
+        component: () => import('tdesign-mobile-react/list/list.md'),
+      },
       {
         title: 'Progress 进度条',
         titleEn: 'Progress',
@@ -456,12 +456,12 @@ export const docs = [
     titleEn: 'FeedBack',
     type: 'component',
     children: [
-      // {
-      //   title: 'ActionSheet 动作面板',
-      //   name: 'action-sheet',
-      //   path: '/mobile-react/components/actionsheet',
-      //   component: () => import('tdesign-mobile-react/action-sheet/action-sheet.md'),
-      // },
+      {
+        title: 'ActionSheet 动作面板',
+        name: 'action-sheet',
+        path: '/mobile-react/components/actionsheet',
+        component: () => import('tdesign-mobile-react/action-sheet/action-sheet.md'),
+      },
       {
         title: 'Dialog 对话框',
         titleEn: 'Dialog',

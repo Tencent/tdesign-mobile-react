@@ -3,7 +3,7 @@ import { Cell, CellGroup, Rate } from 'tdesign-mobile-react';
 
 export default function Placement() {
   return (
-    <CellGroup>
+    <CellGroup className="rate-demo__placement">
       <Cell title="顶部显示" style={{ overflow: 'initial' }}>
         <Rate defaultValue={0} placement="top" />
       </Cell>
