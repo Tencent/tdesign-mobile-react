@@ -3,7 +3,7 @@ import { Cell, CellGroup, Rate } from 'tdesign-mobile-react';
 
 export default function ShowText() {
   return (
-    <CellGroup>
+    <CellGroup className="rate-demo__show-text">
       <Cell title="带描述评分" style={{ overflow: 'initial' }}>
         <Rate defaultValue={1} showText={true} texts={['很差', '差', '一般', '好评', '优秀']} />
       </Cell>

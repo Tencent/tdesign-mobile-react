@@ -1,4 +1,4 @@
-import React, { forwardRef, memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, memo, useCallback, useContext, useEffect, useMemo, useRef } from 'react';
 import cls from 'classnames';
 import { ChevronDownIcon, ChevronUpIcon } from 'tdesign-icons-react';
 import type { StyledProps } from '../common';
@@ -42,27 +42,7 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
     [parent, value, disabled],
   );
 
-  const bodyRef = useRef<HTMLDivElement>(null);
   const headRef = useRef<HTMLDivElement>(null);
-  const [wrapperHeight, setWrapperHeight] = useState('');
-
-  useEffect(() => {
-    const updatePanelState = () => {
-      if (!headRef.current || !bodyRef.current) {
-        return;
-      }
-      const headHeight = headRef.current.getBoundingClientRect().height;
-      if (!isActive) {
-        setWrapperHeight(`${headHeight}px`);
-        return;
-      }
-      const bodyHeight = bodyRef.current.getBoundingClientRect().height;
-      const height = headHeight + bodyHeight;
-      setWrapperHeight(`${height}px`);
-    };
-
-    updatePanelState();
-  }, [isActive]);
 
   useEffect(() => {
     if (parent?.defaultExpandAll) {
@@ -89,11 +69,7 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
     // 当前面板处理折叠状态时，是否销毁面板内容
     if (props.destroyOnCollapse && !isActive) return null;
 
-    return (
-      <div ref={bodyRef} className={`${collapsePanelClass}__content`}>
-        {panelContent}
-      </div>
-    );
+    return <div className={`${collapsePanelClass}__content`}>{panelContent}</div>;
   };
 
   return (
@@ -107,7 +83,6 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
         [className]: className,
       })}
       style={{
-        height: wrapperHeight,
         ...style,
       }}
     >
@@ -122,7 +97,9 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
           rightIcon={renderRightIcon()}
         />
       </div>
-      <PanelContent />
+      <div className={`${collapsePanelClass}__body`} style={{ gridTemplateRows: isActive ? '1fr' : '0fr' }}>
+        <div className={`${collapsePanelClass}__inner`}>{PanelContent()}</div>
+      </div>
     </div>
   );
 });

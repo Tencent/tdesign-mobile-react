@@ -10,7 +10,7 @@ import Size from './size';
 
 export default function StepperDemo() {
   return (
-    <div className="stepper-container">
+    <div className="tdesign-mobile-demo stepper-container">
       <TDemoHeader title="Stepper 步进器" summary="用于数量的增减" />
       <TDemoBlock title="01 类型" summary="基础步进器">
         <Base />
