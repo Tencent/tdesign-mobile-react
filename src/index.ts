@@ -11,6 +11,7 @@ export * from './link';
 /**
  * 导航（5个）
  */
+export * from './side-bar';
 export * from './steps';
 export * from './tab-bar';
 export * from './navbar';
