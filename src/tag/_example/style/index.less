@@ -1,5 +1,5 @@
 .tdesign-mobile-demo {
-  background-color: var(--bg-color-demo, #fff)
+  background-color: var(--td-bg-color-container);
 }
 
 .tag-demo {
@@ -7,7 +7,7 @@
   padding: 16px;
   display: flex;
 
-  .t-tag+.t-tag {
+  .t-tag + .t-tag {
     margin-left: 16px;
   }
 }
@@ -28,7 +28,7 @@
   }
 }
 
-.tag-demo+.tag-demo {
+.tag-demo + .tag-demo {
   margin-top: 16px;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .tag-block1 {
-  >.t-tag {
+  > .t-tag {
     margin: 0;
   }
 }

@@ -1,8 +1,17 @@
 @import '../vars.less';
 @import './demo.less';
 
-body {
-  background-color: #f5f5f5;
+:root,
+:root[theme-mode='light'] {
+  --bg-color-demo: #f6f6f6;
+  --text-primary: #181818;
+  --text-secondary: #181818;
+}
+
+:root[theme-mode='dark'] {
+  --bg-color-demo: #181818;
+  --text-primary: rgba(255, 255, 255, 0.9);
+  --text-secondary: rgba(255, 255, 255, 0.55);
 }
 
 .tdesign-demo-topnav {
@@ -11,11 +20,14 @@ body {
   align-items: center;
   justify-content: center;
   height: 50px;
-  background-color: #fff;
+  background-color: var(--td-bg-color-container);
+  color: var(--text-primary);
   box-shadow: @shadow-level-1;
+
   &-title {
     font-size: 18px;
   }
+
   &__back {
     position: absolute;
     left: 16px;

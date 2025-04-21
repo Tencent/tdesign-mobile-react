@@ -36,6 +36,11 @@ export default {
       component: () => import('tdesign-mobile-react/grid/_example/index.tsx'),
     },
     {
+      title: 'List 列表',
+      name: 'list',
+      component: () => import('tdesign-mobile-react/list/_example/index.tsx'),
+    },
+    {
       title: 'Image 图片',
       name: 'image',
       component: () => import('tdesign-mobile-react/image/_example/index.tsx'),
@@ -250,7 +255,7 @@ export default {
     {
       title: 'Fab 悬浮按钮',
       name: 'fab',
-      component: () => import('tdesign-mobile-react/fab/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/fab/_example/index.tsx'),
     },
     {
       title: 'NoticeBar 公告栏',
@@ -261,6 +266,11 @@ export default {
       title: 'Result 结果',
       name: 'result',
       component: () => import('tdesign-mobile-react/result/_example/index.tsx'),
+    },
+    {
+      title: 'ActionSheet 动作面板',
+      name: 'action-sheet',
+      component: () => import('tdesign-mobile-react/action-sheet/_example/index.tsx'),
     },
     {
       title: 'Link 链接',
@@ -301,6 +311,11 @@ export default {
       title: 'ConfigProvider 全局特性配置',
       name: 'config-provider',
       component: () => import('tdesign-mobile-react/config-provider/_example/index.tsx'),
+    },
+    {
+      title: 'ActionSheet 动作面板',
+      name: 'action-sheet',
+      component: () => import('tdesign-mobile-react/action-sheet/_example/index.tsx'),
     },
   ],
 };

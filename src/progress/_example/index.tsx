@@ -14,22 +14,22 @@ export default function ProgressDemo() {
   return (
     <div className="tdesign-mobile-demo">
       <TDemoHeader title="Progress 进度条" summary="展示操作的当前进度" />
-      <TDemoBlock title="01 类型" summary="基础进度条" padding={true}>
+      <TDemoBlock title="01 类型" summary="基础进度条">
         <BaseDemo />
       </TDemoBlock>
-      <TDemoBlock summary="过渡样式" padding={true}>
+      <TDemoBlock summary="过渡样式" padding>
         <TransitionDemo />
       </TDemoBlock>
-      <TDemoBlock summary="自定义颜色/圆角" padding={true}>
+      <TDemoBlock summary="自定义颜色/圆角">
         <CustomDemo />
       </TDemoBlock>
-      <TDemoBlock title="02 组件状态" summary="线性进度条" padding={true}>
+      <TDemoBlock title="02 组件状态" summary="线性进度条">
         <LineDemo />
       </TDemoBlock>
-      <TDemoBlock summary="百分比内显进度条" padding={true}>
+      <TDemoBlock summary="百分比内显进度条">
         <PlumpDemo />
       </TDemoBlock>
-      <TDemoBlock summary="环形进度条" padding={true}>
+      <TDemoBlock summary="环形进度条">
         <CircleDemo />
       </TDemoBlock>
     </div>
