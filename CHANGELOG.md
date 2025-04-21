@@ -5,6 +5,10 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.13.1 `2025-04-21` 
+### 🐞 Bug Fixes
+- `SideBar`: 修复组件未导出问题 @anlyyao ([#616](https://github.com/Tencent/tdesign-mobile-react/pull/616))
+
 ## 🌈 0.13.0 `2025-04-18` 
 ### 🚀 Features
 - `Icon`: 图标库版本更新到 `0.4.4`([#590](https://github.com/Tencent/tdesign-mobile-react/pull/590))
