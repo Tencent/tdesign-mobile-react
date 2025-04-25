@@ -5,6 +5,13 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.13.2 `2025-04-25` 
+### 🚀 Features
+- `Icon`: 新增 `logo-miniprogram`、`logo-cnb`、`seal`、`quote` 图标 @taowensheng1997 @uyarn ([#621](https://github.com/Tencent/tdesign-mobile-react/pull/621))
+### 🐞 Bug Fixes
+- `Icon`: 优化多个文件相关图标的绘制效果，修复 `gesture-right-slip` 的绘制问题@uyarn([#621](https://github.com/Tencent/tdesign-mobile-react/pull/621))
+- `Slider`: `marks` 属性不支持 `()=>TNode` 渲染的问题  @anlyyao ([#622](https://github.com/Tencent/tdesign-mobile-react/pull/622))
+
 ## 🌈 0.13.1 `2025-04-21` 
 ### 🐞 Bug Fixes
 - `SideBar`: 修复组件未导出问题 @anlyyao ([#616](https://github.com/Tencent/tdesign-mobile-react/pull/616))
