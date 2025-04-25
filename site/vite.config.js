@@ -13,6 +13,18 @@ const publicPathMap = {
   production: 'https://static.tdesign.tencent.com/mobile-react/',
 };
 
+// Rollup 4+ 的 tree-shaking 策略调整, 这里是为了让样式在站点构建正常
+const disableTreeShakingPlugin = (paths) => ({
+  name: 'disable-treeshake',
+  transform(code, id) {
+    for (const path of paths) {
+      if (id.includes(path)) {
+        return { code, map: null, moduleSideEffects: 'no-treeshake' };
+      }
+    }
+  },
+});
+
 export default ({ mode }) =>
   defineConfig({
     base: publicPathMap[mode],
@@ -48,5 +60,11 @@ export default ({ mode }) =>
       https: false,
       fs: { strict: false },
     },
-    plugins: [react(), tdocPlugin(), VitePWA(pwaConfig), replace({ __DATE__: new Date().toISOString() })],
+    plugins: [
+      react(),
+      tdocPlugin(),
+      VitePWA(pwaConfig),
+      disableTreeShakingPlugin(['style/']),
+      replace({ __DATE__: new Date().toISOString() }),
+    ],
   });

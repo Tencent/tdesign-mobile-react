@@ -2,8 +2,8 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from 'tdesign-mobile-react/button';
 
-export const jsxDemoFiles = import.meta.globEager('../../src/**/_example/*.jsx');
-export const tsxDemoFiles = import.meta.globEager('../../src/**/_example/*.tsx');
+export const jsxDemoFiles = import.meta.glob('../../src/**/_example/*.jsx', { eager: true });
+export const tsxDemoFiles = import.meta.glob('../../src/**/_example/*.tsx', { eager: true });
 
 const demoObject = {};
 
