@@ -12,7 +12,7 @@ import './style/index.less';
 
 export default function Base() {
   return (
-    <>
+    <div className="tdesign-mobile-demo">
       <Navbar title="Navbar 导航条" style={{ zIndex: 999 }} leftArrow />
 
       <TDemoHeader title="Navbar 导航栏" summary="用于不同页面之间切换或者跳转，位于内容区的上方，系统状态栏的下方。" />
@@ -51,6 +51,6 @@ export default function Base() {
           <CustomColorDemo />
         </div>
       </TDemoBlock>
-    </>
+    </div>
   );
 }

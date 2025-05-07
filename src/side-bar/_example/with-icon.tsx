@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Icon } from 'tdesign-icons-react';
-import { Grid, GridItem } from '../../grid';
-import { SideBarProps, SideBarItemProps, SideBar, SideBarItem } from '..';
+import type { SideBarProps, SideBarItemProps } from 'tdesign-mobile-react';
+import { SideBar, SideBarItem, Grid, GridItem } from 'tdesign-mobile-react';
+
 import './style/base.less';
 
 const image = 'https://tdesign.gtimg.com/mobile/demos/example2.png';

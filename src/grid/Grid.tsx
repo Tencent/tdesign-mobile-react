@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo } from 'react';
+import React, { forwardRef, useMemo, PropsWithChildren } from 'react';
 import cls from 'classnames';
 import parseTNode from '../_util/parseTNode';
 import useConfig from '../hooks/useConfig';
@@ -11,7 +11,7 @@ import { gridDefaultProps } from './defaultProps';
 
 export interface GridProps extends TdGridProps, StyledProps {}
 
-const Grid = forwardRef<HTMLDivElement, GridProps>((props, ref) => {
+const Grid = forwardRef<HTMLDivElement, PropsWithChildren<GridProps>>((props, ref) => {
   const { children, align, border, column, gutter, theme, className, style } = useDefaultProps(props, gridDefaultProps);
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-grid`;

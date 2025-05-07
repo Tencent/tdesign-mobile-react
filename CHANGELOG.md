@@ -5,6 +5,31 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.13.2 `2025-04-25` 
+### 🚀 Features
+- `Icon`: 新增 `logo-miniprogram`、`logo-cnb`、`seal`、`quote` 图标 @taowensheng1997 @uyarn ([#621](https://github.com/Tencent/tdesign-mobile-react/pull/621))
+### 🐞 Bug Fixes
+- `Icon`: 优化多个文件相关图标的绘制效果，修复 `gesture-right-slip` 的绘制问题@uyarn([#621](https://github.com/Tencent/tdesign-mobile-react/pull/621))
+- `Slider`: `marks` 属性不支持 `()=>TNode` 渲染的问题  @anlyyao ([#622](https://github.com/Tencent/tdesign-mobile-react/pull/622))
+
+## 🌈 0.13.1 `2025-04-21` 
+### 🐞 Bug Fixes
+- `SideBar`: 修复组件未导出问题 @anlyyao ([#616](https://github.com/Tencent/tdesign-mobile-react/pull/616))
+
+## 🌈 0.13.0 `2025-04-18` 
+### 🚀 Features
+- `Icon`: 图标库版本更新到 `0.4.4`([#590](https://github.com/Tencent/tdesign-mobile-react/pull/590))
+- `Toast`: 新增 `warning` 主题 @betavs ([#589](https://github.com/Tencent/tdesign-mobile-react/pull/589))
+- `Fab`: 新增 `draggable`，`yBounds `，`onDragEnd` 和 `onDragStart ` 等属性，支持组件拖拽 @novlan1 ([#594](https://github.com/Tencent/tdesign-mobile-react/pull/594))
+- `List`: 新增 `List` 组件 @feaswcy ([#463](https://github.com/Tencent/tdesign-mobile-react/pull/463))
+- `ActionSheet`: 新增 `ActionSheet` 组件 @TianlunXiong ([#471](https://github.com/Tencent/tdesign-mobile-react/pull/471))
+- `Progress`: 新增 `size` 属性，仅在环形进度条有效 @anlyyao ([#609](https://github.com/Tencent/tdesign-mobile-react/pull/609))
+- `CollapsePanel`: 优化面板折叠动画 @anlyyao ([#611](https://github.com/Tencent/tdesign-mobile-react/pull/611))
+### 🐞 Bug Fixes
+- `Textarea`: 修复传入参数类型错误 @RSS1102 ([#591](https://github.com/Tencent/tdesign-mobile-react/pull/591))；修复 `iOS` 真机上输入内容重复的问题，并补充 `onCompositionstart` 和 `onCompositionend` 属性 @anlyyao ([#601](https://github.com/Tencent/tdesign-mobile-react/pull/601))
+### 🚧 Others
+- `site`: 站点接入主题生成器 @RylanBot ([#604](https://github.com/Tencent/tdesign-mobile-react/pull/604))
+
 ## 🌈 0.12.0 `2025-03-12` 
 ### 🚨 Breaking Changes
 - `Dialog`: 新增 `closeBtn`、`width`、`overlayProps` 属性和 `middle`、`top` 插槽，存在 `DOM` 调整 @epoll-j ([#548](https://github.com/Tencent/tdesign-mobile-react/pull/548))
