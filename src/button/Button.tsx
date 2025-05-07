@@ -1,17 +1,18 @@
-import React, { forwardRef } from 'react';
+import React, { useMemo } from 'react';
 import classnames from 'classnames';
 import TLoading from '../loading';
-import useConfig from '../hooks/useConfig';
 import parseTNode from '../_util/parseTNode';
 import { TdButtonProps } from './type';
 import { buttonDefaultProps } from './defaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
+import useHover from '../hooks/useHover';
 
 export interface ButtonProps
   extends TdButtonProps,
     Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'content' | 'children'> {}
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>((originProps, ref) => {
+const Button: React.FC<ButtonProps> = (originProps) => {
   const props = useDefaultProps(originProps, buttonDefaultProps);
   const {
     className,
@@ -32,9 +33,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((originProps, ref) => 
     onClick,
     loadingProps,
   } = props;
-  const { classPrefix } = useConfig();
-
+  const buttonClass = usePrefixClass('button');
   const childNode = content || children;
+
+  const hoverDisabled = useMemo(() => disabled || loading, [disabled, loading]);
+  const ref = useHover({ className: `${buttonClass}--hover`, disabled: hoverDisabled });
 
   return (
     <button
@@ -42,18 +45,18 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((originProps, ref) => 
       type={type}
       className={classnames(
         [
-          `${classPrefix}-button`,
-          `${classPrefix}-button--size-${size}`,
-          `${classPrefix}-button--${variant}`,
-          `${classPrefix}-button--${theme}`,
-          `${classPrefix}-button--${shape}`,
+          `${buttonClass}`,
+          `${buttonClass}--size-${size}`,
+          `${buttonClass}--${variant}`,
+          `${buttonClass}--${theme}`,
+          `${buttonClass}--${shape}`,
           className,
         ],
         {
-          [`${classPrefix}-button--ghost`]: ghost,
-          [`${classPrefix}-button--loading`]: loading,
-          [`${classPrefix}-button--disabled`]: disabled,
-          [`${classPrefix}-button--block`]: block,
+          [`${buttonClass}--ghost`]: ghost,
+          [`${buttonClass}--loading`]: loading,
+          [`${buttonClass}--disabled`]: disabled,
+          [`${buttonClass}--block`]: block,
         },
       )}
       style={style}
@@ -61,11 +64,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((originProps, ref) => 
       disabled={disabled || loading}
     >
       {loading ? <TLoading inheritColor {...loadingProps} /> : parseTNode(icon)}
-      {childNode && <span className={`${classPrefix}-button__content`}> {parseTNode(childNode)}</span>}
+      {childNode && <span className={`${buttonClass}__content`}> {parseTNode(childNode)}</span>}
       {parseTNode(suffix)}
     </button>
   );
-});
+};
 
 Button.displayName = 'Button';
 
