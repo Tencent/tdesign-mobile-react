@@ -120,7 +120,7 @@ const Loading: React.FC<LoadingProps> = (props) => {
     let renderIndicator = themeMap[theme];
 
     if (indicator && typeof indicator !== 'boolean') {
-      renderIndicator = indicator as React.JSX.Element;
+      renderIndicator = indicator as React.ReactElement;
     }
     return (
       <>
