@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, expect, it, render } from '@test/utils';
 import { Grid, GridItem } from '../index';
-import { Image } from '../../image';
+import { Image, ImageProps } from '../../image';
 
 const prefix = 't';
 const name = `${prefix}-grid`;
@@ -129,13 +129,13 @@ describe('GridItem', () => {
     });
 
     it('image', () => {
-      const imgProps = {
+      const imgProps: ImageProps = {
         src: imgUrl,
         shape: 'circle',
       };
       const { container } = render(
         <Grid>
-          <GridItem image={imgProps as any} />
+          <GridItem image={imgProps} />
         </Grid>,
       );
       const $imgContainer = container.querySelector(`.${name}-item__image`);

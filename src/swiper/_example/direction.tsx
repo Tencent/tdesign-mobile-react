@@ -31,7 +31,7 @@ export default function Base() {
         duration={500}
         autoplay={true}
         defaultCurrent={1}
-        navigation={{ type: 'dots-bar', paginationPosition: 'right' } as any}
+        navigation={{ type: 'dots-bar', paginationPosition: 'right' }}
       >
         {swiperItems()}
       </Swiper>

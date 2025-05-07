@@ -1,9 +1,9 @@
-import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
-import { isString, get } from 'lodash-es';
+import React, { ReactNode, useCallback, useEffect, useMemo, useState, isValidElement } from 'react';
+import { isString, get, isObject, isFunction, isArray } from 'lodash-es';
 import { CloseIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
 import Popup from '../popup';
-import Button from '../button';
+import Button, { ButtonProps } from '../button';
 import { StyledProps } from '../common';
 import { dialogDefaultProps } from './defaultProps';
 import { TdDialogProps } from './type';
@@ -65,23 +65,6 @@ export const Dialog: React.FC<DialogProps> = (props) => {
         [`${dialogClass}__button--text`]: isTextStyleBtn,
       }),
     [buttonLayout, dialogClass, isTextStyleBtn],
-  );
-
-  const calcBtn = (btn: any) => (isString(btn) ? { content: btn } : btn);
-  const actionsBtnProps = useMemo(() => actions?.map((item) => calcBtn(item)), [actions]);
-  const confirmBtnProps = useMemo(
-    () => ({
-      theme: 'primary',
-      ...calcBtn(confirmBtn),
-    }),
-    [confirmBtn],
-  );
-  const cancelBtnProps = useMemo(
-    () => ({
-      theme: isTextStyleBtn ? 'default' : 'light',
-      ...calcBtn(cancelBtn),
-    }),
-    [cancelBtn, isTextStyleBtn],
   );
 
   const [active, setActive] = useState(visible);
@@ -146,27 +129,54 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     );
   };
 
-  const renderActionsNode = () => {
-    const actionsNode = parseTNode(actions as any);
-    if (actionsNode && actionsBtnProps) {
-      return actionsBtnProps.map((item, index) => (
-        <Button key={index} {...item} className={buttonClass} onClick={onCancelButtonClickHandle}></Button>
-      ));
+  const renderDialogButton = (btn: DialogProps['cancelBtn'] | DialogProps['actions'], defaultProps: ButtonProps) => {
+    let result = null;
+
+    if (isString(btn)) {
+      result = <Button {...defaultProps}>{btn}</Button>;
+    } else if (isArray(btn)) {
+      result = btn.map((item) => renderDialogButton(item, { ...defaultProps }));
+    } else if (isValidElement(btn)) {
+      result = btn;
+    } else if (isObject(btn)) {
+      result = <Button {...defaultProps} {...(btn as {})} />;
+    } else if (isFunction(btn)) {
+      result = btn();
     }
+
+    return result;
   };
 
-  const renderCancelButtonNode = () => {
-    const cancelButtonNode = parseTNode(cancelBtn as any);
-    if (!actions && cancelButtonNode) {
-      return <Button {...cancelBtnProps} className={buttonClass} onClick={onCancelButtonClickHandle}></Button>;
-    }
-  };
+  const renderFooter = () => {
+    const renderActionsNode = () => {
+      const renderActionsBtn = renderDialogButton(actions, {
+        className: buttonClass,
+        onClick: onCancelButtonClickHandle,
+      });
 
-  const renderConfirmButtonNode = () => {
-    const confirmButtonNode = parseTNode(confirmBtn as any);
-    if (!actions && confirmButtonNode) {
-      return <Button {...confirmBtnProps} className={buttonClass} onClick={onConfirmButtonClickHandle}></Button>;
-    }
+      return <>{renderActionsBtn}</>;
+    };
+
+    const defaultFooter = () => {
+      const renderCancelBtn = renderDialogButton(cancelBtn, {
+        className: buttonClass,
+        theme: isTextStyleBtn ? 'default' : 'light',
+        onClick: onCancelButtonClickHandle,
+      });
+      const renderConfirmBtn = renderDialogButton(confirmBtn, {
+        className: buttonClass,
+        theme: 'primary',
+        onClick: onConfirmButtonClickHandle,
+      });
+
+      return (
+        <>
+          {renderCancelBtn}
+          {renderConfirmBtn}
+        </>
+      );
+    };
+    return <>{actions ? renderActionsNode() : defaultFooter()}</>;
   };
 
   return (
@@ -193,11 +203,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
           {renderContentNode()}
         </div>
         {parseTNode(middle)}
-        <div className={footerClass}>
-          {renderActionsNode()}
-          {renderCancelButtonNode()}
-          {renderConfirmButtonNode()}
-        </div>
+        <div className={footerClass}>{renderFooter()}</div>
       </div>
     </Popup>
   );

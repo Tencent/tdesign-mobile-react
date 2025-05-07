@@ -9,7 +9,9 @@ import { TdGridProps } from './type';
 import { GirdProvider } from './GridContext';
 import { gridDefaultProps } from './defaultProps';
 
-export interface GridProps extends TdGridProps, StyledProps {}
+export interface GridProps extends TdGridProps, StyledProps {
+  children?: React.ReactNode;
+}
 
 const Grid = forwardRef<HTMLDivElement, PropsWithChildren<GridProps>>((props, ref) => {
   const { children, align, border, column, gutter, theme, className, style } = useDefaultProps(props, gridDefaultProps);

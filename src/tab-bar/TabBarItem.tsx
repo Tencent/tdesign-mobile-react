@@ -125,11 +125,9 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
 
   const iconSize = `${iconOnly ? 24 : 20}px`;
 
-  const iconContent =
-    icon &&
-    React.cloneElement(icon, {
-      style: { fontSize: iconSize },
-    } as any);
+  const iconContent = () =>
+    // @ts-ignore
+    icon && React.cloneElement(icon, { style: { fontSize: iconSize } });
 
   return (
     <div className={tabItemCls} ref={ref}>
@@ -144,9 +142,9 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
         {icon && (
           <div className={`${tabBarItemClass}__icon`} style={{ height: iconSize }}>
             {badgeProps && (badgeProps?.dot || badgeProps?.count) ? (
-              <Badge content={iconContent} {...mergedBadgeProps} />
+              <Badge content={iconContent()} {...mergedBadgeProps} />
             ) : (
-              iconContent
+              iconContent()
             )}
           </div>
         )}

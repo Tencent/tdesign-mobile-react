@@ -5,10 +5,10 @@ import { defaultProps, ToastThemeListEnum } from './constant';
 import Toast from './Toast';
 
 function getToastProps(props: ToastOptions) {
-  let cur: any = props;
+  let cur = props;
   if (typeof cur === 'string') {
     cur = {
-      message: props,
+      message: cur,
     };
   }
   return cur;
@@ -27,10 +27,10 @@ const clear = () => {
 };
 
 const createToast = (props: ToastOptions) => {
-  let cur: any = props;
+  let cur = props;
   if (typeof cur === 'string') {
     cur = {
-      message: props,
+      message: cur,
     };
   }
   const config = { ...defaultProps, ...cur } as TdToastProps;

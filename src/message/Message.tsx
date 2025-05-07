@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, ReactNode } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import classNames from 'classnames';
 import { useTimeout } from 'ahooks';
 import { isObject } from 'lodash-es';
@@ -19,7 +19,7 @@ import Link from '../link';
 
 export interface MessageProps extends TdMessageProps, StyledProps {
   container?: Element;
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
 interface IInnerState {

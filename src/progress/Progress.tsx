@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode } from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import {
   CloseIcon,
@@ -21,7 +21,7 @@ import { getDiameter, getCircleStokeWidth } from '../_common/js/progress/utils';
 import { PLUMP_SEPARATE } from './constants';
 
 export interface ProgressProps extends TdProgressProps, StyledProps {
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
 const Progress = forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {

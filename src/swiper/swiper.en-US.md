@@ -28,7 +28,7 @@ onClick | Function |  | Typescript：`(index: number) => void`<br/> | N
 name | type | default | description | required
 -- | -- | -- | -- | --
 minShowNum | Number | - | \- | N
-paginationPosition | String | bottom | options: top-left/top/top-right/bottom-left/bottom/bottom-right | N
+paginationPosition | String | bottom | options: top-left/top/top-right/bottom-left/bottom/bottom-right/left/right | N
 placement | String | inside | options: inside/outside | N
 showControls | Boolean | false | \- | N
 type | String | - | Typescript：`SwiperNavigationType` `type SwiperNavigationType = 'dots' \| 'dots-bar' \| 'fraction'`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/swiper/type.ts) | N

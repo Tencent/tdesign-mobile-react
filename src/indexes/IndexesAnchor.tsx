@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useContext, useEffect, useRef } from 'react';
+import React, { FC, useContext, useEffect, useRef } from 'react';
 import cls from 'classnames';
 import { StyledProps } from '../common';
 import parseTNode from '../_util/parseTNode';
@@ -7,7 +7,7 @@ import { TdIndexesAnchorProps } from './type';
 import { IndexesContext } from './IndexesContext';
 
 export interface IndexesAnchorProps extends TdIndexesAnchorProps, StyledProps {
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
 const IndexesAnchor: FC<IndexesAnchorProps> = (props) => {

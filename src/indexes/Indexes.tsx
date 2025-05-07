@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo, ReactNode } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { throttle } from 'lodash-es';
 import cls from 'classnames';
 import { TdIndexesProps } from './type';
@@ -10,7 +10,7 @@ import { indexesDefaultProps } from './defaultProps';
 import { IndexesProrvider } from './IndexesContext';
 
 export interface IndexesProps extends TdIndexesProps, StyledProps {
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
 interface GroupTop {

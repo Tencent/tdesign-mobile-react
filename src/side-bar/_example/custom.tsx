@@ -79,7 +79,7 @@ function SideBarWrapper() {
                   <GridItem
                     key={cargoIndex}
                     text={cargo.label}
-                    image={{ src: cargo.image, shape: 'round', lazy: true } as any}
+                    image={{ src: cargo.image, shape: 'round', lazy: true }}
                   ></GridItem>
                 ))}
               </Grid>

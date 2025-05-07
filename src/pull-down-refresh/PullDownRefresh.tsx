@@ -1,4 +1,4 @@
-import React, { useRef, useState, type ReactNode, useEffect, useMemo } from 'react';
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import { uniqueId, isBoolean } from 'lodash-es';
 
@@ -139,7 +139,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
   };
 
   const statusText = getStatusText(status, loadingTexts);
-  let statusNode: ReactNode = <div className={`${name}__text`}>{statusText}</div>;
+  let statusNode: React.ReactNode = <div className={`${name}__text`}>{statusText}</div>;
   if (status === PullStatusEnum.loading) {
     statusNode = <Loading text={statusText} size="24px" {...loadingProps} />;
   }

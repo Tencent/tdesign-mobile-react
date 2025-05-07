@@ -4,12 +4,12 @@ import { Dialog, Button, DialogProps } from 'tdesign-mobile-react';
 const MultiStateUsage = React.memo(() => {
   const [alertProps, setAlertProps] = useState({ visible: false } as DialogProps);
 
-  const cancelBtn = {
+  const cancelBtn: DialogProps['cancelBtn'] = {
     content: '取消',
     variant: 'text',
     size: 'large',
   };
-  const confirmBtn = {
+  const confirmBtn: DialogProps['confirmBtn'] = {
     content: '确认',
     variant: 'text',
     size: 'large',
@@ -30,7 +30,7 @@ const MultiStateUsage = React.memo(() => {
             content: '告知当前状态、信息和解决方法',
             confirmBtn,
             cancelBtn,
-          } as any);
+          });
         }}
       >
         文字按钮
