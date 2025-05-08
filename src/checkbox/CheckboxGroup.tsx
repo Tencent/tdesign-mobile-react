@@ -146,7 +146,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
           const vs = item as number | string;
           return (
             <Checkbox key={vs} label={vs} value={vs}>
-              {item}
+              {vs}
             </Checkbox>
           );
         }

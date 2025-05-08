@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '../_util/react-render';
 import { TdToastProps, ToastOptions } from './type';
 import { defaultProps, ToastThemeListEnum } from './constant';
 import Toast from './Toast';
@@ -8,7 +8,7 @@ function getToastProps(props: ToastOptions) {
   let cur = props;
   if (typeof cur === 'string') {
     cur = {
-      message: props,
+      message: cur,
     };
   }
   return cur;
@@ -30,7 +30,7 @@ const createToast = (props: ToastOptions) => {
   let cur = props;
   if (typeof cur === 'string') {
     cur = {
-      message: props,
+      message: cur,
     };
   }
   const config = { ...defaultProps, ...cur } as TdToastProps;
@@ -39,7 +39,7 @@ const createToast = (props: ToastOptions) => {
 
   el = document.createElement('div');
   document.body.appendChild(el);
-  ReactDOM.render(<Toast {...{ ...config, el }} />, el);
+  render(<Toast {...{ ...config, el }} />, el);
   curProps = config;
 
   const destroy = () => {

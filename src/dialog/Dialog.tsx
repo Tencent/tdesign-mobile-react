@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { isString, get } from 'lodash-es';
+import React, { ReactNode, useCallback, useEffect, useMemo, useState, isValidElement } from 'react';
+import { isString, get, isObject, isFunction, isArray } from 'lodash-es';
 import { CloseIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
 import Popup from '../popup';
-import Button from '../button';
+import Button, { ButtonProps } from '../button';
 import { StyledProps } from '../common';
 import { dialogDefaultProps } from './defaultProps';
 import { TdDialogProps } from './type';
@@ -11,7 +11,9 @@ import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 import parseTNode from '../_util/parseTNode';
 
-export interface DialogProps extends TdDialogProps, StyledProps {}
+export interface DialogProps extends TdDialogProps, StyledProps {
+  children?: ReactNode;
+}
 
 export const Dialog: React.FC<DialogProps> = (props) => {
   const {
@@ -65,23 +67,6 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     [buttonLayout, dialogClass, isTextStyleBtn],
   );
 
-  const calcBtn = (btn: any) => (isString(btn) ? { content: btn } : btn);
-  const actionsBtnProps = useMemo(() => actions?.map((item) => calcBtn(item)), [actions]);
-  const confirmBtnProps = useMemo(
-    () => ({
-      theme: 'primary',
-      ...calcBtn(confirmBtn),
-    }),
-    [confirmBtn],
-  );
-  const cancelBtnProps = useMemo(
-    () => ({
-      theme: isTextStyleBtn ? 'default' : 'light',
-      ...calcBtn(cancelBtn),
-    }),
-    [cancelBtn, isTextStyleBtn],
-  );
-
   const [active, setActive] = useState(visible);
   useEffect(() => {
     setActive(visible);
@@ -132,7 +117,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
   );
 
   const renderContentNode = () => {
-    const contentNode = parseTNode(children, null, content);
+    const contentNode = parseTNode(children, null, parseTNode(content));
     if (!contentNode) {
       return null;
     }
@@ -144,27 +129,54 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     );
   };
 
-  const renderActionsNode = () => {
-    const actionsNode = parseTNode(actions);
-    if (actionsNode && actionsBtnProps) {
-      return actionsBtnProps.map((item, index) => (
-        <Button key={index} {...item} className={buttonClass} onClick={onCancelButtonClickHandle}></Button>
-      ));
+  const renderDialogButton = (btn: DialogProps['cancelBtn'] | DialogProps['actions'], defaultProps: ButtonProps) => {
+    let result = null;
+
+    if (isString(btn)) {
+      result = <Button {...defaultProps}>{btn}</Button>;
+    } else if (isArray(btn)) {
+      result = btn.map((item) => renderDialogButton(item, { ...defaultProps }));
+    } else if (isValidElement(btn)) {
+      result = btn;
+    } else if (isObject(btn)) {
+      result = <Button {...defaultProps} {...(btn as {})} />;
+    } else if (isFunction(btn)) {
+      result = btn();
     }
+
+    return result;
   };
 
-  const renderCancelButtonNode = () => {
-    const cancelButtonNode = parseTNode(cancelBtn);
-    if (!actions && cancelButtonNode) {
-      return <Button {...cancelBtnProps} className={buttonClass} onClick={onCancelButtonClickHandle}></Button>;
-    }
-  };
+  const renderFooter = () => {
+    const renderActionsNode = () => {
+      const renderActionsBtn = renderDialogButton(actions, {
+        className: buttonClass,
+        onClick: onCancelButtonClickHandle,
+      });
 
-  const renderConfirmButtonNode = () => {
-    const confirmButtonNode = parseTNode(confirmBtn);
-    if (!actions && confirmButtonNode) {
-      return <Button {...confirmBtnProps} className={buttonClass} onClick={onConfirmButtonClickHandle}></Button>;
-    }
+      return <>{renderActionsBtn}</>;
+    };
+
+    const defaultFooter = () => {
+      const renderCancelBtn = renderDialogButton(cancelBtn, {
+        className: buttonClass,
+        theme: isTextStyleBtn ? 'default' : 'light',
+        onClick: onCancelButtonClickHandle,
+      });
+      const renderConfirmBtn = renderDialogButton(confirmBtn, {
+        className: buttonClass,
+        theme: 'primary',
+        onClick: onConfirmButtonClickHandle,
+      });
+
+      return (
+        <>
+          {renderCancelBtn}
+          {renderConfirmBtn}
+        </>
+      );
+    };
+    return <>{actions ? renderActionsNode() : defaultFooter()}</>;
   };
 
   return (
@@ -191,11 +203,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
           {renderContentNode()}
         </div>
         {parseTNode(middle)}
-        <div className={footerClass}>
-          {renderActionsNode()}
-          {renderCancelButtonNode()}
-          {renderConfirmButtonNode()}
-        </div>
+        <div className={footerClass}>{renderFooter()}</div>
       </div>
     </Popup>
   );

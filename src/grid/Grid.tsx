@@ -1,5 +1,6 @@
 import React, { forwardRef, useMemo, PropsWithChildren } from 'react';
 import cls from 'classnames';
+import parseTNode from '../_util/parseTNode';
 import useConfig from '../hooks/useConfig';
 import { StyledProps } from '../common';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -8,7 +9,9 @@ import { TdGridProps } from './type';
 import { GirdProvider } from './GridContext';
 import { gridDefaultProps } from './defaultProps';
 
-export interface GridProps extends TdGridProps, StyledProps {}
+export interface GridProps extends TdGridProps, StyledProps {
+  children?: React.ReactNode;
+}
 
 const Grid = forwardRef<HTMLDivElement, PropsWithChildren<GridProps>>((props, ref) => {
   const { children, align, border, column, gutter, theme, className, style } = useDefaultProps(props, gridDefaultProps);
@@ -36,7 +39,7 @@ const Grid = forwardRef<HTMLDivElement, PropsWithChildren<GridProps>>((props, re
         })}
         style={rootStyle}
       >
-        {children}
+        {parseTNode(children)}
       </div>
     </GirdProvider>
   );

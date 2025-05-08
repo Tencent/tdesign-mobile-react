@@ -89,7 +89,7 @@ export interface SwiperNavigation {
    * 页码信息展示位置
    * @default bottom
    */
-  paginationPosition?: 'top-left' | 'top' | 'top-right' | 'bottom-left' | 'bottom' | 'bottom-right';
+  paginationPosition?: 'top-left' | 'top' | 'top-right' | 'bottom-left' | 'bottom' | 'bottom-right' | 'left' | 'right';
   /**
    * 导航器位置，位于主体的内侧或是外侧
    * @default inside

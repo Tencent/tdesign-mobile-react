@@ -9,7 +9,9 @@ import { navbarDefaultProps } from './defaultProps';
 import parseTNode from '../_util/parseTNode';
 import useDefaultProps from '../hooks/useDefaultProps';
 
-export interface NavbarProps extends TdNavbarProps, StyledProps {}
+export interface NavbarProps extends TdNavbarProps, StyledProps {
+  children?: React.ReactNode;
+}
 
 const Navbar: React.FC<NavbarProps> = (originProps) => {
   const props = useDefaultProps(originProps, navbarDefaultProps);

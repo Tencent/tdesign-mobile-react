@@ -17,6 +17,10 @@ class ResizeObserver {
   unobserve() {
     return this;
   }
+
+  disconnect() {
+    return this;
+  }
 }
 
 function runTest() {
@@ -32,7 +36,11 @@ function runTest() {
       it(`csr test ${file}`, async () => {
         const demo = await import(`../../${file}`);
         const RealDemoComp = demo.default ? demo.default : demo;
-        const { container } = render(<Router><RealDemoComp /></Router>);
+        const { container } = render(
+          <Router>
+            <RealDemoComp />
+          </Router>,
+        );
         expect(container).toMatchSnapshot();
       });
     });

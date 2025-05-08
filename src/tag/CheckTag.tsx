@@ -55,6 +55,7 @@ const CheckTag = forwardRef<HTMLSpanElement, CheckTagProps>((originProps, ref) =
   );
 
   const renderText = () => {
+    // @ts-ignore
     if (Array.isArray(content) && content.length === 2) {
       return innerChecked ? content[0] : content[1];
     }

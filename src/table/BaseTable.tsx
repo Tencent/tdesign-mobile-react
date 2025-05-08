@@ -2,6 +2,7 @@ import React, { forwardRef, useRef } from 'react';
 import { get, isFunction } from 'lodash-es';
 import cx from 'classnames';
 
+import parseTNode from '../_util/parseTNode';
 import { StyledProps } from '../common';
 import useClassName from './hooks/useClassName';
 import useStyle, { formatCSSUnit } from './hooks/useStyle';
@@ -50,11 +51,11 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
 
   const defaultColWidth = tableLayout === 'fixed' ? '80px' : undefined;
 
-  const tableContentRef = useRef();
+  const tableContentRef = useRef(null);
 
-  const tableElmRef = useRef();
+  const tableElmRef = useRef(null);
 
-  const theadRef = useRef();
+  const theadRef = useRef(null);
 
   const colStyle = (colItem: BaseTableCol<TableRowData>) => ({
     width: `${formatCSSUnit(colItem.width || defaultColWidth)}`,
@@ -140,7 +141,7 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
       return (
         <tr className={tableBaseClass.emptyRow}>
           <td colSpan={columns?.length}>
-            <div className={tableBaseClass.empty}>{renderContentEmpty}</div>
+            <div className={tableBaseClass.empty}>{parseTNode(renderContentEmpty)}</div>
           </td>
         </tr>
       );

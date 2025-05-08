@@ -5,6 +5,7 @@
  * */
 
 import { BadgeProps } from '../badge';
+import { ImageProps } from '../image';
 import { TNode } from '../common';
 
 export interface TdGridProps {
@@ -32,10 +33,6 @@ export interface TdGridProps {
    * @default default
    */
   theme?: 'default' | 'card';
-  /**
-   * 标签栏内容
-   */
-  children?: TNode;
 }
 
 export interface TdGridItemProps {
@@ -51,7 +48,7 @@ export interface TdGridItemProps {
   /**
    * 图片，可以是图片地址，也可以自定义图片节点，如果传入对象则透传至 image 组件
    */
-  image?: TNode;
+  image?: String | TNode | ImageProps;
   /**
    * 内容布局方式
    * @default vertical

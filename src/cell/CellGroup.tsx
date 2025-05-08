@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import classnames from 'classnames';
 import useConfig from '../hooks/useConfig';
 import { TdCellGroupProps } from './type';
@@ -7,7 +7,10 @@ import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import useDefaultProps from '../hooks/useDefaultProps';
 import parseTNode from '../_util/parseTNode';
 
-export type CellGroupProps = TdCellGroupProps & NativeProps;
+export type CellGroupProps = TdCellGroupProps &
+  NativeProps & {
+    children?: ReactNode;
+  };
 
 const CellGroup: React.FC<CellGroupProps> = (originProps) => {
   const props = useDefaultProps(originProps, cellGroupDefaultProps);
