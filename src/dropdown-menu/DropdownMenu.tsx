@@ -1,8 +1,8 @@
 import cx from 'classnames';
 import React, { ComponentProps, FC, forwardRef, useImperativeHandle, useState } from 'react';
-import { StyledProps } from 'tdesign-mobile-react/common';
-import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
-import useConfig from '../_util/useConfig';
+import { StyledProps } from '../common';
+import useDefaultProps from '../hooks/useDefaultProps';
+import useConfig from '../hooks/useConfig';
 import { dropdownMenuDefaultProps } from './defaultProps';
 import DropdownItem from './DropdownItem';
 import DropdownMenuContext from './DropdownMenuContext';
