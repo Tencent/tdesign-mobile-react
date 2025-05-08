@@ -15,3 +15,7 @@ preventScrollThrough | Boolean | true | 防止滚动穿透，即不允许点击�
 visible | Boolean | false | 是否展示 | N
 zIndex | Number | 1000 | 遮罩的层级 | N
 onClick | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>遮罩层的点击事件 | N
+onClose | Function |  | TS 类型：`() => void`<br/>遮罩执行消失动画效果前触发 | N
+onClosed | Function |  | TS 类型：`() => void`<br/>遮罩消失动画效果结束后触发 | N
+onOpen | Function |  | TS 类型：`() => void`<br/>遮罩执行弹出动画效果前触发 | N
+onOpened | Function |  | TS 类型：`() => void`<br/>遮罩弹出动画效果结束后触发 | N

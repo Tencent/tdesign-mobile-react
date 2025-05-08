@@ -15,3 +15,7 @@ preventScrollThrough | Boolean | true | \- | N
 visible | Boolean | false | \- | N
 zIndex | Number | 1000 | \- | N
 onClick | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/> | N
+onClose | Function |  | Typescript：`() => void`<br/> | N
+onClosed | Function |  | Typescript：`() => void`<br/> | N
+onOpen | Function |  | Typescript：`() => void`<br/> | N
+onOpened | Function |  | Typescript：`() => void`<br/> | N
