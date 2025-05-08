@@ -10,7 +10,7 @@ import useMessageCssTransition from './hooks/useMessageCssTransition';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 
-import type { StyledProps } from '../common';
+import type { StyledProps, TNode } from '../common';
 import parseTNode from '../_util/parseTNode';
 import { convertUnit } from '../_util/convertUnit';
 import { messageDefaultProps } from './defaultProps';
@@ -246,12 +246,15 @@ const Message: React.FC<MessageProps> = (originProps) => {
     onCloseBtnClick?.(e);
   };
 
-  const closeButton =
-    closeBtn === true ? (
+  const renderCloseBtn = () => {
+    if (!closeBtn) return;
+
+    return closeBtn === true ? (
       <Icon className={`${name}--close-btn`} name="close" size={22} onClick={clickCloseButton} />
     ) : (
-      closeBtn
+      parseTNode(closeBtn as string | TNode)
     );
+  };
 
   return (
     <CSSTransition in={messageVisible} appear {...cssTransitionState.props} unmountOnExit>
@@ -276,7 +279,7 @@ const Message: React.FC<MessageProps> = (originProps) => {
             {getLinkContent()}
           </div>
         )}
-        {parseTNode(closeButton as any)}
+        {renderCloseBtn()}
       </div>
     </CSSTransition>
   );

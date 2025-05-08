@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext, useMemo, forwardRef } from 'react';
 import { CloseIcon } from 'tdesign-icons-react';
 import parseTNode from '../_util/parseTNode';
-import Button from '../button';
+import { Button, ButtonProps } from '../button';
 import { TDateType, TCalendarValue } from './type';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -229,16 +229,13 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
     );
   };
 
-  const renderConfirmBtn = (): any => {
-    if (confirmBtn && typeof confirmBtn !== 'object') {
-      return confirmBtn;
+  const renderConfirmBtn = () => {
+    if (!confirmBtn) return;
+
+    if (typeof confirmBtn === 'object') {
+      return <Button block theme="primary" {...(confirmBtn as ButtonProps)} onClick={handleConfirm} />;
     }
-    if (confirmBtn && Array.isArray(confirmBtn)) {
-      return confirmBtn;
-    }
-    if (confirmBtn && typeof confirmBtn === 'object') {
-      return <Button block theme="primary" {...(confirmBtn as any)} onClick={handleConfirm} />;
-    }
+    return parseTNode(confirmBtn);
   };
 
   const className = useMemo(

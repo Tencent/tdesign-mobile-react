@@ -4,13 +4,13 @@ import useConfig from '../hooks/useConfig';
 import useDefault from '../_util/useDefault';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import PickerContext from './picker-context';
-import { TdPickerProps, PickerValue } from './type';
+import { TdPickerProps, PickerValue, TdPickerItemProps } from './type';
 
 export const getPickerViewDefaultValue = (defaultValue: Array<PickerValue>, children: React.ReactNode) => {
   const result = (defaultValue || []).slice(0);
-  React.Children.forEach(children, (child, index) => {
+  React.Children.forEach(children, (child: React.ReactElement<TdPickerItemProps>, index) => {
     if (React.isValidElement(child) && isUndefined(result[index])) {
-      const childOptions = (child.props as any).options || [];
+      const childOptions = child.props.options || [];
       const optionsCount = childOptions.length;
       const optionsIndex = Math.max(0, optionsCount <= 2 ? optionsCount - 1 : 2);
       result[index] = childOptions[optionsIndex]?.value;

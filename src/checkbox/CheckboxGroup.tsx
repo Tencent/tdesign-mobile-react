@@ -47,7 +47,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
     onChange,
   } = useDefaultProps(props, checkboxGroupDefaultProps);
 
-  const internalOptions: any[] =
+  const internalOptions =
     Array.isArray(options) && options.length > 0
       ? options
       : React.Children.map(children, (child) => (child as ReactElement).props);
@@ -146,7 +146,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
           const vs = item as number | string;
           return (
             <Checkbox key={vs} label={vs} value={vs}>
-              {item as never}
+              {vs}
             </Checkbox>
           );
         }
