@@ -41,4 +41,20 @@ export interface TdOverlayProps {
    * 遮罩层的点击事件
    */
   onClick?: (context: { e: MouseEvent<HTMLDivElement> }) => void;
+  /**
+   * 遮罩执行消失动画效果前触发
+   */
+  onClose?: () => void;
+  /**
+   * 遮罩消失动画效果结束后触发
+   */
+  onClosed?: () => void;
+  /**
+   * 遮罩执行弹出动画效果前触发
+   */
+  onOpen?: () => void;
+  /**
+   * 遮罩弹出动画效果结束后触发
+   */
+  onOpened?: () => void;
 }

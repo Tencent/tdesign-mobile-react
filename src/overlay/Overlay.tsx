@@ -15,8 +15,21 @@ const Overlay: React.FC<OverlayProps> = (props) => {
   const overlayClass = usePrefixClass('overlay');
   const overlayRef = useRef<HTMLDivElement>();
 
-  const { className, style, backgroundColor, children, duration, preventScrollThrough, visible, zIndex, onClick } =
-    useDefaultProps<OverlayProps>(props, overlayDefaultProps);
+  const {
+    className,
+    style,
+    backgroundColor,
+    children,
+    duration,
+    preventScrollThrough,
+    visible,
+    zIndex,
+    onClick,
+    onClose,
+    onClosed,
+    onOpen,
+    onOpened,
+  } = useDefaultProps<OverlayProps>(props, overlayDefaultProps);
 
   useLockScroll(overlayRef, visible && preventScrollThrough, overlayClass);
 
@@ -34,6 +47,21 @@ const Overlay: React.FC<OverlayProps> = (props) => {
     onClick?.({ e });
   };
 
+  const transitionCallbacks = {
+    onEnter: () => {
+      onOpen?.();
+    },
+    onEntered: () => {
+      onOpened?.();
+    },
+    onExit: () => {
+      onClose?.();
+    },
+    onExited: () => {
+      onClosed?.();
+    },
+  };
+
   return (
     <CSSTransition
       in={visible}
@@ -42,6 +70,7 @@ const Overlay: React.FC<OverlayProps> = (props) => {
       nodeRef={overlayRef}
       classNames={`${overlayClass}-fade`}
       unmountOnExit
+      {...transitionCallbacks}
     >
       <div ref={overlayRef} className={classNames(className, overlayClass)} style={overlayStyles} onClick={handleClick}>
         {parseTNode(children)}
