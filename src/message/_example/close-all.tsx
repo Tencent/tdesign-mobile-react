@@ -39,10 +39,10 @@ export default function () {
 
   return (
     <div className="container button-demo-closeall">
-      <Button variant="outline" className="button" onClick={openAllMessage}>
+      <Button block size="large" variant="outline" theme="primary" className="button" onClick={openAllMessage}>
         打开多个通知
       </Button>
-      <Button variant="outline" className="button" onClick={closeAllMessage}>
+      <Button block size="large" variant="outline" theme="primary" className="button" onClick={closeAllMessage}>
         关闭所有通知
       </Button>
     </div>

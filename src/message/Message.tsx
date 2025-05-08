@@ -232,7 +232,7 @@ const Message: React.FC<MessageProps> = (originProps) => {
 
   const getLinkContent = () => {
     if (typeof link === 'string') {
-      return <Link content={link} />;
+      return <Link theme="primary" content={link} />;
     }
     if (isObject(link)) {
       return <Link theme="primary" {...link} />;
