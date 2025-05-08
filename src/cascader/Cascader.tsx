@@ -1,13 +1,12 @@
 import { useDeepCompareEffect } from 'ahooks';
 import classNames from 'classnames';
 import last from 'lodash/last';
-import React, { forwardRef, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { CheckIcon, Icon } from 'tdesign-icons-react';
-import useDefault from 'tdesign-mobile-react/_util/useDefault';
-import { Popup } from 'tdesign-mobile-react/popup';
-import { Radio, RadioGroup } from 'tdesign-mobile-react/radio';
-import Tabs from 'tdesign-mobile-react/tabs';
-import TabContext from 'tdesign-mobile-react/tabs/context';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { CloseIcon, ChevronRightIcon } from 'tdesign-icons-react';
+import useDefault from '../_util/useDefault';
+import { Popup } from '../popup';
+import { RadioGroup } from '../radio';
+import Tabs from '../tabs';
 import { StyledProps, TNode, TreeOptionData } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -16,17 +15,7 @@ import { TdCascaderProps } from './type';
 
 export interface CascaderProps extends TdCascaderProps, StyledProps {}
 
-const FixedTabs = ({ value }: { value: number }) => {
-  const { onChange } = useContext(TabContext);
-
-  useEffect(() => {
-    onChange(value);
-  }, [value, onChange]);
-
-  return null;
-};
-
-const Cascader = forwardRef<HTMLDivElement, CascaderProps>((props) => {
+const Cascader: React.FC<CascaderProps> = (props) => {
   const cascaderClass = usePrefixClass('cascader');
 
   const {
@@ -197,7 +186,7 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps>((props) => {
             onClose?.('close-btn');
           }}
         >
-          {closeBtn === true ? <Icon name="close" size={24} /> : closeBtn}
+          {closeBtn === true ? <CloseIcon size={24} /> : closeBtn}
         </div>
         <div className={`${cascaderClass}__content`}>
           {labelList.length ? (
@@ -225,27 +214,23 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps>((props) => {
                       >
                         {labeItem.label}
                       </div>
-                      <Icon name="chevron-right" size={22} className={`${cascaderClass}__step-arrow`} />
+                      <ChevronRightIcon size={22} className={`${cascaderClass}__step-arrow`} />
                     </div>
                   ))}
                 </div>
               ) : null}
-              {theme === 'tab' ? (
-                <div>
-                  <Tabs
-                    list={labelList.map((item, index) => ({
-                      label: item.label as string,
-                      value: index,
-                    }))}
-                    defaultValue={stepIndex}
-                    change={(value) => {
-                      setStepIndex(value);
-                    }}
-                  >
-                    {/* TODO: Tabs 组加接收外部控制 通过子组件 调用 TabContext 中的 onChange 实现 */}
-                    <FixedTabs value={stepIndex} />
-                  </Tabs>
-                </div>
+              {theme === 'tab' && internalVisible ? (
+                <Tabs
+                  list={labelList.map((item, index) => ({
+                    label: item.label,
+                    value: index,
+                  }))}
+                  spaceEvenly={false}
+                  value={stepIndex}
+                  onChange={(value: number) => {
+                    setStepIndex(value);
+                  }}
+                />
               ) : null}
             </div>
           ) : null}
@@ -261,9 +246,13 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps>((props) => {
           >
             {optionsList.map((curOptions, index) => (
               <div className={`${cascaderClass}__options`} key={index}>
-                <div>
+                <div className={`${cascaderClass}-radio-group-${index}`}>
                   <RadioGroup
+                    placement="right"
+                    icon="line"
+                    borderless
                     value={internalSelectedValues[index]}
+                    options={curOptions}
                     onChange={(value: string | number) => {
                       const selectedValues = [...internalSelectedValues].slice(0, index);
                       selectedValues.push(value);
@@ -280,18 +269,7 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps>((props) => {
 
                       onFinish(selectedValues);
                     }}
-                  >
-                    {curOptions.map((item) => (
-                      <Radio
-                        allowUncheck={true}
-                        align="right"
-                        key={item.value}
-                        value={item.value}
-                        label={item.label}
-                        icon={[<CheckIcon key="1" color="#0052d9" />]}
-                      />
-                    ))}
-                  </RadioGroup>
+                  ></RadioGroup>
                 </div>
               </div>
             ))}
@@ -300,7 +278,7 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps>((props) => {
       </div>
     </Popup>
   );
-});
+};
 
 Cascader.displayName = 'Cascader';
 
