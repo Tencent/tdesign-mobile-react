@@ -41,27 +41,24 @@ export default function () {
   return (
     <div className="container">
       {content.map((v, index) => (
-        <Button variant="outline" className="button" onClick={() => onClick(index)} key={index}>
+        <Button
+          block
+          size="large"
+          variant="outline"
+          theme="primary"
+          className="button"
+          onClick={() => onClick(index)}
+          key={index}
+        >
           {v}
         </Button>
       ))}
-      <Button variant="outline" className="button" onClick={() => setVisible(true)}>
+      <Button block size="large" variant="outline" theme="primary" className="button" onClick={() => setVisible(true)}>
         带按钮的通知
       </Button>
       <Message
-        closeBtn={
-          <Button
-            theme="primary"
-            variant="outline"
-            className="close-button"
-            onClick={() => {
-              setVisible(false);
-            }}
-          >
-            按钮
-          </Button>
-        }
         visible={visible}
+        link="链接"
         duration={0}
         content="这是一条带操作的消息通知"
         icon={<Icon name="notification" size={22} />}
