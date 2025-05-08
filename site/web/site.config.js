@@ -191,12 +191,14 @@ export const docs = [
         component: () => import('tdesign-mobile-react/calendar/calendar.md'),
         componentEn: () => import('tdesign-mobile-react/calendar/calendar.en-US.md'),
       },
-      // {
-      //   title: 'Cascader 级联选择器',
-      //   name: 'cascader',
-      //   path: '/mobile-react/components/cascader',
-      //   component: () => import('tdesign-mobile-react/cascader/cascader.md'),
-      // },
+      {
+        title: 'Cascader 级联选择器',
+        titleEn: 'Cascader',
+        name: 'cascader',
+        path: '/mobile-react/components/cascader',
+        component: () => import('tdesign-mobile-react/cascader/cascader.md'),
+        componentEn: () => import('tdesign-mobile-react/cascader/cascader.en-US.md'),
+      },
       {
         title: 'CheckBox 多选框',
         titleEn: 'CheckBox',
