@@ -2,7 +2,7 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TdDropdownItemProps, TdDropdownMenuProps } from './type';
+import { TdDropdownMenuProps, TdDropdownItemProps } from './type';
 
 export const dropdownMenuDefaultProps: TdDropdownMenuProps = {
   closeOnClickOverlay: true,
@@ -17,5 +17,6 @@ export const dropdownItemDefaultProps: TdDropdownItemProps = {
   multiple: false,
   options: [],
   optionsColumns: 1,
+  placement: 'left',
   defaultValue: undefined,
 };
