@@ -1,5 +1,5 @@
 import _Checkbox from './Checkbox';
-import _CheckboxGrop from './CheckboxGroup';
+import _CheckboxGroup from './CheckboxGroup';
 
 import './style';
 
@@ -9,6 +9,6 @@ export type { CheckboxGroupProps } from './CheckboxGroup';
 export * from './type';
 
 export const Checkbox = _Checkbox;
-export const CheckboxGroup = _CheckboxGrop;
+export const CheckboxGroup = _CheckboxGroup;
 
 export default Checkbox;
