@@ -2,13 +2,13 @@ import React from 'react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 
-import { CustomizedDemo } from './customized';
-import { DirectionDemo } from './direction';
-import { DisabledDemo } from './disabled';
-import { MultipleDemo } from './multiple';
-import { SingleDemo } from './single';
+import CustomizedDemo from './customized';
+import DirectionDemo from './direction';
+import DisabledDemo from './disabled';
+import MultipleDemo from './multiple';
+import SingleDemo from './single';
 
-export default function RadioDemo() {
+export default function DropdownMenuDemo() {
   return (
     <div className="tdesign-mobile-demo">
       <TDemoHeader

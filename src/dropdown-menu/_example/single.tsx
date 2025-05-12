@@ -19,6 +19,11 @@ const product = {
       label: '最火产品',
       disabled: false,
     },
+    {
+      value: 'disabled',
+      label: '禁用选项',
+      disabled: true,
+    },
   ],
 };
 
@@ -38,7 +43,7 @@ const sorter = {
   ],
 };
 
-export const SingleDemo = () => {
+export default function SingleDemo() {
   const [productValue, setProductValue] = useState(product.value);
   const [sorterValue, setSorterValue] = useState(sorter.value);
 
@@ -47,9 +52,17 @@ export const SingleDemo = () => {
       <DropdownItem
         options={product.options}
         value={productValue}
-        onChange={(value: string) => setProductValue(value)}
+        onChange={(value: string) => {
+          setProductValue(value);
+        }}
       />
-      <DropdownItem options={sorter.options} value={sorterValue} onChange={(value: string) => setSorterValue(value)} />
+      <DropdownItem
+        options={sorter.options}
+        value={sorterValue}
+        onChange={(value: string) => {
+          setSorterValue(value);
+        }}
+      />
     </DropdownMenu>
   );
-};
+}

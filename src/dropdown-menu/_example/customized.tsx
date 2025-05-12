@@ -1,5 +1,4 @@
-import cloneDeep from 'lodash/cloneDeep';
-import noop from 'lodash/noop';
+import { cloneDeep, noop } from 'lodash-es';
 import React, { useRef, useState } from 'react';
 import { Button, Checkbox, DropdownItem, DropdownMenu } from 'tdesign-mobile-react';
 import CheckboxGroup from 'tdesign-mobile-react/checkbox/CheckboxGroup';
@@ -44,7 +43,7 @@ const groups = [
   },
 ];
 
-export const CustomizedDemo = () => {
+export default function CustomizedDemo() {
   const [checkSelectGroup, setCheckSelectGroup] = useState<string[][]>([['type_1', 'type_2'], ['role_2']]);
 
   const ref = useRef({ collapseMenu: noop });
@@ -75,27 +74,35 @@ export const CustomizedDemo = () => {
         }
         label="三列多选"
         multiple
-        options-columns="1"
+        optionsColumns="1"
       >
-        {groups.map((group, index) => (
+        {groups.map((group, groupIndex) => (
           <>
-            <div className="demo-dropdown-item_label" key={index}>
+            <div className="demo-dropdown-item_label" key={`dropdown-${groupIndex}`}>
               {group.label}
             </div>
-            {/* TODO checkbox 组件未升级 */}
             <CheckboxGroup
+              className="t-dropdown-item__checkbox-group"
               style={{
                 gridTemplateColumns: 'repeat(3, 1fr)',
               }}
-              value={checkSelectGroup[index] || []}
+              value={checkSelectGroup[groupIndex] || []}
               onChange={(value: string[]) => {
                 const newValue = cloneDeep(checkSelectGroup);
-                newValue[index] = value;
+                newValue[groupIndex] = value;
                 setCheckSelectGroup(newValue);
               }}
             >
               {group.options.map((item, index) => (
-                <Checkbox key={index} label={item.label} value={item.value} disabled={item.disabled} />
+                <Checkbox
+                  className="t-dropdown-item__checkbox-item t-checkbox--tag"
+                  key={`${item.value}-${index}`}
+                  icon={false}
+                  borderless
+                  label={item.label}
+                  value={item.value}
+                  disabled={item.disabled}
+                />
               ))}
             </CheckboxGroup>
           </>
@@ -103,4 +110,4 @@ export const CustomizedDemo = () => {
       </DropdownItem>
     </DropdownMenu>
   );
-};
+}

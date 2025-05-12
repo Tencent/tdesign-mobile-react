@@ -38,7 +38,7 @@ const sorter = {
   ],
 };
 
-export const DirectionDemo = () => {
+export default function DirectionDemo() {
   const [productValue, setProductValue] = useState(product.value);
   const [sorterValue, setSorterValue] = useState(sorter.value);
 
@@ -52,4 +52,4 @@ export const DirectionDemo = () => {
       <DropdownItem options={sorter.options} value={sorterValue} onChange={(value: string) => setSorterValue(value)} />
     </DropdownMenu>
   );
-};
+}

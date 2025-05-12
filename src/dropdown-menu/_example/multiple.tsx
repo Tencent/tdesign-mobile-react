@@ -52,7 +52,7 @@ options.push({
   disabled: true,
 });
 
-export const MultipleDemo = () => {
+export default function MultipleDemo() {
   const [singleValue, setSingleValue] = useState(['option_1']);
   const [doubleValue, setDoubleValue] = useState(['option_1', 'option_2']);
   const [tripleValue, setTripleValue] = useState(['option_1', 'option_2', 'option_3']);
@@ -62,27 +62,33 @@ export const MultipleDemo = () => {
       <DropdownItem
         label="单列多选"
         multiple
-        options-columns="1"
+        optionsColumns={1}
         options={singleColumnOptions}
         value={singleValue}
-        onChange={(value: string[]) => setSingleValue(value)}
+        onChange={(value: string[]) => {
+          setSingleValue(value);
+        }}
       />
       <DropdownItem
         label="双列多选"
         multiple
-        options-columns="2"
+        optionsColumns={2}
         options={doubleColumnsOptions}
         value={doubleValue}
-        onChange={(value: string[]) => setDoubleValue(value)}
+        onChange={(value: string[]) => {
+          setDoubleValue(value);
+        }}
       />
       <DropdownItem
         label="三列多选"
         multiple
-        options-columns="3"
+        optionsColumns={3}
         options={tripleColumnsOptions}
         value={tripleValue}
-        onChange={(value: string[]) => setTripleValue(value)}
+        onChange={(value: string[]) => {
+          setTripleValue(value);
+        }}
       />
     </DropdownMenu>
   );
-};
+}
