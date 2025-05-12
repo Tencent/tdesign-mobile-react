@@ -1,27 +1,33 @@
 import { useClickAway } from 'ahooks';
 import cx from 'classnames';
 import uniqueId from 'lodash/uniqueId';
-import React, { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { CaretDownSmallIcon, CaretUpSmallIcon } from 'tdesign-icons-react';
-import { Button, Checkbox, Popup, Radio, RadioGroup } from 'tdesign-mobile-react';
+import { Button, Checkbox, Popup, RadioGroup } from 'tdesign-mobile-react';
 import useDefault from '../_util/useDefault';
+import parseTNode from '../_util/parseTNode';
 import CheckboxGroup from '../checkbox/CheckboxGroup';
 import { StyledProps } from '../common';
 import useDefaultProps from '../hooks/useDefaultProps';
 import useConfig from '../hooks/useConfig';
+import { usePrefixClass } from '../hooks/useClass';
 import { dropdownItemDefaultProps } from './defaultProps';
 import DropdownMenuContext from './DropdownMenuContext';
 import type { TdDropdownItemProps } from './type';
 
-export interface DropdownItemProps extends TdDropdownItemProps, StyledProps {}
+export interface DropdownItemProps extends TdDropdownItemProps, StyledProps {
+  children?: React.ReactNode;
+}
 
-const DropdownItem: FC<DropdownItemProps> = (props) => {
+const DropdownItem: React.FC<DropdownItemProps> = (props) => {
   const {
     className,
+    children,
     style,
     disabled,
     options: inputOptions,
     optionsColumns,
+    placement,
     label,
     value,
     defaultValue,
@@ -33,7 +39,9 @@ const DropdownItem: FC<DropdownItemProps> = (props) => {
     keys,
   } = useDefaultProps<DropdownItemProps>(props, dropdownItemDefaultProps);
   const { classPrefix } = useConfig();
-  const itemClass = `${classPrefix}-dropdown-item`;
+  const dropdownMenuClass = usePrefixClass('dropdown-menu');
+  const dropdownItemClass = usePrefixClass('dropdown-item');
+
   const [innerValue, setInnerValue] = useDefault(value, defaultValue, onChange);
   const [modalValue, setModalValue] = useState(innerValue);
 
@@ -72,7 +80,6 @@ const DropdownItem: FC<DropdownItemProps> = (props) => {
 
     if (direction === 'up') {
       return {
-        transform: 'rotateX(180deg) rotateY(180deg)',
         zIndex,
         bottom: `calc(100vh - ${top}px)`,
       };
@@ -103,9 +110,9 @@ const DropdownItem: FC<DropdownItemProps> = (props) => {
     <>
       <div
         ref={menuItemRef}
-        className={cx(`${classPrefix}-dropdown-menu__item`, {
-          [`${classPrefix}-dropdown-menu__item--active`]: isActived,
-          [`${classPrefix}-dropdown-menu__item--disabled`]: disabled,
+        className={cx(`${dropdownMenuClass}__item`, {
+          [`${dropdownMenuClass}__item--active`]: isActived,
+          [`${dropdownMenuClass}__item--disabled`]: disabled,
         })}
         onClick={(e) => {
           if (disabled) {
@@ -117,17 +124,17 @@ const DropdownItem: FC<DropdownItemProps> = (props) => {
           }
         }}
       >
-        <div className={`${classPrefix}-dropdown-menu__title`}>{labelText}</div>
+        <div className={`${dropdownMenuClass}__title`}>{labelText}</div>
         {direction === 'down' ? (
           <CaretDownSmallIcon
-            className={cx(`${classPrefix}-dropdown-menu__icon`, {
-              [`${classPrefix}-dropdown-menu__icon--active`]: isActived,
+            className={cx(`${dropdownMenuClass}__icon`, {
+              [`${dropdownMenuClass}__icon--active`]: isActived,
             })}
           />
         ) : (
           <CaretUpSmallIcon
-            className={cx(`${classPrefix}-dropdown-menu__icon`, {
-              [`${classPrefix}-dropdown-menu__icon--active`]: isActived,
+            className={cx(`${dropdownMenuClass}__icon`, {
+              [`${dropdownMenuClass}__icon--active`]: isActived,
             })}
           />
         )}
@@ -135,66 +142,56 @@ const DropdownItem: FC<DropdownItemProps> = (props) => {
       {isActived ? (
         <div
           key={id}
-          className={cx(itemClass, className)}
+          className={cx(dropdownItemClass, className)}
           style={{
             ...style,
             ...getDropdownItemStyle(),
           }}
           ref={itemRef}
         >
-          {/* TODO Popup 暂不支持 duration */}
           <Popup
             attach={attach}
             visible={isActived}
-            onVisibleChange={(visible) => {
-              if (!visible) {
-                onChangeActivedId('');
-              }
-            }}
+            placement={direction === 'up' ? 'bottom' : 'top'}
             closeOnOverlayClick={closeOnClickOverlay}
             showOverlay={showOverlay}
             zIndex={zIndex}
             style={{
               position: 'absolute',
-              borderRadius: 0,
+              overflow: 'hidden',
             }}
             overlayProps={{
               style: {
                 position: 'absolute',
               },
             }}
-            className={`${itemClass}__popup-host`}
+            onVisibleChange={(visible) => {
+              if (!visible) {
+                onChangeActivedId('');
+              }
+            }}
           >
-            <div className={cx(`${itemClass}__content`, `${classPrefix}-popup__content`)}>
-              <div
-                className={cx(`${itemClass}__body`)}
-                style={
-                  direction === 'up'
-                    ? {
-                        transform: 'rotateX(180deg) rotateY(180deg)',
-                      }
-                    : {}
-                }
-              >
-                {props.children ? (
-                  props.children
-                ) : (
+            <div className={cx(`${dropdownItemClass}__content`, `${classPrefix}-popup__content`)}>
+              <div className={cx(`${dropdownItemClass}__body`)}>
+                {parseTNode(children) || (
                   <>
-                    {/* TODO checkbox 组件未升级 样式不对 */}
                     {multiple ? (
                       <CheckboxGroup
                         value={modalValue as (string | number)[]}
                         onChange={(value) => {
-                          setModalValue(value);
+                          setModalValue(value as (string | number)[]);
                         }}
-                        // className={`itemClass__checkbox-group`}
+                        className={`${dropdownItemClass}__checkbox-group`}
                         style={{
                           gridTemplateColumns: `repeat(${optionsColumns}, 1fr)`,
                         }}
                       >
                         {options.map((item, index) => (
                           <Checkbox
-                            key={index}
+                            key={`${item.value}-${index}`}
+                            className={`${dropdownItemClass}__checkbox-item t-checkbox--tag`}
+                            icon={false}
+                            borderless
                             value={item.value as string | number}
                             label={item.label}
                             disabled={item.disabled}
@@ -203,63 +200,55 @@ const DropdownItem: FC<DropdownItemProps> = (props) => {
                       </CheckboxGroup>
                     ) : (
                       <RadioGroup
+                        className={`${dropdownItemClass}__radio-group`}
+                        icon="line"
+                        options={options}
+                        placement={placement}
                         value={modalValue as string | number}
                         onChange={(value: string | number) => {
                           setModalValue(value);
                           setInnerValue(value);
                           onChangeActivedId('');
                         }}
-                      >
-                        {/* TODO radio 暂不支持 icon line */}
-                        {options.map((item, index) => (
-                          <Radio
-                            key={index}
-                            value={item.value as string | number}
-                            label={item.label}
-                            disabled={item.disabled}
-                          />
-                        ))}
-                      </RadioGroup>
+                      />
                     )}
                   </>
                 )}
               </div>
-
-              {footer ? footer : null}
-
-              {multiple && !footer ? (
-                <div className={`${itemClass}__footer`}>
-                  <Button
-                    disabled={Array.isArray(modalValue) && modalValue.length === 0}
-                    theme="light"
-                    className={`${itemClass}__footer-btn ${itemClass}__reset-btn`}
-                    onClick={() => {
-                      if (typeof onReset === 'function') {
-                        onReset(modalValue);
-                      } else {
-                        setModalValue(innerValue);
-                      }
-                    }}
-                  >
-                    重置
-                  </Button>
-                  <Button
-                    disabled={Array.isArray(modalValue) && modalValue.length === 0}
-                    theme="primary"
-                    className={`${itemClass}__footer-btn ${itemClass}__confirm-btn`}
-                    onClick={() => {
-                      if (typeof onConfirm === 'function') {
-                        onConfirm(modalValue);
-                      } else {
-                        setInnerValue(modalValue);
-                      }
-                      onChangeActivedId('');
-                    }}
-                  >
-                    确定
-                  </Button>
-                </div>
-              ) : null}
+              {parseTNode(footer) ||
+                (multiple && (
+                  <div className={`${dropdownItemClass}__footer`}>
+                    <Button
+                      disabled={Array.isArray(modalValue) && modalValue.length === 0}
+                      theme="light"
+                      className={`${dropdownItemClass}__footer-btn ${dropdownItemClass}__reset-btn`}
+                      onClick={() => {
+                        if (typeof onReset === 'function') {
+                          onReset(modalValue);
+                        } else {
+                          setModalValue(innerValue);
+                        }
+                      }}
+                    >
+                      重置
+                    </Button>
+                    <Button
+                      disabled={Array.isArray(modalValue) && modalValue.length === 0}
+                      theme="primary"
+                      className={`${dropdownItemClass}__footer-btn ${dropdownItemClass}__confirm-btn`}
+                      onClick={() => {
+                        if (typeof onConfirm === 'function') {
+                          onConfirm(modalValue);
+                        } else {
+                          setInnerValue(modalValue);
+                        }
+                        onChangeActivedId('');
+                      }}
+                    >
+                      确定
+                    </Button>
+                  </div>
+                ))}
             </div>
           </Popup>
         </div>

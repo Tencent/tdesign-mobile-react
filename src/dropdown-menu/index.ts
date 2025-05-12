@@ -3,6 +3,9 @@ import _DropdownMenu from './DropdownMenu';
 
 import './style';
 
+export type { DropdownMenuProps } from './DropdownMenu';
+export type { DropdownItemProps } from './DropdownItem';
+
 export * from './type';
 
 export const DropdownMenu = _DropdownMenu;
