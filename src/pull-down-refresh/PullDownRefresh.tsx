@@ -48,6 +48,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
     className,
     style,
     children,
+    disabled,
     loadingTexts,
     loadingProps,
     loadingBarHeight,
@@ -112,6 +113,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
   }, [run]);
 
   const doRefresh = async () => {
+    if (disabled) return;
     setStatus(PullStatusEnum.loading);
     setDistance(pureLoadingHeight);
     try {
@@ -138,7 +140,8 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
     }
   };
 
-  const statusText = getStatusText(status, loadingTexts);
+  const defaultLoadingTexts = ['下拉刷新', '松手刷新', '正在刷新', '刷新完成'];
+  const statusText = getStatusText(status, loadingTexts.length ? loadingTexts : defaultLoadingTexts);
   let statusNode: ReactNode = <div className={`${name}__text`}>{statusText}</div>;
   if (status === PullStatusEnum.loading) {
     statusNode = <Loading text={statusText} size="24px" {...loadingProps} />;
@@ -151,7 +154,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
 
   const onTouchStart = (e: React.TouchEvent) => {
     e.stopPropagation();
-    if (!isReachTop(e) || loading) return;
+    if (!isReachTop(e) || loading || disabled) return;
 
     setDistance(0);
     touch.start(e);
@@ -160,7 +163,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
 
   const onTouchMove = (e: React.TouchEvent) => {
     e.stopPropagation();
-    if (!isReachTop(e) || loading) return;
+    if (!isReachTop(e) || loading || disabled) return;
     touch.move(e);
 
     const { diffY, diffX } = touch;
@@ -190,7 +193,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
 
   const onTouchEnd = (e: React.TouchEvent) => {
     e.stopPropagation();
-    if (!isReachTop(e) || loading) return;
+    if (!isReachTop(e) || loading || disabled) return;
 
     if (status === PullStatusEnum.loosing) {
       doRefresh();
