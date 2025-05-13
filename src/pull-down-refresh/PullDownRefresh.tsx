@@ -9,7 +9,7 @@ import { StyledProps } from '../common';
 import useDefault from '../_util/useDefault';
 import type { TdPullDownRefreshProps } from './type';
 import { pullDownRefreshDefaultProps } from './defaultProps';
-
+import { useLocaleReceiver } from '../locale/LocalReceiver';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { convertUnit, reconvertUnit } from '../_util/convertUnit';
@@ -66,6 +66,8 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
   const [value, onChange] = useDefault(propsValue, defaultValue, propsOnChange);
 
   const name = usePrefixClass('pull-down-refresh');
+  const [locale, t] = useLocaleReceiver('pullDownRefresh');
+
   const touch = useTouch();
   const loadingHeight = convertUnit(loadingBarHeight);
   const pureLoadingHeight = reconvertUnit(loadingBarHeight);
@@ -140,8 +142,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
     }
   };
 
-  const defaultLoadingTexts = ['下拉刷新', '松手刷新', '正在刷新', '刷新完成'];
-  const statusText = getStatusText(status, loadingTexts.length ? loadingTexts : defaultLoadingTexts);
+  const statusText = getStatusText(status, loadingTexts.length ? loadingTexts : t(locale.loadingTexts));
   let statusNode: ReactNode = <div className={`${name}__text`}>{statusText}</div>;
   if (status === PullStatusEnum.loading) {
     statusNode = <Loading text={statusText} size="24px" {...loadingProps} />;
