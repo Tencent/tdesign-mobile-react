@@ -12,6 +12,7 @@ import {
 import { TdCheckboxProps } from './type';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import CheckboxGroup from './CheckboxGroup';
+import { StyledProps } from '../common';
 import useConfig from '../hooks/useConfig';
 import useDefault from '../_util/useDefault';
 import { parseContentTNode } from '../_util/parseTNode';
@@ -19,9 +20,7 @@ import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { checkboxDefaultProps } from './defaultProps';
 
-export interface CheckBoxProps extends TdCheckboxProps {
-  ref: Ref<HTMLLabelElement>;
-}
+export interface CheckBoxProps extends TdCheckboxProps, StyledProps {}
 
 export interface CheckContextValue {
   inject: (props: CheckBoxProps) => CheckBoxProps;
@@ -35,6 +34,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckBoxProps>((_props, ref) => {
   const { classPrefix } = useConfig();
   const classPrefixCheckBox = usePrefixClass('checkbox');
   const {
+    className,
     placement,
     content,
     indeterminate,
@@ -167,7 +167,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckBoxProps>((_props, ref) => {
   );
 
   return (
-    <div ref={ref} className={checkboxClassName} onClick={handleClick}>
+    <div ref={ref} className={classNames(checkboxClassName, className)} onClick={handleClick}>
       {icon && renderIconNode()}
       {renderCheckBoxContent()}
       {/* 下边框 */}
@@ -181,6 +181,6 @@ const Checkbox = forwardRef<HTMLDivElement, CheckBoxProps>((_props, ref) => {
 Checkbox.displayName = 'Checkbox';
 
 export default forwardRefWithStatics(
-  (props: TdCheckboxProps, ref: Ref<HTMLDivElement>) => <Checkbox ref={ref} {...props} />,
+  (props: CheckBoxProps, ref: Ref<HTMLDivElement>) => <Checkbox ref={ref} {...props} />,
   { Group: CheckboxGroup },
 );

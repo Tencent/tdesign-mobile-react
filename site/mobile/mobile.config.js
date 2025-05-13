@@ -148,6 +148,11 @@ export default {
       component: () => import('tdesign-mobile-react/dialog/_example/index.tsx'),
     },
     {
+      title: 'DropdownMenu 下拉菜单',
+      name: 'dropdown-menu',
+      component: () => import('tdesign-mobile-react/dropdown-menu/_example/index.tsx'),
+    },
+    {
       title: 'Loading 加载中',
       name: 'loading',
       component: () => import('tdesign-mobile-react/loading/_example/index.tsx'),
