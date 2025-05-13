@@ -55,7 +55,7 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
     [keys, inputOptions],
   );
 
-  const [id] = useState(uniqueId());
+  const [id] = useState(() => uniqueId());
 
   const { direction, activedId, onChangeActivedId, showOverlay, zIndex, closeOnClickOverlay } =
     useContext(DropdownMenuContext);

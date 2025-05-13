@@ -14,10 +14,7 @@ type DropdownMenuRef = {
   collapseMenu: () => void;
 };
 
-const DropdownMenu: React.FC<DropdownMenuProps & { ref?: React.ForwardedRef<DropdownMenuRef> }> = forwardRef<
-  DropdownMenuRef,
-  DropdownMenuProps
->((props, ref) => {
+const DropdownMenu = forwardRef<DropdownMenuRef, DropdownMenuProps>((props, ref) => {
   const { className, style, direction, zIndex, closeOnClickOverlay, showOverlay, duration } =
     useDefaultProps<DropdownMenuProps>(props, dropdownMenuDefaultProps);
 
