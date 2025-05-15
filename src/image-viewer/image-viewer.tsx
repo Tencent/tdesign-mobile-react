@@ -128,14 +128,12 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
 
   // useEffect(() => {
   //   if (transform.scale === 1 && rawImageInfoList.length !== imageInfoList.length) {
-  //     console.log('resume all images')
+  //
   //     setImageInfoList(rawImageInfoList);
   //   }
   // }, [transform, rawImageInfoList, imageInfoList])
 
   const onDoubleClick = (event: MouseEvent) => {
-    console.log('onDoubleClick');
-
     if (show) {
       if (transform.scale !== 1) {
         updateTransform({ x: 0, y: 0, scale: 1 }, 'doubleClick');
@@ -169,8 +167,6 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
     enterActive: 'fade-enter-active',
     exitActive: 'fade-leave-active',
   };
-
-  console.log('component.isTouching', isTouching);
 
   return (
     <CSSTransition

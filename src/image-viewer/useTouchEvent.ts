@@ -92,7 +92,6 @@ export function useTouchEvent(
   };
 
   const onTouchMove = (event: React.TouchEvent<HTMLImageElement>) => {
-    console.log('onTouchMove');
     if (scale === 1) return;
     isTouching.current = true;
     const { touches = [] } = event;
