@@ -16,6 +16,7 @@ import SwiperContext, { SwiperItemReference } from './SwiperContext';
 export interface SwiperProps extends TdSwiperProps, StyledProps {
   children?: React.ReactNode;
   touchable?: Boolean;
+  disabled?: boolean;
 }
 
 enum SwiperStatus {
@@ -51,6 +52,7 @@ const Swiper = forwardRefWithStatics(
       navigation,
       onChange,
       onClick,
+      disabled,
     } = props;
 
     const NONE_SUFFIX = '';
@@ -325,6 +327,7 @@ const Swiper = forwardRefWithStatics(
     // 进入切换状态
     const enterSwitching = useCallback(
       (axis: string, outerStep: number | undefined = undefined) => {
+        console.log('enterSwitching');
         // 根据nextIndex计算需要定位到的
         const { index, step } = calculateSwiperItemIndex(
           nextIndex.current,
@@ -377,9 +380,13 @@ const Swiper = forwardRefWithStatics(
     };
 
     const { offset } = useSwipe(swiperContainer.current, {
+      disabled,
       onSwipeStart: () => {
+        console.log('disabled', disabled);
         if (navCtrlActive.current || !items.current.length) return;
         if (swiperStatus !== SwiperStatus.IDLE) return;
+        if (disabled) return;
+
         setSwiperStatus(SwiperStatus.STARTDRAG);
         setSwiperStyle((prevState) => ({
           ...prevState,
@@ -389,11 +396,13 @@ const Swiper = forwardRefWithStatics(
       onSwipe: () => {
         if (navCtrlActive.current || !items.current.length) return;
         if (swiperStatus !== SwiperStatus.STARTDRAG) return;
+        if (disabled) return;
         setContainerOffset(previousIndex.current, loop, offset());
       },
       onSwipeEnd: () => {
         if (navCtrlActive.current || !items.current.length) return;
         if (swiperStatus !== SwiperStatus.STARTDRAG) return;
+        if (disabled) return;
         const { width, height } = getRect(rootDiv.current);
         if (!width || !height) return;
         const { x, y } = offset();
@@ -460,18 +469,26 @@ const Swiper = forwardRefWithStatics(
           }
           break;
         case SwiperStatus.SWITCHING:
+          console.log('SwiperStatus.SWITCHING', SwiperStatus.SWITCHING);
           durationTimer.current = setTimeout(() => {
             quitSwitching(directionAxis);
           }, duration);
           break;
         case SwiperStatus.STARTDRAG:
+          console.log('SwiperStatus.STARTDRAG', SwiperStatus.STARTDRAG);
           nextIndex.current = previousIndex.current;
           break;
         case SwiperStatus.ENDDRAG:
+          console.log('SwiperStatus.ENDDRAG', SwiperStatus.ENDDRAG);
           setSwiperStatus(SwiperStatus.IDLE);
           break;
       }
     }, [autoplay, directionAxis, duration, enterIdle, enterSwitching, interval, quitSwitching, swiperStatus]);
+
+    const changeProvide = () => {
+      if (props.disabled) return;
+      setSwiperStatus(SwiperStatus.SWITCHING);
+    };
 
     const memoProviderValues = useMemo(
       () => ({
@@ -485,17 +502,21 @@ const Swiper = forwardRefWithStatics(
           setItemCount(items.current.length);
         },
         removeChild: (divRef: RefObject<HTMLDivElement>) => {
+          console.log('removeChild', props.disabled, divRef);
           if (!divRef) return;
           const index = items.current.findIndex((item) => item.divRef === divRef);
           if (index === -1) return;
           items.current.splice(index, 1);
           setItemCount(items.current.length);
+          if (props.disabled) return;
           if (items.current.length > 0) {
+            console.log('[changing setSwiperStatus]');
             nextIndex.current = previousIndex.current + 1;
-            setSwiperStatus(SwiperStatus.SWITCHING);
+            changeProvide();
           }
         },
       }),
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       [props.height],
     );
 

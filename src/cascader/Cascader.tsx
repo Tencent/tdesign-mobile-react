@@ -1,6 +1,6 @@
 import { useDeepCompareEffect } from 'ahooks';
 import classNames from 'classnames';
-import last from 'lodash/last';
+import last from 'lodash-es/last';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { CloseIcon, ChevronRightIcon } from 'tdesign-icons-react';
 import useDefault from '../_util/useDefault';

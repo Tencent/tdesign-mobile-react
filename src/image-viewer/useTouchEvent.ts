@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import getFixScaleEleTransPosition from './getFixScaleEleTransPosition';
 import type { DispatchZoomChangeFunc, TransformType, UpdateTransformFunc } from './transform';
 
@@ -41,17 +41,18 @@ function getCenter(oldPoint1: Point, oldPoint2: Point, newPoint1: Point, newPoin
 }
 
 export function useTouchEvent(
-  imgRef: React.MutableRefObject<HTMLImageElement>,
+  imgRef: React.MutableRefObject<HTMLImageElement[]>,
   movable: boolean,
   open: boolean,
   minScale: number,
   transform: TransformType,
   updateTransform: UpdateTransformFunc,
   dispatchZoomChange: DispatchZoomChangeFunc,
+  currentIndex?: number,
 ) {
   const { rotate, scale, x, y } = transform;
 
-  const [isTouching, setIsTouching] = useState(false);
+  const isTouching = useRef(false);
   const touchPointInfo = useRef<TouchPointInfoType>({
     point1: { x: 0, y: 0 },
     point2: { x: 0, y: 0 },
@@ -68,7 +69,7 @@ export function useTouchEvent(
   const onTouchStart = (event: React.TouchEvent<HTMLImageElement>) => {
     if (!movable) return;
     event.stopPropagation();
-    setIsTouching(true);
+    isTouching.current = true;
 
     const { touches = [] } = event;
     if (touches.length > 1) {
@@ -91,6 +92,9 @@ export function useTouchEvent(
   };
 
   const onTouchMove = (event: React.TouchEvent<HTMLImageElement>) => {
+    console.log('onTouchMove');
+    if (scale === 1) return;
+    isTouching.current = true;
     const { touches = [] } = event;
     const { point1, point2, eventType } = touchPointInfo.current;
 
@@ -130,7 +134,7 @@ export function useTouchEvent(
     if (!open) return;
 
     if (isTouching) {
-      setIsTouching(false);
+      isTouching.current = false;
     }
 
     updateTouchPointInfo({ eventType: 'none' });
@@ -140,10 +144,10 @@ export function useTouchEvent(
       return updateTransform({ x: 0, y: 0, scale: minScale }, 'touchZoom');
     }
 
-    const width = imgRef.current.offsetWidth * scale;
-    const height = imgRef.current.offsetHeight * scale;
+    const width = imgRef.current[currentIndex].offsetWidth * scale;
+    const height = imgRef.current[currentIndex].offsetHeight * scale;
     // eslint-disable-next-line @typescript-eslint/no-shadow
-    const { left, top } = imgRef.current.getBoundingClientRect();
+    const { left, top } = imgRef.current[currentIndex].getBoundingClientRect();
     const isRotate = rotate % 180 !== 0;
 
     const fixState = getFixScaleEleTransPosition(isRotate ? height : width, isRotate ? width : height, left, top);

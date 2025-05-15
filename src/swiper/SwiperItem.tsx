@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { FC, useCallback, useContext, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import classNames from 'classnames';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
@@ -8,11 +8,12 @@ import SwiperContext from './SwiperContext';
 
 export interface SwiperItemProps extends StyledProps {
   children?: React.ReactNode;
+  hostStyle?: CSSProperties;
 }
 
 const SwiperItem: FC<SwiperItemProps> = (originProps) => {
   const props = useDefaultProps(originProps, {});
-  const { children, style } = props;
+  const { children, style, hostStyle } = props;
   const swiperItemClass = usePrefixClass('swiper-item');
   const imageHostClass = `${swiperItemClass}--image-host`;
   const { addChild, removeChild, forceContainerHeight } = useContext(SwiperContext);
@@ -38,7 +39,8 @@ const SwiperItem: FC<SwiperItemProps> = (originProps) => {
     return () => {
       removeChild(hostRef);
     };
-  }, [addChild, forceContainerHeight, removeChild, updateTranslateStyle]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [addChild, removeChild]);
 
   const itemClassName = useMemo(
     () => classNames(swiperItemClass, classNameSuffix?.length ? `${swiperItemClass}${classNameSuffix}` : ''),
@@ -52,7 +54,7 @@ const SwiperItem: FC<SwiperItemProps> = (originProps) => {
 
   return (
     <div className={itemClassName} style={rootStyle}>
-      <div className={hostClassName} ref={hostRef}>
+      <div className={hostClassName} ref={hostRef} style={hostStyle}>
         {parseTNode(children)}
       </div>
     </div>

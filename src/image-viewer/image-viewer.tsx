@@ -42,22 +42,25 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
 
   const swiperRootRef = useRef<HTMLDivElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
-  const imgRef = useRef<HTMLImageElement>(null);
+  const imgRefs = useRef<HTMLImageElement[]>([]);
   const duration = 300;
   const { transform, resetTransform, updateTransform, dispatchZoomChange } = useImageTransform(
-    imgRef,
+    imgRefs,
     MIN_SCALE,
     MAX_SCALE,
+    undefined,
     // onTransform,
+    currentIndex,
   );
   const { isTouching, onTouchStart, onTouchMove, onTouchEnd } = useTouchEvent(
-    imgRef,
+    imgRefs,
     movable,
     show, // show
     MIN_SCALE,
     transform,
     updateTransform,
     dispatchZoomChange,
+    currentIndex,
   );
 
   useEffect(() => {
@@ -66,16 +69,6 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show]);
-
-  const onDoubleClick = (event: MouseEvent) => {
-    if (show) {
-      if (transform.scale !== 1) {
-        updateTransform({ x: 0, y: 0, scale: 1 }, 'doubleClick');
-      } else {
-        dispatchZoomChange(BASE_SCALE_RATIO + scaleStep, 'doubleClick', event.clientX, event.clientY);
-      }
-    }
-  };
 
   const beforeClose = () => {
     setInnerState({
@@ -131,9 +124,31 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
       preload: preloadImageIndex.includes(index),
     };
   });
+  // const [imageInfoList, setImageInfoList] = useState(rawImageInfoList)
+
+  // useEffect(() => {
+  //   if (transform.scale === 1 && rawImageInfoList.length !== imageInfoList.length) {
+  //     console.log('resume all images')
+  //     setImageInfoList(rawImageInfoList);
+  //   }
+  // }, [transform, rawImageInfoList, imageInfoList])
+
+  const onDoubleClick = (event: MouseEvent) => {
+    console.log('onDoubleClick');
+
+    if (show) {
+      if (transform.scale !== 1) {
+        updateTransform({ x: 0, y: 0, scale: 1 }, 'doubleClick');
+      } else {
+        dispatchZoomChange(BASE_SCALE_RATIO + scaleStep, 'doubleClick', event.clientX, event.clientY);
+      }
+    }
+    // setImageInfoList([info]);
+  };
 
   const onSwiperChange = (index: number) => {
     if (!show) return;
+    if (transform.scale !== 1) return;
 
     if (currentIndex !== index) {
       const trigger = currentIndex < index ? 'next' : 'prev';
@@ -155,6 +170,8 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
     exitActive: 'fade-leave-active',
   };
 
+  console.log('component.isTouching', isTouching);
+
   return (
     <CSSTransition
       in={show}
@@ -175,12 +192,19 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
           onChange={onSwiperChange}
           current={currentIndex}
           defaultCurrent={currentIndex}
+          disabled={isTouching.current || transform.scale !== 1}
         >
           {imageInfoList.map((info, index) => (
             <TSwiperItem
               key={index}
               className={`${imageViewerClass}__swiper-item`}
-              style={{ touchAction: 'none', alignItems: info.image.align, display: 'flex' }}
+              style={{
+                touchAction: 'none',
+                alignItems: info.image.align,
+                display: 'flex',
+                overflow: 'hidden',
+              }}
+              hostStyle={{ overflow: 'visible' }}
             >
               {/* style={{
                   transform: index === innerState.touchIndex ? getImageTransform() : 'matrix(1, 0, 0, 1, 0, 0)',
@@ -189,7 +213,9 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
                 }} */}
               <img
                 src={info.image.url}
-                ref={imgRef}
+                ref={(node) => {
+                  imgRefs.current[index] = node;
+                }}
                 style={{
                   transform: `translate3d(${transform.x}px, ${transform.y}px, 0) scale3d(${
                     transform.flipX ? '-' : ''
@@ -201,7 +227,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
                 onTouchMove={onTouchMove}
                 onTouchEnd={onTouchEnd}
                 onTouchCancel={onTouchEnd}
-                onDoubleClick={onDoubleClick}
+                onDoubleClick={(e) => onDoubleClick(e)}
               />
             </TSwiperItem>
           ))}

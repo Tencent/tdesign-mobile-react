@@ -59,10 +59,11 @@ const initialTransform = {
 };
 
 export function useImageTransform(
-  imgRef: React.MutableRefObject<HTMLImageElement>,
+  imgRef: React.MutableRefObject<HTMLImageElement[]>,
   minScale: number,
   maxScale: number,
   onTransform?: (info: { transform: TransformType; action: TransformAction }) => void,
+  currentIndex?: number,
 ) {
   const frame = useRef(null);
   const queue = useRef<TransformType[]>([]);
@@ -100,7 +101,7 @@ export function useImageTransform(
 
   /** Scale according to the position of centerX and centerY */
   const dispatchZoomChange: DispatchZoomChangeFunc = (ratio, action, centerX?, centerY?, isTouch?) => {
-    const { width, height, offsetWidth, offsetHeight, offsetLeft, offsetTop } = imgRef.current;
+    const { width, height, offsetWidth, offsetHeight, offsetLeft, offsetTop } = imgRef.current[currentIndex];
 
     let newRatio = ratio;
     let newScale = transform.scale * ratio;
