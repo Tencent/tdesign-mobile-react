@@ -8,7 +8,7 @@ export default function GridMultipleExample() {
   return (
     <div className="action-sheet-demo">
       <div className="action-sheet-demo-btns">
-        <Button block variant="outline" theme="primary" onClick={() => setMultiPageVisible(true)}>
+        <Button block size="large" variant="outline" theme="primary" onClick={() => setMultiPageVisible(true)}>
           宫格型-多页
         </Button>
       </div>

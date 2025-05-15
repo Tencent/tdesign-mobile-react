@@ -26,19 +26,19 @@ export default function ListExample() {
   return (
     <div className="action-sheet-demo">
       <div className="action-sheet-demo-btns">
-        <Button block variant="outline" theme="primary" onClick={() => setNormalVisible(true)}>
+        <Button block size="large" variant="outline" theme="primary" onClick={() => setNormalVisible(true)}>
           常规列表型
         </Button>
-        <Button block variant="outline" theme="primary" onClick={() => openByMethod()}>
+        <Button block size="large" variant="outline" theme="primary" onClick={() => openByMethod()}>
           函数调用
         </Button>
-        <Button block variant="outline" theme="primary" onClick={() => setDescVisible(true)}>
+        <Button block size="large" variant="outline" theme="primary" onClick={() => setDescVisible(true)}>
           带描述列表型
         </Button>
-        <Button block variant="outline" theme="primary" onClick={() => setIconVisible(true)}>
+        <Button block size="large" variant="outline" theme="primary" onClick={() => setIconVisible(true)}>
           带图标列表型
         </Button>
-        <Button block variant="outline" theme="primary" onClick={() => setBadgeVisible(true)}>
+        <Button block size="large" variant="outline" theme="primary" onClick={() => setBadgeVisible(true)}>
           带徽标列表型
         </Button>
       </div>

@@ -30,10 +30,24 @@ export default function Base({ visible, onClose, container }) {
     <>
       {visible ? <BackTop text={theme.text} theme={theme.theme} onToTop={handleToTop} container={container} /> : null}
       <div className="button-group">
-        <Button className="button" variant="outline" theme="primary" onClick={() => onClick('round', '顶部')}>
+        <Button
+          className="button"
+          block
+          size="large"
+          variant="outline"
+          theme="primary"
+          onClick={() => onClick('round', '顶部')}
+        >
           圆形返回顶部
         </Button>
-        <Button className="button" variant="outline" theme="primary" onClick={() => onClick('half-round', '返回顶部')}>
+        <Button
+          className="button"
+          block
+          size="large"
+          variant="outline"
+          theme="primary"
+          onClick={() => onClick('half-round', '返回顶部')}
+        >
           半圆形返回顶部
         </Button>
       </div>

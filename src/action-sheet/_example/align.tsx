@@ -8,10 +8,10 @@ export default function ListExample() {
   return (
     <div className="action-sheet-demo">
       <div className="action-sheet-demo-btns">
-        <Button block variant="outline" theme="primary" onClick={() => setAlignCenterVisible(true)}>
+        <Button block size="large" variant="outline" theme="primary" onClick={() => setAlignCenterVisible(true)}>
           居中列表型
         </Button>
-        <Button block variant="outline" theme="primary" onClick={() => setAlignLeftVisible(true)}>
+        <Button block size="large" variant="outline" theme="primary" onClick={() => setAlignLeftVisible(true)}>
           左对齐列表型
         </Button>
       </div>
