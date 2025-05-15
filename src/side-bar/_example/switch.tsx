@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { Cell, Image } from 'tdesign-mobile-react';
-import { SideBarProps, SideBarItemProps, SideBar, SideBarItem } from '..';
+import type { SideBarProps, SideBarItemProps } from 'tdesign-mobile-react';
+import { SideBar, SideBarItem, Cell, Image } from 'tdesign-mobile-react';
+
 import './style/switch.less';
 
 const image = 'https://tdesign.gtimg.com/mobile/demos/example2.png';

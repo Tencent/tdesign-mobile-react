@@ -138,6 +138,11 @@ export default {
       component: () => import('tdesign-mobile-react/back-top/_example/index.tsx'),
     },
     {
+      title: 'Cascader 级联选择器',
+      name: 'cascader',
+      component: () => import('tdesign-mobile-react/cascader/_example/index.tsx'),
+    },
+    {
       title: 'Checkbox 多选框',
       name: 'checkbox',
       component: () => import('tdesign-mobile-react/checkbox/_example/index.tsx'),
@@ -146,6 +151,11 @@ export default {
       title: 'Dialog 对话框',
       name: 'dialog',
       component: () => import('tdesign-mobile-react/dialog/_example/index.tsx'),
+    },
+    {
+      title: 'DropdownMenu 下拉菜单',
+      name: 'dropdown-menu',
+      component: () => import('tdesign-mobile-react/dropdown-menu/_example/index.tsx'),
     },
     {
       title: 'Loading 加载中',

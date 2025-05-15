@@ -59,7 +59,15 @@ export default function () {
   return (
     <div className="container">
       {contents.map((v, index) => (
-        <Button key={index} variant="outline" className="button" onClick={() => onClick(index)}>
+        <Button
+          key={index}
+          block
+          size="large"
+          variant="outline"
+          theme="primary"
+          className="button"
+          onClick={() => onClick(index)}
+        >
           {v}
         </Button>
       ))}
