@@ -31,7 +31,7 @@ export default function Base() {
         title="BackTop 返回顶部"
         summary="当页面过长往下滑动是会出现返回顶部的便捷操作，帮助用户快速回到页面顶部"
       />
-      <TDemoBlock title="形状" summary="">
+      <TDemoBlock title="形状" summary="" padding>
         <BaseDemo visible={visible} onClose={onClose} container={() => containerRef.current} />
       </TDemoBlock>
 

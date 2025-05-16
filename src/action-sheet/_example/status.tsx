@@ -8,7 +8,7 @@ export default function ListExample() {
   return (
     <div className="action-sheet-demo">
       <div className="action-sheet-demo-btns">
-        <Button block variant="outline" theme="primary" onClick={() => setStatusVisible(true)}>
+        <Button block size="large" variant="outline" theme="primary" onClick={() => setStatusVisible(true)}>
           列表型选项状态
         </Button>
       </div>
