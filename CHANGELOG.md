@@ -5,6 +5,16 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.14.0 `2025-05-16` 
+### 🚀 Features
+- `Cascader`: 新增 `Cascader` 组件 @ming680 @anlyyao ([#475](https://github.com/Tencent/tdesign-mobile-react/pull/475))
+- `DropdownMenu`: 新增 `DropdownMenu` 组件 @ming680 @anlyyao ([#503](https://github.com/Tencent/tdesign-mobile-react/pull/503))
+- `Overlay`: 新增遮罩动画系列回调函数，包括 `onOpen`、`onOpened`、`onClose` 和 `onClosed` 事件 @anlyyao ([#629](https://github.com/Tencent/tdesign-mobile-react/pull/629))
+- `OullDownRefresh`: 新增 `disabled` 属性 @anlyyao ([#631](https://github.com/Tencent/tdesign-mobile-react/pull/631))
+### 🐞 Bug Fixes
+- `Button`: 修复按钮点击态样式缺失 @anlyyao ([#627](https://github.com/Tencent/tdesign-mobile-react/pull/627))
+- `Steps`: 修复内置图标无效的问题 @anlyyao ([#635](https://github.com/Tencent/tdesign-mobile-react/pull/635))
+
 ## 🌈 0.13.2 `2025-04-25` 
 ### 🚀 Features
 - `Icon`: 新增 `logo-miniprogram`、`logo-cnb`、`seal`、`quote` 图标 @taowensheng1997 @uyarn ([#621](https://github.com/Tencent/tdesign-mobile-react/pull/621))
