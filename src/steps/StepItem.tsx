@@ -82,15 +82,18 @@ const StepItem: FC<StepItemProps> = (props) => {
     () => classNames(`${stepItemClass}__dot`, `${stepItemClass}__dot--${currentStatus}`),
     [stepItemClass, currentStatus],
   );
+
+  const iconContent = useMemo(() => parseTNode(icon), [icon]);
+
   const iconClassName = useMemo(
     () =>
       classNames({
-        [`${stepItemClass}__icon`]: icon,
-        [`${stepItemClass}__icon--${currentStatus}`]: icon,
-        [`${stepItemClass}__circle`]: !icon,
-        [`${stepItemClass}__circle--${currentStatus}`]: !icon,
+        [`${stepItemClass}__icon`]: iconContent,
+        [`${stepItemClass}__icon--${currentStatus}`]: iconContent,
+        [`${stepItemClass}__circle`]: !iconContent && theme === StepThemeEnum.DEFAULT,
+        [`${stepItemClass}__circle--${currentStatus}`]: !iconContent && theme === StepThemeEnum.DEFAULT,
       }),
-    [stepItemClass, currentStatus, icon],
+    [stepItemClass, currentStatus, iconContent, theme],
   );
   const contentClassName = useMemo(
     () =>
@@ -145,8 +148,8 @@ const StepItem: FC<StepItemProps> = (props) => {
   };
 
   const renderIconContent = () => {
-    if (icon) {
-      return parseTNode(icon);
+    if (iconContent) {
+      return iconContent;
     }
 
     if (currentStatus === StepItemStatusEnum.ERROR) {
