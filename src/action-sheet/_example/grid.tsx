@@ -10,13 +10,13 @@ export default function GridExample() {
   return (
     <div className="action-sheet-demo">
       <div className="action-sheet-demo-btns">
-        <Button block variant="outline" theme="primary" onClick={() => setNormalVisible(true)}>
+        <Button block size="large" variant="outline" theme="primary" onClick={() => setNormalVisible(true)}>
           常规宫格型
         </Button>
-        <Button block variant="outline" theme="primary" onClick={() => setDescVisible(true)}>
+        <Button block size="large" variant="outline" theme="primary" onClick={() => setDescVisible(true)}>
           带描述宫格型
         </Button>
-        <Button block variant="outline" theme="primary" onClick={() => setBadgeVisible(true)}>
+        <Button block size="large" variant="outline" theme="primary" onClick={() => setBadgeVisible(true)}>
           带徽标宫格型
         </Button>
       </div>
