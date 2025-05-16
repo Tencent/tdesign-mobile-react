@@ -1,0 +1,254 @@
+import React, { MouseEvent, useRef, useState, useEffect } from 'react';
+import { CloseIcon, DeleteIcon } from 'tdesign-icons-react';
+import { CSSTransition } from 'react-transition-group';
+import { CSSTransitionClassNames } from 'react-transition-group/CSSTransition';
+import { TdImageViewerProps, ImageInfo } from './type';
+import { StyledProps } from '../common';
+import { usePrefixClass } from '../hooks/useClass';
+import useDefault from '../_util/useDefault';
+import noop from '../_util/noop';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { imageViewerDefaultProps } from './defaultProps';
+import { Swiper as TSwiper } from '../swiper';
+import parseTNode from '../_util/parseTNode';
+import TSwiperItem from '../swiper/SwiperItem';
+import { useImageTransform } from './transform';
+import { useTouchEvent } from './useTouchEvent';
+
+export interface ImageViewerProps extends TdImageViewerProps, StyledProps {}
+
+const MIN_SCALE = 1;
+const MAX_SCALE = 50;
+const movable = true;
+const BASE_SCALE_RATIO = 1;
+const scaleStep = 0.5;
+
+const ImageViewer: React.FC<ImageViewerProps> = (props) => {
+  const { visible, defaultVisible, onClose, index, defaultIndex, onIndexChange, closeBtn, deleteBtn, onDelete } =
+    useDefaultProps<ImageViewerProps>(props, imageViewerDefaultProps);
+
+  const [show, setShow] = useDefault<boolean, any>(visible, defaultVisible, noop);
+  const [currentIndex, setCurrentIndex] = useDefault(index, defaultIndex, onIndexChange);
+  const [innerState, setInnerState] = useState({
+    dblTapZooming: false, // double tap zooming
+    zooming: false, // pinch zooming
+    scale: 1,
+    touchIndex: 0,
+    dragging: false,
+    draggedX: 0,
+    draggedY: 0,
+    extraDraggedX: 0,
+  });
+
+  const swiperRootRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const imgRefs = useRef<HTMLImageElement[]>([]);
+  const duration = 300;
+  const { transform, resetTransform, updateTransform, dispatchZoomChange } = useImageTransform(
+    imgRefs,
+    MIN_SCALE,
+    MAX_SCALE,
+    undefined,
+    // onTransform,
+    currentIndex,
+  );
+  const { isTouching, onTouchStart, onTouchMove, onTouchEnd } = useTouchEvent(
+    imgRefs,
+    movable,
+    show, // show
+    MIN_SCALE,
+    transform,
+    updateTransform,
+    dispatchZoomChange,
+    currentIndex,
+  );
+
+  useEffect(() => {
+    if (!show) {
+      resetTransform('close');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [show]);
+
+  const beforeClose = () => {
+    setInnerState({
+      ...innerState,
+      dblTapZooming: false,
+      zooming: false,
+      scale: 1,
+      dragging: false,
+      draggedX: 0,
+      draggedY: 0,
+      extraDraggedX: 0,
+    });
+  };
+
+  const imageViewerClass = usePrefixClass('image-viewer');
+  const handleClose = (e: MouseEvent, trigger: 'overlay' | 'close-btn') => {
+    e.stopPropagation();
+    beforeClose();
+    setShow(false);
+    onClose?.({ trigger, visible: false, index });
+  };
+  const handleDelete = () => {
+    onDelete?.(currentIndex ?? 0);
+  };
+
+  const getPreloadImageIndex = () => {
+    const lastIndex = props.images.length - 1;
+    if ([undefined, 0].includes(currentIndex)) {
+      return [0, 1, lastIndex];
+    }
+    if (currentIndex === lastIndex) {
+      return [lastIndex, lastIndex - 1, 0];
+    }
+    const prev = currentIndex - 1 >= 0 ? currentIndex - 1 : lastIndex;
+    const next = currentIndex + 1 <= lastIndex ? currentIndex + 1 : 0;
+    return [currentIndex, prev, next];
+  };
+
+  const preloadImageIndex = getPreloadImageIndex();
+
+  const imageInfoList = props.images.map((image, index) => {
+    let imageInfo: ImageInfo;
+    if (typeof image === 'string') {
+      imageInfo = {
+        url: image,
+        align: 'center',
+      };
+    } else {
+      imageInfo = image;
+    }
+    return {
+      image: imageInfo,
+      preload: preloadImageIndex.includes(index),
+    };
+  });
+  // const [imageInfoList, setImageInfoList] = useState(rawImageInfoList)
+
+  // useEffect(() => {
+  //   if (transform.scale === 1 && rawImageInfoList.length !== imageInfoList.length) {
+  //
+  //     setImageInfoList(rawImageInfoList);
+  //   }
+  // }, [transform, rawImageInfoList, imageInfoList])
+
+  const onDoubleClick = (event: MouseEvent) => {
+    if (show) {
+      if (transform.scale !== 1) {
+        updateTransform({ x: 0, y: 0, scale: 1 }, 'doubleClick');
+      } else {
+        dispatchZoomChange(BASE_SCALE_RATIO + scaleStep, 'doubleClick', event.clientX, event.clientY);
+      }
+    }
+    // setImageInfoList([info]);
+  };
+
+  const onSwiperChange = (index: number) => {
+    if (!show) return;
+    if (transform.scale !== 1) return;
+
+    if (currentIndex !== index) {
+      const trigger = currentIndex < index ? 'next' : 'prev';
+      setCurrentIndex(index, { trigger });
+    }
+  };
+
+  // const getImageTransform = () => {
+  //   const { scale, draggedX, draggedY } = innerState;
+  //   return `matrix(${scale}, 0, 0, ${scale}, ${draggedX}, ${draggedY})`;
+  // };
+  // const getImageTransitionDuration = () => {
+  //   const { zooming, dragging } = innerState;
+  //   return zooming || dragging ? { transitionDuration: '0s' } : { transitionDuration: '0.3s' };
+  // };
+
+  const animationClassNames: CSSTransitionClassNames = {
+    enterActive: 'fade-enter-active',
+    exitActive: 'fade-leave-active',
+  };
+
+  return (
+    <CSSTransition
+      in={show}
+      timeout={duration}
+      appear
+      unmountOnExit={true}
+      mountOnEnter
+      classNames={animationClassNames}
+      nodeRef={rootRef}
+    >
+      <div ref={rootRef} className={imageViewerClass}>
+        <div className={`${imageViewerClass}__mask`} onClick={(e) => handleClose(e, 'overlay')}></div>
+        <TSwiper
+          ref={swiperRootRef}
+          autoplay={false}
+          height={'100vh'}
+          className={`${imageViewerClass}__content`}
+          onChange={onSwiperChange}
+          current={currentIndex}
+          defaultCurrent={currentIndex}
+          disabled={isTouching.current || transform.scale !== 1}
+        >
+          {imageInfoList.map((info, index) => (
+            <TSwiperItem
+              key={index}
+              className={`${imageViewerClass}__swiper-item`}
+              style={{
+                touchAction: 'none',
+                alignItems: info.image.align,
+                display: 'flex',
+                overflow: 'hidden',
+              }}
+              hostStyle={{ overflow: 'visible' }}
+            >
+              {/* style={{
+                  transform: index === innerState.touchIndex ? getImageTransform() : 'matrix(1, 0, 0, 1, 0, 0)',
+                  ...getImageTransitionDuration(),
+                  height: '100%',
+                }} */}
+              <img
+                src={info.image.url}
+                ref={(node) => {
+                  imgRefs.current[index] = node;
+                }}
+                style={{
+                  transform: `translate3d(${transform.x}px, ${transform.y}px, 0) scale3d(${
+                    transform.flipX ? '-' : ''
+                  }${transform.scale}, ${transform.flipY ? '-' : ''}${transform.scale}, 1) rotate(${transform.rotate}deg)`,
+                  transitionDuration: isTouching ? '0s' : '.3s',
+                }}
+                className={`${imageViewerClass}__img`}
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+                onTouchCancel={onTouchEnd}
+                onDoubleClick={(e) => onDoubleClick(e)}
+              />
+            </TSwiperItem>
+          ))}
+        </TSwiper>
+
+        <div className={`${imageViewerClass}__nav`}>
+          <div className={`${imageViewerClass}__nav-close`} onClick={(e) => handleClose(e, 'close-btn')}>
+            {parseTNode(closeBtn, null, <CloseIcon />)}
+          </div>
+
+          {props.showIndex && (
+            <div className={`${imageViewerClass}__nav-index`}>
+              {`${Math.min((currentIndex ?? 0) + 1, props.images?.length)}/${props.images?.length}`}
+            </div>
+          )}
+
+          <div className={`${imageViewerClass}__nav-delete`} onClick={handleDelete}>
+            {parseTNode(deleteBtn, null, <DeleteIcon />)}
+          </div>
+        </div>
+      </div>
+    </CSSTransition>
+  );
+};
+
+ImageViewer.displayName = 'ImageViewer';
+
+export default ImageViewer;

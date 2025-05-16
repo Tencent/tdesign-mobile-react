@@ -35,6 +35,11 @@ export interface UseSwipeOptions {
    * 滑动结束时的回调函数
    */
   onSwipeEnd?: (e: TouchEvent) => void;
+
+  /**
+   * 是否禁用
+   */
+  disabled?: boolean;
 }
 
 /**
@@ -48,7 +53,7 @@ export function useSwipe(target: EventTarget | null | undefined, options = {} as
   const coordsStart = useRef<Position>({ x: 0, y: 0 }); // 用于存储触摸起始位置的坐标
   const coordsEnd = useRef<Position>({ x: 0, y: 0 }); // 用于存储触摸结束位置的坐标
   const coordsOffset = useRef<Position>({ x: 0, y: 0 }); // 用于存储滑动偏移量
-  const { threshold = 0, onSwipe, onSwipeEnd, onSwipeStart, listenerOptions = { passive: true } } = options;
+  const { threshold = 0, onSwipe, onSwipeEnd, onSwipeStart, listenerOptions = { passive: true }, disabled } = options;
 
   const updateOffset = useCallback(() => {
     coordsOffset.current = {
@@ -95,6 +100,7 @@ export function useSwipe(target: EventTarget | null | undefined, options = {} as
   const onTouchStart = useCallback(
     (e: TouchEvent) => {
       if (e.touches.length !== 1) return;
+      if (disabled) return;
       if (
         listenerOptions === true ||
         (isObject(listenerOptions) && listenerOptions.capture && listenerOptions.passive)
@@ -106,6 +112,7 @@ export function useSwipe(target: EventTarget | null | undefined, options = {} as
       updateCoordsEnd(x, y);
       onSwipeStart?.(e);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [listenerOptions, updateCoordsStart, updateCoordsEnd, onSwipeStart],
   );
 

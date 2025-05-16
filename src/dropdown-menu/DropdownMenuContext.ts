@@ -1,4 +1,4 @@
-import noop from 'lodash/noop';
+import noop from 'lodash-es/noop';
 import React from 'react';
 import { dropdownMenuDefaultProps } from './defaultProps';
 
