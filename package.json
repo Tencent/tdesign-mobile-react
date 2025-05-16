@@ -1,6 +1,6 @@
 {
   "name": "tdesign-mobile-react",
-  "version": "0.13.2",
+  "version": "0.14.0",
   "description": "TDesign Component for Mobile React",
   "title": "tdesign-mobile-react",
   "main": "cjs/index.js",
@@ -171,7 +171,7 @@
     "lodash-es": "^4.17.21",
     "react-transition-group": "^4.4.2",
     "smoothscroll-polyfill": "^0.4.4",
-    "tdesign-icons-react": "^0.4.5",
+    "tdesign-icons-react": "^0.5.0",
     "tinycolor2": "^1.6.0"
   },
   "config": {

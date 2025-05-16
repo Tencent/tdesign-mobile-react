@@ -20,8 +20,21 @@ exports[`Steps > Steps horizontalDemo demo 1`] = `
           class="t-step-item__anchor t-step-item__anchor--horizontal"
         >
           <div
-            class="t-step-item__icon t-step-item__icon--finish"
-          />
+            class="t-step-item__circle t-step-item__circle--finish"
+          >
+            <svg
+              class="t-icon t-icon-check"
+              fill="none"
+              height="1em"
+              viewBox="0 0 24 24"
+              width="1em"
+            >
+              <path
+                d="M20.9852 7.37845L10.3786 17.985L4.01465 11.6211L5.42886 10.2069L10.3786 15.1566L19.571 5.96423L20.9852 7.37845Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
         </div>
         <div
           class="t-step-item__content t-step-item__content--horizontal"
@@ -51,8 +64,10 @@ exports[`Steps > Steps horizontalDemo demo 1`] = `
           class="t-step-item__anchor t-step-item__anchor--horizontal"
         >
           <div
-            class="t-step-item__icon t-step-item__icon--process"
-          />
+            class="t-step-item__circle t-step-item__circle--process"
+          >
+            2
+          </div>
         </div>
         <div
           class="t-step-item__content t-step-item__content--horizontal"
@@ -82,8 +97,10 @@ exports[`Steps > Steps horizontalDemo demo 1`] = `
           class="t-step-item__anchor t-step-item__anchor--horizontal"
         >
           <div
-            class="t-step-item__icon t-step-item__icon--default"
-          />
+            class="t-step-item__circle t-step-item__circle--default"
+          >
+            3
+          </div>
         </div>
         <div
           class="t-step-item__content t-step-item__content--horizontal"
@@ -113,8 +130,10 @@ exports[`Steps > Steps horizontalDemo demo 1`] = `
           class="t-step-item__anchor t-step-item__anchor--horizontal"
         >
           <div
-            class="t-step-item__icon t-step-item__icon--default"
-          />
+            class="t-step-item__circle t-step-item__circle--default"
+          >
+            4
+          </div>
         </div>
         <div
           class="t-step-item__content t-step-item__content--horizontal t-step-item__content--last"
@@ -780,8 +799,21 @@ exports[`Steps > Steps statusDemo demo 1`] = `
           class="t-step-item__anchor t-step-item__anchor--horizontal"
         >
           <div
-            class="t-step-item__icon t-step-item__icon--finish"
-          />
+            class="t-step-item__circle t-step-item__circle--finish"
+          >
+            <svg
+              class="t-icon t-icon-check"
+              fill="none"
+              height="1em"
+              viewBox="0 0 24 24"
+              width="1em"
+            >
+              <path
+                d="M20.9852 7.37845L10.3786 17.985L4.01465 11.6211L5.42886 10.2069L10.3786 15.1566L19.571 5.96423L20.9852 7.37845Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
         </div>
         <div
           class="t-step-item__content t-step-item__content--horizontal"
@@ -811,8 +843,21 @@ exports[`Steps > Steps statusDemo demo 1`] = `
           class="t-step-item__anchor t-step-item__anchor--horizontal"
         >
           <div
-            class="t-step-item__icon t-step-item__icon--error"
-          />
+            class="t-step-item__circle t-step-item__circle--error"
+          >
+            <svg
+              class="t-icon t-icon-close"
+              fill="none"
+              height="1em"
+              viewBox="0 0 24 24"
+              width="1em"
+            >
+              <path
+                d="M7.04996 5.63599L11.9997 10.5857L16.9494 5.63599L18.3637 7.0502L13.4139 11.9999L18.3637 16.9497L16.9494 18.3639L11.9997 13.4142L7.04996 18.3639L5.63574 16.9497L10.5855 11.9999L5.63574 7.0502L7.04996 5.63599Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
         </div>
         <div
           class="t-step-item__content t-step-item__content--horizontal"
@@ -842,8 +887,10 @@ exports[`Steps > Steps statusDemo demo 1`] = `
           class="t-step-item__anchor t-step-item__anchor--horizontal"
         >
           <div
-            class="t-step-item__icon t-step-item__icon--default"
-          />
+            class="t-step-item__circle t-step-item__circle--default"
+          >
+            3
+          </div>
         </div>
         <div
           class="t-step-item__content t-step-item__content--horizontal"
@@ -873,8 +920,10 @@ exports[`Steps > Steps statusDemo demo 1`] = `
           class="t-step-item__anchor t-step-item__anchor--horizontal"
         >
           <div
-            class="t-step-item__icon t-step-item__icon--default"
-          />
+            class="t-step-item__circle t-step-item__circle--default"
+          >
+            4
+          </div>
         </div>
         <div
           class="t-step-item__content t-step-item__content--horizontal t-step-item__content--last"
@@ -1213,8 +1262,21 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
           class="t-step-item__anchor t-step-item__anchor--vertical"
         >
           <div
-            class="t-step-item__icon t-step-item__icon--finish"
-          />
+            class="t-step-item__circle t-step-item__circle--finish"
+          >
+            <svg
+              class="t-icon t-icon-check"
+              fill="none"
+              height="1em"
+              viewBox="0 0 24 24"
+              width="1em"
+            >
+              <path
+                d="M20.9852 7.37845L10.3786 17.985L4.01465 11.6211L5.42886 10.2069L10.3786 15.1566L19.571 5.96423L20.9852 7.37845Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
         </div>
         <div
           class="t-step-item__content t-step-item__content--vertical"
@@ -1245,8 +1307,10 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
           class="t-step-item__anchor t-step-item__anchor--vertical"
         >
           <div
-            class="t-step-item__icon t-step-item__icon--process"
-          />
+            class="t-step-item__circle t-step-item__circle--process"
+          >
+            2
+          </div>
         </div>
         <div
           class="t-step-item__content t-step-item__content--vertical"
@@ -1277,8 +1341,10 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
           class="t-step-item__anchor t-step-item__anchor--vertical"
         >
           <div
-            class="t-step-item__icon t-step-item__icon--default"
-          />
+            class="t-step-item__circle t-step-item__circle--default"
+          >
+            3
+          </div>
         </div>
         <div
           class="t-step-item__content t-step-item__content--vertical"
@@ -1309,8 +1375,10 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
           class="t-step-item__anchor t-step-item__anchor--vertical"
         >
           <div
-            class="t-step-item__icon t-step-item__icon--default"
-          />
+            class="t-step-item__circle t-step-item__circle--default"
+          >
+            4
+          </div>
         </div>
         <div
           class="t-step-item__content t-step-item__content--vertical t-step-item__content--last"
