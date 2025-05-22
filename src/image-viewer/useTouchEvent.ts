@@ -74,11 +74,11 @@ export function useTouchEvent(
     const { touches = [] } = event;
     if (touches.length > 1) {
       // touch zoom
-      updateTouchPointInfo({
-        point1: { x: touches[0].clientX, y: touches[0].clientY },
-        point2: { x: touches[1].clientX, y: touches[1].clientY },
-        eventType: 'touchZoom',
-      });
+      // updateTouchPointInfo({
+      //   point1: { x: touches[0].clientX, y: touches[0].clientY },
+      //   point2: { x: touches[1].clientX, y: touches[1].clientY },
+      //   eventType: 'touchZoom',
+      // });
     } else {
       // touch move
       updateTouchPointInfo({
@@ -111,11 +111,11 @@ export function useTouchEvent(
       const ratio = getDistance(newPoint1, newPoint2) / getDistance(point1, point2);
 
       dispatchZoomChange(ratio, 'touchZoom', centerX, centerY, true);
-      updateTouchPointInfo({
-        point1: newPoint1,
-        point2: newPoint2,
-        eventType: 'touchZoom',
-      });
+      // updateTouchPointInfo({
+      //   point1: newPoint1,
+      //   point2: newPoint2,
+      //   eventType: 'touchZoom',
+      // });
     } else if (eventType === 'move') {
       // touch move
       updateTransform(
