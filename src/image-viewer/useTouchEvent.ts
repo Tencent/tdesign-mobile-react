@@ -92,10 +92,10 @@ export function useTouchEvent(
   };
 
   const onTouchMove = (event: React.TouchEvent<HTMLImageElement>) => {
-    // if (scale === 1) return;
-    isTouching.current = true;
     const { touches = [] } = event;
     const { point1, point2, eventType } = touchPointInfo.current;
+    if (scale === 1 && touches.length === 1) return;
+    isTouching.current = true;
 
     if (touches.length > 1 && eventType === 'touchZoom') {
       // touch zoom
