@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import raf from './raf';
-import { getClientSize } from './util';
+// import { getClientSize } from './util';
 
 function isEqual(objA, objB) {
   const keys = Object.keys(objA);
@@ -63,7 +63,7 @@ export function useImageTransform(
   minScale: number,
   maxScale: number,
   onTransform?: (info: { transform: TransformType; action: TransformAction }) => void,
-  currentIndex?: number,
+  // currentIndex?: number,
 ) {
   const frame = useRef(null);
   const queue = useRef<TransformType[]>([]);
@@ -101,57 +101,57 @@ export function useImageTransform(
 
   /** Scale according to the position of centerX and centerY */
   const dispatchZoomChange: DispatchZoomChangeFunc = (ratio, action, centerX?, centerY?, isTouch?) => {
-    const { width, height, offsetWidth, offsetHeight, offsetLeft, offsetTop } = imgRef.current[currentIndex];
+    // const { width, height, offsetWidth, offsetHeight, offsetLeft, offsetTop } = imgRef.current[currentIndex];
 
-    let newRatio = ratio;
+    // let newRatio = ratio;
     let newScale = transform.scale * ratio;
     if (newScale > maxScale) {
       newScale = maxScale;
-      newRatio = maxScale / transform.scale;
+      // newRatio = maxScale / transform.scale;
     } else if (newScale < minScale) {
       // For mobile interactions, allow scaling down to the minimum scale.
       newScale = isTouch ? newScale : minScale;
-      newRatio = newScale / transform.scale;
+      // newRatio = newScale / transform.scale;
     }
 
     /** Default center point scaling */
-    const mergedCenterX = centerX ?? innerWidth / 2;
-    const mergedCenterY = centerY ?? innerHeight / 2;
+    // const mergedCenterX = centerX ?? innerWidth / 2;
+    // const mergedCenterY = centerY ?? innerHeight / 2;
 
-    const diffRatio = newRatio - 1;
-    /** Deviation calculated from image size */
-    const diffImgX = diffRatio * width * 0.5;
-    const diffImgY = diffRatio * height * 0.5;
-    /** The difference between the click position and the edge of the document */
-    const diffOffsetLeft = diffRatio * (mergedCenterX - transform.x - offsetLeft);
-    const diffOffsetTop = diffRatio * (mergedCenterY - transform.y - offsetTop);
-    /** Final positioning */
-    let newX = transform.x - (diffOffsetLeft - diffImgX);
-    let newY = transform.y - (diffOffsetTop - diffImgY);
+    // const diffRatio = newRatio - 1;
+    // /** Deviation calculated from image size */
+    // const diffImgX = diffRatio * width * 0.5;
+    // const diffImgY = diffRatio * height * 0.5;
+    // /** The difference between the click position and the edge of the document */
+    // const diffOffsetLeft = diffRatio * (mergedCenterX - transform.x - offsetLeft);
+    // const diffOffsetTop = diffRatio * (mergedCenterY - transform.y - offsetTop);
+    // /** Final positioning */
+    // let newX = transform.x - (diffOffsetLeft - diffImgX);
+    // let newY = transform.y - (diffOffsetTop - diffImgY);
 
     /**
      * When zooming the image
      * When the image size is smaller than the width and height of the window, the position is initialized
      */
-    if (ratio < 1 && newScale === 1) {
-      const mergedWidth = offsetWidth * newScale;
-      const mergedHeight = offsetHeight * newScale;
-      const { width: clientWidth, height: clientHeight } = getClientSize();
-      if (mergedWidth <= clientWidth && mergedHeight <= clientHeight) {
-        newX = 0;
-        newY = 0;
-      }
-    }
+    // if (ratio < 1 && newScale === 1) {
+    //   const mergedWidth = offsetWidth * newScale;
+    //   const mergedHeight = offsetHeight * newScale;
+    //   const { width: clientWidth, height: clientHeight } = getClientSize();
+    //   if (mergedWidth <= clientWidth && mergedHeight <= clientHeight) {
+    //     newX = 0;
+    //     newY = 0;
+    //   }
+    // }
 
     if (action === 'doubleClick') {
-      newX = 0;
-      newY = 0;
+      // newX = 0;
+      // newY = 0;
     }
 
     updateTransform(
       {
-        x: newX,
-        y: newY,
+        // x: newX,
+        // y: newY,
         scale: newScale,
       },
       action,

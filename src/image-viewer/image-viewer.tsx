@@ -50,7 +50,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
     MAX_SCALE,
     undefined,
     // onTransform,
-    currentIndex,
+    // currentIndex,
   );
   const { isTouching, onTouchStart, onTouchMove, onTouchEnd } = useTouchEvent(
     imgRefs,
