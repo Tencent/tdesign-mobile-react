@@ -143,6 +143,11 @@ export function useImageTransform(
       }
     }
 
+    if (action === 'doubleClick') {
+      newX = 0;
+      newY = 0;
+    }
+
     updateTransform(
       {
         x: newX,
