@@ -213,9 +213,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
                   imgRefs.current[index] = node;
                 }}
                 style={{
-                  transform: `translate3d(${transform.x}px, ${transform.y}px, 0) scale3d(${
-                    transform.flipX ? '-' : ''
-                  }${transform.scale}, ${transform.flipY ? '-' : ''}${transform.scale}, 1) rotate(${transform.rotate}deg)`,
+                  transform: `matrix(${transform.scale}, 0, 0, ${transform.scale}, ${transform.x}, ${transform.y})`,
                   transitionDuration: isTouching ? '0s' : '.3s',
                 }}
                 className={`${imageViewerClass}__img`}
