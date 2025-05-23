@@ -52,7 +52,12 @@ export function useTouchEvent(
     isTouching.current = true;
 
     const { touches = [] } = event;
-    if (touches.length === 1) {
+    if (touches.length > 1) {
+      // touch zoom
+      updateTouchPointInfo({
+        eventType: 'touchZoom',
+      });
+    } else {
       updateTouchPointInfo({
         point1: {
           x: touches[0].clientX - x,
