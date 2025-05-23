@@ -23,8 +23,18 @@ const BASE_SCALE_RATIO = 1;
 const scaleStep = 0.5;
 
 const ImageViewer: React.FC<ImageViewerProps> = (props) => {
-  const { visible, defaultVisible, onClose, index, defaultIndex, onIndexChange, closeBtn, deleteBtn, onDelete } =
-    useDefaultProps<ImageViewerProps>(props, imageViewerDefaultProps);
+  const {
+    visible,
+    defaultVisible,
+    onClose,
+    index,
+    defaultIndex,
+    onIndexChange,
+    closeBtn,
+    deleteBtn,
+    onDelete,
+    maxZoom,
+  } = useDefaultProps<ImageViewerProps>(props, imageViewerDefaultProps);
 
   const [show, setShow] = useDefault<boolean, any>(visible, defaultVisible, noop);
   const [currentIndex, setCurrentIndex] = useDefault(index, defaultIndex, onIndexChange);
@@ -33,10 +43,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const imgRefs = useRef<HTMLImageElement[]>([]);
   const duration = 300;
-  const { transform, resetTransform, updateTransform, dispatchZoomChange } = useImageTransform(
-    MIN_SCALE,
-    props.maxZoom,
-  );
+  const { transform, resetTransform, updateTransform, dispatchZoomChange } = useImageTransform(MIN_SCALE, maxZoom);
   const { isTouching, onTouchStart, onTouchMove, onTouchEnd } = useTouchEvent(
     imgRefs,
     movable,
