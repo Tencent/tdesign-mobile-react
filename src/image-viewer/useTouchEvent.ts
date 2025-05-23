@@ -55,6 +55,8 @@ export function useTouchEvent(
     if (touches.length > 1) {
       // touch zoom
       updateTouchPointInfo({
+        point1: { x: touches[0].clientX, y: touches[0].clientY },
+        point2: { x: touches[1].clientX, y: touches[1].clientY },
         eventType: 'touchZoom',
       });
     } else {
