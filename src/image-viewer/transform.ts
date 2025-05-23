@@ -89,7 +89,7 @@ export function useImageTransform(
     });
   };
 
-  const dispatchZoomChange: DispatchZoomChangeFunc = (ratio, action, centerX?, centerY?, isTouch?) => {
+  const dispatchZoomChange: DispatchZoomChangeFunc = (ratio, action, isTouch?) => {
     let newScale = transform.scale * ratio;
 
     if (newScale > maxScale) {
