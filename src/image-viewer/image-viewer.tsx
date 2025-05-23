@@ -18,7 +18,6 @@ import { useTouchEvent } from './useTouchEvent';
 export interface ImageViewerProps extends TdImageViewerProps, StyledProps {}
 
 const MIN_SCALE = 1;
-const DOUBLE_CLICK_DURATION = 300;
 const movable = true;
 const BASE_SCALE_RATIO = 1;
 const scaleStep = 0.5;
@@ -45,7 +44,6 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
   const imgRefs = useRef<HTMLImageElement[]>([]);
   const duration = 300;
   const { transform, resetTransform, updateTransform, dispatchZoomChange } = useImageTransform(MIN_SCALE, maxZoom);
-
   const { isTouching, onTouchStart, onTouchMove, onTouchEnd } = useTouchEvent(
     imgRefs,
     movable,
@@ -130,29 +128,6 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
     exitActive: 'fade-leave-active',
   };
 
-  let doubleClickTimer = null;
-
-  const handleTouchStart = (e: React.TouchEvent<HTMLImageElement>) => {
-    clearTimeout(doubleClickTimer);
-    DOUBLE_CLICK_DURATION;
-    doubleClickTimer = setTimeout(() => () => onTouchStart(e), DOUBLE_CLICK_DURATION);
-  };
-  const handleTouchMove = (e: React.TouchEvent<HTMLImageElement>) => {
-    clearTimeout(doubleClickTimer);
-    DOUBLE_CLICK_DURATION;
-    doubleClickTimer = setTimeout(() => () => onTouchMove(e), DOUBLE_CLICK_DURATION);
-  };
-  const handleTouchEnd = () => {
-    clearTimeout(doubleClickTimer);
-    DOUBLE_CLICK_DURATION;
-    doubleClickTimer = setTimeout(() => onTouchEnd, DOUBLE_CLICK_DURATION);
-  };
-
-  const handleDoubleClick = () => {
-    clearTimeout(doubleClickTimer);
-    onDoubleClick();
-  };
-
   return (
     <CSSTransition
       in={show}
@@ -197,11 +172,11 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
                   transitionDuration: isTouching ? '0s' : '.3s',
                 }}
                 className={`${imageViewerClass}__img`}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-                onTouchCancel={handleTouchEnd}
-                onDoubleClick={handleDoubleClick}
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+                onTouchCancel={onTouchEnd}
+                onDoubleClick={onDoubleClick}
               />
             </TSwiperItem>
           ))}
