@@ -18,7 +18,6 @@ import { useTouchEvent } from './useTouchEvent';
 export interface ImageViewerProps extends TdImageViewerProps, StyledProps {}
 
 const MIN_SCALE = 1;
-const MAX_SCALE = 50;
 const movable = true;
 const BASE_SCALE_RATIO = 1;
 const scaleStep = 0.5;
@@ -34,7 +33,10 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const imgRefs = useRef<HTMLImageElement[]>([]);
   const duration = 300;
-  const { transform, resetTransform, updateTransform, dispatchZoomChange } = useImageTransform(MIN_SCALE, MAX_SCALE);
+  const { transform, resetTransform, updateTransform, dispatchZoomChange } = useImageTransform(
+    MIN_SCALE,
+    props.maxZoom,
+  );
   const { isTouching, onTouchStart, onTouchMove, onTouchEnd } = useTouchEvent(
     imgRefs,
     movable,
