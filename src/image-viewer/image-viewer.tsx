@@ -159,7 +159,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
                   imgRefs.current[index] = node;
                 }}
                 style={{
-                  transform: `matrix(${transform.scale}, 0, 0, ${transform.scale}, ${transform.x}, 0)`,
+                  transform: `matrix(${transform.scale}, 0, 0, ${transform.scale}, ${transform.x}, ${transform.y})`,
                   transitionDuration: isTouching ? '0s' : '.3s',
                 }}
                 className={`${imageViewerClass}__img`}

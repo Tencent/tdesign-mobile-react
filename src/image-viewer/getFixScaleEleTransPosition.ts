@@ -2,7 +2,8 @@ import { getClientSize } from './util';
 
 function fixPoint(key: 'x' | 'y', start: number, width: number, clientWidth: number) {
   const startAddWidth = start + width;
-  const offsetStart = (width - clientWidth) / 2;
+  const offsetStart = key === 'x' ? (width - clientWidth) / 2 : 0;
+  const offsetEnd = key === 'x' ? -offsetStart : clientWidth - width;
 
   if (width > clientWidth) {
     if (start > 0) {
@@ -17,7 +18,7 @@ function fixPoint(key: 'x' | 'y', start: number, width: number, clientWidth: num
     }
   } else if (start < 0 || startAddWidth > clientWidth) {
     return {
-      [key]: start < 0 ? offsetStart : -offsetStart,
+      [key]: start < 0 ? offsetStart : offsetEnd,
     };
   }
   return {};
