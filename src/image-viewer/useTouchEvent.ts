@@ -20,26 +20,6 @@ function getDistance(a: Point, b: Point) {
   return Math.hypot(x, y);
 }
 
-function getCenter(oldPoint1: Point, oldPoint2: Point, newPoint1: Point, newPoint2: Point) {
-  // Calculate the distance each point has moved
-  const distance1 = getDistance(oldPoint1, newPoint1);
-  const distance2 = getDistance(oldPoint2, newPoint2);
-
-  // If both distances are 0, return the original points
-  if (distance1 === 0 && distance2 === 0) {
-    return [oldPoint1.x, oldPoint1.y];
-  }
-
-  // Calculate the ratio of the distances
-  const ratio = distance1 / (distance1 + distance2);
-
-  // Calculate the new center point based on the ratio
-  const x = oldPoint1.x + ratio * (oldPoint2.x - oldPoint1.x);
-  const y = oldPoint1.y + ratio * (oldPoint2.y - oldPoint1.y);
-
-  return [x, y];
-}
-
 export function useTouchEvent(
   imgRef: React.MutableRefObject<HTMLImageElement[]>,
   movable: boolean,
@@ -72,15 +52,7 @@ export function useTouchEvent(
     isTouching.current = true;
 
     const { touches = [] } = event;
-    if (touches.length > 1) {
-      // touch zoom
-      // updateTouchPointInfo({
-      //   point1: { x: touches[0].clientX, y: touches[0].clientY },
-      //   point2: { x: touches[1].clientX, y: touches[1].clientY },
-      //   eventType: 'touchZoom',
-      // });
-    } else {
-      // touch move
+    if (touches.length === 1) {
       updateTouchPointInfo({
         point1: {
           x: touches[0].clientX - x,
@@ -107,21 +79,18 @@ export function useTouchEvent(
         x: touches[1].clientX,
         y: touches[1].clientY,
       };
-      const [centerX, centerY] = getCenter(point1, point2, newPoint1, newPoint2);
       const ratio = getDistance(newPoint1, newPoint2) / getDistance(point1, point2);
 
-      dispatchZoomChange(ratio, 'touchZoom', centerX, centerY, true);
-      // updateTouchPointInfo({
-      //   point1: newPoint1,
-      //   point2: newPoint2,
-      //   eventType: 'touchZoom',
-      // });
+      dispatchZoomChange(ratio, 'touchZoom', true);
     } else if (eventType === 'move') {
+      const newX = touches[0].clientX - point1.x;
+      const newY = touches[0].clientY - point1.y;
+
       // touch move
       updateTransform(
         {
-          x: touches[0].clientX - point1.x,
-          y: touches[0].clientY - point1.y,
+          x: newX,
+          y: newY,
         },
         'move',
       );

@@ -1,4 +1,4 @@
-import React, { MouseEvent, useRef, useState, useEffect } from 'react';
+import React, { MouseEvent, useRef, useEffect } from 'react';
 import { CloseIcon, DeleteIcon } from 'tdesign-icons-react';
 import { CSSTransition } from 'react-transition-group';
 import { CSSTransitionClassNames } from 'react-transition-group/CSSTransition';
@@ -29,29 +29,12 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
 
   const [show, setShow] = useDefault<boolean, any>(visible, defaultVisible, noop);
   const [currentIndex, setCurrentIndex] = useDefault(index, defaultIndex, onIndexChange);
-  const [innerState, setInnerState] = useState({
-    dblTapZooming: false, // double tap zooming
-    zooming: false, // pinch zooming
-    scale: 1,
-    touchIndex: 0,
-    dragging: false,
-    draggedX: 0,
-    draggedY: 0,
-    extraDraggedX: 0,
-  });
 
   const swiperRootRef = useRef<HTMLDivElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const imgRefs = useRef<HTMLImageElement[]>([]);
   const duration = 300;
-  const { transform, resetTransform, updateTransform, dispatchZoomChange } = useImageTransform(
-    imgRefs,
-    MIN_SCALE,
-    MAX_SCALE,
-    undefined,
-    // onTransform,
-    // currentIndex,
-  );
+  const { transform, resetTransform, updateTransform, dispatchZoomChange } = useImageTransform(MIN_SCALE, MAX_SCALE);
   const { isTouching, onTouchStart, onTouchMove, onTouchEnd } = useTouchEvent(
     imgRefs,
     movable,
@@ -70,23 +53,9 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show]);
 
-  const beforeClose = () => {
-    setInnerState({
-      ...innerState,
-      dblTapZooming: false,
-      zooming: false,
-      scale: 1,
-      dragging: false,
-      draggedX: 0,
-      draggedY: 0,
-      extraDraggedX: 0,
-    });
-  };
-
   const imageViewerClass = usePrefixClass('image-viewer');
   const handleClose = (e: MouseEvent, trigger: 'overlay' | 'close-btn') => {
     e.stopPropagation();
-    beforeClose();
     setShow(false);
     onClose?.({ trigger, visible: false, index });
   };
@@ -124,24 +93,15 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
       preload: preloadImageIndex.includes(index),
     };
   });
-  // const [imageInfoList, setImageInfoList] = useState(rawImageInfoList)
 
-  // useEffect(() => {
-  //   if (transform.scale === 1 && rawImageInfoList.length !== imageInfoList.length) {
-  //
-  //     setImageInfoList(rawImageInfoList);
-  //   }
-  // }, [transform, rawImageInfoList, imageInfoList])
-
-  const onDoubleClick = (event: MouseEvent) => {
+  const onDoubleClick = () => {
     if (show) {
       if (transform.scale !== 1) {
         updateTransform({ x: 0, y: 0, scale: 1 }, 'doubleClick');
       } else {
-        dispatchZoomChange(BASE_SCALE_RATIO + scaleStep, 'doubleClick', event.clientX, event.clientY);
+        dispatchZoomChange(BASE_SCALE_RATIO + scaleStep, 'doubleClick');
       }
     }
-    // setImageInfoList([info]);
   };
 
   const onSwiperChange = (index: number) => {
@@ -153,15 +113,6 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
       setCurrentIndex(index, { trigger });
     }
   };
-
-  // const getImageTransform = () => {
-  //   const { scale, draggedX, draggedY } = innerState;
-  //   return `matrix(${scale}, 0, 0, ${scale}, ${draggedX}, ${draggedY})`;
-  // };
-  // const getImageTransitionDuration = () => {
-  //   const { zooming, dragging } = innerState;
-  //   return zooming || dragging ? { transitionDuration: '0s' } : { transitionDuration: '0.3s' };
-  // };
 
   const animationClassNames: CSSTransitionClassNames = {
     enterActive: 'fade-enter-active',
@@ -202,18 +153,13 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
               }}
               hostStyle={{ overflow: 'visible' }}
             >
-              {/* style={{
-                  transform: index === innerState.touchIndex ? getImageTransform() : 'matrix(1, 0, 0, 1, 0, 0)',
-                  ...getImageTransitionDuration(),
-                  height: '100%',
-                }} */}
               <img
                 src={info.image.url}
                 ref={(node) => {
                   imgRefs.current[index] = node;
                 }}
                 style={{
-                  transform: `matrix(${transform.scale}, 0, 0, ${transform.scale}, ${transform.x}, ${transform.y})`,
+                  transform: `matrix(${transform.scale}, 0, 0, ${transform.scale}, ${transform.x}, 0)`,
                   transitionDuration: isTouching ? '0s' : '.3s',
                 }}
                 className={`${imageViewerClass}__img`}
@@ -221,7 +167,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
                 onTouchMove={onTouchMove}
                 onTouchEnd={onTouchEnd}
                 onTouchCancel={onTouchEnd}
-                onDoubleClick={(e) => onDoubleClick(e)}
+                onDoubleClick={onDoubleClick}
               />
             </TSwiperItem>
           ))}
