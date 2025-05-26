@@ -29,6 +29,7 @@ export function useTouchEvent(
   updateTransform: UpdateTransformFunc,
   dispatchZoomChange: DispatchZoomChangeFunc,
   currentIndex?: number,
+  swiperRootRef?: React.MutableRefObject<HTMLDivElement>,
 ) {
   const { rotate, scale, x, y } = transform;
 
@@ -77,6 +78,9 @@ export function useTouchEvent(
     isTouching.current = true;
 
     if (touches.length > 1 && eventType === 'touchZoom') {
+      if (swiperRootRef.current?.style?.transform && swiperRootRef.current?.style?.transform !== 'none') {
+        return;
+      }
       // touch zoom
       const newPoint1 = {
         x: touches[0].clientX,

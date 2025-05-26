@@ -588,6 +588,7 @@ const Swiper = forwardRefWithStatics(
         className={classNames(rootClass)}
         style={{
           height: swiperStyle.height,
+          boxSizing: 'content-box',
         }}
       >
         <div

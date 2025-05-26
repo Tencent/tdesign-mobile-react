@@ -53,6 +53,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
     updateTransform,
     dispatchZoomChange,
     currentIndex,
+    swiperRootRef,
   );
 
   useEffect(() => {
