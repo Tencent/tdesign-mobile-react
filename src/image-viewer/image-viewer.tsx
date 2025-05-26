@@ -184,10 +184,13 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
 
   const getRealTransformY = (index: number) => {
     const { top, bottom } = getMaxDraggedY(index);
-    if (transform.y <= 0 && transform.y < top) {
+    if (top === bottom) {
       return top;
     }
-    if (transform.y >= 0 && transform.y > bottom) {
+    if (transform.y < top) {
+      return top;
+    }
+    if (transform.y > bottom) {
       return bottom;
     }
     return transform.y;
