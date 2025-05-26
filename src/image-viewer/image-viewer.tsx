@@ -128,6 +128,71 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
     exitActive: 'fade-leave-active',
   };
 
+  const getMaxDraggedX = () => {
+    const rootOffsetWidth = rootRef.current?.offsetWidth || 0;
+    const scaledWidth = transform.scale * rootOffsetWidth;
+    return Math.max(0, (scaledWidth - rootOffsetWidth) / 2);
+  };
+
+  const getMaxDraggedY = (index: number) => {
+    const rootOffsetHeight = rootRef.current?.offsetHeight || 0;
+    const currentImageHeight = imgRefs.current[currentIndex]?.offsetHeight;
+    if (!currentImageHeight || !rootOffsetHeight) {
+      return {
+        top: 0,
+        bottom: 0,
+      };
+    }
+    const currentImageScaledHeight = transform.scale * currentImageHeight;
+    const halfScaleHeight = (currentImageScaledHeight - currentImageHeight) / 2;
+    if (currentImageScaledHeight <= rootOffsetHeight) {
+      return {
+        top: 0,
+        bottom: 0,
+      };
+    }
+    const diffHeight = currentImageScaledHeight - rootOffsetHeight;
+    const centerDraggedY = diffHeight / 2;
+    const alignmentDraggedY = {
+      start: {
+        top: -diffHeight + halfScaleHeight,
+        bottom: halfScaleHeight,
+      },
+      center: {
+        top: -centerDraggedY,
+        bottom: centerDraggedY,
+      },
+      end: {
+        top: -halfScaleHeight,
+        bottom: diffHeight - halfScaleHeight,
+      },
+    };
+    const alignment = imageInfoList[index]?.image?.align || 'center';
+    return alignmentDraggedY[alignment];
+  };
+
+  const getRealTransformX = () => {
+    const max = getMaxDraggedX();
+    if (transform.x < -max) {
+      return -max;
+    }
+    if (transform.x > max) {
+      return max;
+    }
+    return transform.x;
+  };
+
+  const getRealTransformY = (index: number) => {
+    const { top, bottom } = getMaxDraggedY(index);
+    if (transform.y <= 0 && transform.y < top) {
+      return top;
+    }
+    if (transform.y >= 0 && transform.y > bottom) {
+      return bottom;
+    }
+    return transform.y;
+  };
+
   return (
     <CSSTransition
       in={show}
@@ -168,7 +233,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
                   imgRefs.current[index] = node;
                 }}
                 style={{
-                  transform: `matrix(${transform.scale}, 0, 0, ${transform.scale}, ${transform.x}, 0)`,
+                  transform: `matrix(${transform.scale}, 0, 0, ${transform.scale}, ${getRealTransformX()}, ${getRealTransformY(index)})`,
                   transitionDuration: isTouching ? '0s' : '.3s',
                 }}
                 className={`${imageViewerClass}__img`}
