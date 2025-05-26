@@ -25,7 +25,7 @@ export default function AlignDemo() {
         基础图片预览 + 对齐方式
       </Button>
 
-      <ImageViewer images={images} visible={visible} maxZoom={10} onClose={() => setVisible(false)} />
+      <ImageViewer images={images} visible={visible} onClose={() => setVisible(false)} />
     </div>
   );
 }
