@@ -46,6 +46,11 @@ export default {
       component: () => import('tdesign-mobile-react/image/_example/index.tsx'),
     },
     {
+      title: 'ImageViewer 图片预览',
+      name: 'image-viewer',
+      component: () => import('tdesign-mobile-react/image-viewer/_example/index.tsx'),
+    },
+    {
       title: 'Overlay 遮罩层',
       name: 'overlay',
       component: () => import('tdesign-mobile-react/overlay/_example/index.tsx'),
