@@ -41,3 +41,11 @@ TDesign 适配移动端的组件库，适合在 React 16.x 技术栈项目中使
 # 开源协议
 
 TDesign 遵循 [MIT 协议](https://github.com/Tencent/tdesign-mobile-react/LICENSE)。
+
+# 贡献成员
+
+感谢所有为该项目添砖加瓦的贡献者
+
+<a href="https://openomy.app/github/tencent/tdesign-mobile-react" target="_blank" style="display: block; width: 100%;" align="center">
+  <img src="https://openomy.app/svg?repo=tencent/tdesign-mobile-react&chart=bubble&latestMonth=12" target="_blank" alt="Contribution Leaderboard" style="display: block; width: 100%;" />
+ </a>
