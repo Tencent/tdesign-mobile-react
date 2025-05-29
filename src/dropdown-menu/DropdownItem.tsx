@@ -1,6 +1,6 @@
 import { useClickAway } from 'ahooks';
 import cx from 'classnames';
-import uniqueId from 'lodash/uniqueId';
+import uniqueId from 'lodash-es/uniqueId';
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { CaretDownSmallIcon, CaretUpSmallIcon } from 'tdesign-icons-react';
 import { Button, Checkbox, Popup, RadioGroup } from 'tdesign-mobile-react';

@@ -5,6 +5,12 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.15.0 `2025-05-29` 
+### 🚀 Features
+- `ImageViewer`:  新增图片预览组件 @novlan1 ([#607](https://github.com/Tencent/tdesign-mobile-react/pull/607))
+### 🐞 Bug Fixes
+- `TabPanel`: 修复组件内容未展示的问题 @betavs ([#638](https://github.com/Tencent/tdesign-mobile-react/pull/638))
+
 ## 🌈 0.14.0 `2025-05-16` 
 ### 🚀 Features
 - `Cascader`: 新增 `Cascader` 组件 @ming680 @anlyyao ([#475](https://github.com/Tencent/tdesign-mobile-react/pull/475))
