@@ -106,6 +106,9 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     (state) => {
       ctx.dragging = true;
       const [offsetX] = state.offset;
+      if (state.first) {
+        props.onDragstart?.();
+      }
       if (state.last) {
         let position = offsetX + state.velocity[0] * state.direction[0] * 50;
         if (offsetX > 0) {
@@ -130,6 +133,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
         } else {
           close();
         }
+        props.onDragend?.();
         window.setTimeout(() => {
           ctx.dragging = false;
         });
@@ -147,6 +151,14 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
       preventScroll: true,
       pointer: { touch: true },
       enabled: !disabled,
+      onDragStart: () => {
+        console.log('拖拽开始');
+        // props.onDragstart?.();
+      },
+      onDragEnd: () => {
+        console.log('拖拽结束');
+        // props.onDragend?.();
+      },
     },
   );
 
