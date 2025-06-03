@@ -17,3 +17,11 @@ onChange | Function |  | TS 类型：`(value: string) => void`<br/>菜单展开�
 onClick | Function |  | TS 类型：`(action: SwipeActionItem, source: SwipeSource) => void`<br/>操作项点击时触发（插槽写法组件不触发，业务侧自定义内容和事件）。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/swipe-cell/type.ts)。<br/>`type SwipeSource = 'left' \| 'right'`<br/> | N
 onDragend | Function |  | TS 类型：`() => void`<br/>滑动结束事件 | N
 onDragstart | Function |  | TS 类型：`() => void`<br/>滑动开始事件 | N
+
+### SwipeCellInstanceFunctions 组件实例方法
+
+名称 | 参数 | 返回值 | 描述
+-- | -- | -- | --
+className | String | - | 类名 | N
+style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
+showSure | `(sure: string \| TNode, onClick?: SwipeActionItem['onClick'])` | `void` | 显示二次确认内容的函数。<br/>【关于参数】`sure` 表示二次确认的具体内容，同content。TS 类型：`string \| TNode；如果设置了 `onClick`，则点击二次确认内容时，会执行此onClick方法。<br />[详细类型定义](https://github.com/Tencent/tdesign-mobile-vue/tree/develop/src/swipe-cell/type.ts)。<br/>`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts)
