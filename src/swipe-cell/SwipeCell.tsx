@@ -151,14 +151,6 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
       preventScroll: true,
       pointer: { touch: true },
       enabled: !disabled,
-      onDragStart: () => {
-        console.log('拖拽开始');
-        // props.onDragstart?.();
-      },
-      onDragEnd: () => {
-        console.log('拖拽结束');
-        // props.onDragend?.();
-      },
     },
   );
 
