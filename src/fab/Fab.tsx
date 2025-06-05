@@ -167,6 +167,18 @@ const Fab: React.FC<FabProps> = (originProps) => {
     };
     setSwitchPosition(switchPos.endX, switchPos.endY);
   };
+  const defaultContent = (
+    <Button
+      size="large"
+      theme="primary"
+      shape={props.text ? 'round' : 'circle'}
+      className={`${fabClass}__button`}
+      {...(buttonProps as TdFabProps['buttonProps'])}
+      icon={icon}
+    >
+      {text}
+    </Button>
+  );
 
   return (
     <div
@@ -177,16 +189,7 @@ const Fab: React.FC<FabProps> = (originProps) => {
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      <Button
-        size="large"
-        theme="primary"
-        shape={props.text ? 'round' : 'circle'}
-        className={`${fabClass}__button`}
-        {...(buttonProps as TdFabProps['buttonProps'])}
-        icon={icon}
-      >
-        {text}
-      </Button>
+      {props.children || defaultContent}
     </div>
   );
 };
