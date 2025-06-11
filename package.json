@@ -165,7 +165,7 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@use-gesture/react": "^10.2.10",
-    "ahooks": "^3.1.9",
+    "ahooks": "^3.8.5",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.13",
     "hoist-non-react-statics": "^3.3.2",
@@ -185,11 +185,5 @@
       "prettier --write",
       "npm run lint:fix"
     ]
-  },
-  "overrides": {
-    "ahooks": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    }
   }
 }
