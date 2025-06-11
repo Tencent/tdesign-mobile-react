@@ -17,7 +17,7 @@
       "tdesign-mobile-react/*": ["src/*"],
       "tdesign-mobile-react/es/locale/*": ["src/locale/*"],
       "@test/utils": ["test/utils"],
-      "@common/*": ["src/_common/*"]
+      "@common/*": ["src/_common/*"],
     },
     "allowJs": true,
     "checkJs": true,

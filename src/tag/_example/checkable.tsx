@@ -2,7 +2,7 @@ import React from 'react';
 import { TagCheck } from 'tdesign-mobile-react';
 
 const CheckeableDemo = () => {
-  const variants = ['light', 'dark', 'outline', 'light-outline'];
+  const variants: ('dark' | 'light' | 'outline' | 'light-outline')[] = ['light', 'dark', 'outline', 'light-outline'];
 
   return (
     <>

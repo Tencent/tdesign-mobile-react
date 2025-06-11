@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import ReactDOM from 'react-dom';
+import { render, unmount } from '../_util/react-render';
 import Drawer, { DrawerProps } from './Drawer';
 import { DrawerInstance, TdDrawerProps, DrawerOptions } from './type';
 
@@ -24,7 +24,7 @@ export const DrawerPlugin = (options) => {
   const div = document.createElement('div');
   const dialogRef = createRef<DrawerInstance>();
 
-  ReactDOM.render(<Drawer ref={dialogRef} {...defaultProps} visible={visible} isPlugin />, div);
+  render(<Drawer ref={dialogRef} {...defaultProps} visible={visible} isPlugin />, div);
   container.appendChild(div);
 
   return {
@@ -47,6 +47,7 @@ export const DrawerPlugin = (options) => {
     destroy: () => {
       requestAnimationFrame(() => {
         dialogRef.current?.destroy();
+        unmount(div);
       });
     },
   };

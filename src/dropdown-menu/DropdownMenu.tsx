@@ -8,7 +8,9 @@ import DropdownItem from './DropdownItem';
 import DropdownMenuContext from './DropdownMenuContext';
 import type { TdDropdownMenuProps } from './type';
 
-export interface DropdownMenuProps extends TdDropdownMenuProps, StyledProps {}
+export interface DropdownMenuProps extends TdDropdownMenuProps, StyledProps {
+  children?: React.ReactNode;
+}
 
 type DropdownMenuRef = {
   collapseMenu: () => void;
@@ -21,7 +23,7 @@ const DropdownMenu = forwardRef<DropdownMenuRef, DropdownMenuProps>((props, ref)
   const dropdownMenuClass = usePrefixClass('dropdown-menu');
 
   const items = [];
-  React.Children.forEach(props.children, (child: typeof DropdownItem) => {
+  React.Children.forEach(props.children, (child: any) => {
     if (
       React.isValidElement<ComponentProps<typeof DropdownItem>>(child) &&
       (child.type as any)?.displayName === DropdownItem.displayName

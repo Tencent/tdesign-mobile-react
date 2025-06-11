@@ -1,9 +1,9 @@
 import React, { forwardRef, useImperativeHandle, useRef, useMemo, useState } from 'react';
-import type { ReactNode } from 'react';
 import { isArray, isBoolean } from 'lodash-es';
 import classNames from 'classnames';
 import { useClickAway } from 'ahooks';
 import { useDrag } from '@use-gesture/react';
+import parseTNode from '../_util/parseTNode';
 import nearest from '../_util/nearest';
 import withNativeProps from '../_util/withNativeProps';
 import { TdSwipeCellProps, SwipeActionItem, Sure } from './type';
@@ -11,7 +11,7 @@ import { swipeCellDefaultProps } from './defaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import useLayoutEffect from '../hooks/useLayoutEffect';
-import { Styles, StyledProps } from '../common';
+import { Styles, StyledProps, TNode } from '../common';
 
 import './style';
 
@@ -202,9 +202,9 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     if (props.onClick) props.onClick(action, side);
   };
 
-  const renderActions = (actions: SwipeActionItem[] | ReactNode, side: SideType) => {
+  const renderActions = (actions: SwipeActionItem[] | TNode, side: SideType) => {
     if (isArray(actions)) {
-      return actions.map((action, index) => {
+      return actions.map((action: SwipeActionItem, index: number) => {
         const btnClass = classNames([`${swipeCellClass}__content`, action.className || '']);
         const style = { height: '100%', ...action.style };
         const { icon: btnIcon, text: btnText, ...buttonProps } = action;
@@ -223,7 +223,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
         );
       });
     }
-    return actions;
+    return parseTNode(actions);
   };
 
   const renderSureContent = () => {
@@ -238,7 +238,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
         left: 0,
         right: 0,
       };
-      return <div style={{ ...style }}>{curSure.content}</div>;
+      return <div style={{ ...style }}>{parseTNode(curSure.content)}</div>;
     }
     return null;
   };
@@ -264,7 +264,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
             {renderActions(left, 'left')}
           </div>
         )}
-        {content}
+        {parseTNode(content)}
         {right && (
           <div className={`${swipeCellClass}__right`} ref={rightRef}>
             {renderSureContent()}

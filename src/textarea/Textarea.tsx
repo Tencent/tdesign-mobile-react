@@ -50,8 +50,8 @@ const Textarea = forwardRef<TextareaRefInterface, TextareaProps>((originProps, r
   const [value, setValue] = useDefault(props.value, defaultValue, props.onChange);
   const [textareaStyle, setTextareaStyle] = useState({});
   const composingRef = useRef(false);
-  const textareaRef: React.RefObject<HTMLTextAreaElement> = useRef();
-  const wrapperRef: React.RefObject<HTMLDivElement> = useRef();
+  const textareaRef: React.RefObject<HTMLTextAreaElement> = useRef(null);
+  const wrapperRef: React.RefObject<HTMLDivElement> = useRef(null);
 
   const textareaLength = useMemo(() => {
     const realValue = value ?? '';

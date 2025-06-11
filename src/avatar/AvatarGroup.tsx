@@ -16,7 +16,9 @@ export interface AvatarGroupProps extends TdAvatarGroupProps, StyledProps {
 }
 
 function getValidChildren(children: React.ReactNode) {
-  return React.Children.toArray(children).filter((child) => React.isValidElement(child)) as React.ReactElement[];
+  return React.Children.toArray(children).filter((child) =>
+    React.isValidElement(child),
+  ) as React.ReactElement<AvatarGroupProps>[];
 }
 
 const AvatarGroup = (props: AvatarGroupProps) => {
