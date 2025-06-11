@@ -6,12 +6,15 @@ import { fabDefaultProps } from './defaultProps';
 import { StyledProps } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
+import parseTNode from '../_util/parseTNode';
 
-export interface FabProps extends TdFabProps, StyledProps {}
+export interface FabProps extends TdFabProps, StyledProps {
+  children?: React.ReactNode;
+}
 
 const Fab: React.FC<FabProps> = (originProps) => {
   const props = useDefaultProps(originProps, fabDefaultProps);
-  const { buttonProps, icon = null, text, onClick } = props;
+  const { children, buttonProps, icon = null, text, onClick } = props;
 
   const fabClass = usePrefixClass('fab');
 
@@ -189,7 +192,7 @@ const Fab: React.FC<FabProps> = (originProps) => {
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {props.children || defaultContent}
+      {parseTNode(children, null, defaultContent)}
     </div>
   );
 };
