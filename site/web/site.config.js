@@ -191,12 +191,14 @@ export const docs = [
         component: () => import('tdesign-mobile-react/calendar/calendar.md'),
         componentEn: () => import('tdesign-mobile-react/calendar/calendar.en-US.md'),
       },
-      // {
-      //   title: 'Cascader 级联选择器',
-      //   name: 'cascader',
-      //   path: '/mobile-react/components/cascader',
-      //   component: () => import('tdesign-mobile-react/cascader/cascader.md'),
-      // },
+      {
+        title: 'Cascader 级联选择器',
+        titleEn: 'Cascader',
+        name: 'cascader',
+        path: '/mobile-react/components/cascader',
+        component: () => import('tdesign-mobile-react/cascader/cascader.md'),
+        componentEn: () => import('tdesign-mobile-react/cascader/cascader.en-US.md'),
+      },
       {
         title: 'CheckBox 多选框',
         titleEn: 'CheckBox',
@@ -382,12 +384,14 @@ export const docs = [
         component: () => import('tdesign-mobile-react/image/image.md'),
         componentEn: () => import('tdesign-mobile-react/image/image.en-US.md'),
       },
-      // {
-      //   title: 'ImageViewer 图片预览',
-      //   name: 'image-viewer',
-      //   path: '/mobile-react/components/image-viewer',
-      //   component: () => import('tdesign-mobile-react/image-viewer/image-viewer.md'),
-      // },
+      {
+        title: 'ImageViewer 图片预览',
+        titleEn: 'ImageViewer',
+        name: 'ImageViewer',
+        path: '/mobile-react/components/image-viewer',
+        component: () => import('tdesign-mobile-react/image-viewer/image-viewer.md'),
+        componentEn: () => import('tdesign-mobile-react/image-viewer/image-viewer.en-US.md'),
+      },
       {
         title: 'List 列表',
         name: 'list',
@@ -468,6 +472,12 @@ export const docs = [
         name: 'dialog',
         path: '/mobile-react/components/dialog',
         component: () => import('tdesign-mobile-react/dialog/dialog.md'),
+      },
+      {
+        title: 'DropdownMenu 下拉菜单',
+        name: 'dropdown-menu',
+        path: '/mobile-react/components/dropdown-menu',
+        component: () => import('tdesign-mobile-react/dropdown-menu/dropdown-menu.md'),
       },
       // {
       //   title: 'DropdownMenu 下拉菜单',

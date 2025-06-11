@@ -14,8 +14,8 @@ const TabPanel: FC<TabPanelProps> = (props) => {
   const tabPanelClass = usePrefixClass('tab-panel');
   const tabClass = usePrefixClass('tabs');
   const tabProps = useContext(TabContext);
-  const { activeKey } = tabProps;
-  const isActive = useMemo(() => value === activeKey, [activeKey, value]);
+  const { currentValue } = tabProps;
+  const isActive = useMemo(() => value === currentValue, [currentValue, value]);
   const [isMount, setIsMount] = useState(lazy ? isActive : true);
 
   useEffect(() => {

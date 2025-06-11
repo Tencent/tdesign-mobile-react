@@ -13,6 +13,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
   const { classPrefix } = useConfig();
   const {
     disabled,
+    icon,
     options,
     value,
     defaultValue,
@@ -39,6 +40,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
           typeof radioProps.value !== 'undefined' &&
           internalValue === radioProps.value,
         disabled: radioProps.disabled || disabled,
+        icon: radioProps.icon || icon,
         readonly: radioProps.readonly || readonly,
         allowUncheck: radioProps.allowUncheck || allowUncheck,
         borderless: radioProps.borderless || borderless,

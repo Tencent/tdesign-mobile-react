@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useLayoutEffect } from 'react';
 import { reconvertUnit } from '../_util/convertUnit';
 import Button from '../button';
 import { TdFabProps } from './type';
@@ -6,14 +6,18 @@ import { fabDefaultProps } from './defaultProps';
 import { StyledProps } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
+import parseTNode from '../_util/parseTNode';
 
-export interface FabProps extends TdFabProps, StyledProps {}
+export interface FabProps extends TdFabProps, StyledProps {
+  children?: React.ReactNode;
+}
 
 const Fab: React.FC<FabProps> = (originProps) => {
   const props = useDefaultProps(originProps, fabDefaultProps);
-  const { buttonProps, icon = null, text, onClick } = props;
+  const { children, buttonProps, icon = null, text, onClick } = props;
 
-  const fabButtonRef = useRef(null);
+  const fabClass = usePrefixClass('fab');
+
   const fabRef = useRef<HTMLDivElement>(null);
 
   const [fabButtonSize, setFabButtonSize] = useState({
@@ -21,16 +25,17 @@ const Fab: React.FC<FabProps> = (originProps) => {
     height: 0,
   });
 
-  useEffect(() => {
-    if (fabButtonRef.current) {
-      const info = window.getComputedStyle(fabButtonRef.current);
+  useLayoutEffect(() => {
+    const button = document.querySelector(`.${fabClass}__button`);
+    if (button) {
+      const info = window.getComputedStyle(button);
 
       setFabButtonSize({
         width: +reconvertUnit(info.width),
         height: +reconvertUnit(info.height),
       });
     }
-  }, []);
+  }, [fabClass]);
 
   const [btnSwitchPos, setBtnSwitchPos] = useState({
     x: 16,
@@ -45,8 +50,6 @@ const Fab: React.FC<FabProps> = (originProps) => {
     endX: 0,
     endY: 0,
   };
-
-  const fabClass = usePrefixClass('fab');
 
   const onClickHandle = (e: React.MouseEvent<HTMLDivElement>) => {
     onClick({ e });
@@ -167,6 +170,18 @@ const Fab: React.FC<FabProps> = (originProps) => {
     };
     setSwitchPosition(switchPos.endX, switchPos.endY);
   };
+  const defaultContent = (
+    <Button
+      size="large"
+      theme="primary"
+      shape={props.text ? 'round' : 'circle'}
+      className={`${fabClass}__button`}
+      {...(buttonProps as TdFabProps['buttonProps'])}
+      icon={icon}
+    >
+      {text}
+    </Button>
+  );
 
   return (
     <div
@@ -177,17 +192,7 @@ const Fab: React.FC<FabProps> = (originProps) => {
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      <Button
-        ref={fabButtonRef}
-        size="large"
-        theme="primary"
-        shape={props.text ? 'round' : 'circle'}
-        className={`${fabClass}__button`}
-        {...(buttonProps as TdFabProps['buttonProps'])}
-        icon={icon}
-      >
-        {text}
-      </Button>
+      {parseTNode(children, null, defaultContent)}
     </div>
   );
 };

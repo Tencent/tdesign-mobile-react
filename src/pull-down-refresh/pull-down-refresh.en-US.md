@@ -2,13 +2,13 @@
 
 ## API
 
-
 ### PullDownRefresh Props
 
 name | type | default | description | required
 -- | -- | -- | -- | --
 className | String | - | className of component | N
 style | Object | - | CSS(Cascading Style Sheets)，Typescript：`React.CSSProperties` | N
+disabled | Boolean | false | disabled pull down refresh | N
 loadingBarHeight | String / Number | 50 | \- | N
 loadingProps | Object | - | Typescript：`LoadingProps`，[Loading API Documents](./loading?tab=api)。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/pull-down-refresh/type.ts) | N
 loadingTexts | Array | [] | Typescript：`string[]` | N

@@ -11,6 +11,7 @@ import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { tabsDefaultProps } from './defaultProps';
 import parseTNode from '../_util/parseTNode';
+import useDefault from '../_util/useDefault';
 import TabContext from './context';
 
 type TabsHTMLAttrs = Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'style'>;
@@ -60,9 +61,8 @@ const Tabs: FC<TabsProps> = (props) => {
     return propsArr;
   }, [list, children]);
 
-  const [activeKey, setActiveKey] = useState<number | string>(
-    defaultValue || defaultValue === 0 ? defaultValue : value,
-  );
+  const [currentValue, setCurrentValue] = useDefault(value, defaultValue, onChange);
+
   const [lineStyle, setLineStyle] = useState({});
   const { classPrefix } = useConfig();
   const activeClass = `${tabsClass}__item--active`;
@@ -78,15 +78,15 @@ const Tabs: FC<TabsProps> = (props) => {
   const tabIndex = useMemo(() => {
     let index = 0;
     for (let i = 0; i < itemProps.length; i++) {
-      if (itemProps[i].value === activeKey) {
+      if (itemProps[i].value === currentValue) {
         index = i;
         break;
       }
     }
     return index;
-  }, [activeKey, itemProps]);
+  }, [currentValue, itemProps]);
 
-  const currentIndex = useMemo(() => itemProps.map((p) => p.value).indexOf(activeKey), [activeKey, itemProps]);
+  const currentIndex = useMemo(() => itemProps.map((p) => p.value).indexOf(currentValue), [currentValue, itemProps]);
 
   const moveToActiveTab = () => {
     if (navWrapRef.current && navLineRef.current && showBottomLine) {
@@ -117,16 +117,13 @@ const Tabs: FC<TabsProps> = (props) => {
 
   const handleTabClick = (item: TdTabPanelProps) => {
     const { value, disabled } = item;
-    if (disabled || activeKey === value) {
+    if (disabled || currentValue === value) {
       return false;
     }
-    setActiveKey(item.value);
-    if (onChange) {
-      onChange(item.value, parseTNode(item.label).toString());
-    }
-    if (onClick) {
-      onClick(item.value, parseTNode(item.label).toString());
-    }
+    setCurrentValue(item.value, parseTNode(item.label).toString());
+
+    onClick?.(item.value, parseTNode(item.label).toString());
+
     setTimeout(() => {
       moveToActiveTab();
     }, 0);
@@ -214,7 +211,7 @@ const Tabs: FC<TabsProps> = (props) => {
           className={classnames({
             [`${tabsClass}__item ${tabsClass}__item--top`]: true,
             [`${tabsClass}__item--evenly`]: spaceEvenly,
-            [`${activeClass}`]: item.value === activeKey,
+            [`${activeClass}`]: item.value === currentValue,
             [`${tabsClass}__item--disabled`]: item.disabled,
             [`${tabsClass}__item--${theme}`]: true,
           })}
@@ -224,7 +221,7 @@ const Tabs: FC<TabsProps> = (props) => {
             <div
               className={classnames({
                 [`${tabsClass}__item-inner ${tabsClass}__item-inner--${theme}`]: true,
-                [`${tabsClass}__item-inner--active`]: theme === 'tag' && item.value === activeKey,
+                [`${tabsClass}__item-inner--active`]: theme === 'tag' && item.value === currentValue,
               })}
             >
               <div>{parseTNode(item.label)}</div>
@@ -263,7 +260,7 @@ const Tabs: FC<TabsProps> = (props) => {
         onTouchMove={handleTouchmove}
         onTouchEnd={handleTouchend}
       >
-        <TabContext.Provider value={{ activeKey }}>{children}</TabContext.Provider>
+        <TabContext.Provider value={{ currentValue }}>{children}</TabContext.Provider>
       </div>
     </div>
   );

@@ -46,6 +46,11 @@ export default {
       component: () => import('tdesign-mobile-react/image/_example/index.tsx'),
     },
     {
+      title: 'ImageViewer 图片预览',
+      name: 'image-viewer',
+      component: () => import('tdesign-mobile-react/image-viewer/_example/index.tsx'),
+    },
+    {
       title: 'Overlay 遮罩层',
       name: 'overlay',
       component: () => import('tdesign-mobile-react/overlay/_example/index.tsx'),
@@ -133,6 +138,11 @@ export default {
       component: () => import('tdesign-mobile-react/back-top/_example/index.tsx'),
     },
     {
+      title: 'Cascader 级联选择器',
+      name: 'cascader',
+      component: () => import('tdesign-mobile-react/cascader/_example/index.tsx'),
+    },
+    {
       title: 'Checkbox 多选框',
       name: 'checkbox',
       component: () => import('tdesign-mobile-react/checkbox/_example/index.tsx'),
@@ -141,6 +151,11 @@ export default {
       title: 'Dialog 对话框',
       name: 'dialog',
       component: () => import('tdesign-mobile-react/dialog/_example/index.tsx'),
+    },
+    {
+      title: 'DropdownMenu 下拉菜单',
+      name: 'dropdown-menu',
+      component: () => import('tdesign-mobile-react/dropdown-menu/_example/index.tsx'),
     },
     {
       title: 'Loading 加载中',
