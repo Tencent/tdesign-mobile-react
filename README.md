@@ -38,6 +38,22 @@ TDesign 适配移动端的组件库，适合在 React 16.x 技术栈项目中使
 | -- | -- | -- | -- |
 | IE11, Edge | last 3 versions | last 3 versions | last 2 versions |
 
+# 贡献成员
+
+<a href="https://openomy.app/github/tencent/tdesign-mobile-react" target="_blank">
+  <img src="https://openomy.app/svg?repo=tencent/tdesign-mobile-react&chart=bubble&latestMonth=12" alt="Contribution Leaderboard" />
+</a>
+
+# 参与贡献
+
+TDesign 欢迎任何愿意参与贡献的参与者。如果需要本地运行代码或参与贡献，请先阅读[参与贡献](https://github.com/Tencent/tdesign-mobile-react/blob/develop/CONTRIBUTING.md)。
+
+# 反馈
+
+有任何问题，建议通过 [Github issues](https://github.com/Tencent/tdesign-mobile-react/issues) 反馈或扫码加入用户微信群。
+
+<img src="https://raw.githubusercontent.com/Tencent/tdesign/main/packages/components/src/images/groups/react-group.png" width="200" />
+
 # 开源协议
 
 TDesign 遵循 [MIT 协议](https://github.com/Tencent/tdesign-mobile-react/LICENSE)。
