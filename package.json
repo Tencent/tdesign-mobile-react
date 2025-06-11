@@ -67,8 +67,8 @@
   "author": "tdesign",
   "license": "MIT",
   "peerDependencies": {
-    "react": ">=16.13.1",
-    "react-dom": ">=16.13.1"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "bugs": {
     "url": "https://github.com/Tencent/tdesign-mobile-react/issues"
