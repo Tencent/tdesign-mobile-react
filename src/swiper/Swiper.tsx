@@ -37,7 +37,8 @@ interface SwiperStyleState {
 }
 
 const Swiper = forwardRefWithStatics(
-  (originProps: SwiperProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  (originProps: SwiperProps, _ref: any) => {
     const props = useDefaultProps<SwiperProps>(originProps, swiperDefaultProps);
     const {
       className,
@@ -64,8 +65,8 @@ const Swiper = forwardRefWithStatics(
     const swiperClass = usePrefixClass('swiper');
     const swiperNavClass = usePrefixClass('swiper-nav');
     const navCtrlActive = useRef(false); // 导航控制按钮激活状态
-    const rootDiv = useRef<HTMLDivElement>(); // 根节点
-    const swiperContainer = useRef<HTMLDivElement>(); // swiper容器节点
+    const rootDiv = useRef<HTMLDivElement>(null); // 根节点
+    const swiperContainer = useRef<HTMLDivElement>(null); // swiper容器节点
     const swiperSource = useRef<SwiperChangeSource>('autoplay'); // swiper变化来源
     const previousIndex = useRef(current || defaultCurrent || 0); // 上一次轮播页索引
     const nextIndex = useRef(previousIndex.current);
@@ -141,8 +142,8 @@ const Swiper = forwardRefWithStatics(
       [swiperClass, type, isBottomPagination, navPlacement, className],
     );
 
-    const intervalTimer = useRef<any>(); // 轮播计时器
-    const durationTimer = useRef<any>(); // 轮播动画计时器
+    const intervalTimer = useRef<any>(null); // 轮播计时器
+    const durationTimer = useRef<any>(null); // 轮播动画计时器
     const [itemChange, setItemChange] = useState(false); // 是否处于轮播状态
     const [swiperStatus, setSwiperStatus] = useState(SwiperStatus.IDLE); // 轮播状态
     const [swiperStyle, setSwiperStyle] = useState<SwiperStyleState>({

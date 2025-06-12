@@ -9,6 +9,7 @@ import {
   ErrorCircleFilledIcon,
 } from 'tdesign-icons-react';
 import { isString } from 'lodash-es';
+import parseTNode from '../_util/parseTNode';
 import { StyledProps } from '../common';
 import { TdProgressProps } from './type';
 import useConfig from '../hooks/useConfig';
@@ -19,7 +20,9 @@ import { PRO_THEME, STATUS_ICON } from '../_common/js/progress/const';
 import { getDiameter, getCircleStokeWidth } from '../_common/js/progress/utils';
 import { PLUMP_SEPARATE } from './constants';
 
-export interface ProgressProps extends TdProgressProps, StyledProps {}
+export interface ProgressProps extends TdProgressProps, StyledProps {
+  children?: React.ReactNode;
+}
 
 const Progress = forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
   const { classPrefix } = useConfig();
@@ -74,7 +77,7 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
         );
       }
     } else {
-      info = <div className={`${progressClass}__info`}>{label}</div>;
+      info = <div className={`${progressClass}__info`}>{parseTNode(label)}</div>;
     }
     return info;
   };

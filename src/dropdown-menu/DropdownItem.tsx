@@ -67,8 +67,8 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
 
   const isActived = id === activedId;
 
-  const menuItemRef = useRef<HTMLDivElement>();
-  const itemRef = useRef<HTMLDivElement>();
+  const menuItemRef = useRef<HTMLDivElement>(null);
+  const itemRef = useRef<HTMLDivElement>(null);
 
   const getDropdownItemStyle = () => {
     const ele = menuItemRef.current;

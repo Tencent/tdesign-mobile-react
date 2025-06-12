@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 import type { ActionSheetProps } from './ActionSheet';
 import type { ActionSheetItem } from './type';
-
+import type { TNode } from '../common';
 import { Grid, GridItem } from '../grid';
 import { Swiper, SwiperProps } from '../swiper';
 import { usePrefixClass } from '../hooks/useClass';
@@ -57,7 +57,7 @@ export function ActionSheetGrid(props: ActionSheetGridProps) {
             <Grid gutter={0} column={gridColumn} style={{ width: '100%' }}>
               {item.map((it, idx2) => {
                 let label: string;
-                let image: React.ReactNode;
+                let image: TNode;
                 let badge: ActionSheetItem['badge'];
                 if (typeof it === 'string') {
                   label = it;
