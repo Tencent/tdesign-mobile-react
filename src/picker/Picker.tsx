@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState, useEffect } from 'react';
+import React, { FC, useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import { isBoolean, isString, isFunction, get as lodashGet } from 'lodash-es';
 import { KeysType } from '../common';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -36,76 +36,78 @@ const Picker: FC<PickerProps> = (props) => {
   const name = `${classPrefix}-picker`;
 
   const [pickerValue = [], setPickerValue] = useDefault(value, defaultValue, onChange);
-  const confirmButtonText = getDefaultText(props.confirmBtn, undefined);
-  const cancelButtonText = getDefaultText(props.cancelBtn, undefined);
+  const confirmButtonText = useMemo(() => getDefaultText(props.confirmBtn, '确认'), [props.confirmBtn]);
+  const cancelButtonText = useMemo(() => getDefaultText(props.cancelBtn, '取消'), [props.cancelBtn]);
   const [curValueArray, setCurValueArray] = useState(value?.map((item) => item) ?? []);
+  const pickerItemInstanceArray = useRef<PickerItemExposeRef[]>([]);
 
-  // const realColumns = isFunction(columns) ? getPickerColumns(columns(curValueArray)) : getPickerColumns(columns);
   const realColumns = useMemo(() => {
     if (isFunction(columns)) {
       const columnsArray = columns(curValueArray);
       return getPickerColumns(columnsArray);
     }
-
     return getPickerColumns(columns);
-  }, [columns, curValueArray]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [columns, JSON.stringify(curValueArray)]);
 
-  const curIndexArray = realColumns.map((item: PickerColumn, index: number) =>
-    getIndexFromColumns(item, pickerValue[index], keys),
+  const curIndexArray = useRef(
+    realColumns.map((item: PickerColumn, index: number) => getIndexFromColumns(item, pickerValue[index], keys)),
   );
-  const [pickerItemInstanceArray, setPickerItemInstanceArray] = useState<PickerItemExposeRef[]>([]);
 
   const setPickerItemRef = (instance: PickerItemExposeRef, idx: number) => {
-    setPickerItemInstanceArray((prev) => {
-      const copy = [...prev];
-      copy[idx] = instance;
-      return copy;
-    });
+    pickerItemInstanceArray.current[idx] = instance;
   };
 
-  function handleConfirm(e: any) {
-    const target = realColumns.map((item, idx) => item[curIndexArray[idx]]);
-    const label = target.map((item) => lodashGet(item, keys?.label ?? 'label'));
-    const value = target.map((item) => lodashGet(item, keys?.value ?? 'value'));
-    setPickerValue(value, {
-      columns: [],
-      e,
-    });
-    onConfirm?.(value, { index: curIndexArray, e, label });
-  }
+  const handleConfirm = useCallback(
+    (e: any) => {
+      const target = realColumns.map((item, idx) => item[curIndexArray.current[idx]]);
+      const label = target.map((item) => lodashGet(item, keys?.label ?? 'label'));
+      const value = target.map((item) => lodashGet(item, keys?.value ?? 'value'));
+      setPickerValue(value, e);
+      onChange(value, { columns: realColumns, e } as any);
+      onConfirm?.(value, { index: curIndexArray.current, e, label } as any);
+    },
+    [realColumns, keys, onChange, onConfirm, setPickerValue],
+  );
 
-  function handleCancel(e: any) {
-    pickerItemInstanceArray.forEach((item, idx) => {
-      item?.setIndex(curIndexArray[idx]);
-    });
-    onCancel?.({ e });
-  }
+  const handleCancel = useCallback(
+    (e: any) => {
+      pickerItemInstanceArray.current.forEach((item, idx) => {
+        item?.setIndex(curIndexArray.current[idx]);
+      });
+      onCancel?.({ e });
+    },
+    [onCancel, curIndexArray],
+  );
 
-  function handlePick(context: { value: string; index: number }, column: number) {
-    const { index } = context;
+  const handlePick = useCallback(
+    (context: { value: PickerValue; index: number }, idx: number) => {
+      const { index, value: column } = context;
+      const newCurValueArray = [...curValueArray];
+      newCurValueArray[idx] = lodashGet(realColumns?.[idx][index], keys?.value ?? 'value');
 
-    curIndexArray[column] = index;
-    const pickColumnValue = lodashGet(realColumns[column][index], keys?.value ?? 'value');
-    setCurValueArray((prev) => ({
-      ...prev,
-      [column]: pickColumnValue,
-    }));
-
-    onPick?.(curValueArray, { index, column });
-  }
+      curIndexArray.current[column] = index;
+      setCurValueArray(newCurValueArray);
+      onPick?.(newCurValueArray, { index, column: idx });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [JSON.stringify(curValueArray), realColumns, keys, onPick],
+  );
 
   useEffect(() => {
-    setCurValueArray(pickerValue.map((item) => item));
-  }, [pickerValue]);
+    setCurValueArray(pickerValue.map((item) => item) || []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(pickerValue)]);
 
   useEffect(() => {
     realColumns.forEach((col: PickerColumn, idx: number) => {
       const index = col.findIndex((item) => lodashGet(item, keys?.value ?? 'value') === curValueArray[idx]);
-      curIndexArray[idx] = Math.max(index, 0);
-      pickerItemInstanceArray[idx]?.setIndex(curIndexArray[idx]);
+      const newIndex = index > -1 ? index : 0;
+      curIndexArray.current[idx] = newIndex;
+      pickerItemInstanceArray.current[idx]?.setIndex(curIndexArray.current[idx]);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [realColumns, curIndexArray]);
+  }, [realColumns, JSON.stringify(curValueArray), keys]);
 
   return (
     <PickerContext.Provider value={{ keys, value, onChange }}>
@@ -126,7 +128,6 @@ const Picker: FC<PickerProps> = (props) => {
           ) : null}
         </div>
         {header}
-
         <div className={`${name}__main`}>
           {realColumns.map((item, idx) => (
             <div key={idx} className={`${name}-item__group`}>

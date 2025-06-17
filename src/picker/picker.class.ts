@@ -1,6 +1,17 @@
-import { KeysType } from '../common';
+import { defaultGlobalConfig } from 'tdesign-mobile-react/config-provider/ConfigContext';
 import { PickerColumn } from './type';
-import { findIndexOfEnabledOption } from './utils';
+import { KeysType } from '../common';
+import { findIndexOfEnabledOption, limitNumberInRange } from './utils';
+
+export interface PickerOptions {
+  defaultIndex?: number;
+  keys?: KeysType;
+  defaultPickerColumns?: PickerColumn;
+  el: HTMLElement | HTMLDivElement | HTMLUListElement;
+  onChange: (index: number) => void;
+  swipeDuration?: string | number;
+  prefixCls: string;
+}
 
 export function stopPropagation(event: Event) {
   event.stopPropagation();
@@ -17,15 +28,6 @@ export function preventDefault(event: Event, isStopPropagation?: boolean) {
   }
 }
 
-export interface PickerOptions {
-  defaultIndex?: number;
-  keys?: KeysType;
-  defaultPickerColumns?: PickerColumn;
-  el: HTMLElement | HTMLDivElement | HTMLUListElement;
-  onChange: (index: number) => void;
-  classPrefix: string;
-}
-
 const quartEaseOut = function (t: number, b: number, c: number, d: number) {
   let tempT = t;
   return -c * ((tempT = tempT / d - 1) * tempT * tempT * tempT - 1) + b;
@@ -38,7 +40,9 @@ export const DEFAULT_ITEM_HEIGHT = 40;
 const DEFAULT_HOLDER_HEIGHT = 200;
 const OFFSET_OF_BOUND = 60;
 export const ANIMATION_TIME_LIMIT = 460;
+export const ANIMATION_DISTANCE_LIMIT = 15;
 const ANIMATION_DURATION = 150;
+const DEFAULT_SWIPE_DURATION = 1000;
 
 /**
  * @name picker
@@ -94,7 +98,11 @@ class Picker {
 
   indicatorOffset: number;
 
+  swipeDuration?: number | string;
+
   pickerColumns: PickerColumn;
+
+  prefixCls: string;
 
   constructor(options: PickerOptions) {
     if (!options.el) throw new Error('options el needed!');
@@ -102,6 +110,9 @@ class Picker {
     this.pickerColumns = options.defaultPickerColumns;
     this.options = options;
     this.onChange = options.onChange;
+    this.swipeDuration = options.swipeDuration ?? DEFAULT_SWIPE_DURATION;
+    this.prefixCls = options.prefixCls ?? defaultGlobalConfig.classPrefix;
+
     this.init();
   }
 
@@ -118,7 +129,7 @@ class Picker {
    * @description 获取所有的列表DOM元素
    */
   updateItems(): void {
-    this.elementItems = [...Array.from(this.holder.querySelectorAll('li'))];
+    this.elementItems = Array.from(this.holder.querySelectorAll('li'));
     const itemLen = this.elementItems.length;
     this.offsetYOfEnd = -this.itemHeight * (itemLen - 3);
     this.offsetYOfEndBound = -(this.itemHeight * (itemLen - 3) + OFFSET_OF_BOUND);
@@ -130,13 +141,13 @@ class Picker {
   initScrollParams(): void {
     this.list = this.holder as HTMLUListElement;
     this.itemGroupHeight = this.holder.parentElement?.offsetHeight || DEFAULT_HOLDER_HEIGHT;
-    this.elementItems = [...Array.from(this.holder.querySelectorAll('li'))];
+    this.elementItems = Array.from(this.holder.querySelectorAll('li'));
     this.itemHeight = this.holder.querySelector('li')?.offsetHeight || DEFAULT_ITEM_HEIGHT;
     this.height = this.holder.offsetHeight || DEFAULT_HOLDER_HEIGHT;
     this.indicatorOffset = this.itemGroupHeight / 2 - this.itemHeight / 2;
     let curIndex = findIndexOfEnabledOption(this.pickerColumns, this.options.defaultIndex || 0, this.options.keys);
-    this.itemClassName = `${this.options.classPrefix}-picker-item__item`;
-    this.itemSelectedClassName = `${this.options.classPrefix}-picker-item__item--active`;
+    this.itemClassName = `${this.prefixCls}-picker-item__item`;
+    this.itemSelectedClassName = `${this.prefixCls}-picker-item__item--active`;
     this.startY = 0;
     this.isPicking = false;
     this.lastMoveTime = 0;
@@ -175,17 +186,31 @@ class Picker {
     if (!this.holder) return;
     if (this.list) this.list.style.transition = '';
     this.startY = event.changedTouches[0].pageY;
+    this.offsetYOfStart = this.offsetY;
     // 更新惯性参数
     this.updateInertiaParams(event, true);
+  }
+
+  getCount() {
+    return this.pickerColumns.length;
+  }
+
+  getRange(thresholdA = 0, thresholdB = 3) {
+    const min = -(this.getCount() - thresholdA) * this.itemHeight;
+    const max = thresholdB * this.itemHeight;
+    return { min, max };
   }
 
   touchMoveHandler(event: TouchEvent): void {
     preventDefault(event, false);
     if (!this.isPicking || !this.holder) return;
+
     const endY = event.changedTouches[0].pageY;
     const dragRange = endY - this.startY;
     this.updateInertiaParams(event, false);
-    const moveOffsetY = this.indicatorOffset - this.curIndex * this.itemHeight + dragRange;
+
+    const { min, max } = this.getRange(0, 5);
+    const moveOffsetY = limitNumberInRange(this.offsetYOfStart + dragRange, min, max);
     this.setOffsetY(moveOffsetY);
   }
 
@@ -197,32 +222,25 @@ class Picker {
     const nowTime = event.timeStamp || Date.now();
     // move time gap
     const moveTime = nowTime - this.lastMoveTime;
+    const distance = point.pageY - this.lastMoveStart;
     // 超出一定时间不再惯性滚动
-    if (moveTime > ANIMATION_TIME_LIMIT) {
+    if (moveTime > ANIMATION_TIME_LIMIT || Math.abs(distance) < ANIMATION_DISTANCE_LIMIT || !this.swipeDuration) {
       this.stopInertiaMove = false;
       this.endScroll();
       return;
     }
-    // 手指滑动的速度
-    const v = (point.pageY - this.lastMoveStart) / moveTime;
-    // 加速度方向
-    const dir = v > 0 ? -1 : 1;
-    // 摩擦系数，参考iscroll的阻尼系数
-    const dampingCoefficient = 0.0008;
-    // 加速度
-    const deceleration = -1 * dir * dampingCoefficient;
-    // 滚动持续时间
-    const duration = Math.abs(v / deceleration);
-    const endY = event.changedTouches[0].pageY;
-    const dragRange = endY - this.startY;
-    // 滚动距离
-    const dist = v * duration - (duration ** 2 * deceleration) / 2 + dragRange;
+
+    const speed = Math.abs(distance / moveTime);
+    let dist = this.offsetY + (speed / 0.005) * (distance < 0 ? -1 : 1);
+    const { min, max } = this.getRange(3, 2);
+    dist = limitNumberInRange(dist, min, max);
+
     if (dist === 0) {
       this.stopInertiaMove = false;
       this.endScroll();
       return;
     }
-    this.scrollDist(nowTime, this.offsetY, dist, duration);
+    this.scrollDist(nowTime, this.offsetY, dist, +this.swipeDuration);
   }
 
   /**
@@ -255,7 +273,7 @@ class Picker {
       }
       if (!start) start = timestamp;
       const progress = timestamp - start;
-      const newOffsetY = quartEaseOut(progress, startOffsetY, dist, duration);
+      const newOffsetY = quartEaseOut(progress, startOffsetY, dist - startOffsetY, duration);
       this.setOffsetY(newOffsetY);
       if (progress > duration || newOffsetY > this.offsetYOfStartBound || newOffsetY < this.offsetYOfEndBound) {
         this.endScroll();

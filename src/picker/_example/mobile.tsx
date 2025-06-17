@@ -1,6 +1,7 @@
 import React from 'react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import BaseDemo from './base';
+import AreaDemo from './area';
 
 export default function Base() {
   return (
@@ -11,6 +12,7 @@ export default function Base() {
         <BaseDemo />
       </TDemoBlock>
       <TDemoBlock title="02 组件样式"></TDemoBlock>
+      <AreaDemo />
     </div>
   );
 }

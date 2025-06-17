@@ -1,130 +1,67 @@
-import React, {
-  useRef,
-  useCallback,
-  useContext,
-  useMemo,
-  useImperativeHandle,
-  useEffect,
-  useState,
-  forwardRef,
-} from 'react';
+import React, { useEffect, useRef, useImperativeHandle, forwardRef, useCallback } from 'react';
 import { get as lodashGet } from 'lodash-es';
-import useDefaultProps from 'tdesign-mobile-react/hooks/useDefaultProps';
 import cls from 'classnames';
-import useConfig from '../hooks/useConfig';
-import withNativeProps, { NativeProps } from '../_util/withNativeProps';
-import { PickerValue, PickerColumnItem, TdPickerProps } from './type';
+import { KeysType, StyledProps } from '../common';
+import { PickerColumnItem, PickerValue } from './type';
 import Picker from './picker.class';
-import forwardRefWithStatics from '../_util/forwardRefWithStatics';
-import PickerContext from './picker-context';
+import useConfig from '../hooks/useConfig';
 
-export interface PickerItemProps extends NativeProps {
-  renderLabel?: TdPickerProps['renderLabel'];
-  onPick?: (value: { value: string; index: number }) => void;
+export interface PickerItemProps extends StyledProps {
+  options?: PickerColumnItem[];
   value?: PickerValue;
-  options: PickerColumnItem[];
+  renderLabel?: (option: PickerColumnItem) => React.ReactNode;
+  onPick?: (context: { value: PickerValue; index: number }) => void;
+  swipeDuration?: string | number;
+  keys?: KeysType;
 }
 
-export type PickerItemExposeRef = {
+export interface PickerItemExposeRef {
   setIndex: (index: number) => void;
-  setValue: (value: number | string | undefined) => void;
+  setValue: (value: PickerValue) => void;
   setOptions: () => void;
   setUpdateItems: () => void;
-};
+}
 
 const PickerItem = forwardRef<PickerItemExposeRef, PickerItemProps>((props, ref) => {
-  const { options, value, renderLabel } = useDefaultProps(props, {});
+  const { options, value, renderLabel, onPick, swipeDuration = 300, keys } = props;
   const { classPrefix } = useConfig();
-  const name = `${classPrefix}-picker-item`;
-  const itemClassName = `${name}__item`;
-
-  const pickerProps = useContext(PickerContext);
-
-  const keys = useMemo(() => pickerProps && pickerProps.keys, [pickerProps]);
-
-  console.log('pickerProps', pickerProps, keys);
-
-  const picker = useRef<Picker | null>(null);
-
-  // const [, updateState] = useState(0);
-
-  // const forceUpdate = useCallback(() => updateState((pre) => pre + 1), []);
-
-  function getIndexByValue(value: number | string | undefined) {
-    let defaultIndex = 0;
-    if (typeof value !== 'undefined') {
-      defaultIndex = options.findIndex((option) => value === option.value);
-    }
-
-    return Math.max(0, defaultIndex);
-  }
-
-  function updatePickerWithNextTick(index: number) {
-    if (picker.current) {
-      picker.current.updateItems();
-      // forceUpdate();
-
-      picker.current.updateIndex(index, { isChange: false });
-    }
-  }
-
-  function setIndex(index: number) {
-    updatePickerWithNextTick(index);
-  }
-
-  function setValue(value: number | string | undefined) {
-    updatePickerWithNextTick(getIndexByValue(value));
-  }
-
-  const setOptions = () => picker.current?.update();
-  const setUpdateItems = () => picker.current?.updateItems();
-
+  const pickerItemClass = `${classPrefix}-picker-item`;
   const rootRef = useRef<HTMLUListElement>(null);
+  const pickerRef = useRef<Picker | null>(null);
 
-  useEffect(() => {
-    if (!rootRef.current) return;
-    picker.current = new Picker({
-      el: rootRef.current,
-      defaultIndex: getIndexByValue(value) || 0,
-      keys,
-      defaultPickerColumns: options,
-      onChange: (index: number) => {
-        const curItem = props.options[index];
-        const value = lodashGet(curItem, keys?.value ?? 'value');
-        const changeValue = {
-          value,
-          index,
-        };
-        props.onPick(changeValue);
-      },
-      classPrefix,
-    });
-    return () => (picker.current = null);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    // mounted 后
-    if (rootRef.current && picker.current) {
-      picker.current.updateOptions(props.options);
-      picker.current.updateItems();
+  const getIndexByValue = (val: PickerValue) => {
+    let defaultIndex = 0;
+    if (val !== undefined) {
+      defaultIndex = options.findIndex((item) => lodashGet(item, keys?.value ?? 'value') === val);
     }
-  }, [props.options]);
+    return defaultIndex < 0 ? 0 : defaultIndex;
+  };
 
-  function renderOptions() {
-    if (options.length === 0) return null;
+  const updatePickerWithNextTick = (index: number) => {
+    if (pickerRef.current) {
+      pickerRef.current.updateItems();
+      setTimeout(() => {
+        pickerRef.current?.updateIndex(index, { isChange: false });
+      }, 0);
+    }
+  };
 
-    return options.map((option, index) => {
-      const optionItemCls = cls(itemClassName, {
-        [`${itemClassName}--disabled`]: lodashGet(option, keys.disabled ?? 'disabled'),
-      });
-      return (
-        <li key={index} className={optionItemCls}>
-          {renderLabel ? renderLabel(option) : lodashGet(option, keys?.label ?? 'label')}
-        </li>
-      );
-    });
-  }
+  const setIndex = (index: number) => {
+    updatePickerWithNextTick(index);
+  };
+
+  const setValue = (value: PickerValue) => {
+    const index = getIndexByValue(value);
+    updatePickerWithNextTick(index);
+  };
+
+  const setOptions = () => {
+    pickerRef.current?.update();
+  };
+
+  const setUpdateItems = () => {
+    pickerRef.current?.updateItems();
+  };
 
   useImperativeHandle(ref, () => ({
     setIndex,
@@ -133,11 +70,64 @@ const PickerItem = forwardRef<PickerItemExposeRef, PickerItemProps>((props, ref)
     setUpdateItems,
   }));
 
-  return withNativeProps(
-    props,
-    <ul ref={rootRef} className={name}>
-      {renderOptions()}
-    </ul>,
+  const onChange = useCallback(
+    (index: number) => {
+      const curItem = options[index];
+      const changeValue = lodashGet(curItem, keys?.value ?? 'value');
+      onPick?.({ value: changeValue, index });
+    },
+    [options, keys, onPick],
+  );
+
+  useEffect(() => {
+    if (pickerRef.current) return;
+    if (rootRef.current) {
+      pickerRef.current = new Picker({
+        el: rootRef.current,
+        defaultIndex: getIndexByValue(value) || 0,
+        keys,
+        defaultPickerColumns: options,
+        onChange,
+        swipeDuration,
+        prefixCls: classPrefix,
+      });
+    }
+
+    return () => {
+      pickerRef.current?.destroy();
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!pickerRef.current) return;
+    pickerRef.current.onChange = onChange;
+  }, [onChange]);
+
+  useEffect(() => {
+    if (pickerRef.current) {
+      pickerRef.current.updateOptions(options);
+      pickerRef.current.updateItems();
+    }
+  }, [options]);
+
+  const pickerItemCls = (option: PickerColumnItem) =>
+    cls([
+      `${pickerItemClass}__item`,
+      {
+        [`${pickerItemClass}__item--disabled`]: lodashGet(option, keys?.disabled ?? 'disabled'),
+      },
+    ]);
+
+  return (
+    <ul ref={rootRef} className={pickerItemClass}>
+      {options.map((option, index) => (
+        <li key={index} className={pickerItemCls(option)}>
+          {renderLabel ? renderLabel(option) : lodashGet(option, keys?.label ?? 'label')}
+        </li>
+      ))}
+    </ul>
   );
 });
 
