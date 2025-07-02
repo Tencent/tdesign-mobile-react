@@ -1774,7 +1774,7 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
               >
                 <div
                   class="t-loading t-loading--center"
-                  style="color: inherit; font-size: 20px;"
+                  style="font-size: 20px;"
                 >
                   <div
                     class="t-loading__dots"
