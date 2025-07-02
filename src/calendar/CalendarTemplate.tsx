@@ -242,7 +242,7 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
 
   // 选择日期
   const handleSelect = (year, month, date, dateItem) => {
-    if (dateItem.type === 'disabled') return;
+    if (dateItem.type === 'disabled' || props.readonly) return;
     const selected = new Date(year, month, date);
     let newSelected: TCalendarValue | TCalendarValue[];
     if (props.type === 'range' && Array.isArray(selectedDate)) {
