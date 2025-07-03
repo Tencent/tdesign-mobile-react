@@ -1,28 +1,33 @@
 import React from 'react';
-import { Table } from 'tdesign-mobile-react';
+import { Table, TableProps } from 'tdesign-mobile-react';
 
 const data = [];
-const total = 10;
+const total = 20;
 for (let i = 0; i < total; i++) {
+  const content = ['内容', '内容', '内容', '内容', '内容'][i % 5];
   data.push({
     index: i + 1,
-    applicant: ['内容', '内容', '内容'][i % 3],
-    status: ['内容', '内容', '内容'][i % 3],
-    channel: ['内容', '内容', '内容'][i % 3],
+    applicant: content,
+    status: content,
+    channel: content,
     detail: {
-      email: ['内容', '内容', '内容'][i % 3],
+      email: content,
     },
+    operation: content,
+    more: content,
   });
 }
 
-const columns = [
-  { colKey: 'applicant', title: '标题' },
+const columns: TableProps['columns'] = [
+  { colKey: 'applicant', title: '标题', fixed: 'left' },
   {
     colKey: 'status',
     title: '标题',
   },
   { colKey: 'channel', title: '标题' },
   { colKey: 'detail.email', title: '标题', ellipsis: true },
+  { colKey: 'operation', title: '标题' },
+  { colKey: 'more', title: '标题', fixed: 'right' },
 ];
 
 export default function StripeExample() {
@@ -37,6 +42,7 @@ export default function StripeExample() {
       rowKey="index"
       showHeader
       stripe
+      fixedRows={[1, 2]}
       maxHeight={400}
       onScroll={handleScroll}
     ></Table>
