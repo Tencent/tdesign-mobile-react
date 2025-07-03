@@ -8,6 +8,7 @@ import CustomTextDemo from './custom-text';
 import CustomButtonDemo from './custom-button';
 import CustomRangeDemo from './custom-range';
 import WithoutPopupDemo from './without-popup';
+import SwitchModeDemo from './switch-mode';
 import './style/index.less';
 
 export default function CheckboxDemo() {
@@ -23,6 +24,7 @@ export default function CheckboxDemo() {
         <CustomTextDemo />
         <CustomButtonDemo />
         <CustomRangeDemo />
+        <SwitchModeDemo />
       </TDemoBlock>
       <TDemoBlock summary="不使用 Popup">
         <WithoutPopupDemo />
