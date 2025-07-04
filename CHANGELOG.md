@@ -5,6 +5,14 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.16.0 `2025-07-04` 
+### 🚀 Features
+- `Fab`: 支持使用默认插槽自定义悬浮按钮内容，此时 `buttonProps`、`icon` 和 `text` 属性将失效 @novlan1 ([#645](https://github.com/Tencent/tdesign-mobile-react/pull/645))
+- `Calendar`: 新增 `switchMode` 和 `readonly` 属性 @novlan1 ([#663](https://github.com/Tencent/tdesign-mobile-react/pull/663))
+- `Table`: 支持 `fixedRows` 属性，列配置项支持 `fixed` 属性 @novlan1 ([#662](https://github.com/Tencent/tdesign-mobile-react/pull/662))
+### 🚧 Others
+- `React`: 全面升级相关依赖，直接支持 `React 19` @HaixingOoO ([#606](https://github.com/Tencent/tdesign-mobile-react/pull/606))
+
 ## 🌈 0.15.0 `2025-05-29` 
 ### 🚀 Features
 - `ImageViewer`:  新增图片预览组件 @novlan1 ([#607](https://github.com/Tencent/tdesign-mobile-react/pull/607))
