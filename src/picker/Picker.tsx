@@ -1,7 +1,8 @@
-import React, { FC, useMemo, useState, useEffect, useRef, useCallback } from 'react';
+import React, { FC, useMemo, useState, useEffect, useRef, useCallback, ReactNode } from 'react';
 import { isBoolean, isString, isFunction, get as lodashGet } from 'lodash-es';
 import { KeysType } from '../common';
 import useDefaultProps from '../hooks/useDefaultProps';
+import parseTNode from '../_util/parseTNode';
 
 import useConfig from '../hooks/useConfig';
 import useDefault from '../_util/useDefault';
@@ -13,7 +14,9 @@ import PickerItem, { type PickerItemExposeRef } from './PickerItem';
 import { getPickerColumns } from './utils';
 import PickerContext from './picker-context';
 
-export interface PickerProps extends TdPickerProps, NativeProps {}
+export interface PickerProps extends TdPickerProps, NativeProps {
+  children?: ReactNode;
+}
 
 function getDefaultText(prop: unknown, defaultText: string): string {
   if (isString(prop)) return prop;
@@ -27,11 +30,19 @@ const getIndexFromColumns = (column: PickerColumn, value: PickerValue, keys?: Ke
 };
 
 const Picker: FC<PickerProps> = (props) => {
-  const { value, onChange, defaultValue, columns, onConfirm, onCancel, onPick, title, header, keys } = useDefaultProps(
-    props,
-    pickerDefaultProps,
-  );
-
+  const {
+    columns,
+    onPick,
+    keys,
+    value,
+    defaultValue,
+    title,
+    header,
+    // footer,
+    onCancel,
+    onConfirm,
+    onChange,
+  } = useDefaultProps(props, pickerDefaultProps);
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-picker`;
 
@@ -127,7 +138,7 @@ const Picker: FC<PickerProps> = (props) => {
             </div>
           ) : null}
         </div>
-        {header}
+        {parseTNode(header)}
         <div className={`${name}__main`}>
           {realColumns.map((item, idx) => (
             <div key={idx} className={`${name}-item__group`}>
@@ -147,12 +158,12 @@ const Picker: FC<PickerProps> = (props) => {
           <div className={`${name}__mask ${name}__mask--bottom`} />
           <div className={`${name}__indicator`} />
         </div>
+        {/* {parseTNode(footer)} */}
       </div>
     </PickerContext.Provider>
   );
 };
 
-Picker.defaultProps = pickerDefaultProps;
 Picker.displayName = 'Picker';
 
 export default Picker;

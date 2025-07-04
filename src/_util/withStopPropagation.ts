@@ -10,7 +10,7 @@ const eventToPropRecord: Record<PropagationEvent, string> = {
   [PropagationEvent.SCROLL]: 'onScroll',
 };
 
-export function withStopPropagation(events: PropagationEvent[], element: ReactElement) {
+export function withStopPropagation(events: PropagationEvent[], element: ReactElement<any>) {
   const props: Record<string, any> = { ...element.props };
   if (!events.length) return element;
 

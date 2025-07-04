@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo, useState } from 'react';
+import React, { FC, ReactNode, useCallback, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import useDefault from '../_util/useDefault';
@@ -9,7 +9,9 @@ import { TdStepsProps } from './type';
 import { stepsDefaultProps } from './defaultProps';
 import { StepsProvider } from './StepsContext';
 
-export interface StepsProps extends TdStepsProps, NativeProps {}
+export interface StepsProps extends TdStepsProps, NativeProps {
+  children?: ReactNode;
+}
 
 const Steps: FC<StepsProps> = (props) => {
   const {

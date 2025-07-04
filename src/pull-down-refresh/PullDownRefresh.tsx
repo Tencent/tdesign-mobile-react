@@ -1,4 +1,4 @@
-import React, { useRef, useState, type ReactNode, useEffect, useMemo } from 'react';
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import { uniqueId, isBoolean } from 'lodash-es';
 
@@ -9,7 +9,7 @@ import { StyledProps } from '../common';
 import useDefault from '../_util/useDefault';
 import type { TdPullDownRefreshProps } from './type';
 import { pullDownRefreshDefaultProps } from './defaultProps';
-
+import { useLocaleReceiver } from '../locale/LocalReceiver';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { convertUnit, reconvertUnit } from '../_util/convertUnit';
@@ -48,6 +48,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
     className,
     style,
     children,
+    disabled,
     loadingTexts,
     loadingProps,
     loadingBarHeight,
@@ -65,6 +66,8 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
   const [value, onChange] = useDefault(propsValue, defaultValue, propsOnChange);
 
   const name = usePrefixClass('pull-down-refresh');
+  const [locale, t] = useLocaleReceiver('pullDownRefresh');
+
   const touch = useTouch();
   const loadingHeight = convertUnit(loadingBarHeight);
   const pureLoadingHeight = reconvertUnit(loadingBarHeight);
@@ -112,6 +115,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
   }, [run]);
 
   const doRefresh = async () => {
+    if (disabled) return;
     setStatus(PullStatusEnum.loading);
     setDistance(pureLoadingHeight);
     try {
@@ -138,8 +142,8 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
     }
   };
 
-  const statusText = getStatusText(status, loadingTexts);
-  let statusNode: ReactNode = <div className={`${name}__text`}>{statusText}</div>;
+  const statusText = getStatusText(status, loadingTexts.length ? loadingTexts : t(locale.loadingTexts));
+  let statusNode: React.ReactNode = <div className={`${name}__text`}>{statusText}</div>;
   if (status === PullStatusEnum.loading) {
     statusNode = <Loading text={statusText} size="24px" {...loadingProps} />;
   }
@@ -151,7 +155,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
 
   const onTouchStart = (e: React.TouchEvent) => {
     e.stopPropagation();
-    if (!isReachTop(e) || loading) return;
+    if (!isReachTop(e) || loading || disabled) return;
 
     setDistance(0);
     touch.start(e);
@@ -160,7 +164,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
 
   const onTouchMove = (e: React.TouchEvent) => {
     e.stopPropagation();
-    if (!isReachTop(e) || loading) return;
+    if (!isReachTop(e) || loading || disabled) return;
     touch.move(e);
 
     const { diffY, diffX } = touch;
@@ -190,7 +194,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
 
   const onTouchEnd = (e: React.TouchEvent) => {
     e.stopPropagation();
-    if (!isReachTop(e) || loading) return;
+    if (!isReachTop(e) || loading || disabled) return;
 
     if (status === PullStatusEnum.loosing) {
       doRefresh();

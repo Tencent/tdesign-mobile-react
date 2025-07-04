@@ -129,7 +129,7 @@ class Picker {
    * @description 获取所有的列表DOM元素
    */
   updateItems(): void {
-    this.elementItems = Array.from(this.holder.querySelectorAll('li'));
+    this.elementItems = Array.from(this.holder?.querySelectorAll('li') || []);
     const itemLen = this.elementItems.length;
     this.offsetYOfEnd = -this.itemHeight * (itemLen - 3);
     this.offsetYOfEndBound = -(this.itemHeight * (itemLen - 3) + OFFSET_OF_BOUND);

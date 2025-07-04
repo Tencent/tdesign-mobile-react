@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import useConfig from '../hooks/useConfig';
 import { TdStickyProps } from './type';
 import { stickyDefaultProps } from './defaultProps';
@@ -6,7 +6,11 @@ import { resolveContainer } from '../_util/getContainer';
 import useDefaultProps from '../hooks/useDefaultProps';
 import useLayoutEffect from '../hooks/useLayoutEffect';
 
-const Sticky: FC<TdStickyProps> = (originProps) => {
+export interface StickyProps extends TdStickyProps {
+  children?: ReactNode;
+}
+
+const Sticky: FC<StickyProps> = (originProps) => {
   const props = useDefaultProps(originProps, stickyDefaultProps);
 
   const { children, container, disabled, offsetTop, zIndex, onScroll } = props;

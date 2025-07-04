@@ -1,12 +1,27 @@
 import React, { useEffect, useState, useContext, useMemo, forwardRef } from 'react';
-import { CloseIcon } from 'tdesign-icons-react';
-import Button from '../button';
+import {
+  CloseIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronLeftDoubleIcon,
+  ChevronRightDoubleIcon,
+} from 'tdesign-icons-react';
+import classNames from 'classnames';
+
+import parseTNode from '../_util/parseTNode';
+import { Button, ButtonProps } from '../button';
 import { TDateType, TCalendarValue } from './type';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { calendarDefaultProps } from './defaultProps';
 import { CalendarContext, CalendarProps } from './Calendar';
 import { useLocaleReceiver } from '../locale/LocalReceiver';
+import { getPrevMonth, getPrevYear, getNextMonth, getNextYear } from './utils';
+
+const getCurrentYearAndMonth = (v: Date) => {
+  const date = new Date(v);
+  return { year: date.getFullYear(), month: date.getMonth() };
+};
 
 const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref) => {
   const calendarClass = usePrefixClass('calendar');
@@ -15,6 +30,20 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
   const props = useDefaultProps(context ? context.inject(_props) : _props, calendarDefaultProps);
 
   const [selectedDate, setSelectedDate] = useState<number | Date | TCalendarValue[]>();
+  const [currentMonth, setCurrentMonth] = useState<
+    Array<{
+      year: number;
+      month: number;
+      months: TDateType[];
+      weekdayOfFirstDay: number;
+    }>
+  >([]);
+  const [headerButtons, setHeaderButtons] = useState({
+    preYearBtnDisable: false,
+    prevMonthBtnDisable: false,
+    nextYearBtnDisable: false,
+    nextMonthBtnDisable: false,
+  });
   const firstDayOfWeek = props.firstDayOfWeek || 0;
 
   useEffect(() => {
@@ -86,41 +115,16 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
     return className;
   };
 
-  // 选择日期
-  const handleSelect = (year, month, date, dateItem) => {
-    if (dateItem.type === 'disabled') return;
-    const selected = new Date(year, month, date);
-    let newSelected: TCalendarValue | TCalendarValue[];
-    if (props.type === 'range' && Array.isArray(selectedDate)) {
-      if (selectedDate.length === 1) {
-        if (selectedDate[0] > selected) {
-          newSelected = [selected];
-        } else {
-          newSelected = [selectedDate[0], selected];
-        }
-      } else {
-        newSelected = [selected];
-        if (!confirmBtn && selectedDate.length === 2) {
-          props.onChange?.(new Date(selectedDate[0]));
-        }
-      }
-    } else if (props.type === 'multiple') {
-      const newVal = [...(Array.isArray(selectedDate) ? selectedDate : [selectedDate])];
-      const index = newVal.findIndex((item) => isSameDate(item, selected));
-      if (index > -1) {
-        newVal.splice(index, 1);
-      } else {
-        newVal.push(selected);
-      }
-      newSelected = newVal;
-    } else {
-      newSelected = selected;
-      if (!confirmBtn) {
-        props.onChange?.(selected);
-      }
+  const getCurrentDate = () => {
+    let time = Array.isArray(selectedDate) ? selectedDate[0] : selectedDate;
+
+    if (currentMonth?.length > 0) {
+      const year = currentMonth[0]?.year;
+      const month = currentMonth[0]?.month;
+      time = new Date(year, month, 1).getTime();
     }
-    setSelectedDate(newSelected);
-    props.onSelect?.(newSelected as any);
+
+    return time;
   };
 
   // 计算月份
@@ -203,6 +207,82 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDate]);
 
+  const updateActionButton = (value: Date) => {
+    const min = getCurrentYearAndMonth(minDate);
+    const max = getCurrentYearAndMonth(maxDate);
+
+    const minTimestamp = new Date(min.year, min.month, 1).getTime();
+    const maxTimestamp = new Date(max.year, max.month, 1).getTime();
+
+    const prevYearTimestamp = getPrevYear(value).getTime();
+    const prevMonthTimestamp = getPrevMonth(value).getTime();
+    const nextMonthTimestamp = getNextMonth(value).getTime();
+    const nextYearTimestamp = getNextYear(value).getTime();
+
+    const preYearBtnDisable = prevYearTimestamp < minTimestamp || prevMonthTimestamp < minTimestamp;
+    const prevMonthBtnDisable = prevMonthTimestamp < minTimestamp;
+    const nextYearBtnDisable = nextMonthTimestamp > maxTimestamp || nextYearTimestamp > maxTimestamp;
+    const nextMonthBtnDisable = nextMonthTimestamp > maxTimestamp;
+
+    setHeaderButtons({
+      preYearBtnDisable,
+      prevMonthBtnDisable,
+      nextYearBtnDisable,
+      nextMonthBtnDisable,
+    });
+  };
+
+  const calcCurrentMonth = (newValue?: any) => {
+    const date = newValue || getCurrentDate();
+    const { year, month } = getCurrentYearAndMonth(date);
+    setCurrentMonth(months.filter((item) => item.year === year && item.month === month));
+    updateActionButton(date);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  };
+
+  // 选择日期
+  const handleSelect = (year, month, date, dateItem) => {
+    if (dateItem.type === 'disabled' || props.readonly) return;
+    const selected = new Date(year, month, date);
+    let newSelected: TCalendarValue | TCalendarValue[];
+    if (props.type === 'range' && Array.isArray(selectedDate)) {
+      if (selectedDate.length === 1) {
+        if (selectedDate[0] > selected) {
+          newSelected = [selected];
+        } else {
+          newSelected = [selectedDate[0], selected];
+        }
+      } else {
+        newSelected = [selected];
+        if (!confirmBtn && selectedDate.length === 2) {
+          props.onChange?.(new Date(selectedDate[0]));
+        }
+      }
+    } else if (props.type === 'multiple') {
+      const newVal = [...(Array.isArray(selectedDate) ? selectedDate : [selectedDate])];
+      const index = newVal.findIndex((item) => isSameDate(item, selected));
+      if (index > -1) {
+        newVal.splice(index, 1);
+      } else {
+        newVal.push(selected);
+      }
+      newSelected = newVal;
+    } else {
+      newSelected = selected;
+      if (!confirmBtn) {
+        props.onChange?.(selected);
+      }
+    }
+    setSelectedDate(newSelected);
+
+    if (props.switchMode !== 'none') {
+      const date = getCurrentDate();
+      calcCurrentMonth(date);
+    }
+
+    props.onSelect?.(newSelected as any);
+  };
+
   const handleConfirm = () => {
     props.onClose?.('confirm-btn');
     props.onConfirm?.(new Date(Array.isArray(selectedDate) ? selectedDate[0] : selectedDate));
@@ -229,15 +309,12 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
   };
 
   const renderConfirmBtn = () => {
-    if (confirmBtn && typeof confirmBtn !== 'object') {
-      return confirmBtn;
+    if (!confirmBtn) return;
+
+    if (typeof confirmBtn === 'object') {
+      return <Button block theme="primary" {...(confirmBtn as ButtonProps)} onClick={handleConfirm} />;
     }
-    if (confirmBtn && Array.isArray(confirmBtn)) {
-      return confirmBtn;
-    }
-    if (confirmBtn && typeof confirmBtn === 'object') {
-      return <Button block theme="primary" {...confirmBtn} onClick={handleConfirm} />;
-    }
+    return parseTNode(confirmBtn);
   };
 
   const className = useMemo(
@@ -246,10 +323,94 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
     [],
   );
 
+  useEffect(() => {
+    if (props.switchMode !== 'none') {
+      calcCurrentMonth();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.switchMode, selectedDate]);
+
+  const handleSwitchModeChange = (type: 'pre-year' | 'pre-month' | 'next-month' | 'next-year', disabled?: boolean) => {
+    if (disabled) return;
+    const date = getCurrentDate();
+
+    const funcMap = {
+      'pre-year': () => getPrevYear(date),
+      'pre-month': () => getPrevMonth(date),
+      'next-month': () => getNextMonth(date),
+      'next-year': () => getNextYear(date),
+    };
+    const newValue = funcMap[type]();
+    if (!newValue) return;
+
+    const { year, month } = getCurrentYearAndMonth(newValue);
+
+    props.onPanelChange?.({ year, month: month + 1 });
+
+    calcCurrentMonth(newValue);
+  };
+
+  const onScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    props.onScroll?.({ e });
+  };
+
   return (
     <div ref={ref} className={`${className}`}>
-      <div className={`${calendarClass}__title`}>{props.title || local.title}</div>
+      <div className={`${calendarClass}__title`}>{parseTNode(props.title, null, local.title)}</div>
       {props.usePopup && <CloseIcon className={`${calendarClass}__close-btn`} size={24} onClick={handleClose} />}
+      {props.switchMode !== 'none' && (
+        <div className={`${calendarClass}-header`}>
+          <div className={`${calendarClass}-header__action`}>
+            {props.switchMode === 'year-month' && (
+              <div
+                className={classNames([
+                  `${calendarClass}-header__icon`,
+                  { [`${calendarClass}-header__icon--disabled`]: headerButtons.preYearBtnDisable },
+                ])}
+                onClick={() => handleSwitchModeChange('pre-year', headerButtons.preYearBtnDisable)}
+              >
+                <ChevronLeftDoubleIcon />
+              </div>
+            )}
+
+            <div
+              className={classNames([
+                `${calendarClass}-header__icon`,
+                { [`${calendarClass}-header__icon--disabled`]: headerButtons.prevMonthBtnDisable },
+              ])}
+              onClick={() => handleSwitchModeChange('pre-month', headerButtons.prevMonthBtnDisable)}
+            >
+              <ChevronLeftIcon />
+            </div>
+          </div>
+          <div className={`${calendarClass}-header__title`}>
+            {t(local.monthTitle, { year: currentMonth[0]?.year, month: local.months[currentMonth[0]?.month] })}
+          </div>
+          <div className={`${calendarClass}-header__action`}>
+            <div
+              className={classNames([
+                `${calendarClass}-header__icon`,
+                { [`${calendarClass}-header__icon--disabled`]: headerButtons.nextMonthBtnDisable },
+              ])}
+              onClick={() => handleSwitchModeChange('next-month', headerButtons.nextMonthBtnDisable)}
+            >
+              <ChevronRightIcon />
+            </div>
+
+            {props.switchMode === 'year-month' && (
+              <div
+                className={classNames([
+                  `${calendarClass}-header__icon`,
+                  { [`${calendarClass}-header__icon--disabled`]: headerButtons.nextYearBtnDisable },
+                ])}
+                onClick={() => handleSwitchModeChange('next-year', headerButtons.nextYearBtnDisable)}
+              >
+                <ChevronRightDoubleIcon />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
       <div className={`${calendarClass}__days`}>
         {days.map((item, index) => (
           <div key={index} className={`${calendarClass}__days-item`}>
@@ -258,12 +419,14 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
         ))}
       </div>
 
-      <div className={`${calendarClass}__months`} style={{ overflow: 'auto' }}>
-        {months.map((item, index) => (
+      <div className={`${calendarClass}__months`} style={{ overflow: 'auto' }} onScroll={onScroll}>
+        {(props.switchMode === 'none' ? months : currentMonth).map((item, index) => (
           <React.Fragment key={`month-${item.year}-${item.month}-${index}`}>
-            <div className={`${calendarClass}__month`}>
-              {t(local.monthTitle, { year: item.year, month: local.months[item.month] })}
-            </div>
+            {props.switchMode === 'none' && (
+              <div className={`${calendarClass}__month`}>
+                {t(local.monthTitle, { year: item.year, month: local.months[item.month] })}
+              </div>
+            )}
             <div className={`${calendarClass}__dates`}>
               {new Array((item.weekdayOfFirstDay - firstDayOfWeek + 7) % 7).fill(0).map((_, emptyIndex) => (
                 <div key={`empty-${item.year}-${item.month}-${emptyIndex}`} /> // 为空 div 添加唯一 key

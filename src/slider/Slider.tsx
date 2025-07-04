@@ -120,7 +120,7 @@ const Slider: FC<SliderProps> = (props) => {
 
       if (Object.prototype.toString.call(marks) === '[object Object]') {
         const scaleArray = Object.keys(marks).map((item) => Number(item));
-        const scaleTextArray = scaleArray.map((item) => marks[item]);
+        const scaleTextArray = scaleArray.map((item) => (isFunction(marks[item]) ? marks[item](item) : marks[item]));
         setIsScale(scaleArray.length > 0);
         setScaleArray(calcPos(scaleArray));
         setScaleTextArray(scaleTextArray);

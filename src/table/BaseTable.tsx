@@ -2,9 +2,11 @@ import React, { forwardRef, useRef } from 'react';
 import { get, isFunction } from 'lodash-es';
 import cx from 'classnames';
 
-import { StyledProps } from '../common';
+import parseTNode from '../_util/parseTNode';
+import { StyledProps, ClassName } from '../common';
 import useClassName from './hooks/useClassName';
 import useStyle, { formatCSSUnit } from './hooks/useStyle';
+import useFixed, { getRowFixedStyles, getColumnFixedStyles } from './hooks/useFixed';
 import useDefaultProps from '../hooks/useDefaultProps';
 import defaultConfig from '../_common/js/global-config/mobile/locale/zh_CN';
 import Loading from '../loading';
@@ -34,10 +36,23 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
     onScroll,
   } = useDefaultProps<BaseTableProps>(props, baseTableDefaultProps);
 
-  const { tableLayoutClasses, tableHeaderClasses, tableBaseClass, tdAlignClasses, tdEllipsisClass, classPrefix } =
-    useClassName();
+  const {
+    tableLayoutClasses,
+    tableHeaderClasses,
+    tableBaseClass,
+    tdAlignClasses,
+    tdEllipsisClass,
+    classPrefix,
+    tableRowFixedClasses,
+    tableColFixedClasses,
+  } = useClassName();
 
-  const { tableClasses, tableContentStyles, tableElementStyles } = useStyle(props);
+  // 固定表头和固定列逻辑
+  const { tableContentRef, rowAndColFixedPosition, isFixedColumn, isFixedHeader } = useFixed(props);
+  const { tableClasses, tableContentStyles, tableElementStyles } = useStyle(props, {
+    isFixedColumn,
+    isFixedHeader,
+  });
 
   const tableElmClasses = tableLayoutClasses[tableLayout || 'fixed'];
 
@@ -50,11 +65,9 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
 
   const defaultColWidth = tableLayout === 'fixed' ? '80px' : undefined;
 
-  const tableContentRef = useRef();
+  const tableElmRef = useRef(null);
 
-  const tableElmRef = useRef();
-
-  const theadRef = useRef();
+  const theadRef = useRef(null);
 
   const colStyle = (colItem: BaseTableCol<TableRowData>) => ({
     width: `${formatCSSUnit(colItem.width || defaultColWidth)}`,
@@ -65,7 +78,7 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
     }`,
   });
 
-  const thClassName = (thItem: BaseTableCol<TableRowData>) => {
+  const thClassName = (thItem: BaseTableCol<TableRowData>, extra: ClassName) => {
     let className = '';
     if (thItem.colKey) {
       className = `${classPrefix}-table__th-${thItem.colKey}`;
@@ -76,10 +89,10 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
     if (thItem.align && thItem.align !== 'left') {
       className = `${className} ${tdAlignClasses[`${thItem.align}`]}`;
     }
-    return className;
+    return cx([className, extra]);
   };
 
-  const tdClassName = (tdItem: BaseTableCol<TableRowData>) => {
+  const tdClassName = (tdItem: BaseTableCol<TableRowData>, extra?: ClassName) => {
     let className = '';
     if (tdItem.ellipsis) {
       className = tdEllipsisClass;
@@ -87,7 +100,7 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
     if (tdItem.align && tdItem.align !== 'left') {
       className = `${className} ${tdAlignClasses[`${tdItem.align}`]}`;
     }
-    return className;
+    return cx([className, extra]);
   };
 
   const renderCell = (
@@ -140,34 +153,52 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
       return (
         <tr className={tableBaseClass.emptyRow}>
           <td colSpan={columns?.length}>
-            <div className={tableBaseClass.empty}>{renderContentEmpty}</div>
+            <div className={tableBaseClass.empty}>{parseTNode(renderContentEmpty)}</div>
           </td>
         </tr>
       );
     }
     if (data?.length) {
-      return data?.map((trItem, trIdx) => (
-        <tr
-          key={trIdx}
-          onClick={(ev) => {
-            handleRowClick(trItem, trIdx, ev);
-          }}
-        >
-          {columns?.map((tdItem, tdIdx) => (
-            <td
-              key={tdIdx}
-              className={tdClassName(tdItem)}
-              onClick={($event) => {
-                handleCellClick(trItem, tdItem, trIdx, tdIdx, $event);
-              }}
-            >
-              <div className={tdItem.ellipsis && ellipsisClasses}>
-                {renderCell({ row: trItem, col: tdItem, rowIndex: trIdx, colIndex: tdIdx }, cellEmptyContent)}
-              </div>
-            </td>
-          ))}
-        </tr>
-      ));
+      return data?.map((trItem, trIdx) => {
+        const trStyles = getRowFixedStyles(
+          get(trItem, props.rowKey || 'id'),
+          trIdx,
+          props.data?.length || 0,
+          props.fixedRows,
+          rowAndColFixedPosition,
+          tableRowFixedClasses,
+        );
+
+        return (
+          <tr
+            key={trIdx}
+            style={trStyles.style}
+            className={cx(trStyles.classes)}
+            onClick={(ev) => {
+              handleRowClick(trItem, trIdx, ev);
+            }}
+          >
+            {columns?.map((tdItem, tdIdx) => {
+              const tdStyles = getColumnFixedStyles(tdItem, tdIdx, rowAndColFixedPosition, tableColFixedClasses);
+
+              return (
+                <td
+                  key={tdIdx}
+                  style={tdStyles.style}
+                  className={tdClassName(tdItem, tdStyles.classes)}
+                  onClick={($event) => {
+                    handleCellClick(trItem, tdItem, trIdx, tdIdx, $event);
+                  }}
+                >
+                  <div className={tdItem.ellipsis && ellipsisClasses}>
+                    {renderCell({ row: trItem, col: tdItem, rowIndex: trIdx, colIndex: tdIdx }, cellEmptyContent)}
+                  </div>
+                </td>
+              );
+            })}
+          </tr>
+        );
+      });
     }
   };
 
@@ -182,17 +213,25 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
         }}
       >
         <table ref={tableElmRef} className={tableElmClasses} style={tableElementStyles}>
-          <colgroup>{columns?.map((col) => <col key={col.colKey} style={colStyle(col)} />)}</colgroup>
+          <colgroup>
+            {columns?.map((col) => (
+              <col key={col.colKey} style={colStyle(col)} />
+            ))}
+          </colgroup>
           {showHeader && (
             <thead ref={theadRef} className={theadClasses}>
               <tr>
-                {columns?.map((thItem, idx) => (
-                  <th key={idx} className={thClassName(thItem)}>
-                    <div className={(thItem.ellipsisTitle || thItem.ellipsis) && ellipsisClasses}>
-                      {renderTitle(thItem, idx)}
-                    </div>
-                  </th>
-                ))}
+                {columns?.map((thItem, idx) => {
+                  const thStyles = getColumnFixedStyles(thItem, idx, rowAndColFixedPosition, tableColFixedClasses);
+
+                  return (
+                    <th key={idx} className={thClassName(thItem, thStyles.classes)} style={thStyles.style}>
+                      <div className={(thItem.ellipsisTitle || thItem.ellipsis) && ellipsisClasses}>
+                        {renderTitle(thItem, idx)}
+                      </div>
+                    </th>
+                  );
+                })}
               </tr>
             </thead>
           )}

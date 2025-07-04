@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, ReactNode } from 'react';
 import classnames from 'classnames';
 import { isString } from 'lodash-es';
 import { ChevronRightIcon } from 'tdesign-icons-react';
@@ -11,7 +11,9 @@ import useDefaultProps from '../hooks/useDefaultProps';
 import useHover from '../hooks/useHover';
 import useConfig from '../hooks/useConfig';
 
-export interface CellProps extends TdCellProps, NativeProps {}
+export interface CellProps extends TdCellProps, NativeProps {
+  children?: ReactNode;
+}
 
 const Cell: React.FC<CellProps> = (originProps) => {
   const props = useDefaultProps(originProps, cellDefaultProps);

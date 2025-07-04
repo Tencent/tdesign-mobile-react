@@ -5,8 +5,9 @@
 import { TdPullDownRefreshProps } from './type';
 
 export const pullDownRefreshDefaultProps: TdPullDownRefreshProps = {
+  disabled: false,
   loadingBarHeight: 50,
-  loadingTexts: ['下拉刷新', '松手刷新', '正在刷新', '刷新完成'],
+  loadingTexts: [],
   maxBarHeight: 80,
   refreshTimeout: 3000,
   defaultValue: false,

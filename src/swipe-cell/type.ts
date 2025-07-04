@@ -4,7 +4,7 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TNode } from '../common';
+import { TNode, Styles } from '../common';
 
 export interface TdSwipeCellProps {
   /**
@@ -29,7 +29,7 @@ export interface TdSwipeCellProps {
    */
   right?: Array<SwipeActionItem> | TNode;
   /**
-   * 菜单展开或者收回后将菜单的状态传递给父组件，值为数组时表示分别控制左右滑动的展开和收起状态。
+   * 菜单展开或者收回后将菜单的状态传递给父组件，值为数组时表示分别控制左右滑动的展开和收起状态
    */
   onChange?: (value: string) => void;
   /**
@@ -41,23 +41,12 @@ export interface TdSwipeCellProps {
 export interface SwipeActionItem {
   text: string;
   className?: string;
-  style?: string;
+  style?: Styles;
   sure?: Sure;
   onClick?: () => void;
   [key: string]: any;
 }
 
-export type SwipeSource = 'left' | 'right';
-
-export interface SwipeCellInstanceFunctions {
-  /**
-   * 显示二次确认内容的函数。<br/>【关于参数】`sure` 表示二次确认的具体内容，同content
-   */
-  showSure?: (sure: Sure, onClick?: SwipeActionItem['onClick']) => void;
-  /**
-   * 关闭
-   */
-  close?: () => void;
-}
-
 export type Sure = string | TNode;
+
+export type SwipeSource = 'left' | 'right';

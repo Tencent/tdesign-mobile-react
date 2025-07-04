@@ -2,8 +2,8 @@ import React from 'react';
 import { Tag } from 'tdesign-mobile-react';
 
 const ClosableDemo = () => {
-  const tagRef1 = React.useRef();
-  const tagRef2 = React.useRef();
+  const tagRef1 = React.useRef(null);
+  const tagRef2 = React.useRef(null);
   const onClickClose = (e) => {
     if (e === 1) {
       tagRef1.current.remove();

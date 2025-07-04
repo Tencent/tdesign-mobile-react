@@ -8,7 +8,16 @@ export function formatCSSUnit(unit: string | number | undefined) {
   return isNaN(Number(unit)) ? unit : `${unit}px`;
 }
 
-export default function useStyle(props: TdBaseTableProps) {
+export default function useStyle(
+  props: TdBaseTableProps,
+  {
+    isFixedHeader,
+    isFixedColumn,
+  }: {
+    isFixedHeader?: boolean;
+    isFixedColumn?: boolean;
+  },
+) {
   const { bordered, stripe, verticalAlign, height, maxHeight, tableContentWidth, loading } = props;
 
   const { tableBaseClass, tableAlignClasses } = useClassName();
@@ -20,6 +29,8 @@ export default function useStyle(props: TdBaseTableProps) {
       [tableBaseClass.bordered]: bordered,
       [tableBaseClass.striped]: stripe,
       [tableBaseClass.loading]: loading,
+      [tableBaseClass.headerFixed]: isFixedHeader,
+      [tableBaseClass.columnFixed]: isFixedColumn,
     },
   ]);
 

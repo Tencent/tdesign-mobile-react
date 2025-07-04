@@ -1,17 +1,19 @@
 import React, { useRef } from 'react';
-import type { FC } from 'react';
 import { StyledProps } from '../common';
 import useConfig from '../hooks/useConfig';
 import Radio, { RadioContext, RadioContextValue, RadioProps } from './Radio';
 import useDefault from '../_util/useDefault';
 import type { TdRadioGroupProps } from './type';
 
-export interface RadioGroupProps extends TdRadioGroupProps, StyledProps {}
+export interface RadioGroupProps extends TdRadioGroupProps, StyledProps {
+  children?: React.ReactNode;
+}
 
-const RadioGroup: FC<RadioGroupProps> = (props) => {
+const RadioGroup: React.FC<RadioGroupProps> = (props) => {
   const { classPrefix } = useConfig();
   const {
     disabled,
+    icon,
     options,
     value,
     defaultValue,
@@ -38,6 +40,7 @@ const RadioGroup: FC<RadioGroupProps> = (props) => {
           typeof radioProps.value !== 'undefined' &&
           internalValue === radioProps.value,
         disabled: radioProps.disabled || disabled,
+        icon: radioProps.icon || icon,
         readonly: radioProps.readonly || readonly,
         allowUncheck: radioProps.allowUncheck || allowUncheck,
         borderless: radioProps.borderless || borderless,
