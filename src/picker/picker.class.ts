@@ -144,8 +144,9 @@ class Picker {
     this.itemGroupHeight =
       +reconvertUnit(window.getComputedStyle(this.holder.parentElement).height) || DEFAULT_HOLDER_HEIGHT;
     this.elementItems = Array.from(this.holder.querySelectorAll('li'));
-    this.itemHeight =
-      +reconvertUnit(window.getComputedStyle(this.holder.querySelector('li')).height) || DEFAULT_ITEM_HEIGHT;
+    this.itemHeight = this.holder.querySelector('li')
+      ? +reconvertUnit(window.getComputedStyle(this.holder.querySelector('li')).height) || DEFAULT_ITEM_HEIGHT
+      : DEFAULT_ITEM_HEIGHT;
     this.height = this.holder.offsetHeight || DEFAULT_HOLDER_HEIGHT;
     this.indicatorOffset = this.itemGroupHeight / 2 - this.itemHeight / 2;
     let curIndex = findIndexOfEnabledOption(this.pickerColumns, this.options.defaultIndex || 0, this.options.keys);

@@ -81,8 +81,8 @@ const PickerItem = forwardRef<PickerItemExposeRef, PickerItemProps>((props, ref)
 
   useEffect(() => {
     if (pickerRef.current) return;
-    if (rootRef.current) {
-      setTimeout(() => {
+    setTimeout(() => {
+      if (rootRef.current) {
         pickerRef.current = new Picker({
           el: rootRef.current,
           defaultIndex: getIndexByValue(value) || 0,
@@ -92,8 +92,8 @@ const PickerItem = forwardRef<PickerItemExposeRef, PickerItemProps>((props, ref)
           swipeDuration,
           prefixCls: classPrefix,
         });
-      }, 1000);
-    }
+      }
+    });
 
     return () => {
       pickerRef.current?.destroy();
