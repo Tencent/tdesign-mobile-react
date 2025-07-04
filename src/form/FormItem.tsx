@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   cloneDeep,
   get as lodashGet,
@@ -25,7 +25,7 @@ import {
 } from './type';
 import { AnalysisValidateResult, ErrorListType, FormItemContext, SuccessListType } from './const';
 import { usePrefixClass } from '../hooks/useClass';
-import { FormContext } from './FormContext';
+import { useFormContext } from './FormContext';
 import { TdFormItemProps } from './formItemType';
 import { StyledProps } from '../common';
 
@@ -52,8 +52,8 @@ const FormItem: React.FC<FormItemProps> = (props) => {
   } = props;
 
   // 状态管理
-  const formContext = useContext(FormContext);
-  const { form } = formContext;
+  const formContext = useFormContext();
+  const { disabled: disabledFromContext, form } = formContext;
   const [errorList, setErrorList] = useState<ErrorListType[]>([]);
   const [successList, setSuccessList] = useState<SuccessListType[]>([]);
   const [resetValidating, setResetValidating] = useState(false);
@@ -61,7 +61,9 @@ const FormItem: React.FC<FormItemProps> = (props) => {
   const [freeShowErrorMessage, setFreeShowErrorMessage] = useState<boolean | undefined>(undefined);
   const [formValue, setFormValue] = useState(lodashGet(form?.store, name));
   const initialValue = useRef('');
+  const hasInit = useRef(false);
   const contextRef = useRef<FormItemContext | null>(null);
+  const rulesMemoStr = useMemo(() => JSON.stringify(rules), [rules]);
   const formClass = usePrefixClass('form');
   const formItemClass = usePrefixClass('form__item');
 
@@ -342,8 +344,16 @@ const FormItem: React.FC<FormItemProps> = (props) => {
 
   // 监听规则变化
   useEffect(() => {
+    if (!hasInit.current) {
+      // 仅在用户有交互后进行校验
+      if (formValue) {
+        hasInit.current = true;
+      }
+      return;
+    }
     validateHandler('change');
-  }, [name, validateHandler]);
+    // eslint-disable-next-line
+  }, [formValue, name, rulesMemoStr]);
 
   // 渲染函数
   const renderRightIconContent = () => {
@@ -400,6 +410,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
                 ? React.cloneElement(children as React.ReactElement<FormItemContext>, {
                     ...(children as React.ReactElement<FormItemContext>).props,
                     value: formValue,
+                    disabled: disabledFromContext,
                     onChange: (value: any, ...args) => {
                       const newValue = cloneDeep(value);
                       lodashSet(form?.store, name, newValue);

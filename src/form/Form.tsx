@@ -1,10 +1,11 @@
-import React, { useImperativeHandle, useRef } from 'react';
+import React, { ForwardedRef, useImperativeHandle, useRef } from 'react';
 import classNames from 'classnames';
 import { isArray, isBoolean, isEmpty, isFunction } from 'lodash-es';
 import noop from '../_util/noop';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
-import type {
+import {
   Data,
+  FormInstanceFunctions,
   FormResetParams,
   FormValidateMessage,
   FormValidateParams,
@@ -24,7 +25,7 @@ import { FormItemContext } from './const';
 type Result = FormValidateResult<Data>;
 
 export interface FormProps extends TdFormProps, StyledProps {
-  children?: React.ReactElement<FormItemContext>;
+  children?: React.ReactElement<FormItemContext>[] | React.ReactElement<FormItemContext>;
 }
 
 export const requestSubmit = (target: HTMLFormElement) => {
@@ -40,7 +41,7 @@ export const requestSubmit = (target: HTMLFormElement) => {
 };
 
 const Form = forwardRefWithStatics(
-  (props: FormProps, ref) => {
+  (props: FormProps, ref: ForwardedRef<FormInstanceFunctions>) => {
     const {
       style,
       className,
@@ -279,7 +280,4 @@ const Form = forwardRefWithStatics(
   },
   { FormItem },
 );
-
-Form.displayName = 'Form';
-
 export default Form;
