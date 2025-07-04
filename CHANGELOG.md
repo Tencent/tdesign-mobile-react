@@ -11,7 +11,7 @@ spline: explain
 - `Calendar`: 新增 `switchMode` 和 `readonly` 属性 @novlan1 ([#663](https://github.com/Tencent/tdesign-mobile-react/pull/663))
 - `Table`: 支持 `fixedRows` 属性，列配置项支持 `fixed` 属性 @novlan1 ([#662](https://github.com/Tencent/tdesign-mobile-react/pull/662))
 ### 🚧 Others
-- `React`: 全面升级相关依赖，兼容在 `React 19` 中使用 @HaixingOoO ([#606](https://github.com/Tencent/tdesign-mobile-react/pull/606))
+- `React`: 全面升级相关依赖，直接支持 `React 19` @HaixingOoO ([#606](https://github.com/Tencent/tdesign-mobile-react/pull/606))
 
 ## 🌈 0.15.0 `2025-05-29` 
 ### 🚀 Features
