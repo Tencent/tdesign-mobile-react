@@ -28,7 +28,7 @@ const Empty: React.FC<EmptyProps> = (props) => {
   return (
     <div className={`${emptyClass}`}>
       <div className={`${emptyClass}__thumb`}>{renderThumb()}</div>
-      {description && <div className={`${emptyClass}__description`}>{description}</div>}
+      {description && <div className={`${emptyClass}__description`}>{parseTNode(description)}</div>}
       {action && <div className={`${emptyClass}__actions`}>{action}</div>}
     </div>
   );

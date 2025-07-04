@@ -8,7 +8,7 @@ export interface NativeProps<S extends string = never> {
   style?: CSSProperties & Partial<Record<S, string>>;
 }
 
-export default function withNativeProps<P extends NativeProps>(props: P, element: ReactElement) {
+export default function withNativeProps<P extends NativeProps>(props: P, element: ReactElement<P>) {
   const elementProps = element.props;
   const nativeProps: NativeProps & Record<string, any> = {};
   if (props.className) {

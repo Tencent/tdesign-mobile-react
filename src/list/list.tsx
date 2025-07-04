@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, ReactNode } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useMemoizedFn } from 'ahooks';
 import classNames from 'classnames';
 import { TdListProps } from './type';
@@ -10,7 +10,7 @@ import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 
 export interface ListProps extends TdListProps, StyledProps {
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
 const List: React.FC<ListProps> = (props) => {

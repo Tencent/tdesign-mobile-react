@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
+import parseTNode from '../_util/parseTNode';
 import { TdLoadingProps } from './type';
 import { loadingDefaultProps } from './defaultProps';
 import { StyledProps } from '../common';
@@ -36,7 +37,7 @@ const Loading: React.FC<LoadingProps> = (props) => {
   } = useDefaultProps<LoadingProps>(props, loadingDefaultProps);
 
   const loadingClass = usePrefixClass('loading');
-  const loadingRef = useRef<HTMLDivElement>();
+  const loadingRef = useRef<HTMLDivElement>(null);
 
   const childNode = content || children;
 
@@ -119,12 +120,12 @@ const Loading: React.FC<LoadingProps> = (props) => {
     let renderIndicator = themeMap[theme];
 
     if (indicator && typeof indicator !== 'boolean') {
-      renderIndicator = indicator as JSX.Element;
+      renderIndicator = indicator as React.ReactElement;
     }
     return (
       <>
         {indicator && renderIndicator}
-        {text && <span className={textClass}>{text}</span>}
+        {text && <span className={textClass}>{parseTNode(text)}</span>}
       </>
     );
   };
@@ -132,7 +133,7 @@ const Loading: React.FC<LoadingProps> = (props) => {
   if (childNode) {
     return (
       <div className={classNames(relativeClass, className)} style={style}>
-        {childNode}
+        {parseTNode(childNode)}
         {reloading && (
           <div ref={loadingRef} className={classNames(baseClasses)} style={{ ...rootStyle }}>
             {renderContent()}
