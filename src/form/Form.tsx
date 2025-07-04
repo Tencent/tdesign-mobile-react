@@ -1,10 +1,8 @@
-import type { FC } from 'react';
-import React, { createContext, forwardRef, useImperativeHandle, useRef } from 'react';
-import { isArray, isBoolean, isEmpty } from 'lodash-es';
-import { FormItemValidateResult } from './FormItem';
-import { usePrefixClass } from '../hooks/useClass';
-import { formDefaultProps } from './defaultProps';
-import type { FormSubmitEvent, StyledProps } from '../common';
+import React, { useImperativeHandle, useRef } from 'react';
+import classNames from 'classnames';
+import { isArray, isBoolean, isEmpty, isFunction } from 'lodash-es';
+import noop from '../_util/noop';
+import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import type {
   Data,
   FormResetParams,
@@ -14,56 +12,20 @@ import type {
   TdFormProps,
   ValidateResultList,
 } from './type';
+import { FormResetEvent, FormSubmitEvent, StyledProps } from '../common';
+import FormItem, { FormItemValidateResult } from './FormItem';
+import { formItemDefaultProps } from './defaultProps';
 import useDefaultProps from '../hooks/useDefaultProps';
-import {
-  getNeedResetFields,
-  getNeedValidateChildren,
-  getResetHandlerChildren,
-  getUpdatePromisesChildren,
-} from './helper';
+import { usePrefixClass } from '../hooks/useClass';
+import useForm from './hooks/useForm';
+import { FormContext } from './FormContext';
 
-type Result<TData extends Data> = FormValidateResult<TData>;
+type Result = FormValidateResult<Data>;
 
-export interface FormDisabledContextType {
-  disabled?: boolean;
+export interface FormProps extends TdFormProps, StyledProps {
+  children?: React.ReactNode;
 }
 
-export interface FormItemContextMembers {
-  name: string | number;
-  validate: (trigger: string, showErrorMessage?: boolean) => Promise<FormItemValidateResult<any>>;
-  validateOnly: (trigger: string) => Promise<FormItemValidateResult<any>>;
-  resetField: (type?: string | undefined) => void;
-  resetHandler: () => void;
-  setValidateMessage: (messages: FormValidateMessage<any>[string]) => void; // Assuming message for a single field
-}
-
-export interface FormContextType {
-  // Props passed down
-  showErrorMessage?: boolean;
-  labelWidth?: TdFormProps['labelWidth'];
-  labelAlign?: TdFormProps['labelAlign'];
-  contentAlign?: TdFormProps['contentAlign'];
-  colon?: boolean;
-  requiredMark?: boolean;
-  rules?: TdFormProps['rules'];
-  errorMessage?: TdFormProps['errorMessage']; // This seems to be a prop for global error messages
-  resetType?: TdFormProps['resetType'];
-}
-
-// --- Form Component ---
-export interface FormExposedMethods {
-  validate: (param?: FormValidateParams) => Promise<Result<any>>;
-  submit: (params?: Pick<FormValidateParams, 'showErrorMessage'>) => Promise<void>;
-  reset: <FormData extends Data>(params?: FormResetParams<FormData>) => void;
-  clearValidate: (fields?: Array<string>) => void;
-  setValidateMessage: (validateMessage: FormValidateMessage<Data>) => void;
-  validateOnly: (params?: Omit<FormValidateParams, 'showErrorMessage'>) => Promise<Result<any>>;
-}
-
-export interface FormProps extends TdFormProps, StyledProps {}
-
-export const FormDisabledContext = createContext<FormDisabledContextType | undefined>(undefined);
-export const FormContext = createContext<FormContextType | undefined>(undefined);
 export const requestSubmit = (target: HTMLFormElement) => {
   if (!(target instanceof HTMLFormElement)) {
     throw new Error('target must be HTMLFormElement');
@@ -76,180 +38,247 @@ export const requestSubmit = (target: HTMLFormElement) => {
   target.removeChild(submitter);
 };
 
-const Form: FC<FormProps> = forwardRef<FormExposedMethods, FormProps>((props, ref) => {
-  const {
-    colon,
-    children,
-    contentAlign,
-    disabled,
-    errorMessage,
-    labelWidth,
-    labelAlign,
-    preventSubmitDefault,
-    requiredMark,
-    rules,
-    resetType,
-    showErrorMessage,
-    scrollToFirstError,
-    onReset,
-    onSubmit,
-    onValidate,
-  } = useDefaultProps(props, formDefaultProps);
-  const formRef = useRef<HTMLFormElement>(null);
-  const submitParamsRef = useRef<Pick<FormValidateParams, 'showErrorMessage'>>();
-  const resetParamsRef = useRef<FormResetParams<Data>>();
-  const rootClassName = usePrefixClass('form');
-  const formDisabledContextValue: FormDisabledContextType = {
-    disabled,
-  };
-  const formContextValue: FormContextType = {
-    showErrorMessage,
-    labelWidth,
-    labelAlign,
-    contentAlign,
-    colon,
-    requiredMark,
-    rules,
-    errorMessage,
-    resetType,
-  };
+const Form = forwardRefWithStatics(
+  (props: FormProps, ref) => {
+    const {
+      style,
+      className,
+      labelWidth,
+      statusIcon,
+      labelAlign,
+      colon,
+      requiredMark,
+      requiredMarkPosition,
+      scrollToFirstError,
+      showErrorMessage,
+      resetType,
+      rules,
+      errorMessage,
+      preventSubmitDefault,
+      disabled,
+      children,
+      id,
+      onSubmit: onSubmitCustom,
+      onValidate,
+      onReset: onResetCustom,
+      onValuesChange = noop,
+    } = useDefaultProps(props, formItemDefaultProps);
+    const submitParams = useRef<Pick<FormValidateParams, 'showErrorMessage'>>();
+    const resetParams = useRef<FormResetParams<Data>>();
+    const formRef = useRef<HTMLFormElement>(null);
+    const [form] = useForm();
+    const formClass = usePrefixClass('form');
+    const formContentClass = classNames(formClass, className);
 
-  useImperativeHandle(ref, () => ({
-    validate,
-    submit,
-    reset,
-    clearValidate,
-    setValidateMessage,
-    validateOnly,
-  }));
+    useImperativeHandle(ref, () => ({
+      validate,
+      submit,
+      reset,
+      clearValidate,
+      setValidateMessage,
+      validateOnly,
+    }));
 
-  function scrollTo(selector: string) {
-    if (!formRef.current) {
-      return;
+    function needValidate(name: string | number, fields: string[] | undefined) {
+      if (!fields || !isArray(fields)) return true;
+      return fields.indexOf(`${name}`) !== -1;
     }
-    const elements = formRef.current.getElementsByClassName(selector);
-    if (!elements || !elements.length) {
-      return;
-    }
-    const dom = elements[0];
-    const behavior = scrollToFirstError;
-    if (behavior && dom) {
-      dom.scrollIntoView({ behavior: typeof behavior === 'string' ? (behavior as ScrollBehavior) : 'auto' });
-    }
-  }
 
-  function getFirstError(result: Result<any>) {
-    if (isBoolean(result)) {
-      return '';
+    function formatValidateResult<T extends Data>(validateResultList: FormItemValidateResult<T>[]) {
+      const result = validateResultList.reduce((r, err) => Object.assign(r || {}, err), {});
+      Object.keys(result).forEach((key) => {
+        if (result[key] === true) {
+          delete result[key];
+        }
+      });
+      return isEmpty(result) ? true : result;
     }
-    const [firstKey] = Object.keys(result);
-    if (!firstKey) {
-      return '';
-    }
-    if (scrollToFirstError) {
-      const tmpClassName = `${rootClassName}-item__${firstKey}`;
-      scrollTo(tmpClassName);
-    }
-    const resArr = result[firstKey] as ValidateResultList;
-    if (!isArray(resArr) || !resArr.length) {
-      return '';
-    }
-    return resArr[0]?.message || '';
-  }
 
-  function formatValidateResult<T extends Data>(validateResultList: FormItemValidateResult<T>[]) {
-    const result = validateResultList.reduce((r, err) => Object.assign(r || {}, err), {});
-    Object.keys(result).forEach((key) => {
-      if (result[key] === true || (isArray(result[key]) && result[key].length === 0)) {
-        // Adjusted for empty array meaning success
-        delete result[key];
+    async function validate(param?: FormValidateParams): Promise<Result> {
+      const { fields, trigger = 'all', showErrorMessage } = param || {};
+      const list = React.Children.toArray(children)
+        .filter(
+          (child) =>
+            React.isValidElement(child) &&
+            isFunction(child.props.validate) &&
+            needValidate(String(child.props.name), fields),
+        )
+        .map((child) => {
+          if (React.isValidElement(child)) {
+            return child.props.validate(trigger, showErrorMessage);
+          }
+          return null;
+        });
+      const arr = await Promise.all(list);
+      const result = formatValidateResult(arr);
+      onValidate?.({
+        validateResult: result,
+      });
+      return result;
+    }
+
+    // 校验不通过时，滚动到第一个错误表单
+    function scrollTo(selector: string) {
+      const doms = formRef.current.getElementsByClassName(selector);
+      const dom = doms[0];
+      const behavior = scrollToFirstError;
+      if (behavior && dom) {
+        dom.scrollIntoView({ behavior });
       }
-    });
-    return isEmpty(result) ? true : result;
-  }
+    }
 
-  async function submit(params?: Pick<FormValidateParams, 'showErrorMessage'>) {
-    submitParamsRef.current = params;
-    if (formRef.current) {
+    function getFirstError(result: Result) {
+      if (isBoolean(result)) {
+        return '';
+      }
+
+      const [firstKey] = Object.keys(result);
+      if (scrollToFirstError) {
+        const tmpClassName = `${formClass}-item__${firstKey}`;
+        scrollTo(tmpClassName);
+      }
+      const resArr = result[firstKey] as ValidateResultList;
+      if (!isArray(resArr)) {
+        return '';
+      }
+      return result?.[Object.keys(result)?.[0]]?.[0]?.message || '';
+    }
+
+    async function validateOnly(params?: Omit<FormValidateParams, 'showErrorMessage'>) {
+      const { fields, trigger = 'all' } = params || {};
+      const list = React.Children.toArray(children)
+        .filter(
+          (child) =>
+            React.isValidElement(child) &&
+            isFunction(child.props.validateOnly) &&
+            needValidate(String(child.props.name), fields),
+        )
+        .map((child) => {
+          if (React.isValidElement(child)) {
+            return child.props.validateOnly(trigger);
+          }
+          return null;
+        });
+      const arr = await Promise.all(list);
+      return formatValidateResult(arr);
+    }
+
+    function onSubmit(e?: FormSubmitEvent) {
+      if (preventSubmitDefault && e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      validate(submitParams.current).then((r) => {
+        const firstError = getFirstError(r);
+        onSubmitCustom?.({
+          validateResult: r,
+          firstError,
+        });
+      });
+      submitParams.current = undefined;
+    }
+
+    async function submit(params?: Pick<FormValidateParams, 'showErrorMessage'>) {
+      submitParams.current = params;
       requestSubmit(formRef.current);
     }
-  }
 
-  async function validate(param?: FormValidateParams): Promise<Result<any>> {
-    const { fields, trigger = 'all', showErrorMessage: paramShowErrorMsg } = param || {};
-    const needValidateChildren = getNeedValidateChildren(children, fields);
-    const list = needValidateChildren.map((child) =>
-      child.props.validate(trigger, paramShowErrorMsg ?? formContextValue.showErrorMessage),
-    );
-    const arr = await Promise.all(list);
-    const result = formatValidateResult(arr);
-    onValidate?.({ validateResult: result });
-    return result;
-  }
-
-  async function validateOnly(params?: Omit<FormValidateParams, 'showErrorMessage'>): Promise<Result<any>> {
-    const { fields, trigger = 'all' } = params || {};
-    const needValidateChildren = getNeedValidateChildren(children, fields);
-    const list = needValidateChildren.map((child) => child.props.validateOnly(trigger));
-    const arr = await Promise.all(list);
-    return formatValidateResult(arr);
-  }
-
-  function reset<FormData extends Data>(params?: FormResetParams<FormData>) {
-    resetParamsRef.current = params as FormResetParams<Data>;
-    formRef.current?.reset();
-  }
-
-  function clearValidate(fields?: Array<string>) {
-    const resetHandlerChildren = getResetHandlerChildren(children, fields);
-    resetHandlerChildren.forEach((child) => {
-      child.props.resetHandler();
-    });
-  }
-
-  async function setValidateMessage(validateMessage: FormValidateMessage<Data>) {
-    const keys = Object.keys(validateMessage);
-    if (!keys.length) {
-      return;
+    function onReset(e?: FormResetEvent) {
+      if (preventSubmitDefault && e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      React.Children.toArray(children)
+        .filter(
+          (child) =>
+            React.isValidElement(child) &&
+            isFunction(child.props.resetField) &&
+            needValidate(String(child.props.name), resetParams.current?.fields as string[]),
+        )
+        .forEach((child) => {
+          if (React.isValidElement(child)) {
+            child.props.resetField(resetParams.current?.type);
+          }
+        });
+      resetParams.current = undefined;
+      onResetCustom?.({ e });
     }
-    const validateMessageChildren = getUpdatePromisesChildren(children, keys);
-    const updatePromises = validateMessageChildren.map((child) =>
-      child.props.setValidateMessage(validateMessage[String(child.props.name)]),
-    );
-    await Promise.all(updatePromises);
-  }
 
-  const handleSubmitInternal = async (e?: FormSubmitEvent) => {
-    if (preventSubmitDefault && e) {
-      e.preventDefault();
+    function reset<FormData extends Data>(params?: FormResetParams<FormData>) {
+      (resetParams.current as any) = params;
+      formRef.current.reset();
     }
-    const res = await validate(submitParamsRef.current);
-    const firstError = getFirstError(res);
-    onSubmit?.({ validateResult: res, firstError, e });
-    submitParamsRef.current = undefined;
-  };
 
-  const handleResetInternal = async (e?: React.FormEvent<HTMLFormElement>) => {
-    if (preventSubmitDefault && e) {
-      e.preventDefault();
+    function clearValidate(fields?: Array<string>) {
+      React.Children.toArray(children).forEach((child) => {
+        if (
+          React.isValidElement(child) &&
+          isFunction(child.props.resetHandler) &&
+          needValidate(String(child.props.name), fields)
+        ) {
+          child.props.resetHandler();
+        }
+      });
     }
-    const needResetFormItems = getNeedResetFields(children, resetParamsRef.current?.fields as string[]);
-    needResetFormItems.forEach((child) => {
-      child.props.resetField(resetParamsRef.current?.type);
-    });
-    resetParamsRef.current = undefined;
-    onReset?.({ e });
-  };
 
-  return (
-    <FormDisabledContext.Provider value={formDisabledContextValue}>
-      <FormContext.Provider value={formContextValue}>
-        <form ref={formRef} className={rootClassName} onSubmit={handleSubmitInternal} onReset={handleResetInternal}>
+    function setValidateMessage(validateMessage: FormValidateMessage<FormData>) {
+      const keys = Object.keys(validateMessage);
+      if (!keys.length) return;
+      const list = React.Children.toArray(children)
+        .filter(
+          (child) =>
+            React.isValidElement(child) &&
+            isFunction(child.props.setValidateMessage) &&
+            keys.includes(`${child.props.name}`),
+        )
+        .map((child) => {
+          if (React.isValidElement(child)) {
+            return child.props.setValidateMessage(validateMessage[`${child.props.name}`]);
+          }
+          return null;
+        });
+      Promise.all(list);
+    }
+
+    function onFormItemValueChange(changedValue: Record<string, unknown>) {
+      const allFields = formRef.current.getFieldsValue(true);
+      onValuesChange(changedValue, allFields);
+    }
+
+    return (
+      <FormContext.Provider
+        value={{
+          disabled,
+          form,
+          labelWidth,
+          statusIcon,
+          labelAlign,
+          colon,
+          requiredMark,
+          requiredMarkPosition,
+          errorMessage,
+          showErrorMessage,
+          resetType,
+          rules,
+          onFormItemValueChange,
+        }}
+      >
+        <form
+          ref={formRef}
+          id={id}
+          style={style}
+          className={formContentClass}
+          onSubmit={(e) => onSubmit(e)}
+          onReset={(e) => onReset(e)}
+        >
           {children}
         </form>
       </FormContext.Provider>
-    </FormDisabledContext.Provider>
-  );
-});
+    );
+  },
+  { FormItem },
+);
+
+Form.displayName = 'Form';
 
 export default Form;
