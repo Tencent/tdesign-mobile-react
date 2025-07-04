@@ -51,6 +51,9 @@ export interface FormItemContext {
   ) => Promise<FormItemValidateResult<T>>;
   validateOnly: <T = Data>(trigger: ValidateTriggerType) => Promise<FormItemValidateResult<T>>;
   setValidateMessage: (validateMessage: FormItemValidateMessage[]) => void;
+  onChange?: (value: any, ...args) => void;
+  onBlur?: (value: any, ...args) => void;
+  value?: any;
 }
 
 export const FormInjectionKey: InjectionKey<{

@@ -4,6 +4,7 @@ import {
   get as lodashGet,
   isArray,
   isBoolean,
+  isFunction,
   isNil,
   isNumber,
   isString,
@@ -26,10 +27,15 @@ import { AnalysisValidateResult, ErrorListType, FormItemContext, SuccessListType
 import { usePrefixClass } from '../hooks/useClass';
 import { FormContext } from './FormContext';
 import { TdFormItemProps } from './formItemType';
+import { StyledProps } from '../common';
+
+export interface FormItemProps extends TdFormItemProps, StyledProps {
+  children?: React.ReactNode;
+}
 
 export type FormItemValidateResult<T extends Data = Data> = { [key in keyof T]: boolean | AllValidateResult[] };
 
-const FormItem: React.FC<TdFormItemProps> = (props) => {
+const FormItem: React.FC<FormItemProps> = (props) => {
   const {
     arrow = false,
     contentAlign = 'left',
@@ -54,7 +60,7 @@ const FormItem: React.FC<TdFormItemProps> = (props) => {
   const [needResetField, setNeedResetField] = useState(false);
   const [freeShowErrorMessage, setFreeShowErrorMessage] = useState<boolean | undefined>(undefined);
   const [formValue, setFormValue] = useState(lodashGet(form?.store, name));
-  const initialValue = useRef();
+  const initialValue = useRef('');
   const contextRef = useRef<FormItemContext | null>(null);
   const formClass = usePrefixClass('form');
   const formItemClass = usePrefixClass('form__item');
@@ -309,8 +315,9 @@ const FormItem: React.FC<TdFormItemProps> = (props) => {
       validate: validateHandler,
       validateOnly,
       setValidateMessage,
+      value: formValue,
     }),
-    [name, resetHandler, resetField, validateHandler, validateOnly, setValidateMessage],
+    [name, resetHandler, resetField, validateHandler, validateOnly, setValidateMessage, formValue],
   );
 
   useEffect(() => {
@@ -346,9 +353,12 @@ const FormItem: React.FC<TdFormItemProps> = (props) => {
     return <ChevronRightIcon size="24px" style={{ color: 'rgba(0, 0, 0, .4)' }} />;
   };
 
-  const renderLabelContent = () => {
+  const renderLabelContent = (): React.ReactNode => {
     if (Number(computedLabelWidth) === 0) {
-      return null;
+      return '';
+    }
+    if (isFunction(label)) {
+      return label();
     }
     return label;
   };
@@ -357,9 +367,10 @@ const FormItem: React.FC<TdFormItemProps> = (props) => {
     if (!help) {
       return null;
     }
+
     return (
       <div className={[`${formItemClass}-help`, `${formClass}__controls--${computedContentAlign}`].join(' ')}>
-        {help}
+        {isFunction(help) ? help() : help}
       </div>
     );
   };
@@ -386,18 +397,18 @@ const FormItem: React.FC<TdFormItemProps> = (props) => {
             {
               // 受控模式下，children 应该是 input 并传递 value/onChange
               React.isValidElement(children)
-                ? React.cloneElement(children as React.ReactElement, {
-                    ...children.props,
+                ? React.cloneElement(children as React.ReactElement<FormItemContext>, {
+                    ...(children as React.ReactElement<FormItemContext>).props,
                     value: formValue,
                     onChange: (value: any, ...args) => {
                       const newValue = cloneDeep(value);
                       lodashSet(form?.store, name, newValue);
                       setFormValue(newValue);
-                      children.props?.onChange?.call?.(null, value, ...args);
+                      (children as React.ReactElement<FormItemContext>).props?.onChange?.call?.(null, value, ...args);
                     },
                     onBlur: (value: any, ...args: any[]) => {
                       handleBlur();
-                      children.props?.onBlur?.call?.(null, value, ...args);
+                      (children as React.ReactElement<FormItemContext>).props?.onBlur?.call?.(null, value, ...args);
                     },
                   })
                 : children

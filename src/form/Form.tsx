@@ -19,11 +19,12 @@ import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 import useForm from './hooks/useForm';
 import { FormContext } from './FormContext';
+import { FormItemContext } from './const';
 
 type Result = FormValidateResult<Data>;
 
 export interface FormProps extends TdFormProps, StyledProps {
-  children?: React.ReactNode;
+  children?: React.ReactElement<FormItemContext>;
 }
 
 export const requestSubmit = (target: HTMLFormElement) => {
@@ -63,8 +64,8 @@ const Form = forwardRefWithStatics(
       onReset: onResetCustom,
       onValuesChange = noop,
     } = useDefaultProps(props, formItemDefaultProps);
-    const submitParams = useRef<Pick<FormValidateParams, 'showErrorMessage'>>();
-    const resetParams = useRef<FormResetParams<Data>>();
+    const submitParams = useRef<Pick<FormValidateParams, 'showErrorMessage'>>({});
+    const resetParams = useRef<FormResetParams<Data>>({});
     const formRef = useRef<HTMLFormElement>(null);
     const [form] = useForm();
     const formClass = usePrefixClass('form');
@@ -98,12 +99,12 @@ const Form = forwardRefWithStatics(
       const { fields, trigger = 'all', showErrorMessage } = param || {};
       const list = React.Children.toArray(children)
         .filter(
-          (child) =>
+          (child: React.ReactElement<FormItemContext>) =>
             React.isValidElement(child) &&
             isFunction(child.props.validate) &&
             needValidate(String(child.props.name), fields),
         )
-        .map((child) => {
+        .map((child: React.ReactElement<FormItemContext>) => {
           if (React.isValidElement(child)) {
             return child.props.validate(trigger, showErrorMessage);
           }
@@ -148,12 +149,12 @@ const Form = forwardRefWithStatics(
       const { fields, trigger = 'all' } = params || {};
       const list = React.Children.toArray(children)
         .filter(
-          (child) =>
+          (child: React.ReactElement<FormItemContext>) =>
             React.isValidElement(child) &&
             isFunction(child.props.validateOnly) &&
             needValidate(String(child.props.name), fields),
         )
-        .map((child) => {
+        .map((child: React.ReactElement<FormItemContext>) => {
           if (React.isValidElement(child)) {
             return child.props.validateOnly(trigger);
           }
@@ -190,12 +191,12 @@ const Form = forwardRefWithStatics(
       }
       React.Children.toArray(children)
         .filter(
-          (child) =>
+          (child: React.ReactElement<FormItemContext>) =>
             React.isValidElement(child) &&
             isFunction(child.props.resetField) &&
             needValidate(String(child.props.name), resetParams.current?.fields as string[]),
         )
-        .forEach((child) => {
+        .forEach((child: React.ReactElement<FormItemContext>) => {
           if (React.isValidElement(child)) {
             child.props.resetField(resetParams.current?.type);
           }
@@ -210,7 +211,7 @@ const Form = forwardRefWithStatics(
     }
 
     function clearValidate(fields?: Array<string>) {
-      React.Children.toArray(children).forEach((child) => {
+      React.Children.toArray(children).forEach((child: React.ReactElement<FormItemContext>) => {
         if (
           React.isValidElement(child) &&
           isFunction(child.props.resetHandler) &&
@@ -226,12 +227,12 @@ const Form = forwardRefWithStatics(
       if (!keys.length) return;
       const list = React.Children.toArray(children)
         .filter(
-          (child) =>
+          (child: React.ReactElement<FormItemContext>) =>
             React.isValidElement(child) &&
             isFunction(child.props.setValidateMessage) &&
             keys.includes(`${child.props.name}`),
         )
-        .map((child) => {
+        .map((child: React.ReactElement<FormItemContext>) => {
           if (React.isValidElement(child)) {
             return child.props.setValidateMessage(validateMessage[`${child.props.name}`]);
           }
