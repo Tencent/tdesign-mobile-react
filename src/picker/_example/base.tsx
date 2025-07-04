@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
-// import { NoticeBar } from 'tdesign-mobile-react';
-import { Popup, Picker, Cell, PickerValue } from 'tdesign-mobile-react';
+import { Popup, Picker, Cell, PickerValue, PickerContext } from 'tdesign-mobile-react';
 
 const generateCityOptions = () => [
   {
@@ -34,24 +33,33 @@ const generateCityOptions = () => [
   },
 ];
 
-const generateSeasonOptions = () => [
-  {
-    label: '春',
-    value: '春',
-  },
-  {
-    label: '夏',
-    value: '夏',
-  },
-  {
-    label: '秋',
-    value: '秋',
-  },
-  {
-    label: '冬',
-    value: '冬',
-  },
-];
+const generateSeasonOptions = () => {
+  const currentYear = Number(new Date().getFullYear());
+  return [
+    Array.from(new Array(10), (_, index) => ({
+      label: `${currentYear - index}`,
+      value: `${currentYear - index}`,
+    })),
+    [
+      {
+        label: '春',
+        value: '春',
+      },
+      {
+        label: '夏',
+        value: '夏',
+      },
+      {
+        label: '秋',
+        value: '秋',
+      },
+      {
+        label: '冬',
+        value: '冬',
+      },
+    ],
+  ];
+};
 
 // const option = (item: PickerColumnItem, index: number) => item.label;
 
@@ -80,14 +88,14 @@ export default function Base() {
     setSeasonVisible(false);
   }
 
-  function onConfirm(val: string[], context: number[]) {
+  function onConfirm(val: string[], context: { index: number[] }) {
     console.log(val);
     console.log('context', context);
     setCityVisible(false);
     setSeasonVisible(false);
   }
 
-  function handleOnPick(value: PickerValue[], context: number[]) {
+  function handleOnPick(value: PickerValue[], context: PickerContext) {
     console.log('value', value);
     console.log('context', context);
   }

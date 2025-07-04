@@ -1,5 +1,4 @@
 import _Picker from './Picker';
-// import _PickerView from './PickerView';
 import _PickerItem from './PickerItem';
 import './style';
 

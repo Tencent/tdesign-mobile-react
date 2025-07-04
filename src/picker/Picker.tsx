@@ -42,13 +42,16 @@ const Picker: FC<PickerProps> = (props) => {
     onCancel,
     onConfirm,
     onChange,
+    cancelBtn,
+    confirmBtn,
+    renderLabel,
   } = useDefaultProps(props, pickerDefaultProps);
   const { classPrefix } = useConfig();
   const name = `${classPrefix}-picker`;
 
   const [pickerValue = [], setPickerValue] = useDefault(value, defaultValue, onChange);
-  const confirmButtonText = useMemo(() => getDefaultText(props.confirmBtn, '确认'), [props.confirmBtn]);
-  const cancelButtonText = useMemo(() => getDefaultText(props.cancelBtn, '取消'), [props.cancelBtn]);
+  const confirmButtonText = useMemo(() => getDefaultText(confirmBtn, '确认'), [confirmBtn]);
+  const cancelButtonText = useMemo(() => getDefaultText(cancelBtn, '取消'), [cancelBtn]);
   const [curValueArray, setCurValueArray] = useState(value?.map((item) => item) ?? []);
   const pickerItemInstanceArray = useRef<PickerItemExposeRef[]>([]);
 
@@ -75,7 +78,7 @@ const Picker: FC<PickerProps> = (props) => {
       const label = target.map((item) => lodashGet(item, keys?.label ?? 'label'));
       const value = target.map((item) => lodashGet(item, keys?.value ?? 'value'));
       setPickerValue(value, e);
-      onChange(value, { columns: realColumns, e } as any);
+      onChange?.(value, { columns: realColumns, e } as any);
       onConfirm?.(value, { index: curIndexArray.current, e, label } as any);
     },
     [realColumns, keys, onChange, onConfirm, setPickerValue],
@@ -148,7 +151,7 @@ const Picker: FC<PickerProps> = (props) => {
                 }}
                 options={item}
                 value={pickerValue[idx]}
-                renderLabel={props.renderLabel}
+                renderLabel={renderLabel}
                 onPick={(context) => handlePick(context, idx)}
               />
             </div>
