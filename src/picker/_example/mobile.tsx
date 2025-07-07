@@ -2,8 +2,10 @@ import React from 'react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import BaseDemo from './base';
 import AreaDemo from './area';
-import TitleDemo from './title';
+import TitleDemo from './with-title';
 import CustomHeightDemo from './custom-height';
+
+import './style/index.less';
 
 export default function Base() {
   return (
