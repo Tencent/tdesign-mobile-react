@@ -38,7 +38,7 @@ const Picker: FC<PickerProps> = (props) => {
     defaultValue,
     title,
     header,
-    // footer,
+    footer,
     onCancel,
     onConfirm,
     onChange,
@@ -161,7 +161,7 @@ const Picker: FC<PickerProps> = (props) => {
           <div className={`${name}__mask ${name}__mask--bottom`} />
           <div className={`${name}__indicator`} />
         </div>
-        {/* {parseTNode(footer)} */}
+        {parseTNode(footer)}
       </div>
     </PickerContext.Provider>
   );
