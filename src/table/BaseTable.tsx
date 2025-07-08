@@ -16,7 +16,7 @@ import { formatClassNames, formatRowAttributes, formatRowClassNames } from './ut
 
 import type { TdBaseTableProps, BaseTableCol, TableRowData, BaseTableCellParams } from './type';
 
-export const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
+const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
   const {
     data,
     empty,
@@ -302,3 +302,7 @@ export const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) =
     </div>
   );
 });
+
+BaseTable.displayName = 'BaseTable';
+
+export default BaseTable;
