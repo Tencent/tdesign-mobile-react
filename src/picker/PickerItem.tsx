@@ -4,7 +4,7 @@ import cls from 'classnames';
 import { KeysType, StyledProps } from '../common';
 import { PickerColumnItem, PickerValue } from './type';
 import Picker from './picker.class';
-import useConfig from '../hooks/useConfig';
+import { usePrefixClass } from '../hooks/useClass';
 
 export interface PickerItemProps extends StyledProps {
   options?: PickerColumnItem[];
@@ -24,8 +24,9 @@ export interface PickerItemExposeRef {
 
 const PickerItem = forwardRef<PickerItemExposeRef, PickerItemProps>((props, ref) => {
   const { options, value, renderLabel, onPick, swipeDuration = 300, keys } = props;
-  const { classPrefix } = useConfig();
-  const pickerItemClass = `${classPrefix}-picker-item`;
+  const classPrefix = usePrefixClass();
+  const pickerItemClass = usePrefixClass('picker-item');
+
   const rootRef = useRef<HTMLUListElement>(null);
   const pickerRef = useRef<Picker | null>(null);
 

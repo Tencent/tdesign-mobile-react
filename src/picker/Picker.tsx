@@ -2,11 +2,11 @@ import React, { FC, useMemo, useState, useEffect, useRef, useCallback, ReactNode
 import { isBoolean, isString, isFunction, get as lodashGet } from 'lodash-es';
 import { KeysType } from '../common';
 import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
 import parseTNode from '../_util/parseTNode';
-
-import useConfig from '../hooks/useConfig';
 import useDefault from '../_util/useDefault';
 import { NativeProps } from '../_util/withNativeProps';
+import { useLocaleReceiver } from '../locale/LocalReceiver';
 import { pickerDefaultProps } from './defaultProps';
 import { TdPickerProps, PickerColumnItem, PickerValue, PickerColumn } from './type';
 
@@ -46,12 +46,16 @@ const Picker: FC<PickerProps> = (props) => {
     confirmBtn,
     renderLabel,
   } = useDefaultProps(props, pickerDefaultProps);
-  const { classPrefix } = useConfig();
-  const name = `${classPrefix}-picker`;
+  const pickerClass = usePrefixClass('picker');
+
+  const [locale, t] = useLocaleReceiver('picker');
 
   const [pickerValue = [], setPickerValue] = useDefault(value, defaultValue, onChange);
-  const confirmButtonText = useMemo(() => getDefaultText(confirmBtn, '确认'), [confirmBtn]);
-  const cancelButtonText = useMemo(() => getDefaultText(cancelBtn, '取消'), [cancelBtn]);
+  const confirmButtonText = useMemo(
+    () => getDefaultText(confirmBtn, t(locale.confirm)),
+    [confirmBtn, t, locale.confirm],
+  );
+  const cancelButtonText = useMemo(() => getDefaultText(cancelBtn, t(locale.cancel)), [cancelBtn, t, locale.cancel]);
   const [curValueArray, setCurValueArray] = useState(value?.map((item) => item) ?? []);
   const pickerItemInstanceArray = useRef<PickerItemExposeRef[]>([]);
 
@@ -125,26 +129,26 @@ const Picker: FC<PickerProps> = (props) => {
 
   return (
     <PickerContext.Provider value={{ keys, value, onChange }}>
-      <div className={name}>
-        <div className={`${name}__toolbar`}>
+      <div className={pickerClass}>
+        <div className={`${pickerClass}__toolbar`}>
           {cancelButtonText ? (
-            <div className={`${name}__cancel`} onClick={handleCancel}>
+            <div className={`${pickerClass}__cancel`} onClick={handleCancel}>
               {cancelButtonText}
             </div>
           ) : null}
 
-          <div className={`${name}__title`}>{title}</div>
+          <div className={`${pickerClass}__title`}>{title}</div>
 
           {confirmButtonText ? (
-            <div className={`${name}__confirm`} onClick={handleConfirm}>
+            <div className={`${pickerClass}__confirm`} onClick={handleConfirm}>
               {confirmButtonText}
             </div>
           ) : null}
         </div>
         {parseTNode(header)}
-        <div className={`${name}__main`}>
+        <div className={`${pickerClass}__main`}>
           {realColumns.map((item, idx) => (
-            <div key={idx} className={`${name}-item__group`}>
+            <div key={idx} className={`${pickerClass}-item__group`}>
               <PickerItem
                 ref={(instance) => {
                   setPickerItemRef(instance, idx);
@@ -157,9 +161,9 @@ const Picker: FC<PickerProps> = (props) => {
             </div>
           ))}
 
-          <div className={`${name}__mask ${name}__mask--top`} />
-          <div className={`${name}__mask ${name}__mask--bottom`} />
-          <div className={`${name}__indicator`} />
+          <div className={`${pickerClass}__mask ${pickerClass}__mask--top`} />
+          <div className={`${pickerClass}__mask ${pickerClass}__mask--bottom`} />
+          <div className={`${pickerClass}__indicator`} />
         </div>
         {parseTNode(footer)}
       </div>
