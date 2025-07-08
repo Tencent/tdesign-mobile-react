@@ -1,11 +1,9 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { Button, Form, Input, Radio, RadioGroup, Rate, Stepper, Textarea } from 'tdesign-mobile-react';
 import { BrowseOffIcon } from 'tdesign-icons-react';
-import { ARRANGEMENT_TYPE } from './index';
-import './style/index.less';
 
 const RATE_GAP = 8;
-export default function UserForm({ arrangementType, disabled }) {
+export default function VerticalForm({ disabled }) {
   const formRef = useRef(null);
   const isInit = useRef(false);
   const rules = useMemo(
@@ -41,18 +39,18 @@ export default function UserForm({ arrangementType, disabled }) {
         ref={formRef}
         showErrorMessage
         resetType="initial"
-        labelAlign={arrangementType === ARRANGEMENT_TYPE.horizontal ? 'top' : 'left'}
+        labelAlign="top"
         scrollToFirstError="auto"
         disabled={disabled}
         rules={rules}
         onReset={onReset}
         onSubmit={onSubmit}
       >
-        <Form.FormItem label="用户名" name="name" help="输入用户名">
+        <Form.FormItem label="用户名" name="name" help="请输入用户名">
           <Input borderless placeholder="请输入内容" />
         </Form.FormItem>
-        <Form.FormItem label="密码" name="password">
-          <Input borderless type="password" placeholder="请输入内容" clearable={false} suffixIcon={<BrowseOffIcon />} />
+        <Form.FormItem label="密码" name="password" help="">
+          <Input borderless type="password" placeholder="请输入内容" suffixIcon={<BrowseOffIcon />} />
         </Form.FormItem>
         <Form.FormItem label="性别" name="gender">
           <RadioGroup className="box" borderless>
@@ -61,10 +59,10 @@ export default function UserForm({ arrangementType, disabled }) {
             <Radio block={false} name="radio" value="secret" label="保密" />
           </RadioGroup>
         </Form.FormItem>
-        <Form.FormItem label="年限" name="age" contentAlign="right">
+        <Form.FormItem label="年限" name="age" contentAlign="left">
           <Stepper theme="filled" />
         </Form.FormItem>
-        <Form.FormItem label="自我评价" name="description" contentAlign="right">
+        <Form.FormItem label="自我评价" name="description" contentAlign="left">
           <Rate allowHalf showText={false} gap={RATE_GAP} />
         </Form.FormItem>
         <Form.FormItem label="个人简介" name="resume">

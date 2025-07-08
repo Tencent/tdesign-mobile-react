@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import classNames from 'classnames';
 import {
   cloneDeep,
   get as lodashGet,
@@ -120,19 +121,34 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     [contentAlign, formContext?.contentAlign],
   );
 
-  const labelClasses = useMemo(
-    () => [
-      labelClass,
-      {
-        [`${labelClass}--required`]: needRequiredMark,
-        [`${labelClass}--colon`]: hasColon,
-        [`${labelClass}--top`]: hasLabel && (computedLabelAlign === 'top' || !computedLabelWidth),
-        [`${labelClass}--left`]: computedLabelAlign === 'left' && computedLabelWidth,
-        [`${labelClass}--right`]: computedLabelAlign === 'right' && computedLabelWidth,
-      },
+  const labelClasses = classNames([
+    labelClass,
+    {
+      [`${labelClass}--required`]: needRequiredMark,
+      [`${labelClass}--colon`]: hasColon,
+      [`${labelClass}--top`]: hasLabel && (computedLabelAlign === 'top' || !computedLabelWidth),
+      [`${labelClass}--left`]: computedLabelAlign === 'left' && computedLabelWidth,
+      [`${labelClass}--right`]: computedLabelAlign === 'right' && computedLabelWidth,
+    },
+  ]);
+  const formItemRootClasses = classNames(
+    [
+      ...formItemClasses,
+      `${formItemClass}--bordered`,
+      `${formClass}--${labelAlign || formContext?.labelAlign || 'right'}`,
+      `${formClass}-item__${name}`,
     ],
-    [labelClass, needRequiredMark, hasColon, hasLabel, computedLabelAlign, computedLabelWidth],
+    { [`${formClass}__item-with-help`]: help },
   );
+  const formItemWrapperClasses = classNames([`${formItemClass}-wrap`, `${formItemClass}--${computedLabelAlign}`]);
+  const formItemHelperClasses = classNames([
+    `${formItemClass}-help`,
+    `${formClass}__controls--${computedContentAlign}`,
+  ]);
+  const formItemExtraClasses = classNames([
+    `${formItemClass}-extra`,
+    `${formClass}__controls--${computedContentAlign}`,
+  ]);
 
   const labelStyle = useMemo(() => {
     if (computedLabelWidth && computedLabelAlign !== 'top') {
@@ -158,11 +174,11 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     return type === 'error' ? `${formItemClass}--error` : `${formItemClass}--warning`;
   }, [shouldShowErrorMessage, errorList, formItemClass]);
 
-  const contentClasses = useMemo(() => [`${formClass}__controls`, errorClasses], [formClass, errorClasses]);
-  const contentSlotClasses = useMemo(
-    () => [`${formClass}__controls-content`, `${formClass}__controls--${computedContentAlign}`],
-    [formClass, computedContentAlign],
-  );
+  const contentClasses = classNames([`${formClass}__controls`, errorClasses]);
+  const contentSlotClasses = classNames([
+    `${formClass}__controls-content`,
+    `${formClass}__controls--${computedContentAlign}`,
+  ]);
 
   const contentStyle = useMemo(() => {
     let style = {};
@@ -378,32 +394,24 @@ const FormItem: React.FC<FormItemProps> = (props) => {
       return null;
     }
 
-    return (
-      <div className={[`${formItemClass}-help`, `${formClass}__controls--${computedContentAlign}`].join(' ')}>
-        {isFunction(help) ? help() : help}
-      </div>
-    );
+    return <div className={formItemHelperClasses}>{isFunction(help) ? help() : help}</div>;
   };
 
   const renderExtraNode = () => {
     if (!extraNode) {
       return null;
     }
-    return (
-      <div className={[`${formItemClass}-extra`, `${formClass}__controls--${computedContentAlign}`].join(' ')}>
-        {extraNode}
-      </div>
-    );
+    return <div className={formItemExtraClasses}>{extraNode}</div>;
   };
 
   return (
-    <div className={[...formItemClasses, renderHelpNode() ? `${formClass}__item-with-help` : ''].join(' ')}>
-      <div className={[`${formItemClass}-wrap`, `${formItemClass}--${computedLabelAlign}`].join(' ')}>
-        <div className={labelClasses.join(' ')} style={labelStyle}>
+    <div className={formItemRootClasses}>
+      <div className={formItemWrapperClasses}>
+        <div className={labelClasses} style={labelStyle}>
           <label htmlFor={htmlFor}>{renderLabelContent()}</label>
         </div>
-        <div className={contentClasses.join(' ')} style={contentStyle}>
-          <div className={contentSlotClasses.join(' ')}>
+        <div className={contentClasses} style={contentStyle}>
+          <div className={contentSlotClasses}>
             {
               // 受控模式下，children 应该是 input 并传递 value/onChange
               React.isValidElement(children)

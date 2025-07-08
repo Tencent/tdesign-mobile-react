@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Button, Cell, Switch } from 'tdesign-mobile-react';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
-import UserForm from './userForm';
+import HorizontalForm from './horizontal';
+import VerticalForm from './vertical';
+import './style/index.less';
 
 export type ArrangementTypes = 1 | 2;
 export const ARRANGEMENT_TYPE: Record<'horizontal' | 'vertical', ArrangementTypes> = {
@@ -46,7 +48,10 @@ export default function FormDemo() {
           </Cell>
         </div>
       </TDemoBlock>
-      <UserForm arrangementType={arrangement} disabled={isFormDisabled} />
+      <TDemoBlock>
+        {arrangement === ARRANGEMENT_TYPE.horizontal ? <HorizontalForm disabled={isFormDisabled} /> : null}
+        {arrangement === ARRANGEMENT_TYPE.vertical ? <VerticalForm disabled={isFormDisabled} /> : null}
+      </TDemoBlock>
     </div>
   );
 }
