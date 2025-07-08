@@ -213,7 +213,11 @@ export const BaseTable = forwardRef((props: BaseTableProps, ref: React.Ref<HTMLT
         }}
       >
         <table ref={tableElmRef} className={tableElmClasses} style={tableElementStyles}>
-          <colgroup>{columns?.map((col) => <col key={col.colKey} style={colStyle(col)} />)}</colgroup>
+          <colgroup>
+            {columns?.map((col) => (
+              <col key={col.colKey} style={colStyle(col)} />
+            ))}
+          </colgroup>
           {showHeader && (
             <thead ref={theadRef} className={theadClasses}>
               <tr>

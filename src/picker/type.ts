@@ -4,29 +4,50 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TNode, TElement } from '../common';
+import { TElement, KeysType } from '../common';
 import { MouseEvent } from 'react';
 
 export interface TdPickerProps {
   /**
    * 取消按钮文字
-   * @default 取消
+   * @default true
    */
-  cancelBtn?: string;
+  cancelBtn?: boolean | string;
+  /**
+   * 配置每一列的选项
+   * @default []
+   */
+  columns: PickerColumn | Array<PickerColumn> | ((item: Array<PickerValue>) => Array<PickerColumn>);
   /**
    * 确定按钮文字
-   * @default 确认
+   * @default true
    */
-  confirmBtn?: string;
+  confirmBtn?: boolean | string;
   /**
    * 底部内容
    */
   footer?: TElement;
   /**
-   * 头部内容。值为 true 显示空白头部，值为 false 不显示任何内容，值类型为 TNode 表示自定义头部内容
-   * @default true
+   * 自定义头部内容
    */
-  header?: TNode;
+  header?: TElement;
+  /**
+   * 用来定义 value / label / disabled 在 `columns ` 中对应的字段别名
+   */
+  keys?: KeysType;
+  /**
+   * 自定义选项内容。参数为 `option: PickerColumnItem, index: number`
+   */
+  option?: TElement;
+  /**
+   * 自定义label
+   */
+  renderLabel?: (item: PickerColumnItem) => string;
+  /**
+   * 快速滑动时惯性滚动的时长，单位 ms，为 0 时表示取消惯性滚动
+   * @default 300
+   */
+  swipeDuration?: string | number;
   /**
    * 标题
    * @default ''
@@ -54,29 +75,35 @@ export interface TdPickerProps {
    * 选中变化时候触发
    * @default ''
    */
-  onChange?: (value: Array<PickerValue>, index: number) => void;
+  onChange?: (
+    value: Array<PickerValue>,
+    context: { columns: Array<PickerContext>; e: MouseEvent<HTMLDivElement> },
+  ) => void;
   /**
-   * 点击确认确认按钮时触发
+   * 点击确认按钮时触发
    * @default ''
    */
-  onConfirm?: (value: Array<PickerValue>, context: { e: MouseEvent<HTMLButtonElement> }) => void;
+  onConfirm?: (
+    value: Array<PickerValue>,
+    context: { index: number[]; e: MouseEvent<HTMLDivElement>; label: string[] },
+  ) => void;
+  /**
+   * 任何一列选中都会触发，不同的列参数不同。`context.column` 表示第几列变化，`context.index` 表示变化那一列的选中项下标
+   * @default ''
+   */
+  onPick?: (value: Array<PickerValue>, context: PickerContext) => void;
 }
 
-export interface TdPickerItemProps {
-  /**
-   * 格式化标签
-   */
-  formatter?: (option: PickerItemOption) => string;
-  /**
-   * 数据源
-   * @default []
-   */
-  options?: Array<PickerItemOption>;
+export type PickerColumn = PickerColumnItem[];
+
+export interface PickerColumnItem {
+  label: string;
+  value: string;
 }
 
 export type PickerValue = string | number;
 
-export interface PickerItemOption {
-  label: string;
-  value: string | number;
+export interface PickerContext {
+  column: number;
+  index: number;
 }
