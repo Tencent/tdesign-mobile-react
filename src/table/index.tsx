@@ -1,9 +1,11 @@
-import { BaseTable, BaseTableProps } from './BaseTable';
+import _BaseTable from './BaseTable';
 
 import './style';
 
-export type TableProps = BaseTableProps;
+export * from './type';
+export * from './interface';
 
-export { BaseTable as Table };
+export const BaseTable = _BaseTable;
+export const Table = BaseTable;
 
-export default BaseTable;
+export default Table;

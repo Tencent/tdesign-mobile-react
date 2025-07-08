@@ -13,14 +13,16 @@ export default function useStyle(
   {
     isFixedHeader,
     isFixedColumn,
+    showColumnShadow,
   }: {
     isFixedHeader?: boolean;
     isFixedColumn?: boolean;
+    showColumnShadow?: { left?: boolean; right?: boolean };
   },
 ) {
   const { bordered, stripe, verticalAlign, height, maxHeight, tableContentWidth, loading } = props;
 
-  const { tableBaseClass, tableAlignClasses } = useClassName();
+  const { tableBaseClass, tableAlignClasses, tableColFixedClasses } = useClassName();
 
   const tableClasses = cx([
     tableBaseClass.table,
@@ -31,6 +33,8 @@ export default function useStyle(
       [tableBaseClass.loading]: loading,
       [tableBaseClass.headerFixed]: isFixedHeader,
       [tableBaseClass.columnFixed]: isFixedColumn,
+      [tableColFixedClasses.leftShadow]: showColumnShadow.left,
+      [tableColFixedClasses.rightShadow]: showColumnShadow.right,
     },
   ]);
 
