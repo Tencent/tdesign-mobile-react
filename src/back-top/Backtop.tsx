@@ -34,7 +34,7 @@ const BackTop: React.FC<BackTopProps> = (props) => {
 
   const backTopDom = useRef<HTMLElement>(null);
 
-  backTopDom.current = target();
+  backTopDom.current = target ? target() : window.document.documentElement;
 
   const { classPrefix } = useConfig();
 
