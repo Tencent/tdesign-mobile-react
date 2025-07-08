@@ -31,18 +31,19 @@ export const htmlContent = `
 `;
 
 export const mainJsContent = `
-  import React, { StrictMode } from 'react';
-  import ReactDOM from 'react-dom';
+  import React from 'react';
+  import ReactDOM from 'react-dom/client';
 
   import Demo from './demo';
   import './index.css';
   import 'tdesign-mobile-react/es/style/index.css';
 
-  ReactDOM.render(
+  const root = ReactDOM.createRoot(document.getElementById('app'));
+
+  root.render(
   <React.StrictMode>
     <Demo />
   </React.StrictMode>,
-  document.getElementById('app')
   );
 `;
 
