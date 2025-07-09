@@ -106,6 +106,25 @@ const DateTimePicker: FC<DateTimePickerProps> = (props) => {
       second: t(locale.secondLabel),
     };
 
+    const getDaysOfWeekInMonth = (date: Dayjs): Array<{ value: string; label: string }> => {
+      const startOfMonth = date.startOf('month');
+      const endOfMonth = date.endOf('month');
+      const daysOfWeek = [];
+      const type = 'date';
+
+      for (let i = 0; i <= endOfMonth.diff(startOfMonth, 'days'); i += 1) {
+        const currentDate = startOfMonth.add(i, 'days');
+        const dayName = currentDate.format('ddd');
+
+        daysOfWeek.push({
+          value: `${i + 1}`,
+          label: props.renderLabel ? props.renderLabel(type, i) : `${i + 1}${typeUnit[type] || ''} ${dayName}`,
+        });
+      }
+
+      return daysOfWeek;
+    };
+
     const generateColumn = (start: number, end: number, type: TimeModeValues) => {
       const arr: PickerColumnItem[] = [];
       const step = (props.steps as TdDateTimePickerProps['steps'])?.[type] || 1;
@@ -132,7 +151,12 @@ const DateTimePicker: FC<DateTimePickerProps> = (props) => {
     if (meaningColumn.includes('date')) {
       const lower = isInMinMonth ? minDay : 1;
       const upper = isInMaxMonth ? maxDay : dayjs(`${curYear}-${curMonth}`).daysInMonth();
-      generateColumn(lower, upper, 'date');
+      if (props.showWeek) {
+        const options = getDaysOfWeekInMonth(curDate);
+        ret.push(options);
+      } else {
+        generateColumn(lower, upper, 'date');
+      }
     }
 
     if (meaningColumn.includes('hour')) {

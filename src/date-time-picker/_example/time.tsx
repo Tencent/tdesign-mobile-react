@@ -33,7 +33,7 @@ export default function DateTimePickerDemo() {
           mode={[null, 'second']}
           title="选择时间"
           start="2022-12-12"
-          format="hh:mm:ss"
+          format="HH:mm:ss"
           onPick={onPick}
           onChange={onChange}
           onCancel={onCancel}
