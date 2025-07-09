@@ -146,13 +146,13 @@ spline: explain
       <p class="name">ColorPicker 颜色选择器</p>
     </a>
   </div>
-  <!-- <div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/date-time-picker">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-datetimepicker.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-datetimepicker-dark.png" />
       <p class="name">DateTimePicker 日期选择器</p>
     </a>
-  </div> -->
+  </div>
   <!-- <div class="image-wrapper">
     <a class="item" href="./components/form">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-form.png" />
