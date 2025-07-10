@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Collapse as TCollapse,
   CollapsePanel as TCollapsePanel,
@@ -21,6 +21,8 @@ const iconDefault = {
   FeedBack: <ChatIcon />,
 };
 
+const LOCAL_STORAGE_KEY = 'tdesign-mobile-react-home-expand';
+
 function getDocsList(docs) {
   return docs.slice(1).map((item) => ({
     ...item,
@@ -31,10 +33,32 @@ function getDocsList(docs) {
 const HomePage = () => {
   const docs = getDocsList(baseDocs);
   const navigate = useNavigate();
+  const [expandList, setExpandList] = useState([]);
 
   const onClickItem = (item) => {
     navigate(`/${item.name}?showNavBack=1`);
   };
+  const onChange = (value) => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(value));
+    setExpandList(value);
+  };
+
+  useEffect(() => {
+    const storage = localStorage.getItem(LOCAL_STORAGE_KEY) || '';
+    let list = [];
+    if (storage) {
+      try {
+        list = JSON.parse(storage);
+      } catch (e) {
+        console.log('e', e);
+      }
+
+      if (list?.length) {
+        setExpandList(list);
+      }
+    }
+  }, []);
+
   return (
     <div className="tdesign-mobile-home">
       <div className="tdesign-mobile-logo">
@@ -42,7 +66,7 @@ const HomePage = () => {
         <p>TDesign 适配 React 的移动端组件库</p>
       </div>
       {docs.map((doc, index) => (
-        <TCollapse key={index} expandIcon={false}>
+        <TCollapse key={index} value={expandList} onChange={onChange}>
           <TCollapsePanel value={index} header={doc.title} expandIcon={doc.icon}>
             <TCellGroup class="collapse__content">
               {(doc.children || []).map((child, childIndex) => (
