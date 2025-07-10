@@ -1,8 +1,8 @@
+import type { CompositionEvent, FocusEvent, FormEvent, TouchEvent } from 'react';
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import type { FocusEvent, TouchEvent, CompositionEvent, FormEvent } from 'react';
 import classNames from 'classnames';
 import { isFunction } from 'lodash-es';
-import { CloseCircleFilledIcon, BrowseOffIcon, BrowseIcon } from 'tdesign-icons-react';
+import { BrowseIcon, BrowseOffIcon, CloseCircleFilledIcon } from 'tdesign-icons-react';
 import useDefault from '../_util/useDefault';
 import parseTNode from '../_util/parseTNode';
 import { inputDefaultProps } from './defaultProps';
@@ -69,7 +69,7 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
   });
   const rootClasses = classNames(`${rootClassName}`, {
     [`${rootClassName}--layout-${layout}`]: layout,
-    [`${rootClassName}--border`]: borderless,
+    [`${rootClassName}--border`]: !borderless,
   });
   const resultMaxLength = !isNaN(+maxlength) ? +maxlength : -1;
 
