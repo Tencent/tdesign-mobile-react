@@ -117,7 +117,7 @@ spline: explain
   </div>
 </section>
 
-<h3>Form<em class="tag">14</em></h3>
+<h3>Form<em class="tag">15</em></h3>
 <section class="image-group">
   <div class="image-wrapper">
     <a class="item" href="./components/calendar-en">
@@ -126,13 +126,13 @@ spline: explain
       <p class="name">Calendar</p>
     </a>
   </div>
-  <!-- <div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/cascader-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-cascader.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-cascader-dark.png" />
       <p class="name">Cascader</p>
     </a>
-  </div> -->
+  </div>
   <div class="image-wrapper">
     <a class="item" href="./components/checkbox-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-checkbox.png" />
@@ -224,6 +224,13 @@ spline: explain
       <p class="name">Textarea</p>
     </a>
   </div>
+   <div class="image-wrapper">
+      <a class="item" href="./components/tree-select">
+        <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-treeselect.png" />
+        <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-treeselect-dark.png" />
+        <p class="name">TreeSelect</p>
+      </a>
+    </div>
   <div class="image-wrapper">
     <a class="item" href="./components/upload-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-upload.png" />
@@ -233,7 +240,7 @@ spline: explain
   </div>
 </section>
 
-<h3>Data Display<em class="tag">15</em></h3>
+<h3>Data Display<em class="tag">17</em></h3>
 <section class="image-group">
   <div class="image-wrapper">
     <a class="item" href="./components/avatar-en">
@@ -298,20 +305,20 @@ spline: explain
       <p class="name">Image</p>
     </a>
   </div>
-  <!-- <div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/image-viewer-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-imageviewer.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-imageviewer-dark.png" />
       <p class="name">ImageViewer</p>
     </a>
-  </div> -->
-  <!-- <div class="image-wrapper">
+  </div>
+  <div class="image-wrapper">
     <a class="item" href="./components/list-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-list.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-list-dark.png" />
       <p class="name">List</p>
     </a>
-  </div> -->
+  </div>
   <div class="image-wrapper">
     <a class="item" href="./components/progress-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-progress.png" />
@@ -363,15 +370,15 @@ spline: explain
   </div>
 </section>
 
-<h3>Feedback<em class="tag">11</em></h3>
+<h3>Feedback<em class="tag">13</em></h3>
 <section class="image-group">
-  <!-- <div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/action-sheet-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-actionsheet.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-actionsheet-dark.png" />
       <p class="name">ActionSheet</p>
     </a>
-  </div> -->
+  </div>
   <div class="image-wrapper">
     <a class="item" href="./components/dialog-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-dialog.png" />
@@ -379,13 +386,13 @@ spline: explain
       <p class="name">Dialog</p>
     </a>
   </div>
-  <!-- <div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/dropdown-menu-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-dropdownmenu.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-dropdownmenu-dark.png" />
       <p class="name">DropdownMenu</p>
     </a>
-  </div> -->
+  </div>
   <div class="image-wrapper">
     <a class="item" href="./components/guide-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/doc/doc-guide.png" />
