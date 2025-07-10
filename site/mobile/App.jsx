@@ -3,6 +3,7 @@ import { HashRouter, Routes, Route, Navigate, useLocation, Outlet } from 'react-
 import { Loading  } from 'tdesign-mobile-react';
 import siteConfig from './mobile.config.js';
 import { getRoute, getCurrentRoute } from './utils';
+import Home from './components/Home.jsx';
 import THeader from './components/Header.jsx';
 
 const docRoutes = getRoute(siteConfig.docs, []);
@@ -43,7 +44,7 @@ function App() {
   return (
     <HashRouter>
       <Routes>
-        <Route exact path="/" element={<Navigate replace to="/button" />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="/*" element={<Components />}>
           {renderRouter()}
         </Route>
