@@ -439,20 +439,20 @@ export const docs = [
         component: () => import('tdesign-mobile-react/swiper/swiper.md'),
       },
       {
-        title: 'Tag 标签',
-        titleEn: 'Tag',
-        name: 'tag',
-        path: '/mobile-react/components/tag',
-        component: () => import('tdesign-mobile-react/tag/tag.md'),
-        componentEn: () => import('tdesign-mobile-react/tag/tag.en-US.md'),
-      },
-      {
         title: 'Table 表格',
         titleEn: 'Table',
         name: 'table',
         path: '/mobile-react/components/table',
         component: () => import('tdesign-mobile-react/table/table.md'),
         componentEn: () => import('tdesign-mobile-react/table/table.en-US.md'),
+      },
+      {
+        title: 'Tag 标签',
+        titleEn: 'Tag',
+        name: 'tag',
+        path: '/mobile-react/components/tag',
+        component: () => import('tdesign-mobile-react/tag/tag.md'),
+        componentEn: () => import('tdesign-mobile-react/tag/tag.en-US.md'),
       },
     ],
   },
@@ -480,12 +480,6 @@ export const docs = [
         path: '/mobile-react/components/dropdown-menu',
         component: () => import('tdesign-mobile-react/dropdown-menu/dropdown-menu.md'),
       },
-      // {
-      //   title: 'DropdownMenu 下拉菜单',
-      //   name: 'dropdown-menu',
-      //   path: '/mobile-react/components/dropdown-menu',
-      //   component: () => import('tdesign-mobile-react/dropdown-menu/dropdown-menu.md'),
-      // },
       {
         title: 'Guide 引导',
         titleEn: 'Guide',
@@ -527,14 +521,6 @@ export const docs = [
         componentEn: () => import('tdesign-mobile-react/overlay/overlay.en-US.md'),
       },
       {
-        title: 'Popup 弹出层',
-        titleEn: 'Popup',
-        name: 'popup',
-        path: '/mobile-react/components/popup',
-        component: () => import('tdesign-mobile-react/popup/popup.md'),
-        componentEn: () => import('tdesign-mobile-react/popup/popup.en-US.md'),
-      },
-      {
         title: 'Popover 弹出气泡',
         titleEn: 'Popover',
         name: 'popover',
@@ -542,6 +528,15 @@ export const docs = [
         component: () => import('tdesign-mobile-react/popover/popover.md'),
         componentEn: () => import('tdesign-mobile-react/popover/popover.en-US.md'),
       },
+      {
+        title: 'Popup 弹出层',
+        titleEn: 'Popup',
+        name: 'popup',
+        path: '/mobile-react/components/popup',
+        component: () => import('tdesign-mobile-react/popup/popup.md'),
+        componentEn: () => import('tdesign-mobile-react/popup/popup.en-US.md'),
+      },
+
       {
         title: 'PullDownRefresh 下拉刷新',
         titleEn: 'PullDownRefresh',
