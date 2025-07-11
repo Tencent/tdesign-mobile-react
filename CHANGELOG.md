@@ -5,6 +5,15 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.17.0 `2025-07-11` 
+### 🚀 Features
+- `Picker`: 新增 `Picker` 选择器组件 @ZWkang @novlan1  ([#655](https://github.com/Tencent/tdesign-mobile-react/pull/655))
+- `DateTimePicker`: 新增 `DateTimePicker` 时间选择器组件 @novlan1 ([#672](https://github.com/Tencent/tdesign-mobile-react/pull/672))
+- `Footer`: 新增 `Footer` 页脚组件 @anlyyao ([#676](https://github.com/Tencent/tdesign-mobile-react/pull/676))
+- `Table`: 新增 `rowAttributes` 和 `rowClassName` 属性，暴露组件实例的 `refreshTable` 方法 @anlyyao ([#669](https://github.com/Tencent/tdesign-mobile-react/pull/669))
+### 🐞 Bug Fixes
+- `BackTop`: 补充默认 `target` 值 @novlan1 ([#671](https://github.com/Tencent/tdesign-mobile-react/pull/671))
+
 ## 🌈 0.16.0 `2025-07-04` 
 ### 🚀 Features
 - `Fab`: 支持使用默认插槽自定义悬浮按钮内容，此时 `buttonProps`、`icon` 和 `text` 属性将失效 @novlan1 ([#645](https://github.com/Tencent/tdesign-mobile-react/pull/645))
