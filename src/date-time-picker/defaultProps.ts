@@ -10,6 +10,4 @@ export const dateTimePickerDefaultProps: TdDateTimePickerProps = {
   mode: 'date',
   showWeek: false,
   steps: {},
-  usePopup: true,
-  visible: false,
 };

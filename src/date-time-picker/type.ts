@@ -67,11 +67,6 @@ export interface TdDateTimePickerProps {
    */
   title?: string;
   /**
-   * 是否使用弹出层包裹
-   * @default true
-   */
-  usePopup?: boolean;
-  /**
    * 选中值
    */
   value?: DateValue;
@@ -79,11 +74,6 @@ export interface TdDateTimePickerProps {
    * 选中值，非受控属性
    */
   defaultValue?: DateValue;
-  /**
-   * 是否显示
-   * @default false
-   */
-  visible?: boolean;
   /**
    * 取消按钮点击时触发
    */

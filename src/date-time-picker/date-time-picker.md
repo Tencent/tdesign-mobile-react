@@ -21,10 +21,8 @@ showWeek | Boolean | false | 是否在日期旁边显示周几（如周一，周
 start | String / Number | - | 选择器的最小可选时间，默认为当前时间-10年 | N
 steps | Object | {} | 时间间隔步数，示例：`{ minute: 5 }`。TS 类型：`{ [key in TimeModeValues]?: number }` | N
 title | String | - | 标题 | N
-usePopup | Boolean | true | 是否使用弹出层包裹 | N
 value | String / Number | - | 选中值。TS 类型：`DateValue` `type DateValue = string \| number`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/date-time-picker/type.ts) | N
 defaultValue | String / Number | - | 选中值。非受控属性。TS 类型：`DateValue` `type DateValue = string \| number`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/date-time-picker/type.ts) | N
-visible | Boolean | false | 是否显示 | N
 onCancel | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>取消按钮点击时触发 | N
 onChange | Function |  | TS 类型：`(value: DateValue) => void`<br/>value改变时触发 | N
 onClose | Function |  | TS 类型：`(trigger: TriggerSource) => void`<br/>关闭时触发。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/date-time-picker/type.ts)。<br/>`type TriggerSource = 'overlay' \| 'cancel-btn' \| 'confirm-btn'`<br/> | N
