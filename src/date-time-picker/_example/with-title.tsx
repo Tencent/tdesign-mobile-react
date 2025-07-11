@@ -39,11 +39,24 @@ export default function DateTimePickerDemo() {
     <div className="with-title-demo">
       <Cell title="带标题时间选择器" note={pickerValue[0]} onClick={() => onShow(true)} />
       <Cell title="无标题时间选择器" note={pickerValue[1]} onClick={() => onShow(false)} />
-      <Popup visible={visible} placement="bottom">
+      <Popup visible={visible && hasTitle} placement="bottom">
         <DateTimePicker
-          value={hasTitle ? pickerValue[0] : pickerValue[1]}
+          value={pickerValue[0]}
           mode="date"
-          title={hasTitle ? '选择时间' : ''}
+          title="选择时间"
+          start="2022-12-12"
+          format="YYYY-MM-DD"
+          onPick={onPick}
+          onChange={onChange}
+          onCancel={onCancel}
+          onConfirm={onConfirm}
+        />
+      </Popup>
+      <Popup visible={visible && !hasTitle} placement="bottom">
+        <DateTimePicker
+          value={pickerValue[1]}
+          mode="date"
+          title=""
           start="2022-12-12"
           format="YYYY-MM-DD"
           onPick={onPick}

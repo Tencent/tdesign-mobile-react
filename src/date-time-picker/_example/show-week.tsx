@@ -16,13 +16,13 @@ const calendarMonth = [
   'December',
 ];
 const weekMap = {
+  0: 'Sun.',
   1: 'Mon.',
   2: 'Tues.',
   3: 'Wed.',
   4: 'Thurs.',
   5: 'Fri.',
   6: 'Sat.',
-  7: 'Sun.',
 };
 
 const renderLabel = (type: string, value: number, innerValue: string) => {
@@ -36,10 +36,10 @@ const renderLabel = (type: string, value: number, innerValue: string) => {
       2: 'nd',
       3: 'rd',
     };
-    const curOptionDate = [...innerValue.split('-').slice(0, 2), value].join('.');
+    const curOptionDate = [...innerValue.split('-').slice(0, 2), value + 1].join('.');
     const day = new Date(curOptionDate).getDay();
 
-    return `${value + 1}${dateSuffixes[value + 1] || 'th'} ${weekMap[day + 1]}`;
+    return `${value + 1}${dateSuffixes[value + 1] || 'th'} ${weekMap[day]}`;
   }
 
   return `${value}`;
