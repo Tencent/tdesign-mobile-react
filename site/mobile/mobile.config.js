@@ -303,6 +303,11 @@ export default {
       component: () => import('tdesign-mobile-react/empty/_example/index.tsx'),
     },
     {
+      title: 'Footer 空状态',
+      name: 'footer',
+      component: () => import('tdesign-mobile-react/footer/_example/index.tsx'),
+    },
+    {
       title: 'Calendar 日历',
       name: 'calendar',
       component: () => import('tdesign-mobile-react/calendar/_example/index.tsx'),

@@ -363,12 +363,14 @@ export const docs = [
         component: () => import('tdesign-mobile-react/empty/empty.md'),
         componentEn: () => import('tdesign-mobile-react/empty/empty.en-US.md'),
       },
-      // {
-      //   title: 'Footer 页脚',
-      //   name: 'footer',
-      //   path: '/mobile-react/components/footer',
-      //   component: () => import('tdesign-mobile-react/footer/footer.md'),
-      // },
+      {
+        title: 'Footer 页脚',
+        titleEn: 'Footer',
+        name: 'footer',
+        path: '/mobile-react/components/footer',
+        component: () => import('tdesign-mobile-react/footer/footer.md'),
+        componentEn: () => import('tdesign-mobile-react/footer/footer.en-US.md'),
+      },
       {
         title: 'Grid 宫格',
         titleEn: 'Grid',
