@@ -303,7 +303,7 @@ export default {
       component: () => import('tdesign-mobile-react/empty/_example/index.tsx'),
     },
     {
-      title: 'Footer 空状态',
+      title: 'Footer 页脚',
       name: 'footer',
       component: () => import('tdesign-mobile-react/footer/_example/index.tsx'),
     },
