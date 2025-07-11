@@ -11,7 +11,7 @@ export interface FooterProps extends TdFooterProps, StyledProps {}
 const Footer: React.FC<FooterProps> = (originProps) => {
   const props = useDefaultProps(originProps, footerDefaultProps);
 
-  const { links = [], text, logo } = props;
+  const { links, text, logo } = props;
 
   const footerClass = usePrefixClass('footer');
   const footerLinkClass = usePrefixClass('footer__link');
