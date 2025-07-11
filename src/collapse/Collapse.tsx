@@ -1,4 +1,4 @@
-import React, { forwardRef, memo, useCallback, useMemo, useState } from 'react';
+import React, { forwardRef, memo, useCallback, useMemo } from 'react';
 import type { StyledProps } from '../common';
 import type { TdCollapseProps, CollapseValue } from './type';
 import { collapseDefaultProps } from './defaultProps';
@@ -6,6 +6,7 @@ import { CollapseProvider } from './CollapseContext';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 import parseTNode from '../_util/parseTNode';
+import useDefault from '../_util/useDefault';
 
 export interface CollapseProps extends TdCollapseProps, StyledProps {}
 
@@ -27,7 +28,7 @@ const Collapse = forwardRef<HTMLDivElement, CollapseProps>((originProps, ref) =>
     style,
   } = props;
 
-  const [activeValue, setActiveValue] = useState<CollapseValue | undefined>(value || defaultValue);
+  const [activeValue, setActiveValue] = useDefault<CollapseValue, any[]>(value, defaultValue, onChange);
 
   const onPanelChange = useCallback(
     (panelValue: string | number, args: { e: React.MouseEvent<HTMLDivElement> }) => {
@@ -45,6 +46,7 @@ const Collapse = forwardRef<HTMLDivElement, CollapseProps>((originProps, ref) =>
         }
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [activeValue, onChange, expandMutex],
   );
 

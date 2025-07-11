@@ -16,6 +16,8 @@
   </a>
 </p>
 
+English | [简体中文](./README-zh_CN.md)
+
 TDesign Mobile React is a UI component library for React 18.x and mobile web application.
 
 # 🎉 Features

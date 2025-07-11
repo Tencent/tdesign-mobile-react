@@ -116,7 +116,7 @@ spline: explain
     </a>
   </div>
 </section>
-<h3>输入<em class="tag">14</em></h3>
+<h3>输入<em class="tag">15</em></h3>
 <section class="image-group">
   <div class="image-wrapper">
     <a class="item" href="./components/calendar">
@@ -125,13 +125,13 @@ spline: explain
       <p class="name">Calendar 日历</p>
     </a>
   </div>
-  <!-- <div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/cascader">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-cascader.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-cascader-dark.png" />
       <p class="name">Cascader 级联选择器</p>
     </a>
-  </div> -->
+  </div>
   <div class="image-wrapper">
     <a class="item" href="./components/checkbox">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-checkbox.png" />
@@ -146,13 +146,13 @@ spline: explain
       <p class="name">ColorPicker 颜色选择器</p>
     </a>
   </div>
-  <!-- <div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/date-time-picker">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-datetimepicker.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-datetimepicker-dark.png" />
       <p class="name">DateTimePicker 日期选择器</p>
     </a>
-  </div> -->
+  </div>
   <!-- <div class="image-wrapper">
     <a class="item" href="./components/form">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-form.png" />
@@ -239,7 +239,7 @@ spline: explain
   </div>
 </section>
 
-<h3>数据展示<em class="tag">15</em></h3>
+<h3>数据展示<em class="tag">17</em></h3>
 <section class="image-group">
   <div class="image-wrapper">
     <a class="item" href="./components/avatar">
@@ -304,20 +304,20 @@ spline: explain
       <p class="name">Image 图片</p>
     </a>
   </div>
-  <!-- <div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/image-viewer">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-imageviewer.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-imageviewer-dark.png" />
       <p class="name">ImageViewer 图片预览</p>
     </a>
-  </div> -->
-  <!-- <div class="image-wrapper">
+  </div>
+  <div class="image-wrapper">
     <a class="item" href="./components/list">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-list.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-list-dark.png" />
       <p class="name">List 列表</p>
     </a>
-  </div> -->
+  </div>
   <div class="image-wrapper">
     <a class="item" href="./components/progress">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-progress.png" />
@@ -369,15 +369,15 @@ spline: explain
   </div>
 </section>
 
-<h3>反馈<em class="tag">11</em></h3>
+<h3>反馈<em class="tag">13</em></h3>
 <section class="image-group">
-  <!-- <div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/action-sheet">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-actionsheet.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-actionsheet-dark.png" />
       <p class="name">ActionSheet 动作面板</p>
     </a>
-  </div> -->
+  </div>
   <div class="image-wrapper">
     <a class="item" href="./components/dialog">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-dialog.png" />
@@ -385,13 +385,13 @@ spline: explain
       <p class="name">Dialog 对话框</p>
     </a>
   </div>
-  <!-- <div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/dropdown-menu">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-dropdownmenu.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-dropdownmenu-dark.png" />
       <p class="name">DropdownMenu 下拉菜单</p>
     </a>
-  </div> -->
+  </div>
   <div class="image-wrapper">
     <a class="item" href="./components/guide">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-guide.png" />

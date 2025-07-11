@@ -245,7 +245,7 @@ export default {
     {
       title: 'Picker 选择器',
       name: 'picker',
-      component: () => import('tdesign-mobile-react/picker/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/picker/_example/index.tsx'),
     },
     {
       title: 'Textarea 多行文本框',
@@ -303,6 +303,11 @@ export default {
       component: () => import('tdesign-mobile-react/empty/_example/index.tsx'),
     },
     {
+      title: 'Footer 页脚',
+      name: 'footer',
+      component: () => import('tdesign-mobile-react/footer/_example/index.tsx'),
+    },
+    {
       title: 'Calendar 日历',
       name: 'calendar',
       component: () => import('tdesign-mobile-react/calendar/_example/index.tsx'),
@@ -326,6 +331,11 @@ export default {
       title: 'ActionSheet 动作面板',
       name: 'action-sheet',
       component: () => import('tdesign-mobile-react/action-sheet/_example/index.tsx'),
+    },
+     {
+      title: 'DateTimePicker 时间选择器',
+      name: 'date-time-picker',
+      component: () => import('tdesign-mobile-react/date-time-picker/_example/index.tsx'),
     },
   ],
 };
