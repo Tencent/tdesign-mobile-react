@@ -54,6 +54,7 @@ export * from './tag';
 export * from './list';
 export * from './table';
 export * from './empty';
+export * from './footer';
 
 /**
  * 消息提醒（7个）
