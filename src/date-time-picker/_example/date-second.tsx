@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DateTimePicker, Cell, Popup } from 'tdesign-mobile-react';
+import { DateTimePicker, Cell, Popup, type TimeModeValues, type DateTimePickerColumn } from 'tdesign-mobile-react';
 
 const TYPE_UNIT_MAP = {
   year: '年',
@@ -38,6 +38,13 @@ export default function DateTimePickerDemo() {
     return `${value} ${TYPE_UNIT_MAP[type]}`;
   };
 
+  const filter = (type: TimeModeValues, column: DateTimePickerColumn) => {
+    if (type === 'date') {
+      return column.filter((item) => +item.value % 2);
+    }
+    return column;
+  };
+
   return (
     <div>
       <Cell title="选择时间" note={pickerValueText} onClick={() => setVisible(true)} />
@@ -49,6 +56,7 @@ export default function DateTimePickerDemo() {
           start="2022-12-12"
           format="YYYY-MM-DD HH:mm:ss"
           renderLabel={renderLabel}
+          filter={filter}
           onPick={onPick}
           onChange={onChange}
           onCancel={onCancel}
