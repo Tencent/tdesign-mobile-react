@@ -7,5 +7,5 @@ const logo = {
 };
 
 export default function LogoDemo() {
-  return <Footer logo={logo} text="Copyright © 2021-2031 TD.All Rights Reserved." />;
+  return <Footer logo={logo} />;
 }
