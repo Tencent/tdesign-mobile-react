@@ -215,12 +215,12 @@ export const docs = [
         component: () => import('tdesign-mobile-react/color-picker/color-picker.md'),
         componentEn: () => import('tdesign-mobile-react/color-picker/color-picker.en-US.md'),
       },
-      // {
-      //   title: 'DateTimePicker 时间选择器',
-      //   name: 'date-time-picker',
-      //   path: '/mobile-react/components/date-time-picker',
-      //   component: () => import('tdesign-mobile-react/date-time-picker/date-time-picker.md'),
-      // },
+      {
+        title: 'DateTimePicker 时间选择器',
+        name: 'date-time-picker',
+        path: '/mobile-react/components/date-time-picker',
+        component: () => import('tdesign-mobile-react/date-time-picker/date-time-picker.md'),
+      },
       {
         title: 'Input 输入框',
         titleEn: 'Input',

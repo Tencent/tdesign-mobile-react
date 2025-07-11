@@ -332,5 +332,10 @@ export default {
       name: 'action-sheet',
       component: () => import('tdesign-mobile-react/action-sheet/_example/index.tsx'),
     },
+     {
+      title: 'DateTimePicker 时间选择器',
+      name: 'date-time-picker',
+      component: () => import('tdesign-mobile-react/date-time-picker/_example/index.tsx'),
+    },
   ],
 };
