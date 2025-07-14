@@ -16,7 +16,7 @@ export interface UploadProps extends TdUploadProps, StyledProps {}
 
 const Upload: React.FC<UploadProps> = (props) => {
   const rootClassName = usePrefixClass('upload');
-  const { globalConfig } = useConfig();
+  const globalConfig = useConfig();
   const { onPreview, onClickUpload, addContent, accept, children, className, files, max, multiple, imageProps } =
     useDefaultProps(props, uploadDefaultProps);
   const { displayFiles, inputRef, disabled, onNormalFileChange, onInnerRemove } = useUpload(props);
