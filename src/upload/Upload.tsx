@@ -1,4 +1,5 @@
-import React, { MouseEvent, useState } from 'react';
+import type { MouseEvent } from 'react';
+import React, { useState } from 'react';
 import { AddIcon, CloseCircleIcon, CloseIcon, LoadingIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
 import type { TdUploadProps, UploadFile } from './type';

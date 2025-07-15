@@ -3,14 +3,7 @@ import { useRef, useState } from 'react';
 import isString from 'lodash/isString';
 import isFunction from 'lodash/isFunction';
 import type { InnerProgressContext, OnResponseErrorContext } from '../../_common/js/upload/types';
-import type {
-  SizeLimitObj,
-  SuccessContext,
-  TdUploadProps,
-  UploadChangeContext,
-  UploadFile,
-  UploadRemoveContext,
-} from '../type';
+import type { SizeLimitObj, TdUploadProps, UploadChangeContext, UploadFile, UploadRemoveContext } from '../type';
 import { getFileList, getFileUrlByFileRaw } from '../../_common/js/upload/utils';
 import {
   formatToUploadFile,
@@ -38,28 +31,19 @@ export default function useUpload(props: TdUploadProps) {
     sizeLimit,
     headers,
     method,
-    isBatchUpload,
-    name,
-    uploadAllFilesInOneRequest,
-    mockProgressDuration,
     withCredentials,
     useMockProgress,
     data,
     beforeUpload,
-    beforeAllFilesUpload,
     format,
     formatRequest,
     formatResponse,
     requestMethod,
     onChange,
-    onCancelUpload,
     onFail,
-    onOneFileFail,
-    onOneFileSuccess,
     onProgress,
     onSuccess,
     onSelectChange,
-    onWaitingUploadFilesChange,
     onValidate,
   } = useDefaultProps(props, uploadDefaultProps);
   const [uploadValue, setUploadValue] = useDefault(files, defaultFiles, onChange);
@@ -74,7 +58,7 @@ export default function useUpload(props: TdUploadProps) {
     toUploadFiles,
     uploadValue,
     autoUpload,
-    isBatchUpload,
+    isBatchUpload: false,
   });
 
   const uploadFilePercent = ({ file, percent }: { file: UploadFile; percent: number }) => {
@@ -97,17 +81,10 @@ export default function useUpload(props: TdUploadProps) {
     if (!e || !e.files || !e.files[0]) {
       return;
     }
-    const { response, event, files } = e;
+    const { event, files } = e;
     updateFilesProgress();
-    onOneFileFail?.({
-      e: event,
-      file: files?.[0],
-      currentFiles: files,
-      failedFiles: files,
-      response,
-    });
     // 单选或多文件替换，需要清空上一次上传成功的文件
-    if (!multiple || isBatchUpload) {
+    if (!multiple) {
       setUploadValue([], {
         trigger: 'progress-fail',
         e: event,
@@ -131,16 +108,10 @@ export default function useUpload(props: TdUploadProps) {
   };
 
   // 多文件上传场景，单文件上传成功后
-  const onResponseSuccess = (p: SuccessContext) => {
-    const { e, fileList, response } = p;
+  const onResponseSuccess = () => {
     // 只有多个上传请求同时触发时才需 onOneFileSuccess
     if (multiple) {
       updateFilesProgress();
-      onOneFileSuccess?.({
-        e,
-        file: fileList[0],
-        response,
-      });
     }
   };
 
@@ -174,7 +145,7 @@ export default function useUpload(props: TdUploadProps) {
   };
 
   const handleNotAutoUpload = (toFiles: UploadFile[]) => {
-    const tmpFiles = multiple && isBatchUpload ? uploadValue.concat(toFiles) : toFiles;
+    const tmpFiles = multiple ? uploadValue.concat(toFiles) : toFiles;
     if (!tmpFiles.length) return;
     const list = tmpFiles.map(
       (file) =>
@@ -207,11 +178,9 @@ export default function useUpload(props: TdUploadProps) {
       allowUploadDuplicateFile,
       max,
       sizeLimit,
-      isBatchUpload,
       autoUpload,
       format,
       beforeUpload,
-      beforeAllFilesUpload,
     }).then((args) => {
       // 自定义全文件校验不通过
       if (args.validateResult?.type === 'BEFORE_ALL_FILES_UPLOAD') {
@@ -289,17 +258,13 @@ export default function useUpload(props: TdUploadProps) {
       action,
       headers,
       method,
-      name,
       withCredentials,
       uploadedFiles: uploadValue,
       toUploadFiles: files,
       multiple,
-      isBatchUpload,
       autoUpload,
-      uploadAllFilesInOneRequest,
       useMockProgress,
       data,
-      mockProgressDuration,
       requestMethod,
       formatRequest,
       formatResponse,
@@ -349,7 +314,6 @@ export default function useUpload(props: TdUploadProps) {
         // 非自动上传，文件都在 uploadValue，不涉及 toUploadFiles
         if (autoUpload) {
           setToUploadFiles(failedFiles);
-          onWaitingUploadFilesChange?.({ files: failedFiles, trigger: 'uploaded' });
         }
       },
     );
@@ -365,9 +329,8 @@ export default function useUpload(props: TdUploadProps) {
       file: p.file,
     };
     // remove all files for batchUpload
-    if (isBatchUpload || !multiple) {
+    if (!multiple) {
       setToUploadFiles([]);
-      onWaitingUploadFilesChange?.({ files: [], trigger: 'remove' });
       setUploadValue([], changePrams);
     } else if (!autoUpload) {
       const curUploadValue = [...uploadValue];
@@ -384,7 +347,6 @@ export default function useUpload(props: TdUploadProps) {
         const curToUploadFiles = [...toUploadFiles];
         curToUploadFiles.splice(p.index - uploadValue.length, 1);
         setToUploadFiles(curToUploadFiles);
-        onWaitingUploadFilesChange?.({ files: [...toUploadFiles], trigger: 'remove' });
       }
     }
     props.onRemove?.(p);
@@ -411,8 +373,6 @@ export default function useUpload(props: TdUploadProps) {
     if (context?.file && !autoUpload) {
       onInnerRemove?.({ file: context.file, e: context.e as MouseEvent<HTMLElement>, index: 0 });
     }
-
-    onCancelUpload?.();
   };
 
   return {
