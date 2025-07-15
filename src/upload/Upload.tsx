@@ -1,10 +1,10 @@
-import type { MouseEvent } from 'react';
-import React from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { AddIcon, CloseCircleIcon, CloseIcon, LoadingIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
 import type { TdUploadProps, UploadFile } from './type';
 import type { StyledProps } from '../common';
 import Image from '../image';
+import ImageViewer from '../image-viewer';
 import useUpload from './hooks/useUpload';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
@@ -15,20 +15,29 @@ import parseTNode from '../_util/parseTNode';
 export interface UploadProps extends TdUploadProps, StyledProps {}
 
 const Upload: React.FC<UploadProps> = (props) => {
+  const [showViewer, setShowViewer] = useState(false);
+  const [showImageIndex, setShowImageIndex] = useState(0);
   const rootClassName = usePrefixClass('upload');
   const globalConfig = useConfig();
-  const { onPreview, onClickUpload, addContent, accept, children, className, files, max, multiple, imageProps } =
+  const { onPreview, onClickUpload, addContent, accept, children, className, max, multiple, imageProps, preview } =
     useDefaultProps(props, uploadDefaultProps);
   const { displayFiles, inputRef, disabled, onNormalFileChange, onInnerRemove } = useUpload(props);
+  const previewImgs = displayFiles.map((img) => img.url || '');
   const uploadGlobalConfig = globalConfig.upload;
   const containerClassName = classNames(rootClassName, className);
 
   const handlePreview = (e: MouseEvent, file: UploadFile, index: number) => {
+    setShowViewer(preview);
+    setShowImageIndex(index);
     onPreview?.({
       e: e as MouseEvent<HTMLDivElement>,
       file,
       index,
     });
+  };
+
+  const handleImageViewerClose = ({ visible }: { visible: boolean }) => {
+    setShowViewer(visible);
   };
 
   const triggerUpload = (e: MouseEvent) => {
@@ -103,15 +112,8 @@ const Upload: React.FC<UploadProps> = (props) => {
     <div className={containerClassName}>
       {renderDisplayFiles()}
       {renderContent()}
-      <input
-        hidden
-        ref={inputRef}
-        type="file"
-        value={files as any}
-        multiple={multiple}
-        accept={accept}
-        onChange={onNormalFileChange}
-      />
+      <input hidden ref={inputRef} type="file" multiple={multiple} accept={accept} onChange={onNormalFileChange} />
+      <ImageViewer visible={showViewer} images={previewImgs} index={showImageIndex} onClose={handleImageViewerClose} />
     </div>
   );
 };
