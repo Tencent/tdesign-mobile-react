@@ -10,6 +10,7 @@ import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import useConfig from '../hooks/useConfig';
 import { TdBackTopProps } from './type';
 import { backTopDefaultProps } from './defaultProps';
+import { canUseDocument } from '../_util/dom';
 
 export type ThemeList = 'round' | 'half-round' | 'round-dark' | 'half-round-dark';
 
@@ -34,7 +35,12 @@ const BackTop: React.FC<BackTopProps> = (props) => {
 
   const backTopDom = useRef<HTMLElement>(null);
 
-  backTopDom.current = target();
+  const getBackTopDom = () => {
+    if (target) return target();
+    if (canUseDocument) return window.document.documentElement;
+    return null;
+  };
+  backTopDom.current = getBackTopDom();
 
   const { classPrefix } = useConfig();
 

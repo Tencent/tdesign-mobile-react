@@ -21,7 +21,6 @@ export interface BaseTableRef {
   tableElement: HTMLDivElement;
   tableHtmlElement: HTMLTableElement;
   tableContentElement: HTMLDivElement;
-  affixHeaderElement: HTMLDivElement;
   refreshTable: () => void;
 }
 

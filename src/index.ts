@@ -35,6 +35,7 @@ export * from './switch';
 export * from './textarea';
 export * from './upload';
 export * from './color-picker';
+export * from './date-time-picker';
 
 /**
  * 数据展示（11个）
@@ -55,6 +56,7 @@ export * from './tag';
 export * from './list';
 export * from './table';
 export * from './empty';
+export * from './footer';
 
 /**
  * 消息提醒（7个）
