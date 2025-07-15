@@ -31,6 +31,11 @@ export default {
       component: () => import('tdesign-mobile-react/input/_example/index.tsx'),
     },
     {
+      title: 'Form 表单',
+      name: 'form',
+      component: () => import('tdesign-mobile-react/form/_example/index.tsx'),
+    },
+    {
       title: 'Grid 宫格',
       name: 'grid',
       component: () => import('tdesign-mobile-react/grid/_example/index.tsx'),
