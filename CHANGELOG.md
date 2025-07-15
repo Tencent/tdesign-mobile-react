@@ -5,6 +5,13 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.18.0 `2025-07-15` 
+### 🚀 Features
+- `Form`: 新增 `Form` 组件 @slatejack ([#666](https://github.com/Tencent/tdesign-mobile-react/pull/666))
+- `Upload`: 组件重构， 存在 DOM 调整。新增 `allowUploadDuplicateFile`、`beforeUpload`、`autoUpload` 等多个属性，支持图片预览 @slatejack ([#549](https://github.com/Tencent/tdesign-mobile-react/pull/549))
+### 🚧 Others
+- fix(build): 修复 `0.17.0` 版 `npm` 包中组件文件路径错误 @anlyyao ([#679](https://github.com/Tencent/tdesign-mobile-react/pull/679))
+
 ## 🌈 0.17.0 `2025-07-11` 
 ### 🚀 Features
 - `Picker`: 新增 `Picker` 选择器组件 @ZWkang @novlan1  ([#655](https://github.com/Tencent/tdesign-mobile-react/pull/655))

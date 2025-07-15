@@ -23,6 +23,7 @@ export * from './tabs';
  */
 export * from './cascader';
 export * from './checkbox';
+export * from './form';
 export * from './input';
 export * from './picker';
 export * from './radio';

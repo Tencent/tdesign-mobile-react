@@ -222,6 +222,14 @@ export const docs = [
         component: () => import('tdesign-mobile-react/date-time-picker/date-time-picker.md'),
       },
       {
+        title: 'Form 表单',
+        titleEn: 'Form',
+        name: 'form',
+        path: '/mobile-react/components/form',
+        component: () => import('tdesign-mobile-react/form/form.md'),
+        componentEn: () => import('tdesign-mobile-react/form/form.en-US.md'),
+      },
+      {
         title: 'Input 输入框',
         titleEn: 'Input',
         name: 'input',

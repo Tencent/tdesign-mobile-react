@@ -1,6 +1,6 @@
 {
   "name": "tdesign-mobile-react",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "TDesign Component for Mobile React",
   "title": "tdesign-mobile-react",
   "main": "cjs/index.js",
@@ -88,6 +88,7 @@
     "@rollup/plugin-node-resolve": "^13.0.4",
     "@rollup/plugin-replace": "^3.0.0",
     "@rollup/plugin-url": "^6.0.0",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
