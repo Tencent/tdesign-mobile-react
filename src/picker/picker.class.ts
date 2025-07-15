@@ -1,4 +1,4 @@
-import { defaultGlobalConfig } from 'tdesign-mobile-react/config-provider/ConfigContext';
+import { defaultGlobalConfig } from '../config-provider/ConfigContext';
 import { PickerColumn } from './type';
 import { KeysType } from '../common';
 import { findIndexOfEnabledOption, limitNumberInRange } from './utils';
