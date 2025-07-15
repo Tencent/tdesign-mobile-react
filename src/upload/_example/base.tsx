@@ -6,7 +6,11 @@ import './style/index.less';
 export default function BaseDemo() {
   const onValidate = (context: any) => {
     if (context.type === 'FILE_OVER_SIZE_LIMIT') {
-      Message.warning('文件大小超出限制');
+      Message.warning({
+        duration: 3000,
+        content: '文件大小超出限制',
+        icon: true,
+      });
     }
   };
   return (
