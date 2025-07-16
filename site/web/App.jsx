@@ -116,12 +116,19 @@ function Components() {
         <td-doc-footer slot="doc-footer" platform="mobile"></td-doc-footer>
       </td-doc-content>
 
-      <td-theme-generator device="mobile" />
+      {/* TODO: device 参数传递无效，待 tdesign-theme-generator 修复 */}
+      {/* <td-theme-generator device="mobile" /> */}
     </td-doc-layout>
   );
 }
 
 function App() {
+  useEffect(() => {
+    const generator = document.createElement('td-theme-generator');
+    generator.setAttribute('device', 'mobile');
+    document.body.appendChild(generator);
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
