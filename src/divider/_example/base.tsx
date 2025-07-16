@@ -6,7 +6,6 @@ import './style/index.less';
 export default function Base() {
   return (
     <>
-      <div className="divider-demo__title">水平分割线</div>
       <Divider />
 
       <div className="divider-demo__title">带文字水平分割线</div>

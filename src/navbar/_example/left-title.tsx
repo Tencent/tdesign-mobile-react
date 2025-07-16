@@ -16,7 +16,7 @@ const LeftTitleDemo = () => (
     />
     <Navbar
       leftArrow
-      left={<span className="custom-title">标题左对齐</span>}
+      left={<span className="custom-left-title">标题左对齐</span>}
       right={
         <>
           <HomeIcon size={24} />
