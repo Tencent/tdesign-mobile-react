@@ -6,7 +6,7 @@ export default {
       component: () => import('tdesign-mobile-react/button/_example/index.tsx'),
     },
     {
-      title: 'Divider 分割符',
+      title: 'Divider 分割线',
       name: 'divider',
       component: () => import('tdesign-mobile-react/divider/_example/index.tsx'),
     },
@@ -125,12 +125,12 @@ export default {
       title: 'Upload 上传',
       name: 'upload',
       path: '/upload',
-      component: () => import('tdesign-mobile-react/upload/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/upload/_example/index.tsx'),
     },
     {
       title: 'Skeleton 骨架屏',
       name: 'skeleton',
-      component: () => import('tdesign-mobile-react/skeleton/_example/index.jsx'),
+      component: () => import('tdesign-mobile-react/skeleton/_example/index.tsx'),
     },
     {
       title: 'Sticky 吸顶',
@@ -337,7 +337,7 @@ export default {
       name: 'action-sheet',
       component: () => import('tdesign-mobile-react/action-sheet/_example/index.tsx'),
     },
-     {
+    {
       title: 'DateTimePicker 时间选择器',
       name: 'date-time-picker',
       component: () => import('tdesign-mobile-react/date-time-picker/_example/index.tsx'),

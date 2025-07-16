@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar } from 'tdesign-mobile-react';
-import { EllipsisIcon } from 'tdesign-icons-react';
+import { EllipsisIcon, HomeIcon } from 'tdesign-icons-react';
 
 const CustomColorDemo = () => (
   <>
@@ -11,6 +11,7 @@ const CustomColorDemo = () => (
       className="custom-navbar"
       right={
         <>
+          <HomeIcon size={24} />
           <EllipsisIcon size={24} />
         </>
       }

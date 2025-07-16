@@ -14,7 +14,7 @@ import './style/index.less';
 export default function LinkDemo() {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="Link 链接" summary="当功能使用图标即可表意清楚时，可使用纯图标悬浮按钮，例如：添加、发布。" />
+      <TDemoHeader title="Link 链接" summary="文字超链接用于跳转一个新页面，如当前项目跳转，友情链接等。" />
       <TDemoBlock title="01 组件类型" summary="基础文字链接">
         <BaseDemo />
       </TDemoBlock>

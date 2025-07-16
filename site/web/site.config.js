@@ -58,7 +58,7 @@ export const docs = [
         componentEn: () => import('tdesign-mobile-react/button/button.en-US.md'),
       },
       {
-        title: 'Divider 分割符',
+        title: 'Divider 分割线',
         titleEn: 'Divider',
         name: 'divider',
         path: '/mobile-react/components/divider',

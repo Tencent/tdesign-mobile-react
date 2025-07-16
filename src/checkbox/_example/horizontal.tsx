@@ -8,7 +8,12 @@ export default function () {
   };
 
   return (
-    <Checkbox.Group className="box" defaultValue={['checkbox1', 'checkbox2']} onChange={checkboxGroupChange}>
+    <Checkbox.Group
+      className="box horizontal"
+      defaultValue={['checkbox1', 'checkbox2']}
+      borderless
+      onChange={checkboxGroupChange}
+    >
       <Checkbox block={false} label="多选标题" value="checkbox1" />
       <Checkbox block={false} label="多选标题" value="checkbox2" />
       <Checkbox block={false} label="上限四字" value="checkbox3" />

@@ -4,14 +4,12 @@
 :root,
 :root[theme-mode='light'] {
   --bg-color-demo: #f6f6f6;
-  --text-primary: #181818;
-  --text-secondary: #181818;
+  --text-primary: var(--td-text-color-primary);
+  --text-secondary: var(--td-text-color-secondary);
 }
 
 :root[theme-mode='dark'] {
   --bg-color-demo: #181818;
-  --text-primary: rgba(255, 255, 255, 0.9);
-  --text-secondary: rgba(255, 255, 255, 0.55);
 }
 
 .tdesign-demo-topnav {
@@ -20,7 +18,7 @@
   align-items: center;
   justify-content: center;
   height: 50px;
-  background-color: var(--td-bg-color-container);
+  background-color: var(--bg-color-demo);
   color: var(--text-primary);
   box-shadow: @shadow-level-1;
 

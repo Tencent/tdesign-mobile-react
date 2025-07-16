@@ -9,7 +9,7 @@ export default function () {
           <div className="dark">col-8</div>
         </Col>
         <Col span="8">
-          <div className="dark">col-8</div>
+          <div className="light">col-8</div>
         </Col>
         <Col span="8">
           <div className="dark">col-8</div>

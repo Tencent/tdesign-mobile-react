@@ -10,6 +10,7 @@ const SizeDemo = () => (
       fixed={false}
       right={
         <>
+          <HomeIcon size={24} />
           <EllipsisIcon size={24} />
         </>
       }
@@ -17,7 +18,7 @@ const SizeDemo = () => (
     <Navbar
       style={{ marginBottom: 0 }}
       leftArrow
-      left={<span className="custom-title">标题左对齐</span>}
+      left={<span className="custom-title">返回</span>}
       right={
         <>
           <HomeIcon size={24} />

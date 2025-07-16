@@ -1,4 +1,3 @@
-// @ts-ignore
 import React from 'react';
 import { Message, Upload } from 'tdesign-mobile-react';
 import './style/index.less';
