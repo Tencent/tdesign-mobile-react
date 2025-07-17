@@ -32,3 +32,31 @@ max | Number | - | 能够同时显示的最多头像数量 | N
 shape | String | - | 形状。优先级低于 Avatar.shape。可选项：circle/round。TS 类型：`ShapeEnum`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 size | String | - | 尺寸，示例值：small/medium/large/24px/38px 等。优先级低于 Avatar.size | N
 onCollapsedItemClick | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>点击头像折叠元素触发 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-avatar-bg-color | @brand-color-light-active | - 
+--td-avatar-border-color | @bg-color-container | - 
+--td-avatar-border-width-large | 3px | - 
+--td-avatar-border-width-medium | 2px | - 
+--td-avatar-border-width-small | 1px | - 
+--td-avatar-circle-border-radius | @radius-circle | - 
+--td-avatar-content-color | @brand-color | - 
+--td-avatar-group-line-spacing | 2px | - 
+--td-avatar-group-margin-left-large | -8px | - 
+--td-avatar-group-margin-left-medium | -8px | - 
+--td-avatar-group-margin-left-small | -8px | - 
+--td-avatar-icon-large-font-size | 32px | - 
+--td-avatar-icon-medium-font-size | 24px | - 
+--td-avatar-icon-small-font-size | 20px | - 
+--td-avatar-large-width | 64px | - 
+--td-avatar-margin-left | 0 | - 
+--td-avatar-medium-width | 48px | - 
+--td-avatar-round-border-radius | @radius-default | - 
+--td-avatar-small-width | 40px | - 
+--td-avatar-text-large-font-size | @font-size-xl | - 
+--td-avatar-text-medium-font-size | @font-size-m | - 
+--td-avatar-text-small-font-size | @font-size-base | - 

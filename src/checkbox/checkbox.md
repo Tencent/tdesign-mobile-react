@@ -45,3 +45,27 @@ readonly | Boolean | undefined | 只读状态 | N
 value | Array | [] | 选中值。TS 类型：`T` `type CheckboxGroupValue = Array<string \| number \| boolean>`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/checkbox/type.ts) | N
 defaultValue | Array | [] | 选中值。非受控属性。TS 类型：`T` `type CheckboxGroupValue = Array<string \| number \| boolean>`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/checkbox/type.ts) | N
 onChange | Function |  | TS 类型：`(value: T, context: CheckboxGroupChangeContext) => void`<br/>值变化时触发。`context.current` 表示当前变化的数据项，如果是全选则为空；`context.type` 表示引起选中数据变化的是选中或是取消选中，`context.option` 表示当前变化的数据项。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/checkbox/type.ts)。<br/>`interface CheckboxGroupChangeContext { e: Event; current: string \| number; option: CheckboxOption \| TdCheckboxProps; type: 'check' \| 'uncheck' }`<br/> | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-checkbox-bg-color | @bg-color-container | - 
+--td-checkbox-border-color | @component-stroke | - 
+--td-checkbox-description-color | @text-color-secondary | - 
+--td-checkbox-description-disabled-color | @text-color-disabled | - 
+--td-checkbox-description-line-height | 22px | - 
+--td-checkbox-font-size | 16px | - 
+--td-checkbox-icon-checked-color | @brand-color | - 
+--td-checkbox-icon-color | var(--td-border-level-2-color, @gray-color-4) | - 
+--td-checkbox-icon-disabled-bg-color | @bg-color-component-disabled | - 
+--td-checkbox-icon-disabled-color | @brand-color-disabled | - 
+--td-checkbox-icon-size | 24px | - 
+--td-checkbox-tag-active-bg-color | @brand-color-light | - 
+--td-checkbox-tag-active-color | @brand-color | - 
+--td-checkbox-tag-bg-color | @bg-color-component | - 
+--td-checkbox-title-color | @text-color-primary | - 
+--td-checkbox-title-disabled-color | @text-color-disabled | - 
+--td-checkbox-title-line-height | 24px | - 
+--td-checkbox-vertical-padding | 16px | - 

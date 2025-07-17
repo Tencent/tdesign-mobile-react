@@ -12,3 +12,14 @@ children | TNode | - | 子元素，同 content。TS 类型：`string \| TNode`�
 content | TNode | - | 子元素。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 dashed | Boolean | false | 是否虚线（仅在水平分割线有效） | N
 layout | String | horizontal | 分隔线类型有两种：水平和垂直。可选项：horizontal/vertical | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-divider-color | @bg-color-component | - 
+--td-divider-content-color | @text-color-placeholder | - 
+--td-divider-content-font-size | 12px | - 
+--td-divider-content-line-height | 20px | - 
+--td-divider-content-line-style | solid | - 

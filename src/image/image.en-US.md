@@ -22,3 +22,13 @@ src | String | - | \- | N
 srcset | Object | - | for `.avif` and `.webp` image url, load `srcset` before `src`。Typescript：`ImageSrcset` `interface ImageSrcset { 'image/avif': string; 'image/webp': string; }`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/image/type.ts) | N
 onError | Function |  | Typescript：`(context: { e: ImageEvent }) => void`<br/>trigger on image load failed | N
 onLoad | Function |  | Typescript：`(context: { e: ImageEvent }) => void`<br/>trigger on image loaded | N
+
+### CSS Variables
+
+The component provides the following CSS variables, which can be used to customize styles.
+Name | Default Value | Description 
+-- | -- | --
+--td-image-color | @text-color-placeholder | - 
+--td-image-loading-bg-color | @bg-color-secondarycontainer | - 
+--td-image-loading-color | @text-color-placeholder | - 
+--td-image-round-radius | @radius-default | - 

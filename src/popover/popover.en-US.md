@@ -18,3 +18,10 @@ theme | String | dark | options: dark/light/brand/success/warning/error | N
 triggerElement | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 visible | Boolean | - | \- | N
 onVisibleChange | Function |  | Typescript：`(visible: boolean) => void`<br/> | N
+
+### CSS Variables
+
+The component provides the following CSS variables, which can be used to customize styles.
+Name | Default Value | Description 
+-- | -- | --
+--td-popover-padding | 12px | - 

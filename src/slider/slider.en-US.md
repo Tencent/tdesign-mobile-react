@@ -22,3 +22,24 @@ defaultValue | Number / Array | 0 | uncontrolled property。Typescript：`Slider
 onChange | Function |  | Typescript：`(value: SliderValue) => void`<br/> | N
 onDragend | Function |  | Typescript：`(value: SliderValue, e: TouchEvent) => void`<br/> | N
 onDragstart | Function |  | Typescript：`(e: TouchEvent) => void`<br/> | N
+
+### CSS Variables
+
+The component provides the following CSS variables, which can be used to customize styles.
+Name | Default Value | Description 
+-- | -- | --
+--td-slider-active-color | @brand-color | - 
+--td-slider-bar-height | 4px | - 
+--td-slider-bar-width | 4px | - 
+--td-slider-capsule-bar-color | @bg-color-component | - 
+--td-slider-capsule-bar-height | 24px | - 
+--td-slider-capsule-bar-width | 24px | - 
+--td-slider-capsule-line-height | 18px | - 
+--td-slider-default-color | @bg-color-component-disabled | - 
+--td-slider-default-color | @bg-color-secondarycomponent | - 
+--td-slider-disabled-color | @brand-color-disabled | - 
+--td-slider-disabled-text-color | @text-color-disabled | - 
+--td-slider-dot-bg-color | #fff | - 
+--td-slider-dot-color | @bg-color-secondarycontainer | - 
+--td-slider-dot-size | 20px | - 
+--td-slider-scale-desc-color | @text-color-primary | - 

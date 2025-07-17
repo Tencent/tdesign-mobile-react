@@ -23,3 +23,12 @@ onClosed | Function |  | TS 类型：`() => void`<br/>组件关闭且动画结�
 onOpen | Function |  | TS 类型：`() => void`<br/>组件准备展示时触发 | N
 onOpened | Function |  | TS 类型：`() => void`<br/>组件展示且动画结束后执行 | N
 onVisibleChange | Function |  | TS 类型：`(visible: boolean, trigger: PopupSource)  => void`<br/>当浮层隐藏或显示时触发。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/popup/type.ts)。<br/>`type PopupSource = 'close-btn' \| 'overlay'`<br/> | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-popup-bg-color | @bg-color-container | - 
+--td-popup-border-radius | @radius-extra-large | - 
+--td-popup-close-btn-color | @text-color-primary | - 
