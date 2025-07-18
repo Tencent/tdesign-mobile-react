@@ -23,3 +23,12 @@ onClosed | Function |  | Typescript：`() => void`<br/> | N
 onOpen | Function |  | Typescript：`() => void`<br/> | N
 onOpened | Function |  | Typescript：`() => void`<br/> | N
 onVisibleChange | Function |  | Typescript：`(visible: boolean, trigger: PopupSource)  => void`<br/>[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/popup/type.ts)。<br/>`type PopupSource = 'close-btn' \| 'overlay'`<br/> | N
+
+### CSS Variables
+
+The component provides the following CSS variables, which can be used to customize styles.
+Name | Default Value | Description 
+-- | -- | --
+--td-popup-bg-color | @bg-color-container | - 
+--td-popup-border-radius | @radius-extra-large | - 
+--td-popup-close-btn-color | @text-color-primary | - 

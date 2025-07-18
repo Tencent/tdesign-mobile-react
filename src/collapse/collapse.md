@@ -35,3 +35,20 @@ headerLeftIcon | TElement | - | 面板头左侧图标。TS 类型：`TNode`。[�
 headerRightContent | TNode | - | 面板头的右侧区域，一般用于呈现面板操作。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 placement | String | bottom | 选项卡内容的位置。可选项：bottom/top | N
 value | String / Number | - | 当前面板唯一标识，如果值为空则取当前面下标兜底作为唯一标识 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-collapse-border-color | @border-color | - 
+--td-collapse-content-font-size | @font-size-base | - 
+--td-collapse-content-line-height | 1.5 | - 
+--td-collapse-content-padding | 16px | - 
+--td-collapse-content-text-color | @text-color-primary | - 
+--td-collapse-extra-font-size | @font-size-m | - 
+--td-collapse-header-text-color | @text-color-primary | - 
+--td-collapse-header-text-disabled-color | @text-color-disabled | - 
+--td-collapse-icon-color | @text-color-placeholder | - 
+--td-collapse-panel-bg-color | @bg-color-container | - 
+--td-collapse-title-font-size | @font-size-m | - 

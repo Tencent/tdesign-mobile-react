@@ -16,3 +16,17 @@ text | String | '' | 文案 | N
 theme | String | round | 预设的样式类型。可选项：round/half-round/round-dark/half-round-dark | N
 visibilityHeight | Number | 200 | 滚动高度达到此参数值才出现 | N
 onToTop | Function |  | TS 类型：`() => void`<br/>点击触发 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-back-top-half-round-border-radius | @radius-round | - 
+--td-back-top-round-bg-color | @font-white-1 | - 
+--td-back-top-round-border-color | @component-border | - 
+--td-back-top-round-border-color | @gray-color-9 | - 
+--td-back-top-round-border-radius | @radius-circle | - 
+--td-back-top-round-color | @font-gray-1 | - 
+--td-back-top-round-dark-bg-color | @gray-color-14 | - 
+--td-back-top-round-dark-color | @font-white-1 | - 

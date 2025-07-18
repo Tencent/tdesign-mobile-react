@@ -34,3 +34,22 @@ defaultValue | String / Number / Array | undefined | uncontrolled property。Typ
 onChange | Function |  | Typescript：`(value: DropdownValue) => void`<br/> | N
 onConfirm | Function |  | Typescript：`(value: DropdownValue) => void`<br/> | N
 onReset | Function |  | Typescript：`(value: DropdownValue) => void`<br/> | N
+
+### CSS Variables
+
+The component provides the following CSS variables, which can be used to customize styles.
+Name | Default Value | Description 
+-- | -- | --
+--td-dropdown-menu-active-colorm | @brand-color | - 
+--td-dropdown-menu-bg-colorm | @bg-color-container | - 
+--td-dropdown-menu-colorm | @text-color-primary | - 
+--td-dropdown-menu-disabled-colorm | @text-color-disabled | - 
+--td-dropdown-menu-font-sizem | 14px | - 
+--td-dropdown-menu-icon-sizem | 24px | - 
+--td-dropdown-body-max-height | 280px | - 
+--td-dropdown-menu-bg-color | @bg-color-container | - 
+--td-tree-bg-color | @bg-color-container | - 
+--td-tree-item-active-color | @brand-color | - 
+--td-tree-item-font-size | 16px | - 
+--td-tree-item-height | 48px | - 
+--td-tree-root-bg-color | @bg-color-secondarycontainer | - 

@@ -19,3 +19,14 @@ theme | String | 'default' | 倒计时风格。可选项：default/round/square 
 time | Number | 0 | 必需。倒计时时长，单位毫秒 | Y
 onChange | Function |  | TS 类型：`(time: TimeData) => void`<br/>时间变化时触发。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/count-down/type.ts)。<br/>`interface TimeData {  days: number; hours: number; minutes: number; seconds: number; milliseconds: number }`<br/> | N
 onFinish | Function |  | TS 类型：`() => void`<br/>倒计时结束时触发 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-countdown-default-color | @text-color-primary | - 
+--td-countdown-round-border-radius | @radius-circle | - 
+--td-countdown-square-border-radius | @radius-small | - 
+--td-countdown-bg-color | @error-color-6 | - 
+--td-countdown-round-color | @text-color-anti | - 

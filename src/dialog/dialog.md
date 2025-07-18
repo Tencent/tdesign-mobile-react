@@ -67,3 +67,20 @@ options | \- | - | TS 类型：`DialogOptions`
 参数名称 | 参数类型 | 参数默认值 | 参数描述
 -- | -- | -- | --
 options | Object | - | TS 类型：`Omit<DialogOptions, 'cancelBtn'>`
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-dialog-body-max-height | 456px | - 
+--td-dialog-border-radius | @radius-extra-large | - 
+--td-dialog-close-color | @text-color-placeholder | - 
+--td-dialog-close-font-size | 22px | - 
+--td-dialog-content-color | @text-color-secondary | - 
+--td-dialog-content-font-size | 16px | - 
+--td-dialog-content-line-height | 24px | - 
+--td-dialog-title-color | @text-color-primary | - 
+--td-dialog-title-font-size | 18px | - 
+--td-dialog-title-line-height | 26px | - 
+--td-dialog-width | 311px | - 

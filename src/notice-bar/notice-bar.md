@@ -21,7 +21,6 @@ defaultVisible | Boolean | false | 显示/隐藏。非受控属性 | N
 onChange | Function |  | TS 类型：`(value: boolean) => void`<br/>已废弃。展示或关闭公告栏时触发。参数为true时，代表展示公告栏。参数为false时，代表关闭公告栏 | N
 onClick | Function |  | TS 类型：`(trigger: NoticeBarTrigger) => void`<br/>点击事件。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/notice-bar/type.ts)。<br/>`type NoticeBarTrigger = 'prefix-icon' \| 'content' \| 'operation' \| 'suffix-icon';`<br/> | N
 
-
 ### CSS Variables
 
 组件提供了下列 CSS 变量，可用于自定义样式。
