@@ -42,6 +42,7 @@ const Switch = forwardRef<HTMLDivElement, SwitchProps>((originalProps, ref) => {
   );
 
   const dotClasses = classNames(`${switchClass}__dot`, `${switchClass}__dot--${props.size}`, {
+    [`${switchClass}__dot--disabled`]: disabled || loading,
     [`${switchClass}__dot--checked`]: checked,
     [`${switchClass}__dot--plain`]: isArray(label) && label.length !== 2 && !loading,
   });
@@ -59,7 +60,7 @@ const Switch = forwardRef<HTMLDivElement, SwitchProps>((originalProps, ref) => {
   };
 
   const readerContent = React.useMemo<React.ReactNode>(() => {
-    if (loading) return <Loading inheritColor size="small" />;
+    if (loading) return <Loading className={`${switchClass}__loading`} size="16px" />;
 
     if (Array.isArray(label)) {
       const [activeContent = '', inactiveContent = ''] = label;
@@ -68,7 +69,7 @@ const Switch = forwardRef<HTMLDivElement, SwitchProps>((originalProps, ref) => {
     }
 
     return parseTNode(label, { value });
-  }, [loading, label, checked, value]);
+  }, [loading, label, checked, value, switchClass]);
 
   return (
     <div ref={ref} className={switchClasses} style={style} onClick={handleToggle}>
