@@ -11,6 +11,7 @@ children | TNode | - | Typescript：`string \| TNode`。[see more ts definition]
 closeBtn | TNode | - | Typescript：`boolean \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 closeOnOverlayClick | Boolean | true | \- | N
 destroyOnClose | Boolean | false | \- | N
+duration | Number | 240 | \- | N
 overlayProps | Object | {} | Typescript：`OverlayProps`，[Overlay API Documents](./overlay?tab=api)。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/popup/type.ts) | N
 placement | String | top | options: top/left/right/bottom/center | N
 preventScrollThrough | Boolean | true | \- | N
@@ -31,4 +32,4 @@ Name | Default Value | Description
 -- | -- | --
 --td-popup-bg-color | @bg-color-container | - 
 --td-popup-border-radius | @radius-extra-large | - 
---td-popup-close-btn-color | @text-color-primary | - 
+--td-popup-close-btn-color | @text-color-primary | -
