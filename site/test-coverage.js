@@ -8,7 +8,7 @@ module.exports = {
   cascader: { statements: '4.3%', branches: '0%', functions: '0%', lines: '4.59%' },
   cell: { statements: '100%', branches: '80%', functions: '100%', lines: '100%' },
   checkbox: { statements: '8.77%', branches: '0%', functions: '0%', lines: '9.17%' },
-  collapse: { statements: '14.54%', branches: '0%', functions: '0%', lines: '15.68%' },
+  collapse: { statements: '69.09%', branches: '36.66%', functions: '72.72%', lines: '72.54%' },
   colorPicker: { statements: '3.03%', branches: '0%', functions: '0%', lines: '3.03%' },
   common: { statements: '6.89%', branches: '0%', functions: '0%', lines: '8%' },
   configProvider: { statements: '54.54%', branches: '0%', functions: '0%', lines: '54.54%' },
