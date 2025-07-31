@@ -418,6 +418,14 @@ export const docs = [
         componentEn: () => import('tdesign-mobile-react/progress/progress.en-US.md'),
       },
       {
+        title: 'QRCode 二维码',
+        titleEn: 'QRCode',
+        name: 'qrcode',
+        path: '/mobile-react/components/qrcode',
+        component: () => import('tdesign-mobile-react/qrcode/qrcode.md'),
+        componentEn: () => import('tdesign-mobile-react/qrcode/qrcode.en-US.md'),
+      },
+      {
         title: 'Result 结果',
         titleEn: 'Result',
         name: 'result',

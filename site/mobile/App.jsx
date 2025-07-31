@@ -32,7 +32,7 @@ const renderRouter = () =>
 function Components() {
   const location = useLocation();
   const name = location.pathname.slice(1);
-  const title = getCurrentRoute(siteConfig.docs, name)?.title;
+  const title = getCurrentRoute(siteConfig.docs, name)?.titleEn;
 
   return (
     <>
