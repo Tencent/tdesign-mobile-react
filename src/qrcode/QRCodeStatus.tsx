@@ -58,10 +58,10 @@ export default function QRcodeStatus({ locale, classPrefix, onRefresh, statusRen
 
   return (
     <>
-      {mergedStatusRender({
+      {(mergedStatusRender({
         status,
         onRefresh,
-      }) || null}
+      }) as React.ReactNode) || null}
     </>
   );
 }
