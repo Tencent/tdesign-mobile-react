@@ -14,7 +14,7 @@ import './style/index.less';
 export default function Base() {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="QRCode 二维" summary="能够将文本转换生成二维码的组件，支持自定义配色和 Logo 配置。" />
+      <TDemoHeader title="QRCode 二维码" summary="能够将文本转换生成二维码的组件，支持自定义配色和 Logo 配置。" />
       <TDemoBlock title="01 组件类型" summary="基本用法" padding>
         <BaseDemo />
       </TDemoBlock>
