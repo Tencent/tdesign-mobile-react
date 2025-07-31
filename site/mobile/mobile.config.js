@@ -76,6 +76,11 @@ export default {
       component: () => import('tdesign-mobile-react/progress/_example/index.tsx'),
     },
     {
+      title: 'QRCode 二维码',
+      name: 'qrcode',
+      component: () => import('tdesign-mobile-react/qrcode/_example/index.tsx'),
+    },
+    {
       title: 'Slider 滑动选择器',
       name: 'slider',
       component: () => import('tdesign-mobile-react/slider/_example/index.tsx'),
