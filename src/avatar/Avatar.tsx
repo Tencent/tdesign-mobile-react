@@ -21,7 +21,7 @@ const Avatar: FC<AvatarProps> = (props) => {
     shape,
     icon,
     children,
-    hideOnLoadFailed = false,
+    hideOnLoadFailed,
     image = '',
     badgeProps,
     alt = '',

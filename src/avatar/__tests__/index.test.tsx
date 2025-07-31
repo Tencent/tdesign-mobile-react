@@ -1,5 +1,5 @@
 import React from 'react';
-import { describe, expect, it, render, vi } from '@test/utils';
+import { describe, expect, it, render, vi, fireEvent } from '@test/utils';
 import { UserIcon, UserAddIcon } from 'tdesign-icons-react';
 import { Avatar, AvatarGroup } from '../index';
 
@@ -55,11 +55,23 @@ describe('Avatar', () => {
     });
 
     it(': error', async () => {
-      const onError = vi.fn();
-      const { container } = render(<Avatar image={' '} onError={onError} />);
+      const testError = (hideOnLoadFailed) => {
+        const onError = vi.fn();
+        const { container } = render(<Avatar image={' '} onError={onError} hideOnLoadFailed={hideOnLoadFailed} />);
 
-      container.querySelector('img').dispatchEvent(new Event('error'));
-      expect(onError).toHaveBeenCalled();
+        const imageElement = container.querySelector('img');
+        if (hideOnLoadFailed) {
+          expect(imageElement).toBeFalsy();
+          expect(onError).not.toHaveBeenCalled();
+        } else {
+          expect(imageElement).toBeTruthy();
+          imageElement.dispatchEvent(new Event('error'));
+          expect(onError).toHaveBeenCalled();
+        }
+      };
+      testError(undefined);
+      testError(false);
+      testError(true);
     });
   });
 });
@@ -80,28 +92,83 @@ describe('AvatarGroup', () => {
     ];
 
     it(': max', () => {
-      const max = 5;
-      const { container } = render(
-        <AvatarGroup cascading="left-up" max={max}>
-          {imageList.map((url, index) => (
-            <Avatar key={`exhibition-${index}`} shape="circle" image={url} />
-          ))}
-        </AvatarGroup>,
-      );
+      const testMax = (imageList, target) => {
+        const max = 5;
+        const { container } = render(
+          <AvatarGroup cascading="left-up" max={max}>
+            {imageList.map((url, index) => (
+              <Avatar key={`exhibition-${index}`} shape="circle" image={url} />
+            ))}
+          </AvatarGroup>,
+        );
 
-      expect(container.querySelector('.t-avatar__wrapper')).toBeTruthy();
-      expect(container.querySelectorAll('.t-avatar__wrapper').length).toBe(max + 1);
+        expect(container.querySelector('.t-avatar__wrapper')).toBeTruthy();
+        expect(container.querySelectorAll('.t-avatar__wrapper').length).toBe(target);
+      };
+
+      testMax(imageList, 6);
+      testMax(imageList.slice(0, 5), 5);
     });
 
     it(': collapseAvatar', () => {
+      const onCollapsedItemClick = vi.fn();
       const { container } = render(
-        <AvatarGroup max={5} collapseAvatar={<UserAddIcon style={{ fontSize: '24px' }} />}>
+        <AvatarGroup
+          onCollapsedItemClick={onCollapsedItemClick}
+          max={5}
+          collapseAvatar={<UserAddIcon style={{ fontSize: '24px' }} />}
+        >
           {imageList.map((url, index) => (
             <Avatar key={`action-${index}`} shape="circle" image={url} />
           ))}
         </AvatarGroup>,
       );
-      expect(container.querySelector('.t-icon-user-add')).toBeTruthy();
+      const collapsedElement = container.querySelector('.t-icon-user-add');
+      expect(collapsedElement).toBeTruthy();
+
+      fireEvent.click(collapsedElement);
+      expect(onCollapsedItemClick).toHaveBeenCalled();
+    });
+
+    it(': cascading', () => {
+      const testCascading = (cascading, target) => {
+        const max = 5;
+        const { container } = render(
+          <AvatarGroup cascading={cascading} max={max}>
+            {imageList.map((url, index) => (
+              <Avatar key={`exhibition-${index}`} shape="circle" image={url} />
+            ))}
+          </AvatarGroup>,
+        );
+
+        expect(container.querySelector(target)).toBeTruthy();
+      };
+
+      testCascading(undefined, '.t-avatar-group-offset-right');
+      testCascading('', '.t-avatar-group-offset-right');
+      testCascading('right-up', '.t-avatar-group-offset-right');
+      testCascading('left-up', '.t-avatar-group-offset-left');
+    });
+
+    it(': size', () => {
+      const testSize = (size, target) => {
+        const max = 5;
+        const { container } = render(
+          <AvatarGroup size={size} max={max}>
+            {imageList.map((url, index) => (
+              <Avatar key={`exhibition-${index}`} shape="circle" image={url} />
+            ))}
+          </AvatarGroup>,
+        );
+
+        expect(container.querySelector(target)).toBeTruthy();
+      };
+
+      testSize(undefined, '.t-avatar-group-offset-right-medium');
+      testSize('20px', '.t-avatar-group-offset-right-medium');
+      testSize('1rem', '.t-avatar-group-offset-right-medium');
+      testSize('large', '.t-avatar-group-offset-right-large');
+      testSize('small', '.t-avatar-group-offset-right-small');
     });
   });
 });

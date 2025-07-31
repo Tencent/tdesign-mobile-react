@@ -1,6 +1,6 @@
 module.exports = {
   actionSheet: { statements: '5.35%', branches: '0%', functions: '0%', lines: '5.45%' },
-  avatar: { statements: '96.07%', branches: '87.87%', functions: '90.9%', lines: '96%' },
+  avatar: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   backTop: { statements: '11.9%', branches: '0%', functions: '0%', lines: '12.82%' },
   badge: { statements: '87.23%', branches: '74.46%', functions: '100%', lines: '93.02%' },
   button: { statements: '100%', branches: '85.71%', functions: '100%', lines: '100%' },
@@ -25,7 +25,7 @@ module.exports = {
   grid: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   guide: { statements: '3.22%', branches: '0%', functions: '0%', lines: '3.44%' },
   hooks: { statements: '43.33%', branches: '13.46%', functions: '44%', lines: '44.7%' },
-  image: { statements: '72.72%', branches: '54.28%', functions: '53.84%', lines: '73.8%' },
+  image: { statements: '75%', branches: '71.42%', functions: '53.84%', lines: '73.8%' },
   imageViewer: { statements: '8.47%', branches: '2.87%', functions: '0%', lines: '8.84%' },
   indexes: { statements: '95.62%', branches: '73.77%', functions: '100%', lines: '96.92%' },
   input: { statements: '3.57%', branches: '0%', functions: '0%', lines: '3.7%' },
