@@ -113,6 +113,16 @@ const Tabs: FC<TabsProps> = (props) => {
 
       setLineStyle(style);
     }
+
+    if (navScrollRef.current) {
+      const tab = navScrollRef.current.querySelector<HTMLElement>(`.${activeClass}`);
+      if (!tab) return;
+      const tabLeft = tab?.offsetLeft;
+      const tabWidth = tab?.offsetWidth;
+      const navScrollWidth = navScrollRef.current.offsetWidth;
+      const scrollDistance = tabLeft - navScrollWidth / 2 + tabWidth / 2;
+      navScrollRef.current.scrollTo({ left: scrollDistance, behavior: 'smooth' });
+    }
   };
 
   const handleTabClick = (item: TdTabPanelProps) => {
