@@ -34,3 +34,22 @@ defaultValue | String / Number / Array | undefined | 选中值。非受控属性
 onChange | Function |  | TS 类型：`(value: DropdownValue) => void`<br/>值改变时触发 | N
 onConfirm | Function |  | TS 类型：`(value: DropdownValue) => void`<br/>点击确认时触发 | N
 onReset | Function |  | TS 类型：`(value: DropdownValue) => void`<br/>点击重置时触发 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-dropdown-menu-active-colorm | @brand-color | - 
+--td-dropdown-menu-bg-colorm | @bg-color-container | - 
+--td-dropdown-menu-colorm | @text-color-primary | - 
+--td-dropdown-menu-disabled-colorm | @text-color-disabled | - 
+--td-dropdown-menu-font-sizem | 14px | - 
+--td-dropdown-menu-icon-sizem | 24px | - 
+--td-dropdown-body-max-height | 280px | - 
+--td-dropdown-menu-bg-color | @bg-color-container | - 
+--td-tree-bg-color | @bg-color-container | - 
+--td-tree-item-active-color | @brand-color | - 
+--td-tree-item-font-size | 16px | - 
+--td-tree-item-height | 48px | - 
+--td-tree-root-bg-color | @bg-color-secondarycontainer | - 

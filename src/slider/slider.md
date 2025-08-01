@@ -22,3 +22,24 @@ defaultValue | Number / Array | 0 | 滑块值。非受控属性。TS 类型：`S
 onChange | Function |  | TS 类型：`(value: SliderValue) => void`<br/>滑块值变化时触发 | N
 onDragend | Function |  | TS 类型：`(value: SliderValue, e: TouchEvent) => void`<br/>结束拖动时触发 | N
 onDragstart | Function |  | TS 类型：`(e: TouchEvent) => void`<br/>开始拖动时触发 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-slider-active-color | @brand-color | - 
+--td-slider-bar-height | 4px | - 
+--td-slider-bar-width | 4px | - 
+--td-slider-capsule-bar-color | @bg-color-component | - 
+--td-slider-capsule-bar-height | 24px | - 
+--td-slider-capsule-bar-width | 24px | - 
+--td-slider-capsule-line-height | 18px | - 
+--td-slider-default-color | @bg-color-component-disabled | - 
+--td-slider-default-color | @bg-color-secondarycomponent | - 
+--td-slider-disabled-color | @brand-color-disabled | - 
+--td-slider-disabled-text-color | @text-color-disabled | - 
+--td-slider-dot-bg-color | #fff | - 
+--td-slider-dot-color | @bg-color-secondarycontainer | - 
+--td-slider-dot-size | 20px | - 
+--td-slider-scale-desc-color | @text-color-primary | - 

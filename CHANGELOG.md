@@ -5,6 +5,47 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.19.0 `2025-08-01` 
+### 🚀 Features
+- `QRCode`: 新增 `QRCode` 二维码组件 @anlyyao ([#696](https://github.com/Tencent/tdesign-mobile-react/pull/696))
+- `Popup`: 新增 `duration` 属性 @novlan1 ([#691](https://github.com/Tencent/tdesign-mobile-react/pull/691))
+### 🐞 Bug Fixes
+- `BackTop`: 修复默认返回按钮图标无效 @anlyyao ([#682](https://github.com/Tencent/tdesign-mobile-react/pull/682))
+- `Cascader`: 修复深色模式 `0.5px` 边框颜色错误 @anlyyao ([#682](https://github.com/Tencent/tdesign-mobile-react/pull/682))
+- `Overlay`: 修复深色模式背景色错误 @anlyyao ([#682](https://github.com/Tencent/tdesign-mobile-react/pull/682))
+- `Upload`: 修复移除按钮颜色错误 @anlyyao ([#682](https://github.com/Tencent/tdesign-mobile-react/pull/682))
+- `Switch`: 修复 `loading` 颜色、`dot` 滑块禁用态/深色模式背景色错误 @anlyyao ([#687](https://github.com/Tencent/tdesign-mobile-react/pull/687))
+- `NoticeBar`: 修复 `warning` 和 `error` 主题默认图标错误 @novlan1 ([#688](https://github.com/Tencent/tdesign-mobile-react/pull/688))
+- `Guide`: 修复 `popover` 下展示位置错误问题 @novlan1 ([#689](https://github.com/Tencent/tdesign-mobile-react/pull/689))
+- `PullDownRefresh`: 修复 `change` 事件不生效问题 @novlan1 ([#690](https://github.com/Tencent/tdesign-mobile-react/pull/690))
+- `Sticky`: 修复滚动元素找不到问题 @novlan1 ([#692](https://github.com/Tencent/tdesign-mobile-react/pull/692))
+### 🚧 Others
+- `site`: 修复主题生成器在移动端预览窗口无效的问题 @anlyyao ([#682](https://github.com/Tencent/tdesign-mobile-react/pull/682))
+
+## 🌈 0.18.0 `2025-07-15` 
+### 🚀 Features
+- `Form`: 新增 `Form` 组件 @slatejack ([#666](https://github.com/Tencent/tdesign-mobile-react/pull/666))
+- `Upload`: 组件重构， 存在 DOM 调整。新增 `allowUploadDuplicateFile`、`beforeUpload`、`autoUpload` 等多个属性，支持图片预览 @slatejack ([#549](https://github.com/Tencent/tdesign-mobile-react/pull/549))
+### 🚧 Others
+- fix(build): 修复 `0.17.0` 版 `npm` 包中组件文件路径错误 @anlyyao ([#679](https://github.com/Tencent/tdesign-mobile-react/pull/679))
+
+## 🌈 0.17.0 `2025-07-11` 
+### 🚀 Features
+- `Picker`: 新增 `Picker` 选择器组件 @ZWkang @novlan1  ([#655](https://github.com/Tencent/tdesign-mobile-react/pull/655))
+- `DateTimePicker`: 新增 `DateTimePicker` 时间选择器组件 @novlan1 ([#672](https://github.com/Tencent/tdesign-mobile-react/pull/672))
+- `Footer`: 新增 `Footer` 页脚组件 @anlyyao ([#676](https://github.com/Tencent/tdesign-mobile-react/pull/676))
+- `Table`: 新增 `rowAttributes` 和 `rowClassName` 属性，暴露组件实例的 `refreshTable` 方法 @anlyyao ([#669](https://github.com/Tencent/tdesign-mobile-react/pull/669))
+### 🐞 Bug Fixes
+- `BackTop`: 补充默认 `target` 值 @novlan1 ([#671](https://github.com/Tencent/tdesign-mobile-react/pull/671))
+
+## 🌈 0.16.0 `2025-07-04` 
+### 🚀 Features
+- `Fab`: 支持使用默认插槽自定义悬浮按钮内容，此时 `buttonProps`、`icon` 和 `text` 属性将失效 @novlan1 ([#645](https://github.com/Tencent/tdesign-mobile-react/pull/645))
+- `Calendar`: 新增 `switchMode` 和 `readonly` 属性 @novlan1 ([#663](https://github.com/Tencent/tdesign-mobile-react/pull/663))
+- `Table`: 支持 `fixedRows` 属性，列配置项支持 `fixed` 属性 @novlan1 ([#662](https://github.com/Tencent/tdesign-mobile-react/pull/662))
+### 🚧 Others
+- `React`: 全面升级相关依赖，直接支持 `React 19` @HaixingOoO ([#606](https://github.com/Tencent/tdesign-mobile-react/pull/606))
+
 ## 🌈 0.15.0 `2025-05-29` 
 ### 🚀 Features
 - `ImageViewer`:  新增图片预览组件 @novlan1 ([#607](https://github.com/Tencent/tdesign-mobile-react/pull/607))
@@ -53,7 +94,7 @@ spline: explain
 ### 🐞 Bug Fixes
 - `ColorPicker`:  修复组件 `es` 产物缺样式文件入口 @anlyyao ([#577](https://github.com/Tencent/tdesign-mobile-react/pull/577))
 ### 🚧 Others
-- `Site`: 站点接入 `stackblitz` 和中英文切换能力 @anlyyao ([#579](https://github.com/Tencent/tdesign-mobile-react/pull/579))
+- `site`: 站点接入 `stackblitz` 和中英文切换能力 @anlyyao ([#579](https://github.com/Tencent/tdesign-mobile-react/pull/579))
 
 ## 🌈 0.11.0 `2025-03-07` 
 ### 🚨 Breaking Changes
@@ -81,7 +122,7 @@ spline: explain
 
 
 ## 🌈 0.9.0 `2024-11-11` 
-### ❗ Breaking Changes
+### 🚨 Breaking Changes
 - `Textarea`: 组件重构，新增 `allowInputOverMax`，`bordered` 与 `readonly` 等属性 @anlyyao ([#526](https://github.com/Tencent/tdesign-mobile-react/pull/526))
 - `Avatar`: 组件重构，新增 `imageProps` 属性 @slatejack ([#541](https://github.com/Tencent/tdesign-mobile-react/pull/541))
 ### 🚀 Features
@@ -90,7 +131,7 @@ spline: explain
 - `CountDown`: 修复毫秒级计算器计算错误 @novlan1 ([#542](https://github.com/Tencent/tdesign-mobile-react/pull/542))
 
 ## 🌈 0.8.0 `2024-10-17` 
-### ❗ Breaking Changes
+### 🚨 Breaking Changes
 - `Switch`: 组件重构，移除 `colors` 属性，`change` 事件参数有调整 @anlyyao ([#527](https://github.com/Tencent/tdesign-mobile-react/pull/527))
 - `PullDownRefresh`: 组件重构，`maxBarHeight` 与 `loadingBarHeight` 属性扩展支持 `string` 类型，并新增 `onRefresh`、`onScrolltolower` 和 `onTimeout` 等属性 @novlan1 ([#479](https://github.com/Tencent/tdesign-mobile-react/pull/479))
 - `Message`: 组件重构，新增 `align`、`link`、`marquee`、`offset`、`onCloseBtnClick`、`onDurationEnd` 以及 `onLinkClick` 等属性，并移除 `onClose`、`onClosed`、`onOpen`、`onOpened` 与 `onVisibleChange` 等属性 @novlan1 ([#477](https://github.com/Tencent/tdesign-mobile-react/pull/477))
@@ -100,7 +141,7 @@ spline: explain
 - `Stepper`: 修复无法直接输入的问题 @anlyyao ([#537](https://github.com/Tencent/tdesign-mobile-react/pull/537))
 
 ## 🌈 0.7.0 `2024-09-20` 
-### ❗ Breaking Changes
+### 🚨 Breaking Changes
 - `Checkbox`: 组件重构，新增 `readonly` 属性 @epoll-j ([#504](https://github.com/Tencent/tdesign-mobile-react/pull/504))
 - `Drawer`: 组件重构，新增 `attach`、`title` 和 `footer` 等属性，并支持函数式调用 @novlan1 ([#488](https://github.com/Tencent/tdesign-mobile-react/pull/488))
 - `SwipeCell`: 组件重构，移除 `expanded` 属性，新增 `opened` 属性 @novlan1 ([#492](https://github.com/Tencent/tdesign-mobile-react/pull/492))
@@ -112,7 +153,6 @@ spline: explain
 ### 🚀 Features
 - `Empty`: 新增 `Empty` 组件 @epoll-j ([#505](https://github.com/Tencent/tdesign-mobile-react/pull/505))
 - `Popover`: 新增 `Popover` 组件 @epoll-j ([#510](https://github.com/Tencent/tdesign-mobile-react/pull/510))
- 
 
 ## 🌈 0.6.1 `2024-09-04` 
 ### 🚀 Features
@@ -128,13 +168,11 @@ spline: explain
 - `TabBarItem`:  新增 `children` 属性 @tobytovi ([#482](https://github.com/Tencent/tdesign-mobile-react/pull/482))
 - `Collapse`: 新增 `children`  和 `theme` 属性 @tobytovi ([#500](https://github.com/Tencent/tdesign-mobile-react/pull/500))
 - `CollapsePanel`: 新增 `placement`  和 `headerLeftIcon` 属性 @tobytovi ([#500](https://github.com/Tencent/tdesign-mobile-react/pull/500))
-
 ### 🐞 Bug Fixes
 - `Badge`:  修复 `content` 为 `ReactNode` 类型时组件渲染异常 @anlyyao ([#499](https://github.com/Tencent/tdesign-mobile-react/pull/499))
- 
 
 ## 🌈 0.5.0 `2024-08-23` 
-### ❗ Breaking Changes
+### 🚨 Breaking Changes
 - `Input`: 组件重构，新增 `allowInputOverMax`、`autocomplete`、`borderless`、`readonly`、`status` 与`tips` 属性，新增 `onValidate` 事件 @slatejack ([#467](https://github.com/Tencent/tdesign-mobile-react/pull/467))
 - `Popup`: 组件重构，新增 `attach`、`closeBtn`、`closeOnOverlayClick`、`destroyOnClose`、`preventScrollThrough` 等属性，新增 `onClose`、`onClosed`、`onOpen`、`onOpened` 等事件 @hkaikai ([#449](https://github.com/Tencent/tdesign-mobile-react/pull/449))
 - `Search`: 组件重构，新增 `clearable` 和 `readonly` 属性，新增 `onActionClick` 事件 @slatejack ([#476](https://github.com/Tencent/tdesign-mobile-react/pull/476))
@@ -142,7 +180,6 @@ spline: explain
 - `CountDown`: 新增 `children`，作用同 `content` 属性，`size` 默认值变更为 `medium` @anlyyao ([#481](https://github.com/Tencent/tdesign-mobile-react/pull/481))
 - `Navbar`: 组件重构，移除 `homeIcon`、`leftIcon`、`rightIcon` 等属性、移除 `onHomeClick` 事件，新增 `capsule`、`left`、`leftArrow`、`right` 等属性、新增 `onRightClick` @04756 ([#450](https://github.com/Tencent/tdesign-mobile-react/pull/450))
 - `GridItem`:  `badgeProps` 属性更名为 `badge` @Lyan-u ([#448](https://github.com/Tencent/tdesign-mobile-react/pull/448))
-
 ### 🚀 Features
 - `Link`: 新增 `Link` 组件 @Magicalboys ([#443](https://github.com/Tencent/tdesign-mobile-react/pull/443))
 - `Image`: 新增 `referrerpolicy` 和 `fallback` 属性 @anlyyao ([#470](https://github.com/Tencent/tdesign-mobile-react/pull/470))
@@ -151,7 +188,7 @@ spline: explain
 
 
 ## 🌈 0.4.0 `2024-08-16` 
-### ❗ Breaking Changes
+### 🚨 Breaking Changes
 - `BackTop`: 组件重构，新增  `container` ，`visibilityHeight` 属性，新增 `onToTop` 事件 @ssmyaojiayouya ([#430](https://github.com/Tencent/tdesign-mobile-react/pull/430))
 - `Progress`: 组件重构，新增 `theme`, `className`, `style` 属性 @anlyyao ([#387](https://github.com/Tencent/tdesign-mobile-react/pull/387))
 - `Divider`: 组件重构，废弃`lineColor` 属性 @liweijie0812 ([#403](https://github.com/Tencent/tdesign-mobile-react/pull/403))
@@ -189,7 +226,6 @@ spline: explain
 - `Button`: 更新示例代码 @TingShine ([#321](https://github.com/Tencent/tdesign-mobile-react/pull/321))
 - `Image`: 更新示例代码 @TingShine ([#322](https://github.com/Tencent/tdesign-mobile-react/pull/322))
 - `Stepper`: 更新示例代码 @TingShine ([#308](https://github.com/Tencent/tdesign-mobile-react/pull/308))
-- `Progress`: 更新示例代码 @xxxlj ([#319](https://github.com/Tencent/tdesign-mobile-react/pull/319))
 - `Loading`: 更新示例代码 #476 @lockiechen ([#323](https://github.com/Tencent/tdesign-mobile-react/pull/323))
 - `TabBar`: 更新示例代码 @yuanmeda ([#302](https://github.com/Tencent/tdesign-mobile-react/pull/302))
 - `CheckBox`: 更新示例代码 @yuanmeda ([#303](https://github.com/Tencent/tdesign-mobile-react/pull/303))
@@ -211,13 +247,13 @@ spline: explain
 ### 🚀 Features
 - `Drawer`: 新增抽屉组件 @APlanckFish ([#271](https://github.com/Tencent/tdesign-mobile-react/pull/271))
 ### 🚧 Others
-- 官网更新组件分类 @LeeJim ([#279](https://github.com/Tencent/tdesign-mobile-react/pull/279))
+- `site`: 官网更新组件分类 @LeeJim ([#279](https://github.com/Tencent/tdesign-mobile-react/pull/279))
 
 ## 🌈 0.1.2 `2022-07-18` 
 ### 🐞 Bug Fixes
 - `Sticky`: 修复 fixed 状态下丢失宽度的问题 @LeeJim ([#277](https://github.com/Tencent/tdesign-mobile-react/pull/277))
 ### 🚧 Others
-- chore: 优化更新日志文档样式 @HQ-Lin ([#276](https://github.com/Tencent/tdesign-mobile-react/pull/276))
+- `chore`: 优化更新日志文档样式 @HQ-Lin ([#276](https://github.com/Tencent/tdesign-mobile-react/pull/276))
 
 ## 🌈 0.1.1 `2022-07-12` 
 ### 🚀 Features
@@ -229,5 +265,4 @@ spline: explain
 - `Button`: 补充支持 style 属性 @anlyyao ([#266](https://github.com/Tencent/tdesign-mobile-react/pull/266))
 
 ## 🌈 0.1.0 `2022-06-29` 
-
-首发版本
+- 首发版本

@@ -1,12 +1,17 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import useConfig from '../hooks/useConfig';
 import { TdStickyProps } from './type';
 import { stickyDefaultProps } from './defaultProps';
 import { resolveContainer } from '../_util/getContainer';
 import useDefaultProps from '../hooks/useDefaultProps';
 import useLayoutEffect from '../hooks/useLayoutEffect';
+import getScrollParent from '../_util/getScrollParent';
 
-const Sticky: FC<TdStickyProps> = (originProps) => {
+export interface StickyProps extends TdStickyProps {
+  children?: ReactNode;
+}
+
+const Sticky: FC<StickyProps> = (originProps) => {
   const props = useDefaultProps(originProps, stickyDefaultProps);
 
   const { children, container, disabled, offsetTop, zIndex, onScroll } = props;
@@ -87,11 +92,12 @@ const Sticky: FC<TdStickyProps> = (originProps) => {
   }, [boxTop]);
 
   useEffect(() => {
-    addEventListener('scroll', scrollhandler);
+    const scroller = getScrollParent(boxElement);
+    scroller?.addEventListener('scroll', scrollhandler);
     return () => {
-      removeEventListener('scroll', scrollhandler);
+      scroller?.removeEventListener('scroll', scrollhandler);
     };
-  }, [boxTop, contentTop, contentHeight, scrollhandler]);
+  }, [boxElement, boxTop, contentTop, contentHeight, scrollhandler]);
 
   return (
     <>

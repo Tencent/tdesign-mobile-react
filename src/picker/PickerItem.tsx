@@ -1,166 +1,140 @@
-import React, { FC, useRef, memo, useCallback, useContext, useMemo, useState } from 'react';
-import { useDebounceEffect } from 'ahooks';
-import { isUndefined } from 'lodash-es';
-import { useDrag } from '@use-gesture/react';
-import useConfig from '../hooks/useConfig';
-import nearest from '../_util/nearest';
-import withNativeProps, { NativeProps } from '../_util/withNativeProps';
-import PickerContext from './picker-context';
-import { pickerItemDefaultProps } from './defaultProps';
-import { TdPickerItemProps, PickerValue } from './type';
+import React, { useEffect, useRef, useImperativeHandle, forwardRef, useCallback } from 'react';
+import { get as lodashGet } from 'lodash-es';
+import cls from 'classnames';
+import { KeysType, StyledProps } from '../common';
+import { PickerColumnItem, PickerValue } from './type';
+import Picker from './picker.class';
+import { usePrefixClass } from '../hooks/useClass';
 
-export interface PickerItemProps extends TdPickerItemProps, NativeProps {
+export interface PickerItemProps extends StyledProps {
+  options?: PickerColumnItem[];
   value?: PickerValue;
-  defaultValue?: PickerValue;
-  onChange?: (value: PickerValue) => void;
-  itemIndex?: number;
+  renderLabel?: (option: PickerColumnItem) => React.ReactNode;
+  onPick?: (context: { value: PickerValue; index: number }) => void;
+  swipeDuration?: string | number;
+  keys?: KeysType;
 }
 
-const PickerItem: FC<PickerItemProps> = memo((props) => {
-  const { options, value, defaultValue, itemIndex, formatter } = props;
-  const { classPrefix } = useConfig();
-  const name = `${classPrefix}-picker-item`;
-  const rootRef = useRef<HTMLDivElement>(null);
-  const controlRef = useRef<HTMLDivElement>(null);
-  const lastIndexRef = useRef<number | undefined>();
-  const pickerContext = useContext(PickerContext);
+export interface PickerItemExposeRef {
+  setIndex: (index: number) => void;
+  setValue: (value: PickerValue) => void;
+  setOptions: () => void;
+  setUpdateItems: () => void;
+}
 
-  const count = options.length;
-  const currentIndex = useMemo(
-    () => options.findIndex((option) => (isUndefined(value) ? defaultValue : value) === option.value),
-    [options, defaultValue, value],
-  );
+const PickerItem = forwardRef<PickerItemExposeRef, PickerItemProps>((props, ref) => {
+  const { options, value, renderLabel, onPick, swipeDuration = 300, keys } = props;
+  const classPrefix = usePrefixClass();
+  const pickerItemClass = usePrefixClass('picker-item');
 
-  const getControlItemHeight = useCallback(() => {
-    if (!controlRef.current) return 0;
-    return controlRef.current.clientHeight / count;
-  }, [controlRef, count]);
+  const rootRef = useRef<HTMLUListElement>(null);
+  const pickerRef = useRef<Picker | null>(null);
 
-  const getControlYCompensation = useCallback(() => {
-    if (!rootRef.current) return 0;
-    const controlItemHeight = getControlItemHeight();
-    return (rootRef.current.clientHeight - controlItemHeight) / 2;
-  }, [rootRef, getControlItemHeight]);
-
-  const getOffsetYList = useCallback(() => {
-    const itemHeight = getControlItemHeight();
-    const yCompensation = getControlYCompensation();
-    return Array(count)
-      .fill(0)
-      .map((_, index) => index * itemHeight - yCompensation);
-  }, [count, getControlItemHeight, getControlYCompensation]);
-
-  const [y, setY] = useState(0);
-
-  const scrollTo = useCallback(
-    (index: number) => {
-      const offsetYList = getOffsetYList();
-      let nextIndex = index;
-      if (index < 0) {
-        nextIndex = 0;
-      } else if (index >= offsetYList.length) {
-        nextIndex = offsetYList.length - 1;
-      }
-      setY(offsetYList[nextIndex]);
-    },
-    [getOffsetYList],
-  );
-
-  const handleChange = (value: number | string) => {
-    const pickerValue = pickerContext.value?.slice(0) || [];
-    pickerValue[itemIndex] = value;
-    pickerContext.onChange?.(pickerValue, itemIndex);
-    props.onChange?.(value);
+  const getIndexByValue = (val: PickerValue) => {
+    let defaultIndex = 0;
+    if (val !== undefined) {
+      defaultIndex = options.findIndex((item) => lodashGet(item, keys?.value ?? 'value') === val);
+    }
+    return defaultIndex < 0 ? 0 : defaultIndex;
   };
 
-  useDebounceEffect(
-    () => {
-      if (currentIndex === lastIndexRef.current) return;
-      if (currentIndex >= 0) {
-        scrollTo(currentIndex);
-      } else {
-        setY(0);
-      }
-      lastIndexRef.current = currentIndex;
+  const updatePickerWithNextTick = (index: number) => {
+    if (pickerRef.current) {
+      pickerRef.current.updateItems();
+      setTimeout(() => {
+        pickerRef.current?.updateIndex(index, { isChange: false });
+      }, 0);
+    }
+  };
+
+  const setIndex = (index: number) => {
+    updatePickerWithNextTick(index);
+  };
+
+  const setValue = (value: PickerValue) => {
+    const index = getIndexByValue(value);
+    updatePickerWithNextTick(index);
+  };
+
+  const setOptions = () => {
+    pickerRef.current?.update();
+  };
+
+  const setUpdateItems = () => {
+    pickerRef.current?.updateItems();
+  };
+
+  useImperativeHandle(ref, () => ({
+    setIndex,
+    setValue,
+    setOptions,
+    setUpdateItems,
+  }));
+
+  const onChange = useCallback(
+    (index: number) => {
+      const curItem = options[index];
+      const changeValue = lodashGet(curItem, keys?.value ?? 'value');
+      onPick?.({ value: changeValue, index });
     },
-    [currentIndex, scrollTo],
-    { wait: 100 },
+    [options, keys, onPick],
   );
 
-  useDrag(
-    ({ offset: [, offsetY], direction: [, directionY], last }) => {
-      if (last) {
-        const offsetYList = getOffsetYList();
-        const lastIndex = lastIndexRef.current;
-        const nextOffsetY = nearest({
-          items: offsetYList,
-          target: offsetY,
-          threshold: 10,
-          direction: directionY as -1 | 1,
+  useEffect(() => {
+    if (pickerRef.current) return;
+    setTimeout(() => {
+      if (rootRef.current) {
+        pickerRef.current = new Picker({
+          el: rootRef.current,
+          defaultIndex: getIndexByValue(value) || 0,
+          keys,
+          defaultPickerColumns: options,
+          onChange,
+          swipeDuration,
+          prefixCls: classPrefix,
         });
-        const nextIndex = offsetYList.findIndex((item) => item === nextOffsetY);
-        if (isUndefined(value)) {
-          lastIndexRef.current = nextIndex;
-          setY(nextOffsetY);
-          handleChange(options[nextIndex].value);
-        } else {
-          // 受控模式,onChange回调后等待value更新，如果不更新回退到原处
-          handleChange(options[nextIndex].value);
-          setTimeout(() => {
-            if (lastIndex === lastIndexRef.current) {
-              setY(offsetYList[lastIndex] || 0);
-            }
-          }, 100);
-        }
-      } else {
-        setY(offsetY);
       }
-    },
-    {
-      target: rootRef,
-      axis: 'y',
-      from: () => [0, y],
-      transform: ([x, y]) => [x, -y],
-      filterTaps: true,
-      pointer: { touch: true },
-      rubberband: true,
-      preventDefault: true,
-      bounds: () => {
-        const controlYCompensation = getControlYCompensation();
-        let bottom: undefined | number;
-        if (controlRef.current) {
-          bottom = controlRef.current.clientHeight - controlYCompensation - getControlItemHeight();
-        }
-        return {
-          top: -controlYCompensation,
-          bottom,
-        };
-      },
-    },
-  );
+    });
 
-  return withNativeProps(
-    props,
-    <div className={name} ref={rootRef}>
-      <div
-        ref={controlRef}
-        className={`${name}__wrapper`}
-        style={{
-          transition: 'transform 0.3s ease-in-out',
-          transform: `translateY(${-y}px)`,
-        }}
-      >
-        {options.map((item) => (
-          <div key={item.value} className={`${name}__item`}>
-            {(formatter && formatter(item)) || item.label}
-          </div>
-        ))}
-      </div>
-    </div>,
+    return () => {
+      pickerRef.current?.destroy();
+      pickerRef.current = null;
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!pickerRef.current) return;
+    pickerRef.current.onChange = onChange;
+  }, [onChange]);
+
+  useEffect(() => {
+    if (pickerRef.current) {
+      pickerRef.current.updateOptions(options);
+      pickerRef.current.updateItems();
+    }
+  }, [options]);
+
+  const pickerItemCls = (option: PickerColumnItem) =>
+    cls([
+      `${pickerItemClass}__item`,
+      {
+        [`${pickerItemClass}__item--disabled`]: lodashGet(option, keys?.disabled ?? 'disabled'),
+      },
+    ]);
+
+  return (
+    <ul ref={rootRef} className={pickerItemClass}>
+      {options.map((option, index) => (
+        <li key={index} className={pickerItemCls(option)}>
+          {renderLabel ? renderLabel(option) : lodashGet(option, keys?.label ?? 'label')}
+        </li>
+      ))}
+    </ul>
   );
 });
 
-PickerItem.defaultProps = pickerItemDefaultProps;
 PickerItem.displayName = 'PickerItem';
 
 export default PickerItem;

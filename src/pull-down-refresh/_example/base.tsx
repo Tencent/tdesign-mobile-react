@@ -8,6 +8,9 @@ export default function BaseDemo({ children }) {
         loadingBarHeight={66}
         loadingProps={{}}
         loadingTexts={['下拉刷新', '松开刷新', '正在刷新', '刷新完成']}
+        onChange={(value) => {
+          console.log('[onChange]', value);
+        }}
         onRefresh={() =>
           new Promise((resolve) => {
             setTimeout(() => {

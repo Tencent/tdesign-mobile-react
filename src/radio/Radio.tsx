@@ -2,6 +2,7 @@ import React, { createContext, forwardRef, useContext, useRef } from 'react';
 import type { CSSProperties, Ref } from 'react';
 import classNames from 'classnames';
 import { CheckIcon, CheckCircleFilledIcon } from 'tdesign-icons-react';
+import parseTNode from '../_util/parseTNode';
 import { usePrefixClass } from '../hooks/useClass';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import useDefault from '../_util/useDefault';
@@ -28,7 +29,7 @@ const getLimitRow = (row: number): CSSProperties => ({
 
 const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
   const radioClass = usePrefixClass('radio');
-  const inputRef = useRef();
+  const inputRef = useRef(null);
   const context = useContext(RadioContext);
   const props = context ? context.inject(_props) : _props;
 
@@ -70,7 +71,7 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
 
   const renderIcon = () => {
     if (Array.isArray(icon)) {
-      return radioChecked ? icon[0] : (icon[1] ?? null);
+      return parseTNode(radioChecked ? icon[0] : (icon[1] ?? null));
     }
     if (radioChecked) {
       if (icon === 'circle') {
@@ -138,7 +139,7 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
       <div className={`${radioClass}__content`}>
         {(label || children) && (
           <span className={titleClassName} style={{ WebkitLineClamp: maxLabelRow }}>
-            {label || children}
+            {parseTNode(label) || parseTNode(children)}
           </span>
         )}
         {content && (
@@ -146,7 +147,7 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
             className={`${radioClass}__description ${disabled && `${radioClass}__description--disabled`}`}
             style={getLimitRow(maxContentRow)}
           >
-            {content}
+            {parseTNode(content)}
           </div>
         )}
       </div>

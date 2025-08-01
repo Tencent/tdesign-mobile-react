@@ -58,7 +58,7 @@ export const docs = [
         componentEn: () => import('tdesign-mobile-react/button/button.en-US.md'),
       },
       {
-        title: 'Divider 分割符',
+        title: 'Divider 分割线',
         titleEn: 'Divider',
         name: 'divider',
         path: '/mobile-react/components/divider',
@@ -215,12 +215,20 @@ export const docs = [
         component: () => import('tdesign-mobile-react/color-picker/color-picker.md'),
         componentEn: () => import('tdesign-mobile-react/color-picker/color-picker.en-US.md'),
       },
-      // {
-      //   title: 'DateTimePicker 时间选择器',
-      //   name: 'date-time-picker',
-      //   path: '/mobile-react/components/date-time-picker',
-      //   component: () => import('tdesign-mobile-react/date-time-picker/date-time-picker.md'),
-      // },
+      {
+        title: 'DateTimePicker 时间选择器',
+        name: 'date-time-picker',
+        path: '/mobile-react/components/date-time-picker',
+        component: () => import('tdesign-mobile-react/date-time-picker/date-time-picker.md'),
+      },
+      {
+        title: 'Form 表单',
+        titleEn: 'Form',
+        name: 'form',
+        path: '/mobile-react/components/form',
+        component: () => import('tdesign-mobile-react/form/form.md'),
+        componentEn: () => import('tdesign-mobile-react/form/form.en-US.md'),
+      },
       {
         title: 'Input 输入框',
         titleEn: 'Input',
@@ -235,6 +243,7 @@ export const docs = [
         name: 'picker',
         path: '/mobile-react/components/picker',
         component: () => import('tdesign-mobile-react/picker/picker.md'),
+        componentEn: () => import('tdesign-mobile-react/picker/picker.en-US.md'),
       },
       {
         title: 'Radio 单选框',
@@ -362,12 +371,14 @@ export const docs = [
         component: () => import('tdesign-mobile-react/empty/empty.md'),
         componentEn: () => import('tdesign-mobile-react/empty/empty.en-US.md'),
       },
-      // {
-      //   title: 'Footer 页脚',
-      //   name: 'footer',
-      //   path: '/mobile-react/components/footer',
-      //   component: () => import('tdesign-mobile-react/footer/footer.md'),
-      // },
+      {
+        title: 'Footer 页脚',
+        titleEn: 'Footer',
+        name: 'footer',
+        path: '/mobile-react/components/footer',
+        component: () => import('tdesign-mobile-react/footer/footer.md'),
+        componentEn: () => import('tdesign-mobile-react/footer/footer.en-US.md'),
+      },
       {
         title: 'Grid 宫格',
         titleEn: 'Grid',
@@ -407,6 +418,14 @@ export const docs = [
         componentEn: () => import('tdesign-mobile-react/progress/progress.en-US.md'),
       },
       {
+        title: 'QRCode 二维码',
+        titleEn: 'QRCode',
+        name: 'qrcode',
+        path: '/mobile-react/components/qrcode',
+        component: () => import('tdesign-mobile-react/qrcode/qrcode.md'),
+        componentEn: () => import('tdesign-mobile-react/qrcode/qrcode.en-US.md'),
+      },
+      {
         title: 'Result 结果',
         titleEn: 'Result',
         name: 'result',
@@ -438,20 +457,20 @@ export const docs = [
         component: () => import('tdesign-mobile-react/swiper/swiper.md'),
       },
       {
-        title: 'Tag 标签',
-        titleEn: 'Tag',
-        name: 'tag',
-        path: '/mobile-react/components/tag',
-        component: () => import('tdesign-mobile-react/tag/tag.md'),
-        componentEn: () => import('tdesign-mobile-react/tag/tag.en-US.md'),
-      },
-      {
         title: 'Table 表格',
         titleEn: 'Table',
         name: 'table',
         path: '/mobile-react/components/table',
         component: () => import('tdesign-mobile-react/table/table.md'),
         componentEn: () => import('tdesign-mobile-react/table/table.en-US.md'),
+      },
+      {
+        title: 'Tag 标签',
+        titleEn: 'Tag',
+        name: 'tag',
+        path: '/mobile-react/components/tag',
+        component: () => import('tdesign-mobile-react/tag/tag.md'),
+        componentEn: () => import('tdesign-mobile-react/tag/tag.en-US.md'),
       },
     ],
   },
@@ -479,12 +498,6 @@ export const docs = [
         path: '/mobile-react/components/dropdown-menu',
         component: () => import('tdesign-mobile-react/dropdown-menu/dropdown-menu.md'),
       },
-      // {
-      //   title: 'DropdownMenu 下拉菜单',
-      //   name: 'dropdown-menu',
-      //   path: '/mobile-react/components/dropdown-menu',
-      //   component: () => import('tdesign-mobile-react/dropdown-menu/dropdown-menu.md'),
-      // },
       {
         title: 'Guide 引导',
         titleEn: 'Guide',
@@ -526,14 +539,6 @@ export const docs = [
         componentEn: () => import('tdesign-mobile-react/overlay/overlay.en-US.md'),
       },
       {
-        title: 'Popup 弹出层',
-        titleEn: 'Popup',
-        name: 'popup',
-        path: '/mobile-react/components/popup',
-        component: () => import('tdesign-mobile-react/popup/popup.md'),
-        componentEn: () => import('tdesign-mobile-react/popup/popup.en-US.md'),
-      },
-      {
         title: 'Popover 弹出气泡',
         titleEn: 'Popover',
         name: 'popover',
@@ -541,6 +546,15 @@ export const docs = [
         component: () => import('tdesign-mobile-react/popover/popover.md'),
         componentEn: () => import('tdesign-mobile-react/popover/popover.en-US.md'),
       },
+      {
+        title: 'Popup 弹出层',
+        titleEn: 'Popup',
+        name: 'popup',
+        path: '/mobile-react/components/popup',
+        component: () => import('tdesign-mobile-react/popup/popup.md'),
+        componentEn: () => import('tdesign-mobile-react/popup/popup.en-US.md'),
+      },
+
       {
         title: 'PullDownRefresh 下拉刷新',
         titleEn: 'PullDownRefresh',

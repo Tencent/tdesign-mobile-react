@@ -28,3 +28,19 @@ onChange | Function |  | Typescript：`(value: TextareaValue, context?: { e?: In
 onCompositionend | Function |  | Typescript：`(value: string, context: { e: CompositionEvent }) => void`<br/>trigger on compositionend | N
 onCompositionstart | Function |  | Typescript：`(value: string, context: { e: CompositionEvent }) => void`<br/>trigger on compositionstart | N
 onFocus | Function |  | Typescript：`(value: TextareaValue, context : { e: FocusEvent }) => void`<br/> | N
+
+### CSS Variables
+
+The component provides the following CSS variables, which can be used to customize styles.
+Name | Default Value | Description 
+-- | -- | --
+--td-textarea-background-color | @bg-color-container | - 
+--td-textarea-border-color | rgba(220, 220, 220, 1) | - 
+--td-textarea-border-radius | @radius-default | - 
+--td-textarea-disabled-text-color | @text-color-disabled | - 
+--td-textarea-indicator-text-color | @text-color-placeholder | - 
+--td-textarea-label-color | @text-color-primary | - 
+--td-textarea-label-width | 64px | - 
+--td-textarea-padding | @textarea-vertical-padding @textarea-horizontal-padding | - 
+--td-textarea-placeholder-color | @text-color-placeholder | - 
+--td-textarea-text-color | @text-color-primary | - 

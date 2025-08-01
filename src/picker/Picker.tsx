@@ -1,72 +1,176 @@
-import React, { FC, useMemo } from 'react';
-import useConfig from '../hooks/useConfig';
+import React, { FC, useMemo, useState, useEffect, useRef, useCallback, ReactNode } from 'react';
+import { isBoolean, isString, isFunction, get as lodashGet } from 'lodash-es';
+import { KeysType } from '../common';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
+import parseTNode from '../_util/parseTNode';
 import useDefault from '../_util/useDefault';
-import withNativeProps, { NativeProps } from '../_util/withNativeProps';
-import PickerView, { getPickerViewDefaultValue } from './PickerView';
+import { NativeProps } from '../_util/withNativeProps';
+import { useLocaleReceiver } from '../locale/LocalReceiver';
 import { pickerDefaultProps } from './defaultProps';
-import { TdPickerProps } from './type';
-import Button from '../button';
-import Popup from '../popup';
+import { TdPickerProps, PickerColumnItem, PickerValue, PickerColumn } from './type';
 
-export interface PickerProps extends TdPickerProps, NativeProps {}
+import PickerItem, { type PickerItemExposeRef } from './PickerItem';
+import { getPickerColumns } from './utils';
+import PickerContext from './picker-context';
+
+export interface PickerProps extends TdPickerProps, NativeProps {
+  children?: ReactNode;
+}
+
+function getDefaultText(prop: unknown, defaultText: string): string {
+  if (isString(prop)) return prop;
+  if (isBoolean(prop)) return defaultText;
+  return;
+}
+
+const getIndexFromColumns = (column: PickerColumn, value: PickerValue, keys?: KeysType) => {
+  if (!value) return 0;
+  return column?.findIndex((item: PickerColumnItem) => lodashGet(item, keys?.value ?? 'value') === value);
+};
 
 const Picker: FC<PickerProps> = (props) => {
   const {
-    visible,
+    columns,
+    onPick,
+    keys,
     value,
     defaultValue,
-    cancelBtn,
-    confirmBtn,
     title,
     header,
     footer,
-    children,
     onCancel,
     onConfirm,
     onChange,
-  } = props;
-  const { classPrefix } = useConfig();
-  const name = `${classPrefix}-picker`;
+    cancelBtn,
+    confirmBtn,
+    renderLabel,
+  } = useDefaultProps(props, pickerDefaultProps);
+  const pickerClass = usePrefixClass('picker');
 
-  const internalDefaultValue = useMemo(
-    () => getPickerViewDefaultValue(defaultValue, children),
-    [defaultValue, children],
+  const [locale, t] = useLocaleReceiver('picker');
+
+  const [pickerValue = [], setPickerValue] = useDefault(value, defaultValue, onChange);
+  const confirmButtonText = useMemo(
+    () => getDefaultText(confirmBtn, t(locale.confirm)),
+    [confirmBtn, t, locale.confirm],
+  );
+  const cancelButtonText = useMemo(() => getDefaultText(cancelBtn, t(locale.cancel)), [cancelBtn, t, locale.cancel]);
+  const [curValueArray, setCurValueArray] = useState(value?.map((item) => item) ?? []);
+  const pickerItemInstanceArray = useRef<PickerItemExposeRef[]>([]);
+
+  const realColumns = useMemo(() => {
+    if (isFunction(columns)) {
+      const columnsArray = columns(curValueArray);
+      return getPickerColumns(columnsArray);
+    }
+    return getPickerColumns(columns);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [columns, JSON.stringify(curValueArray)]);
+
+  const curIndexArray = useRef(
+    realColumns.map((item: PickerColumn, index: number) => getIndexFromColumns(item, pickerValue[index], keys)),
   );
 
-  const [internalValue, setInternalValue] = useDefault(value, internalDefaultValue, onChange);
+  const setPickerItemRef = (instance: PickerItemExposeRef, idx: number) => {
+    pickerItemInstanceArray.current[idx] = instance;
+  };
+
+  const handleConfirm = useCallback(
+    (e: any) => {
+      const target = realColumns.map((item, idx) => item[curIndexArray.current[idx]]);
+      const label = target.map((item) => lodashGet(item, keys?.label ?? 'label'));
+      const value = target.map((item) => lodashGet(item, keys?.value ?? 'value'));
+      setPickerValue(value, e);
+      onChange?.(value, { columns: realColumns, e } as any);
+      onConfirm?.(value, { index: curIndexArray.current, e, label } as any);
+    },
+    [realColumns, keys, onChange, onConfirm, setPickerValue],
+  );
+
+  const handleCancel = useCallback(
+    (e: any) => {
+      pickerItemInstanceArray.current.forEach((item, idx) => {
+        item?.setIndex(curIndexArray.current[idx]);
+      });
+      onCancel?.({ e });
+    },
+    [onCancel, curIndexArray],
+  );
+
+  const handlePick = useCallback(
+    (context: { value: PickerValue; index: number }, idx: number) => {
+      const { index, value: column } = context;
+      const newCurValueArray = [...curValueArray];
+      newCurValueArray[idx] = lodashGet(realColumns?.[idx][index], keys?.value ?? 'value');
+
+      curIndexArray.current[column] = index;
+      setCurValueArray(newCurValueArray);
+      onPick?.(newCurValueArray, { index, column: idx });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [JSON.stringify(curValueArray), realColumns, keys, onPick],
+  );
+
+  useEffect(() => {
+    setCurValueArray(pickerValue.map((item) => item) || []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(pickerValue)]);
+
+  useEffect(() => {
+    realColumns.forEach((col: PickerColumn, idx: number) => {
+      const index = col.findIndex((item) => lodashGet(item, keys?.value ?? 'value') === curValueArray[idx]);
+      const newIndex = index > -1 ? index : 0;
+      curIndexArray.current[idx] = newIndex;
+      pickerItemInstanceArray.current[idx]?.setIndex(curIndexArray.current[idx]);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [realColumns, JSON.stringify(curValueArray), keys]);
 
   return (
-    <Popup visible={visible} placement="bottom">
-      {withNativeProps(
-        props,
-        <div className={name}>
-          {header === true ? (
-            <div className={`${name}__toolbar`}>
-              <Button className={`${name}__cancel`} variant="text" onClick={(e) => onCancel?.({ e })}>
-                {cancelBtn}
-              </Button>
-              <div className={`${name}__title`}>{title}</div>
-              <Button className={`${name}__confirm`} variant="text" onClick={(e) => onConfirm?.(internalValue, { e })}>
-                {confirmBtn}
-              </Button>
+    <PickerContext.Provider value={{ keys, value, onChange }}>
+      <div className={pickerClass}>
+        <div className={`${pickerClass}__toolbar`}>
+          {cancelButtonText ? (
+            <div className={`${pickerClass}__cancel`} onClick={handleCancel}>
+              {cancelButtonText}
             </div>
-          ) : (
-            header
-          )}
-          {/* TODO:popup集成惰性加载后可移除条件渲染 */}
-          {visible && (
-            <PickerView value={internalValue} onChange={setInternalValue}>
-              {children}
-            </PickerView>
-          )}
-          {footer}
-        </div>,
-      )}
-    </Popup>
+          ) : null}
+
+          <div className={`${pickerClass}__title`}>{title}</div>
+
+          {confirmButtonText ? (
+            <div className={`${pickerClass}__confirm`} onClick={handleConfirm}>
+              {confirmButtonText}
+            </div>
+          ) : null}
+        </div>
+        {parseTNode(header)}
+        <div className={`${pickerClass}__main`}>
+          {realColumns.map((item, idx) => (
+            <div key={idx} className={`${pickerClass}-item__group`}>
+              <PickerItem
+                ref={(instance) => {
+                  setPickerItemRef(instance, idx);
+                }}
+                options={item}
+                value={pickerValue[idx]}
+                renderLabel={renderLabel}
+                onPick={(context) => handlePick(context, idx)}
+              />
+            </div>
+          ))}
+
+          <div className={`${pickerClass}__mask ${pickerClass}__mask--top`} />
+          <div className={`${pickerClass}__mask ${pickerClass}__mask--bottom`} />
+          <div className={`${pickerClass}__indicator`} />
+        </div>
+        {parseTNode(footer)}
+      </div>
+    </PickerContext.Provider>
   );
 };
 
-Picker.defaultProps = pickerDefaultProps;
 Picker.displayName = 'Picker';
 
 export default Picker;

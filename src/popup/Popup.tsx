@@ -34,14 +34,13 @@ const Popup: React.FC<PopupProps> = (props) => {
     destroyOnClose,
     closeBtn,
     closeOnOverlayClick,
+    duration,
     onClose,
     onClosed,
     onOpen,
     onOpened,
     onVisibleChange,
   } = useDefaultProps(props, popupDefaultProps);
-
-  const duration = 300;
 
   const name = usePrefixClass('popup');
 

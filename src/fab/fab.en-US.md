@@ -17,3 +17,10 @@ yBounds | Array | - | Typescript：`Array<string \| number>` | N
 onClick | Function |  | Typescript：`(context: {e: MouseEvent}) => void`<br/> | N
 onDragEnd | Function |  | Typescript：`(context: { e: TouchEvent }) => void`<br/> | N
 onDragStart | Function |  | Typescript：`(context: { e: TouchEvent }) => void`<br/> | N
+
+### CSS Variables
+
+The component provides the following CSS variables, which can be used to customize styles.
+Name | Default Value | Description 
+-- | -- | --
+--td-fab-shadow | @shadow-2 | - 

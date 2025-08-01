@@ -6,12 +6,15 @@ import { fabDefaultProps } from './defaultProps';
 import { StyledProps } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
+import parseTNode from '../_util/parseTNode';
 
-export interface FabProps extends TdFabProps, StyledProps {}
+export interface FabProps extends TdFabProps, StyledProps {
+  children?: React.ReactNode;
+}
 
 const Fab: React.FC<FabProps> = (originProps) => {
   const props = useDefaultProps(originProps, fabDefaultProps);
-  const { buttonProps, icon = null, text, onClick } = props;
+  const { children, buttonProps, icon = null, text, onClick } = props;
 
   const fabClass = usePrefixClass('fab');
 
@@ -167,6 +170,18 @@ const Fab: React.FC<FabProps> = (originProps) => {
     };
     setSwitchPosition(switchPos.endX, switchPos.endY);
   };
+  const defaultContent = (
+    <Button
+      size="large"
+      theme="primary"
+      shape={props.text ? 'round' : 'circle'}
+      className={`${fabClass}__button`}
+      {...(buttonProps as TdFabProps['buttonProps'])}
+      icon={icon}
+    >
+      {text}
+    </Button>
+  );
 
   return (
     <div
@@ -177,16 +192,7 @@ const Fab: React.FC<FabProps> = (originProps) => {
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      <Button
-        size="large"
-        theme="primary"
-        shape={props.text ? 'round' : 'circle'}
-        className={`${fabClass}__button`}
-        {...(buttonProps as TdFabProps['buttonProps'])}
-        icon={icon}
-      >
-        {text}
-      </Button>
+      {parseTNode(children, null, defaultContent)}
     </div>
   );
 };

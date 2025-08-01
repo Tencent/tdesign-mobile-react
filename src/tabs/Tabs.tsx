@@ -5,6 +5,7 @@ import Sticky from '../sticky';
 import Badge from '../badge';
 import { TdTabPanelProps, TdTabsProps } from './type';
 import TabPanel from './TabPanel';
+import type { TabPanelProps } from './TabPanel';
 import useConfig from '../hooks/useConfig';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -44,15 +45,15 @@ const Tabs: FC<TabsProps> = (props) => {
     [size, tabsClass],
   );
 
-  const itemProps = useMemo<Array<TdTabPanelProps>>(() => {
+  const itemProps = useMemo<Array<TabPanelProps>>(() => {
     if (list && list.length > 0) {
       return list;
     }
 
     const propsArr = [];
 
-    React.Children.forEach(children, (child: JSX.Element) => {
-      if (child.type.displayName === TabPanel.displayName) {
+    React.Children.forEach(children, (child: React.ReactElement<TabPanelProps>) => {
+      if ((child.type as any).displayName === TabPanel.displayName) {
         propsArr.push(child.props);
       }
     });

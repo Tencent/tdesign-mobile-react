@@ -7,10 +7,13 @@
   overflow: hidden;
 }
 .box {
+  background-color: var(--td-bg-color-container);
+}
+
+.horizontal {
   padding: 16px;
   display: flex;
   justify-content: space-between;
-  background-color: var(--bg-color-demo, #fff);
 }
 
 .card {
@@ -22,7 +25,7 @@
   border: 1.5px solid var(--bg-color-demo, #fff);
 }
 .card--active {
-  border-color: #0052d9;
+  border-color: var(--td-brand-color-7);
 }
 .card--active::after {
   content: '';
@@ -31,7 +34,7 @@
   left: 0;
   top: 0;
   width: 0;
-  border: 14px solid #0052d9;
+  border: 14px solid var(--td-brand-color-7);
   border-bottom-color: transparent;
   border-right-color: transparent;
 }

@@ -10,6 +10,7 @@ import Tabs from '../tabs';
 import { StyledProps, TNode, TreeOptionData } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
+import parseTNode from '../_util/parseTNode';
 import { cascaderDefaultProps } from './defaultProps';
 import { TdCascaderProps } from './type';
 
@@ -173,7 +174,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
       }}
     >
       <div className={classNames(cascaderClass, className)} style={style}>
-        <div className={`${cascaderClass}__title`}>{title}</div>
+        <div className={`${cascaderClass}__title`}>{parseTNode(title)}</div>
         <div
           className={`${cascaderClass}__close-btn`}
           onClick={() => {
@@ -186,7 +187,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
             onClose?.('close-btn');
           }}
         >
-          {closeBtn === true ? <CloseIcon size={24} /> : closeBtn}
+          {closeBtn === true ? <CloseIcon size={24} /> : parseTNode(closeBtn)}
         </div>
         <div className={`${cascaderClass}__content`}>
           {labelList.length ? (
@@ -212,7 +213,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
                           [`${cascaderClass}__step-label--active`]: index === stepIndex,
                         })}
                       >
-                        {labeItem.label}
+                        {parseTNode(labeItem.label)}
                       </div>
                       <ChevronRightIcon size={22} className={`${cascaderClass}__step-arrow`} />
                     </div>

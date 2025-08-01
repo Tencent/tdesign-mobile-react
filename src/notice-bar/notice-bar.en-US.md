@@ -21,7 +21,6 @@ defaultVisible | Boolean | false | uncontrolled property | N
 onChange | Function |  | Typescript：`(value: boolean) => void`<br/>`deprecated` | N
 onClick | Function |  | Typescript：`(trigger: NoticeBarTrigger) => void`<br/>[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/notice-bar/type.ts)。<br/>`type NoticeBarTrigger = 'prefix-icon' \| 'content' \| 'operation' \| 'suffix-icon';`<br/> | N
 
-
 ### CSS Variables
 
 The component provides the following CSS variables, which can be used to customize styles.

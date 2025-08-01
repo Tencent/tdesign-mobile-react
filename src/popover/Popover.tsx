@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState, forwardRef, useImperativeHandle } from 'react';
 import { createPopper, Placement } from '@popperjs/core';
 import { useClickAway } from 'ahooks';
 import { CSSTransition } from 'react-transition-group';
@@ -9,12 +9,16 @@ import { StyledProps } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { popoverDefaultProps } from './defaultProps';
-import { parseContentTNode } from '../_util/parseTNode';
+import parseTNode, { parseContentTNode } from '../_util/parseTNode';
 import useDefault from '../_util/useDefault';
 
 export interface PopoverProps extends TdPopoverProps, StyledProps {}
 
-const Popover: React.FC<PopoverProps> = (props) => {
+export interface PopoverExposeRef {
+  updatePopper: () => null | void;
+}
+
+const Popover = forwardRef<PopoverExposeRef, PopoverProps>((props, ref) => {
   const {
     closeOnClickOutside,
     className,
@@ -184,6 +188,10 @@ const Popover: React.FC<PopoverProps> = (props) => {
     </div>
   );
 
+  useImperativeHandle(ref, () => ({
+    updatePopper,
+  }));
+
   return (
     <>
       <div
@@ -192,8 +200,8 @@ const Popover: React.FC<PopoverProps> = (props) => {
         style={style}
         onClick={onClickReference}
       >
-        {children}
-        {triggerElement}
+        {parseTNode(children)}
+        {parseTNode(triggerElement)}
       </div>
       <CSSTransition
         in={currentVisible}
@@ -213,7 +221,7 @@ const Popover: React.FC<PopoverProps> = (props) => {
       </CSSTransition>
     </>
   );
-};
+});
 
 Popover.displayName = 'Popover';
 

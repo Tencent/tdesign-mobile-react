@@ -15,7 +15,7 @@ import CheckboxGroup from './CheckboxGroup';
 import { StyledProps } from '../common';
 import useConfig from '../hooks/useConfig';
 import useDefault from '../_util/useDefault';
-import { parseContentTNode } from '../_util/parseTNode';
+import parseTNode, { parseContentTNode } from '../_util/parseTNode';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { checkboxDefaultProps } from './defaultProps';
@@ -152,7 +152,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckBoxProps>((_props, ref) => {
         })}
         style={{ WebkitLineClamp: maxLabelRow }}
       >
-        {label}
+        {parseTNode(label)}
       </div>
       <div
         className={classNames({
@@ -161,7 +161,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckBoxProps>((_props, ref) => {
         })}
         style={{ WebkitLineClamp: maxContentRow }}
       >
-        {content}
+        {parseTNode(content)}
       </div>
     </div>
   );

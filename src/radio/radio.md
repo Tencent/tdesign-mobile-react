@@ -47,3 +47,24 @@ readonly | Boolean | undefined | 只读状态 | N
 value | String / Number / Boolean | - | 选中的值。TS 类型：`T` `type RadioValue = string \| number \| boolean`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/radio/type.ts) | N
 defaultValue | String / Number / Boolean | - | 选中的值。非受控属性。TS 类型：`T` `type RadioValue = string \| number \| boolean`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/radio/type.ts) | N
 onChange | Function |  | TS 类型：`(value: T, context: { e: ChangeEvent; name?: string }) => void`<br/>选中值发生变化时触发, `context.name` 指 RadioGroup 的 name 属性 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-radio-bg-color | @bg-color-container | - 
+--td-radio-border-color | @component-stroke | - 
+--td-radio-content-color | @text-color-secondary | - 
+--td-radio-content-disabled-color | @text-color-disabled | - 
+--td-radio-content-line-height | 22px | - 
+--td-radio-font-size | 16px | - 
+--td-radio-icon-checked-color | @brand-color | - 
+--td-radio-icon-color | @component-border | - 
+--td-radio-icon-disabled-bg-color | @bg-color-component-disabled | - 
+--td-radio-icon-disabled-color | @brand-color-disabled | - 
+--td-radio-icon-size | 24px | - 
+--td-radio-label-color | @text-color-primary | - 
+--td-radio-label-disabled-color | @text-color-disabled | - 
+--td-radio-label-line-height | 24px | - 
+--td-radio-vertical-padding | 16px | - 

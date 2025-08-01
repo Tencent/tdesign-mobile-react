@@ -36,8 +36,16 @@ export interface TdCalendarProps {
    */
   minDate?: number | Date;
   /**
-   * 标题
-   * @default '请选择日期'
+   * 是否只读，只读状态下不能选择日期
+   */
+  readonly?: boolean;
+  /**
+   * 切换模式。 `none` 表示平铺展示所有月份； `month` 表示支持按月切换， `year-month` 表示既按年切换，也支持按月切换
+   * @default none
+   */
+  switchMode?: 'none' | 'month' | 'year-month';
+  /**
+   * 标题，不传默认为“请选择日期”
    */
   title?: TNode;
   /**
@@ -75,6 +83,14 @@ export interface TdCalendarProps {
    * 点击确认按钮时触发
    */
   onConfirm?: (value: Date) => void;
+  /**
+   * 切换月或年时触发（switch-mode 不为 none 时有效）
+   */
+  onPanelChange?: (context: { year: number; month: number }) => void;
+  /**
+   * 滚动时触发
+   */
+  onScroll?: (context: { e: React.UIEvent }) => void;
   /**
    * 点击日期时触发
    */

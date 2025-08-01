@@ -1,14 +1,15 @@
 import React, { useRef } from 'react';
-import type { FC } from 'react';
 import { StyledProps } from '../common';
 import useConfig from '../hooks/useConfig';
 import Radio, { RadioContext, RadioContextValue, RadioProps } from './Radio';
 import useDefault from '../_util/useDefault';
 import type { TdRadioGroupProps } from './type';
 
-export interface RadioGroupProps extends TdRadioGroupProps, StyledProps {}
+export interface RadioGroupProps extends TdRadioGroupProps, StyledProps {
+  children?: React.ReactNode;
+}
 
-const RadioGroup: FC<RadioGroupProps> = (props) => {
+const RadioGroup: React.FC<RadioGroupProps> = (props) => {
   const { classPrefix } = useConfig();
   const {
     disabled,

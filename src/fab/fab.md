@@ -16,3 +16,10 @@ yBounds | Array | - | 设置垂直方向边界限制，示例：[48, 48] 或 ['9
 onClick | Function |  | TS 类型：`(context: {e: MouseEvent}) => void`<br/>悬浮按钮点击事件 | N
 onDragEnd | Function |  | TS 类型：`(context: { e: TouchEvent }) => void`<br/>结束拖拽时触发 | N
 onDragStart | Function |  | TS 类型：`(context: { e: TouchEvent }) => void`<br/>开始拖拽时触发 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-fab-shadow | @shadow-2 | - 

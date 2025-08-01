@@ -9,7 +9,9 @@ import { usePrefixClass } from '../hooks/useClass';
 import { indexesDefaultProps } from './defaultProps';
 import { IndexesProrvider } from './IndexesContext';
 
-export interface IndexesProps extends TdIndexesProps, StyledProps {}
+export interface IndexesProps extends TdIndexesProps, StyledProps {
+  children?: React.ReactNode;
+}
 
 interface GroupTop {
   height: number;

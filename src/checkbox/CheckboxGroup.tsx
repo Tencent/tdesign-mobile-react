@@ -51,7 +51,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
     Array.isArray(options) && options.length > 0
       ? options
       : React.Children.map(children, (child) => (child as ReactElement).props);
-  const optionsWithoutCheckAll = internalOptions.filter((t) => typeof t !== 'object' || !t.checkAll);
+  const optionsWithoutCheckAll = internalOptions.filter((t: CheckboxOption) => typeof t !== 'object' || !t.checkAll);
   const optionsWithoutCheckAllValues = [];
   optionsWithoutCheckAll.forEach((v) => {
     const vs = getCheckboxValue(v);
@@ -146,7 +146,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
           const vs = item as number | string;
           return (
             <Checkbox key={vs} label={vs} value={vs}>
-              {item}
+              {vs}
             </Checkbox>
           );
         }

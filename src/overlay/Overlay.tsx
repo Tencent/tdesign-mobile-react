@@ -13,7 +13,7 @@ export interface OverlayProps extends TdOverlayProps, StyledProps {}
 
 const Overlay: React.FC<OverlayProps> = (props) => {
   const overlayClass = usePrefixClass('overlay');
-  const overlayRef = useRef<HTMLDivElement>();
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   const {
     className,
