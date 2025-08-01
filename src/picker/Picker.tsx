@@ -52,10 +52,13 @@ const Picker: FC<PickerProps> = (props) => {
 
   const [pickerValue = [], setPickerValue] = useDefault(value, defaultValue, onChange);
   const confirmButtonText = useMemo(
-    () => getDefaultText(confirmBtn, t(locale.confirm)),
+    () => getDefaultText(confirmBtn, t(locale.confirm) as string),
     [confirmBtn, t, locale.confirm],
   );
-  const cancelButtonText = useMemo(() => getDefaultText(cancelBtn, t(locale.cancel)), [cancelBtn, t, locale.cancel]);
+  const cancelButtonText = useMemo(
+    () => getDefaultText(cancelBtn, t(locale.cancel) as string),
+    [cancelBtn, t, locale.cancel],
+  );
   const [curValueArray, setCurValueArray] = useState(value?.map((item) => item) ?? []);
   const pickerItemInstanceArray = useRef<PickerItemExposeRef[]>([]);
 

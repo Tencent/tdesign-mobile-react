@@ -317,7 +317,9 @@ class Picker {
       this.list.style.transitionDuration = `${realOptions.duration}ms`;
       this.list.style.transitionTimingFunction = 'ease-out';
     }
-    realOptions.isChange && this.onChange(index);
+    if (realOptions.isChange) {
+      this.onChange(index);
+    }
   }
 
   /**

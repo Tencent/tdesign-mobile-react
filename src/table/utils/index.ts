@@ -6,9 +6,12 @@ export function toString(obj: any): string {
   return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
 }
 
-export function debounce<T = any>(fn: Function, delay = 200): () => void {
+export function debounce<T = any, A extends any[] = any[]>(
+  fn: (this: T, ...args: A) => void,
+  delay = 200,
+): (this: T, ...args: A) => void {
   let timer: ReturnType<typeof setTimeout>;
-  return function newFn(this: T, ...args: Array<any>): void {
+  return function newFn(this: T, ...args: A) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const context = this;
     clearTimeout(timer);
@@ -57,10 +60,14 @@ export function formatRowClassNames(
       // 1. isObject(tClass) && !(tClass instanceof Array) 直接用 isPlainObject 就可以了吧，或者 tClass && typeof tClass === 'object'
       // 2. lodash-es 类型不全
       // 根据下标设置行类名
-      tClass[rowIndex] && (tClass = tClass[rowIndex]);
+      if (tClass[rowIndex]) {
+        tClass = tClass[rowIndex];
+      }
       // 根据行唯一标识设置行类名
       const rowId = get(row, rowKey || 'id');
-      tClass[rowId] && (tClass = tClass[rowId]);
+      if (tClass[rowId]) {
+        tClass = tClass[rowId];
+      }
     } else if (tClass instanceof Array) {
       tClass = formatRowClassNames(tClass, params, rowKey);
     }
