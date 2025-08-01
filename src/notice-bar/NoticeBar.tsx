@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { InfoCircleFilledIcon, CheckCircleFilledIcon } from 'tdesign-icons-react';
+import { InfoCircleFilledIcon, CheckCircleFilledIcon, ErrorCircleFilledIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
 import { isArray, isObject } from 'lodash-es';
 import parseTNode from '../_util/parseTNode';
@@ -52,8 +52,8 @@ const defaultReduceState: () => frameState = () => ({
 const defaultIcons: Record<TdNoticeBarProps['theme'], IconType> = {
   info: <InfoCircleFilledIcon />,
   success: <CheckCircleFilledIcon />,
-  warning: <InfoCircleFilledIcon />,
-  error: <InfoCircleFilledIcon />,
+  warning: <ErrorCircleFilledIcon />,
+  error: <ErrorCircleFilledIcon />,
 };
 
 function useAnimationSettingValue() {
