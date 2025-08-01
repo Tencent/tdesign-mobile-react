@@ -18,10 +18,10 @@ const Avatar: FC<AvatarProps> = (props) => {
   const {
     className,
     size = '',
-    shape = 'circle',
+    shape,
     icon,
     children,
-    hideOnLoadFailed = false,
+    hideOnLoadFailed,
     image = '',
     badgeProps,
     alt = '',
