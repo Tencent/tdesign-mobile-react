@@ -38,7 +38,7 @@ export default function ListDemo() {
         stateRef.current = newListData;
         setIsLoading(false);
       }, 0);
-    } catch (err) {
+    } catch {
       stateRef.current = [];
     }
   };

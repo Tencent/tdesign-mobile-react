@@ -39,7 +39,9 @@ const Steps: FC<StepsProps> = (props) => {
   );
 
   const relation = useCallback((ele: HTMLElement) => {
-    ele && setChildrenNodes((prev) => [...prev, ele]);
+    if (ele) {
+      setChildrenNodes((prev) => [...prev, ele]);
+    }
   }, []);
 
   const removeRelation = useCallback((ele: HTMLElement) => {

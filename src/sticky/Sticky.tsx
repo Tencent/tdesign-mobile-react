@@ -79,7 +79,7 @@ const Sticky: FC<TdStickyProps> = (originProps) => {
       isFixed = true;
     }
 
-    onScroll && onScroll({ scrollTop: contentTop, isFixed });
+    onScroll?.({ scrollTop: contentTop, isFixed });
     setContentStyles(style);
 
     // 这里只需要监听boxTop，不需要全部监听

@@ -128,7 +128,7 @@ const Fab: React.FC<FabProps> = (originProps) => {
 
   useEffect(() => {
     const fab = fabRef.current;
-    fab && fab.addEventListener('touchmove', onTouchMove, { passive: false });
+    fab?.addEventListener('touchmove', onTouchMove, { passive: false });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

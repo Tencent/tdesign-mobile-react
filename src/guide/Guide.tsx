@@ -175,7 +175,9 @@ const Guide: FC<GuideProps> = (originProps) => {
       setHighlightLayerPosition(popoverWrapperRef.current, true);
       setHighlightLayerPosition(referenceLayerRef.current, true);
       scrollToElm(currentHighlightLayerElm.current);
-      isPopoverCenter && setReferenceFullW([referenceLayerRef.current, popoverWrapperRef.current]);
+      if (isPopoverCenter) {
+        setReferenceFullW([referenceLayerRef.current, popoverWrapperRef.current]);
+      }
     });
   };
 
@@ -253,7 +255,9 @@ const Guide: FC<GuideProps> = (originProps) => {
 
   useEffect(() => {
     if (innerCurrent >= 0 && innerCurrent < stepsTotal) {
-      isPopover && setPopoverVisible(false);
+      if (isPopover) {
+        setPopoverVisible(false);
+      }
       initGuide();
     } else {
       setActived(false);

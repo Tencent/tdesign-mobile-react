@@ -50,7 +50,7 @@ const Cell: React.FC<CellProps> = (originProps) => {
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      onClick && onClick({ e });
+      onClick?.({ e });
     },
     [onClick],
   );

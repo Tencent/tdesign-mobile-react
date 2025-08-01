@@ -5,12 +5,17 @@ export interface Placement {
   [propName: string]: string | number;
 }
 
-export type TransformPattern = string | Function | Array<string>;
+export type TransformPattern = string | ((placement?: Placement) => string | Array<string>) | Array<string>;
 
-export function useLocaleReceiver<T extends keyof Locale>(componentName: T, defaultLocale?: Locale[T] | Function) {
+type TransformLocaleFn = (pattern: TransformPattern, placement?: Placement) => string | Array<string>;
+
+export function useLocaleReceiver<T extends keyof Locale>(
+  componentName: T,
+  defaultLocale?: Locale[T] | (() => Locale[T]),
+) {
   const { globalConfig } = React.useContext(ConfigContext);
 
-  function transformLocale(pattern: TransformPattern, placement?: Placement): string | Array<string> {
+  const transformLocale: TransformLocaleFn = (pattern: TransformPattern, placement?: Placement) => {
     const REGEXP = /\{\s*([\w-]+)\s*\}/g;
     if (typeof pattern === 'string') {
       if (!placement || !REGEXP.test(pattern)) return pattern;
@@ -33,20 +38,20 @@ export function useLocaleReceiver<T extends keyof Locale>(componentName: T, defa
       return pattern(placement);
     }
     return '';
-  }
+  };
 
   /** @TypeA => 确保此参数是属于 globalConfig[componentName] 下的子属性 */
-  const componentLocale = React.useMemo<Locale[T] | Function>(() => {
+  const componentLocale = React.useMemo<Locale[T] | (() => Locale[T])>(() => {
     const locale = defaultLocale || {};
     const connectLocaleByName = globalConfig[componentName];
 
     const localeFromContext = componentName && globalConfig ? connectLocaleByName : {};
 
     return {
-      ...(typeof locale === 'function' ? (locale as Function)() : locale),
+      ...(typeof locale === 'function' ? locale() : locale),
       ...(localeFromContext || {}),
     };
   }, [componentName, defaultLocale, globalConfig]);
 
-  return [componentLocale, transformLocale] as [Locale[T], Function];
+  return [componentLocale, transformLocale] as [Locale[T], TransformLocaleFn];
 }

@@ -142,7 +142,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
     }
   };
 
-  const statusText = getStatusText(status, loadingTexts.length ? loadingTexts : t(locale.loadingTexts));
+  const statusText = getStatusText(status, loadingTexts.length ? loadingTexts : (t(locale.loadingTexts) as string[]));
   let statusNode: ReactNode = <div className={`${name}__text`}>{statusText}</div>;
   if (status === PullStatusEnum.loading) {
     statusNode = <Loading text={statusText} size="24px" {...loadingProps} />;

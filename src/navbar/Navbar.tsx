@@ -49,8 +49,8 @@ const Navbar: React.FC<NavbarProps> = (originProps) => {
     if (isStringTitle && !isNaN(titleMaxLength)) {
       if (titleMaxLength <= 0) {
         console.warn('titleMaxLength must be greater than 0');
-      } else if ((titleNode as String).length > titleMaxLength) {
-        titleNode = `${(titleNode as String).slice(0, titleMaxLength)}...`;
+      } else if ((titleNode as string).length > titleMaxLength) {
+        titleNode = `${(titleNode as string).slice(0, titleMaxLength)}...`;
       }
     }
 

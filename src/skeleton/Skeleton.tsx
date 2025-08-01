@@ -31,7 +31,7 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
     skeletonDefaultProps,
   );
 
-  const renderCols = (_cols: Number | SkeletonRowColObj | Array<SkeletonRowColObj>) => {
+  const renderCols = (_cols: number | SkeletonRowColObj | Array<SkeletonRowColObj>) => {
     let cols: Array<SkeletonRowColObj> = [];
     if (isArray(_cols)) {
       cols = _cols;

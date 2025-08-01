@@ -15,7 +15,7 @@ import SwiperContext, { SwiperItemReference } from './SwiperContext';
 
 export interface SwiperProps extends TdSwiperProps, StyledProps {
   children?: React.ReactNode;
-  touchable?: Boolean;
+  touchable?: boolean;
   disabled?: boolean;
 }
 

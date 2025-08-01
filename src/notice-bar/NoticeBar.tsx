@@ -14,7 +14,7 @@ import { noticeBarDefaultProps } from './defaultProps';
 import noop from '../_util/noop';
 
 export interface NoticeBarProps extends TdNoticeBarProps, StyledProps {
-  touchable?: Boolean;
+  touchable?: boolean;
 }
 
 type IconType = ReturnType<typeof InfoCircleFilledIcon>;

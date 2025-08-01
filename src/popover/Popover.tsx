@@ -65,7 +65,7 @@ const Popover: React.FC<PopoverProps> = (props) => {
       x: number;
       y: number;
     };
-    placement: String;
+    placement: string;
   }) => {
     const horizontal = ['top', 'bottom'];
     const vertical = ['left', 'right'];

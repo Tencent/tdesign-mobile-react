@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 interface UseMessageCssTransitionParams {
   contentRef: React.MutableRefObject<HTMLDivElement>;
-  classPrefix: String;
+  classPrefix: string;
   el: React.ReactNode;
 }
 

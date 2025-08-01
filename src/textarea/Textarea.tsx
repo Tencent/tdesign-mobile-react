@@ -99,9 +99,11 @@ const Textarea = forwardRef<TextareaRefInterface, TextareaProps>((originProps, r
     if (autosize === true) {
       setTextareaStyle(calcTextareaHeight(textareaRef.current as HTMLTextAreaElement));
     } else if (autosize === false) {
-      props.rows
-        ? setTextareaStyle({ height: 'auto', minHeight: 'auto' })
-        : setTextareaStyle(calcTextareaHeight(textareaRef.current as HTMLTextAreaElement, 1, 1));
+      if (props.rows) {
+        setTextareaStyle({ height: 'auto', minHeight: 'auto' });
+      } else {
+        setTextareaStyle(calcTextareaHeight(textareaRef.current as HTMLTextAreaElement, 1, 1));
+      }
     } else if (typeof autosize === 'object') {
       const { minRows, maxRows } = autosize;
       setTextareaStyle(calcTextareaHeight(textareaRef.current as HTMLTextAreaElement, minRows, maxRows));
