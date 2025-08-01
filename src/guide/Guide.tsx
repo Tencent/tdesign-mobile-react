@@ -21,6 +21,23 @@ import { addClass, getWindowScroll, removeClass } from './utils/shared';
 
 export interface GuideProps extends TdGuideProps, StyledProps {}
 
+const tryCallBack = (check: () => boolean, cb: () => void) => {
+  const execute = () => {
+    if (check()) {
+      cb();
+      return true;
+    }
+  };
+  if (execute()) return;
+
+  setTimeout(() => {
+    if (execute()) return;
+    setTimeout(() => {
+      execute();
+    }, 0);
+  });
+};
+
 const DEFAULT_BUTTON_MAP = {
   SKIP: '跳过',
   NEXT: '下一步',
@@ -49,6 +66,7 @@ const Guide: FC<GuideProps> = (originProps) => {
   const highlightLayerRef = useRef<HTMLDivElement>(null);
   const popoverWrapperRef = useRef<HTMLDivElement>(null);
   const referenceLayerRef = useRef<HTMLDivElement>(null);
+  const popoverRef = useRef(null);
   const currentHighlightLayerElm = useRef<HTMLElement>(null);
 
   const [innerCurrent, setInnerCurrent] = useDefault(current, defaultCurrent, onChange);
@@ -176,6 +194,7 @@ const Guide: FC<GuideProps> = (originProps) => {
       setHighlightLayerPosition(referenceLayerRef.current, true);
       scrollToElm(currentHighlightLayerElm.current);
       isPopoverCenter && setReferenceFullW([referenceLayerRef.current, popoverWrapperRef.current]);
+      popoverRef.current?.updatePopper?.();
     });
   };
 
@@ -190,9 +209,9 @@ const Guide: FC<GuideProps> = (originProps) => {
 
   const showGuide = () => {
     if (isPopover) {
-      showPopoverGuide();
+      tryCallBack(() => !!highlightLayerRef.current, showPopoverGuide);
     } else {
-      showDialogGuide();
+      tryCallBack(() => !!highlightLayerRef.current, showDialogGuide);
     }
     setTimeout(() => {
       setPopoverVisible(true);
@@ -381,6 +400,7 @@ const Guide: FC<GuideProps> = (originProps) => {
   const renderPopover = () => (
     <TPopover
       {...(stepProps as PopoverProps)}
+      ref={popoverRef}
       triggerElement={<div ref={referenceLayerRef} className={`${guideClass}__reference`}></div>}
       content={renderContentNode() || renderStepContent()}
     ></TPopover>
