@@ -5,6 +5,23 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.19.0 `2025-08-01` 
+### 🚀 Features
+- `QRCode`: 新增 `QRCode` 二维码组件 @anlyyao ([#696](https://github.com/Tencent/tdesign-mobile-react/pull/696))
+- `Popup`: 新增 `duration` 属性 @novlan1 ([#691](https://github.com/Tencent/tdesign-mobile-react/pull/691))
+### 🐞 Bug Fixes
+- `BackTop`: 修复默认返回按钮图标无效 @anlyyao ([#682](https://github.com/Tencent/tdesign-mobile-react/pull/682))
+- `Cascader`: 修复深色模式 `0.5px` 边框颜色错误 @anlyyao ([#682](https://github.com/Tencent/tdesign-mobile-react/pull/682))
+- `Overlay`: 修复深色模式背景色错误 @anlyyao ([#682](https://github.com/Tencent/tdesign-mobile-react/pull/682))
+- `Upload`: 修复移除按钮颜色错误 @anlyyao ([#682](https://github.com/Tencent/tdesign-mobile-react/pull/682))
+- `Switch`: 修复 `loading` 颜色、`dot` 滑块禁用态/深色模式背景色错误 @anlyyao ([#687](https://github.com/Tencent/tdesign-mobile-react/pull/687))
+- `NoticeBar`: 修复 `warning` 和 `error` 主题默认图标错误 @novlan1 ([#688](https://github.com/Tencent/tdesign-mobile-react/pull/688))
+- `Guide`: 修复 `popover` 下展示位置错误问题 @novlan1 ([#689](https://github.com/Tencent/tdesign-mobile-react/pull/689))
+- `PullDownRefresh`: 修复 `change` 事件不生效问题 @novlan1 ([#690](https://github.com/Tencent/tdesign-mobile-react/pull/690))
+- `Sticky`: 修复滚动元素找不到问题 @novlan1 ([#692](https://github.com/Tencent/tdesign-mobile-react/pull/692))
+### 🚧 Others
+- `site`: 修复主题生成器在移动端预览窗口无效的问题 @anlyyao ([#682](https://github.com/Tencent/tdesign-mobile-react/pull/682))
+
 ## 🌈 0.18.0 `2025-07-15` 
 ### 🚀 Features
 - `Form`: 新增 `Form` 组件 @slatejack ([#666](https://github.com/Tencent/tdesign-mobile-react/pull/666))
