@@ -2,7 +2,7 @@ import React, { createContext, MutableRefObject, useMemo } from 'react';
 import { ChangeHandler } from '../_util/useDefault';
 import { TdSideBarProps } from './type';
 
-interface BseSidebarContext {
+interface BaseSidebarContext {
   defaultIndex: MutableRefObject<number>;
   activeValue: number | string | (number | string)[];
   updateChild: ChangeHandler<number | string | (number | string)[], any[]>;
@@ -14,7 +14,7 @@ interface BseSidebarContext {
 /**
  * SideBarContext is a React context that stores the state and actions related to the SideBar component.
  */
-export const SideBarContext = createContext<BseSidebarContext & Pick<TdSideBarProps, 'onChange' | 'onClick'>>(null);
+export const SideBarContext = createContext<BaseSidebarContext & Pick<TdSideBarProps, 'onChange' | 'onClick'>>(null);
 
 export function SideBarProvider({ children, value }) {
   const memoValue = useMemo(() => value, [value]);
