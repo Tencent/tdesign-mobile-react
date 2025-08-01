@@ -2,9 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const { camelCase } = require('lodash-es');
 
-const DomParser = require('dom-parser');
+const { parseFromString} = require('dom-parser');
 
-const parser = new DomParser();
 
 function resolveCwd(...args) {
   args.unshift(process.cwd());
@@ -18,7 +17,7 @@ fs.readFile(resolveCwd('test/coverage/index.html'), 'utf8', (err, html) => {
   }
 
   if (!err) {
-    const dom = parser.parseFromString(html);
+    const dom = parseFromString(html);
     const tds = dom.getElementsByTagName('td');
 
     const size = 10;
