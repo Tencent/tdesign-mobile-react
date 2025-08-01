@@ -46,7 +46,7 @@ const BackTop: React.FC<BackTopProps> = (props) => {
 
   const name = `${classPrefix}-back-top`;
 
-  const getContainer = (container: Function) => {
+  const getContainer = (container: TdBackTopProps['container']) => {
     if (typeof container === 'function') {
       return container();
     }

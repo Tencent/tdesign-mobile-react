@@ -159,13 +159,15 @@ const Indexes: React.FC<IndexesProps> = (props) => {
   };
 
   const relation = (ele: HTMLElement, anchor: string | number) => {
-    ele && childNodes.current.push({ ele, anchor });
+    if (ele) {
+      childNodes.current.push({ ele, anchor });
+    }
   };
 
   useEffect(() => {
     const clearSidebarTip = (): void => {
       if (showSidebarTip && activeSidebar !== null) {
-        tipTimer.current && clearTimeout(tipTimer.current);
+        clearTimeout(tipTimer.current);
         tipTimer.current = window.setTimeout(() => {
           setShowSidebarTip(false);
         }, 1000);
@@ -194,11 +196,11 @@ const Indexes: React.FC<IndexesProps> = (props) => {
     // https://github.com/facebook/react/pull/19654
     // react 中 onTouchMove 等事件默认使用 passive： true，导致无法在listener 中使用 preventDefault()
     const sideBar = sidebarRef.current;
-    sideBar && sideBar.addEventListener('touchmove', handleSidebarTouchmove, { passive: false });
+    sideBar?.addEventListener('touchmove', handleSidebarTouchmove, { passive: false });
 
     return () => {
-      tipTimer.current && clearTimeout(tipTimer.current);
-      sideBar && sideBar.removeEventListener('touchmove', handleSidebarTouchmove);
+      clearTimeout(tipTimer.current);
+      sideBar?.removeEventListener('touchmove', handleSidebarTouchmove);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

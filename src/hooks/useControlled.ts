@@ -16,6 +16,7 @@ const useControlled: <P extends any[], R extends object, K extends keyof R>(
   onChange: ChangeHandler<R[K], P>,
   defaultOptions?:
     | {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         [key in DefaultOptions<ToString<K>>]: R[K];
       }
     | object,

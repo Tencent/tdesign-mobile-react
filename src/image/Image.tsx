@@ -70,7 +70,7 @@ const Image: React.FC<ImageProps> = (props) => {
     const handleUnObserve = (element) => {
       const observer = observe(element, null, handleLoadImage, 0);
       return () => {
-        observer && observer.unobserve(element);
+        observer?.unobserve(element);
       };
     };
 

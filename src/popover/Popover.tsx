@@ -69,7 +69,7 @@ const Popover = forwardRef<PopoverExposeRef, PopoverProps>((props, ref) => {
       x: number;
       y: number;
     };
-    placement: String;
+    placement: string;
   }) => {
     const horizontal = ['top', 'bottom'];
     const vertical = ['left', 'right'];

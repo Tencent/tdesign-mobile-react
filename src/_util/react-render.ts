@@ -28,7 +28,7 @@ try {
   } else if (mainVersion >= 19) {
     createRoot = createRootClient;
   }
-} catch (e) {
+} catch {
   // Do nothing;
 }
 

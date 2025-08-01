@@ -75,7 +75,7 @@ const Message: React.FC<MessageProps> = (originProps) => {
   /**
    * 获取visibleChange函数引用
    */
-  const scrollingHandler = useRef<Function>(null);
+  const scrollingHandler = useRef<null | (() => void)>(null);
 
   /**
    * duration为0时，取消倒计时

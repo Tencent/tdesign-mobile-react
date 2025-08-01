@@ -1,4 +1,3 @@
-import { InjectionKey } from 'vue';
 import { FormItemValidateResult } from './FormItem';
 import {
   AllValidateResult,
@@ -6,7 +5,6 @@ import {
   FormItemValidateMessage,
   FormRule,
   TdFormItemProps,
-  TdFormProps,
   ValidateResultType,
   ValidateTriggerType,
 } from './type';
@@ -56,20 +54,3 @@ export interface FormItemContext {
   onBlur?: (value: any, ...args) => void;
   value?: any;
 }
-
-export const FormInjectionKey: InjectionKey<{
-  showErrorMessage: TdFormProps['showErrorMessage'];
-  labelWidth: TdFormProps['labelWidth'];
-  labelAlign: TdFormProps['labelAlign'];
-  contentAlign: TdFormProps['contentAlign'];
-  colon: TdFormProps['colon'];
-  requiredMark: TdFormProps['requiredMark'];
-  rules: TdFormProps['rules'];
-  errorMessage: TdFormProps['errorMessage'];
-  resetType: TdFormProps['resetType'];
-  children: FormItemContext[];
-}> = Symbol('FormProvide');
-
-export const FormItemInjectionKey: InjectionKey<{
-  handleBlur: () => Promise<void>;
-}> = Symbol('FormItemProvide');
