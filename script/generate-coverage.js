@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { camelCase } = require('lodash-es');
+const camelCase = require('lodash.camelcase');
 
 const DomParser = require('dom-parser');
 
@@ -45,14 +45,15 @@ fs.readFile(resolveCwd('test/coverage/index.html'), 'utf8', (err, html) => {
     const resultCoverage = {};
     componentCoverage.forEach((item) => {
       const dataVal = item[0].getAttribute('data-value');
-      const [valid, targetName] = checkTargetCoverage(dataVal);
-      if (valid) {
+
+      if (!dataVal.includes('/')) {
+        const name = dataVal;
         const statements = `${item[2].getAttribute('data-value')}%`;
         const branches = `${item[4].getAttribute('data-value')}%`;
         const functions = `${item[6].getAttribute('data-value')}%`;
         const lines = `${item[8].getAttribute('data-value')}%`;
 
-        const key = camelCase(targetName);
+        const key = camelCase(name);
         resultCoverage[key] = {
           statements,
           branches,
