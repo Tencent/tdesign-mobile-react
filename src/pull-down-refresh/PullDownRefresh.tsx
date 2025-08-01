@@ -117,7 +117,9 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
   const doRefresh = async () => {
     if (disabled) return;
     setStatus(PullStatusEnum.loading);
+    onChange(true);
     setDistance(pureLoadingHeight);
+
     try {
       const timeoutId = uniqueId(`${name}-timeout_`);
       let timeoutTid: any;
@@ -138,6 +140,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
       setTimeout(() => {
         setStatus(PullStatusEnum.normal);
         setDistance(0);
+        onChange(false);
       }, 300);
     }
   };
