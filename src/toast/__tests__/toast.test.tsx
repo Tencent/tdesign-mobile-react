@@ -177,5 +177,26 @@ describe('Toast', () => {
       await testMethod('error', ICON_CLASS_MAP.error, { message });
       await testMethod('warning', ICON_CLASS_MAP.warning, { message });
     });
+
+    it(': attach', async () => {
+      const spyConsole = vi.spyOn(console, 'error');
+      await Toast({
+        message: ' ',
+        attach: 'abc',
+      });
+      expect(spyConsole).toHaveBeenCalledWith('attach is not exist');
+      expect(document.querySelector('.t-toast')).toBeFalsy();
+
+      const testClass = 'test-toast';
+      const testDom = document.createElement('div');
+      testDom.classList.add(testClass);
+      document.body.appendChild(testDom);
+      await Toast({
+        message: ' ',
+        attach: `.${testClass}`,
+      });
+      await sleep(300);
+      expect(testDom.querySelector('.t-toast')).toBeTruthy();
+    });
   });
 });
