@@ -13,3 +13,21 @@ description | TNode | - | 描述文字。TS 类型：`string \| TNode`。[通用
 image | TNode | - | 图片地址。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 theme | String | default | 内置主题。可选项：default/success/warning/error | N
 title | TNode | '' | 标题。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-result-description-color | @text-color-secondary | - 
+--td-result-description-font-size | @font-size-base | - 
+--td-result-description-line-height | 22px | - 
+--td-result-description-margin-top | @spacer | - 
+--td-result-icon-default-color | @brand-color | - 
+--td-result-icon-error-color | @error-color | - 
+--td-result-icon-success-color | @success-color | - 
+--td-result-icon-warning-color | @warning-color | - 
+--td-result-title-color | @text-color-primary | - 
+--td-result-title-font-size | @font-size-xl | - 
+--td-result-title-line-height | 28px | - 
+--td-result-title-margin-top | @spacer-1 | - 

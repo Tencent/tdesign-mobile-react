@@ -8,6 +8,7 @@ export const popupDefaultProps: TdPopupProps = {
   attach: 'body',
   closeOnOverlayClick: true,
   destroyOnClose: false,
+  duration: 240,
   overlayProps: {},
   placement: 'top',
   preventScrollThrough: true,

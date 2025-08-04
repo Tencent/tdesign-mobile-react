@@ -5,6 +5,7 @@ import { stickyDefaultProps } from './defaultProps';
 import { resolveContainer } from '../_util/getContainer';
 import useDefaultProps from '../hooks/useDefaultProps';
 import useLayoutEffect from '../hooks/useLayoutEffect';
+import getScrollParent from '../_util/getScrollParent';
 
 export interface StickyProps extends TdStickyProps {
   children?: ReactNode;
@@ -83,7 +84,7 @@ const Sticky: FC<StickyProps> = (originProps) => {
       isFixed = true;
     }
 
-    onScroll && onScroll({ scrollTop: contentTop, isFixed });
+    onScroll?.({ scrollTop: contentTop, isFixed });
     setContentStyles(style);
 
     // 这里只需要监听boxTop，不需要全部监听
@@ -91,11 +92,12 @@ const Sticky: FC<StickyProps> = (originProps) => {
   }, [boxTop]);
 
   useEffect(() => {
-    addEventListener('scroll', scrollhandler);
+    const scroller = getScrollParent(boxElement);
+    scroller?.addEventListener('scroll', scrollhandler);
     return () => {
-      removeEventListener('scroll', scrollhandler);
+      scroller?.removeEventListener('scroll', scrollhandler);
     };
-  }, [boxTop, contentTop, contentHeight, scrollhandler]);
+  }, [boxElement, boxTop, contentTop, contentHeight, scrollhandler]);
 
   return (
     <>

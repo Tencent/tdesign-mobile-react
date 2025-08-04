@@ -3,7 +3,7 @@ import { unmount } from '../../_util/react-render';
 
 interface UseMessageCssTransitionParams {
   contentRef: React.MutableRefObject<HTMLDivElement>;
-  classPrefix: String;
+  classPrefix: string;
   el: React.ReactNode;
 }
 

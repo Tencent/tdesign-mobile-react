@@ -117,7 +117,9 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
   const doRefresh = async () => {
     if (disabled) return;
     setStatus(PullStatusEnum.loading);
+    onChange(true);
     setDistance(pureLoadingHeight);
+
     try {
       const timeoutId = uniqueId(`${name}-timeout_`);
       let timeoutTid: any;
@@ -138,11 +140,12 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
       setTimeout(() => {
         setStatus(PullStatusEnum.normal);
         setDistance(0);
+        onChange(false);
       }, 300);
     }
   };
 
-  const statusText = getStatusText(status, loadingTexts.length ? loadingTexts : t(locale.loadingTexts));
+  const statusText = getStatusText(status, loadingTexts.length ? loadingTexts : (t(locale.loadingTexts) as string[]));
   let statusNode: React.ReactNode = <div className={`${name}__text`}>{statusText}</div>;
   if (status === PullStatusEnum.loading) {
     statusNode = <Loading text={statusText} size="24px" {...loadingProps} />;

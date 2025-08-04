@@ -238,11 +238,15 @@ export default function useFixed(props: TdBaseTableProps) {
     if (!tableContentElm) return;
     const thead = tableContentElm.querySelector('thead');
     // 处理固定列
-    thead && setFixedColPosition(thead.children, initialColumnMap);
+    if (thead) {
+      setFixedColPosition(thead.children, initialColumnMap);
+    }
     // 处理冻结行
     const tbody = tableContentElm.querySelector('tbody');
     const tfoot = tableContentElm.querySelector('tfoot');
-    tbody && setFixedRowPosition(tbody.children, initialColumnMap, thead, tfoot);
+    if (tbody) {
+      setFixedRowPosition(tbody.children, initialColumnMap, thead, tfoot);
+    }
     // 更新最终 Map
     setRowAndColFixedPosition(initialColumnMap);
   };

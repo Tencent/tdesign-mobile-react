@@ -2,8 +2,8 @@ import React, { useRef, useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import { useScroll, useMount, useBoolean } from 'ahooks';
 import smoothscroll from 'smoothscroll-polyfill';
-import { isString } from 'lodash-es';
-import { Icon } from 'tdesign-icons-react';
+import { isBoolean } from 'lodash-es';
+import { BacktopIcon } from 'tdesign-icons-react';
 import useDefaultProps from '../hooks/useDefaultProps';
 import parseTNode from '../_util/parseTNode';
 import withNativeProps, { NativeProps } from '../_util/withNativeProps';
@@ -46,7 +46,7 @@ const BackTop: React.FC<BackTopProps> = (props) => {
 
   const name = `${classPrefix}-back-top`;
 
-  const getContainer = (container: Function) => {
+  const getContainer = (container: TdBackTopProps['container']) => {
     if (typeof container === 'function') {
       return container();
     }
@@ -66,8 +66,8 @@ const BackTop: React.FC<BackTopProps> = (props) => {
   const targetHeight = isWindow(backTopDom.current) ? 0 : backTopDom.current?.offsetTop || 0;
 
   const renderIcon = useMemo(() => {
-    if (isString(icon)) {
-      return <Icon className={`${name}__icon`} name={icon} />;
+    if (isBoolean(icon) && icon) {
+      return <BacktopIcon className={`${name}__icon`} />;
     }
 
     return parseTNode(icon);

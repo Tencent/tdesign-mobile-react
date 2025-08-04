@@ -58,7 +58,7 @@ export const docs = [
         componentEn: () => import('tdesign-mobile-react/button/button.en-US.md'),
       },
       {
-        title: 'Divider 分割符',
+        title: 'Divider 分割线',
         titleEn: 'Divider',
         name: 'divider',
         path: '/mobile-react/components/divider',
@@ -416,6 +416,14 @@ export const docs = [
         path: '/mobile-react/components/progress',
         component: () => import('tdesign-mobile-react/progress/progress.md'),
         componentEn: () => import('tdesign-mobile-react/progress/progress.en-US.md'),
+      },
+      {
+        title: 'QRCode 二维码',
+        titleEn: 'QRCode',
+        name: 'qrcode',
+        path: '/mobile-react/components/qrcode',
+        component: () => import('tdesign-mobile-react/qrcode/qrcode.md'),
+        componentEn: () => import('tdesign-mobile-react/qrcode/qrcode.en-US.md'),
       },
       {
         title: 'Result 结果',

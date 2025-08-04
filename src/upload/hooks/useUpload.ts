@@ -1,7 +1,6 @@
 import type { ChangeEvent, MouseEvent } from 'react';
 import { useRef, useState } from 'react';
-import isString from 'lodash/isString';
-import isFunction from 'lodash/isFunction';
+import { isString, isFunction } from 'lodash-es';
 import type { InnerProgressContext, OnResponseErrorContext } from '../../_common/js/upload/types';
 import type { SizeLimitObj, TdUploadProps, UploadChangeContext, UploadFile, UploadRemoveContext } from '../type';
 import { getFileList, getFileUrlByFileRaw } from '../../_common/js/upload/utils';

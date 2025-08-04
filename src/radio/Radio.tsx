@@ -82,13 +82,17 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
       }
       if (icon === 'dot') {
         let dotIconClassName = `${radioClass}__icon-${icon}`;
-        disabled && (dotIconClassName += ` ${radioClass}__icon-${icon}--disabled`);
+        if (disabled) {
+          dotIconClassName += ` ${radioClass}__icon-${icon}--disabled`;
+        }
         return <div className={dotIconClassName} />;
       }
     } else {
       if (icon === 'circle' || icon === 'dot') {
         let circleIconClassName = `${radioClass}__icon-circle`;
-        disabled && (circleIconClassName += ` ${radioClass}__icon-circle--disabled`);
+        if (disabled) {
+          circleIconClassName += ` ${radioClass}__icon-circle--disabled`;
+        }
         return <div className={circleIconClassName} />;
       }
       if (icon === 'line') {

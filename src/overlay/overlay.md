@@ -19,3 +19,11 @@ onClose | Function |  | TS 类型：`() => void`<br/>遮罩执行消失动画效
 onClosed | Function |  | TS 类型：`() => void`<br/>遮罩消失动画效果结束后触发 | N
 onOpen | Function |  | TS 类型：`() => void`<br/>遮罩执行弹出动画效果前触发 | N
 onOpened | Function |  | TS 类型：`() => void`<br/>遮罩弹出动画效果结束后触发 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-overlay-bg-color | @font-gray-2 | - 
+--td-overlay-zindex | 1000 | - 

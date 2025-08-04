@@ -32,7 +32,9 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
   const actionSheetClass = usePrefixClass('action-sheet');
 
   const [visible, setVisible] = useControlled(props, 'visible', (visible, context) => {
-    !visible && onClose?.(context);
+    if (!visible) {
+      onClose?.(context);
+    }
   });
 
   const handleCancel = (ev) => {

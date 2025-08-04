@@ -22,3 +22,22 @@ defaultVisible | Boolean | false | 显示与隐藏。非受控属性 | N
 onCancel | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>点击取消按钮时触发 | N
 onClose | Function |  | TS 类型：`(trigger: ActionSheetTriggerSource) => void`<br/>关闭时触发。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/action-sheet/type.ts)。<br/>`type ActionSheetTriggerSource = 'overlay' \| 'command' \| 'select' `<br/> | N
 onSelected | Function |  | TS 类型：`(selected: ActionSheetItem \| string, index: number) => void`<br/>选择菜单项时触发 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-action-sheet-border-color | @component-stroke | - 
+--td-action-sheet-border-radius | @radius-extra-large | - 
+--td-action-sheet-cancel-height | 48px | - 
+--td-action-sheet-color | @text-color-primary | - 
+--td-action-sheet-description-color | @text-color-placeholder | - 
+--td-action-sheet-dot-active-color | @brand-color | - 
+--td-action-sheet-dot-color | @text-color-disabled | - 
+--td-action-sheet-dot-size | 8px | - 
+--td-action-sheet-gap-color | var(--td-bg-color-page, @component-stroke) | - 
+--td-action-sheet-list-item-disabled-color | @text-color-disabled | - 
+--td-action-sheet-list-item-height | 56px | - 
+--td-action-sheet-text-align | center | - 
+--td-action-sheet-text-weight | 400 | - 

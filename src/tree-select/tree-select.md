@@ -15,3 +15,16 @@ options | Array | [] | 选项。TS 类型：`Array<DataOption>` | N
 value | String / Number / Array | - | 选中值。TS 类型：`TreeSelectValue` `type TreeSelectValue = string \| number \| Array<TreeSelectValue>`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tree-select/type.ts) | N
 defaultValue | String / Number / Array | - | 选中值。非受控属性。TS 类型：`TreeSelectValue` `type TreeSelectValue = string \| number \| Array<TreeSelectValue>`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tree-select/type.ts) | N
 onChange | Function |  | TS 类型：`(value: TreeSelectValue, level: TreeLevel)  => void`<br/>点击任何节点均会触发；level 代表当前点击的层级，0 代表最左侧，依次递进。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tree-select/type.ts)。<br/>`type TreeLevel = 0 \| 1 \| 2`<br/> | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-tree-item-disabled-color | @text-color-disabled | - 
+--td-tree-bg-color | @bg-color-container | - 
+--td-tree-colum-width | 103px | - 
+--td-tree-item-active-color | @brand-color | - 
+--td-tree-item-font-size | 16px | - 
+--td-tree-item-height | 56px | - 
+--td-tree-root-bg-color | @bg-color-secondarycontainer | - 

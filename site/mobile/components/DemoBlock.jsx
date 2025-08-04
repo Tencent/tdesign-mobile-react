@@ -7,7 +7,10 @@ const TDemoBlock = (prop) => {
 
   return (
     <>
-      <div className={classNames('tdesign-mobile-demo-block', { 'tdesign-mobile-demo-block_subtitle': !title })} style={style}>
+      <div
+        className={classNames('tdesign-mobile-demo-block', { 'tdesign-mobile-demo-block_subtitle': !title })}
+        style={style}
+      >
         {(title || summary) && (
           <div className="tdesign-mobile-demo-block__header">
             {title && <h2 className="tdesign-mobile-demo-block__title">{title}</h2>}

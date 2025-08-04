@@ -9,13 +9,11 @@ const BaseDemo = () => {
 
   return (
     <>
-      <Navbar leftArrow fixed={false} onLeftClick={handleClick}>
-        标题文字
-      </Navbar>
+      <Navbar fixed={false}>标题文字</Navbar>
       <Navbar
         leftArrow
-        fixed={false}
         left={<CloseIcon size={24} />}
+        fixed={false}
         right={<EllipsisIcon size={24} />}
         onLeftClick={handleClick}
       >
@@ -33,7 +31,7 @@ const BaseDemo = () => {
         titleMaxLength={5}
         onLeftClick={handleClick}
       >
-        标题文字超出
+        标题文字
       </Navbar>
     </>
   );

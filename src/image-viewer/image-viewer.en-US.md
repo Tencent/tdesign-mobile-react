@@ -20,3 +20,16 @@ defaultVisible | Boolean | false | hide or show image viewer。uncontrolled prop
 onClose | Function |  | Typescript：`(context: { trigger: 'overlay' \| 'close-btn', visible: boolean, index: number }) => void`<br/> | N
 onDelete | Function |  | Typescript：`(index: number) => void`<br/> | N
 onIndexChange | Function |  | Typescript：`(index: number, context: { trigger: 'prev' \| 'next' }) => void`<br/> | N
+
+### CSS Variables
+
+The component provides the following CSS variables, which can be used to customize styles.
+Name | Default Value | Description 
+-- | -- | --
+--td-image-viewer-close-margin-left | @spacer-1 | - 
+--td-image-viewer-delete-margin-right | @spacer-1 | - 
+--td-image-viewer-mask-bg-color | #000 | - 
+--td-image-viewer-nav-bg-color | @font-gray-3 | - 
+--td-image-viewer-nav-color | @font-white-1 | - 
+--td-image-viewer-nav-height | 48px | - 
+--td-image-viewer-nav-index-font-size | @font-size-base | - 

@@ -1,7 +1,7 @@
 import React, { RefAttributes, forwardRef } from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 
-export default function forwardRefWithStatics<P, T = any, S = {}>(
+export default function forwardRefWithStatics<P, T = any, S = object>(
   component: React.ForwardRefRenderFunction<T, P>,
   statics?: S,
 ): React.FunctionComponent<P & RefAttributes<T>> & S {

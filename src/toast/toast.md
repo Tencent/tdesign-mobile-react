@@ -19,3 +19,15 @@ showOverlay | Boolean | false | 是否显示遮罩层 | N
 theme | String | - | 提示类型。可选项：loading/success/warning/error | N
 onClose | Function |  | TS 类型：`() => void`<br/>轻提示隐藏的时候触发 | N
 onDestroy | Function |  | TS 类型：`() => void`<br/>轻提示销毁的时候触发 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-toast-bg-color | @font-gray-1 | - 
+--td-toast-color | @font-white-1 | - 
+--td-toast-column-icon-size | 32px | - 
+--td-toast-max-width | 185px | - 
+--td-toast-radius | 4px | - 
+--td-toast-row-icon-size | 24px | - 

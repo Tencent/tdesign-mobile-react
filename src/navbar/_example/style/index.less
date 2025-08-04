@@ -1,4 +1,7 @@
 .t-navbar-demo {
+  --td-search-icon-font-size: 20px;
+  --td-search-font-size: 14px;
+
   .t-navbar {
     margin-bottom: 16px;
   }
@@ -34,18 +37,26 @@
   }
 
   .custom-title {
-    margin-left: 12px;
+    margin-left: 4px;
+    font-size: 14px;
+    color: var(--td-text-color-primary);
+  }
+
+  .custom-left-title {
+    color: var(--td-text-color-primary);
     font-size: 18px;
     font-weight: 600;
+    line-height: 26px;
+    margin-left: 8px;
   }
 
   .header-title {
     font-size: 28px;
     line-height: 36px;
     font-weight: 600;
-    color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
-    padding: 0px 20px 16px;
-    background-color: var(--bg-color-demo, #fff);
+    color: var(--td-text-color-primary);
+    padding: 4px 20px 16px;
+    background-color: var(--td-bg-color-container);
   }
 
   .custom-navbar {

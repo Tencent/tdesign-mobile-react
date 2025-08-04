@@ -139,7 +139,7 @@ export const Dialog: React.FC<DialogProps> = (props) => {
     } else if (isValidElement(btn)) {
       result = btn;
     } else if (isObject(btn)) {
-      result = <Button {...defaultProps} {...(btn as {})} />;
+      result = <Button {...defaultProps} {...(btn as ButtonProps)} />;
     } else if (isFunction(btn)) {
       result = btn();
     }

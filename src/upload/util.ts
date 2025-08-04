@@ -8,7 +8,7 @@ export const urlCreator = () => window.webkitURL || window.URL;
  */
 export const removeProperty = <T>(obj: T, key: string): T => {
   const copyObj = { ...obj };
-  if (typeof copyObj[key] !== undefined) {
+  if (typeof copyObj[key] !== 'undefined') {
     delete copyObj[key];
   }
   return copyObj;

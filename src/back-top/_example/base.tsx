@@ -30,6 +30,8 @@ export default function Base({ visible, onClose, container }) {
     <>
       {visible ? <BackTop text={theme.text} theme={theme.theme} onToTop={handleToTop} container={container} /> : null}
       <div className="button-group">
+        <div className="tdesign-mobile-demo-block__summary">圆形返回顶部</div>
+
         <Button
           className="button"
           block
@@ -40,6 +42,8 @@ export default function Base({ visible, onClose, container }) {
         >
           圆形返回顶部
         </Button>
+
+        <div className="tdesign-mobile-demo-block__summary">半圆形返回顶部</div>
         <Button
           className="button"
           block

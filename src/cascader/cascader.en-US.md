@@ -24,3 +24,20 @@ visible | Boolean | false | \- | N
 onChange | Function |  | Typescript：`(value: string \| number, selectedOptions: CascaderOption[]) => void`<br/> | N
 onClose | Function |  | Typescript：`(trigger: TriggerSource) => void`<br/>[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/cascader/type.ts)。<br/>`type TriggerSource = 'overlay' \| 'close-btn' \| 'finish'`<br/> | N
 onPick | Function |  | Typescript：`(value: string \| number, index: number) => void`<br/> | N
+
+### CSS Variables
+
+The component provides the following CSS variables, which can be used to customize styles.
+Name | Default Value | Description 
+-- | -- | --
+--td-cascader-disabled-color | @text-color-disabled | - 
+--td-cascader-options-title-color | @text-color-placeholder | - 
+--td-cascader-step-arrow-color | @text-color-placeholder | - 
+--td-cascader-active-color | @brand-color | - 
+--td-cascader-bg-color | @bg-color-container | - 
+--td-cascader-border-color | @component-stroke | - 
+--td-cascader-options-height | 320px | - 
+--td-cascader-step-dot-size | 8px | - 
+--td-cascader-step-height | 44px | - 
+--td-cascader-title-color | @text-color-primary | - 
+--td-cascder-title-font-size | 18px | - 

@@ -28,3 +28,19 @@ onChange | Function |  | TS 类型：`(value: TextareaValue, context?: { e?: Inp
 onCompositionend | Function |  | TS 类型：`(value: string, context: { e: CompositionEvent }) => void`<br/>中文输入结束时触发 | N
 onCompositionstart | Function |  | TS 类型：`(value: string, context: { e: CompositionEvent }) => void`<br/>中文输入开始时触发 | N
 onFocus | Function |  | TS 类型：`(value: TextareaValue, context : { e: FocusEvent }) => void`<br/>获得焦点时触发 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-textarea-background-color | @bg-color-container | - 
+--td-textarea-border-color | rgba(220, 220, 220, 1) | - 
+--td-textarea-border-radius | @radius-default | - 
+--td-textarea-disabled-text-color | @text-color-disabled | - 
+--td-textarea-indicator-text-color | @text-color-placeholder | - 
+--td-textarea-label-color | @text-color-primary | - 
+--td-textarea-label-width | 64px | - 
+--td-textarea-padding | @textarea-vertical-padding @textarea-horizontal-padding | - 
+--td-textarea-placeholder-color | @text-color-placeholder | - 
+--td-textarea-text-color | @text-color-primary | - 

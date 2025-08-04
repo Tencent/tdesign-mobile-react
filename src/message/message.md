@@ -28,3 +28,18 @@ onDurationEnd | Function |  | TS 类型：`() => void`<br/>计时结束后触发
 onLinkClick | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>当`link`链接存在时，点击链接文本时触发 | N
 onOpen | Function |  | TS 类型：`() => void`<br/>已废弃。展示Message时触发 | N
 onOpened | Function |  | TS 类型：`() => void`<br/>已废弃。展示Message时并且动画结束后触发 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-message-bg-color | @bg-color-container | - 
+--td-message-border-radius | @radius-default | - 
+--td-message-box-shadow | @shadow-4 | - 
+--td-message-close-icon-color | @text-color-placeholder | - 
+--td-message-content-font-color | @text-color-primary | - 
+--td-message-error-color | @error-color | - 
+--td-message-info-color | @brand-color | - 
+--td-message-success-color | @success-color | - 
+--td-message-warning-color | @warning-color | - 

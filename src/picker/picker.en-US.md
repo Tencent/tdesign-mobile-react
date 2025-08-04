@@ -25,3 +25,29 @@ onCancel | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/
 onChange | Function |  | Typescript：`(value: Array<PickerValue>, context: { columns: Array<PickerContext>, e: MouseEvent })  => void`<br/>[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/picker/type.ts)。<br/>`interface PickerContext{ column: number,index: number }`<br/> | N
 onConfirm | Function |  | Typescript：`(value: Array<PickerValue>, context: { index: number[], e: MouseEvent, label: string[] }) => void`<br/> | N
 onPick | Function |  | Typescript：`(value: Array<PickerValue>,context: PickerContext) => void`<br/> | N
+
+### CSS Variables
+
+The component provides the following CSS variables, which can be used to customize styles.
+Name | Default Value | Description 
+-- | -- | --
+--td-picker-bg-color | @bg-color-container | - 
+--td-picker-border-radius | 12px | - 
+--td-picker-button-font-size | 16px | - 
+--td-picker-cancel-color | @text-color-secondary | - 
+--td-picker-confirm-color | @brand-color | - 
+--td-picker-group-height | 200px | - 
+--td-picker-indicator-bg-color | @bg-color-secondarycontainer | - 
+--td-picker-indicator-border-radius | 6px | - 
+--td-picker-item-active-color | @text-color-primary | - 
+--td-picker-item-color | @text-color-secondary | - 
+--td-picker-item-disabled-color | @text-color-disabled | - 
+--td-picker-item-height | 40px | - 
+--td-picker-item-height | 40px | - 
+--td-picker-mask-color-bottom | hsla(0, 0%, 100%, .4) | - 
+--td-picker-mask-color-top | hsla(0, 0%, 100%, .92) | - 
+--td-picker-title-color | @text-color-primary | - 
+--td-picker-title-font-size | 18px | - 
+--td-picker-title-font-weight | 600 | - 
+--td-picker-title-line-height | 26px | - 
+--td-picker-toolbar-height | 58px | - 

@@ -20,3 +20,10 @@ onChange | Function |  | TS 类型：`(value: boolean) => void`<br/>下拉或收
 onRefresh | Function |  | TS 类型：`() => void`<br/>结束下拉时触发 | N
 onScrolltolower | Function |  | TS 类型：`() => void`<br/>滚动到页面底部时触发 | N
 onTimeout | Function |  | TS 类型：`() => void`<br/>刷新超时触发 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-pull-down-refresh-color | @text-color-placeholder | - 

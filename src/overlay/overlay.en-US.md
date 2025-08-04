@@ -19,3 +19,11 @@ onClose | Function |  | Typescript：`() => void`<br/> | N
 onClosed | Function |  | Typescript：`() => void`<br/> | N
 onOpen | Function |  | Typescript：`() => void`<br/> | N
 onOpened | Function |  | Typescript：`() => void`<br/> | N
+
+### CSS Variables
+
+The component provides the following CSS variables, which can be used to customize styles.
+Name | Default Value | Description 
+-- | -- | --
+--td-overlay-bg-color | @font-gray-2 | - 
+--td-overlay-zindex | 1000 | - 
