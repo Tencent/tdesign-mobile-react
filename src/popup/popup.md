@@ -31,5 +31,5 @@ onVisibleChange | Function |  | TS 类型：`(visible: boolean, trigger: PopupSo
 名称 | 默认值 | 描述 
 -- | -- | --
 --td-popup-bg-color | @bg-color-container | - 
---td-popup-border-radius | @radius-extra-large | - 
---td-popup-close-btn-color | @text-color-primary | -
+--td-popup-border-radius | @radius-extraLarge | - 
+--td-popup-close-btn-color | @text-color-primary | - 
