@@ -1,13 +1,12 @@
-import fs from 'fs'
-import path from 'path'
-import { camelCase } from 'lodash-es'
-import { parseFromString} from 'dom-parser'
+import fs from 'fs';
+import path from 'path';
+import { camelCase } from 'lodash-es';
+import { parseFromString } from 'dom-parser';
 
 function resolveCwd(...args) {
   args.unshift(process.cwd());
   return path.join(...args);
 }
-
 
 fs.readFile(resolveCwd('test/coverage/index.html'), 'utf8', (err, html) => {
   if (err) {
