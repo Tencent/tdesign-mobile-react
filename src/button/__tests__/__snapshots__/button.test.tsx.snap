@@ -1,5 +1,14 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Button > content 1`] = `
+<span
+  class="t-button__content"
+>
+   
+  按钮组件
+</span>
+`;
+
 exports[`Button 组件测试 > content 1`] = `
 <span
   class="t-button__content"
