@@ -1,34 +1,15 @@
 import React from 'react';
 import { Image } from 'tdesign-mobile-react';
+import './style/index.less';
 
-const imageSrc = 'https://tdesign.gtimg.com/demo/demo-image-1.png';
+const imageSrc = 'https://tdesign.gtimg.com/mobile/demos/image1.jpeg';
 
 export default function BaseImage() {
   return (
     <div className="image-example">
-      <div className="image-example-title">不同填充模式的图片</div>
-      <div className="image-example-desc">提供 fill、contain、cover、none、scale-down 5 种填充类型。</div>
       <div className="image-group">
         <div className="image-demo">
-          <p className="image-demo-tip">fill</p>
-          <Image
-            className="image-container"
-            style={{ width: '72px', height: '72px' }}
-            fit="fill"
-            src={imageSrc}
-          ></Image>
-        </div>
-        <div className="image-demo">
-          <p className="image-demo-tip">contain</p>
-          <Image
-            className="image-container"
-            style={{ width: '72px', height: '72px' }}
-            fit="contain"
-            src={imageSrc}
-          ></Image>
-        </div>
-        <div className="image-demo">
-          <p className="image-demo-tip">cover</p>
+          <p className="image-demo-tip">裁切</p>
           <Image
             className="image-container"
             style={{ width: '72px', height: '72px' }}
@@ -37,20 +18,20 @@ export default function BaseImage() {
           ></Image>
         </div>
         <div className="image-demo">
-          <p className="image-demo-tip">none</p>
+          <p className="image-demo-tip">适应高</p>
           <Image
             className="image-container"
-            style={{ width: '72px', height: '72px' }}
-            fit="none"
+            style={{ height: '72px', width: 'auto' }}
+            fit="fill"
             src={imageSrc}
           ></Image>
         </div>
         <div className="image-demo">
-          <p className="image-demo-tip">scale-down</p>
+          <p className="image-demo-tip">拉伸</p>
           <Image
             className="image-container"
             style={{ width: '72px', height: '72px' }}
-            fit="scale-down"
+            fit="fill"
             src={imageSrc}
           ></Image>
         </div>
