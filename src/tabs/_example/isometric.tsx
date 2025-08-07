@@ -42,7 +42,7 @@ export default () => {
     },
   ];
 
-  const [currentValue, setCurrentValue] = useState('1');
+  const [currentValue, setCurrentValue] = useState('9');
   const onChange = (value: string) => {
     setCurrentValue(value);
     console.log(value);
