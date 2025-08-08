@@ -1,15 +1,6 @@
 const plugins = [
+  // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
   require('autoprefixer'),
-  // require('cssnano')({
-  //   preset: [
-  //     'default',
-  //     {
-  //       discardComments: {
-  //         removeAll: true,
-  //       },
-  //     },
-  //   ],
-  // }),
 ];
 
 module.exports = {

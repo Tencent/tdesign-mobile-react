@@ -68,12 +68,12 @@ spline: explain
   </div>
   <div class="image-wrapper">
     <a class="item" href="./components/drawer">
-      <img  class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-drawer.png" />
-      <img  class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-drawer-dark.png" />
+      <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-drawer.png" />
+      <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-drawer-dark.png" />
       <p class="name">Drawer 抽屉</p>
     </a>
   </div>
-	<div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/indexes">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-indexes.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-indexes-dark.png" />
@@ -116,7 +116,8 @@ spline: explain
     </a>
   </div>
 </section>
-<h3>输入<em class="tag">15</em></h3>
+
+<h3>输入<em class="tag">17</em></h3>
 <section class="image-group">
   <div class="image-wrapper">
     <a class="item" href="./components/calendar">
@@ -153,13 +154,13 @@ spline: explain
       <p class="name">DateTimePicker 日期选择器</p>
     </a>
   </div>
-  <!-- <div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/form">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-form.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-form-dark.png" />
       <p class="name">Form 表单</p>
     </a>
-  </div> -->
+  </div>
   <div class="image-wrapper">
     <a class="item" href="./components/input">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-input.png" />
@@ -239,7 +240,7 @@ spline: explain
   </div>
 </section>
 
-<h3>数据展示<em class="tag">17</em></h3>
+<h3>数据展示<em class="tag">19</em></h3>
 <section class="image-group">
   <div class="image-wrapper">
     <a class="item" href="./components/avatar">
@@ -283,13 +284,13 @@ spline: explain
       <p class="name">Empty 空状态</p>
     </a>
   </div>
-  <!-- <div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/footer">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-footer.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-footer-dark.png" />
       <p class="name">Footer 页脚</p>
     </a>
-  </div> -->
+  </div>
   <div class="image-wrapper">
     <a class="item" href="./components/grid">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-grid.png" />
@@ -323,6 +324,13 @@ spline: explain
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-progress.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-progress-dark.png" />
       <p class="name">Progress 进度条</p>
+    </a>
+  </div>
+  <div class="image-wrapper">
+    <a class="item" href="./components/qrcode">
+      <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-qrcode.png" />
+      <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-qrcode-dark.png" />
+      <p class="name">QRCode 二维码</p>
     </a>
   </div>
   <div class="image-wrapper">

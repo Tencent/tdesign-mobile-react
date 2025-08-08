@@ -35,7 +35,7 @@ spline: explain
     </a>
   </div>
   <div class="image-wrapper">
-    <a class="item" href="./components/layout">
+    <a class="item" href="./components/layout-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-layout.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-layout-dark.png" />
       <p class="name">Layout</p>
@@ -49,7 +49,7 @@ spline: explain
     </a>
   </div>
   <!-- <div class="image-wrapper">
-    <a class="item" href="./components/typography">
+    <a class="item" href="./components/typography-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-typography.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-typography-dark.png" />
       <p class="name">Typography</p>
@@ -73,7 +73,7 @@ spline: explain
       <p class="name">Drawer</p>
     </a>
   </div>
-	<div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/indexes-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-indexes.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-indexes-dark.png" />
@@ -117,7 +117,7 @@ spline: explain
   </div>
 </section>
 
-<h3>Form<em class="tag">15</em></h3>
+<h3>Form<em class="tag">17</em></h3>
 <section class="image-group">
   <div class="image-wrapper">
     <a class="item" href="./components/calendar-en">
@@ -141,7 +141,7 @@ spline: explain
     </a>
   </div>
   <div class="image-wrapper">
-    <a class="item" href="./components/color-picker">
+    <a class="item" href="./components/color-picker-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-colorpicker.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-colorpicker-dark.png" />
       <p class="name">ColorPicker</p>
@@ -154,13 +154,13 @@ spline: explain
       <p class="name">DateTimePicker</p>
     </a>
   </div>
-  <!-- <div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/form-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-form.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-form-dark.png" />
       <p class="name">Form</p>
     </a>
-  </div>-->
+  </div>
   <div class="image-wrapper">
     <a class="item" href="./components/input-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-input.png" />
@@ -224,13 +224,13 @@ spline: explain
       <p class="name">Textarea</p>
     </a>
   </div>
-   <div class="image-wrapper">
-      <a class="item" href="./components/tree-select">
-        <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-treeselect.png" />
-        <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-treeselect-dark.png" />
-        <p class="name">TreeSelect</p>
-      </a>
-    </div>
+  <div class="image-wrapper">
+    <a class="item" href="./components/tree-select-en">
+      <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-treeselect.png" />
+      <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-treeselect-dark.png" />
+      <p class="name">TreeSelect</p>
+    </a>
+  </div>
   <div class="image-wrapper">
     <a class="item" href="./components/upload-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-upload.png" />
@@ -240,7 +240,7 @@ spline: explain
   </div>
 </section>
 
-<h3>Data Display<em class="tag">17</em></h3>
+<h3>Data Display<em class="tag">19</em></h3>
 <section class="image-group">
   <div class="image-wrapper">
     <a class="item" href="./components/avatar-en">
@@ -284,13 +284,13 @@ spline: explain
       <p class="name">Empty</p>
     </a>
   </div>
-  <!-- <div class="image-wrapper">
+  <div class="image-wrapper">
     <a class="item" href="./components/footer-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-footer.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-footer-dark.png" />
       <p class="name">Footer</p>
     </a>
-  </div> -->
+  </div>
   <div class="image-wrapper">
     <a class="item" href="./components/grid-en">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-grid.png" />
@@ -324,6 +324,13 @@ spline: explain
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-progress.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-progress-dark.png" />
       <p class="name">Progress</p>
+    </a>
+  </div>
+  <div class="image-wrapper">
+    <a class="item" href="./components/qrcode-en">
+      <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-qrcode.png" />
+      <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-qrcode-dark.png" />
+      <p class="name">QRCode</p>
     </a>
   </div>
   <div class="image-wrapper">
@@ -395,8 +402,8 @@ spline: explain
   </div>
   <div class="image-wrapper">
     <a class="item" href="./components/guide-en">
-      <img class="__light__" src="https://tdesign.gtimg.com/site/doc/doc-guide.png" />
-      <img class="__dark__" src="https://tdesign.gtimg.com/site/doc/doc-guide-dark.png" />
+      <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-guide.png" />
+      <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-guide-dark.png" />
       <p class="name">Guide</p>
     </a>
   </div>
