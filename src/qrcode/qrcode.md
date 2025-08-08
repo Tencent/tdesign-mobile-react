@@ -21,3 +21,13 @@ statusRender | TElement | - | 自定义状态渲染器。TS 类型：`(info:Stat
 type | String | canvas | 渲染类型。可选项：canvas/svg | N
 value | String | - | 扫描后的文本 | N
 onRefresh | Function |  | TS 类型：`() => void`<br/>点击"点击刷新"的回调 | N
+
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-brand-color-hover | --td-brand-color-hover | - 
+--td-font-size-title-small | --td-font-size-title-small | - 
+--td-success-color | --td-success-color | - 

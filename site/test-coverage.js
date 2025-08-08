@@ -30,7 +30,7 @@ module.exports = {
   indexes: { statements: '95.65%', branches: '69.81%', functions: '100%', lines: '96.94%' },
   input: { statements: '3.57%', branches: '0%', functions: '0%', lines: '3.7%' },
   layout: { statements: '93.93%', branches: '60%', functions: '100%', lines: '93.93%' },
-  link: { statements: '33.33%', branches: '0%', functions: '0%', lines: '33.33%' },
+  link: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   list: { statements: '8%', branches: '0%', functions: '0%', lines: '8.69%' },
   loading: { statements: '59.37%', branches: '52.83%', functions: '58.33%', lines: '64.4%' },
   locale: { statements: '0%', branches: '0%', functions: '0%', lines: '0%' },
