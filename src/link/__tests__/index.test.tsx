@@ -37,6 +37,9 @@ describe('Link', () => {
     it('hover[boolean]', () => {
       const { container } = render(<Link hover />);
       expect(container.querySelector(`${name}--hover`)).toBeTruthy();
+
+      const { container: containerDisabled } = render(<Link hover disabled />);
+      expect(containerDisabled.querySelector(`${name}--hover`)).toBeFalsy();
     });
 
     it('href[string]', () => {
