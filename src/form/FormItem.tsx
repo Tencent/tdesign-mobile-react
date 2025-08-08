@@ -125,6 +125,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     labelClass,
     {
       [`${labelClass}--required`]: needRequiredMark,
+      [`${labelClass}--required-right`]: needRequiredMark && formContext?.requiredMarkPosition === 'right',
       [`${labelClass}--colon`]: hasColon,
       [`${labelClass}--top`]: hasLabel && (computedLabelAlign === 'top' || !computedLabelWidth),
       [`${labelClass}--left`]: computedLabelAlign === 'left' && computedLabelWidth,

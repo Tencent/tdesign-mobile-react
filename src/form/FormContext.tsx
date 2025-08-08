@@ -11,6 +11,7 @@ export interface FormContextType {
   contentAlign?: TdFormProps['contentAlign'];
   colon?: TdFormProps['colon'];
   requiredMark?: TdFormProps['requiredMark'];
+  requiredMarkPosition?: TdFormProps['requiredMarkPosition'];
   rules?: TdFormProps['rules'];
   errorMessage?: TdFormProps['errorMessage'];
   resetType?: TdFormProps['resetType'];
@@ -19,7 +20,6 @@ export interface FormContextType {
   statusIcon?: boolean | TNode<TdFormItemProps>;
   disabled?: TdFormProps['disabled'];
   onFormItemValueChange: (changedValue: Record<string, unknown>) => void;
-  requiredMarkPosition?: TdFormProps['requiredMarkPosition'];
 }
 
 export const FormContext = createContext<FormContextType | undefined>(undefined);
