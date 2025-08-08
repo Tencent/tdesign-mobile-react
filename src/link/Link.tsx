@@ -28,7 +28,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
 
   const { classPrefix } = useConfig();
 
-  const childNode = content || children;
+  const childNode = parseTNode(content) || parseTNode(children);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (disabled) {
