@@ -12,12 +12,13 @@ allowInputOverMax | Boolean | false | \- | N
 autofocus | Boolean | false | \- | N
 autosize | Boolean / Object | false | Typescript：`boolean \| { minRows?: number; maxRows?: number }` | N
 bordered | Boolean | false | \- | N
+cursorColor | String | #0052d9 | \- | N
 disabled | Boolean | undefined | \- | N
 indicator | Boolean | false | \- | N
 label | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 layout | String | horizontal | options: vertical/horizontal | N
 maxcharacter | Number | - | \- | N
-maxlength | Number | - | \- | N
+maxlength | String / Number | - | Typescript：`string \| number` | N
 name | String | - | \- | N
 placeholder | String | undefined | \- | N
 readonly | Boolean | undefined | \- | N
@@ -43,4 +44,4 @@ Name | Default Value | Description
 --td-textarea-label-width | 64px | - 
 --td-textarea-padding | @textarea-vertical-padding @textarea-horizontal-padding | - 
 --td-textarea-placeholder-color | @text-color-placeholder | - 
---td-textarea-text-color | @text-color-primary | - 
+--td-textarea-text-color | @text-color-primary | -

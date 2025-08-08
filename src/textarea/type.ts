@@ -29,6 +29,11 @@ export interface TdTextareaProps {
    */
   bordered?: boolean;
   /**
+   * 光标颜色
+   * @default #0052d9
+   */
+  cursorColor?: string;
+  /**
    * 是否禁用文本框
    */
   disabled?: boolean;
@@ -53,7 +58,7 @@ export interface TdTextareaProps {
   /**
    * 用户最多可以输入的字符个数
    */
-  maxlength?: number;
+  maxlength?: string | number;
   /**
    * 名称，HTML 元素原生属性
    * @default ''
