@@ -47,7 +47,7 @@ describe('Link', () => {
       expect(container.firstChild).toHaveAttribute('href', 'https://tdesign.tencent.com/');
     });
 
-    it('prefixIcon[ReactNode]', () => {
+    it('prefixIcon[TElement]', () => {
       const { container } = render(<Link prefixIcon={<JumpIcon />} />);
       expect(container.querySelector(`${name}__prefix-icon`)).toBeTruthy();
     });
@@ -65,7 +65,7 @@ describe('Link', () => {
       expect(container.querySelector(`${name}--medium`)).toBeTruthy();
     });
 
-    it('suffixIcon[ReactNode]', () => {
+    it('suffixIcon[TElement]', () => {
       const { container } = render(<Link suffixIcon={<JumpIcon />} />);
       expect(container.querySelector(`${name}__suffix-icon`)).toBeTruthy();
     });
