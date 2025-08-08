@@ -6,7 +6,7 @@ import Button from '../Button';
 
 const prefix = 't';
 const name = `.${prefix}-button`;
-const ButtonText = '按钮组件';
+const buttonText = '按钮组件';
 
 describe('Button', () => {
   describe('props', () => {
@@ -15,12 +15,12 @@ describe('Button', () => {
       expect(container.querySelector(`${name}--block`)).toBeTruthy();
     });
     it(': children', () => {
-      const { queryByText } = render(<Button>{ButtonText}</Button>);
-      expect(queryByText(ButtonText)).toBeInTheDocument();
+      const { queryByText } = render(<Button>{buttonText}</Button>);
+      expect(queryByText(buttonText)).toBeInTheDocument();
     });
     it(': content', () => {
-      const { queryByText } = render(<Button content={ButtonText} />);
-      expect(queryByText(ButtonText)).toBeInTheDocument();
+      const { queryByText } = render(<Button content={buttonText} />);
+      expect(queryByText(buttonText)).toBeInTheDocument();
     });
     it(': disabled', () => {
       const { container } = render(<Button disabled />);
