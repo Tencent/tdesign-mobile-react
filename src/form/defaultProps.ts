@@ -13,10 +13,8 @@ export const formDefaultProps: TdFormProps = {
   labelWidth: '81px',
   preventSubmitDefault: true,
   requiredMark: undefined,
-  requiredMarkPosition: 'left',
   resetType: 'empty',
   showErrorMessage: true,
-  statusIcon: undefined,
   submitWithWarningMessage: false,
 };
 
