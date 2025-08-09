@@ -1,8 +1,10 @@
 import React from 'react';
+import { isObject } from 'lodash-es';
 import { render } from '../_util/react-render';
 import { TdToastProps, ToastOptions } from './type';
 import { defaultProps, ToastThemeListEnum } from './constant';
 import Toast from './Toast';
+import { getAttach } from '../_util/dom';
 
 function getToastProps(props: ToastOptions) {
   let cur = props;
@@ -38,7 +40,13 @@ const createToast = (props: ToastOptions) => {
   clear();
 
   el = document.createElement('div');
-  document.body.appendChild(el);
+  const container = getAttach(isObject(props) ? props.attach : 'body');
+  if (container) {
+    container.appendChild(el);
+  } else {
+    console.error('attach is not exist');
+  }
+
   render(<Toast {...{ ...config, el }} />, el);
   curProps = config;
 
