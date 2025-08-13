@@ -164,7 +164,7 @@ export const docs = [
         title: 'TabBar 标签栏',
         titleEn: 'TabBar',
         name: 'tab-bar',
-        path: '/mobile-react/components/tabbar',
+        path: '/mobile-react/components/tab-bar',
         component: () => import('tdesign-mobile-react/tab-bar/tab-bar.md'),
         componentEn: () => import('tdesign-mobile-react/tab-bar/tab-bar.en-US.md'),
       },
@@ -483,7 +483,7 @@ export const docs = [
   },
   {
     title: '反馈',
-    titleEn: 'FeedBack',
+    titleEn: 'Feedback',
     type: 'component',
     children: [
       {
