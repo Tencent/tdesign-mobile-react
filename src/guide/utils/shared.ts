@@ -1,20 +1,4 @@
-import { isFunction, isString } from 'lodash-es';
-
 const trim = (str: string): string => (str || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '');
-
-export const getAttach = (node: any, triggerNode?: any): HTMLElement | Element => {
-  const attachNode = isFunction(node) ? node(triggerNode) : node;
-  if (!attachNode) {
-    return document.body;
-  }
-  if (isString(attachNode)) {
-    return document.querySelector(attachNode) as Element;
-  }
-  if (attachNode instanceof HTMLElement) {
-    return attachNode;
-  }
-  return document.body;
-};
 
 export const getSSRAttach = () => {
   if (process.env.NODE_ENV === 'test-snap') return 'body';
