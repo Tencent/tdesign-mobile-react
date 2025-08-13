@@ -25,9 +25,9 @@ onDestroy | Function |  | TS 类型：`() => void`<br/>轻提示销毁的时候�
 组件提供了下列 CSS 变量，可用于自定义样式。
 名称 | 默认值 | 描述 
 -- | -- | --
---td-toast-bg-color | @font-gray-1 | - 
+--td-toast-bg-color | @mask-active | - 
 --td-toast-color | @font-white-1 | - 
 --td-toast-column-icon-size | 32px | - 
 --td-toast-max-width | 185px | - 
 --td-toast-radius | 4px | - 
---td-toast-row-icon-size | 24px | - 
+--td-toast-row-icon-size | 24px | -
