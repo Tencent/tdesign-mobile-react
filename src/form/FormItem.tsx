@@ -6,7 +6,6 @@ import {
   isArray,
   isBoolean,
   isFunction,
-  isNil,
   isNumber,
   isString,
   set as lodashSet,
@@ -23,11 +22,12 @@ import {
   FormRule,
   ValidateTriggerType,
   ValueType,
+  TdFormItemProps,
 } from './type';
 import { AnalysisValidateResult, ErrorListType, FormItemContext, SuccessListType } from './const';
 import { usePrefixClass } from '../hooks/useClass';
+import useConfig from '../hooks/useConfig';
 import { useFormContext } from './FormContext';
-import { TdFormItemProps } from './formItemType';
 import { StyledProps } from '../common';
 
 export interface FormItemProps extends TdFormItemProps, StyledProps {
@@ -37,24 +37,42 @@ export interface FormItemProps extends TdFormItemProps, StyledProps {
 export type FormItemValidateResult<T extends Data = Data> = { [key in keyof T]: boolean | AllValidateResult[] };
 
 const FormItem: React.FC<FormItemProps> = (props) => {
+  const { form: globalFormConfig } = useConfig();
+  const formClass = usePrefixClass('form');
+  const formItemClass = usePrefixClass('form__item');
+
+  // 状态管理
+  const formContext = useFormContext();
+  const {
+    form,
+    colon,
+    disabled: disabledFromContext,
+    requiredMark: requiredMarkFromContext,
+    requiredMarkPosition,
+    labelAlign: labelAlignFromContext,
+    labelWidth: labelWidthFromContext,
+    contentAlign: contentAlignFromContext,
+    showErrorMessage: showErrorMessageFromContext,
+    resetType: resetTypeFromContext,
+    rules: rulesFromContext,
+    errorMessage,
+  } = formContext;
+
   const {
     arrow = false,
-    contentAlign = 'left',
     for: htmlFor = '',
     help,
     label,
-    labelAlign,
-    labelWidth,
+    labelAlign = labelAlignFromContext,
+    labelWidth = labelWidthFromContext,
+    contentAlign = contentAlignFromContext,
     name,
-    requiredMark,
+    requiredMark = requiredMarkFromContext,
     rules = [],
     showErrorMessage,
     children,
   } = props;
 
-  // 状态管理
-  const formContext = useFormContext();
-  const { disabled: disabledFromContext, form } = formContext;
   const [errorList, setErrorList] = useState<ErrorListType[]>([]);
   const [successList, setSuccessList] = useState<SuccessListType[]>([]);
   const [resetValidating, setResetValidating] = useState(false);
@@ -65,30 +83,34 @@ const FormItem: React.FC<FormItemProps> = (props) => {
   const hasInit = useRef(false);
   const contextRef = useRef<FormItemContext | null>(null);
   const rulesMemoStr = useMemo(() => JSON.stringify(rules), [rules]);
-  const formClass = usePrefixClass('form');
-  const formItemClass = usePrefixClass('form__item');
+
+  const shouldShowErrorMessage = useMemo(() => {
+    if (isBoolean(freeShowErrorMessage)) return freeShowErrorMessage;
+    if (isBoolean(showErrorMessage)) return showErrorMessage;
+    return showErrorMessageFromContext;
+  }, [freeShowErrorMessage, showErrorMessage, showErrorMessageFromContext]);
 
   // 计算属性
   const extraNode = useMemo(() => {
     const list = errorList;
-    const shouldShowError = showErrorMessage ?? formContext?.showErrorMessage ?? true;
-    if (shouldShowError && list[0]?.message) {
+
+    if (shouldShowErrorMessage && list[0]?.message) {
       return list[0].message;
     }
     if (successList.length) {
       return successList[0].message;
     }
     return null;
-  }, [errorList, successList, showErrorMessage, formContext?.showErrorMessage]);
+  }, [errorList, successList, shouldShowErrorMessage]);
 
   const formItemClasses = useMemo(
     () => [
       formItemClass,
       `${formItemClass}--bordered`,
-      `${formClass}--${labelAlign || formContext?.labelAlign || 'right'}`,
+      `${formClass}--${labelAlign || 'right'}`,
       `${formClass}-item__${name}`,
     ],
-    [formItemClass, formClass, labelAlign, formContext?.labelAlign, name],
+    [formItemClass, formClass, labelAlign, name],
   );
 
   const innerRules = useMemo<FormRule[]>(() => {
@@ -96,73 +118,48 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     if (!name) return [];
     const index = `${name}`.lastIndexOf('.') || -1;
     const pRuleName = `${name}`.slice(index + 1);
-    return lodashGet(formContext?.rules, name) || lodashGet(formContext?.rules, pRuleName) || [];
-  }, [rules, name, formContext?.rules]);
+    return lodashGet(rulesFromContext, name) || lodashGet(rulesFromContext, pRuleName) || [];
+  }, [rules, name, rulesFromContext]);
 
-  const needRequiredMark = useMemo(() => {
-    const requiredMarkValue = requiredMark ?? formContext?.requiredMark;
-    const isRequired = innerRules.filter((rule) => rule.required).length > 0;
-    return requiredMarkValue ?? isRequired;
-  }, [requiredMark, formContext?.requiredMark, innerRules]);
+  const needRequiredMark = useMemo(
+    () => requiredMark ?? innerRules.filter((rule) => rule.required).length > 0,
+    [requiredMark, innerRules],
+  );
 
   const hasLabel = useMemo(() => !!label, [label]);
-  const hasColon = useMemo(() => !!(formContext?.colon && hasLabel), [formContext?.colon, hasLabel]);
+  const hasColon = useMemo(() => !!(colon && hasLabel), [colon, hasLabel]);
   const labelClass = `${formClass}__label`;
-  const computedLabelAlign = useMemo(
-    () => (isNil(labelAlign) ? formContext?.labelAlign : labelAlign),
-    [labelAlign, formContext?.labelAlign],
-  );
-  const computedLabelWidth = useMemo(
-    () => (isNil(labelWidth) ? formContext?.labelWidth : labelWidth),
-    [labelWidth, formContext?.labelWidth],
-  );
-  const computedContentAlign = useMemo(
-    () => (isNil(contentAlign) ? formContext?.contentAlign : contentAlign),
-    [contentAlign, formContext?.contentAlign],
-  );
 
   const labelClasses = classNames([
     labelClass,
     {
       [`${labelClass}--required`]: needRequiredMark,
-      [`${labelClass}--required-right`]: needRequiredMark && formContext?.requiredMarkPosition === 'right',
+      [`${labelClass}--required-right`]: needRequiredMark && requiredMarkPosition === 'right',
       [`${labelClass}--colon`]: hasColon,
-      [`${labelClass}--top`]: hasLabel && (computedLabelAlign === 'top' || !computedLabelWidth),
-      [`${labelClass}--left`]: computedLabelAlign === 'left' && computedLabelWidth,
-      [`${labelClass}--right`]: computedLabelAlign === 'right' && computedLabelWidth,
+      [`${labelClass}--top`]: hasLabel && (labelAlign === 'top' || !labelWidth),
+      [`${labelClass}--left`]: labelAlign === 'left' && labelWidth,
+      [`${labelClass}--right`]: labelAlign === 'right' && labelWidth,
     },
   ]);
   const formItemRootClasses = classNames(
     [
       ...formItemClasses,
       `${formItemClass}--bordered`,
-      `${formClass}--${labelAlign || formContext?.labelAlign || 'right'}`,
+      `${formClass}--${labelAlign || 'right'}`,
       `${formClass}-item__${name}`,
     ],
     { [`${formClass}__item-with-help`]: help },
   );
-  const formItemWrapperClasses = classNames([`${formItemClass}-wrap`, `${formItemClass}--${computedLabelAlign}`]);
-  const formItemHelperClasses = classNames([
-    `${formItemClass}-help`,
-    `${formClass}__controls--${computedContentAlign}`,
-  ]);
-  const formItemExtraClasses = classNames([
-    `${formItemClass}-extra`,
-    `${formClass}__controls--${computedContentAlign}`,
-  ]);
+  const formItemWrapperClasses = classNames([`${formItemClass}-wrap`, `${formItemClass}--${labelAlign}`]);
+  const formItemHelperClasses = classNames([`${formItemClass}-help`, `${formClass}__controls--${contentAlign}`]);
+  const formItemExtraClasses = classNames([`${formItemClass}-extra`, `${formClass}__controls--${contentAlign}`]);
 
   const labelStyle = useMemo(() => {
-    if (computedLabelWidth && computedLabelAlign !== 'top') {
-      return isNumber(computedLabelWidth) ? { width: `${computedLabelWidth}px` } : { width: computedLabelWidth };
+    if (labelWidth && labelAlign !== 'top') {
+      return isNumber(labelWidth) ? { width: `${labelWidth}px` } : { width: labelWidth };
     }
     return {};
-  }, [computedLabelWidth, computedLabelAlign]);
-
-  const shouldShowErrorMessage = useMemo(() => {
-    if (isBoolean(freeShowErrorMessage)) return freeShowErrorMessage;
-    if (isBoolean(showErrorMessage)) return showErrorMessage;
-    return formContext?.showErrorMessage;
-  }, [freeShowErrorMessage, showErrorMessage, formContext?.showErrorMessage]);
+  }, [labelWidth, labelAlign]);
 
   const errorClasses = useMemo(() => {
     if (!shouldShowErrorMessage) {
@@ -176,24 +173,24 @@ const FormItem: React.FC<FormItemProps> = (props) => {
   }, [shouldShowErrorMessage, errorList, formItemClass]);
 
   const contentClasses = classNames([`${formClass}__controls`, errorClasses]);
-  const contentSlotClasses = classNames([
-    `${formClass}__controls-content`,
-    `${formClass}__controls--${computedContentAlign}`,
-  ]);
+  const contentSlotClasses = classNames([`${formClass}__controls-content`, `${formClass}__controls--${contentAlign}`]);
 
   const contentStyle = useMemo(() => {
     let style = {};
-    if (computedLabelWidth && computedLabelAlign !== 'top') {
-      if (isNumber(computedLabelWidth)) {
-        style = { marginLeft: `${computedLabelWidth}px` };
+    if (labelWidth && labelAlign !== 'top') {
+      if (isNumber(labelWidth)) {
+        style = { marginLeft: `${labelWidth}px` };
       } else {
-        style = { marginLeft: computedLabelWidth };
+        style = { marginLeft: labelWidth };
       }
     }
     return style;
-  }, [computedLabelWidth, computedLabelAlign]);
+  }, [labelWidth, labelAlign]);
 
-  const errorMessages = useMemo<FormErrorMessage>(() => formContext?.errorMessage || {}, [formContext?.errorMessage]);
+  const errorMessages = useMemo<FormErrorMessage>(
+    () => errorMessage ?? globalFormConfig.errorMessage,
+    [errorMessage, globalFormConfig],
+  );
 
   // 方法定义
   const resetHandler = useCallback(() => {
@@ -211,7 +208,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
   }, [form.store, name]);
 
   const resetField = useCallback(
-    async (resetType: 'initial' | 'empty' | undefined = formContext?.resetType): Promise<any> => {
+    async (resetType: 'initial' | 'empty' | undefined = resetTypeFromContext): Promise<any> => {
       if (!name) {
         return null;
       }
@@ -226,7 +223,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
         resetHandler();
       }
     },
-    [formContext?.resetType, name, resetValidating, form.store, getEmptyValue, initialValue, resetHandler],
+    [resetTypeFromContext, name, resetValidating, form.store, getEmptyValue, initialValue, resetHandler],
   );
 
   const analysisValidateResult = useCallback(
@@ -381,7 +378,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
   };
 
   const renderLabelContent = (): React.ReactNode => {
-    if (Number(computedLabelWidth) === 0) {
+    if (Number(labelWidth) === 0) {
       return '';
     }
     if (isFunction(label)) {

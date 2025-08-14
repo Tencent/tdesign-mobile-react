@@ -1,7 +1,6 @@
 import { createContext, useContext } from 'react';
-import { TdFormItemProps, TdFormProps } from './type';
+import { TdFormProps } from './type';
 import { FormItemContext } from './const';
-import { TNode } from '../common';
 import { InternalFormInstance } from './hooks/interface';
 
 export interface FormContextType {
@@ -17,7 +16,6 @@ export interface FormContextType {
   resetType?: TdFormProps['resetType'];
   children?: FormItemContext[];
   form?: InternalFormInstance;
-  statusIcon?: boolean | TNode<TdFormItemProps>;
   disabled?: TdFormProps['disabled'];
   onFormItemValueChange: (changedValue: Record<string, unknown>) => void;
 }
