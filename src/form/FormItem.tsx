@@ -27,6 +27,7 @@ import {
 import { AnalysisValidateResult, ErrorListType, FormItemContext, SuccessListType } from './const';
 import { usePrefixClass } from '../hooks/useClass';
 import useConfig from '../hooks/useConfig';
+import { useLocaleReceiver } from '../locale/LocalReceiver';
 import { useFormContext } from './FormContext';
 import { StyledProps } from '../common';
 
@@ -37,6 +38,7 @@ export interface FormItemProps extends TdFormItemProps, StyledProps {
 export type FormItemValidateResult<T extends Data = Data> = { [key in keyof T]: boolean | AllValidateResult[] };
 
 const FormItem: React.FC<FormItemProps> = (props) => {
+  const [locale, t] = useLocaleReceiver('form');
   const { form: globalFormConfig } = useConfig();
   const formClass = usePrefixClass('form');
   const formItemClass = usePrefixClass('form__item');
@@ -126,19 +128,14 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     [requiredMark, innerRules],
   );
 
-  const hasLabel = useMemo(() => !!label, [label]);
-  const hasColon = useMemo(() => !!(colon && hasLabel), [colon, hasLabel]);
-  const labelClass = `${formClass}__label`;
-
   const labelClasses = classNames([
-    labelClass,
+    `${formClass}__label`,
     {
-      [`${labelClass}--required`]: needRequiredMark,
-      [`${labelClass}--required-right`]: needRequiredMark && requiredMarkPosition === 'right',
-      [`${labelClass}--colon`]: hasColon,
-      [`${labelClass}--top`]: hasLabel && (labelAlign === 'top' || !labelWidth),
-      [`${labelClass}--left`]: labelAlign === 'left' && labelWidth,
-      [`${labelClass}--right`]: labelAlign === 'right' && labelWidth,
+      [`${formClass}__label--required`]: needRequiredMark,
+      [`${formClass}__label--required-right`]: needRequiredMark && requiredMarkPosition === 'right',
+      [`${formClass}__label--top`]: labelAlign === 'top' || !labelWidth,
+      [`${formClass}__label--left`]: labelAlign === 'left' && labelWidth,
+      [`${formClass}__label--right`]: labelAlign === 'right' && labelWidth,
     },
   ]);
   const formItemRootClasses = classNames(
@@ -407,6 +404,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
       <div className={formItemWrapperClasses}>
         <div className={labelClasses} style={labelStyle}>
           <label htmlFor={htmlFor}>{renderLabelContent()}</label>
+          {colon && t(locale.colonText)}
         </div>
         <div className={contentClasses} style={contentStyle}>
           <div className={contentSlotClasses}>
