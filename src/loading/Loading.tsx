@@ -75,7 +75,7 @@ const Loading: React.FC<LoadingProps> = (props) => {
   const rootStyle = useMemo<React.CSSProperties>(
     () => ({
       color: inheritColor ? 'inherit' : undefined,
-      fontSize: size || undefined,
+      fontSize: size,
     }),
     [inheritColor, size],
   );
