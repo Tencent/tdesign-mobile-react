@@ -15,6 +15,7 @@ const testConfig: InlineConfig = {
     web: ['\\.[jt]sx$'],
   },
   coverage: {
+    enabled: true,
     provider: 'istanbul',
     exclude: ['src/**.{js,ts}', 'src/_common/**', 'src/_util/**', 'src/**/{__tests__,_example,style}/**'],
     reporter: ['text', 'json', 'html'],
