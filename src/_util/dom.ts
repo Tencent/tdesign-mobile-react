@@ -1,3 +1,5 @@
+import { isFunction, isString } from 'lodash-es';
+
 // 用于判断是否可使用 dom
 export const canUseDocument = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 
@@ -15,3 +17,17 @@ export function getCurrentPrimaryColor(token: string): string {
   }
   return '';
 }
+
+export const getAttach = (node: any, triggerNode?: any): HTMLElement | Element => {
+  const attachNode = isFunction(node) ? node(triggerNode) : node;
+  if (!attachNode) {
+    return document.body;
+  }
+  if (isString(attachNode)) {
+    return document.querySelector(attachNode) as Element;
+  }
+  if (attachNode instanceof HTMLElement) {
+    return attachNode;
+  }
+  return document.body;
+};

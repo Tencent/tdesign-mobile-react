@@ -1,5 +1,6 @@
 import React from 'react';
 import { Toast, Button } from 'tdesign-mobile-react';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {
   const successColumn = () => {
@@ -16,15 +17,23 @@ export default function () {
 
   return (
     <div className="toast-demo">
-      <Button block theme="primary" variant="outline" size="large" onClick={successColumn}>
-        成功提示
-      </Button>
-      <Button block theme="primary" variant="outline" size="large" onClick={warningColumn}>
-        警告提示
-      </Button>
-      <Button block theme="primary" variant="outline" size="large" onClick={errorColumn}>
-        错误提示
-      </Button>
+      <TDemoBlock summary="成功提示" padding>
+        <Button block theme="primary" variant="outline" size="large" onClick={successColumn}>
+          成功提示
+        </Button>
+      </TDemoBlock>
+
+      <TDemoBlock summary="警告提示" padding>
+        <Button block theme="primary" variant="outline" size="large" onClick={warningColumn}>
+          警告提示
+        </Button>
+      </TDemoBlock>
+
+      <TDemoBlock summary="失败提示" padding>
+        <Button block theme="primary" variant="outline" size="large" onClick={errorColumn}>
+          失败提示
+        </Button>
+      </TDemoBlock>
     </div>
   );
 }
