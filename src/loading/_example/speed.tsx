@@ -9,14 +9,12 @@ export default function SpeedLoading() {
   };
 
   return (
-    <>
+    <div className="loading-demo--speed">
       <div className="loading-demo">
         <Loading duration={(1 / speed) * 3000} text="加载中..." />
       </div>
 
-      <div className="slider-wrap">
-        <Slider min={0} max={10} value={speed} onChange={onChange} />
-      </div>
-    </>
+      <Slider min={0} max={10} value={speed} onChange={onChange} />
+    </div>
   );
 }

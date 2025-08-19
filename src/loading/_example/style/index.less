@@ -3,17 +3,35 @@
   --bg-color-demo: var(--td-bg-color-container);
 }
 
-.loading-demo--flex {
+.loading-demo--flex,
+.loading-demo--text {
   display: flex;
   align-items: center;
-
-  .t-loading {
-    margin-right: 64px;
-  }
+  gap: 40px;
 }
 
 .loading-demo {
-  padding: 0 16px;
+  &--text {
+    .loading-demo {
+      display: flex;
+      align-items: center;
+
+      .text {
+        font-size: 12px;
+        height: 20px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  &--speed {
+    padding-bottom: calc(constant(safe-area-inset-bottom) + 44px);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 44px);
+
+    .loading-demo {
+      margin: 16px 16px 28px;
+    }
+  }
 }
 
 .loading-demo__summary {
@@ -29,12 +47,6 @@
   margin-bottom: 16px;
 }
 
-.slider-wrap {
-  // width: 100%;
-  // margin-top: 16px;
-  // padding: 20px 0;
-  margin: 16px;
-}
 
 // attact demo
 .loading-attach-demo__title {
