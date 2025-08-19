@@ -18,6 +18,7 @@ import FormItem, { FormItemValidateResult } from './FormItem';
 import { formItemDefaultProps } from './defaultProps';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
+import useConfig from '../hooks/useConfig';
 import useForm from './hooks/useForm';
 import { FormContext } from './FormContext';
 import { FormItemContext } from './const';
@@ -42,20 +43,22 @@ export const requestSubmit = (target: HTMLFormElement) => {
 
 const Form = forwardRefWithStatics(
   (props: FormProps, ref: ForwardedRef<FormInstanceFunctions>) => {
+    const { form: globalFormConfig } = useConfig();
+    const formClass = usePrefixClass('form');
+
     const {
       style,
       className,
       labelWidth,
-      statusIcon,
       labelAlign,
       colon,
-      requiredMark,
-      requiredMarkPosition,
+      requiredMark = globalFormConfig.requiredMark,
+      requiredMarkPosition = globalFormConfig.requiredMarkPosition,
       scrollToFirstError,
       showErrorMessage,
       resetType,
       rules,
-      errorMessage,
+      errorMessage = globalFormConfig.errorMessage,
       preventSubmitDefault,
       disabled,
       children,
@@ -69,7 +72,7 @@ const Form = forwardRefWithStatics(
     const resetParams = useRef<FormResetParams<Data>>({});
     const formRef = useRef<HTMLFormElement>(null);
     const [form] = useForm();
-    const formClass = usePrefixClass('form');
+
     const formContentClass = classNames(formClass, className);
 
     useImperativeHandle(ref, () => ({
@@ -253,7 +256,6 @@ const Form = forwardRefWithStatics(
           disabled,
           form,
           labelWidth,
-          statusIcon,
           labelAlign,
           colon,
           requiredMark,
