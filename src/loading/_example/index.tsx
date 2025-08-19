@@ -26,7 +26,7 @@ export default function () {
           <BaseLoading />
         </div>
       </TDemoBlock>
-      <TDemoBlock summary="图标加文字（横向" padding={true}>
+      <TDemoBlock summary="图标加文字（横向）" padding={true}>
         <div className="loading-demo--flex">
           <HorzLoading />
         </div>
