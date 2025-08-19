@@ -80,7 +80,7 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
   };
 
   const renderRowCol = (_rowCol?: SkeletonRowCol) => {
-    const renderedRowCol: SkeletonRowCol = _rowCol || rowCol;
+    const renderedRowCol: SkeletonRowCol = _rowCol;
 
     return renderedRowCol.map<React.ReactNode>((item, index) => (
       <div key={index} className={`${skeletonClass}__row`}>
@@ -92,7 +92,12 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
   const [isLoading, setIsLoading] = useState(loading);
 
   useEffect(() => {
-    if (delay > 0 && !loading) {
+    if (!loading) {
+      setIsLoading(loading);
+      return;
+    }
+
+    if (delay > 0) {
       const timeout = setTimeout(() => {
         setIsLoading(loading);
       }, delay);
@@ -111,7 +116,7 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
   // 保持优先级： rowCol > theme，增加默认值兜底
   if (rowCol) {
     childrenContent.push(renderRowCol(rowCol));
-  } else if (props.theme) {
+  } else if (theme) {
     childrenContent.push(renderRowCol(ThemeMap[theme]));
   } else if (!theme && !rowCol) {
     // 什么都不传时，传入默认 rowCol
