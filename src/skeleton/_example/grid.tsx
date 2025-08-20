@@ -20,8 +20,8 @@ const grid = [
 
 export default function GridSkeleton() {
   return (
-    <>
+    <div className="skeleton-demo--grid">
       <Skeleton rowCol={grid} loading={true} />
-    </>
+    </div>
   );
 }
