@@ -19,7 +19,7 @@ export default function Line() {
         <Progress percentage={80} status="success" />
       </div>
       <div className="example-progress__item">
-        <Progress percentage={78} color={['#0052D9', '#2BA471']} />
+        <Progress percentage={78} color={['#0052D9', '#2BA471']} status="active" />
       </div>
     </div>
   );

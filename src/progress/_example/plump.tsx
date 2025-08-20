@@ -19,7 +19,7 @@ export default function Plump() {
         <Progress theme="plump" percentage={80} status="error" />
       </div>
       <div className="example-progress__item">
-        <Progress theme="plump" percentage={80} color={['#0052D9', '#2BA471']} />
+        <Progress theme="plump" percentage={80} color={['#0052D9', '#2BA471']} status="active" />
       </div>
     </div>
   );

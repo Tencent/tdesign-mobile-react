@@ -11,7 +11,7 @@ import './style/index.less';
 export default function ProgressDemo() {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="Progress 进度条" summary="用于展示任务当前的进度" />
+      <TDemoHeader title="Progress 进度条" summary="用于展示任务当前的进度。" />
       <TDemoBlock title="01 组件类型" summary="线性进度条">
         <BaseDemo />
       </TDemoBlock>
