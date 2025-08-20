@@ -10,13 +10,16 @@ export default function Plump() {
         <Progress theme="plump" percentage={80} />
       </div>
       <div className="example-progress__item">
-        <Progress theme="plump" percentage={88} status="warning" />
+        <Progress theme="plump" percentage={100} />
       </div>
       <div className="example-progress__item">
-        <Progress theme="plump" percentage={88} status="error" />
+        <Progress theme="plump" percentage={80} status="warning" />
       </div>
       <div className="example-progress__item">
-        <Progress theme="plump" percentage={88} status="success" />
+        <Progress theme="plump" percentage={80} status="error" />
+      </div>
+      <div className="example-progress__item">
+        <Progress theme="plump" percentage={80} color={['#0052D9', '#2BA471']} />
       </div>
     </div>
   );
