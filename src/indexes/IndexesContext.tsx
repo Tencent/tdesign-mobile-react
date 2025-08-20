@@ -5,7 +5,7 @@ export interface IndexesContextValue {
 }
 export const IndexesContext = createContext<IndexesContextValue | null>(null);
 
-export function IndexesProrvider({ value, children }) {
+export function IndexesProvider({ value, children }) {
   const memoValue = useMemo(() => value, [value]);
   return <IndexesContext.Provider value={memoValue}>{children}</IndexesContext.Provider>;
 }
