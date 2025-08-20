@@ -12,7 +12,7 @@ describe('Footer', () => {
     expect(textElement.innerHTML).toBe(text);
   });
 
-  test(': logo', () => {
+  test('logo with title', () => {
     const logo = {
       icon: 'https://tdesign.gtimg.com/mobile/demos/logo2.png',
       title: '品牌名称',
@@ -24,6 +24,15 @@ describe('Footer', () => {
     const logoTitleElement = container.querySelector('.t-footer__title');
     expect(logoTitleElement).toBeTruthy();
     expect(logoTitleElement.innerHTML).toBe(logo.title);
+  });
+
+  test('logo without title', () => {
+    const logo = {
+      icon: 'https://tdesign.gtimg.com/mobile/demos/logo2.png',
+    };
+    const { container } = render(<Footer logo={logo} />);
+    const imgElement = container.querySelector('.t-footer__title-url');
+    expect(imgElement).toBeTruthy();
   });
 
   test(': links', () => {

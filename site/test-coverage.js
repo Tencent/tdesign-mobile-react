@@ -20,7 +20,7 @@ module.exports = {
   dropdownMenu: { statements: '12%', branches: '0%', functions: '0%', lines: '12.85%' },
   empty: { statements: '21.42%', branches: '0%', functions: '0%', lines: '21.42%' },
   fab: { statements: '5.4%', branches: '0%', functions: '0%', lines: '5.4%' },
-  footer: { statements: '40%', branches: '0%', functions: '0%', lines: '40%' },
+  footer: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   form: { statements: '2.8%', branches: '0%', functions: '0%', lines: '2.96%' },
   grid: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   guide: { statements: '3.46%', branches: '0%', functions: '0%', lines: '3.77%' },
