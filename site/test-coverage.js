@@ -2,7 +2,7 @@ module.exports = {
   actionSheet: { statements: '5.26%', branches: '0%', functions: '0%', lines: '5.35%' },
   avatar: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   backTop: { statements: '11.9%', branches: '0%', functions: '0%', lines: '12.82%' },
-  badge: { statements: '87.23%', branches: '74.46%', functions: '100%', lines: '93.02%' },
+  badge: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   button: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   calendar: { statements: '4.34%', branches: '0%', functions: '0%', lines: '4.74%' },
   cascader: { statements: '4.3%', branches: '0%', functions: '0%', lines: '4.59%' },
