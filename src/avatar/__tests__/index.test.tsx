@@ -1,5 +1,5 @@
 import React from 'react';
-import { describe, expect, it, render, vi, fireEvent } from '@test/utils';
+import { describe, expect, it, render, vi, fireEvent, act } from '@test/utils';
 import { UserIcon, UserAddIcon } from 'tdesign-icons-react';
 import { Avatar, AvatarGroup } from '../index';
 
@@ -55,7 +55,7 @@ describe('Avatar', () => {
     });
 
     it(': error', async () => {
-      const testError = (hideOnLoadFailed) => {
+      const testError = async (hideOnLoadFailed) => {
         const onError = vi.fn();
         const { container } = render(<Avatar image={' '} onError={onError} hideOnLoadFailed={hideOnLoadFailed} />);
 
@@ -65,13 +65,16 @@ describe('Avatar', () => {
           expect(onError).not.toHaveBeenCalled();
         } else {
           expect(imageElement).toBeTruthy();
-          imageElement.dispatchEvent(new Event('error'));
+          await act(async () => {
+            fireEvent.error(imageElement);
+          });
           expect(onError).toHaveBeenCalled();
         }
       };
-      testError(undefined);
-      testError(false);
-      testError(true);
+
+      await testError(undefined);
+      await testError(false);
+      await testError(true);
     });
   });
 });

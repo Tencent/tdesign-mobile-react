@@ -152,6 +152,7 @@ describe('Skeleton', () => {
       const rows4 = container.querySelectorAll('.t-skeleton__row');
       expect(rows4.length).toBe(2);
       expect(() => getByTestId('skeleton-content')).toThrow(); // getByTestId 在元素不存在时会直接跑出错误
+
       vi.useRealTimers();
     });
 

@@ -1,10 +1,17 @@
-import { render, fireEvent } from '@test/utils';
-import { describe, test, expect, vi } from 'vitest';
+import { render, fireEvent, describe, test, expect, vi, act, beforeEach, afterEach } from '@test/utils';
 import React from 'react';
 import Loading, { LoadingProps } from '../index';
 import { LoadingPlugin } from '../plugin';
 
 describe('Loading', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   describe('props', () => {
     // loading为true显示加载组件
     test(':loading true', async () => {
@@ -69,7 +76,6 @@ describe('Loading', () => {
     });
 
     test(':delay', async () => {
-      vi.useFakeTimers();
       const { container, rerender } = render(<Loading loading={true} delay={1000} />);
 
       // 初始状态下，.t-loading 节点存在但内容为空
@@ -77,16 +83,16 @@ describe('Loading', () => {
       expect(loadingElement).toBeTruthy(); // 节点存在
       expect(loadingElement.innerHTML).toBe(''); // 内容为空
 
-      // 快进时间到 delay 结束
-      vi.advanceTimersByTime(1000);
+      await act(async () => {
+        // 快进时间到 delay 结束
+        vi.advanceTimersByTime(1000);
 
-      // 重新渲染以触发状态更新
-      rerender(<Loading loading={true} delay={1000} />);
+        // 重新渲染以触发状态更新
+        rerender(<Loading loading={true} delay={1000} />);
+      });
 
       // 此时 loading 内容应显示
       expect(loadingElement.innerHTML).not.toBe(''); // 内容不为空
-
-      vi.useRealTimers();
     });
 
     test(':attach', async () => {
@@ -158,8 +164,6 @@ describe('Loading', () => {
     });
 
     test(':hide()', async () => {
-      vi.useFakeTimers();
-
       let loadInstance = null;
       const handleAttach = () => {
         loadInstance = LoadingPlugin({ attach: () => document.querySelector('#loading-attach') });
@@ -178,10 +182,11 @@ describe('Loading', () => {
       expect(container.querySelector('#loading-attach .t-loading')).toBeTruthy();
 
       // 1000ms 后，调用 loadInstance.hide()，loading 组件应该被移除
-      vi.advanceTimersByTime(1000);
-      expect(container.querySelector('#loading-attach .t-loading')).toBeNull();
+      await act(async () => {
+        vi.advanceTimersByTime(1000);
+      });
 
-      vi.useRealTimers();
+      expect(container.querySelector('#loading-attach .t-loading')).toBeNull();
     });
 
     test(':options is false', async () => {
