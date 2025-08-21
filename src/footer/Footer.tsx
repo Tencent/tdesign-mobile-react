@@ -18,6 +18,12 @@ const Footer: React.FC<FooterProps> = (originProps) => {
 
   return (
     <div className={`${footerClass} ${className || ''}`} style={style}>
+      {logo && (
+        <a className={`${footerClass}__logo`} href={logo.url} target={logo.target}>
+          {logo.icon && <TImage className={`${footerClass}__${logo.title ? 'icon' : 'title-url'}`} src={logo.icon} />}
+          {logo.title && <span className={`${footerClass}__title`}>{logo.title}</span>}
+        </a>
+      )}
       {links.length ? (
         <div className={`${footerLinkClass}-list`}>
           {links.map((link, index) => (
@@ -31,12 +37,6 @@ const Footer: React.FC<FooterProps> = (originProps) => {
         </div>
       ) : null}
       {text && <div className={`${footerClass}__text`}>{text}</div>}
-      {logo && (
-        <a className={`${footerClass}__logo`} href={logo.url} target={logo.target}>
-          {logo.icon && <TImage className={`${footerClass}__${logo.title ? 'icon' : 'title-url'}`} src={logo.icon} />}
-          {logo.title && <span className={`${footerClass}__title`}>{logo.title}</span>}
-        </a>
-      )}
     </div>
   );
 };
