@@ -18,7 +18,7 @@ module.exports = {
   divider: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   drawer: { statements: '8.21%', branches: '0%', functions: '0%', lines: '9.23%' },
   dropdownMenu: { statements: '12%', branches: '0%', functions: '0%', lines: '12.85%' },
-  empty: { statements: '21.42%', branches: '0%', functions: '0%', lines: '21.42%' },
+  empty: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   fab: { statements: '5.4%', branches: '0%', functions: '0%', lines: '5.4%' },
   footer: { statements: '40%', branches: '0%', functions: '0%', lines: '40%' },
   form: { statements: '2.8%', branches: '0%', functions: '0%', lines: '2.96%' },
