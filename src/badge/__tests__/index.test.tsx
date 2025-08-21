@@ -4,6 +4,32 @@ import { Badge } from '../index';
 
 describe('Badge', () => {
   describe('props', () => {
+    it(':shape', () => {
+      const shapes = ['circle', 'square', 'bubble', 'ribbon'] as const;
+      function checkShape(shape: (typeof shapes)[number]) {
+        const { container } = render(<Badge shape={shape} dot />);
+
+        if (shape === 'ribbon') {
+          expect(container.querySelector('.t-badge__ribbon-outer')).not.toBe(null);
+        } else {
+          expect(container.querySelector(`.t-badge--${shape}`)).not.toBe(null);
+        }
+      }
+
+      shapes.forEach(checkShape);
+    });
+
+    it(':size', () => {
+      const shapes = ['medium', 'large'] as const;
+
+      function checkSize(size: (typeof shapes)[number]) {
+        const { container } = render(<Badge size={size} dot />);
+        expect(container.querySelector(`.t-badge--${size}`)).not.toBe(null);
+      }
+
+      shapes.forEach(checkSize);
+    });
+
     it(':color', async () => {
       const colors = ['red', 'blue', ''];
 
@@ -45,10 +71,14 @@ describe('Badge', () => {
     });
 
     it(':offset', () => {
-      const { container } = render(<Badge count={3} offset={['10px', '10px']} />);
+      const { container } = render(<Badge count={3} offset={[10, 10]} />);
       expect(container.querySelector('.t-badge--basic').getAttribute('style'))
         .contain('right: 10px;')
         .contain('top: 10px;');
+      const { container: container1 } = render(<Badge count={3} offset={[]} />);
+      expect(container1.querySelector('.t-badge--basic').getAttribute('style'))
+        .contain('right: 0px;')
+        .contain('top: 0px;');
       const { container: container2 } = render(<Badge count={3} offset={['10em', '10rem']} />);
       expect(container2.querySelector('.t-badge--basic').getAttribute('style'))
         .contain('right: 10em;')
@@ -69,33 +99,6 @@ describe('Badge', () => {
       }
 
       sizes.forEach(checkSize);
-    });
-  });
-
-  describe(':props shape', () => {
-    const shapes = ['circle', 'square', 'bubble', 'ribbon'] as const;
-
-    describe.for(shapes)('shape: %s', (shape) => {
-      it(`test ${shape}`, () => {
-        const { container } = render(<Badge shape={shape} dot />);
-
-        if (shape === 'ribbon') {
-          expect(container.querySelector('.t-badge__ribbon-outer')).not.toBe(null);
-        } else {
-          expect(container.querySelector(`.t-badge--${shape}`)).not.toBe(null);
-        }
-      });
-    });
-  });
-
-  describe(':props shape', () => {
-    const shapes = ['medium', 'large'] as const;
-
-    describe.for(shapes)('size: %s', (size) => {
-      it(`test ${size}`, () => {
-        const { container } = render(<Badge size={size} dot />);
-        expect(container.querySelector(`.t-badge--${size}`)).not.toBe(null);
-      });
     });
   });
 
@@ -129,6 +132,9 @@ describe('Badge', () => {
       expect(container.querySelector(`.t-badge--count`)).not.toBe(null);
       expect(container.querySelector(`.t-badge--count`).textContent).toBe('33');
       expect(container.querySelector(`[data-testid="${testCountSlotContentId}"]`)).not.toBe(null);
+
+      const { container: container1 } = render(<Badge count={null} showZero />);
+      expect(container1.querySelector(`.t-badge--count`)).toBe(null);
     });
   });
 });
