@@ -27,7 +27,7 @@ export type QRProps = {
    */
   bgColor?: string;
   /**
-   * The foregtound color used to render the QR Code.
+   * The foreground color used to render the QR Code.
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
    * @defaultValue #000000
    */
