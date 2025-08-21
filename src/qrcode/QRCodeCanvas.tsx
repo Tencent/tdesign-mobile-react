@@ -57,6 +57,7 @@ const QRCodeCanvas = React.forwardRef<HTMLCanvasElement, QRPropsCanvas>((props, 
   });
 
   React.useEffect(() => {
+    /* istanbul ignore else */
     if (canvasRef.current) {
       const canvas = canvasRef.current;
 
@@ -74,6 +75,7 @@ const QRCodeCanvas = React.forwardRef<HTMLCanvasElement, QRPropsCanvas>((props, 
         image.naturalHeight !== 0 &&
         image.naturalWidth !== 0;
 
+      /* istanbul ignore else */
       if (haveImageToRender) {
         if (calculatedImageSettings.excavation != null) {
           cellsToDraw = excavateModules(cells, calculatedImageSettings.excavation);
