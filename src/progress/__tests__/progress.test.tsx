@@ -2,12 +2,12 @@ import React from 'react';
 import { describe, expect, it, render, waitFor } from '@test/utils';
 import getBackgroundColor from '../../_util/linearGradient';
 import { getCircleStokeWidth } from '../../_common/js/progress/utils';
-import Progress from '../index';
+import Progress, { ProgressProps } from '../index';
 import { ProgressTheme } from '../type';
 
 describe('Progress', () => {
   describe('utils/getBackgroundColor', () => {
-    it('color types', () => {
+    it(':color', () => {
       expect(getBackgroundColor('red')).toEqual('red');
 
       expect(getBackgroundColor(['#000', '#fff'])).toEqual('linear-gradient( 90deg,#000,#fff )');
@@ -21,131 +21,99 @@ describe('Progress', () => {
     });
   });
 
-  describe(':props status', () => {
-    const statuses: ('success' | 'error' | 'warning' | 'active')[] = ['success', 'error', 'warning', 'active'];
+  describe('props', () => {
+    it(':status', async () => {
+      const statuses: ('success' | 'error' | 'warning' | 'active')[] = ['success', 'error', 'warning', 'active'];
 
-    describe.each(statuses)('status: %s', (status) => {
-      it(`${status}`, async () => {
-        const testId = `progress test status ${status}`;
-        const { getByTestId } = render(
-          <div data-testid={testId}>
-            <Progress percentage={80} status={status} />
-          </div>,
-        );
-
-        const instance = await waitFor(() => getByTestId(testId));
-        expect(instance.querySelector(`.t-progress--status-${status}`)).toBeTruthy();
-      });
+      const checkStatus = async (status: ProgressProps['status']) => {
+        const { container } = render(<Progress percentage={80} status={status} />);
+        expect(container.querySelector(`.t-progress--status-${status}`)).toBeTruthy();
+      };
+      statuses.forEach(checkStatus);
     });
-  });
 
-  describe(':props theme', () => {
-    const themes: ProgressTheme[] = ['line', 'plump', 'circle'];
-
-    describe.each(themes)('theme: %s', (theme) => {
-      it(`${theme}`, async () => {
-        const testId = `progress test theme ${theme}`;
-        const { getByTestId } = render(
-          <div data-testid={testId}>
-            <Progress strokeWidth={120} theme={theme} percentage={80} />
-          </div>,
-        );
-
-        const instance = await waitFor(() => getByTestId(testId));
-        expect(() => instance.querySelector(`.t-progress--${theme}`)).toBeTruthy();
-      });
+    it(':theme', async () => {
+      const themes: ProgressTheme[] = ['line', 'plump', 'circle'];
+      const checkThemes = async (theme: ProgressProps['theme']) => {
+        const { container } = render(<Progress strokeWidth={120} theme={theme} percentage={80} />);
+        expect(() => container.querySelector(`.t-progress--${theme}`)).toBeTruthy();
+      };
+      themes.forEach(checkThemes);
     });
-  });
 
-  describe(':props size', () => {
-    const sizes = [
-      { name: 'default', size: 112 },
-      { name: 'micro', size: 24 },
-      { name: 240, size: 240 },
-    ];
+    it(':size', async () => {
+      const sizes = [
+        { name: 'default', size: 112 },
+        { name: 'micro', size: 24 },
+        { name: 240, size: 240 },
+      ];
 
-    describe.each(sizes)('size: %s', (sizeObj) => {
-      it(`${sizeObj.name}`, async () => {
-        const testId = `progress test size ${sizeObj.name}`;
-        const { getByTestId } = render(
-          <div data-testid={testId}>
-            <Progress strokeWidth={'120px'} theme="circle" size={sizeObj.name} percentage={80} />
-          </div>,
+      const checkSizes = async (sizeObj: { name: string; size: number }) => {
+        const { container } = render(
+          <Progress strokeWidth={'120px'} theme="circle" size={sizeObj.name} percentage={80} />,
         );
-
-        const instance = await waitFor(() => getByTestId(testId));
-        expect(instance.querySelector('.t-progress--circle')).toHaveStyle(`width: ${sizeObj.size}px`);
-      });
+        expect(container.querySelector('.t-progress--circle')).toHaveStyle(`width: ${sizeObj.size}px`);
+      };
+      sizes.forEach(checkSizes);
     });
-  });
 
-  describe(':props color', () => {
-    describe('color: string', async () => {
+    it(':color string', async () => {
       const colors = ['#ED7B2F', 'pink', 'rgb(255, 192, 203)'];
+      const checkColor = async (color: ProgressProps['color']) => {
+        const { container } = render(<Progress strokeWidth={120} theme="line" percentage={80} color={color} />);
 
-      colors?.forEach((color) => {
-        it(`color: ${color}`, async () => {
-          const testId = `progress test color: ${color}`;
-          const { getByTestId } = render(
-            <div data-testid={testId}>
-              <Progress strokeWidth={120} theme="line" percentage={80} color={color} />
-            </div>,
-          );
-          const instance = await waitFor(() => getByTestId(testId));
-          expect(instance.querySelector(`.t-progress__inner`)).toHaveStyle(`background: ${color};`);
-        });
-      });
+        expect(container.querySelector(`.t-progress__inner`)).toHaveStyle(`background: ${color};`);
+      };
+
+      colors.forEach(checkColor);
     });
 
-    describe('color: object', async () => {
+    it(':color object', async () => {
       const colors = [{ from: '#000', to: '#000' }, { '0%': '#f00', '100%': '#0ff' }, ['#000', '#fff']];
+      const checkColor = async (color: ProgressProps['color']) => {
+        const { container } = render(<Progress strokeWidth={120} theme="line" percentage={80} color={color} />);
+        expect(container.querySelector(`.t-progress__inner`)).toHaveStyle(`background: ${getBackgroundColor(color)};`);
+      };
 
-      colors?.forEach((color) => {
-        it(`color: ${color}`, async () => {
-          const testId = `progress test color: ${color}`;
-          const { getByTestId } = render(
-            <div data-testid={testId}>
-              <Progress strokeWidth={120} theme="line" percentage={80} color={color} />
-            </div>,
-          );
-          const instance = await waitFor(() => getByTestId(testId));
-          expect(instance.querySelector(`.t-progress__inner`)).toHaveStyle(`background: ${getBackgroundColor(color)};`);
-        });
-      });
-    });
-  });
-
-  describe(':props trackColor', () => {
-    describe('line or plump: trackColor', async () => {
-      it('trackColor', async () => {
-        const testId = `progress test line: trackColor`;
-        const trackColor = '#ED7B2F';
-        const { getByTestId } = render(
-          <div data-testid={testId}>
-            <Progress theme="line" trackColor={trackColor} />
-          </div>,
-        );
-        const instance = await waitFor(() => getByTestId(testId));
-        expect(instance.querySelector(`.t-progress__bar`)).toHaveStyle(`background-color: ${trackColor};`);
-      });
+      colors.forEach(checkColor);
     });
 
-    describe('circle: trackColor', async () => {
-      it('trackColor', async () => {
-        const testId = `progress test circle: trackColor`;
-        const trackColor = '#ED7B2F';
-        const { getByTestId } = render(
-          <div data-testid={testId}>
-            <Progress theme="circle" trackColor={trackColor} />
-          </div>,
-        );
-        const instance = await waitFor(() => getByTestId(testId));
-        expect(instance.querySelector(`.t-progress__circle-outer`).getAttribute('stroke')).toEqual(trackColor);
-      });
+    it(':label string', async () => {
+      const label = 'test';
+      const { container } = render(<Progress label={label} />);
+      expect(container.querySelector(`.t-progress__info`)).toHaveTextContent(label);
     });
-  });
 
-  describe(':props other', () => {
+    it(':label boolean', async () => {
+      const label = false;
+      const { container } = render(<Progress label={label} />);
+      expect(container.querySelector(`.t-progress__info`)).toBeFalsy();
+    });
+
+    it(':label function', async () => {
+      const label = () => 'test';
+      const { container } = render(<Progress label={label} />);
+      expect(container.querySelector(`.t-progress__info`)).toHaveTextContent(label());
+    });
+
+    it(':percentage', async () => {
+      const percentage = 30;
+      const { container } = render(<Progress percentage={percentage} />);
+      expect(container.querySelector(`.t-progress__info`)).toHaveTextContent(`${percentage}%`);
+    });
+
+    it(':trackColor(line or plump)', async () => {
+      const trackColor = '#ED7B2F';
+      const { container } = render(<Progress theme="line" trackColor={trackColor} />);
+      expect(container.querySelector(`.t-progress__bar`)).toHaveStyle(`background-color: ${trackColor};`);
+    });
+
+    it('trackColor(circle)', async () => {
+      const trackColor = '#ED7B2F';
+      const { container } = render(<Progress theme="circle" trackColor={trackColor} />);
+      expect(container.querySelector(`.t-progress__circle-outer`).getAttribute('stroke')).toEqual(trackColor);
+    });
+
     it('strokeWidth && theme && status && label', async () => {
       // 场景设置
       const progressList: any[] = [
