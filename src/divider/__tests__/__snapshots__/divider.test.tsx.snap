@@ -1,0 +1,222 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Divider Component > <slot> > content 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--center"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      <span
+        class="custom-node"
+      >
+        TNode
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Divider Component > <slot> > default 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--center"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      TDesign
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Divider Component > content prop and default slot exist meanwhile 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--center"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      prop content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Divider Component > props.align is equal to center 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--center"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      Text
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Divider Component > props.align is equal to left 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--left"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      Text
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Divider Component > props.align is equal to right 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--right"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      Text
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Divider Component > props.content is a string 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--center"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      TDesign
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Divider Component > props.content works fine 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--center"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      <span
+        class="custom-node"
+      >
+        TNode
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Divider Component > props.dashed works fine 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--center"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    />
+  </div>
+</div>
+`;
+
+exports[`Divider Component > props.dashed works fine 2`] = `
+<div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--center t-divider--dashed"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    />
+  </div>
+</div>
+`;
+
+exports[`Divider Component > props.dashed works fine 3`] = `
+<div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--center"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    />
+  </div>
+</div>
+`;
+
+exports[`Divider Component > props.layout is equal to horizontal 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--center"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    />
+  </div>
+</div>
+`;
+
+exports[`Divider Component > props.layout is equal to vertical 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--vertical t-divider--center"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    />
+  </div>
+</div>
+`;
+
+exports[`Divider Component > vertical divider > applies align class on vertical divider 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--vertical t-divider--left"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      text
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Divider Component > vertical divider > applies dashed class on vertical divider 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--vertical t-divider--center t-divider--dashed"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    />
+  </div>
+</div>
+`;
