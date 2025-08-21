@@ -10,7 +10,6 @@ export default function () {
   const [scrolling, setScrolling] = useState(false);
 
   const onScroll = useCallback(() => {
-    console.log('onScroll');
     clearTimeout(timer.current);
     timer.current = setTimeout(() => {
       setScrolling(false);
@@ -20,9 +19,7 @@ export default function () {
   }, []);
 
   useEffect(() => {
-    console.log('fabRef.current?.$el)', fabRef.current);
     const scroller = getScrollParent(fabRef.current);
-    console.log('scroller', scroller);
     scroller.addEventListener('scroll', onScroll);
     return () => {
       clearTimeout(timer.current);

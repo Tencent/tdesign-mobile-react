@@ -21,7 +21,7 @@ describe('Toast', () => {
       expect(document.querySelector('.t-toast')).toBeFalsy();
 
       await Toast(message);
-      await sleep(0);
+      await sleep(30);
       expect(document.querySelector('.t-toast')).toBeTruthy();
       expect(document.querySelector('.t-toast__text').innerHTML.trim()).toBe(message);
     });
@@ -29,7 +29,7 @@ describe('Toast', () => {
     it(': direction', async () => {
       const textDirection = async (direction, target?: string) => {
         await Toast({ direction });
-        await sleep(0);
+        await sleep(30);
         expect(document.querySelector(`.t-toast--${target || direction}`)).toBeTruthy();
       };
       await textDirection('column');
@@ -42,7 +42,7 @@ describe('Toast', () => {
       await Toast({
         icon: <AppIcon />,
       });
-      await sleep(0);
+      await sleep(30);
       expect(document.querySelector('.t-icon-app')).toBeTruthy();
     });
 
@@ -53,7 +53,7 @@ describe('Toast', () => {
           theme,
           message: '1',
         });
-        await sleep(0);
+        await sleep(30);
         expect(document.querySelector(target)).toBeTruthy();
       };
       await testTheme('loading', ICON_CLASS_MAP.loading);
@@ -67,7 +67,7 @@ describe('Toast', () => {
         await Toast({
           showOverlay,
         });
-        await sleep(0);
+        await sleep(30);
         const overlay = document.querySelector('.t-overlay');
         if (showOverlay) {
           expect(overlay).toBeTruthy();
@@ -87,7 +87,7 @@ describe('Toast', () => {
           duration,
         },
       });
-      await sleep(0);
+      await sleep(30);
       const overlay = document.querySelector('.t-overlay');
       expect(overlay).toBeTruthy();
       expect(window.getComputedStyle(overlay).animationDuration).toBe(`${duration}ms`);
@@ -98,7 +98,7 @@ describe('Toast', () => {
         await Toast({
           placement,
         });
-        await sleep(0);
+        await sleep(30);
         const wrapper = document.querySelector('.t-toast');
         expect(wrapper).toBeTruthy();
         expect(window.getComputedStyle(wrapper).top).toBe(target);
@@ -117,7 +117,7 @@ describe('Toast', () => {
         await Toast({
           preventScrollThrough,
         });
-        await sleep(0);
+        await sleep(30);
         expect(!!document.querySelector(`.${lockClass}`)).toBe(target);
       };
       await testPreventScrollThrough(true, true);
@@ -129,7 +129,7 @@ describe('Toast', () => {
         await Toast({
           duration,
         });
-        await sleep(0);
+        await sleep(30);
         expect(document.querySelector('.t-toast')).toBeTruthy();
         await sleep(duration);
         await sleep(300);
