@@ -1,12 +1,9 @@
 import React from 'react';
-import { describe, expect, it, vi } from '@test/utils';
+import { describe, expect, it, act, beforeEach, afterEach } from '@test/utils';
 import { AppIcon } from 'tdesign-icons-react';
+import { vi } from 'vitest';
 import Toast from '../index';
 
-const sleep = (time) =>
-  new Promise((resolve) => {
-    setTimeout(resolve, time);
-  });
 const ICON_CLASS_MAP = {
   loading: '.t-icon-loading',
   success: '.t-icon-check-circle',
@@ -15,21 +12,31 @@ const ICON_CLASS_MAP = {
 };
 
 describe('Toast', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   describe('props', () => {
     it(': message', async () => {
       const message = 'Hello TDesign';
       expect(document.querySelector('.t-toast')).toBeFalsy();
 
-      await Toast(message);
-      await sleep(0);
+      await act(async () => {
+        await Toast(message);
+      });
       expect(document.querySelector('.t-toast')).toBeTruthy();
       expect(document.querySelector('.t-toast__text').innerHTML.trim()).toBe(message);
     });
 
     it(': direction', async () => {
       const textDirection = async (direction, target?: string) => {
-        await Toast({ direction });
-        await sleep(0);
+        await act(async () => {
+          await Toast({ direction });
+        });
         expect(document.querySelector(`.t-toast--${target || direction}`)).toBeTruthy();
       };
       await textDirection('column');
@@ -39,21 +46,23 @@ describe('Toast', () => {
 
     it(': icon', async () => {
       expect(document.querySelector('.t-icon-app')).toBeFalsy();
-      await Toast({
-        icon: <AppIcon />,
+      await act(async () => {
+        await Toast({
+          icon: <AppIcon />,
+        });
       });
-      await sleep(0);
       expect(document.querySelector('.t-icon-app')).toBeTruthy();
     });
 
     it(': theme', async () => {
       const testTheme = async (theme, target) => {
         expect(document.querySelector(target)).toBeFalsy();
-        await Toast({
-          theme,
-          message: '1',
+        await act(async () => {
+          await Toast({
+            theme,
+            message: '1',
+          });
         });
-        await sleep(0);
         expect(document.querySelector(target)).toBeTruthy();
       };
       await testTheme('loading', ICON_CLASS_MAP.loading);
@@ -64,10 +73,11 @@ describe('Toast', () => {
 
     it(': showOverlay', async () => {
       const testShowOverlay = async (showOverlay) => {
-        await Toast({
-          showOverlay,
+        await act(async () => {
+          await Toast({
+            showOverlay,
+          });
         });
-        await sleep(0);
         const overlay = document.querySelector('.t-overlay');
         if (showOverlay) {
           expect(overlay).toBeTruthy();
@@ -81,13 +91,14 @@ describe('Toast', () => {
 
     it(': overlayProps', async () => {
       const duration = 1000;
-      await Toast({
-        showOverlay: true,
-        overlayProps: {
-          duration,
-        },
+      await act(async () => {
+        await Toast({
+          showOverlay: true,
+          overlayProps: {
+            duration,
+          },
+        });
       });
-      await sleep(0);
       const overlay = document.querySelector('.t-overlay');
       expect(overlay).toBeTruthy();
       expect(window.getComputedStyle(overlay).animationDuration).toBe(`${duration}ms`);
@@ -95,10 +106,11 @@ describe('Toast', () => {
 
     it(': placement', async () => {
       const testPlacement = async (placement, target) => {
-        await Toast({
-          placement,
+        await act(async () => {
+          await Toast({
+            placement,
+          });
         });
-        await sleep(0);
         const wrapper = document.querySelector('.t-toast');
         expect(wrapper).toBeTruthy();
         expect(window.getComputedStyle(wrapper).top).toBe(target);
@@ -113,50 +125,89 @@ describe('Toast', () => {
       const testPreventScrollThrough = async (preventScrollThrough, target) => {
         const lockClass = 't-toast--lock';
         document.body.classList.remove(lockClass);
-
-        await Toast({
-          preventScrollThrough,
+        await act(async () => {
+          await Toast({
+            preventScrollThrough,
+          });
         });
-        await sleep(0);
         expect(!!document.querySelector(`.${lockClass}`)).toBe(target);
       };
       await testPreventScrollThrough(true, true);
       await testPreventScrollThrough(false, false);
     });
-
-    it(': duration', async () => {
+    // vi.useFakeTimers() 只能模拟 setTimeout ，无法模拟 CSS 动画，如果不想用 sleep()，可以使用 Mock CSSTransition 跳过动画
+    it(': duration(vi.useFakeTimers())', async () => {
+      vi.mock('react-transition-group', () => ({
+        CSSTransition: ({ children, in: visible }) => (visible ? children : null),
+      }));
       const testDuration = async (duration) => {
-        await Toast({
-          duration,
+        await act(async () => {
+          await Toast({ duration });
         });
-        await sleep(0);
         expect(document.querySelector('.t-toast')).toBeTruthy();
-        await sleep(duration);
-        await sleep(300);
         if (duration) {
+          await act(async () => {
+            vi.advanceTimersByTime(2000);
+          });
           expect(document.querySelector('.t-toast')).toBeFalsy();
+        } else {
+          expect(document.querySelector('.t-toast')).toBeTruthy();
         }
       };
       await testDuration(1000);
       await testDuration(0);
     });
+
+    // sleep() + act() 可以模拟 CSS 动画，但是会阻塞测试，建议使用 vi.useFakeTimers()
+    // it(': duration', async () => {
+    //   const sleep = (time) =>
+    //     new Promise((resolve) => {
+    //       setTimeout(resolve, time);
+    //     });
+
+    //   const testDuration = async (duration) => {
+    //     await act(async () => {
+    //       await Toast({ duration });
+    //     });
+    //     expect(document.querySelector('.t-toast')).toBeTruthy();
+    //     if (duration) {
+    //       await sleep(duration + 300);
+
+    //       await act(async () => {
+    //         // tips: 这里可以空操作，仅为了让 React 处理 pending 状态
+    //       });
+
+    //       expect(document.querySelector('.t-toast')).toBeFalsy();
+    //     } else {
+    //       expect(document.querySelector('.t-toast')).toBeTruthy();
+    //     }
+    //   };
+    //   await testDuration(1000);
+    //   await testDuration(0);
+    // });
   });
 
   describe('event', () => {
     it(': close', async () => {
       const onClose = vi.fn();
-      await Toast({
-        onClose,
+      await act(async () => {
+        await Toast({
+          onClose,
+        });
       });
-      await sleep(2100);
+      await act(async () => {
+        vi.advanceTimersByTime(2000);
+      });
       expect(onClose).toHaveBeenCalled();
     });
 
     it(': destroy', async () => {
       const onDestroy = vi.fn();
-      await Toast({
-        onDestroy,
-        message: ' ',
+      await act(async () => {
+        await Toast({
+          onDestroy,
+          message: ' ',
+        });
       });
       await Toast.clear();
       expect(onDestroy).toHaveBeenCalled();
@@ -166,10 +217,17 @@ describe('Toast', () => {
   describe('method', () => {
     it(': method', async () => {
       const testMethod = async (method, target, props) => {
-        const handler = await Toast[method](props);
-        await sleep(300);
+        let handler;
+        await act(async () => {
+          handler = await Toast[method](props); // 调用 Toast 方法
+        });
+        await act(async () => {
+          vi.advanceTimersByTime(300);
+        });
         expect(document.querySelector(target)).toBeTruthy();
-        await handler.destroy?.();
+        await act(async () => {
+          await handler.destroy?.();
+        });
       };
       const message = 'Hello';
       await testMethod('loading', ICON_CLASS_MAP.loading, message);
@@ -180,9 +238,11 @@ describe('Toast', () => {
 
     it(': attach', async () => {
       const spyConsole = vi.spyOn(console, 'error');
-      await Toast({
-        message: ' ',
-        attach: 'abc',
+      await act(async () => {
+        await Toast({
+          message: ' ',
+          attach: 'abc',
+        });
       });
       expect(spyConsole).toHaveBeenCalledWith('attach is not exist');
       expect(document.querySelector('.t-toast')).toBeFalsy();
@@ -191,11 +251,12 @@ describe('Toast', () => {
       const testDom = document.createElement('div');
       testDom.classList.add(testClass);
       document.body.appendChild(testDom);
-      await Toast({
-        message: ' ',
-        attach: `.${testClass}`,
+      await act(async () => {
+        await Toast({
+          message: ' ',
+          attach: `.${testClass}`,
+        });
       });
-      await sleep(300);
       expect(testDom.querySelector('.t-toast')).toBeTruthy();
     });
   });
