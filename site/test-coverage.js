@@ -41,7 +41,7 @@ module.exports = {
   picker: { statements: '5.71%', branches: '0%', functions: '0%', lines: '6.28%' },
   popover: { statements: '5%', branches: '0%', functions: '0%', lines: '5.55%' },
   popup: { statements: '24.24%', branches: '14.28%', functions: '11.11%', lines: '22.58%' },
-  progress: { statements: '83.33%', branches: '58.53%', functions: '83.33%', lines: '84.74%' },
+  progress: { statements: '100%', branches: '97.36%', functions: '100%', lines: '100%' },
   pullDownRefresh: { statements: '9.42%', branches: '2.73%', functions: '4.54%', lines: '9.23%' },
   qrcode: { statements: '9.89%', branches: '0%', functions: '0%', lines: '10%' },
   radio: { statements: '12.67%', branches: '0%', functions: '0%', lines: '12.85%' },
