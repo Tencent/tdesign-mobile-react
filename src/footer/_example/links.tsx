@@ -1,7 +1,7 @@
 import React from 'react';
 import { Footer } from 'tdesign-mobile-react';
 
-const text = 'Copyright © 2021-2031 TD.All Rights Reserved.';
+const text = 'Copyright © 2019-2023 TDesign.All Rights Reserved.';
 
 const links = [
   [
