@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Skeleton > :props other > no theme and no rowCol 1`] = `
+exports[`Skeleton > props > : other sense 1`] = `
 <div>
   <div
     class="t-skeleton__row"

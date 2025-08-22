@@ -2,26 +2,18 @@ import React from 'react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import BaseDemo from './base';
-import TransitionDemo from './transition';
 import LineDemo from './line';
 import PlumpDemo from './plump';
 import CircleDemo from './circle';
-import CustomDemo from './custom';
 
 import './style/index.less';
 
 export default function ProgressDemo() {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="Progress 进度条" summary="展示操作的当前进度" />
-      <TDemoBlock title="01 类型" summary="基础进度条">
+      <TDemoHeader title="Progress 进度条" summary="用于展示任务当前的进度。" />
+      <TDemoBlock title="01 组件类型" summary="线性进度条">
         <BaseDemo />
-      </TDemoBlock>
-      <TDemoBlock summary="过渡样式" padding>
-        <TransitionDemo />
-      </TDemoBlock>
-      <TDemoBlock summary="自定义颜色/圆角">
-        <CustomDemo />
       </TDemoBlock>
       <TDemoBlock title="02 组件状态" summary="线性进度条">
         <LineDemo />
