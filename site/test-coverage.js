@@ -37,7 +37,7 @@ module.exports = {
   message: { statements: '11.45%', branches: '0%', functions: '0%', lines: '11.82%' },
   navbar: { statements: '12.9%', branches: '0%', functions: '0%', lines: '13.79%' },
   noticeBar: { statements: '6.38%', branches: '0%', functions: '0%', lines: '6.52%' },
-  overlay: { statements: '83.33%', branches: '100%', functions: '57.14%', lines: '83.33%' },
+  overlay: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   picker: { statements: '5.71%', branches: '0%', functions: '0%', lines: '6.28%' },
   popover: { statements: '5%', branches: '0%', functions: '0%', lines: '5.55%' },
   popup: { statements: '24.24%', branches: '14.28%', functions: '11.11%', lines: '22.58%' },
@@ -62,7 +62,7 @@ module.exports = {
   tabs: { statements: '5.8%', branches: '0%', functions: '0%', lines: '6.33%' },
   tag: { statements: '100%', branches: '96.87%', functions: '100%', lines: '100%' },
   textarea: { statements: '5.4%', branches: '0%', functions: '0%', lines: '5.88%' },
-  toast: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
+  toast: { statements: '98.73%', branches: '100%', functions: '94.11%', lines: '98.66%' },
   treeSelect: { statements: '5.4%', branches: '0%', functions: '0%', lines: '5.88%' },
   upload: { statements: '4.28%', branches: '0%', functions: '0%', lines: '4.47%' },
 };
