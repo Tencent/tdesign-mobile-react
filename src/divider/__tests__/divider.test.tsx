@@ -1,65 +1,80 @@
-// @ts-nocheck
 import React from 'react';
 import { describe, expect, it, render } from '@test/utils';
 import Divider from '../Divider';
 
-describe('Divider Component', () => {
-  ['left', 'right', 'center'].forEach((item) => {
-    it(`props.align is equal to ${item}`, () => {
-      const { container } = render(<Divider align={item}>Text</Divider>);
-      expect(container.firstChild).toHaveClass(`t-divider--${item}`);
-      expect(container).toMatchSnapshot();
+describe('Divider', () => {
+  describe('props', () => {
+    it(':align', () => {
+      const aligns = ['left', 'right', 'center'] as const;
+
+      function checkAlign(align: (typeof aligns)[number]) {
+        const { container } = render(<Divider align={align}>Text</Divider>);
+        expect(container.firstChild).toHaveClass(`t-divider--${align}`);
+        expect(container).toMatchSnapshot();
+      }
+
+      aligns.forEach(checkAlign);
+    });
+
+    it(':layout', () => {
+      const layouts = ['horizontal', 'vertical'] as const;
+
+      function checkLayout(layout: (typeof layouts)[number]) {
+        const { container } = render(<Divider layout={layout} />);
+        expect(container.firstChild).toHaveClass(`t-divider--${layout}`);
+        expect(container).toMatchSnapshot();
+      }
+
+      layouts.forEach(checkLayout);
+    });
+
+    it(':content', () => {
+      // Test content as a function
+      const { container: container1 } = render(<Divider content={() => <span className="custom-node">TNode</span>} />);
+      expect(container1.querySelector('.custom-node')).toBeTruthy();
+      expect(container1).toMatchSnapshot();
+
+      // Test content as a string
+      const { container: container2 } = render(<Divider content="TDesign" />);
+      expect(container2.textContent).toBe('TDesign');
+      expect(container2).toMatchSnapshot();
+    });
+
+    it(':dashed', () => {
+      // Test default value (false)
+      const { container: container1 } = render(<Divider />);
+      expect(container1.firstChild).not.toHaveClass('t-divider--dashed');
+      expect(container1).toMatchSnapshot();
+
+      // Test dashed = true
+      const { container: container2 } = render(<Divider dashed={true} />);
+      expect(container2.firstChild).toHaveClass('t-divider--dashed');
+      expect(container2).toMatchSnapshot();
+
+      // Test dashed = false
+      const { container: container3 } = render(<Divider dashed={false} />);
+      expect(container3.firstChild).not.toHaveClass('t-divider--dashed');
+      expect(container3).toMatchSnapshot();
     });
   });
 
-  ['horizontal', 'vertical'].forEach((item) => {
-    it(`props.layout is equal to ${item}`, () => {
-      const { container } = render(<Divider layout={item} />);
-      expect(container.firstChild).toHaveClass(`t-divider--${item}`);
-      expect(container).toMatchSnapshot();
-    });
-  });
-
-  it('props.content works fine', () => {
-    const { container } = render(<Divider content={() => <span className="custom-node">TNode</span>} />);
-    expect(container.querySelector('.custom-node')).toBeTruthy();
-    expect(container).toMatchSnapshot();
-  });
-
-  it('props.content is a string', () => {
-    const { container } = render(<Divider content="TDesign" />);
-    expect(container.textContent).toBe('TDesign');
-    expect(container).toMatchSnapshot();
-  });
-
-  it('props.dashed works fine', () => {
-    // dashed default value is false
-    const wrapper1 = render(<Divider />);
-    expect(wrapper1.container.firstChild).not.toHaveClass('t-divider--dashed');
-    expect(wrapper1.container).toMatchSnapshot();
-    // dashed = true
-    const wrapper2 = render(<Divider dashed={true} />);
-    expect(wrapper2.container.firstChild).toHaveClass('t-divider--dashed');
-    expect(wrapper2.container).toMatchSnapshot();
-    // dashed = false
-    const wrapper3 = render(<Divider dashed={false} />);
-    expect(wrapper3.container.firstChild).not.toHaveClass('t-divider--dashed');
-    expect(wrapper3.container).toMatchSnapshot();
-  });
-
-  describe('<slot>', () => {
-    it('default', () => {
+  describe('slot', () => {
+    it(':default', () => {
       const { container } = render(<Divider>TDesign</Divider>);
       expect(container).toMatchSnapshot();
     });
 
-    it('content', () => {
+    it(':content', () => {
+      const testSlotContentId = 'divider-content-test-slot-id';
       const { container } = render(
         <Divider>
-          <span className="custom-node">TNode</span>
+          <span className="custom-node" data-testid={testSlotContentId}>
+            TNode
+          </span>
         </Divider>,
       );
       expect(container.querySelector('.custom-node')).toBeTruthy();
+      expect(container.querySelector(`[data-testid="${testSlotContentId}"]`)).toBeTruthy();
       expect(container).toMatchSnapshot();
     });
   });
