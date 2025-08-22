@@ -91,7 +91,7 @@ const Textarea = forwardRef<TextareaRefInterface, TextareaProps>((originProps, r
     className,
   );
 
-  const textareaInnerClasses = classNames(`${textareaClass}__wrapper-inner`, {
+  const textareaInnerClasses = classNames(`${textareaClass}__wrapper-inner`, `${textareaClass}__placeholder`, {
     [`${textareaClass}--disabled`]: disabled,
     [`${textareaClass}--readonly`]: readonly,
   });
