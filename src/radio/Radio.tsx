@@ -136,7 +136,13 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
     <div className={radioClassName} ref={ref} onClick={() => switchRadioChecked()}>
       {input}
       <div className={iconClass}>{renderIcon()}</div>
-      <div className={`${radioClass}__content`}>
+      <div
+        className={`${radioClass}__content`}
+        onClick={(e) => {
+          e.stopPropagation();
+          switchRadioChecked('content');
+        }}
+      >
         {(label || children) && (
           <span className={titleClassName} style={{ WebkitLineClamp: maxLabelRow }}>
             {parseTNode(label) || parseTNode(children)}
