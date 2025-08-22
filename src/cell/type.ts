@@ -77,5 +77,5 @@ export interface TdCellGroupProps {
    * 单元格组标题
    * @default ''
    */
-  title?: string;
+  title?: TNode;
 }
