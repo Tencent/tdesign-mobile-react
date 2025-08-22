@@ -5,6 +5,8 @@ import { AppIcon } from 'tdesign-icons-react';
 import Drawer from '../Drawer';
 import { DrawerPlugin } from '../plugin';
 
+const TIMEOUT_MS = 1000;
+
 describe('Drawer', () => {
   describe('props', () => {
     it('closeOnOverlayClick', () => {
@@ -120,21 +122,21 @@ describe('DrawerPlugin', () => {
   describe('options', () => {
     it('options-boolean', () => {
       DrawerPlugin(false);
-      setTimeout(() => expect(document.querySelector('.t-drawer')).not.toBeInTheDocument(), 1000);
+      setTimeout(() => expect(document.querySelector('.t-drawer')).not.toBeInTheDocument(), TIMEOUT_MS);
     });
 
     it('attach-undefined', () => {
       const optionsEmpty = {};
       const drawerPluginWithEmpty = DrawerPlugin(optionsEmpty);
       drawerPluginWithEmpty.show();
-      setTimeout(() => expect(document.body.querySelector('.t-drawer')).toBeVisible(), 1000);
+      setTimeout(() => expect(document.body.querySelector('.t-drawer')).toBeVisible(), TIMEOUT_MS);
     });
 
     it('attach-function', () => {
       const options = { attach: () => document.body };
       const drawerPlugin = DrawerPlugin(options);
       drawerPlugin.show();
-      setTimeout(() => expect(document.body.querySelector('.t-drawer')).toBeVisible(), 1000);
+      setTimeout(() => expect(document.body.querySelector('.t-drawer')).toBeVisible(), TIMEOUT_MS);
     });
 
     it('show', () => {
@@ -143,7 +145,7 @@ describe('DrawerPlugin', () => {
       drawerPlugin.show();
 
       rafCallbacks.forEach((cb) => cb());
-      setTimeout(() => expect(document.querySelector('.t-drawer')).toBeVisible(), 1000);
+      setTimeout(() => expect(document.querySelector('.t-drawer')).toBeVisible(), TIMEOUT_MS);
     });
 
     it('hide', () => {
@@ -152,7 +154,7 @@ describe('DrawerPlugin', () => {
       drawerPlugin.hide();
 
       rafCallbacks.forEach((cb) => cb());
-      setTimeout(() => expect(document.querySelector('.t-drawer')).not.toBeVisible(), 1000);
+      setTimeout(() => expect(document.querySelector('.t-drawer')).not.toBeVisible(), TIMEOUT_MS);
     });
 
     it('update', () => {
@@ -161,7 +163,7 @@ describe('DrawerPlugin', () => {
       drawerPlugin.update({ visible: false });
 
       rafCallbacks.forEach((cb) => cb());
-      setTimeout(() => expect(document.querySelector('.t-drawer')).not.toBeVisible(), 2000);
+      setTimeout(() => expect(document.querySelector('.t-drawer')).not.toBeVisible(), TIMEOUT_MS);
     });
 
     it('destroy', () => {
