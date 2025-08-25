@@ -7,7 +7,7 @@ module.exports = {
   calendar: { statements: '4.34%', branches: '0%', functions: '0%', lines: '4.74%' },
   cascader: { statements: '4.3%', branches: '0%', functions: '0%', lines: '4.59%' },
   cell: { statements: '100%', branches: '77.77%', functions: '100%', lines: '100%' },
-  checkbox: { statements: '8.77%', branches: '0%', functions: '0%', lines: '9.17%' },
+  checkbox: { statements: '99.12%', branches: '98.27%', functions: '100%', lines: '100%' },
   collapse: { statements: '69.09%', branches: '36.66%', functions: '72.72%', lines: '72.54%' },
   colorPicker: { statements: '3.03%', branches: '0%', functions: '0%', lines: '3.03%' },
   common: { statements: '79.31%', branches: '55.55%', functions: '83.33%', lines: '88%' },
