@@ -7,7 +7,7 @@ export default function CharacterAvatar() {
       <Avatar className="avatar-example external-class-content" aria-label="字符头像">
         A
       </Avatar>
-      <Avatar className="avatar-example external-class-content" shape="round">
+      <Avatar className="avatar-example external-class-content" aria-label="字符头像" shape="round">
         A
       </Avatar>
     </div>
