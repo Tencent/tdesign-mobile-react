@@ -27,7 +27,6 @@ describe('Popup', () => {
       expect(el).toBeTruthy();
       expect(el).toHaveStyle({ display: 'none' });
     });
-
     // 非受控：可见
     test(':defaultVisible', async () => {
       render(<Popup defaultVisible={true} />);
@@ -257,7 +256,9 @@ describe('Popup', () => {
         />,
       );
       expect(onOpen).toHaveBeenCalledTimes(1);
-      await vi.runAllTimersAsync();
+      await act(async () => {
+        await vi.runAllTimersAsync();
+      });
       expect(onOpened).toHaveBeenCalledTimes(1);
 
       rerender(
@@ -270,7 +271,9 @@ describe('Popup', () => {
           onVisibleChange={onVisibleChange}
         />,
       );
-      await vi.runAllTimersAsync();
+      await act(async () => {
+        await vi.runAllTimersAsync();
+      });
       expect(onClosed).toHaveBeenCalledTimes(1);
       expect(onVisibleChange).not.toHaveBeenCalled();
     });
