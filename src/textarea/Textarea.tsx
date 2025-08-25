@@ -117,10 +117,11 @@ const Textarea = forwardRef<TextareaRefInterface, TextareaProps>((originProps, r
     if (value === newStr) return; // 避免在Firefox中重复触发
 
     if (!allowInputOverMax && !composingRef.current) {
-      newStr = limitUnicodeMaxLength(newStr, Number(maxlength));
       if (maxcharacter && maxcharacter >= 0) {
         const stringInfo = getCharacterLength(newStr, maxcharacter);
         newStr = typeof stringInfo === 'object' && stringInfo.characters;
+      } else {
+        newStr = limitUnicodeMaxLength(newStr, Number(maxlength));
       }
     }
 
