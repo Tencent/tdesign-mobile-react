@@ -6,9 +6,10 @@ export default function Maxlength() {
   const [value, onChange] = useState<TextareaProps['value']>('');
   return (
     <Textarea
+      className="textarea-example"
       placeholder="请输入文字"
       label="标签文字"
-      maxlength={100}
+      maxlength={500}
       allowInputOverMax
       indicator
       value={value}
