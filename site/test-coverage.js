@@ -46,7 +46,7 @@ module.exports = {
   qrcode: { statements: '9.89%', branches: '0%', functions: '0%', lines: '10%' },
   radio: { statements: '12.67%', branches: '0%', functions: '0%', lines: '12.85%' },
   rate: { statements: '5.71%', branches: '0%', functions: '0%', lines: '5.71%' },
-  result: { statements: '12.9%', branches: '0%', functions: '0%', lines: '12.9%' },
+  result: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   search: { statements: '6.12%', branches: '0%', functions: '0%', lines: '6.25%' },
   sideBar: { statements: '54.34%', branches: '0%', functions: '33.33%', lines: '58.53%' },
   skeleton: { statements: '100%', branches: '95.83%', functions: '100%', lines: '100%' },
