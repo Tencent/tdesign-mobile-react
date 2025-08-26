@@ -1,51 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Divider Component > props.align is equal to center 1`] = `
-<div>
-  <div
-    class="t-divider t-divider--horizontal t-divider--center"
-    role="separator"
-  >
-    <div
-      class="t-divider__content"
-    >
-      Text
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Divider Component > props.align is equal to left 1`] = `
-<div>
-  <div
-    class="t-divider t-divider--horizontal t-divider--left"
-    role="separator"
-  >
-    <div
-      class="t-divider__content"
-    >
-      Text
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Divider Component > props.align is equal to right 1`] = `
-<div>
-  <div
-    class="t-divider t-divider--horizontal t-divider--right"
-    role="separator"
-  >
-    <div
-      class="t-divider__content"
-    >
-      Text
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Divider Component > props.children works fine 1`] = `
+exports[`Divider > props > :content 1`] = `
 <div>
   <div
     class="t-divider t-divider--horizontal t-divider--center"
@@ -64,7 +19,22 @@ exports[`Divider Component > props.children works fine 1`] = `
 </div>
 `;
 
-exports[`Divider Component > props.content works fine 1`] = `
+exports[`Divider > props > :content 2`] = `
+<div>
+  <div
+    class="t-divider t-divider--horizontal t-divider--center"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      TDesign
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Divider > slot > :content 1`] = `
 <div>
   <div
     class="t-divider t-divider--horizontal t-divider--center"
@@ -75,6 +45,7 @@ exports[`Divider Component > props.content works fine 1`] = `
     >
       <span
         class="custom-node"
+        data-testid="divider-content-test-slot-id"
       >
         TNode
       </span>
@@ -83,7 +54,7 @@ exports[`Divider Component > props.content works fine 1`] = `
 </div>
 `;
 
-exports[`Divider Component > props.layout is equal to horizontal 1`] = `
+exports[`Divider > slot > :default 1`] = `
 <div>
   <div
     class="t-divider t-divider--horizontal t-divider--center"
@@ -91,15 +62,32 @@ exports[`Divider Component > props.layout is equal to horizontal 1`] = `
   >
     <div
       class="t-divider__content"
-    />
+    >
+      TDesign
+    </div>
   </div>
 </div>
 `;
 
-exports[`Divider Component > props.layout is equal to vertical 1`] = `
+exports[`Divider > vertical divider > applies align class on vertical divider 1`] = `
 <div>
   <div
-    class="t-divider t-divider--vertical t-divider--center"
+    class="t-divider t-divider--vertical t-divider--left"
+    role="separator"
+  >
+    <div
+      class="t-divider__content"
+    >
+      text
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Divider > vertical divider > applies dashed class on vertical divider 1`] = `
+<div>
+  <div
+    class="t-divider t-divider--vertical t-divider--center t-divider--dashed"
     role="separator"
   >
     <div
