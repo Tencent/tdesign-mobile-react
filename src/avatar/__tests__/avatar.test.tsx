@@ -23,13 +23,15 @@ describe('Avatar', () => {
       testShape('round', '.t-avatar--round');
     });
 
-    it(': slot', () => {
-      const testSlot = (content) => {
-        const { getByText } = render(<Avatar>{content}</Avatar>);
-        expect(getByText(content).textContent).toBeTruthy();
-      };
-      testSlot('A');
-      testSlot('B');
+    describe(': slot', () => {
+      it(': default', () => {
+        const testSlot = (content) => {
+          const { getByText } = render(<Avatar>{content}</Avatar>);
+          expect(getByText(content).textContent).toBeTruthy();
+        };
+        testSlot('A');
+        testSlot('B');
+      });
     });
 
     it(': icon', () => {
