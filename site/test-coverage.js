@@ -44,7 +44,7 @@ module.exports = {
   progress: { statements: '100%', branches: '97.36%', functions: '100%', lines: '100%' },
   pullDownRefresh: { statements: '9.42%', branches: '2.73%', functions: '4.54%', lines: '9.23%' },
   qrcode: { statements: '9.89%', branches: '0%', functions: '0%', lines: '10%' },
-  radio: { statements: '12.67%', branches: '0%', functions: '0%', lines: '12.85%' },
+  radio: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   rate: { statements: '5.71%', branches: '0%', functions: '0%', lines: '5.71%' },
   result: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   search: { statements: '6.12%', branches: '0%', functions: '0%', lines: '6.25%' },
