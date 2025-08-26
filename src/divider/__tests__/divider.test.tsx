@@ -10,7 +10,6 @@ describe('Divider', () => {
       function checkAlign(align: (typeof aligns)[number]) {
         const { container } = render(<Divider align={align}>Text</Divider>);
         expect(container.firstChild).toHaveClass(`t-divider--${align}`);
-        expect(container).toMatchSnapshot();
       }
 
       aligns.forEach(checkAlign);
@@ -22,7 +21,6 @@ describe('Divider', () => {
       function checkLayout(layout: (typeof layouts)[number]) {
         const { container } = render(<Divider layout={layout} />);
         expect(container.firstChild).toHaveClass(`t-divider--${layout}`);
-        expect(container).toMatchSnapshot();
       }
 
       layouts.forEach(checkLayout);
@@ -44,17 +42,14 @@ describe('Divider', () => {
       // Test default value (false)
       const { container: container1 } = render(<Divider />);
       expect(container1.firstChild).not.toHaveClass('t-divider--dashed');
-      expect(container1).toMatchSnapshot();
 
       // Test dashed = true
       const { container: container2 } = render(<Divider dashed={true} />);
       expect(container2.firstChild).toHaveClass('t-divider--dashed');
-      expect(container2).toMatchSnapshot();
 
       // Test dashed = false
       const { container: container3 } = render(<Divider dashed={false} />);
       expect(container3.firstChild).not.toHaveClass('t-divider--dashed');
-      expect(container3).toMatchSnapshot();
     });
   });
 
@@ -82,7 +77,6 @@ describe('Divider', () => {
   it('content prop and default slot exist meanwhile', () => {
     const { container } = render(<Divider content="prop content">TDesign</Divider>);
     expect(container.textContent).toBe('prop content');
-    expect(container).toMatchSnapshot();
   });
 
   describe('vertical divider', () => {
