@@ -56,7 +56,7 @@ module.exports = {
   sticky: { statements: '7.14%', branches: '0%', functions: '0%', lines: '7.27%' },
   swipeCell: { statements: '4.42%', branches: '0%', functions: '0%', lines: '4.67%' },
   swiper: { statements: '3.77%', branches: '0.9%', functions: '1.4%', lines: '3.89%' },
-  switch: { statements: '12.9%', branches: '0%', functions: '0%', lines: '13.33%' },
+  switch: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   tabBar: { statements: '10%', branches: '0%', functions: '0%', lines: '10.81%' },
   table: { statements: '6.09%', branches: '0%', functions: '0%', lines: '6.32%' },
   tabs: { statements: '5.8%', branches: '0%', functions: '0%', lines: '6.33%' },
