@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { registerLocaleChange } from 'tdesign-site-components';
-import 'tdesign-site-components/lib/styles/prism-theme-dark.less';
-import 'tdesign-site-components/lib/styles/prism-theme.less';
-import 'tdesign-site-components/lib/styles/style.css';
+import { registerLocaleChange } from '@tdesign/site-components';
+import '@tdesign/site-components/lib/styles/prism-theme-dark.less';
+import '@tdesign/site-components/lib/styles/prism-theme.less';
+import '@tdesign/site-components/lib/styles/style.css';
 
 import 'tdesign-icons-view';
 import 'tdesign-theme-generator';
