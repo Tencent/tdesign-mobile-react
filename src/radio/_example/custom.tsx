@@ -8,7 +8,7 @@ export default function () {
   const [defaultValueH, setDefaultValueH] = useState(0);
   return (
     <>
-      <TDemoBlock summary="单选框尺寸规格">
+      <TDemoBlock summary="纵向卡片单选框">
         <RadioGroup value={defaultValue} onChange={(value: number) => setDefaultValue(value)}>
           {Array.from(Array(3), (_, key) => (
             <div className={`card ${defaultValue === key ? 'card--active' : ''}`} key={key}>
