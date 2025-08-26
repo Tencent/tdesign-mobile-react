@@ -29,7 +29,7 @@ module.exports = {
   imageViewer: { statements: '8.47%', branches: '2.87%', functions: '0%', lines: '8.84%' },
   indexes: { statements: '95.65%', branches: '69.81%', functions: '100%', lines: '96.94%' },
   input: { statements: '3.57%', branches: '0%', functions: '0%', lines: '3.7%' },
-  layout: { statements: '93.93%', branches: '60%', functions: '100%', lines: '93.93%' },
+  layout: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   link: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   list: { statements: '8%', branches: '0%', functions: '0%', lines: '8.69%' },
   loading: { statements: '98.43%', branches: '96.07%', functions: '100%', lines: '98.3%' },
