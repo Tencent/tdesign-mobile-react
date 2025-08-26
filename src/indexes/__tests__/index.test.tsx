@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { vi } from 'vitest';
-import { describe, expect, it, render, fireEvent } from '@test/utils';
+import { describe, expect, it, render, fireEvent, act } from '@test/utils';
 import { Indexes, IndexesAnchor } from '../index';
 import { CellGroup, Cell } from '../../cell';
 
@@ -84,7 +84,7 @@ describe('Indexes', () => {
       expect($indexesSidebar.length).toBe(26);
     });
 
-    it('sticky', () => {
+    it('sticky', async () => {
       const { container } = render(
         <Indexes indexList={indexList}>
           {list.map((item, index) => (
@@ -100,7 +100,9 @@ describe('Indexes', () => {
         </Indexes>,
       );
 
-      fireEvent.scroll(container.firstChild, { target: { scrollTop: 100 } });
+      await act(async () => {
+        fireEvent.scroll(container.firstChild, { target: { scrollTop: 100 } });
+      });
       const $indexesAnchors = container.querySelectorAll<HTMLElement>(`.${name}-anchor__wrapper`);
       expect($indexesAnchors[0].classList.contains(`${name}-anchor__wrapper--sticky`)).toBeTruthy();
       expect($indexesAnchors[0].style.top).toBe('0px');
@@ -149,7 +151,7 @@ describe('Indexes', () => {
   });
 
   describe('event', () => {
-    it('select', () => {
+    it('select', async () => {
       const selectFn = vi.fn();
       const { container } = render(
         <Indexes indexList={indexList} onSelect={selectFn}>
@@ -166,11 +168,14 @@ describe('Indexes', () => {
         </Indexes>,
       );
       const $sideBarItem = container.querySelector<HTMLElement>(`.${name}__sidebar-item`);
-      fireEvent.click($sideBarItem);
+
+      await act(async () => {
+        fireEvent.click($sideBarItem);
+      });
       expect(selectFn).toBeCalledWith(list[0].index);
     });
 
-    it('change', () => {
+    it('change', async () => {
       const selectFn = vi.fn();
       const changeFn = vi.fn();
       const { container } = render(
@@ -188,7 +193,9 @@ describe('Indexes', () => {
         </Indexes>,
       );
       const $sideBarItems = container.querySelectorAll<HTMLElement>(`.${name}__sidebar-item`);
-      fireEvent.click($sideBarItems[1]);
+      await act(async () => {
+        fireEvent.click($sideBarItems[1]);
+      });
       expect(selectFn).toBeCalledWith(list[1].index);
       expect(changeFn).toBeCalledWith(list[1].index);
     });
@@ -211,19 +218,23 @@ describe('Indexes', () => {
         </Indexes>,
       );
       const $sideBarItem = container.querySelector<HTMLElement>(`.${name}__sidebar-item`);
-      fireEvent.click($sideBarItem);
+      await act(async () => {
+        fireEvent.click($sideBarItem);
+      });
       const $sidebarTip = container.querySelector(`.${name}__sidebar-tips`);
       expect($sidebarTip).toBeDefined();
       expect($sidebarTip.textContent).toBe(String(indexList[0]));
-      await new Promise<void>((resolve) => {
-        setTimeout(() => {
-          resolve();
-        }, 1000);
+      await act(async () => {
+        await new Promise<void>((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 1000);
+        });
       });
       // expect(container.querySelector(`.${name}__sidebar-tips`)).toBeNull();
     });
 
-    it('sidebar touchmove', () => {
+    it('sidebar touchmove', async () => {
       const changeFn = vi.fn();
       const { container } = render(
         <Indexes indexList={indexList} onChange={changeFn}>
@@ -244,9 +255,11 @@ describe('Indexes', () => {
         const $sideBarItems = $sideBar.querySelectorAll<HTMLElement>(`.${name}__sidebar-item`);
         return $sideBarItems[Math.floor(clientY / 20)];
       };
-      fireEvent.touchStart($sideBar, { touches: [{ clientX: 20, clientY: 10 }] });
-      fireEvent.touchMove($sideBar, { touches: [{ clientX: 20, clientY: 50 }] });
-      fireEvent.touchEnd($sideBar, { touches: [{ clientX: 20, clientY: 50 }] });
+      await act(async () => {
+        fireEvent.touchStart($sideBar, { touches: [{ clientX: 20, clientY: 10 }] });
+        fireEvent.touchMove($sideBar, { touches: [{ clientX: 20, clientY: 50 }] });
+        fireEvent.touchEnd($sideBar, { touches: [{ clientX: 20, clientY: 50 }] });
+      });
       expect(changeFn).toBeCalledWith(indexList[Math.floor(50 / 20)]);
       const $sidebarTip = container.querySelector(`.${name}__sidebar-tips`);
       expect($sidebarTip).toBeDefined();
