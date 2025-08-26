@@ -68,7 +68,7 @@ describe('Result', () => {
       expect(container.querySelector(`.t-result__title`).textContent).toBe('title');
     });
 
-    it('image', () => {
+    it(':image', () => {
       const imageTestCase = [null, () => <div>image slot</div>, imgUrl];
 
       const iconId = getIconId(InfoCircleIcon);
