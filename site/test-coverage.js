@@ -61,7 +61,7 @@ module.exports = {
   table: { statements: '6.09%', branches: '0%', functions: '0%', lines: '6.32%' },
   tabs: { statements: '5.8%', branches: '0%', functions: '0%', lines: '6.33%' },
   tag: { statements: '100%', branches: '96.87%', functions: '100%', lines: '100%' },
-  textarea: { statements: '5.4%', branches: '0%', functions: '0%', lines: '5.88%' },
+  textarea: { statements: '98.64%', branches: '95%', functions: '93.33%', lines: '100%' },
   toast: { statements: '98.73%', branches: '100%', functions: '94.11%', lines: '98.66%' },
   treeSelect: { statements: '5.4%', branches: '0%', functions: '0%', lines: '5.88%' },
   upload: { statements: '4.28%', branches: '0%', functions: '0%', lines: '4.47%' },
