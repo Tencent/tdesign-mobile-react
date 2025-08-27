@@ -1,7 +1,7 @@
 import cls from 'classnames';
 import React, { forwardRef, memo, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { Icon } from 'tdesign-icons-react';
+import { ViewListIcon } from 'tdesign-icons-react';
 import type { StyledProps } from '../common';
 import type { TdTabBarItemProps } from './type';
 import { TabBarContext } from './TabBarContext';
@@ -152,7 +152,7 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
           <div ref={textNode} className={tabItemTextCls}>
             {shouldShowSubTabBar && (
               <>
-                <Icon name="view-list" size="16" />
+                <ViewListIcon size="16" />
                 <div className={`${tabBarItemClass}__icon-menu`} />
               </>
             )}
