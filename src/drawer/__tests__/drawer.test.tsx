@@ -5,8 +5,6 @@ import { AppIcon } from 'tdesign-icons-react';
 import Drawer from '../Drawer';
 import { DrawerPlugin } from '../plugin';
 
-const TIMEOUT_MS = 1000;
-
 describe('Drawer', () => {
   describe('props', () => {
     it('closeOnOverlayClick', () => {
@@ -116,7 +114,7 @@ describe('DrawerPlugin', () => {
   describe('options', () => {
     it('options-boolean', () => {
       DrawerPlugin(false);
-      setTimeout(() => expect(document.querySelector('.t-drawer')).not.toBeInTheDocument(), TIMEOUT_MS);
+      expect(document.querySelector('.t-drawer')).not.toBeInTheDocument();
     });
 
     it('attach-undefined', async () => {
