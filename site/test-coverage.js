@@ -24,7 +24,7 @@ module.exports = {
   form: { statements: '2.8%', branches: '0%', functions: '0%', lines: '2.96%' },
   grid: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   guide: { statements: '3.46%', branches: '0%', functions: '0%', lines: '3.77%' },
-  hooks: { statements: '43.65%', branches: '20.89%', functions: '43.75%', lines: '45%' },
+  hooks: { statements: '48.41%', branches: '23.88%', functions: '56.25%', lines: '48.33%' },
   image: { statements: '75%', branches: '75.75%', functions: '53.84%', lines: '73.8%' },
   imageViewer: { statements: '8.47%', branches: '2.87%', functions: '0%', lines: '8.84%' },
   indexes: { statements: '95.65%', branches: '69.81%', functions: '100%', lines: '96.94%' },

@@ -1,4 +1,42 @@
-:: BASE_DOC ::
+---
+title: Drawer 抽屉
+description: 屏幕边缘滑出的浮层面板。
+spline: base
+isComponent: true
+toc: false
+---
+
+## 代码演示
+
+### 基础用法
+
+::: demo _example/base
+:::
+
+### 带图标抽屉
+
+::: demo _example/icon
+:::
+
+### 带标题抽屉
+
+::: demo _example/title
+:::
+
+### 抽屉展开方向
+
+::: demo _example/placement
+:::
+
+### 带底部插槽抽屉
+
+::: demo _example/footer
+:::
+
+### 命令行调用
+
+::: demo _example/plugin
+:::
 
 ## API
 
