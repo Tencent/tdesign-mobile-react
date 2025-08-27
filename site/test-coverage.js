@@ -16,7 +16,7 @@ module.exports = {
   dateTimePicker: { statements: '5.67%', branches: '0%', functions: '0%', lines: '6.06%' },
   dialog: { statements: '4.3%', branches: '0%', functions: '0%', lines: '4.49%' },
   divider: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
-  drawer: { statements: '8.21%', branches: '0%', functions: '0%', lines: '9.23%' },
+  drawer: { statements: '98.63%', branches: '100%', functions: '96.42%', lines: '100%' },
   dropdownMenu: { statements: '12%', branches: '0%', functions: '0%', lines: '12.85%' },
   empty: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   fab: { statements: '5.4%', branches: '0%', functions: '0%', lines: '5.4%' },

@@ -1,0 +1,181 @@
+import React, { createRef } from 'react';
+import { describe, expect, render, it, vi, fireEvent, screen, afterEach, beforeEach } from '@test/utils';
+import { AppIcon } from 'tdesign-icons-react';
+
+import Drawer from '../Drawer';
+import { DrawerPlugin } from '../plugin';
+
+const TIMEOUT_MS = 1000;
+
+describe('Drawer', () => {
+  describe('props', () => {
+    it('closeOnOverlayClick', () => {
+      const onClose = vi.fn();
+      render(<Drawer visible closeOnOverlayClick={false} onClose={onClose} />);
+
+      const overlay = document.querySelector('.t-overlay');
+      expect(overlay).toBeInTheDocument();
+      fireEvent.click(overlay);
+      expect(onClose).toHaveBeenCalledTimes(0);
+    });
+
+    it('title', () => {
+      const titleText = 'title';
+      const title = <div>{titleText}</div>;
+      render(<Drawer visible title={title} />);
+      expect(screen.getByText(titleText)).toBeInTheDocument();
+    });
+
+    it('footer', () => {
+      const footerText = 'footer';
+      const footer = <div>{footerText}</div>;
+      render(<Drawer visible footer={footer} />);
+      expect(screen.getByText(footerText)).toBeInTheDocument();
+    });
+
+    it('items', () => {
+      const items = [{ title: 'drawer', icon: <AppIcon /> }];
+      render(<Drawer visible items={items} />);
+
+      expect(document.querySelector('.t-drawer__sidebar-item-icon')).toBeTruthy();
+      expect(document.querySelector('.t-drawer__sidebar-item-title').textContent).toBe('drawer');
+    });
+
+    it('isPlugin', () => {
+      const { rerender } = render(<Drawer visible isPlugin title="title" />);
+      rerender(<Drawer visible isPlugin title="newTitle" />);
+
+      expect(screen.getByText('title')).toBeInTheDocument();
+    });
+  });
+
+  describe('events', () => {
+    it('onOverlayClick', () => {
+      const onOverlayClick = vi.fn();
+      render(<Drawer visible onOverlayClick={onOverlayClick} />);
+
+      const overlay = document.querySelector('.t-overlay');
+      expect(overlay).toBeInTheDocument();
+      fireEvent.click(overlay);
+      expect(onOverlayClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('onItemClick', () => {
+      const onItemClick = vi.fn();
+      const items = [{ title: 'drawer' }];
+      render(<Drawer visible items={items} onItemClick={onItemClick} />);
+
+      const drawerItem = document.querySelector('.t-drawer__sidebar-item');
+      expect(drawerItem).toBeInTheDocument();
+      fireEvent.click(drawerItem);
+      expect(onItemClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('show', () => {
+      const drawerRef = createRef();
+      render(<Drawer ref={drawerRef} isPlugin />);
+      drawerRef.current.show();
+      setTimeout(() => expect(document.querySelector('.t-drawer')).toBeVisible(), 1000);
+    });
+
+    it('hide', () => {
+      const drawerRef = createRef();
+      render(<Drawer ref={drawerRef} isPlugin visible />);
+      drawerRef.current.hide();
+      setTimeout(() => expect(document.querySelector('.t-drawer')).not.toBeVisible(), 1000);
+    });
+
+    it('destroy', () => {
+      const drawerRef = createRef();
+      render(<Drawer ref={drawerRef} isPlugin visible />);
+      drawerRef.current.destroy();
+      setTimeout(() => {
+        expect(document.querySelector('.t-drawer')).not.toBeVisible();
+        expect(document.querySelector('.t-drawer')).not.toBeInTheDocument();
+      }, 1000);
+    });
+
+    it('update', () => {
+      const drawerRef = createRef();
+      render(<Drawer ref={drawerRef} isPlugin visible />);
+      drawerRef.current.update({ visible: false });
+      setTimeout(() => expect(document.querySelector('.t-drawer')).not.toBeVisible(), 1000);
+    });
+  });
+});
+
+describe('DrawerPlugin', () => {
+  let rafCallbacks: Array<() => void> = [];
+  beforeEach(() => {
+    vi.stubGlobal('requestAnimationFrame', (callback: () => void) => {
+      rafCallbacks.push(callback);
+      return rafCallbacks.length - 1;
+    });
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    rafCallbacks = [];
+    document.body.querySelectorAll('.t-drawer').forEach((el) => el.remove());
+  });
+
+  describe('options', () => {
+    it('options-boolean', () => {
+      DrawerPlugin(false);
+      setTimeout(() => expect(document.querySelector('.t-drawer')).not.toBeInTheDocument(), TIMEOUT_MS);
+    });
+
+    it('attach-undefined', () => {
+      const optionsEmpty = {};
+      const drawerPluginWithEmpty = DrawerPlugin(optionsEmpty);
+      drawerPluginWithEmpty.show();
+      setTimeout(() => expect(document.body.querySelector('.t-drawer')).toBeVisible(), TIMEOUT_MS);
+    });
+
+    it('attach-function', () => {
+      const options = { attach: () => document.body };
+      const drawerPlugin = DrawerPlugin(options);
+      drawerPlugin.show();
+      setTimeout(() => expect(document.body.querySelector('.t-drawer')).toBeVisible(), TIMEOUT_MS);
+    });
+
+    it('show', () => {
+      const options = { attach: 'body' };
+      const drawerPlugin = DrawerPlugin(options);
+      drawerPlugin.show();
+
+      rafCallbacks.forEach((cb) => cb());
+      setTimeout(() => expect(document.querySelector('.t-drawer')).toBeVisible(), TIMEOUT_MS);
+    });
+
+    it('hide', () => {
+      const options = { attach: 'body', visible: true };
+      const drawerPlugin = DrawerPlugin(options);
+      drawerPlugin.hide();
+
+      rafCallbacks.forEach((cb) => cb());
+      setTimeout(() => expect(document.querySelector('.t-drawer')).not.toBeVisible(), TIMEOUT_MS);
+    });
+
+    it('update', () => {
+      const options = { attach: 'body', visible: true };
+      const drawerPlugin = DrawerPlugin(options);
+      drawerPlugin.update({ visible: false });
+
+      rafCallbacks.forEach((cb) => cb());
+      setTimeout(() => expect(document.querySelector('.t-drawer')).not.toBeVisible(), TIMEOUT_MS);
+    });
+
+    it('destroy', () => {
+      const options = { attach: 'body', visible: true };
+      const drawerPlugin = DrawerPlugin(options);
+      drawerPlugin.destroy();
+
+      rafCallbacks.forEach((cb) => cb());
+      setTimeout(() => {
+        expect(document.querySelector('.t-drawer')).not.toBeVisible();
+        expect(document.querySelector('.t-drawer')).not.toBeInTheDocument();
+      }, 1000);
+    });
+  });
+});
