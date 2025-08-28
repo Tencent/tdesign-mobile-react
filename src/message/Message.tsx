@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { useTimeout } from 'ahooks';
 import { isObject } from 'lodash-es';
 import { CSSTransition } from 'react-transition-group';
-import { CheckCircleFilledIcon, CloseIcon, InfoCircleFilledIcon } from 'tdesign-icons-react';
+import { CheckCircleFilledIcon, CloseIcon, ErrorCircleFilledIcon, InfoCircleFilledIcon } from 'tdesign-icons-react';
 
 import type { TdMessageProps, MessageMarquee } from './type';
 import useMessageCssTransition from './hooks/useMessageCssTransition';
@@ -38,8 +38,8 @@ interface IInnerState {
 const iconDefault = {
   info: <InfoCircleFilledIcon size={22} />,
   success: <CheckCircleFilledIcon size={22} />,
-  warning: <InfoCircleFilledIcon size={22} />,
-  error: <InfoCircleFilledIcon size={22} />,
+  warning: <ErrorCircleFilledIcon size={22} />,
+  error: <ErrorCircleFilledIcon size={22} />,
 };
 
 const changeNumToStr = (arr: TdMessageProps['offset'] = []) => arr.map((item) => convertUnit(item));
