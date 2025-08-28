@@ -523,30 +523,5 @@ describe('Rate', () => {
         expect(rateWrapper.querySelectorAll('.t-rate__icon--selected')).toHaveLength(3);
       });
     });
-
-    // it('should display correct value in RateTips during dragging', async () => {
-    //   const { container } = render(<Rate defaultValue={3} placement="top" allowHalf />);
-    //   const rateWrapper = container.querySelector('.t-rate__wrapper') as HTMLElement;
-
-    //   // 模拟拖拽开始
-    //   fireEvent.touchStart(rateWrapper, {
-    //     touches: [{ clientX: 0, clientY: 0 }],
-    //   });
-
-    //   // 模拟拖拽移动
-    //   fireEvent.touchMove(rateWrapper, {
-    //     touches: [{ clientX: 120, clientY: 0 }],
-    //   });
-
-    //   // 等待RateTips显示
-    //   await waitFor(() => {
-    //     const tips = container.querySelector('.t-rate__tips');
-    //     expect(tips).toBeInTheDocument();
-    //   });
-
-    //   // 验证RateTips中显示的是currentValue（拖拽时的临时值）
-    //   const tipsText = container.querySelector('.t-rate__tips-text');
-    //   expect(tipsText).toHaveTextContent('3.5');
-    // });
   });
 });
