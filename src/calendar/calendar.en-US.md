@@ -19,12 +19,12 @@ switchMode | String | none | `0.16.0`。options: none/month/year-month | N
 title | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 type | String | 'single' | options: single/multiple/range | N
 usePopup | Boolean | true | \- | N
-value | Number / Array / Date | - | Typescript：`number \| Date \| TCalendarValue[]` `type TCalendarValue = number \| Date`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/calendar/type.ts) | N
-defaultValue | Number / Array / Date | - | uncontrolled property。Typescript：`number \| Date \| TCalendarValue[]` `type TCalendarValue = number \| Date`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/calendar/type.ts) | N
+value | Number / Array / Date | - | Typescript：`CalendarValue` `type CalendarValue = TCalendarValue \| TCalendarValue[]` `type TCalendarValue = number \| Date`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/calendar/type.ts) | N
+defaultValue | Number / Array / Date | - | uncontrolled property。Typescript：`CalendarValue` `type CalendarValue = TCalendarValue \| TCalendarValue[]` `type TCalendarValue = number \| Date`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/calendar/type.ts) | N
 visible | Boolean | false | \- | N
-onChange | Function |  | Typescript：`(value: Date) => void`<br/> | N
-onClose | Function |  | Typescript：`(trigger: CalendarTrigger) => void`<br/>[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/calendar/type.ts)。<br/>`type CalendarTrigger = 'close-btn' \| 'confirm-btn' \| 'overlay'`<br/> | N
-onConfirm | Function |  | Typescript：`(value: Date) => void`<br/> | N
+onChange | Function |  | Typescript：`(value: CalendarValue) => void`<br/> | N
+onClose | Function |  | Typescript：`(trigger: CalendarTrigger) => void`<br/>[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/calendar/type.ts)。<br/>`type CalendarTrigger = 'close-btn' \| 'confirm-btn' \| 'overlay' \| 'auto-close'`<br/> | N
+onConfirm | Function |  | Typescript：`(value: CalendarValue) => void`<br/> | N
 onPanelChange | Function |  | Typescript：`(context: { year: number, month: number }) => void`<br/>`0.16.0` | N
 onScroll | Function |  | Typescript：`(context: {e: React.UIEvent}) => void`<br/>`0.16.0`。triggered when scrolling | N
 onSelect | Function |  | Typescript：`(value: Date) => void`<br/> | N
@@ -46,4 +46,4 @@ Name | Default Value | Description
 --td-calendar-switch-mode-icon-color | @text-color-secondary | - 
 --td-calendar-switch-mode-icon-disabled-color | @text-color-disabled | - 
 --td-calendar-title-color | @text-color-primary | - 
---td-calendar-title-font-size | 18px | - 
+--td-calendar-title-font-size | 18px | -
