@@ -5,6 +5,30 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.19.1 `2025-08-28` 
+### 🚀 Features
+- `Tabs`:  支持自动滚动到激活项 @novlan1 ([#693](https://github.com/Tencent/tdesign-mobile-react/pull/693))
+- `Textarea`: 
+  - 新增 `cursorColor` 属性 @anlyyao ([#712](https://github.com/Tencent/tdesign-mobile-react/pull/712))
+  - `maxlength` 属性支持 `string` 类型 @anlyyao ([#712](https://github.com/Tencent/tdesign-mobile-react/pull/712))
+- `Form`: 新增 `requiredMarkPosition`，可定义必填符号的位置 @anlyyao ([#721](https://github.com/Tencent/tdesign-mobile-react/pull/721))
+- `Calendar`: 
+  - 支持定位到选中日期位置 @anlyyao ([#755](https://github.com/Tencent/tdesign-mobile-react/pull/755))
+  - `CalendarTrigger` 增加 `auto-close` 选项，在 `confirmBtn= null` 时触发 @anlyyao ([#755](https://github.com/Tencent/tdesign-mobile-react/pull/755))
+- `Massage`:  图标改用按需引入 @lich-yoo ([#753](https://github.com/Tencent/tdesign-mobile-react/pull/753))
+- `TabBarItem`:  图标改用按需引入 @lich-yoo ([#753](https://github.com/Tencent/tdesign-mobile-react/pull/753))
+- `Tag`:  图标改用按需引入 @lich-yoo ([#753](https://github.com/Tencent/tdesign-mobile-react/pull/753))
+- `CheckTag`:  图标改用按需引入 @lich-yoo ([#753](https://github.com/Tencent/tdesign-mobile-react/pull/753))
+### 🐞 Bug Fixes
+- `ImageViewer`: 修复背景色错误，导航背景色固定为 `#000`，遮罩背景色使用 `@mask-active` @anlyyao ([#723](https://github.com/Tencent/tdesign-mobile-react/pull/723))
+- `Textarea`:
+  -  修复 `--td-textarea-placeholder-color` 无效 @anlyyao ([#739](https://github.com/Tencent/tdesign-mobile-react/pull/739))
+  - 修复边框颜色错误 @anlyyao ([#750](https://github.com/Tencent/tdesign-mobile-react/pull/750))
+- `Message`: 修复 `info`，`error` 和 `warning` 主题图标错误 @lich-yoo ([#753](https://github.com/Tencent/tdesign-mobile-react/pull/753))
+- `Calendar`: 
+  - 修复 `confirmBtn=null` 时，单选和区间选择器未正确收起弹窗 @anlyyao ([#755](https://github.com/Tencent/tdesign-mobile-react/pull/755))
+  - 修复 `change` 和 `confirm` 事件参数类型错误 @anlyyao ([#755](https://github.com/Tencent/tdesign-mobile-react/pull/755))
+
 ## 🌈 0.19.0 `2025-08-01` 
 ### 🚀 Features
 - `QRCode`: 新增 `QRCode` 二维码组件 @anlyyao ([#696](https://github.com/Tencent/tdesign-mobile-react/pull/696))
