@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Icon } from 'tdesign-icons-react';
+import { NotificationIcon } from 'tdesign-icons-react';
 import { Button, Message } from 'tdesign-mobile-react';
 import './style/index.less';
 
@@ -61,7 +61,7 @@ export default function () {
         link="链接"
         duration={0}
         content="这是一条带操作的消息通知"
-        icon={<Icon name="notification" size={22} />}
+        icon={<NotificationIcon size={22} />}
       />
     </div>
   );

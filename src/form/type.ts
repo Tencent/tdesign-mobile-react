@@ -52,7 +52,6 @@ export interface TdFormProps<FormData extends Data = Data> {
   requiredMark?: boolean;
   /**
    * 表单必填符号（*）显示位置
-   * @default left
    */
   requiredMarkPosition?: 'left' | 'right';
   /**
@@ -73,10 +72,6 @@ export interface TdFormProps<FormData extends Data = Data> {
    * @default true
    */
   showErrorMessage?: boolean;
-  /**
-   * 校验状态图标，值为 `true` 显示默认图标，默认图标有 成功、失败、警告 等，不同的状态图标不同。`statusIcon` 值为 `false`，不显示图标。`statusIcon` 值类型为渲染函数，则可以自定义右侧状态图标
-   */
-  statusIcon?: boolean | TNode<TdFormItemProps>;
   /**
    * 【讨论中】当校验结果只有告警信息时，是否触发 `submit` 提交事件
    * @default false
@@ -134,6 +129,10 @@ export interface TdFormItemProps {
    * @default false
    */
   arrow?: boolean;
+  /**
+   * 表单内容对齐方式，优先级高于 Form.contentAlign
+   */
+  contentAlign?: 'left' | 'right';
   /**
    * label 原生属性
    * @default ''

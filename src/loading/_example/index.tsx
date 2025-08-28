@@ -26,12 +26,12 @@ export default function () {
           <BaseLoading />
         </div>
       </TDemoBlock>
-      <TDemoBlock summary="图标加文字横向" padding={true}>
+      <TDemoBlock summary="图标加文字（横向）" padding={true}>
         <div className="loading-demo--flex">
           <HorzLoading />
         </div>
       </TDemoBlock>
-      <TDemoBlock summary="图标加文字竖向" padding={true}>
+      <TDemoBlock summary="图标加文字（纵向）" padding={true}>
         <div className="loading-demo--flex">
           <VertLoading />
         </div>
@@ -41,7 +41,7 @@ export default function () {
           <PureTextLoading />
         </div>
       </TDemoBlock>
-      <TDemoBlock title="02 组件尺寸">
+      <TDemoBlock title="02 组件尺寸" padding={true}>
         <SizeLoading />
       </TDemoBlock>
       <TDemoBlock title="03 加载速度" summary="加载速度调整">

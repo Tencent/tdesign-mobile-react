@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
-import type { FC, HTMLAttributes, CSSProperties } from 'react';
+import type { FC, HTMLAttributes } from 'react';
 import Sticky from '../sticky';
 import Badge from '../badge';
-import { TdTabPanelProps, TdTabsProps } from './type';
+import { TdTabPanelProps, TdTabsProps, TabValue } from './type';
 import TabPanel from './TabPanel';
 import type { TabPanelProps } from './TabPanel';
 import useConfig from '../hooks/useConfig';
@@ -13,6 +13,7 @@ import { tabsDefaultProps } from './defaultProps';
 import parseTNode from '../_util/parseTNode';
 import useDefault from '../_util/useDefault';
 import TabContext from './context';
+import { Styles } from '../common';
 
 type TabsHTMLAttrs = Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'style'>;
 export interface TabsProps extends TdTabsProps, TabsHTMLAttrs {}
@@ -62,8 +63,11 @@ const Tabs: FC<TabsProps> = (props) => {
   }, [list, children]);
 
   const [currentValue, setCurrentValue] = useDefault(value, defaultValue, onChange);
+  const [previousValue, setPreviousValue] = useState<TabValue>();
 
-  const [lineStyle, setLineStyle] = useState({});
+  const [lineStyle, setLineStyle] = useState<Styles>({
+    opacity: 0,
+  });
   const { classPrefix } = useConfig();
   const activeClass = `${tabsClass}__item--active`;
   const navScrollRef = useRef<HTMLDivElement>(null);
@@ -89,12 +93,16 @@ const Tabs: FC<TabsProps> = (props) => {
   const currentIndex = useMemo(() => itemProps.map((p) => p.value).indexOf(currentValue), [currentValue, itemProps]);
 
   const moveToActiveTab = () => {
+    const isInit = previousValue === undefined;
+
+    setPreviousValue(currentValue);
+
     if (navWrapRef.current && navLineRef.current && showBottomLine) {
       const tab = navWrapRef.current.querySelector<HTMLElement>(`.${activeClass}`);
       if (!tab) return;
       const line = navLineRef.current;
       const tabInner = tab.querySelector<HTMLElement>(`.${classPrefix}-badge`);
-      const style: CSSProperties = {};
+      const style: Styles = { opacity: 1 };
       if (bottomLineMode === 'auto') {
         style.width = `${Number(tabInner?.offsetWidth)}px`;
         style.transform = `translateX(${Number(tab?.offsetLeft) + Number(tabInner?.offsetLeft)}px)`;
@@ -107,11 +115,23 @@ const Tabs: FC<TabsProps> = (props) => {
         }px)`;
       }
 
-      if (animation) {
+      if (isInit) {
+        style.transitionDuration = '0s';
+      } else if (animation) {
         style.transitionDuration = `${animation.duration}ms`;
       }
 
       setLineStyle(style);
+    }
+
+    if (navScrollRef.current) {
+      const tab = navScrollRef.current.querySelector<HTMLElement>(`.${activeClass}`);
+      if (!tab) return;
+      const tabLeft = tab?.offsetLeft;
+      const tabWidth = tab?.offsetWidth;
+      const navScrollWidth = navScrollRef.current.offsetWidth;
+      const scrollDistance = tabLeft - navScrollWidth / 2 + tabWidth / 2;
+      navScrollRef.current.scrollTo({ left: scrollDistance, behavior: 'smooth' });
     }
   };
 

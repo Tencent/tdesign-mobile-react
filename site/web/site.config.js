@@ -71,6 +71,7 @@ export const docs = [
         name: 'fab',
         path: '/mobile-react/components/fab',
         component: () => import('tdesign-mobile-react/fab/fab.md'),
+        componentEn: () => import('tdesign-mobile-react/fab/fab.en-US.md'),
       },
       {
         title: 'Icon 图标',
@@ -163,7 +164,7 @@ export const docs = [
         title: 'TabBar 标签栏',
         titleEn: 'TabBar',
         name: 'tab-bar',
-        path: '/mobile-react/components/tabbar',
+        path: '/mobile-react/components/tab-bar',
         component: () => import('tdesign-mobile-react/tab-bar/tab-bar.md'),
         componentEn: () => import('tdesign-mobile-react/tab-bar/tab-bar.en-US.md'),
       },
@@ -217,9 +218,11 @@ export const docs = [
       },
       {
         title: 'DateTimePicker 时间选择器',
+        titleEn: 'DateTimePicker',
         name: 'date-time-picker',
         path: '/mobile-react/components/date-time-picker',
         component: () => import('tdesign-mobile-react/date-time-picker/date-time-picker.md'),
+        componentEn: () => import('tdesign-mobile-react/date-time-picker/date-time-picker.en-US.md'),
       },
       {
         title: 'Form 表单',
@@ -315,6 +318,7 @@ export const docs = [
         name: 'upload',
         path: '/mobile-react/components/upload',
         component: () => import('tdesign-mobile-react/upload/upload.md'),
+        componentEn: () => import('tdesign-mobile-react/upload/upload.en-US.md'),
       },
     ],
   },
@@ -405,9 +409,11 @@ export const docs = [
       },
       {
         title: 'List 列表',
+        titleEn: 'List',
         name: 'list',
         path: '/mobile-react/components/list',
         component: () => import('tdesign-mobile-react/list/list.md'),
+        componentEn: () => import('tdesign-mobile-react/list/list.en-US.md'),
       },
       {
         title: 'Progress 进度条',
@@ -455,6 +461,7 @@ export const docs = [
         name: 'swiper',
         path: '/mobile-react/components/swiper',
         component: () => import('tdesign-mobile-react/swiper/swiper.md'),
+        componentEn: () => import('tdesign-mobile-react/swiper/swiper.en-US.md'),
       },
       {
         title: 'Table 表格',
@@ -476,14 +483,16 @@ export const docs = [
   },
   {
     title: '反馈',
-    titleEn: 'FeedBack',
+    titleEn: 'Feedback',
     type: 'component',
     children: [
       {
         title: 'ActionSheet 动作面板',
+        titleEn: 'ActionSheet',
         name: 'action-sheet',
         path: '/mobile-react/components/actionsheet',
         component: () => import('tdesign-mobile-react/action-sheet/action-sheet.md'),
+        componentEn: () => import('tdesign-mobile-react/action-sheet/action-sheet.en-US.md'),
       },
       {
         title: 'Dialog 对话框',
@@ -491,12 +500,15 @@ export const docs = [
         name: 'dialog',
         path: '/mobile-react/components/dialog',
         component: () => import('tdesign-mobile-react/dialog/dialog.md'),
+        componentEn: () => import('tdesign-mobile-react/dialog/dialog.en-US.md'),
       },
       {
         title: 'DropdownMenu 下拉菜单',
+        titleEn: 'DropdownMenu',
         name: 'dropdown-menu',
         path: '/mobile-react/components/dropdown-menu',
         component: () => import('tdesign-mobile-react/dropdown-menu/dropdown-menu.md'),
+        componentEn: () => import('tdesign-mobile-react/dropdown-menu/dropdown-menu.en-US.md'),
       },
       {
         title: 'Guide 引导',
@@ -561,6 +573,7 @@ export const docs = [
         name: 'pull-down-refresh',
         path: '/mobile-react/components/pull-down-refresh',
         component: () => import('tdesign-mobile-react/pull-down-refresh/pull-down-refresh.md'),
+        componentEn: () => import('tdesign-mobile-react/pull-down-refresh/pull-down-refresh.en-US.md'),
       },
       {
         title: 'SwipeCell 滑动操作',

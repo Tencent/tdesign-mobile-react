@@ -28,18 +28,8 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
   const { classPrefix } = useConfig();
   const progressClass = `${classPrefix}-progress`;
 
-  const {
-    theme,
-    percentage,
-    label,
-    color = '',
-    trackColor,
-    strokeWidth,
-    className,
-    style,
-    status,
-    size,
-  } = useDefaultProps<ProgressProps>(props, progressDefaultProps);
+  const { theme, percentage, label, color, trackColor, strokeWidth, className, style, status, size } =
+    useDefaultProps<ProgressProps>(props, progressDefaultProps);
 
   const computedStatus = percentage >= 100 ? 'success' : status || 'default';
   const statusClassName = `${progressClass}--status-${computedStatus}`;
@@ -147,14 +137,12 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
     // 自适应文字，根据半路，适度调整
     const fontSizeRatio = innerRadius * 0.27;
 
-    const circleBoxStyle = () => {
-      if (theme !== PRO_THEME.CIRCLE) return {};
-      return {
-        width: diameter,
-        height: diameter,
-        fontSize: 4 + fontSizeRatio,
-      };
-    };
+    const circleBoxStyle = {
+      width: diameter,
+      height: diameter,
+      fontSize: 4 + fontSizeRatio,
+    } as React.CSSProperties;
+
     const circlePathStyle = {
       stroke: color,
       strokeLinecap: circleStokeWidth < 30 ? 'round' : 'buff',
@@ -163,7 +151,7 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
     const circleCenterInViewBox = radius + circleStokeWidth / 2;
 
     progressDom = (
-      <div ref={ref} className={classNames(`${progressClass}--circle`, `${statusClassName}`)} style={circleBoxStyle()}>
+      <div ref={ref} className={classNames(`${progressClass}--circle`, `${statusClassName}`)} style={circleBoxStyle}>
         {getInfoContent()}
         <svg
           width={diameter}

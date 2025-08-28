@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { forwardRef } from 'react';
-import { Icon } from 'tdesign-icons-react';
+import { CloseIcon } from 'tdesign-icons-react';
 import parseTNode from '../_util/parseTNode';
 import { StyledProps } from '../common';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -81,7 +81,7 @@ const Tag = forwardRef<HTMLDivElement, TagProps>((originProps, ref) => {
       <span className={`${baseClass}__text`}>{ChildNode}</span>
       {props.closable && (
         <span className={`${baseClass}__icon-close`} onClick={handleClose}>
-          <Icon name="close" />
+          <CloseIcon />
         </span>
       )}
     </span>

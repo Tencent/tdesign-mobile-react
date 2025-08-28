@@ -1,5 +1,6 @@
 import React from 'react';
 import { Toast, Button } from 'tdesign-mobile-react';
+import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {
   const onlyText = () => {
@@ -26,25 +27,35 @@ export default function () {
 
   return (
     <div className="toast-demo">
-      <Button block theme="primary" variant="outline" size="large" onClick={onlyText}>
-        纯文本
-      </Button>
+      <TDemoBlock summary="纯文本" padding>
+        <Button block theme="primary" variant="outline" size="large" onClick={onlyText}>
+          纯文本
+        </Button>
+      </TDemoBlock>
 
-      <Button block theme="primary" variant="outline" size="large" onClick={textMaxHeight}>
-        多行文字
-      </Button>
+      <TDemoBlock summary="多行文字" padding>
+        <Button block theme="primary" variant="outline" size="large" onClick={textMaxHeight}>
+          多行文字
+        </Button>
+      </TDemoBlock>
 
-      <Button block theme="primary" variant="outline" size="large" onClick={iconHori}>
-        带横向图标
-      </Button>
+      <TDemoBlock summary="带横向图标" padding>
+        <Button block theme="primary" variant="outline" size="large" onClick={iconHori}>
+          带横向图标
+        </Button>
+      </TDemoBlock>
 
-      <Button block theme="primary" variant="outline" size="large" onClick={iconColumn}>
-        带竖向图标
-      </Button>
+      <TDemoBlock summary="带竖向图标" padding>
+        <Button block theme="primary" variant="outline" size="large" onClick={iconColumn}>
+          带竖向图标
+        </Button>
+      </TDemoBlock>
 
-      <Button block theme="primary" variant="outline" size="large" onClick={iconLoading}>
-        加载状态
-      </Button>
+      <TDemoBlock summary="加载状态" padding>
+        <Button block theme="primary" variant="outline" size="large" onClick={iconLoading}>
+          加载状态
+        </Button>
+      </TDemoBlock>
     </div>
   );
 }

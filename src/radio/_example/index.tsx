@@ -27,7 +27,7 @@ export default function RadioDemo() {
         </div>
       </TDemoBlock>
 
-      <TDemoBlock title="02 组件状态" summary="单选框禁用状态">
+      <TDemoBlock title="02 组件状态" summary="单选框状态">
         <div className="radio-demo">
           <StatusDemo />
         </div>

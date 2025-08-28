@@ -177,10 +177,15 @@ exports[`Steps > Steps horizontalDemo demo 1`] = `
           >
             <svg
               class="t-icon t-icon-cart"
+              fill="none"
+              height="1em"
               style="font-size: 20px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-cart"
+              <path
+                d="M0 1H4.7638L5.30925 3H23.3874L19.7208 14H7.78078L7.28078 16H22V18H4.71922L5.96648 13.011L3.2362 3H0V1ZM7.7638 12H18.2792L20.6126 5H5.8547L7.7638 12ZM4 21C4 19.8954 4.89543 19 6 19C7.10457 19 8 19.8954 8 21C8 22.1046 7.10457 23 6 23C4.89543 23 4 22.1046 4 21ZM18 21C18 19.8954 18.8954 19 20 19C21.1046 19 22 19.8954 22 21C22 22.1046 21.1046 23 20 23C18.8954 23 18 22.1046 18 21Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -217,10 +222,15 @@ exports[`Steps > Steps horizontalDemo demo 1`] = `
           >
             <svg
               class="t-icon t-icon-cart"
+              fill="none"
+              height="1em"
               style="font-size: 20px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-cart"
+              <path
+                d="M0 1H4.7638L5.30925 3H23.3874L19.7208 14H7.78078L7.28078 16H22V18H4.71922L5.96648 13.011L3.2362 3H0V1ZM7.7638 12H18.2792L20.6126 5H5.8547L7.7638 12ZM4 21C4 19.8954 4.89543 19 6 19C7.10457 19 8 19.8954 8 21C8 22.1046 7.10457 23 6 23C4.89543 23 4 22.1046 4 21ZM18 21C18 19.8954 18.8954 19 20 19C21.1046 19 22 19.8954 22 21C22 22.1046 21.1046 23 20 23C18.8954 23 18 22.1046 18 21Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -257,10 +267,15 @@ exports[`Steps > Steps horizontalDemo demo 1`] = `
           >
             <svg
               class="t-icon t-icon-cart"
+              fill="none"
+              height="1em"
               style="font-size: 20px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-cart"
+              <path
+                d="M0 1H4.7638L5.30925 3H23.3874L19.7208 14H7.78078L7.28078 16H22V18H4.71922L5.96648 13.011L3.2362 3H0V1ZM7.7638 12H18.2792L20.6126 5H5.8547L7.7638 12ZM4 21C4 19.8954 4.89543 19 6 19C7.10457 19 8 19.8954 8 21C8 22.1046 7.10457 23 6 23C4.89543 23 4 22.1046 4 21ZM18 21C18 19.8954 18.8954 19 20 19C21.1046 19 22 19.8954 22 21C22 22.1046 21.1046 23 20 23C18.8954 23 18 22.1046 18 21Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -297,10 +312,15 @@ exports[`Steps > Steps horizontalDemo demo 1`] = `
           >
             <svg
               class="t-icon t-icon-cart"
+              fill="none"
+              height="1em"
               style="font-size: 20px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-cart"
+              <path
+                d="M0 1H4.7638L5.30925 3H23.3874L19.7208 14H7.78078L7.28078 16H22V18H4.71922L5.96648 13.011L3.2362 3H0V1ZM7.7638 12H18.2792L20.6126 5H5.8547L7.7638 12ZM4 21C4 19.8954 4.89543 19 6 19C7.10457 19 8 19.8954 8 21C8 22.1046 7.10457 23 6 23C4.89543 23 4 22.1046 4 21ZM18 21C18 19.8954 18.8954 19 20 19C21.1046 19 22 19.8954 22 21C22 22.1046 21.1046 23 20 23C18.8954 23 18 22.1046 18 21Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -495,10 +515,15 @@ exports[`Steps > Steps specialDemo demo 1`] = `
             <svg
               class="t-icon t-icon-chevron-right"
               color="rgba(0, 0, 0, .4)"
+              fill="none"
+              height="1em"
               style="font-size: 22px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-chevron-right"
+              <path
+                d="M8.08594 17.5L13.5859 12L8.08594 6.50003L9.50015 5.08582L16.4144 12L9.50015 18.9142L8.08594 17.5Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -533,10 +558,15 @@ exports[`Steps > Steps specialDemo demo 1`] = `
             <svg
               class="t-icon t-icon-chevron-right"
               color="rgba(0, 0, 0, .4)"
+              fill="none"
+              height="1em"
               style="font-size: 22px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-chevron-right"
+              <path
+                d="M8.08594 17.5L13.5859 12L8.08594 6.50003L9.50015 5.08582L16.4144 12L9.50015 18.9142L8.08594 17.5Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -571,10 +601,15 @@ exports[`Steps > Steps specialDemo demo 1`] = `
             <svg
               class="t-icon t-icon-chevron-right"
               color="rgba(0, 0, 0, .4)"
+              fill="none"
+              height="1em"
               style="font-size: 22px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-chevron-right"
+              <path
+                d="M8.08594 17.5L13.5859 12L8.08594 6.50003L9.50015 5.08582L16.4144 12L9.50015 18.9142L8.08594 17.5Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -609,10 +644,15 @@ exports[`Steps > Steps specialDemo demo 1`] = `
             <svg
               class="t-icon t-icon-chevron-right"
               color="rgba(0, 0, 0, .4)"
+              fill="none"
+              height="1em"
               style="font-size: 22px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-chevron-right"
+              <path
+                d="M8.08594 17.5L13.5859 12L8.08594 6.50003L9.50015 5.08582L16.4144 12L9.50015 18.9142L8.08594 17.5Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -958,10 +998,15 @@ exports[`Steps > Steps statusDemo demo 1`] = `
           >
             <svg
               class="t-icon t-icon-cart"
+              fill="none"
+              height="1em"
               style="font-size: 20px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-cart"
+              <path
+                d="M0 1H4.7638L5.30925 3H23.3874L19.7208 14H7.78078L7.28078 16H22V18H4.71922L5.96648 13.011L3.2362 3H0V1ZM7.7638 12H18.2792L20.6126 5H5.8547L7.7638 12ZM4 21C4 19.8954 4.89543 19 6 19C7.10457 19 8 19.8954 8 21C8 22.1046 7.10457 23 6 23C4.89543 23 4 22.1046 4 21ZM18 21C18 19.8954 18.8954 19 20 19C21.1046 19 22 19.8954 22 21C22 22.1046 21.1046 23 20 23C18.8954 23 18 22.1046 18 21Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -998,10 +1043,15 @@ exports[`Steps > Steps statusDemo demo 1`] = `
           >
             <svg
               class="t-icon t-icon-cart"
+              fill="none"
+              height="1em"
               style="font-size: 20px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-cart"
+              <path
+                d="M0 1H4.7638L5.30925 3H23.3874L19.7208 14H7.78078L7.28078 16H22V18H4.71922L5.96648 13.011L3.2362 3H0V1ZM7.7638 12H18.2792L20.6126 5H5.8547L7.7638 12ZM4 21C4 19.8954 4.89543 19 6 19C7.10457 19 8 19.8954 8 21C8 22.1046 7.10457 23 6 23C4.89543 23 4 22.1046 4 21ZM18 21C18 19.8954 18.8954 19 20 19C21.1046 19 22 19.8954 22 21C22 22.1046 21.1046 23 20 23C18.8954 23 18 22.1046 18 21Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -1038,10 +1088,15 @@ exports[`Steps > Steps statusDemo demo 1`] = `
           >
             <svg
               class="t-icon t-icon-cart"
+              fill="none"
+              height="1em"
               style="font-size: 20px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-cart"
+              <path
+                d="M0 1H4.7638L5.30925 3H23.3874L19.7208 14H7.78078L7.28078 16H22V18H4.71922L5.96648 13.011L3.2362 3H0V1ZM7.7638 12H18.2792L20.6126 5H5.8547L7.7638 12ZM4 21C4 19.8954 4.89543 19 6 19C7.10457 19 8 19.8954 8 21C8 22.1046 7.10457 23 6 23C4.89543 23 4 22.1046 4 21ZM18 21C18 19.8954 18.8954 19 20 19C21.1046 19 22 19.8954 22 21C22 22.1046 21.1046 23 20 23C18.8954 23 18 22.1046 18 21Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -1078,10 +1133,15 @@ exports[`Steps > Steps statusDemo demo 1`] = `
           >
             <svg
               class="t-icon t-icon-cart"
+              fill="none"
+              height="1em"
               style="font-size: 20px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-cart"
+              <path
+                d="M0 1H4.7638L5.30925 3H23.3874L19.7208 14H7.78078L7.28078 16H22V18H4.71922L5.96648 13.011L3.2362 3H0V1ZM7.7638 12H18.2792L20.6126 5H5.8547L7.7638 12ZM4 21C4 19.8954 4.89543 19 6 19C7.10457 19 8 19.8954 8 21C8 22.1046 7.10457 23 6 23C4.89543 23 4 22.1046 4 21ZM18 21C18 19.8954 18.8954 19 20 19C21.1046 19 22 19.8954 22 21C22 22.1046 21.1046 23 20 23C18.8954 23 18 22.1046 18 21Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -1415,10 +1475,15 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
           >
             <svg
               class="t-icon t-icon-cart"
+              fill="none"
+              height="1em"
               style="font-size: 20px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-cart"
+              <path
+                d="M0 1H4.7638L5.30925 3H23.3874L19.7208 14H7.78078L7.28078 16H22V18H4.71922L5.96648 13.011L3.2362 3H0V1ZM7.7638 12H18.2792L20.6126 5H5.8547L7.7638 12ZM4 21C4 19.8954 4.89543 19 6 19C7.10457 19 8 19.8954 8 21C8 22.1046 7.10457 23 6 23C4.89543 23 4 22.1046 4 21ZM18 21C18 19.8954 18.8954 19 20 19C21.1046 19 22 19.8954 22 21C22 22.1046 21.1046 23 20 23C18.8954 23 18 22.1046 18 21Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -1455,10 +1520,15 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
           >
             <svg
               class="t-icon t-icon-cart"
+              fill="none"
+              height="1em"
               style="font-size: 20px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-cart"
+              <path
+                d="M0 1H4.7638L5.30925 3H23.3874L19.7208 14H7.78078L7.28078 16H22V18H4.71922L5.96648 13.011L3.2362 3H0V1ZM7.7638 12H18.2792L20.6126 5H5.8547L7.7638 12ZM4 21C4 19.8954 4.89543 19 6 19C7.10457 19 8 19.8954 8 21C8 22.1046 7.10457 23 6 23C4.89543 23 4 22.1046 4 21ZM18 21C18 19.8954 18.8954 19 20 19C21.1046 19 22 19.8954 22 21C22 22.1046 21.1046 23 20 23C18.8954 23 18 22.1046 18 21Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -1495,10 +1565,15 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
           >
             <svg
               class="t-icon t-icon-cart"
+              fill="none"
+              height="1em"
               style="font-size: 20px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-cart"
+              <path
+                d="M0 1H4.7638L5.30925 3H23.3874L19.7208 14H7.78078L7.28078 16H22V18H4.71922L5.96648 13.011L3.2362 3H0V1ZM7.7638 12H18.2792L20.6126 5H5.8547L7.7638 12ZM4 21C4 19.8954 4.89543 19 6 19C7.10457 19 8 19.8954 8 21C8 22.1046 7.10457 23 6 23C4.89543 23 4 22.1046 4 21ZM18 21C18 19.8954 18.8954 19 20 19C21.1046 19 22 19.8954 22 21C22 22.1046 21.1046 23 20 23C18.8954 23 18 22.1046 18 21Z"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -1535,10 +1610,15 @@ exports[`Steps > Steps verticalDemo demo 1`] = `
           >
             <svg
               class="t-icon t-icon-cart"
+              fill="none"
+              height="1em"
               style="font-size: 20px;"
+              viewBox="0 0 24 24"
+              width="1em"
             >
-              <use
-                xlink:href="#t-icon-cart"
+              <path
+                d="M0 1H4.7638L5.30925 3H23.3874L19.7208 14H7.78078L7.28078 16H22V18H4.71922L5.96648 13.011L3.2362 3H0V1ZM7.7638 12H18.2792L20.6126 5H5.8547L7.7638 12ZM4 21C4 19.8954 4.89543 19 6 19C7.10457 19 8 19.8954 8 21C8 22.1046 7.10457 23 6 23C4.89543 23 4 22.1046 4 21ZM18 21C18 19.8954 18.8954 19 20 19C21.1046 19 22 19.8954 22 21C22 22.1046 21.1046 23 20 23C18.8954 23 18 22.1046 18 21Z"
+                fill="currentColor"
               />
             </svg>
           </div>

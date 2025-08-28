@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import { Calendar, Cell } from 'tdesign-mobile-react';
 
 export default function () {
+  const minDate = new Date(2012, 0, 0);
+  const maxDate = new Date(2032, 0, 0);
+  const defaultDate = new Date(2022, 1, 18);
+  const [value, setValue] = useState(defaultDate);
   const [visible, setVisible] = useState(false);
-  const [dataNote, setDataNote] = useState('');
 
-  const format = (val: Date) => {
+  const formatDate = (val: Date) => {
     const date = new Date(val);
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   };
 
   const handleConfirm = (val: Date) => {
     console.log('confirm: ', val);
+    setValue(val);
     setVisible(false);
-    setDataNote(format(val));
   };
   const handleSelect = (val: Date) => {
     console.log('select: ', val);
@@ -34,16 +37,16 @@ export default function () {
       <Calendar
         visible={visible}
         switchMode="year-month"
-        value={new Date(2022, 0, 15)}
-        minDate={new Date(2022, 0, 1)}
-        maxDate={new Date(2025, 10, 30)}
+        value={value}
+        minDate={minDate}
+        maxDate={maxDate}
         onConfirm={handleConfirm}
         onSelect={handleSelect}
         onClose={onClose}
         onPanelChange={onPanelChange}
         onScroll={onScroll}
       ></Calendar>
-      <Cell title="带翻页功能" arrow note={dataNote} onClick={() => setVisible(true)}></Cell>
+      <Cell title="带翻页功能" arrow note={formatDate(value)} onClick={() => setVisible(true)}></Cell>
     </div>
   );
 }

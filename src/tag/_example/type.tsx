@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from 'tdesign-icons-react';
+import { DiscountIcon } from 'tdesign-icons-react';
 import { Tag } from 'tdesign-mobile-react';
 
 const TypeDemo = () => (
@@ -23,10 +23,10 @@ const TypeDemo = () => (
     </div>
     <div className="summary">带图标的标签</div>
     <div className="tag-demo">
-      <Tag variant="light" icon={<Icon name="discount" />}>
+      <Tag variant="light" icon={<DiscountIcon />}>
         标签文字
       </Tag>
-      <Tag variant="outline" icon={<Icon name="discount" />}>
+      <Tag variant="outline" icon={<DiscountIcon />}>
         标签文字
       </Tag>
     </div>

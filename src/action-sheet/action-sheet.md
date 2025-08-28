@@ -29,7 +29,7 @@ onSelected | Function |  | TS 类型：`(selected: ActionSheetItem \| string, in
 名称 | 默认值 | 描述 
 -- | -- | --
 --td-action-sheet-border-color | @component-stroke | - 
---td-action-sheet-border-radius | @radius-extra-large | - 
+--td-action-sheet-border-radius | @radius-extraLarge | - 
 --td-action-sheet-cancel-height | 48px | - 
 --td-action-sheet-color | @text-color-primary | - 
 --td-action-sheet-description-color | @text-color-placeholder | - 

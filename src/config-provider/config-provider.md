@@ -18,6 +18,7 @@ cascader | Object | - | 级联选择器全局配置。TS 类型：`CascaderConfi
 classPrefix | String | t | CSS 类名前缀 | N
 dateTimePicker | Object | - | 时间选择器全局配置。TS 类型：`DateTimePickerConfig` | N
 dropdownMenu | Object | - | 下拉菜单全局配置。TS 类型：`DropdownMenuConfig` | N
+form | Object | - | 表单组件全局配置。TS 类型：`FormConfig` | N
 guide | Object | - | 引导全局配置。TS 类型：`GuideConfig` | N
 list | Object | - | 列表组件全局配置。TS 类型：`ListConfig` | N
 picker | Object | - | 选择器全局配置。TS 类型：`PickerConfig` | N
@@ -77,6 +78,9 @@ reset | String | - | 语言配置，“重置” 按钮描述文本 | N
 
 名称 | 类型 | 默认值 | 描述 | 必传
 -- | -- | -- | -- | --
+colonText | String | - | 字段旁边的冒号，中文为“：” | N
+errorMessage | Object | - | 表单错误信息配置，示例：`{ idcard: '请输入正确的身份证号码', max: '字符长度不能超过 ${max}' }`。TS 类型：`FormErrorMessage`，[Form API Documents](./form?tab=api)。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/config-provider/type.ts) | N
+requiredMark | Boolean | true | 是否显示必填符号（*），默认显示 | N
 requiredMarkPosition | String | left | 表单必填符号（*）显示位置。可选项：left/right | N
 
 ### GuideConfig

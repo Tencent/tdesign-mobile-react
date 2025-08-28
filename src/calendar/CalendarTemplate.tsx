@@ -10,7 +10,7 @@ import classNames from 'classnames';
 
 import parseTNode from '../_util/parseTNode';
 import { Button, ButtonProps } from '../button';
-import { TDateType, TCalendarValue } from './type';
+import { TDateType, CalendarValue } from './type';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { calendarDefaultProps } from './defaultProps';
@@ -29,7 +29,7 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
   const context = useContext(CalendarContext);
   const props = useDefaultProps(context ? context.inject(_props) : _props, calendarDefaultProps);
 
-  const [selectedDate, setSelectedDate] = useState<number | Date | TCalendarValue[]>();
+  const [selectedDate, setSelectedDate] = useState<CalendarValue>();
   const [currentMonth, setCurrentMonth] = useState<
     Array<{
       year: number;
@@ -237,41 +237,43 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
     const { year, month } = getCurrentYearAndMonth(date);
     setCurrentMonth(months.filter((item) => item.year === year && item.month === month));
     updateActionButton(date);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   };
 
   // 选择日期
   const handleSelect = (year, month, date, dateItem) => {
     if (dateItem.type === 'disabled' || props.readonly) return;
-    const selected = new Date(year, month, date);
-    let newSelected: TCalendarValue | TCalendarValue[];
-    if (props.type === 'range' && Array.isArray(selectedDate)) {
-      if (selectedDate.length === 1) {
-        if (selectedDate[0] > selected) {
-          newSelected = [selected];
+    const selected: CalendarValue = new Date(year, month, date);
+    let newSelected: CalendarValue;
+
+    switch (props.type) {
+      case 'range': {
+        if (Array.isArray(selectedDate)) {
+          if (selectedDate.length === 1) {
+            newSelected = selectedDate[0] > selected ? [selected] : [selectedDate[0], selected];
+          } else {
+            newSelected = [selected];
+          }
         } else {
-          newSelected = [selectedDate[0], selected];
+          newSelected = [selected];
         }
-      } else {
-        newSelected = [selected];
-        if (!confirmBtn && selectedDate.length === 2) {
-          props.onChange?.(new Date(selectedDate[0]));
+        break;
+      }
+
+      case 'multiple': {
+        const currentSelection = Array.isArray(selectedDate) ? selectedDate : [selectedDate];
+        const index = currentSelection.findIndex((item) => isSameDate(item, selected));
+        newSelected = [...currentSelection];
+        if (index > -1) {
+          newSelected.splice(index, 1);
+        } else {
+          newSelected.push(selected);
         }
+        break;
       }
-    } else if (props.type === 'multiple') {
-      const newVal = [...(Array.isArray(selectedDate) ? selectedDate : [selectedDate])];
-      const index = newVal.findIndex((item) => isSameDate(item, selected));
-      if (index > -1) {
-        newVal.splice(index, 1);
-      } else {
-        newVal.push(selected);
-      }
-      newSelected = newVal;
-    } else {
-      newSelected = selected;
-      if (!confirmBtn) {
-        props.onChange?.(selected);
-      }
+
+      default: // 'single'
+        newSelected = selected;
+        break;
     }
     setSelectedDate(newSelected);
 
@@ -280,12 +282,19 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
       calcCurrentMonth(date);
     }
 
+    if (
+      !confirmBtn &&
+      (props.type === 'single' || (props.type === 'range' && Array.isArray(newSelected) && newSelected.length === 2))
+    ) {
+      props.onClose?.('auto-close');
+      props.onChange?.(selectedDate);
+    }
     props.onSelect?.(newSelected as any);
   };
 
   const handleConfirm = () => {
     props.onClose?.('confirm-btn');
-    props.onConfirm?.(new Date(Array.isArray(selectedDate) ? selectedDate[0] : selectedDate));
+    props.onConfirm?.(selectedDate);
   };
 
   const handleClose = () => {
@@ -423,7 +432,7 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
         {(props.switchMode === 'none' ? months : currentMonth).map((item, index) => (
           <React.Fragment key={`month-${item.year}-${item.month}-${index}`}>
             {props.switchMode === 'none' && (
-              <div className={`${calendarClass}__month`}>
+              <div id={`year_${item.year}_month_${item.month}`} className={`${calendarClass}__month`}>
                 {t(local.monthTitle, { year: item.year, month: local.months[item.month] })}
               </div>
             )}
