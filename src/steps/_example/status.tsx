@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Steps, StepItem } from 'tdesign-mobile-react';
-import { Icon } from 'tdesign-icons-react';
+import { CartIcon } from 'tdesign-icons-react';
 
 export default function StepsDemo() {
   const [first, setFirst] = useState(1);
@@ -52,7 +52,7 @@ export default function StepsDemo() {
               key={index}
               title={getTitle('second', index)}
               content="辅助信息"
-              icon={<Icon name="cart" size="20px" />}
+              icon={<CartIcon size="20px" />}
             ></StepItem>
           ))}
         </Steps>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Steps, StepItem, Button } from 'tdesign-mobile-react';
-import { Icon } from 'tdesign-icons-react';
+import { ChevronRightIcon, CartIcon } from 'tdesign-icons-react';
 
 export default function StepsDemo() {
   const [first, setFirst] = useState(3);
@@ -46,7 +46,7 @@ export default function StepsDemo() {
             <StepItem
               key={index}
               title={getTitle('first', index)}
-              titleRight={<Icon name="chevron-right" size="22px" color="rgba(0, 0, 0, .4)" />}
+              titleRight={<ChevronRightIcon size="22px" color="rgba(0, 0, 0, .4)" />}
             />
           ))}
         </Steps>
@@ -62,7 +62,7 @@ export default function StepsDemo() {
               key={index}
               title="步骤展示"
               content="可自定义此处内容"
-              icon={<Icon name="cart" size="20px" />}
+              icon={<CartIcon size="20px" />}
             ></StepItem>
           ))}
         </Steps>
