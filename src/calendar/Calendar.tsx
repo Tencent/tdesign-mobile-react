@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, FC, useState } from 'react';
+import React, { useEffect, useRef, FC, useState, useCallback } from 'react';
 import TPopup from '../popup';
 import CalendarTemplate from './CalendarTemplate';
-import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { calendarDefaultProps } from './defaultProps';
 import { TdCalendarProps } from './type';
@@ -17,17 +16,13 @@ export const CalendarContext = React.createContext<CalendarContextValue>(null);
 
 const Calendar: FC<CalendarProps> = (_props) => {
   const calendarTemplateRef = useRef(null);
-  const calendarClass = usePrefixClass('calendar');
 
   const props = useDefaultProps(_props, calendarDefaultProps);
-  const { title, type, onClose, confirmBtn, usePopup, visible, className, style } = props;
+  const { title, onClose, confirmBtn, usePopup, visible, className, style, value } = props;
 
   const [currentVisible, setCurrentVisible] = useState(visible);
   const contextValue: CalendarContextValue = {
-    inject(calendarProps) {
-      if (calendarProps.type) {
-        return calendarProps;
-      }
+    inject() {
       return {
         ...props,
         onClose: (trigger) => {
@@ -38,16 +33,17 @@ const Calendar: FC<CalendarProps> = (_props) => {
     },
   };
 
-  const selectedValueIntoView = () => {
-    const selectType = type === 'range' ? 'start' : 'selected';
-    const { templateRef } = calendarTemplateRef.current;
-    const scrollContainer = templateRef.querySelector(`.${calendarClass}__months`);
-    const selectedDate = templateRef.querySelector(`.${calendarClass}__dates-item--${selectType}`)?.parentNode
-      ?.previousElementSibling;
-    if (selectedDate) {
-      scrollContainer.scrollTop = selectedDate.offsetTop - scrollContainer.offsetTop;
+  const selectedValueIntoView = useCallback(() => {
+    if (!value || !calendarTemplateRef.current) return;
+    const date = new Date(Array.isArray(value) ? value[0] : value);
+    const templateRef = calendarTemplateRef.current;
+    const selected = templateRef.querySelector(`#year_${date.getFullYear()}_month_${date.getMonth()}`);
+    if (selected && typeof selected.scrollIntoView === 'function') {
+      selected?.scrollIntoView({
+        behavior: 'auto',
+      });
     }
-  };
+  }, [value, calendarTemplateRef]);
 
   const onPopupVisibleChange = (v) => {
     if (!v) {
@@ -59,8 +55,17 @@ const Calendar: FC<CalendarProps> = (_props) => {
   };
 
   useEffect(() => {
+    if (!usePopup) {
+      selectedValueIntoView();
+      return;
+    }
+
     setCurrentVisible(visible);
-  }, [visible]);
+    if (visible) {
+      const timer = setTimeout(selectedValueIntoView, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [visible, usePopup, selectedValueIntoView]);
 
   return (
     <CalendarContext.Provider value={contextValue}>
