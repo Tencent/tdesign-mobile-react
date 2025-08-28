@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { useTimeout } from 'ahooks';
 import { isObject } from 'lodash-es';
 import { CSSTransition } from 'react-transition-group';
-import { Icon } from 'tdesign-icons-react';
+import { CheckCircleFilledIcon, CloseIcon, ErrorCircleFilledIcon, InfoCircleFilledIcon } from 'tdesign-icons-react';
 
 import type { TdMessageProps, MessageMarquee } from './type';
 import useMessageCssTransition from './hooks/useMessageCssTransition';
@@ -34,6 +34,13 @@ interface IInnerState {
     delay: number;
   };
 }
+
+const iconDefault = {
+  info: <InfoCircleFilledIcon size={22} />,
+  success: <CheckCircleFilledIcon size={22} />,
+  warning: <ErrorCircleFilledIcon size={22} />,
+  error: <ErrorCircleFilledIcon size={22} />,
+};
 
 const changeNumToStr = (arr: TdMessageProps['offset'] = []) => arr.map((item) => convertUnit(item));
 
@@ -225,11 +232,7 @@ const Message: React.FC<MessageProps> = (originProps) => {
   const onLinkClick = (e) => {
     props.onLinkClick?.(e);
   };
-  const leftIcon = parseTNode(
-    icon,
-    null,
-    <Icon name={`${theme === 'success' ? 'check' : 'error'}-circle-filled`} size={22} />,
-  );
+  const leftIcon = parseTNode(icon, null, iconDefault[theme] || iconDefault.info);
 
   const getLinkContent = () => {
     if (typeof link === 'string') {
@@ -250,7 +253,7 @@ const Message: React.FC<MessageProps> = (originProps) => {
     if (!closeBtn) return;
 
     return closeBtn === true ? (
-      <Icon className={`${name}--close-btn`} name="close" size={22} onClick={clickCloseButton} />
+      <CloseIcon className={`${name}--close-btn`} size={22} onClick={clickCloseButton} />
     ) : (
       parseTNode(closeBtn as string | TNode)
     );
