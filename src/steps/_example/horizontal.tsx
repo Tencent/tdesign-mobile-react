@@ -3,7 +3,7 @@ import { Steps, StepItem } from 'tdesign-mobile-react';
 import { Icon } from 'tdesign-icons-react';
 
 export default function StepsDemo() {
-  const [first, setFirst] = useState(1);
+  const [first, setFirst] = useState<number | string>('1');
   const [second, setSecond] = useState(1);
   const [third, setThird] = useState(1);
   const options = {
@@ -13,7 +13,7 @@ export default function StepsDemo() {
   };
 
   const count = 4;
-  const onFirstChange = (current: number) => {
+  const onFirstChange = (current: number | string) => {
     setFirst(current);
   };
   const onSecondChange = (current: number) => {
@@ -23,7 +23,7 @@ export default function StepsDemo() {
     setThird(current);
   };
 
-  const getTitle = (type: 'first' | 'second' | 'third', index: number) => {
+  const getTitle = (type: 'first' | 'second' | 'third', index: number | string) => {
     if (index === options[type]) {
       return '当前步骤';
     }
