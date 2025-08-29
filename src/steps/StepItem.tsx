@@ -60,7 +60,7 @@ const StepItem: FC<StepItemProps> = (props) => {
   const dot = useMemo(() => theme === StepThemeEnum.DOT, [theme]);
   const currentStatus = useMemo(() => {
     if (status !== 'default') return status;
-    if (index === current) return stepsStatus;
+    if (index === +current) return stepsStatus;
     if (index < +current) return 'finish';
     return status;
   }, [index, current, stepsStatus, status]);
