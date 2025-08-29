@@ -58,7 +58,7 @@ module.exports = {
   swiper: { statements: '3.77%', branches: '0.9%', functions: '1.4%', lines: '3.89%' },
   switch: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   tabBar: { statements: '10%', branches: '0%', functions: '0%', lines: '10.81%' },
-  table: { statements: '6.09%', branches: '0%', functions: '0%', lines: '6.32%' },
+  table: { statements: '100%', branches: '88.57%', functions: '100%', lines: '100%' },
   tabs: { statements: '5.8%', branches: '0%', functions: '0%', lines: '6.33%' },
   tag: { statements: '100%', branches: '96.87%', functions: '100%', lines: '100%' },
   textarea: { statements: '98.64%', branches: '95%', functions: '93.33%', lines: '100%' },
