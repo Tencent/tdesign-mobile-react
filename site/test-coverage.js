@@ -52,7 +52,7 @@ module.exports = {
   skeleton: { statements: '100%', branches: '95.83%', functions: '100%', lines: '100%' },
   slider: { statements: '3.38%', branches: '0%', functions: '0%', lines: '3.46%' },
   stepper: { statements: '83.01%', branches: '81.25%', functions: '90.9%', lines: '88%' },
-  steps: { statements: '100%', branches: '97.05%', functions: '100%', lines: '100%' },
+  steps: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   sticky: { statements: '7.14%', branches: '0%', functions: '0%', lines: '7.27%' },
   swipeCell: { statements: '4.42%', branches: '0%', functions: '0%', lines: '4.67%' },
   swiper: { statements: '3.77%', branches: '0.9%', functions: '1.4%', lines: '3.89%' },
