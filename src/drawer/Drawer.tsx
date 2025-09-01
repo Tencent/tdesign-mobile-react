@@ -18,6 +18,7 @@ const Drawer: React.FC<DrawerProps> = forwardRef((originProps, ref) => {
   const [state, setState] = useSetState<DrawerProps>({ isPlugin: false, ...props });
 
   const {
+    destroyOnClose,
     className,
     style,
     items,
@@ -94,6 +95,7 @@ const Drawer: React.FC<DrawerProps> = forwardRef((originProps, ref) => {
     <Popup
       visible={show}
       placement={placement}
+      destroyOnClose={destroyOnClose}
       showOverlay={showOverlay}
       zIndex={zIndex}
       onVisibleChange={handleOverlayClick}
