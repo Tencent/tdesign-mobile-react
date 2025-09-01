@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { render, fireEvent, act } from '@testing-library/react';
-import { DropdownMenu, DropdownItem } from '../index';
+import { DropdownMenu, DropdownItem, DropdownOption } from '../index';
 
 const productOptions = [
   { value: 'all', label: '全部产品', disabled: false },
@@ -176,19 +176,146 @@ describe('DropdownMenu API', () => {
   });
 
   it('should support keys prop for custom option fields', () => {
+    // 别名造成的类型冲突，强制转换一下
     const customOptions = [
       { k: 'a', l: 'A 选项', d: false },
       { k: 'b', l: 'B 选项', d: false },
-    ];
+    ] as unknown as DropdownOption[];
     const { getByText } = render(
       <DropdownMenu>
-        <DropdownItem
-          options={customOptions as any}
-          keys={{ value: 'k', label: 'l', disabled: 'd' }}
-          defaultValue="b"
-        />
+        <DropdownItem options={customOptions} keys={{ value: 'k', label: 'l', disabled: 'd' }} defaultValue="b" />
       </DropdownMenu>,
     );
     expect(getByText('B 选项')).toBeTruthy();
+  });
+
+  it('should render custom children (parseTNode) instead of default options', () => {
+    const { getByText } = render(
+      <DropdownMenu>
+        <DropdownItem label="custom" options={productOptions}>
+          <div>MyCustomChild</div>
+        </DropdownItem>
+      </DropdownMenu>,
+    );
+    fireEvent.click(getByText('custom'));
+    expect(getByText('MyCustomChild')).toBeTruthy();
+  });
+
+  it('getDropdownItemStyle returns bottom when direction="up" (uses getBoundingClientRect)', () => {
+    const { container, getByText } = render(
+      <DropdownMenu direction="up" zIndex={1234}>
+        <DropdownItem label="pos" options={productOptions} />
+      </DropdownMenu>,
+    );
+
+    const title = getByText('pos');
+    const menuItem = title.parentElement as HTMLElement;
+
+    menuItem.getBoundingClientRect = () => new DOMRect(0, 100, 0, 50);
+
+    fireEvent.click(title);
+
+    const dropdownItem = container.querySelector('.t-dropdown-item') as HTMLElement;
+    expect(dropdownItem).toBeTruthy();
+    if (dropdownItem) {
+      expect(dropdownItem.style.bottom).toContain('calc(100vh - 100px)');
+      expect(dropdownItem.style.zIndex).toBe('1234');
+    }
+  });
+
+  it('exposes collapseMenu via ref d it collapses opened menu', () => {
+    // src\dropdown-menu\DropdownMenu.tsx
+    type DropdownMenuRef = {
+      collapseMenu: () => void;
+    };
+
+    const ref = React.createRef<DropdownMenuRef>();
+    const { getByText } = render(
+      <DropdownMenu ref={ref}>
+        <DropdownItem label="toCollapse" options={productOptions} />
+      </DropdownMenu>,
+    );
+
+    fireEvent.click(getByText('toCollapse'));
+    const title = getByText('toCollapse');
+    const item = title.parentElement as HTMLElement;
+    expect(item.classList.contains('t-dropdown-menu__item--active')).toBe(true);
+
+    // call collapseMenu
+    act(() => {
+      ref.current?.collapseMenu();
+    });
+
+    expect(item.classList.contains('t-dropdown-menu__item--active')).toBe(false);
+  });
+
+  it('should ignore non-DropdownItem children when rendering items', () => {
+    const { container } = render(
+      <DropdownMenu>
+        <div>noop</div>
+        <DropdownItem label="only" options={productOptions} />
+      </DropdownMenu>,
+    );
+    const items = container.querySelectorAll('.t-dropdown-menu__item');
+    expect(items.length).toBe(1);
+  });
+
+  it('multiple without onReset should restore modalValue on 重置 (else branch)', () => {
+    const { getByText, container } = render(
+      <DropdownMenu>
+        <DropdownItem label="noReset" multiple options={productOptions} value={['all']} />
+      </DropdownMenu>,
+    );
+
+    fireEvent.click(getByText('noReset'));
+    fireEvent.click(getByText('最新产品'));
+    fireEvent.click(getByText('重置'));
+
+    const checked = container.querySelector('.t-checkbox__title--checked');
+    expect(checked).toBeTruthy();
+  });
+
+  it('multiple without onConfirm should setInnerValue on 确定 (else branch) and close', () => {
+    let value = ['all'];
+    const handleChange = vi.fn((v) => {
+      value = v;
+    });
+    const { getByText } = render(
+      <DropdownMenu>
+        <DropdownItem label="noConfirm" multiple options={productOptions} value={value} onChange={handleChange} />
+      </DropdownMenu>,
+    );
+
+    fireEvent.click(getByText('noConfirm'));
+    fireEvent.click(getByText('最新产品'));
+    fireEvent.click(getByText('确定'));
+
+    expect(handleChange).toHaveBeenCalled();
+    expect(getByText('noConfirm')).toBeTruthy();
+  });
+
+  it('getDropdownItemStyle returns top when direction="down" and shows down caret', () => {
+    const { container, getByText } = render(
+      <DropdownMenu zIndex={4321}>
+        <DropdownItem label="posDown" options={productOptions} />
+      </DropdownMenu>,
+    );
+
+    const icon = container.querySelector('.t-icon-caret-down-small');
+    expect(icon).toBeTruthy();
+
+    const title = getByText('posDown');
+    const menuItem = title.parentElement as HTMLElement;
+
+    menuItem.getBoundingClientRect = () => new DOMRect(0, 100, 0, 50);
+
+    fireEvent.click(title);
+
+    const dropdownItem = container.querySelector('.t-dropdown-item') as HTMLElement;
+    expect(dropdownItem).toBeTruthy();
+    if (dropdownItem) {
+      expect(dropdownItem.style.top).toBe('150px');
+      expect(dropdownItem.style.zIndex).toBe('4321');
+    }
   });
 });
