@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 const COMPONENT_NAME = process.argv[process.argv.indexOf('--NAME') + 1]; // 在 --NAME 后面
 
@@ -58,10 +58,10 @@ const generateCssVariables = async (componentName) => {
 
     const list = file.match(matchReg)?.sort();
 
-    list?.forEach((item) => {
+    list?.forEach((item, index) => {
       cssVariableBodyContent += `${item.slice(1, item.indexOf(',')).trim()} | ${item
         .slice(item.indexOf(',') + 2, item.length - 1)
-        .trim()} | - \n`;
+        .trim()} | -${index === list.length - 1 ? '' : ' \n'}`;
     });
   });
 

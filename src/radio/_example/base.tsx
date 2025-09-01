@@ -7,7 +7,7 @@ export default function Base() {
     <RadioGroup value={defaultValue} onChange={(value: string) => setDefaultValue(value)}>
       <Radio label="单选" value="idx0"></Radio>
       <Radio label="单选" value="idx1"></Radio>
-      <Radio label="单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选单选" value="idx2"></Radio>
+      <Radio label="单选标题多行单选标题多行单选标题多行单选标题多行单选标题多行" value="idx2"></Radio>
       <Radio
         label="单选"
         value="idx3"

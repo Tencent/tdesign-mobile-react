@@ -1,7 +1,7 @@
 import { describe, vi } from '@test/utils';
 import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
-import { Icon } from 'tdesign-icons-react';
+import { AppIcon } from 'tdesign-icons-react';
 import { Tag, TagCheck } from '../index';
 
 const prefix = 't';
@@ -90,7 +90,7 @@ describe('tag', () => {
     });
 
     it(': icon', () => {
-      const { container } = render(<Tag icon={<Icon name="app" />} />);
+      const { container } = render(<Tag icon={<AppIcon />} />);
       const $icon = container.querySelector(`${baseClass}__icon`) as HTMLElement;
       expect($icon).toBeTruthy();
     });
@@ -176,7 +176,7 @@ describe('TagCheck', () => {
     });
 
     it(': icon', () => {
-      const { container } = render(<TagCheck icon={<Icon name="app" />} />);
+      const { container } = render(<TagCheck icon={<AppIcon />} />);
       const $tagItem = container.querySelector(baseClass) as HTMLElement;
       expect($tagItem.classList.contains(`${baseClass}__icon-check`));
     });

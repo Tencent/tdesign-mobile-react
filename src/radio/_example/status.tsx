@@ -1,21 +1,31 @@
 import React from 'react';
-import { Radio, RadioGroup } from 'tdesign-mobile-react';
+import { Radio } from 'tdesign-mobile-react';
 
 export default function () {
-  const defaultValue = '1';
   const options = [
     {
       value: '1',
+      checked: true,
       label: '选项禁用-已选',
     },
     {
       value: '2',
+      checked: false,
       label: '选项禁用-默认',
     },
   ];
   return (
-    <RadioGroup disabled value={defaultValue}>
-      {options.map((opt) => <Radio value={opt.value} label={opt.label} disabled key={opt.value}></Radio>)}
-    </RadioGroup>
+    <div className="example-radio">
+      {options.map((opt) => (
+        <Radio
+          className="example-radio__item"
+          defaultChecked={opt.checked}
+          allowUncheck
+          label={opt.label}
+          disabled
+          key={opt.value}
+        ></Radio>
+      ))}
+    </div>
   );
 }

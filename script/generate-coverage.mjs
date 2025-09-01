@@ -1,27 +1,11 @@
-const fs = require('fs');
-const path = require('path');
-const camelCase = require('lodash.camelcase');
-
-const { parseFromString} = require('dom-parser');
-
+import fs from 'fs';
+import path from 'path';
+import { camelCase } from 'lodash-es';
+import { parseFromString } from 'dom-parser';
 
 function resolveCwd(...args) {
   args.unshift(process.cwd());
   return path.join(...args);
-}
-
-function checkTargetCoverage(name) {
-  const list = name.split('/');
-  if (list.length === 1) {
-    return [true, name];
-  }
-  if (list.length === 2) {
-    return [list[0] === 'src', list[1]];
-  }
-  if (list.length === 3) {
-    return [list[1] === 'src', list[2]];
-  }
-  return [false, ''];
 }
 
 fs.readFile(resolveCwd('test/coverage/index.html'), 'utf8', (err, html) => {

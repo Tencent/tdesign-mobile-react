@@ -7,11 +7,12 @@ import { usePrefixClass } from '../hooks/useClass';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import useDefault from '../_util/useDefault';
 import type { TdRadioProps } from './type';
+import type { StyledProps } from '../common';
 import RadioGroup from './RadioGroup';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { radioDefaultProps } from './defaultProps';
 
-export interface RadioProps extends TdRadioProps {
+export interface RadioProps extends TdRadioProps, StyledProps {
   ref?: Ref<HTMLDivElement>;
 }
 
@@ -34,6 +35,8 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
   const props = context ? context.inject(_props) : _props;
 
   const {
+    className,
+    style,
     allowUncheck,
     block,
     checked,
@@ -52,7 +55,7 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
     onChange,
     readonly,
     children,
-  } = useDefaultProps<TdRadioProps>(props, radioDefaultProps);
+  } = useDefaultProps<RadioProps>(props, radioDefaultProps);
 
   const [radioChecked, setRadioChecked] = useDefault(checked, defaultChecked, onChange);
 
@@ -101,9 +104,14 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
     }
   };
 
-  const radioClassName = classNames(`${radioClass}`, `${radioClass}--${placement}`, {
-    [`${radioClass}--block`]: block,
-  });
+  const radioClassName = classNames(
+    `${radioClass}`,
+    `${radioClass}--${placement}`,
+    {
+      [`${radioClass}--block`]: block,
+    },
+    className,
+  );
 
   const titleClassName = classNames(`${radioClass}__title`, { [`${radioClass}__title--disabled`]: disabled });
 
@@ -133,10 +141,16 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
     [`${radioClass}__icon--disabled`]: disabled,
   });
   return (
-    <div className={radioClassName} ref={ref} onClick={() => switchRadioChecked()}>
+    <div style={style} className={radioClassName} ref={ref} onClick={() => switchRadioChecked()}>
       {input}
       <div className={iconClass}>{renderIcon()}</div>
-      <div className={`${radioClass}__content`}>
+      <div
+        className={`${radioClass}__content`}
+        onClick={(e) => {
+          e.stopPropagation();
+          switchRadioChecked('content');
+        }}
+      >
         {(label || children) && (
           <span className={titleClassName} style={{ WebkitLineClamp: maxLabelRow }}>
             {parseTNode(label) || parseTNode(children)}

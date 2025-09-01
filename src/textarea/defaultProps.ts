@@ -9,6 +9,7 @@ export const textareaDefaultProps: TdTextareaProps = {
   autofocus: false,
   autosize: false,
   bordered: false,
+  cursorColor: '#0052d9',
   disabled: undefined,
   indicator: false,
   layout: 'horizontal',

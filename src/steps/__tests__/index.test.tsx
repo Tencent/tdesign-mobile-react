@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, expect, it, render, fireEvent, vi } from '@test/utils';
-import { Icon } from 'tdesign-icons-react';
+import { CartIcon, ChevronRightIcon } from 'tdesign-icons-react';
 import { Steps, StepItem, StepStatus } from '../index';
 import { Image } from '../../image';
 
@@ -77,7 +77,7 @@ describe('Steps', () => {
       const { container } = render(
         <Steps current={current} currentStatus="error" layout="vertical">
           {items.map((item, index) => (
-            <StepItem key={index} title={item.title} content={item.content} icon={<Icon name="cart" size="20px" />} />
+            <StepItem key={index} title={item.title} content={item.content} icon={<CartIcon size="20px" />} />
           ))}
         </Steps>,
       );
@@ -183,7 +183,7 @@ describe('StepItem', () => {
       const { container } = render(
         <Steps current={0} layout="vertical">
           {items.map((item, index) => (
-            <StepItem key={index} title={item.title} content={item.content} icon={<Icon name="cart" size="20px" />} />
+            <StepItem key={index} title={item.title} content={item.content} icon={<CartIcon size="20px" />} />
           ))}
         </Steps>,
       );
@@ -240,7 +240,7 @@ describe('StepItem', () => {
               key={index}
               title={item.title}
               content={item.content}
-              titleRight={<Icon name="chevron-right" size="22px" color="rgba(0, 0, 0, .4)" />}
+              titleRight={<ChevronRightIcon size="22px" color="rgba(0, 0, 0, .4)" />}
             />
           ))}
         </Steps>,
@@ -256,7 +256,7 @@ describe('StepItem', () => {
               key={index}
               title={item.title}
               content={item.content}
-              titleRight={<Icon name="chevron-right" size="22px" color="rgba(0, 0, 0, .4)" />}
+              titleRight={<ChevronRightIcon size="22px" color="rgba(0, 0, 0, .4)" />}
             />
           ))}
         </Steps>,

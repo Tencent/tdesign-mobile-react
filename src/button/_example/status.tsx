@@ -19,9 +19,6 @@ export default function () {
         <Button size="large" disabled theme="primary" variant="outline">
           描边按钮
         </Button>
-        <Button size="large" disabled theme="primary" variant="dashed">
-          虚框按钮
-        </Button>
         <Button size="large" disabled theme="primary" variant="text">
           文字按钮
         </Button>
