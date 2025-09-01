@@ -1,0 +1,407 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DropdownItem > render / props > calculates style when menuItemRef has bounding rect and direction up 1`] = `
+<div>
+  <div
+    class="t-dropdown-menu__item t-dropdown-menu__item--active"
+  >
+    <div
+      class="t-dropdown-menu__title"
+    />
+    <svg
+      class="t-icon t-icon-caret-up-small t-dropdown-menu__icon t-dropdown-menu__icon--active"
+      fill="none"
+      height="1em"
+      viewBox="0 0 24 24"
+      width="1em"
+    >
+      <path
+        d="M12.0001 9L17.5 14.5L6.5 14.5L12.0001 9Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    class="t-dropdown-item"
+    style="z-index: 77; bottom: calc(100vh - 10px);"
+  >
+    <div
+      class="t-portal-wrapper"
+    >
+      <div
+        class="t-overlay t-overlay-fade-appear t-overlay-fade-appear-active"
+        style="position: absolute; z-index: 1000; animation-duration: 240ms;"
+      />
+      <div
+        class="t-popup t-popup--bottom"
+        style="z-index: 77; animation-fill-mode: forwards; position: absolute; overflow: hidden;"
+      >
+        <div
+          class="t-dropdown-item__content t-popup__content"
+        >
+          <div
+            class="t-dropdown-item__body"
+          >
+            <div
+              class="t-radio-group t-dropdown-item__radio-group"
+            >
+              <div
+                class="t-radio t-radio--left t-radio--block"
+              >
+                <input
+                  class="t-radio__original"
+                  type="radio"
+                  value="x"
+                />
+                <div
+                  class="t-radio__icon t-radio__icon--left"
+                >
+                  <div
+                    class="placeholder"
+                  />
+                </div>
+                <div
+                  class="t-radio__content"
+                >
+                  <span
+                    class="t-radio__title"
+                    style="-webkit-line-clamp: 3;"
+                  >
+                    X
+                  </span>
+                </div>
+                <div
+                  class="t-radio__border t-radio__border--left"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DropdownItem > render / props > renders children and footer when provided 1`] = `
+<body
+  class="t-overlay--lock"
+>
+  <div>
+    <div
+      class="t-dropdown-menu__item t-dropdown-menu__item--active"
+    >
+      <div
+        class="t-dropdown-menu__title"
+      />
+      <svg
+        class="t-icon t-icon-caret-down-small t-dropdown-menu__icon t-dropdown-menu__icon--active"
+        fill="none"
+        height="1em"
+        viewBox="0 0 24 24"
+        width="1em"
+      >
+        <path
+          d="M12.0001 15L17.5 9.5H6.5L12.0001 15Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      class="t-dropdown-item"
+    >
+      <div
+        class="t-portal-wrapper"
+      >
+        <div
+          class="t-overlay t-overlay-fade-appear t-overlay-fade-appear-active"
+          style="position: absolute; z-index: 1000; animation-duration: 240ms;"
+        />
+        <div
+          class="t-popup t-popup--top"
+          style="z-index: 1; animation-fill-mode: forwards; position: absolute; overflow: hidden;"
+        >
+          <div
+            class="t-dropdown-item__content t-popup__content"
+          >
+            <div
+              class="t-dropdown-item__body"
+            >
+              <div>
+                custom-body
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`DropdownItem > render / props > renders custom footer when footer prop provided 1`] = `
+<body
+  class="t-overlay--lock"
+>
+  <div>
+    <div
+      class="t-dropdown-menu__item t-dropdown-menu__item--active"
+    >
+      <div
+        class="t-dropdown-menu__title"
+      />
+      <svg
+        class="t-icon t-icon-caret-down-small t-dropdown-menu__icon t-dropdown-menu__icon--active"
+        fill="none"
+        height="1em"
+        viewBox="0 0 24 24"
+        width="1em"
+      >
+        <path
+          d="M12.0001 15L17.5 9.5H6.5L12.0001 15Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      class="t-dropdown-item"
+    >
+      <div
+        class="t-portal-wrapper"
+      >
+        <div
+          class="t-overlay t-overlay-fade-appear t-overlay-fade-appear-active"
+          style="position: absolute; z-index: 1000; animation-duration: 240ms;"
+        />
+        <div
+          class="t-popup t-popup--top"
+          style="z-index: 1; animation-fill-mode: forwards; position: absolute; overflow: hidden;"
+        >
+          <div
+            class="t-dropdown-item__content t-popup__content"
+          >
+            <div
+              class="t-dropdown-item__body"
+            >
+              <div
+                class="t-checkbox-group t-dropdown-item__checkbox-group"
+                style="grid-template-columns: repeat(1, 1fr);"
+              >
+                <div
+                  class="t-checkbox t-checkbox--left t-checkbox--block t-dropdown-item__checkbox-item t-checkbox--tag"
+                >
+                  <div
+                    class="t-checkbox__content"
+                  >
+                    <div
+                      class="t-checkbox__title"
+                      style="-webkit-line-clamp: 3;"
+                    >
+                      one
+                    </div>
+                    <div
+                      class="t-checkbox__description"
+                      style="-webkit-line-clamp: 5;"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              my-footer
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`DropdownItem > render / props > renders popup when active and handles direction up/down in style 1`] = `
+<div>
+  <div
+    class="t-dropdown-menu__item t-dropdown-menu__item--active"
+  >
+    <div
+      class="t-dropdown-menu__title"
+    />
+    <svg
+      class="t-icon t-icon-caret-up-small t-dropdown-menu__icon t-dropdown-menu__icon--active"
+      fill="none"
+      height="1em"
+      viewBox="0 0 24 24"
+      width="1em"
+    >
+      <path
+        d="M12.0001 9L17.5 14.5L6.5 14.5L12.0001 9Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    class="t-dropdown-item"
+  >
+    <div
+      class="t-portal-wrapper"
+    >
+      <div
+        class="t-overlay t-overlay-fade-appear t-overlay-fade-appear-active"
+        style="position: absolute; z-index: 1000; animation-duration: 240ms;"
+      />
+      <div
+        class="t-popup t-popup--bottom"
+        style="z-index: 99; animation-fill-mode: forwards; position: absolute; overflow: hidden;"
+      >
+        <div
+          class="t-dropdown-item__content t-popup__content"
+        >
+          <div
+            class="t-dropdown-item__body"
+          >
+            <div
+              class="t-radio-group t-dropdown-item__radio-group"
+            >
+              <div
+                class="t-radio t-radio--left t-radio--block"
+              >
+                <input
+                  class="t-radio__original"
+                  type="radio"
+                  value="a"
+                />
+                <div
+                  class="t-radio__icon t-radio__icon--left"
+                >
+                  <div
+                    class="placeholder"
+                  />
+                </div>
+                <div
+                  class="t-radio__content"
+                >
+                  <span
+                    class="t-radio__title"
+                    style="-webkit-line-clamp: 3;"
+                  >
+                    A
+                  </span>
+                </div>
+                <div
+                  class="t-radio__border t-radio__border--left"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DropdownItem > render / props > returns empty style when menuItemRef is null 1`] = `
+<DocumentFragment>
+  <div
+    class="t-dropdown-menu__item"
+  >
+    <div
+      class="t-dropdown-menu__title"
+    />
+    <svg
+      class="t-icon t-icon-caret-down-small t-dropdown-menu__icon"
+      fill="none"
+      height="1em"
+      viewBox="0 0 24 24"
+      width="1em"
+    >
+      <path
+        d="M12.0001 15L17.5 9.5H6.5L12.0001 15Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DropdownItem > render / props > supports custom keys mapping for options 1`] = `
+<body
+  class=""
+>
+  <div>
+    <div
+      class="t-dropdown-menu__item t-dropdown-menu__item--active"
+    >
+      <div
+        class="t-dropdown-menu__title"
+      />
+      <svg
+        class="t-icon t-icon-caret-down-small t-dropdown-menu__icon t-dropdown-menu__icon--active"
+        fill="none"
+        height="1em"
+        viewBox="0 0 24 24"
+        width="1em"
+      >
+        <path
+          d="M12.0001 15L17.5 9.5H6.5L12.0001 15Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      class="t-dropdown-item"
+    >
+      <div
+        class="t-portal-wrapper"
+      >
+        <div
+          class="t-popup t-popup--top"
+          style="z-index: 1; animation-fill-mode: forwards; position: absolute; overflow: hidden;"
+        >
+          <div
+            class="t-dropdown-item__content t-popup__content"
+          >
+            <div
+              class="t-dropdown-item__body"
+            >
+              <div
+                class="t-radio-group t-dropdown-item__radio-group"
+              >
+                <div
+                  class="t-radio t-radio--left t-radio--block"
+                >
+                  <input
+                    class="t-radio__original"
+                    type="radio"
+                    value="1"
+                  />
+                  <div
+                    class="t-radio__icon t-radio__icon--left"
+                  >
+                    <div
+                      class="placeholder"
+                    />
+                  </div>
+                  <div
+                    class="t-radio__content"
+                  >
+                    <span
+                      class="t-radio__title"
+                      style="-webkit-line-clamp: 3;"
+                    >
+                      one
+                    </span>
+                  </div>
+                  <div
+                    class="t-radio__border t-radio__border--left"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
