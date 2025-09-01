@@ -56,7 +56,6 @@ export default function Base() {
         </Button>
       ))}
       <Drawer showOverlay={showOverlay} visible={openBase} items={baseSidebar} closeOnOverlayClick onClose={onClose} />
-      <Drawer visible={openBase} items={baseSidebar} closeOnOverlayClick onClose={onClose} />
     </>
   );
 }
