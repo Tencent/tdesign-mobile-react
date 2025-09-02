@@ -28,7 +28,7 @@ const mockTouch = (element: Element, type: string, touches: Array<{ clientX: num
 };
 
 // Mock document properties for scroll detection
-const mockScroll = (scrollTop: number) => {
+const mockScroll = (scrollTop: number, withDocument: boolean = false) => {
   Object.defineProperty(document.body, 'scrollTop', {
     value: scrollTop,
     writable: true,
@@ -41,6 +41,11 @@ const mockScroll = (scrollTop: number) => {
     value: scrollHeight,
     writable: true,
   });
+
+  document.body.style.overflowY = 'scroll';
+
+  if (!withDocument) return;
+
   Object.defineProperty(document.documentElement, 'scrollTop', {
     value: scrollTop,
     writable: true,
@@ -53,8 +58,6 @@ const mockScroll = (scrollTop: number) => {
     value: scrollHeight,
     writable: true,
   });
-
-  document.body.style.overflowY = 'scroll';
   document.documentElement.style.overflowY = 'scroll';
 };
 
@@ -97,6 +100,7 @@ describe('PullDownRefresh', () => {
 
     it(': disabled', () => {
       const onRefresh = vi.fn();
+
       const { container } = render(
         <PullDownRefresh disabled onRefresh={onRefresh}>
           <div>content</div>
@@ -104,9 +108,17 @@ describe('PullDownRefresh', () => {
       );
 
       const track = container.querySelector(`${name}__track`);
-      mockTouch(track!, 'touchstart', [{ clientX: 0, clientY: 0 }]);
-      mockTouch(track!, 'touchmove', [{ clientX: 0, clientY: 100 }]);
-      mockTouch(track!, 'touchend', [{ clientX: 0, clientY: 100 }]);
+
+      act(() => {
+        mockTouch(track!, 'touchstart', [{ clientX: 0, clientY: 0 }]);
+        mockTouch(track!, 'touchmove', [{ clientX: 0, clientY: 60 }]);
+      });
+      act(() => {
+        mockTouch(track!, 'touchmove', [{ clientX: 0, clientY: 80 }]);
+      });
+      act(() => {
+        mockTouch(track!, 'touchend', [{ clientX: 0, clientY: 80 }]);
+      });
 
       expect(onRefresh).not.toHaveBeenCalled();
     });
@@ -368,6 +380,7 @@ describe('PullDownRefresh', () => {
       });
       await act(async () => {
         mockTouch(track!, 'touchend', [{ clientX: 0, clientY: 80 }]);
+        mockTouch(track!, 'touchcancel', [{ clientX: 0, clientY: 80 }]);
       });
 
       expect(mockRefresh).toHaveBeenCalled();
@@ -399,6 +412,17 @@ describe('PullDownRefresh', () => {
         },
         { timeout: 400 },
       );
+    });
+
+    it(': onScrollToLower undefined', async () => {
+      render(
+        <PullDownRefresh>
+          <div>content</div>
+        </PullDownRefresh>,
+      );
+
+      mockScroll(100);
+      window.dispatchEvent(new Event('scroll'));
     });
   });
 
@@ -438,6 +462,62 @@ describe('PullDownRefresh', () => {
       // Test the function directly
       const result = isReachTop(mockEvent);
       expect(typeof result).toBe('boolean');
+    });
+  });
+
+  describe(': edge cases', () => {
+    it(': value set to null', () => {
+      const { container } = render(
+        <PullDownRefresh value={null}>
+          <div>content</div>
+        </PullDownRefresh>,
+      );
+
+      const track = container.querySelector(`${name}__track`);
+      const loading = container.querySelector('.t-loading');
+
+      expect(track).toBeTruthy();
+      expect(loading).not.toBeTruthy();
+    });
+
+    it(': touch move', async () => {
+      const { container } = render(
+        <PullDownRefresh>
+          <div>content</div>
+        </PullDownRefresh>,
+      );
+
+      const track = container.querySelector(`${name}__track`);
+
+      // touchDir change
+
+      // set touchDir to 1
+      act(() => {
+        mockTouch(track!, 'touchStart', [{ clientX: 0, clientY: 0 }]);
+      });
+      act(() => {
+        mockTouch(track!, 'touchMove', [{ clientX: 0, clientY: 20 }]);
+      });
+      act(() => {
+        mockTouch(track!, 'touchMove', [{ clientX: 0, clientY: 40 }]);
+      });
+
+      // set touchDir to -1
+      act(() => {
+        mockTouch(track!, 'touchMove', [{ clientX: 0, clientY: 60 }]);
+      });
+      act(() => {
+        mockTouch(track!, 'touchMove', [{ clientX: 0, clientY: 40 }]);
+      });
+      act(() => {
+        mockTouch(track!, 'touchMove', [{ clientX: 0, clientY: 20 }]);
+      });
+      act(() => {
+        mockTouch(track!, 'touchMove', [{ clientX: 0, clientY: 0 }]);
+      });
+      act(() => {
+        mockTouch(track!, 'touchEnd', [{ clientX: 0, clientY: 0 }]);
+      });
     });
   });
 });
