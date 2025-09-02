@@ -1,7 +1,7 @@
 import React from 'react';
-import { describe, it, expect, render, vi, waitFor, beforeEach, act } from '@test/utils';
+import { describe, it, expect, render, renderHook, vi, waitFor, beforeEach, act } from '@test/utils';
 import { PullDownRefresh } from '../index';
-import { easeDistance, isReachTop } from '../useTouch';
+import { useTouch, easeDistance, isReachTop } from '../useTouch';
 
 const prefix = 't';
 const name = `.${prefix}-pull-down-refresh`;
@@ -25,6 +25,8 @@ const mockTouch = (element: Element, type: string, touches: Array<{ clientX: num
   });
 
   element.dispatchEvent(event);
+
+  return event as any as React.TouchEvent<Element>;
 };
 
 // Mock document properties for scroll detection
@@ -428,7 +430,27 @@ describe('PullDownRefresh', () => {
 
   describe(':hooks', () => {
     it(': useTouch', () => {
-      // TODO: test useTouch
+      const { result } = renderHook(() => useTouch());
+
+      expect(result.current).toBeDefined();
+
+      act(() => {
+        const startEvent = mockTouch(document.body, 'touchstart', [{ clientX: 0, clientY: 10 }]);
+        result.current.start(startEvent);
+      });
+
+      // 在这里检查 start 后的状态
+      expect(result.current.startX).toBe(0);
+      expect(result.current.startY).toBe(10);
+
+      act(() => {
+        const moveEvent = mockTouch(document.body, 'touchmove', [{ clientX: 0, clientY: 20 }]);
+        result.current.move(moveEvent);
+      });
+
+      // 检查 move 后的状态
+      expect(result.current.diffX).toBe(0); // 0 - 0 = 0
+      expect(result.current.diffY).toBe(10); // 20 - 10 = 10
     });
 
     it(': easeDistance', () => {
