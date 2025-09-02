@@ -1,5 +1,6 @@
 import React from 'react';
 import { describe, it, expect, render, renderHook, vi, waitFor, beforeEach, act } from '@test/utils';
+import { range } from 'lodash-es';
 import { PullDownRefresh } from '../index';
 import { useTouch, easeDistance, isReachTop } from '../useTouch';
 
@@ -63,6 +64,24 @@ const mockScroll = (scrollTop: number, scrollHeight: number = mockScrollHeight, 
   document.documentElement.style.overflowY = 'scroll';
 };
 
+const mockPullDown = (track: Element, height: number, step: number, start: number = 0) => {
+  const stages = range(0, height, step);
+
+  act(() => {
+    mockTouch(track, 'touchstart', [{ clientX: 0, clientY: start }]);
+  });
+
+  stages.forEach((stage) => {
+    act(() => {
+      mockTouch(track, 'touchmove', [{ clientX: 0, clientY: stage }]);
+    });
+  });
+
+  act(() => {
+    mockTouch(track, 'touchend', [{ clientX: 0, clientY: height }]);
+  });
+};
+
 describe('PullDownRefresh', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -111,16 +130,7 @@ describe('PullDownRefresh', () => {
 
       const track = container.querySelector(`${name}__track`);
 
-      act(() => {
-        mockTouch(track!, 'touchstart', [{ clientX: 0, clientY: 0 }]);
-        mockTouch(track!, 'touchmove', [{ clientX: 0, clientY: 60 }]);
-      });
-      act(() => {
-        mockTouch(track!, 'touchmove', [{ clientX: 0, clientY: 80 }]);
-      });
-      act(() => {
-        mockTouch(track!, 'touchend', [{ clientX: 0, clientY: 80 }]);
-      });
+      mockPullDown(track!, 80, 4, 0);
 
       expect(onRefresh).not.toHaveBeenCalled();
     });
@@ -164,18 +174,11 @@ describe('PullDownRefresh', () => {
         </PullDownRefresh>,
       );
 
-      expect(container.querySelector(name)).toBeTruthy();
-    });
+      const track = container.querySelector(`${name}__track`) as HTMLElement;
 
-    it(': loadingTexts', () => {
-      const customTexts = ['拉下来', '放开手', '加载中', '完成了'];
-      const { container } = render(
-        <PullDownRefresh loadingTexts={customTexts}>
-          <div>content</div>
-        </PullDownRefresh>,
-      );
+      mockPullDown(track!, 60, 2, 0);
 
-      expect(container.querySelector(name)).toBeTruthy();
+      expect(track).toHaveStyle({ transform: 'translate3d(0, 50px, 0)' });
     });
 
     it(': loadingProps', () => {
@@ -187,16 +190,68 @@ describe('PullDownRefresh', () => {
       );
 
       expect(container.querySelector('.t-loading')).toBeTruthy();
+      expect(container.querySelector('.t-loading__text')).toHaveTextContent(loadingProps.text);
     });
 
-    it(': refreshTimeout', () => {
-      const { container } = render(
-        <PullDownRefresh refreshTimeout={5000}>
-          <div>content</div>
-        </PullDownRefresh>,
+    describe(': refreshTimeout', () => {
+      const mockRefresh = vi.fn(
+        () =>
+          new Promise((resolve) => {
+            setTimeout(resolve, 1000);
+          }),
       );
+      const mockRefreshOver = vi.fn(
+        () =>
+          new Promise((resolve) => {
+            setTimeout(resolve, 3000);
+          }),
+      );
+      const mockTimeout = vi.fn();
+      const refreshTimeout = 2000;
 
-      expect(container.querySelector(name)).toBeTruthy();
+      beforeEach(() => {
+        vi.clearAllMocks();
+      });
+
+      it(': refreshTimeout success', async () => {
+        const { container } = render(
+          <PullDownRefresh refreshTimeout={refreshTimeout} onRefresh={mockRefresh} onTimeout={mockTimeout}>
+            <div>content</div>
+          </PullDownRefresh>,
+        );
+
+        const track = container.querySelector(`${name}__track`);
+
+        mockPullDown(track!, 80, 4, 0);
+
+        await waitFor(
+          () => {
+            expect(mockRefresh).toHaveBeenCalled();
+            expect(mockTimeout).not.toHaveBeenCalled();
+          },
+          { timeout: 3000 },
+        );
+      });
+
+      it(': refreshTimeout timeout', async () => {
+        const { container } = render(
+          <PullDownRefresh refreshTimeout={refreshTimeout} onRefresh={mockRefreshOver} onTimeout={mockTimeout}>
+            <div>content</div>
+          </PullDownRefresh>,
+        );
+
+        const track = container.querySelector(`${name}__track`);
+
+        mockPullDown(track!, 80, 4, 0);
+
+        await waitFor(
+          () => {
+            expect(mockRefreshOver).toHaveBeenCalled();
+            expect(mockTimeout).toHaveBeenCalled();
+          },
+          { timeout: 3000 },
+        );
+      });
     });
 
     it(': value controlled', () => {
@@ -259,6 +314,7 @@ describe('PullDownRefresh', () => {
       );
 
       expect(container.querySelector('.t-loading')).toBeTruthy();
+      expect(container.querySelector('.t-loading__text')).toHaveTextContent(customTexts[2]);
     });
 
     it(': default locale texts', () => {
@@ -309,16 +365,7 @@ describe('PullDownRefresh', () => {
       const track = container.querySelector(`${name}__track`);
 
       // absX = 0, absY = 60
-      await act(async () => {
-        mockTouch(track!, 'touchstart', [{ clientX: 0, clientY: 0 }]);
-        mockTouch(track!, 'touchmove', [{ clientX: 0, clientY: 60 }]);
-      });
-      await act(async () => {
-        mockTouch(track!, 'touchmove', [{ clientX: 0, clientY: 80 }]);
-      });
-      await act(async () => {
-        mockTouch(track!, 'touchend', [{ clientX: 0, clientY: 80 }]);
-      });
+      mockPullDown(track!, 80, 4, 0);
 
       expect(mockRefresh).toHaveBeenCalled();
     });
@@ -373,17 +420,7 @@ describe('PullDownRefresh', () => {
 
       const track = container.querySelector(`${name}__track`);
 
-      await act(async () => {
-        mockTouch(track!, 'touchstart', [{ clientX: 0, clientY: 0 }]);
-        mockTouch(track!, 'touchmove', [{ clientX: 0, clientY: 60 }]);
-      });
-      await act(async () => {
-        mockTouch(track!, 'touchmove', [{ clientX: 0, clientY: 80 }]);
-      });
-      await act(async () => {
-        mockTouch(track!, 'touchend', [{ clientX: 0, clientY: 80 }]);
-        mockTouch(track!, 'touchcancel', [{ clientX: 0, clientY: 80 }]);
-      });
+      mockPullDown(track!, 80, 4, 0);
 
       expect(mockRefresh).toHaveBeenCalled();
 
@@ -524,7 +561,7 @@ describe('PullDownRefresh', () => {
         mockTouch(track!, 'touchEnd', [{ clientX: 0, clientY: 0 }]);
       });
 
-      expect(track).toBeTruthy();
+      expect(track).not.toHaveClass(`${name}__track--loosing`);
     });
 
     it(': large scrollHeight', async () => {

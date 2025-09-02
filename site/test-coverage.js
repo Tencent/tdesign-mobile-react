@@ -42,7 +42,7 @@ module.exports = {
   popover: { statements: '5%', branches: '0%', functions: '0%', lines: '5.55%' },
   popup: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   progress: { statements: '100%', branches: '97.36%', functions: '100%', lines: '100%' },
-  pullDownRefresh: { statements: '100%', branches: '96.87%', functions: '100%', lines: '100%' },
+  pullDownRefresh: { statements: '100%', branches: '98.43%', functions: '100%', lines: '100%' },
   qrcode: { statements: '9.89%', branches: '0%', functions: '0%', lines: '10%' },
   radio: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   rate: { statements: '5.71%', branches: '0%', functions: '0%', lines: '5.71%' },
