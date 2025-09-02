@@ -1,6 +1,6 @@
-import { describe, it, expect, render, vi, fireEvent, screen, act } from '@test/utils';
+import { describe, it, expect, render, vi, fireEvent, screen, act, waitFor } from '@test/utils';
 import React from 'react';
-import { Table, BaseTableRef } from '../index';
+import { Table, BaseTableRef, TableRowData, BaseTableCol } from '../index';
 
 const prefix = 't';
 const name = `.${prefix}-table`;
@@ -19,7 +19,7 @@ for (let i = 0; i < total; i++) {
   });
 }
 
-const columns = [
+const columns: BaseTableCol<TableRowData>[] = [
   { colKey: 'serial-number', title: () => '序号', width: 60 },
   { colKey: 'applicant', title: <div>标题</div>, ellipsis: true, cell: 'type-slot-name', minWidth: 50 },
   {
@@ -51,6 +51,24 @@ describe('table', () => {
       expect(container.querySelector(`${name}--layout-auto`)).toBeTruthy();
     });
 
+    it(': bordered', () => {
+      const { container } = render(<Table rowKey="index" columns={columns} data={data} bordered />);
+      expect(container.querySelector(`${name}--bordered`)).toBeTruthy();
+    });
+
+    it(': stripe', () => {
+      const { container } = render(<Table rowKey="index" columns={columns} data={data} stripe bordered />);
+      expect(container.querySelector(`${name}--striped`)).toBeTruthy();
+    });
+
+    it(': BaseTableCol colkey', () => {
+      const columns = [{ title: '姓名' }];
+      const data = [{ name: 'Tom' }];
+      const { container } = render(<Table rowKey="index" columns={columns} data={data} />);
+      const th = container.querySelector('th');
+      expect(th.className).not.toContain('t-table__th-');
+    });
+
     it(': BaseTableCol align', () => {
       columns[0].align = 'center';
       columns[1].align = 'right';
@@ -59,7 +77,7 @@ describe('table', () => {
       expect(container.querySelector('.t-align-right')).toBeTruthy();
     });
 
-    it(': BaseTableCol fixed', () => {
+    it(': BaseTableCol fixed', async () => {
       const onScroll = vi.fn();
       columns[0].fixed = 'left';
       columns[3].fixed = 'right';
@@ -67,14 +85,23 @@ describe('table', () => {
         <Table style={{ width: '200px' }} rowKey="index" columns={columns} data={data} onScroll={onScroll} />,
       );
 
-      const table = container.querySelector(`${name}__content`);
-      Object.defineProperty(table, 'scrollWidth', { value: 500 });
-      fireEvent.scroll(table);
-      expect(container.querySelector(`${name}__content--scrollable-to-right`)).toBeTruthy();
+      await waitFor(() => {
+        expect(container.querySelector(`${name}__cell--fixed-left`)).toBeTruthy();
+        expect(container.querySelector(`${name}__cell--fixed-right`)).toBeTruthy();
+      });
 
-      Object.defineProperty(table, 'scrollLeft', { value: 200 });
-      fireEvent.scroll(table);
-      expect(container.querySelector(`${name}__content--scrollable-to-left`)).toBeTruthy();
+      const tableContent = container.querySelector(`${name}__content`);
+      Object.defineProperty(tableContent, 'scrollWidth', { value: 500 });
+      fireEvent.scroll(tableContent);
+
+      await waitFor(() => {
+        expect(container.querySelector(`${name}__content--scrollable-to-right`)).toBeTruthy();
+      });
+
+      fireEvent.scroll(tableContent, { target: { scrollLeft: 0 } });
+      await waitFor(() => {
+        expect(container.querySelector(`${name}__content--scrollable-to-left`)).toBeFalsy();
+      });
     });
 
     it(': empty', () => {
@@ -123,6 +150,7 @@ describe('table', () => {
       const { container } = render(<Table rowKey="index" columns={columns} data={data} fixedRows={[1, 2]} />);
       expect(container.querySelector(`${name}__row--fixed-top`)).toBeTruthy();
       expect(container.querySelector(`${name}__row--fixed-bottom`)).toBeTruthy();
+      expect(container.querySelector(`${name}__row--fixed-bottom-first`)).toBeTruthy();
     });
 
     it(': height', () => {
@@ -175,14 +203,7 @@ describe('table', () => {
       rerender(<Table rowKey="index" columns={columns} data={data} rowClassName={{ 'row-test': true }} />);
       expect(container.querySelector('.row-test')).toHaveClass('row-test');
 
-      rerender(
-        <Table
-          rowKey="index"
-          columns={columns}
-          data={data}
-          rowClassName={() => 'row-test'}
-        />,
-      );
+      rerender(<Table rowKey="index" columns={columns} data={data} rowClassName={() => 'row-test'} />);
       expect(container.querySelector('.row-test')).toHaveClass('row-test');
     });
   });
@@ -225,6 +246,15 @@ describe('table', () => {
 
       await act(async () => {
         expect(() => ref.current?.refreshTable()).not.toThrow();
+      });
+    });
+
+    it(': resize', async () => {
+      const { container } = render(<Table rowKey="index" columns={columns} data={data} />);
+      const resizeEvent = new Event('resize');
+      window.dispatchEvent(resizeEvent);
+      await waitFor(async () => {
+        expect(container.querySelector(`${name}`)).toBeTruthy();
       });
     });
   });
