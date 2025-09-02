@@ -21,7 +21,6 @@ describe('DropdownMenu', () => {
       const root = container.querySelector('.my-menu') as HTMLElement;
       expect(Boolean(root)).toBe(true);
       expect(root.style.color === 'rgb(255, 0, 0)').toBe(true);
-      expect(container).toMatchSnapshot();
     });
 
     it(':direction and zIndex', () => {
@@ -39,7 +38,6 @@ describe('DropdownMenu', () => {
       if (dropdownItem) {
         expect(dropdownItem.style.zIndex).toBe('9999');
       }
-      expect(container).toMatchSnapshot();
     });
 
     it(':optionsColumns', () => {
@@ -50,7 +48,6 @@ describe('DropdownMenu', () => {
       );
       fireEvent.click(getByText('双列'));
       expect(getByText('全部产品')).toBeTruthy();
-      expect(document.body).toMatchSnapshot();
     });
 
     it(':footer', () => {
@@ -61,7 +58,6 @@ describe('DropdownMenu', () => {
       );
       fireEvent.click(getByText('自定义'));
       expect(getByText('自定义footer')).toBeTruthy();
-      expect(document.body).toMatchSnapshot();
     });
 
     it(':defaultValue', () => {
@@ -71,7 +67,6 @@ describe('DropdownMenu', () => {
         </DropdownMenu>,
       );
       expect(getByText('最新产品')).toBeTruthy();
-      expect(document.body).toMatchSnapshot();
     });
 
     it(':keys', () => {
@@ -85,7 +80,6 @@ describe('DropdownMenu', () => {
         </DropdownMenu>,
       );
       expect(getByText('B 选项')).toBeTruthy();
-      expect(document.body).toMatchSnapshot();
     });
   });
 

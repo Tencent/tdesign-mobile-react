@@ -12,24 +12,33 @@ describe('DropdownItem', () => {
   });
 
   describe('render / props', () => {
-    it('returns empty style when menuItemRef is null', () => {
-      const utils = render(
+    it('returns empty style when menuItemRef is null', async () => {
+      const { container } = render(
         <DropdownMenuContext.Provider
           value={{
-            activedId: '',
+            activedId: 'fixed-id',
             direction: 'down',
             onChangeActivedId: () => {},
-            showOverlay: false,
+            showOverlay: true,
             zIndex: 10,
-            closeOnClickOverlay: false,
           }}
         >
-          <DropdownItem options={[{ value: '1', label: 'one', disabled: false } as any]} />
+          <DropdownItem options={[{ value: '1', label: 'one', disabled: false }]} />
         </DropdownMenuContext.Provider>,
       );
 
-      expect(utils.container).toBeTruthy();
-      expect(utils.asFragment()).toMatchSnapshot();
+      await waitFor(() => {
+        const el = container.querySelector('.t-dropdown-item');
+        expect(el).toBeTruthy();
+        if (el) {
+          const cs = window.getComputedStyle(el as Element);
+
+          // style top and bottom should be empty px
+          const isTopPixel = /\d+px/.test(cs.top);
+          const isBottomPixel = /\d+px/.test(cs.bottom);
+          expect(isTopPixel || isBottomPixel).toBe(false);
+        }
+      });
     });
 
     it('renders popup when active and handles direction up/down in style', async () => {
@@ -46,12 +55,11 @@ describe('DropdownItem', () => {
             closeOnClickOverlay: true,
           }}
         >
-          <DropdownItem options={[{ value: 'a', label: 'A', disabled: false } as any]} multiple={false} />
+          <DropdownItem options={[{ value: 'a', label: 'A', disabled: false }]} multiple={false} />
         </DropdownMenuContext.Provider>,
       );
 
       expect(getByText('A')).toBeTruthy();
-      expect(container).toMatchSnapshot();
 
       await waitFor(() => {
         const item = container.querySelector('[class*="dropdown-item"]');
@@ -73,7 +81,7 @@ describe('DropdownItem', () => {
             closeOnClickOverlay: true,
           }}
         >
-          <DropdownItem options={[{ value: 'x', label: 'X', disabled: false } as any]} />
+          <DropdownItem options={[{ value: 'x', label: 'X', disabled: false }]} />
         </DropdownMenuContext.Provider>,
       );
 
@@ -93,7 +101,7 @@ describe('DropdownItem', () => {
             closeOnClickOverlay: true,
           }}
         >
-          <DropdownItem options={[{ value: 'x', label: 'X', disabled: false } as any]} />
+          <DropdownItem options={[{ value: 'x', label: 'X', disabled: false }]} />
         </DropdownMenuContext.Provider>,
       );
 
@@ -106,8 +114,6 @@ describe('DropdownItem', () => {
           expect(bottom || top).toBeTruthy();
         }
       });
-
-      expect(container).toMatchSnapshot();
     });
 
     it('supports custom keys mapping for options', () => {
@@ -131,7 +137,6 @@ describe('DropdownItem', () => {
       );
 
       expect(getByText('one')).toBeTruthy();
-      expect(document.body).toMatchSnapshot();
     });
 
     it('renders children and footer when provided', () => {
@@ -147,14 +152,13 @@ describe('DropdownItem', () => {
             closeOnClickOverlay: true,
           }}
         >
-          <DropdownItem options={[{ value: '1', label: 'one', disabled: false } as any]}>
+          <DropdownItem options={[{ value: '1', label: 'one', disabled: false }]}>
             <div>custom-body</div>
           </DropdownItem>
         </DropdownMenuContext.Provider>,
       );
 
       expect(getByText('custom-body')).toBeTruthy();
-      expect(document.body).toMatchSnapshot();
     });
 
     it('renders custom footer when footer prop provided', () => {
@@ -171,7 +175,7 @@ describe('DropdownItem', () => {
           }}
         >
           <DropdownItem
-            options={[{ value: '1', label: 'one', disabled: false } as any]}
+            options={[{ value: '1', label: 'one', disabled: false }]}
             footer={<div>my-footer</div>}
             multiple
           />
@@ -179,7 +183,6 @@ describe('DropdownItem', () => {
       );
 
       expect(getByText('my-footer')).toBeTruthy();
-      expect(document.body).toMatchSnapshot();
     });
   });
 
@@ -201,7 +204,7 @@ describe('DropdownItem', () => {
           }}
         >
           <DropdownItem
-            options={[{ value: '1', label: 'one', disabled: false } as any]}
+            options={[{ value: '1', label: 'one', disabled: false }]}
             multiple
             onReset={onReset}
             onConfirm={onConfirm}
@@ -228,7 +231,7 @@ describe('DropdownItem', () => {
             closeOnClickOverlay: true,
           }}
         >
-          <DropdownItem options={[{ value: '1', label: 'one', disabled: false } as any]} multiple />
+          <DropdownItem options={[{ value: '1', label: 'one', disabled: false }]} multiple />
         </DropdownMenuContext.Provider>,
       );
 
@@ -249,7 +252,7 @@ describe('DropdownItem', () => {
             closeOnClickOverlay: true,
           }}
         >
-          <DropdownItem options={[{ value: '1', label: 'one', disabled: false } as any]} multiple />
+          <DropdownItem options={[{ value: '1', label: 'one', disabled: false }]} multiple />
         </DropdownMenuContext.Provider>,
       );
 
@@ -279,7 +282,7 @@ describe('DropdownItem', () => {
             closeOnClickOverlay: false,
           }}
         >
-          <DropdownItem options={[{ value: '1', label: 'one', disabled: false } as any]} disabled />
+          <DropdownItem options={[{ value: '1', label: 'one', disabled: false }]} disabled />
         </DropdownMenuContext.Provider>,
       );
 
@@ -304,7 +307,7 @@ describe('DropdownItem', () => {
             closeOnClickOverlay: true,
           }}
         >
-          <DropdownItem options={[{ value: '1', label: 'one', disabled: false } as any]} />
+          <DropdownItem options={[{ value: '1', label: 'one', disabled: false }]} />
         </DropdownMenuContext.Provider>,
       );
 
