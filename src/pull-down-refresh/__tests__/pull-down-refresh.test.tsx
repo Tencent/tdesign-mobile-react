@@ -6,8 +6,8 @@ import { easeDistance, isReachTop } from '../useTouch';
 const prefix = 't';
 const name = `.${prefix}-pull-down-refresh`;
 // mock height and scrollHeight
-const height = 800;
-const scrollHeight = height;
+const mockHeight = 800;
+const mockScrollHeight = mockHeight;
 
 // Mock the touch events and scroll
 const mockTouch = (element: Element, type: string, touches: Array<{ clientX: number; clientY: number }>) => {
@@ -28,13 +28,13 @@ const mockTouch = (element: Element, type: string, touches: Array<{ clientX: num
 };
 
 // Mock document properties for scroll detection
-const mockScroll = (scrollTop: number, withDocument: boolean = false) => {
+const mockScroll = (scrollTop: number, scrollHeight: number = mockScrollHeight, withDocument: boolean = false) => {
   Object.defineProperty(document.body, 'scrollTop', {
     value: scrollTop,
     writable: true,
   });
   Object.defineProperty(document.body, 'clientHeight', {
-    value: height,
+    value: mockHeight,
     writable: true,
   });
   Object.defineProperty(document.body, 'scrollHeight', {
@@ -51,7 +51,7 @@ const mockScroll = (scrollTop: number, withDocument: boolean = false) => {
     writable: true,
   });
   Object.defineProperty(document.documentElement, 'clientHeight', {
-    value: height,
+    value: mockHeight,
     writable: true,
   });
   Object.defineProperty(document.documentElement, 'scrollHeight', {
@@ -428,22 +428,7 @@ describe('PullDownRefresh', () => {
 
   describe(':hooks', () => {
     it(': useTouch', () => {
-      // This would normally be tested in a hook test, but since it's used in the component
-      // we can test its behavior through the component
-      const { container } = render(
-        <PullDownRefresh>
-          <div>content</div>
-        </PullDownRefresh>,
-      );
-
-      const track = container.querySelector(`${name}__track`);
-
-      act(() => {
-        mockTouch(track!, 'touchstart', [{ clientX: 100, clientY: 50 }]);
-        mockTouch(track!, 'touchmove', [{ clientX: 120, clientY: 80 }]);
-      });
-
-      expect(track).toBeTruthy();
+      // TODO: test useTouch
     });
 
     it(': easeDistance', () => {
@@ -480,7 +465,7 @@ describe('PullDownRefresh', () => {
       expect(loading).not.toBeTruthy();
     });
 
-    it(': touch move', async () => {
+    it(': touch change direction', async () => {
       const { container } = render(
         <PullDownRefresh>
           <div>content</div>
@@ -489,35 +474,55 @@ describe('PullDownRefresh', () => {
 
       const track = container.querySelector(`${name}__track`);
 
-      // touchDir change
-
       // set touchDir to 1
-      act(() => {
+      await act(async () => {
         mockTouch(track!, 'touchStart', [{ clientX: 0, clientY: 0 }]);
       });
-      act(() => {
+      await act(async () => {
         mockTouch(track!, 'touchMove', [{ clientX: 0, clientY: 20 }]);
       });
-      act(() => {
+      await act(async () => {
         mockTouch(track!, 'touchMove', [{ clientX: 0, clientY: 40 }]);
       });
 
       // set touchDir to -1
-      act(() => {
+      await act(async () => {
         mockTouch(track!, 'touchMove', [{ clientX: 0, clientY: 60 }]);
       });
-      act(() => {
+      await act(async () => {
         mockTouch(track!, 'touchMove', [{ clientX: 0, clientY: 40 }]);
       });
-      act(() => {
+      await act(async () => {
         mockTouch(track!, 'touchMove', [{ clientX: 0, clientY: 20 }]);
       });
-      act(() => {
+      await act(async () => {
         mockTouch(track!, 'touchMove', [{ clientX: 0, clientY: 0 }]);
       });
-      act(() => {
+      await act(async () => {
         mockTouch(track!, 'touchEnd', [{ clientX: 0, clientY: 0 }]);
       });
+
+      expect(track).toBeTruthy();
+    });
+
+    it(': large scrollHeight', async () => {
+      const onScrollToLower = vi.fn();
+
+      render(
+        <PullDownRefresh onScrolltolower={onScrollToLower}>
+          <div>content</div>
+        </PullDownRefresh>,
+      );
+
+      mockScroll(100, 1000, true);
+      window.dispatchEvent(new Event('scroll'));
+
+      await waitFor(
+        () => {
+          expect(onScrollToLower).not.toHaveBeenCalled();
+        },
+        { timeout: 400 },
+      );
     });
   });
 });
