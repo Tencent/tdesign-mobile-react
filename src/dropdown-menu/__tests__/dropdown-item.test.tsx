@@ -30,9 +30,7 @@ describe('DropdownItem', () => {
       await waitFor(() => {
         const el = container.querySelector('.t-dropdown-item');
         expect(el).toBeTruthy();
-        if (el) {
-          expect(el.getAttribute('style')).toBeNull();
-        }
+        expect(el.getAttribute('style')).toBeNull();
       });
     });
 
