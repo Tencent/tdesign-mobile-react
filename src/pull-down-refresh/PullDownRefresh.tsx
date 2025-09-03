@@ -78,9 +78,6 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
   const [distance, setDistance] = useState(0);
 
   useEffect(() => {
-    // onChange will **Never** be undefined
-    onChange(value);
-
     if (isBoolean(value) && !value) {
       setStatus(PullStatusEnum.success);
       setDistance(0);
