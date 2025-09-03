@@ -6,6 +6,7 @@ import Placement from './placement';
 import Action from './action';
 import Accordion from './accordion';
 import Card from './card';
+import DefaultExpandAll from './defaultExpandAll';
 
 export default function CheckboxDemo() {
   return (
@@ -26,6 +27,10 @@ export default function CheckboxDemo() {
 
       <TDemoBlock summary="手风琴模式">
         <Accordion />
+      </TDemoBlock>
+
+      <TDemoBlock summary="默认全部打开">
+        <DefaultExpandAll />
       </TDemoBlock>
 
       <TDemoBlock title="02 组件样式" summary="卡片折叠面板">
