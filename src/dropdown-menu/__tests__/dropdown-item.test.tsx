@@ -31,12 +31,7 @@ describe('DropdownItem', () => {
         const el = container.querySelector('.t-dropdown-item');
         expect(el).toBeTruthy();
         if (el) {
-          const cs = window.getComputedStyle(el as Element);
-
-          // style top and bottom should be empty px
-          const isTopPixel = /\d+px/.test(cs.top);
-          const isBottomPixel = /\d+px/.test(cs.bottom);
-          expect(isTopPixel || isBottomPixel).toBe(false);
+          expect(el.getAttribute('style')).toBeNull();
         }
       });
     });
