@@ -23,474 +23,527 @@ vi.mock('ahooks', async () => {
 });
 
 describe('Rate', () => {
-  it('should render default rate component', () => {
-    const { container } = render(<Rate />);
-    expect(container.querySelector('.t-rate')).toBeInTheDocument();
-    expect(container.querySelectorAll('.t-rate__icon')).toHaveLength(5);
-  });
-
-  it('should render 0 size rate icon component', () => {
-    const { container } = render(<Rate size="aa" />);
-    const icons = container.querySelectorAll('.t-rate__icon');
-    icons.forEach((icon) => {
-      expect(icon).toHaveStyle('font-size: 0px');
-    });
-  });
-
-  it('should render with custom count', () => {
-    const { container } = render(<Rate count={3} />);
-    expect(container.querySelectorAll('.t-rate__icon')).toHaveLength(3);
-  });
-
-  it('should render with custom size', () => {
-    const { container } = render(<Rate size="32" />);
-    const icons = container.querySelectorAll('.t-rate__icon');
-    expect(icons[0]).toHaveStyle('font-size: 32px');
-  });
-
-  it('should render with custom color', () => {
-    const { container } = render(<Rate color="#ff0000" />);
-    const icons = container.querySelectorAll('.t-rate__icon');
-    expect(icons[0]).toHaveStyle('--td-rate-selected-color: #ff0000');
-  });
-
-  it('should render with color array', () => {
-    const { container } = render(<Rate color={['#ff0000', '#000000']} />);
-    const icons = container.querySelectorAll('.t-rate__icon');
-    expect(icons[0]).toHaveStyle('--td-rate-selected-color: #ff0000');
-    expect(icons[0]).toHaveStyle('--td-rate-unselected-color: #000000');
-  });
-
-  it('should render with custom gap', () => {
-    const { container } = render(<Rate gap={16} />);
-    const wrapper = container.querySelector('.t-rate__wrapper');
-    expect(wrapper).toHaveStyle('gap: 16px');
-  });
-
-  it('should render with custom icon', () => {
-    const customIcon = [<span key="1">★</span>, <span key="2">☆</span>];
-    const { container } = render(<Rate icon={customIcon} />);
-    expect(container.querySelector('.t-rate')).toBeInTheDocument();
-  });
-
-  it('should render with custom icon function', () => {
-    const customIcon = [() => <span key="1">★</span>, () => <span key="2">☆</span>];
-    const { container } = render(<Rate icon={customIcon} />);
-    expect(container.querySelector('.t-rate')).toBeInTheDocument();
-  });
-
-  it('should handle controlled value', () => {
-    const { container } = render(<Rate value={3} />);
-    const icons = container.querySelectorAll('.t-rate__icon');
-    expect(icons[0]).toHaveClass('t-rate__icon--selected');
-    expect(icons[1]).toHaveClass('t-rate__icon--selected');
-    expect(icons[2]).toHaveClass('t-rate__icon--selected');
-    expect(icons[3]).not.toHaveClass('t-rate__icon--selected');
-  });
-
-  it('should handle uncontrolled value with defaultValue', () => {
-    const { container } = render(<Rate defaultValue={2} />);
-    const icons = container.querySelectorAll('.t-rate__icon');
-    expect(icons[0]).toHaveClass('t-rate__icon--selected');
-    expect(icons[1]).toHaveClass('t-rate__icon--selected');
-    expect(icons[2]).not.toHaveClass('t-rate__icon--selected');
-  });
-
-  it('should handle onChange callback', () => {
-    const handleChange = vi.fn();
-    const { container } = render(<Rate onChange={handleChange} />);
-
-    const icons = container.querySelectorAll('.t-rate__icon');
-    fireEvent.click(icons[2]);
-
-    expect(handleChange).toHaveBeenCalledWith(3);
-  });
-
-  it('should handle click events on icons', () => {
-    const handleChange = vi.fn();
-    const { container } = render(<Rate onChange={handleChange} />);
-
-    const icons = container.querySelectorAll('.t-rate__icon');
-    fireEvent.click(icons[0]);
-    expect(handleChange).toHaveBeenCalledWith(1);
-
-    fireEvent.click(icons[4]);
-    expect(handleChange).toHaveBeenCalledWith(5);
-  });
-
-  it('should handle half selection when allowHalf is true', () => {
-    const handleChange = vi.fn();
-    const { container } = render(<Rate allowHalf onChange={handleChange} />);
-
-    const icons = container.querySelectorAll('.t-rate__icon');
-    const icon = icons[2];
-
-    // Mock getBoundingClientRect
-    Object.defineProperty(icon, 'getBoundingClientRect', {
-      value: () => ({ x: 100, width: 24, height: 24, y: 100, top: 100, bottom: 124, left: 100, right: 124 }),
+  describe('props', () => {
+    it('should render default rate component', () => {
+      const { container } = render(<Rate />);
+      expect(container.querySelector('.t-rate')).toBeInTheDocument();
+      expect(container.querySelectorAll('.t-rate__icon')).toHaveLength(5);
     });
 
-    fireEvent.click(icon, { clientX: 105 });
-    expect(handleChange).toHaveBeenCalledWith(2.5);
-  });
-
-  it('should handle full selection when allowHalf is true', () => {
-    const handleChange = vi.fn();
-    const { container } = render(<Rate allowHalf onChange={handleChange} />);
-
-    const icons = container.querySelectorAll('.t-rate__icon');
-    const icon = icons[2];
-
-    // Mock getBoundingClientRect
-    Object.defineProperty(icon, 'getBoundingClientRect', {
-      value: () => ({ x: 100, width: 24, height: 24, y: 100, top: 100, bottom: 124, left: 100, right: 124 }),
+    it(':count', () => {
+      const { container } = render(<Rate count={3} />);
+      expect(container.querySelectorAll('.t-rate__icon')).toHaveLength(3);
     });
 
-    fireEvent.click(icon, { clientX: 115 });
-    expect(handleChange).toHaveBeenCalledWith(3);
-  });
-
-  it('should not handle click when disabled', () => {
-    const handleChange = vi.fn();
-    const { container } = render(<Rate disabled onChange={handleChange} />);
-
-    const icons = container.querySelectorAll('.t-rate__icon');
-    fireEvent.click(icons[2]);
-
-    expect(handleChange).not.toHaveBeenCalled();
-  });
-
-  it('should apply disabled class when disabled', () => {
-    const { container } = render(<Rate disabled />);
-    expect(container.querySelector('.t-rate')).toHaveClass('t-rate--disabled');
-  });
-
-  it('should render showText when showText is true', () => {
-    const { container } = render(<Rate showText />);
-    expect(container.querySelector('.t-rate__text')).toBeInTheDocument();
-  });
-
-  it('should render custom texts when provided', () => {
-    const texts = ['很差', '差', '一般', '好', '很好'];
-    render(<Rate showText texts={texts} value={3} />);
-    expect(screen.getByText('一般')).toBeInTheDocument();
-  });
-
-  it('should handle touch events for dragging', () => {
-    const handleChange = vi.fn();
-    const { container } = render(<Rate onChange={handleChange} />);
-
-    const wrapper = container.querySelector('.t-rate__wrapper');
-
-    // Mock getBoundingClientRect for wrapper
-    Object.defineProperty(wrapper, 'getBoundingClientRect', {
-      value: () => ({ x: 0, width: 200, height: 40, y: 0, top: 0, bottom: 40, left: 0, right: 200 }),
+    it(':size', () => {
+      const { container } = render(<Rate size="32" />);
+      const icons = container.querySelectorAll('.t-rate__icon');
+      expect(icons[0]).toHaveStyle('font-size: 32px');
     });
 
-    // Touch start
-    fireEvent.touchStart(wrapper, { touches: [{ clientX: 50 }] });
-
-    // Touch move
-    fireEvent.touchMove(wrapper, { touches: [{ clientX: 80 }] });
-
-    // Touch end
-    fireEvent.touchEnd(wrapper);
-
-    expect(handleChange).toHaveBeenCalled();
-  });
-
-  it('should handle touch events with allowHalf', () => {
-    const handleChange = vi.fn();
-    const { container } = render(<Rate allowHalf onChange={handleChange} />);
-
-    const wrapper = container.querySelector('.t-rate__wrapper');
-
-    // Mock getBoundingClientRect for wrapper
-    Object.defineProperty(wrapper, 'getBoundingClientRect', {
-      value: () => ({ x: 0, width: 200, height: 40, y: 0, top: 0, bottom: 40, left: 0, right: 200 }),
+    it(':size with invalid value', () => {
+      const { container } = render(<Rate size="aa" />);
+      const icons = container.querySelectorAll('.t-rate__icon');
+      icons.forEach((icon) => {
+        expect(icon).toHaveStyle('font-size: 0px');
+      });
     });
 
-    // Touch start
-    fireEvent.touchStart(wrapper, { touches: [{ clientX: 50 }] });
+    it(':color', () => {
+      const { container } = render(<Rate color="#ff0000" />);
+      const icons = container.querySelectorAll('.t-rate__icon');
+      expect(icons[0]).toHaveStyle('--td-rate-selected-color: #ff0000');
+    });
 
-    // Touch move
-    fireEvent.touchMove(wrapper, { touches: [{ clientX: 85 }] });
+    it(':color with array', () => {
+      const { container } = render(<Rate color={['#ff0000', '#000000']} />);
+      const icons = container.querySelectorAll('.t-rate__icon');
+      expect(icons[0]).toHaveStyle('--td-rate-selected-color: #ff0000');
+      expect(icons[0]).toHaveStyle('--td-rate-unselected-color: #000000');
+    });
 
-    // Touch end
-    fireEvent.touchEnd(wrapper);
+    it(':gap', () => {
+      const { container } = render(<Rate gap={16} />);
+      const wrapper = container.querySelector('.t-rate__wrapper');
+      expect(wrapper).toHaveStyle('gap: 16px');
+    });
 
-    expect(handleChange).toHaveBeenCalled();
-  });
-
-  it('should not handle touch events when disabled', () => {
-    const handleChange = vi.fn();
-    const { container } = render(<Rate disabled onChange={handleChange} />);
-
-    const wrapper = container.querySelector('.t-rate__wrapper');
-
-    // Touch start
-    fireEvent.touchStart(wrapper, { touches: [{ clientX: 50 }] });
-
-    // Touch move
-    fireEvent.touchMove(wrapper, { touches: [{ clientX: 80 }] });
-
-    // Touch end
-    fireEvent.touchEnd(wrapper);
-
-    expect(handleChange).not.toHaveBeenCalled();
-  });
-
-  it('should handle placement prop for tips', () => {
-    const { container } = render(<Rate placement="bottom" />);
-    expect(container.querySelector('.t-rate')).toBeInTheDocument();
-  });
-
-  it('should handle empty placement prop', () => {
-    const { container } = render(<Rate placement="" />);
-    expect(container.querySelector('.t-rate')).toBeInTheDocument();
-  });
-
-  it('should handle custom className', () => {
-    const { container } = render(<Rate className="custom-class" />);
-    expect(container.querySelector('.t-rate')).toHaveClass('custom-class');
-  });
-
-  it('should handle custom style', () => {
-    const { container } = render(<Rate style={{ margin: '10px' }} />);
-    expect(container.querySelector('.t-rate')).toHaveStyle('margin: 10px');
-  });
-
-  it('should handle zero count', () => {
-    const { container } = render(<Rate count={0} />);
-    expect(container.querySelectorAll('.t-rate__icon')).toHaveLength(0);
-  });
-
-  it('should handle single count', () => {
-    const { container } = render(<Rate count={1} />);
-    expect(container.querySelectorAll('.t-rate__icon')).toHaveLength(1);
-  });
-
-  it('should handle large count', () => {
-    const { container } = render(<Rate count={10} />);
-    expect(container.querySelectorAll('.t-rate__icon')).toHaveLength(10);
-  });
-
-  it('should handle decimal gap', () => {
-    const { container } = render(<Rate gap={8.5} />);
-    const wrapper = container.querySelector('.t-rate__wrapper');
-    expect(wrapper).toHaveStyle('gap: 8.5px');
-  });
-
-  it('should handle string size', () => {
-    const { container } = render(<Rate size="32px" />);
-    const icons = container.querySelectorAll('.t-rate__icon');
-    expect(icons[0]).toHaveStyle('font-size: 32px');
-  });
-
-  it('should handle touch cancel', () => {
-    const handleChange = vi.fn();
-    const { container } = render(<Rate onChange={handleChange} />);
-
-    const wrapper = container.querySelector('.t-rate__wrapper');
-
-    // Touch start
-    fireEvent.touchStart(wrapper, { touches: [{ clientX: 50 }] });
-
-    // Touch move
-    fireEvent.touchMove(wrapper, { touches: [{ clientX: 80 }] });
-
-    // Touch cancel
-    fireEvent.touchCancel(wrapper);
-
-    expect(handleChange).toHaveBeenCalled();
-  });
-
-  it('should handle tips visibility with placement', async () => {
-    const { container } = render(<Rate placement="top" />);
-
-    const icons = container.querySelectorAll('.t-rate__icon');
-    fireEvent.click(icons[2]);
-
-    // Wait for tips to potentially appear
-    await waitFor(() => {
+    it(':icon with custom elements', () => {
+      const customIcon = [<span key="1">★</span>, <span key="2">☆</span>];
+      const { container } = render(<Rate icon={customIcon} />);
       expect(container.querySelector('.t-rate')).toBeInTheDocument();
     });
-  });
 
-  it('should handle tips click outside', () => {
-    const { container } = render(<Rate placement="top" />);
-    expect(container.querySelector('.t-rate')).toBeInTheDocument();
-  });
+    it(':icon with custom functions', () => {
+      const customIcon = [() => <span key="1">★</span>, () => <span key="2">☆</span>];
+      const { container } = render(<Rate icon={customIcon} />);
+      expect(container.querySelector('.t-rate')).toBeInTheDocument();
+    });
 
-  it('should handle double tips when allowHalf is true', () => {
-    const { container } = render(<Rate allowHalf placement="top" />);
+    it(':value', () => {
+      const { container } = render(<Rate value={3} />);
+      const icons = container.querySelectorAll('.t-rate__icon');
+      expect(icons[0]).toHaveClass('t-rate__icon--selected');
+      expect(icons[1]).toHaveClass('t-rate__icon--selected');
+      expect(icons[2]).toHaveClass('t-rate__icon--selected');
+      expect(icons[3]).not.toHaveClass('t-rate__icon--selected');
+    });
 
-    const icons = container.querySelectorAll('.t-rate__icon');
-    fireEvent.click(icons[2]);
+    it(':defaultValue', () => {
+      const { container } = render(<Rate defaultValue={2} />);
+      const icons = container.querySelectorAll('.t-rate__icon');
+      expect(icons[0]).toHaveClass('t-rate__icon--selected');
+      expect(icons[1]).toHaveClass('t-rate__icon--selected');
+      expect(icons[2]).not.toHaveClass('t-rate__icon--selected');
+    });
 
-    expect(container.querySelector('.t-rate')).toBeInTheDocument();
-  });
+    it(':allowHalf', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate allowHalf onChange={handleChange} />);
 
-  it('should handle tips data correctly', () => {
-    const { container } = render(<Rate placement="top" />);
-    expect(container.querySelector('.t-rate')).toBeInTheDocument();
-  });
+      const icons = container.querySelectorAll('.t-rate__icon');
+      const icon = icons[2];
 
-  it('should handle zero value', () => {
-    const { container } = render(<Rate value={0} />);
-    const icons = container.querySelectorAll('.t-rate__icon');
-    icons.forEach((icon) => {
-      expect(icon).not.toHaveClass('t-rate__icon--selected');
+      // Mock getBoundingClientRect
+      Object.defineProperty(icon, 'getBoundingClientRect', {
+        value: () => ({ x: 100, width: 24, height: 24, y: 100, top: 100, bottom: 124, left: 100, right: 124 }),
+      });
+
+      fireEvent.click(icon, { clientX: 105 });
+      expect(handleChange).toHaveBeenCalledWith(2.5);
+
+      fireEvent.click(icon, { clientX: 115 });
+      expect(handleChange).toHaveBeenCalledWith(3);
+    });
+
+    it(':disabled', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate disabled onChange={handleChange} />);
+
+      expect(container.querySelector('.t-rate')).toHaveClass('t-rate--disabled');
+
+      const icons = container.querySelectorAll('.t-rate__icon');
+      fireEvent.click(icons[2]);
+
+      expect(handleChange).not.toHaveBeenCalled();
+    });
+
+    it(':showText', () => {
+      const { container } = render(<Rate showText />);
+      expect(container.querySelector('.t-rate__text')).toBeInTheDocument();
+    });
+
+    it(':texts', () => {
+      const texts = ['很差', '差', '一般', '好', '很好'];
+      render(<Rate showText texts={texts} value={3} />);
+      expect(screen.getByText('一般')).toBeInTheDocument();
+    });
+
+    it(':placement', () => {
+      const { container } = render(<Rate placement="bottom" />);
+      expect(container.querySelector('.t-rate')).toBeInTheDocument();
+    });
+
+    it(':className', () => {
+      const { container } = render(<Rate className="custom-class" />);
+      expect(container.querySelector('.t-rate')).toHaveClass('custom-class');
+    });
+
+    it(':style', () => {
+      const { container } = render(<Rate style={{ margin: '10px' }} />);
+      expect(container.querySelector('.t-rate')).toHaveStyle('margin: 10px');
     });
   });
 
-  it('should handle maximum value', () => {
-    const { container } = render(<Rate value={5} />);
-    const icons = container.querySelectorAll('.t-rate__icon');
-    icons.forEach((icon) => {
-      expect(icon).toHaveClass('t-rate__icon--selected');
+  describe('event', () => {
+    it(':onChange', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate onChange={handleChange} />);
+
+      const icons = container.querySelectorAll('.t-rate__icon');
+      fireEvent.click(icons[2]);
+
+      expect(handleChange).toHaveBeenCalledWith(3);
+    });
+
+    it(':click', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate onChange={handleChange} />);
+
+      const icons = container.querySelectorAll('.t-rate__icon');
+      fireEvent.click(icons[0]);
+      expect(handleChange).toHaveBeenCalledWith(1);
+
+      fireEvent.click(icons[4]);
+      expect(handleChange).toHaveBeenCalledWith(5);
+    });
+
+    it(':touch events', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate onChange={handleChange} />);
+
+      const wrapper = container.querySelector('.t-rate__wrapper');
+
+      // Mock getBoundingClientRect for wrapper
+      Object.defineProperty(wrapper, 'getBoundingClientRect', {
+        value: () => ({ x: 0, width: 200, height: 40, y: 0, top: 0, bottom: 40, left: 0, right: 200 }),
+      });
+
+      // Touch start
+      fireEvent.touchStart(wrapper, { touches: [{ clientX: 50 }] });
+
+      // Touch move
+      fireEvent.touchMove(wrapper, { touches: [{ clientX: 80 }] });
+
+      // Touch end
+      fireEvent.touchEnd(wrapper);
+
+      expect(handleChange).toHaveBeenCalled();
+    });
+
+    it(':touch events with allowHalf', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate allowHalf onChange={handleChange} />);
+
+      const wrapper = container.querySelector('.t-rate__wrapper');
+
+      // Mock getBoundingClientRect for wrapper
+      Object.defineProperty(wrapper, 'getBoundingClientRect', {
+        value: () => ({ x: 0, width: 200, height: 40, y: 0, top: 0, bottom: 40, left: 0, right: 200 }),
+      });
+
+      // Touch start
+      fireEvent.touchStart(wrapper, { touches: [{ clientX: 50 }] });
+
+      // Touch move
+      fireEvent.touchMove(wrapper, { touches: [{ clientX: 85 }] });
+
+      // Touch end
+      fireEvent.touchEnd(wrapper);
+
+      expect(handleChange).toHaveBeenCalled();
+    });
+
+    it(':count with edge cases', () => {
+      // Zero count
+      const { container: container1 } = render(<Rate count={0} />);
+      expect(container1.querySelectorAll('.t-rate__icon')).toHaveLength(0);
+
+      // Single count
+      const { container: container2 } = render(<Rate count={1} />);
+      expect(container2.querySelectorAll('.t-rate__icon')).toHaveLength(1);
+
+      // Large count
+      const { container: container3 } = render(<Rate count={10} />);
+      expect(container3.querySelectorAll('.t-rate__icon')).toHaveLength(10);
+    });
+
+    it(':gap with decimal value', () => {
+      const { container } = render(<Rate gap={8.5} />);
+      const wrapper = container.querySelector('.t-rate__wrapper');
+      expect(wrapper).toHaveStyle('gap: 8.5px');
+    });
+
+    it(':size with string value', () => {
+      const { container } = render(<Rate size="32px" />);
+      const icons = container.querySelectorAll('.t-rate__icon');
+      expect(icons[0]).toHaveStyle('font-size: 32px');
+    });
+
+    it(':value with edge cases', () => {
+      // Zero value
+      const { container: container1 } = render(<Rate value={0} />);
+      const icons1 = container1.querySelectorAll('.t-rate__icon');
+      icons1.forEach((icon) => {
+        expect(icon).not.toHaveClass('t-rate__icon--selected');
+      });
+
+      // Maximum value
+      const { container: container2 } = render(<Rate value={5} />);
+      const icons2 = container2.querySelectorAll('.t-rate__icon');
+      icons2.forEach((icon) => {
+        expect(icon).toHaveClass('t-rate__icon--selected');
+      });
+
+      // Value greater than count
+      const { container: container3 } = render(<Rate value={10} count={5} />);
+      const icons3 = container3.querySelectorAll('.t-rate__icon');
+      icons3.forEach((icon) => {
+        expect(icon).toHaveClass('t-rate__icon--selected');
+      });
+
+      // Negative value
+      const { container: container4 } = render(<Rate value={-1} />);
+      const icons4 = container4.querySelectorAll('.t-rate__icon');
+      icons4.forEach((icon) => {
+        expect(icon).not.toHaveClass('t-rate__icon--selected');
+      });
+
+      // Decimal value
+      const { container: container5 } = render(<Rate value={2.5} />);
+      const icons5 = container5.querySelectorAll('.t-rate__icon');
+      expect(icons5[0]).toHaveClass('t-rate__icon--selected');
+      expect(icons5[1]).toHaveClass('t-rate__icon--selected');
+      expect(icons5[2]).toHaveClass('t-rate__icon--unselected');
+      expect(icons5[2].querySelector('.t-rate__icon-left--selected')).toBeInTheDocument();
+    });
+
+    it(':placement with empty value', () => {
+      const { container } = render(<Rate placement="" />);
+      expect(container.querySelector('.t-rate')).toBeInTheDocument();
+    });
+
+    it('should handle ref forwarding', () => {
+      const ref = React.createRef<HTMLDivElement>();
+      const { container } = render(<Rate ref={ref} />);
+
+      expect(ref.current).toBe(container.querySelector('.t-rate'));
+    });
+
+    it('should handle component unmount', () => {
+      const { container, unmount } = render(<Rate />);
+      expect(container.querySelector('.t-rate')).toBeInTheDocument();
+
+      unmount();
+      expect(container.querySelector('.t-rate')).not.toBeInTheDocument();
     });
   });
 
-  it('should handle value greater than count', () => {
-    const { container } = render(<Rate value={10} count={5} />);
-    const icons = container.querySelectorAll('.t-rate__icon');
-    icons.forEach((icon) => {
-      expect(icon).toHaveClass('t-rate__icon--selected');
-    });
-  });
+  describe('event', () => {
+    it(':onChange', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate onChange={handleChange} />);
 
-  it('should handle negative value', () => {
-    const { container } = render(<Rate value={-1} />);
-    const icons = container.querySelectorAll('.t-rate__icon');
-    icons.forEach((icon) => {
-      expect(icon).not.toHaveClass('t-rate__icon--selected');
-    });
-  });
+      const icons = container.querySelectorAll('.t-rate__icon');
+      fireEvent.click(icons[2]);
 
-  it('should handle decimal value', () => {
-    const { container } = render(<Rate value={2.5} />);
-    const icons = container.querySelectorAll('.t-rate__icon');
-
-    expect(icons[0]).toHaveClass('t-rate__icon--selected');
-    expect(icons[1]).toHaveClass('t-rate__icon--selected');
-    expect(icons[2]).toHaveClass('t-rate__icon--unselected');
-    expect(icons[2].querySelector('.t-rate__icon-left--selected')).toBeInTheDocument();
-  });
-
-  it('should handle onChange with same value', () => {
-    const handleChange = vi.fn();
-    const { container } = render(<Rate value={3} onChange={handleChange} />);
-
-    const icons = container.querySelectorAll('.t-rate__icon');
-    fireEvent.click(icons[2]);
-
-    expect(handleChange).toHaveBeenCalledWith(3);
-  });
-
-  it('should handle touch events with minimum movement', () => {
-    const handleChange = vi.fn();
-    const { container } = render(<Rate onChange={handleChange} />);
-
-    const wrapper = container.querySelector('.t-rate__wrapper');
-
-    // Mock getBoundingClientRect for wrapper
-    Object.defineProperty(wrapper, 'getBoundingClientRect', {
-      value: () => ({ x: 0, width: 200, height: 40, y: 0, top: 0, bottom: 40, left: 0, right: 200 }),
+      expect(handleChange).toHaveBeenCalledWith(3);
     });
 
-    // Touch start
-    fireEvent.touchStart(wrapper, { touches: [{ clientX: 50 }] });
+    it(':click', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate onChange={handleChange} />);
 
-    // Touch move with small movement (less than 5px)
-    fireEvent.touchMove(wrapper, { touches: [{ clientX: 52 }] });
+      const icons = container.querySelectorAll('.t-rate__icon');
+      fireEvent.click(icons[0]);
+      expect(handleChange).toHaveBeenCalledWith(1);
 
-    // Touch end
-    fireEvent.touchEnd(wrapper);
+      fireEvent.click(icons[4]);
+      expect(handleChange).toHaveBeenCalledWith(5);
+    });
 
-    // Should not trigger change due to small movement
-    expect(handleChange).not.toHaveBeenCalled();
-  });
+    it(':touch events', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate onChange={handleChange} />);
 
-  it('should handle touch events with count less than 1', () => {
-    const handleChange = vi.fn();
-    const { container } = render(<Rate count={0} onChange={handleChange} />);
+      const wrapper = container.querySelector('.t-rate__wrapper');
 
-    const wrapper = container.querySelector('.t-rate__wrapper');
+      // Mock getBoundingClientRect for wrapper
+      Object.defineProperty(wrapper, 'getBoundingClientRect', {
+        value: () => ({ x: 0, width: 200, height: 40, y: 0, top: 0, bottom: 40, left: 0, right: 200 }),
+      });
 
-    // Touch start
-    fireEvent.touchStart(wrapper, { touches: [{ clientX: 50 }] });
+      // Touch start
+      fireEvent.touchStart(wrapper, { touches: [{ clientX: 50 }] });
 
-    // Touch move
-    fireEvent.touchMove(wrapper, { touches: [{ clientX: 80 }] });
+      // Touch move
+      fireEvent.touchMove(wrapper, { touches: [{ clientX: 80 }] });
 
-    // Touch end
-    fireEvent.touchEnd(wrapper);
+      // Touch end
+      fireEvent.touchEnd(wrapper);
 
-    expect(handleChange).not.toHaveBeenCalled();
-  });
+      expect(handleChange).toHaveBeenCalled();
+    });
 
-  it('should handle ref forwarding', () => {
-    const ref = React.createRef<HTMLDivElement>();
-    const { container } = render(<Rate ref={ref} />);
+    it(':touch events with allowHalf', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate allowHalf onChange={handleChange} />);
 
-    expect(ref.current).toBe(container.querySelector('.t-rate'));
-  });
+      const wrapper = container.querySelector('.t-rate__wrapper');
 
-  it('should handle component unmount', () => {
-    const { container, unmount } = render(<Rate />);
-    expect(container.querySelector('.t-rate')).toBeInTheDocument();
+      // Mock getBoundingClientRect for wrapper
+      Object.defineProperty(wrapper, 'getBoundingClientRect', {
+        value: () => ({ x: 0, width: 200, height: 40, y: 0, top: 0, bottom: 40, left: 0, right: 200 }),
+      });
 
-    unmount();
-    expect(container.querySelector('.t-rate')).not.toBeInTheDocument();
-  });
+      // Touch start
+      fireEvent.touchStart(wrapper, { touches: [{ clientX: 50 }] });
 
-  it('should not trigger onChange when RateTips option value equals innerValue via touch events', () => {
-    const handleChange = vi.fn();
-    const { container } = render(<Rate value={2} placement="top" onChange={handleChange} />);
-    const icons = container.querySelectorAll('.t-rate__icon');
+      // Touch move
+      fireEvent.touchMove(wrapper, { touches: [{ clientX: 85 }] });
 
-    fireEvent.click(icons[1]);
-    // 此时tips应该显示，且currentValue为2
-    const tips = container.querySelector('.t-rate__tips');
-    expect(tips).toBeInTheDocument();
+      // Touch end
+      fireEvent.touchEnd(wrapper);
 
-    if (tips) {
-      // 找到tips中的选项（value应该等于2，与innerValue相同）
-      const tipOptions = tips.querySelectorAll('.t-rate__tips-item');
-      expect(tipOptions.length).toBeGreaterThan(0);
-      console.log('tipOptions', tipOptions[0].innerHTML);
+      expect(handleChange).toHaveBeenCalled();
+    });
 
-      // 点击与当前值相同的选项
-      fireEvent.click(tipOptions[0]);
-    }
+    it(':touch events when disabled', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate disabled onChange={handleChange} />);
 
-    // 由于value === innerValue，不应触发onChange
-    expect(handleChange).toHaveBeenCalledOnce();
-  });
+      const wrapper = container.querySelector('.t-rate__wrapper');
 
-  it('should trigger onChange when RateTips option value not equals innerValue via touch events', () => {
-    const handleChange = vi.fn();
-    const { container } = render(<Rate value={2} placement="top" onChange={handleChange} />);
-    const icons = container.querySelectorAll('.t-rate__icon');
+      // Touch start
+      fireEvent.touchStart(wrapper, { touches: [{ clientX: 50 }] });
 
-    fireEvent.click(icons[2]);
-    // 此时tips应该显示，且currentValue为2
-    const tips = container.querySelector('.t-rate__tips');
-    expect(tips).toBeInTheDocument();
+      // Touch move
+      fireEvent.touchMove(wrapper, { touches: [{ clientX: 80 }] });
 
-    if (tips) {
-      // 找到tips中的选项（value应该等于2，与innerValue相同）
-      const tipOptions = tips.querySelectorAll('.t-rate__tips-item');
-      expect(tipOptions.length).toBeGreaterThan(0);
-      console.log('tipOptions', tipOptions[0].innerHTML);
+      // Touch end
+      fireEvent.touchEnd(wrapper);
 
-      // 点击与当前值相同的选项
-      fireEvent.click(tipOptions[0]);
-    }
+      expect(handleChange).not.toHaveBeenCalled();
+    });
 
-    // 由于value !== innerValue，应再次触发onChange
-    expect(handleChange).toHaveBeenCalledTimes(2);
+    it(':touch cancel', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate onChange={handleChange} />);
+
+      const wrapper = container.querySelector('.t-rate__wrapper');
+
+      // Touch start
+      fireEvent.touchStart(wrapper, { touches: [{ clientX: 50 }] });
+
+      // Touch move
+      fireEvent.touchMove(wrapper, { touches: [{ clientX: 80 }] });
+
+      // Touch cancel
+      fireEvent.touchCancel(wrapper);
+
+      expect(handleChange).toHaveBeenCalled();
+    });
+
+    it(':touch events with minimum movement', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate onChange={handleChange} />);
+
+      const wrapper = container.querySelector('.t-rate__wrapper');
+
+      // Mock getBoundingClientRect for wrapper
+      Object.defineProperty(wrapper, 'getBoundingClientRect', {
+        value: () => ({ x: 0, width: 200, height: 40, y: 0, top: 0, bottom: 40, left: 0, right: 200 }),
+      });
+
+      // Touch start
+      fireEvent.touchStart(wrapper, { touches: [{ clientX: 50 }] });
+
+      // Touch move with small movement (less than 5px)
+      fireEvent.touchMove(wrapper, { touches: [{ clientX: 52 }] });
+
+      // Touch end
+      fireEvent.touchEnd(wrapper);
+
+      // Should not trigger change due to small movement
+      expect(handleChange).not.toHaveBeenCalled();
+    });
+
+    it(':touch events with count less than 1', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate count={0} onChange={handleChange} />);
+
+      const wrapper = container.querySelector('.t-rate__wrapper');
+
+      // Touch start
+      fireEvent.touchStart(wrapper, { touches: [{ clientX: 50 }] });
+
+      // Touch move
+      fireEvent.touchMove(wrapper, { touches: [{ clientX: 80 }] });
+
+      // Touch end
+      fireEvent.touchEnd(wrapper);
+
+      expect(handleChange).not.toHaveBeenCalled();
+    });
+
+    it(':onChange with same value', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate value={3} onChange={handleChange} />);
+
+      const icons = container.querySelectorAll('.t-rate__icon');
+      fireEvent.click(icons[2]);
+
+      expect(handleChange).toHaveBeenCalledWith(3);
+    });
+
+    it(':tips visibility with placement', async () => {
+      const { container } = render(<Rate placement="top" />);
+
+      const icons = container.querySelectorAll('.t-rate__icon');
+      fireEvent.click(icons[2]);
+
+      // Wait for tips to potentially appear
+      await waitFor(() => {
+        expect(container.querySelector('.t-rate')).toBeInTheDocument();
+      });
+    });
+
+    it(':tips click outside', () => {
+      const { container } = render(<Rate placement="top" />);
+      expect(container.querySelector('.t-rate')).toBeInTheDocument();
+    });
+
+    it(':tips with allowHalf', () => {
+      const { container } = render(<Rate allowHalf placement="top" />);
+
+      const icons = container.querySelectorAll('.t-rate__icon');
+      fireEvent.click(icons[2]);
+
+      expect(container.querySelector('.t-rate')).toBeInTheDocument();
+    });
+
+    it(':tips data correctly', () => {
+      const { container } = render(<Rate placement="top" />);
+      expect(container.querySelector('.t-rate')).toBeInTheDocument();
+    });
+
+    it('should not trigger onChange when RateTips option value equals innerValue', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate value={2} placement="top" onChange={handleChange} />);
+      const icons = container.querySelectorAll('.t-rate__icon');
+
+      fireEvent.click(icons[1]);
+      // 此时tips应该显示，且currentValue为2
+      const tips = container.querySelector('.t-rate__tips');
+      expect(tips).toBeInTheDocument();
+
+      if (tips) {
+        // 找到tips中的选项（value应该等于2，与innerValue相同）
+        const tipOptions = tips.querySelectorAll('.t-rate__tips-item');
+        expect(tipOptions.length).toBeGreaterThan(0);
+        console.log('tipOptions', tipOptions[0].innerHTML);
+
+        // 点击与当前值相同的选项
+        fireEvent.click(tipOptions[0]);
+      }
+
+      // 由于value === innerValue，不应触发onChange
+      expect(handleChange).toHaveBeenCalledOnce();
+    });
+
+    it('should trigger onChange when RateTips option value not equals innerValue', () => {
+      const handleChange = vi.fn();
+      const { container } = render(<Rate value={2} placement="top" onChange={handleChange} />);
+      const icons = container.querySelectorAll('.t-rate__icon');
+
+      fireEvent.click(icons[2]);
+      // 此时tips应该显示，且currentValue为2
+      const tips = container.querySelector('.t-rate__tips');
+      expect(tips).toBeInTheDocument();
+
+      if (tips) {
+        // 找到tips中的选项（value应该等于2，与innerValue相同）
+        const tipOptions = tips.querySelectorAll('.t-rate__tips-item');
+        expect(tipOptions.length).toBeGreaterThan(0);
+        console.log('tipOptions', tipOptions[0].innerHTML);
+
+        // 点击与当前值相同的选项
+        fireEvent.click(tipOptions[0]);
+      }
+
+      // 由于value !== innerValue，应再次触发onChange
+      expect(handleChange).toHaveBeenCalledTimes(2);
+    });
   });
 
   describe('currentValue and innerValue display logic', () => {

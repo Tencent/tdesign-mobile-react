@@ -45,7 +45,7 @@ module.exports = {
   pullDownRefresh: { statements: '9.42%', branches: '2.73%', functions: '4.54%', lines: '9.23%' },
   qrcode: { statements: '9.89%', branches: '0%', functions: '0%', lines: '10%' },
   radio: { statements: '12.67%', branches: '0%', functions: '0%', lines: '12.85%' },
-  rate: { statements: '99.29%', branches: '98.98%', functions: '100%', lines: '99.29%' },
+  rate: { statements: '99.3%', branches: '98.98%', functions: '100%', lines: '99.3%' },
   result: { statements: '12.9%', branches: '0%', functions: '0%', lines: '12.9%' },
   search: { statements: '6.12%', branches: '0%', functions: '0%', lines: '6.25%' },
   sideBar: { statements: '54.34%', branches: '0%', functions: '33.33%', lines: '58.53%' },
