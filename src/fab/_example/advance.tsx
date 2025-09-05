@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from 'tdesign-icons-react';
+import { AddIcon } from 'tdesign-icons-react';
 import { Fab } from 'tdesign-mobile-react';
 
 export default function () {
@@ -9,7 +9,7 @@ export default function () {
   return (
     <>
       <Fab
-        icon={<Icon name="add" size={24} />}
+        icon={<AddIcon size={24} />}
         text="按钮文字"
         draggable="vertical"
         style={{ right: '16px', bottom: '32px' }}

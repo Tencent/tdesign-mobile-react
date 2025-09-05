@@ -6,6 +6,7 @@ import Icon from './icon';
 import Plugin from './plugin';
 import Title from './title';
 import Footer from './footer';
+import Placement from './placement';
 
 export default function Demo() {
   return (
@@ -23,11 +24,15 @@ export default function Demo() {
         <Icon />
       </TDemoBlock>
 
-      <TDemoBlock title="02 组件样式" summary="带标题抽屉" padding>
+      <TDemoBlock title="02 组件样式" summary="带标题样式" padding>
         <Title />
       </TDemoBlock>
 
-      <TDemoBlock summary="带底部插槽抽屉" padding>
+      <TDemoBlock summary="抽屉方向" padding>
+        <Placement />
+      </TDemoBlock>
+
+      <TDemoBlock summary="带底部插槽样式" padding>
         <Footer />
       </TDemoBlock>
 

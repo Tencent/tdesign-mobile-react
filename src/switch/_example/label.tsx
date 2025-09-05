@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Switch, Cell } from 'tdesign-mobile-react';
-import { Icon } from 'tdesign-icons-react';
+import { CheckIcon, CloseIcon } from 'tdesign-icons-react';
 
 export default function SwitchLabel() {
   const [checked, setChecked] = useState(true);
@@ -10,8 +10,8 @@ export default function SwitchLabel() {
     setChecked(value);
   };
 
-  const renderActiveContent = () => <Icon name="check" />;
-  const renderInactiveContent = () => <Icon name="close" />;
+  const renderActiveContent = () => <CheckIcon />;
+  const renderInactiveContent = () => <CloseIcon />;
 
   return (
     <>

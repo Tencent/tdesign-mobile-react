@@ -7,7 +7,7 @@ export default function Base() {
     <RadioGroup value={defaultValue} className="box horizontal" onChange={(value: string) => setDefaultValue(value)}>
       <Radio block={false} label="单选标题" value="idx0"></Radio>
       <Radio block={false} label="单选标题" value="idx1"></Radio>
-      <Radio block={false} label="单选标题" value="idx2"></Radio>
+      <Radio block={false} label="上限四字" value="idx2"></Radio>
     </RadioGroup>
   );
 }

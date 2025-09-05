@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Radio, RadioGroup } from 'tdesign-mobile-react';
-import { Icon } from 'tdesign-icons-react';
+import { CheckIcon } from 'tdesign-icons-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
 export default function () {
@@ -8,11 +8,11 @@ export default function () {
   const [defaultValueH, setDefaultValueH] = useState(0);
   return (
     <>
-      <TDemoBlock summary="单选框尺寸规格">
+      <TDemoBlock summary="纵向卡片单选框">
         <RadioGroup value={defaultValue} onChange={(value: number) => setDefaultValue(value)}>
           {Array.from(Array(3), (_, key) => (
             <div className={`card ${defaultValue === key ? 'card--active' : ''}`} key={key}>
-              {defaultValue === key && <Icon name="check" color="#fff" className="card__icon" />}
+              {defaultValue === key && <CheckIcon color="#fff" className="card__icon" />}
               <Radio
                 value={key}
                 borderless
@@ -32,7 +32,7 @@ export default function () {
         >
           {Array.from(Array(3), (_, key) => (
             <div className={`card ${defaultValueH === key ? 'card--active' : ''}`} key={key}>
-              {defaultValueH === key && <Icon name="check" color="#fff" className="card__icon" />}
+              {defaultValueH === key && <CheckIcon color="#fff" className="card__icon" />}
               <Radio borderless value={key} label="单选" icon="none"></Radio>
             </div>
           ))}

@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import classNames from 'classnames';
 import { StyledProps } from '../common';
 import useConfig from '../hooks/useConfig';
 import Radio, { RadioContext, RadioContextValue, RadioProps } from './Radio';
@@ -23,6 +24,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
     allowUncheck,
     borderless,
     className,
+    style,
     placement,
   } = props;
   const groupRef = useRef(null);
@@ -71,7 +73,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
       );
     });
   return (
-    <div ref={groupRef} className={`${classPrefix}-radio-group ${className || ''}`}>
+    <div ref={groupRef} style={style} className={classNames(`${classPrefix}-radio-group`, className)}>
       <RadioContext.Provider value={context}>{options?.length ? renderOptions() : children}</RadioContext.Provider>
     </div>
   );

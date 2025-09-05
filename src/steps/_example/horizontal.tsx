@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Steps, StepItem } from 'tdesign-mobile-react';
-import { Icon } from 'tdesign-icons-react';
+import { CartIcon } from 'tdesign-icons-react';
 
 export default function StepsDemo() {
-  const [first, setFirst] = useState(1);
+  const [first, setFirst] = useState<number | string>('1');
   const [second, setSecond] = useState(1);
   const [third, setThird] = useState(1);
   const options = {
@@ -13,7 +13,7 @@ export default function StepsDemo() {
   };
 
   const count = 4;
-  const onFirstChange = (current: number) => {
+  const onFirstChange = (current: number | string) => {
     setFirst(current);
   };
   const onSecondChange = (current: number) => {
@@ -23,14 +23,17 @@ export default function StepsDemo() {
     setThird(current);
   };
 
-  const getTitle = (type: 'first' | 'second' | 'third', index: number) => {
-    if (index === options[type]) {
+  const getTitle = (type: 'first' | 'second' | 'third', index: number | string) => {
+    const numIndex = Number(index);
+    const currentValue = Number(options[type]);
+
+    if (numIndex === currentValue) {
       return '当前步骤';
     }
-    if (index < options[type]) {
+    if (numIndex < currentValue) {
       return '已完成';
     }
-    if (index > options[type]) {
+    if (numIndex > currentValue) {
       return '未完成';
     }
   };
@@ -53,7 +56,7 @@ export default function StepsDemo() {
               key={index}
               title={getTitle('second', index)}
               content="辅助信息"
-              icon={<Icon name="cart" size="20px" />}
+              icon={<CartIcon size="20px" />}
             ></StepItem>
           ))}
         </Steps>
