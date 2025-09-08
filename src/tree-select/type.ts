@@ -1,45 +1,57 @@
-/* eslint-disable */
+import { TdTreeSelectProps } from './TdTreeSelectProps';
 
-/**
- * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
- * */
+export interface TreeSelectOption {
+  label: string;
+  value: string | number;
+  disabled?: boolean;
+  children?: TreeSelectOption[];
+}
 
-import { TreeOptionData, TreeKeysType } from '../common';
-
-export interface TdTreeSelectProps<DataOption extends TreeOptionData = TreeOptionData> {
+export interface TreeSelectProps extends TdTreeSelectProps {
   /**
-   * 高度，默认单位为 px
-   * @default 336
+   * 选项数据
+   */
+  options?: TreeSelectOption[];
+  /**
+   * 当前选中的值
+   */
+  value?: string | number | Array<string | number>;
+  /**
+   * 默认选中的值
+   */
+  defaultValue?: string | number | Array<string | number>;
+  /**
+   * 是否多选
+   */
+multiple?: boolean;
+  /**
+   * 占位符文本
+   */
+  placeholder?: string;
+  /**
+   * 是否禁用
+   */
+  disabled?: boolean;
+  /**
+   * 是否显示清除按钮
+   */
+  clearable?: boolean;
+  /**
+   * 选择器高度
    */
   height?: string | number;
   /**
-   * 用来定义 `value / label / disabled / children` 在 `data` 数据中对应的字段别名，示例：`{ value: 'key', label: 'name', children: 'list' }`
+   * 值变化时的回调
    */
-  keys?: TreeKeysType;
+  onChange?: (value: string | number | Array<string | number>, selectedOptions: TreeSelectOption | TreeSelectOption[]) => void;
   /**
-   * 是否允许多选
-   * @default false
+   * 清除时的回调
    */
-  multiple?: boolean;
+  onClear?: () => void;
   /**
-   * 选项
-   * @default []
+   * 展开/收起时的回调
    */
-  options?: Array<DataOption>;
-  /**
-   * 选中值
-   */
-  value?: TreeSelectValue;
-  /**
-   * 选中值，非受控属性
-   */
-  defaultValue?: TreeSelectValue;
-  /**
-   * 点击任何节点均会触发；level 代表当前点击的层级，0 代表最左侧，依次递进
-   */
-  onChange?: (value: TreeSelectValue, level: TreeLevel) => void;
+  onExpand?: (expandedKeys: Array<string | number>) => void;
 }
 
-export type TreeSelectValue = string | number | Array<TreeSelectValue>;
-
-export type TreeLevel = 0 | 1 | 2;
+export default TreeSelectProps;

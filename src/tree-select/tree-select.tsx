@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import useDefault from '../_util/useDefault';
 import useDefaultProps from '../hooks/useDefaultProps';
-import { TdTreeSelectProps, TreeLevel, TreeSelectValue } from './type';
+import { TdTreeSelectProps, TreeSelectValue } from './TdTreeSelectProps';
 import { treeSelectDefaultProps } from './defaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 import { convertUnit } from '../_util/convertUnit';
@@ -12,6 +12,8 @@ import parseTNode from '../_util/parseTNode';
 import { Checkbox } from '../checkbox';
 import { Radio, RadioGroup } from '../radio';
 import { NativeProps } from '../_util/withNativeProps';
+
+export type TreeLevel = number;
 
 export interface TreeSelectProps extends TdTreeSelectProps, NativeProps {}
 
@@ -65,7 +67,7 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
   };
 
   const onRootChange = (level: TreeLevel, itemValue: any) => {
-    const newVal = Array.isArray(innerValue) ? [...innerValue] : innerValue;
+    const newVal = Array.isArray(innerValue) ? [...innerValue] : (innerValue ? [innerValue] : []);
     newVal[level] = itemValue;
     setInnerValue(newVal, level);
   };
@@ -73,7 +75,7 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
   const handleTreeClick = (itemValue: TreeSelectValue, level: TreeLevel, isDisabled: boolean) => {
     if (isDisabled) return;
 
-    const newVal = Array.isArray(innerValue) ? [...innerValue] : innerValue;
+    const newVal = Array.isArray(innerValue) ? [...innerValue] : (innerValue ? [innerValue] : []);
     newVal[level] = itemValue;
     setInnerValue(newVal, level);
   };
@@ -85,8 +87,8 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
 
   const renderSideBar = (treeOption: TreeOptionData[]) => (
     <SideBar
-      defaultValue={innerValue[0]}
-      className={`${treeSelectClass}-colum`}
+      defaultValue={innerValue?.[0]}
+      className={`${treeSelectClass}-column`}
       onClick={(val) => {
         onRootChange(0, val);
       }}
@@ -94,9 +96,9 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
       {treeOption.map((item, index) => (
         <SideBarItem
           key={index}
-          label={item.label.toString()}
-          value={item.value}
-          disabled={item.disabled}
+          label={item?.label?.toString() || ''}
+          value={item?.value}
+          disabled={item?.disabled || false}
         ></SideBarItem>
       ))}
     </SideBar>
@@ -105,15 +107,15 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
   const renderMiddleLevel = (treeOption: TreeOptionData[], level: number) =>
     treeOption.map((item) => (
       <div
-        key={item.value}
+        key={item?.value}
         className={classNames({
           [`${treeSelectClass}__item`]: true,
-          [`${treeSelectClass}__item--active`]: item.value === innerValue[level],
-          [`${treeSelectClass}__item--disabled`]: item.disabled,
+          [`${treeSelectClass}__item--active`]: item?.value === innerValue?.[level],
+          [`${treeSelectClass}__item--disabled`]: item?.disabled,
         })}
-        onClick={() => handleTreeClick(item.value, level as TreeLevel, item.disabled)}
+        onClick={() => handleTreeClick(item?.value, level as TreeLevel, item?.disabled || false)}
       >
-        {parseTNode(item.label)}
+        {parseTNode(item?.label)}
       </div>
     ));
 
@@ -121,20 +123,20 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
     if (multiple) {
       return (
         <Checkbox.Group
-          value={innerValue[level]}
+          value={innerValue?.[level]}
           className={`${treeSelectClass}__checkbox`}
           onChange={(val) => onRootChange(level as TreeLevel, val)}
         >
           {treeOption.map((item) => (
             <Checkbox
-              key={item.value}
-              value={item.value}
+              key={item?.value}
+              value={item?.value}
               maxLabelRow={1}
               icon="line"
               borderless
               placement="right"
-              disabled={item.disabled}
-              label={item.label}
+              disabled={item?.disabled || false}
+              label={item?.label}
             />
           ))}
         </Checkbox.Group>
@@ -142,18 +144,18 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
     }
     return (
       <>
-        <RadioGroup value={innerValue[level]} onChange={(val) => onRootChange(level as TreeLevel, val)}>
+        <RadioGroup value={innerValue?.[level]} onChange={(val) => onRootChange(level as TreeLevel, val)}>
           {treeOption.map((item) => (
             <Radio
-              key={item.value}
-              value={item.value}
+              key={item?.value}
+              value={item?.value}
               icon="line"
               maxLabelRow={1}
               borderless
               placement="right"
-              disabled={item.disabled}
+              disabled={item?.disabled || false}
             >
-              {item.label}
+              {item?.label}
             </Radio>
           ))}
         </RadioGroup>
