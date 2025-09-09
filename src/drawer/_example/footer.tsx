@@ -50,7 +50,7 @@ export default function Base() {
           setOpenBase(!openBase);
         }}
       >
-        带底部插槽抽屉
+        带底部插槽
       </Button>
       <Drawer
         footer={footer}
