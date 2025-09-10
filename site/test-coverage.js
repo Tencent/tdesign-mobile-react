@@ -12,7 +12,7 @@ module.exports = {
   colorPicker: { statements: '3.03%', branches: '0%', functions: '0%', lines: '3.03%' },
   common: { statements: '79.31%', branches: '55.55%', functions: '83.33%', lines: '88%' },
   configProvider: { statements: '54.54%', branches: '0%', functions: '0%', lines: '54.54%' },
-  countDown: { statements: '22.22%', branches: '0%', functions: '0%', lines: '25%' },
+  countDown: { statements: '100%', branches: '90%', functions: '100%', lines: '100%' },
   dateTimePicker: { statements: '5.67%', branches: '0%', functions: '0%', lines: '6.06%' },
   dialog: { statements: '4.3%', branches: '0%', functions: '0%', lines: '4.49%' },
   divider: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
