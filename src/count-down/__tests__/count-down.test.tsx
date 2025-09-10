@@ -69,22 +69,18 @@ describe('CountDown', () => {
       expect(container.textContent).toMatch(/\d{2}:\d{2}:\d{2}:\d{3}/);
     });
 
+    /* eslint-disable no-await-in-loop */
     test(':size', async () => {
       const sizes = ['small', 'medium', 'large'] as const;
 
-      const sizePromises = sizes.map(async (size) => {
+      // eslint-disable-next-line no-await-in-loop
+      for (const size of sizes) {
         const { container } = render(<CountDown time={time} size={size} theme="square" />);
 
         await act(async () => {
           vi.advanceTimersByTime(100);
         });
 
-        return { container, size };
-      });
-
-      const results = await Promise.all(sizePromises);
-
-      for (const { container, size } of results) {
         // 验证尺寸类名
         expect(container.querySelector(`.t-count-down--${size}`)).toBeTruthy();
 
@@ -183,7 +179,7 @@ describe('CountDown', () => {
         </span>
       );
 
-      const { container } = render(<CountDown time={time} content={customContent} />);
+      const { container } = render(<CountDown time={time} content={customContent as any} />);
 
       await act(async () => {
         vi.advanceTimersByTime(100);
@@ -232,7 +228,7 @@ describe('CountDown', () => {
         vi.advanceTimersByTime(100);
       });
 
-      const element = container.querySelector('.t-count-down');
+      const element = container.querySelector('.t-count-down') as HTMLElement;
       expect(element?.style.color).toBeTruthy();
     });
   });
@@ -354,6 +350,7 @@ describe('CountDown', () => {
   });
 
   describe('format variations', () => {
+    /* eslint-disable no-await-in-loop */
     test('detailed formats', async () => {
       const testCases = [
         { format: 'HH:mm:ss', time: 3661000, expected: /\d{2}:\d{2}:\d{2}/ },
@@ -362,19 +359,13 @@ describe('CountDown', () => {
         { format: 'HH:mm:ss:SSS', time: 3661500, expected: /\d{2}:\d{2}:\d{2}:\d{3}/ },
       ];
 
-      const testPromises = testCases.map(async (testCase) => {
+      for (const testCase of testCases) {
         const { container } = render(<CountDown time={testCase.time} format={testCase.format} />);
 
         await act(async () => {
           vi.advanceTimersByTime(100);
         });
 
-        return { container, testCase };
-      });
-
-      const testResults = await Promise.all(testPromises);
-
-      for (const { container, testCase } of testResults) {
         expect(container.textContent).toMatch(testCase.expected);
       }
     });
