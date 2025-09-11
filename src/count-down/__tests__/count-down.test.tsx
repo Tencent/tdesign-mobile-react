@@ -233,7 +233,7 @@ describe('CountDown', () => {
     });
   });
 
-  describe('interaction', () => {
+  describe('events', () => {
     test('start method', async () => {
       const ref = React.createRef<CountDownRef>();
       const { container } = render(<CountDown ref={ref} time={time} autoStart={false} />);
