@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { describe, it, expect, render } from '@test/utils';
 
-import { Cascader, Cell } from 'tdesign-mobile-react';
-import './style/index.less';
+import Cascader from '../Cascader';
+
+const prefix = 't';
+const name = `.${prefix}-cascader`;
 
 const data = {
   areaList: [
@@ -64,36 +67,41 @@ const data = {
   ],
 };
 
-export default function BaseDemo() {
-  const [visible, setVisible] = useState(false);
+describe('Cascader', () => {
+  describe('props', () => {
+    it(': closeBtn', async () => {
+      await render(<Cascader options={data.areaList} closeBtn={true} visible={true} value="110000" theme="tab" />);
+      expect(document.querySelector(`.${prefix}-icon-close`)).toBeTruthy();
+    });
 
-  const [note, setNote] = useState('请选择地址');
+    it(': closeBtn - custom', async () => {
+      await render(
+        <Cascader
+          options={data.areaList}
+          closeBtn={<span className="close-button">Button</span>}
+          visible={true}
+          value="110000"
+          theme="tab"
+        />,
+      );
+      expect(document.querySelector('.close-button')).toBeTruthy();
+    });
 
-  const [value, setValue] = useState<string | number | undefined>(110105);
+    it(': title', async () => {
+      const title = '标题';
+      await render(<Cascader options={data.areaList} title={title} visible={true} value="110000" theme="tab" />);
+      expect(document.querySelector(`${name}__title`).innerHTML).toBe(title);
+    });
 
-  return (
-    <>
-      <Cell
-        title="地址"
-        note={note}
-        arrow
-        onClick={() => {
-          setVisible(true);
-        }}
-      />
-      <Cascader
-        title="选择地址"
-        value={value}
-        visible={visible}
-        options={data.areaList}
-        onChange={(value, selectedOptions) => {
-          setNote((selectedOptions as any).map((item) => item.label).join('/') || '');
-          setValue(value);
-        }}
-        onClose={() => {
-          setVisible(false);
-        }}
-      />
-    </>
-  );
-}
+    it(': options', async () => {
+      await render(<Cascader options={data.areaList} visible={true} value="110000" theme="tab" />);
+      expect(document.querySelectorAll(`${name}__options`).length).toBe(1);
+      expect(document.querySelectorAll(`.${prefix}-radio`).length).toBe(2);
+    });
+
+    it(': value', async () => {
+      await render(<Cascader options={data.areaList} visible={true} value="110000" theme="tab" />);
+      expect(document.querySelector(`${name}__option--active`).innerHTML).toBe('北京市');
+    });
+  });
+});
