@@ -35,7 +35,7 @@ const Popover = forwardRef<PopoverExposeRef, PopoverProps>((props, ref) => {
   } = useDefaultProps<PopoverProps>(props, popoverDefaultProps);
 
   const [currentVisible, setVisible] = useDefault(visible, defaultVisible, onVisibleChange);
-  const [active, setActive] = useState(visible);
+  const [active, setActive] = useState(currentVisible);
   const referenceRef = useRef<HTMLDivElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
   const popperRef = useRef<ReturnType<typeof createPopper> | null>(null);
