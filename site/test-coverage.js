@@ -48,7 +48,7 @@ module.exports = {
   rate: { statements: '99.3%', branches: '98.98%', functions: '100%', lines: '99.3%' },
   result: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   search: { statements: '6.12%', branches: '0%', functions: '0%', lines: '6.25%' },
-  sideBar: { statements: '54.34%', branches: '0%', functions: '33.33%', lines: '58.53%' },
+  sideBar: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   skeleton: { statements: '100%', branches: '95.83%', functions: '100%', lines: '100%' },
   slider: { statements: '3.38%', branches: '0%', functions: '0%', lines: '3.46%' },
   stepper: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
