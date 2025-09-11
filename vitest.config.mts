@@ -2,6 +2,8 @@ import path from 'path';
 import { defineConfig } from 'vitest/config';
 import { InlineConfig } from 'vitest/node';
 
+const testSnap = process.env.NODE_ENV === 'test-snap';
+
 // 单元测试相关配置
 const testConfig: InlineConfig = {
   include:
@@ -22,6 +24,7 @@ const testConfig: InlineConfig = {
     reportsDirectory: 'test/coverage',
     include: ['src/**/*'],
   },
+  setupFiles: path.resolve(__dirname, `./script/test/${testSnap ? 'snap-' : ''}setup.js`),
 };
 
 export default defineConfig({
