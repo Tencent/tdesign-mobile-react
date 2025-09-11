@@ -179,6 +179,7 @@ describe('Message', () => {
         expect(container.querySelector(`.${getClassNameWithPrefix('link__content')}`).textContent).toBe(linkContent);
       }
 
+      
       {
         // Use link params
         const linkParams = {
