@@ -326,6 +326,13 @@ describe('Message', () => {
           expect(iconContainer.querySelector('svg')).toBeTruthy();
         });
       }
+
+      {
+        // fake theme
+        const { container } = render(<Message visible={true} theme={'fake' as 'info'} />);
+        const iconContainer = container.querySelector(`.${getClassNameWithPrefix('message__icon--left')}`);
+        expect(iconContainer.querySelector('svg')).toBeTruthy();
+      }
     });
 
     test('visible', async () => {

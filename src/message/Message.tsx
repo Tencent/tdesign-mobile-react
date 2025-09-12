@@ -117,15 +117,12 @@ const Message: React.FC<MessageProps> = (originProps) => {
     onCloseBtnClick?.({ e });
   };
 
-  const renderCloseBtn = () => {
-    if (!closeBtn) return;
-
-    return closeBtn === true ? (
+  const renderCloseBtn = () =>
+    closeBtn === true ? (
       <CloseIcon className={`${name}--close-btn`} size={22} />
     ) : (
       parseTNode(closeBtn as string | TNode)
     );
-  };
 
   useMarqueeAnimation(marquee, textWrapRef, textRef);
 
