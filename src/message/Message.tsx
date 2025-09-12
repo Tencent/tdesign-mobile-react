@@ -109,7 +109,7 @@ const Message: React.FC<MessageProps> = (originProps) => {
       return <Link theme="primary" {...link} />;
     }
 
-    return parseTNode(link);
+    return parseTNode(link as TNode);
   };
 
   const clickCloseButton = (e) => {

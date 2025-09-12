@@ -179,7 +179,6 @@ describe('Message', () => {
         expect(container.querySelector(`.${getClassNameWithPrefix('link__content')}`).textContent).toBe(linkContent);
       }
 
-      
       {
         // Use link params
         const linkParams = {
@@ -188,7 +187,7 @@ describe('Message', () => {
           content: 'link content',
         };
         // todo PM fix this link 描述有问题
-        const { container } = render(<Message visible={true} link={linkParams as any} />);
+        const { container } = render(<Message visible={true} link={linkParams} />);
         expect(container.querySelector(`.${getClassNameWithPrefix('link--danger')}`)).toBeTruthy();
       }
 
