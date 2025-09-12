@@ -34,7 +34,7 @@ module.exports = {
   list: { statements: '8%', branches: '0%', functions: '0%', lines: '8.69%' },
   loading: { statements: '98.43%', branches: '96.07%', functions: '100%', lines: '98.3%' },
   locale: { statements: '74.07%', branches: '62.5%', functions: '83.33%', lines: '75%' },
-  message: { statements: '98.59%', branches: '87.5%', functions: '100%', lines: '100%' },
+  message: { statements: '100%', branches: '94.44%', functions: '100%', lines: '100%' },
   navbar: { statements: '12.9%', branches: '0%', functions: '0%', lines: '13.79%' },
   noticeBar: { statements: '6.38%', branches: '0%', functions: '0%', lines: '6.52%' },
   overlay: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },

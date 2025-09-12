@@ -45,11 +45,9 @@ const createMessage = (props, theme?: MessageThemeList) => {
 };
 
 const closeAll = () => {
-  if (instanceMap instanceof Map) {
-    for (const [key, value] of instanceMap) {
-      const { context } = value;
-      destroy(context as Element, key);
-    }
+  for (const [key, value] of instanceMap) {
+    const { context } = value;
+    destroy(context as Element, key);
   }
 };
 
