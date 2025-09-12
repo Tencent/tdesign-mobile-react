@@ -1,5 +1,5 @@
 import React, { act } from 'react';
-import { render, screen, fireEvent, vi, it, describe, expect, afterEach, beforeEach } from '@test/utils';
+import { render, screen, fireEvent, vi, it, describe, expect, afterEach, beforeEach, cleanup } from '@test/utils';
 import Button from 'tdesign-mobile-react/button/Button';
 import { DialogPlugin, Dialog } from '../index';
 
@@ -12,6 +12,14 @@ describe('Dialog', () => {
   });
 
   afterEach(() => {
+    cleanup();
+    const overlays = document.querySelectorAll('.t-overlay');
+    const popups = document.querySelectorAll('.t-popup');
+    const dialogs = document.querySelectorAll('.t-dialog');
+
+    overlays.forEach((overlay) => overlay.remove());
+    popups.forEach((popup) => popup.remove());
+    dialogs.forEach((dialog) => dialog.remove());
     vi.useRealTimers();
   });
 
@@ -76,16 +84,12 @@ describe('Dialog', () => {
     it(': buttonLayout', () => {
       const confirmBtn = {
         content: '确认',
-        variant: 'text',
-        size: 'large',
+        variant: 'text' as const,
+        size: 'large' as const,
       };
+      const cancelBtn = () => <Button content="取消" variant="text" size="large" />;
       const { rerender } = render(
-        <Dialog
-          visible
-          buttonLayout="vertical"
-          confirmBtn={confirmBtn}
-          cancelBtn={<Button content="取消" variant="text" size="large" />}
-        />,
+        <Dialog visible buttonLayout="vertical" confirmBtn={confirmBtn} cancelBtn={cancelBtn} />,
       );
       expect(document.querySelector(`${name}__footer--column`)).toBeTruthy();
 
@@ -227,12 +231,11 @@ describe('Dialog', () => {
           title: '标题',
         });
       });
-
       instance.destroy();
-
-      setTimeout(() => {
-        expect(document.querySelector(name)).toBeFalsy();
-      }, 1000);
+      await act(async () => {
+        vi.advanceTimersByTime(1000);
+      });
+      expect(document.querySelector(name)).toBeFalsy();
     });
 
     it(': alert', async () => {
@@ -310,9 +313,10 @@ describe('Dialog', () => {
       render(<Dialog visible onOverlayClick={onOverlayClick} />);
       const overlay = document.querySelector('.t-overlay');
       fireEvent.click(overlay);
-      setTimeout(() => {
-        expect(onOverlayClick).toHaveBeenCalled();
-      }, 1000);
+      await act(async () => {
+        vi.advanceTimersByTime(1000);
+      });
+      expect(onOverlayClick).toHaveBeenCalled();
     });
   });
 });

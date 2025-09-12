@@ -71,7 +71,7 @@ export function show(props: DialogShowProps): DialogInstance {
     hide: () => ref.current?.hide(),
     show: () => ref.current?.show(),
     update: (opts: DialogShowProps) => ref.current?.update(opts),
-    destroy,
+    destroy: () => ref.current?.destroy(),
   };
 }
 
