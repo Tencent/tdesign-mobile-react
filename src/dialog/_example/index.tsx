@@ -6,7 +6,6 @@ import ConfirmUsage from './confirm';
 import InputUsage from './input';
 import ImageUsage from './image-dialog';
 import MultiStateUsage from './multi-state';
-import PluginUsage from './plugin';
 import './style/index.less';
 
 export default function Base() {
@@ -28,12 +27,12 @@ export default function Base() {
       <TDemoBlock summary="带图片的对话框" padding={true}>
         <ImageUsage />
       </TDemoBlock>
-      <TDemoBlock title="02 组件状态" summary="其它形态对话框" padding={true}>
+      <TDemoBlock title="02 组件状态" summary="文字按钮" padding={true}>
         <MultiStateUsage />
       </TDemoBlock>
-      <TDemoBlock title="03 组件用法" summary="命令调用" padding={true}>
+      {/* <TDemoBlock title="03 组件用法" summary="命令调用" padding={true}>
         <PluginUsage />
-      </TDemoBlock>
+      </TDemoBlock> */}
     </div>
   );
 }
