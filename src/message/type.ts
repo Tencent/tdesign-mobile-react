@@ -16,13 +16,13 @@ export interface TdMessageProps {
   /**
    * 关闭按钮，可以自定义。值为 true 显示默认关闭按钮，值为 false 不显示关闭按钮。值类型为 string 则直接显示值，如：“关闭”。也可以完全自定义按钮
    */
-  closeBtn?: String | Boolean | TNode;
+  closeBtn?: TNode;
   /**
    * 用于自定义消息弹出内容
    */
   content?: TNode;
   /**
-   * 消息内置计时器，计时到达时会触发 duration-end 事件。单位：毫秒。值为 0 则表示没有计时器。
+   * 消息内置计时器，计时到达时会触发 duration-end 事件。单位：毫秒。值为 0 则表示没有计时器
    * @default 3000
    */
   duration?: number;
@@ -34,14 +34,14 @@ export interface TdMessageProps {
   /**
    * 链接名称。值为字符串表示链接名称，值为 `Object` 类型，表示透传至 `Link`
    */
-  link?: TNode;
+  link?: object | TNode;
   /**
    * 跑马灯效果。speed 指速度控制；loop 指循环播放次数，值为 -1 表示循环播放，值为 0 表示不循环播放；delay 表示延迟多久开始播放
    * @default false
    */
   marquee?: boolean | MessageMarquee;
   /**
-   * 相对于 placement 的偏移量。示例：[-10, 20] 或 ['10rpx', '8rpx']
+   * 相对于 placement 的偏移量，示例：[-10, 20] 或 ['10px', '8px']
    */
   offset?: Array<string | number>;
   /**
@@ -86,17 +86,3 @@ export interface MessageMarquee {
 }
 
 export type MessageThemeList = 'info' | 'success' | 'warning' | 'error';
-
-export interface MessageActionOptionsType extends TdMessageProps {
-  context?: Element;
-}
-
-export type MessageInfoMethod = (options?: MessageActionOptionsType | string) => void;
-
-export type MessageSuccessMethod = (options?: MessageActionOptionsType | string) => void;
-
-export type MessageWarningMethod = (options?: MessageActionOptionsType | string) => void;
-
-export type MessageErrorMethod = (options?: MessageActionOptionsType | string) => void;
-
-export type MessageCloseAll = () => void;

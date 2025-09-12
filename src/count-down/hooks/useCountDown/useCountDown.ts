@@ -5,7 +5,7 @@ import { TdCountDownProps, TimeData } from '../../type';
 enum EnumCountDownStatus {
   active,
   inActive,
-  pasued,
+  paused,
   finished,
 }
 
@@ -27,6 +27,11 @@ export const useCountDown = (params: UseCountdownParams) => {
     status: EnumCountDownStatus.inActive,
   });
   const ctxRef = useRef({ timerId: 0, remainTime: time });
+  // 处理毫秒级展示
+  const getProcessedFormat = (currentFormat: string) => {
+    if (millisecond && !format.includes(':SSS')) return currentFormat.concat(':SSS');
+    return currentFormat;
+  };
 
   const clearCountDown = () => {
     const currentTimerId = ctxRef.current.timerId;
@@ -56,7 +61,7 @@ export const useCountDown = (params: UseCountdownParams) => {
     }
 
     const countDownData = {
-      ...transformTime(nextRemainTime, format),
+      ...transformTime(nextRemainTime, getProcessedFormat(format)),
       status: nextStatus,
     };
 
@@ -72,10 +77,21 @@ export const useCountDown = (params: UseCountdownParams) => {
   };
 
   useEffect(() => {
-    startCountDown(true);
+    if (autoStart) {
+      startCountDown(true);
+    } else {
+      clearCountDown();
+      ctxRef.current.remainTime = time;
+      const initialData = transformTime(time, getProcessedFormat(format));
+      setCountDownData({
+        ...initialData,
+        status: EnumCountDownStatus.inActive,
+      });
+    }
+
     return clearCountDown;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [time, millisecond, format]);
+  }, [time, millisecond, format, autoStart]);
 
   const start = () => {
     if (status === EnumCountDownStatus.active) return;
@@ -84,7 +100,7 @@ export const useCountDown = (params: UseCountdownParams) => {
 
   const pause = () => {
     clearCountDown();
-    setCountDownData((state) => ({ ...state, status: EnumCountDownStatus.pasued }));
+    setCountDownData((state) => ({ ...state, status: EnumCountDownStatus.paused }));
   };
 
   const reset = () => {
@@ -99,7 +115,7 @@ export const useCountDown = (params: UseCountdownParams) => {
 
   const isActive = status === EnumCountDownStatus.active;
   const isInActive = status === EnumCountDownStatus.inActive;
-  const isPasued = status === EnumCountDownStatus.pasued;
+  const isPaused = status === EnumCountDownStatus.paused;
   const isFinished = status === EnumCountDownStatus.finished;
 
   return {
@@ -112,7 +128,7 @@ export const useCountDown = (params: UseCountdownParams) => {
     reset,
     isActive,
     isInActive,
-    isPasued,
+    isPaused,
     isFinished,
   };
 };
