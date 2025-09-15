@@ -42,7 +42,32 @@ const ConfirmUsage = React.memo(() => {
       >
         确认类-无标题
       </Button>
-
+      <Dialog
+        {...alertProps}
+        onClose={() => {
+          setAlertProps({ ...alertProps, visible: false });
+        }}
+        onConfirm={() => {
+          setAlertProps({ ...alertProps, visible: false });
+        }}
+      />
+      <div className="btn-gap"></div>
+      <Button
+        variant="outline"
+        size="large"
+        theme="primary"
+        block
+        onClick={() => {
+          setAlertProps({
+            visible: true,
+            title: '对话框标题',
+            confirmBtn: '确认',
+            cancelBtn: '取消',
+          });
+        }}
+      >
+        确认类-纯标题
+      </Button>
       <Dialog
         {...alertProps}
         onClose={() => {

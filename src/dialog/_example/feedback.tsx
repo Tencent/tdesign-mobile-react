@@ -21,7 +21,7 @@ const Feedback = React.memo(() => {
           });
         }}
       >
-        反馈类-基础
+        反馈类-带标题
       </Button>
       <div className="btn-gap"></div>
       <Button
@@ -39,6 +39,22 @@ const Feedback = React.memo(() => {
         }}
       >
         反馈类-无标题
+      </Button>
+      <div className="btn-gap"></div>
+      <Button
+        variant="outline"
+        size="large"
+        theme="primary"
+        block
+        onClick={() => {
+          setAlertProps({
+            visible: true,
+            title: '对话框标题',
+            confirmBtn: '知道了',
+          });
+        }}
+      >
+        反馈类-纯标题
       </Button>
       <div className="btn-gap"></div>
       <Button
