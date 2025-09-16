@@ -6,6 +6,12 @@
 图标相对其他基础组件较为独立，所以作为一个独立的 `npm` 包做发布管理。如果项目中直接使用，请安装 `tdesign-icons-react`。
 图标库中共包含超过 **25** 类，**1200+** 个图标，推荐您按需引用图标，减少产物的体积。
 
+推荐按需引用图标，减少产物的体积。同时，按需引入的图标还支持`任意的粗细调整`和`最多四种颜色填充`功能，具有更好的使用体验。
+
+<div style="background: #ecf2fe; display: flex; align-items: center; line-height: 20px; padding: 14px 24px; border-radius: 3px; color: #555a65;margin:16px 0">
+  打开 <a style="margin: 0 4px" href='/icons'> TDesign 图标独立站点 </a>  查看全部支持的图标。
+</div>
+
 ### 按需引入使用图标
 
 图标可以按需引入单个 SVG 图标。组件开发内部使用到 Icon 时，均按需引入 SVG 图标。
@@ -65,27 +71,6 @@ TDesign 支持通过使用 Iconfont 图标，使用时需要单独引入 Iconfon
 `iconfont`需要加载图标的字体资源，而`icon`需要加载图标的svgsprite资源，这些资源都是相对来说比较大的，所以没有直接放在包里（当然不排除未来会做改动），所以会发起网络请求。
 
 所以如果你的项目是无网络场景，请使用按需加载的图标，如`<t-icon name="add" />`请改为`<AddIcon />`。
-
-### 全部图标
-
-<div style={{
-  background: '#ecf2fe',
-  display: 'flex',
-  alignItems: 'center',
-  lineHeight: '20px',
-  padding: '14px 24px',
-  borderRadius: '3px',
-  color: '#555a65',
-  margin: '16px 0'
-  }}>
-  <svg fill="none" viewBox="0 0 16 16" width="16px" height="16px" style={{ marginRight: '5px'}}>
-    <path fill="#0052d9" d="M8 15A7 7 0 108 1a7 7 0 000 14zM7.4 4h1.2v1.2H7.4V4zm.1 2.5h1V12h-1V6.5z" fillOpacity="0.9"></path>
-  </svg>
- <p>大部分图标在 0.3.0 版本后的图标库新增，如果发现图标引入后无法正常展示，请检查安装的图标库`tdesign-icons-react`的版本。</p>
-</div>
-
-
-<td-icons-view />
 
 ## API
 
