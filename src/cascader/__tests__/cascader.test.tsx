@@ -1,5 +1,5 @@
 import React from 'react';
-import { describe, it, expect, render } from '@test/utils';
+import { describe, it, expect, render, vi, fireEvent } from '@test/utils';
 
 import Cascader from '../Cascader';
 
@@ -100,8 +100,66 @@ describe('Cascader', () => {
     });
 
     it(': value', async () => {
-      await render(<Cascader options={data.areaList} visible={true} value="110000" theme="tab" />);
-      expect(document.querySelector(`${name}__option--active`).innerHTML).toBe('北京市');
+      await render(<Cascader options={data.areaList} visible={true} value="110114" />);
+      expect(document.querySelector(`${name}__step-label--active`).innerHTML).toBe('昌平区');
+    });
+
+    it(': placeholder', async () => {
+      const placeholder = '请选择';
+      await render(<Cascader options={data.areaList} placeholder={placeholder} visible={true} value="" />);
+      expect(document.querySelector(`${name}__step-label--active`).innerHTML).toBe(placeholder);
+    });
+
+    it(': theme - step', async () => {
+      await render(<Cascader options={data.areaList} visible={true} value="110000" theme="step" />);
+      expect(document.querySelector(`${name}__steps`)).toBeTruthy();
+    });
+
+    it(': subTitles', async () => {
+      const subTitles = ['一级', '二级', '三级'];
+      await render(<Cascader options={data.areaList} subTitles={subTitles} visible={true} value="" theme="tab" />);
+      expect(document.querySelector(`${name}__options-title`).innerHTML).toBe(subTitles[0]);
+    });
+
+    it(': checkStrictly', async () => {
+      const onChange = vi.fn();
+      await render(
+        <Cascader
+          options={data.areaList}
+          onChange={onChange}
+          closeBtn={<span style={{ color: '#0052d9' }}>确定</span>}
+          checkStrictly={true}
+          visible={true}
+          value="110000"
+        />,
+      );
+      fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[0]);
+      fireEvent.click(document.querySelector(`${name}__close-btn`));
+      expect(onChange).toHaveBeenCalled();
+      expect(onChange).toHaveBeenCalledWith('110000', [{ value: '110000', label: '北京市' }]);
+    });
+  });
+
+  describe('events', () => {
+    it(': onChange', async () => {
+      const onChange = vi.fn();
+      await render(<Cascader options={data.areaList} onChange={onChange} visible={true} value="110114" />);
+      fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[6]);
+      expect(onChange).toHaveBeenCalled();
+    });
+
+    it(': onPick', async () => {
+      const onPick = vi.fn();
+      await render(<Cascader options={data.areaList} onPick={onPick} visible={true} value="110000" theme="tab" />);
+      fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[1]);
+      expect(onPick).toHaveBeenCalled();
+    });
+
+    it(': onClose', async () => {
+      const onClose = vi.fn();
+      await render(<Cascader options={data.areaList} onClose={onClose} visible={true} value="110000" theme="tab" />);
+      fireEvent.click(document.querySelector(`.${prefix}-icon-close`));
+      expect(onClose).toHaveBeenCalled();
     });
   });
 });
