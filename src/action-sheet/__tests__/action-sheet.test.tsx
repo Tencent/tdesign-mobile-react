@@ -13,7 +13,6 @@ describe('ActionSheet', () => {
   afterEach(() => {
     vi.useRealTimers();
     ActionSheet.close();
-    // ActionSheet.close()已经负责清理DOM，不需要额外的innerHTML清空
   });
 
   describe('props', () => {
@@ -140,7 +139,6 @@ describe('ActionSheet', () => {
     });
 
     it(': ActionSheetList - empty items', async () => {
-      // 测试空数组情况
       await act(async () => {
         ActionSheet.show({
           items: [],
@@ -150,7 +148,6 @@ describe('ActionSheet', () => {
       const menuItems = document.querySelectorAll('.t-action-sheet__list-item');
       expect(menuItems.length).toBe(0);
 
-      // 测试undefined情况
       ActionSheet.close();
       await act(async () => {
         ActionSheet.show({
@@ -171,22 +168,19 @@ describe('ActionSheet', () => {
       await act(async () => {
         ActionSheet.show({
           items,
-          theme: 'list', // 明确指定为list主题
+          theme: 'list',
         });
       });
 
       const menuItems = document.querySelectorAll('.t-action-sheet__list-item');
       expect(menuItems.length).toBe(items.length);
 
-      // 验证没有badge的item
       expect(menuItems[0].querySelector('.t-badge')).toBeFalsy();
       expect(menuItems[0].querySelector('.t-action-sheet__list-item-text')?.textContent?.trim()).toBe('选项1');
 
-      // 验证带dot类型badge的item
       expect(menuItems[1].querySelector('.t-badge')).toBeTruthy();
       expect(menuItems[1].querySelector('.t-badge--dot')).toBeTruthy();
 
-      // 验证带count类型badge的item
       expect(menuItems[2].querySelector('.t-badge')).toBeTruthy();
       expect(menuItems[2].querySelector('.t-badge--basic')?.textContent?.trim()).toBe('10');
     });
@@ -202,11 +196,9 @@ describe('ActionSheet', () => {
         });
       });
 
-      // ActionSheetGrid使用Grid组件，所以查找GridItem生成的元素
       const gridItems = document.querySelectorAll('.t-grid-item');
       expect(gridItems.length).toBe(items.length);
 
-      // 验证是否正确渲染了网格容器
       expect(document.querySelector('.t-action-sheet__grid')).toBeTruthy();
     });
   });
@@ -252,29 +244,23 @@ describe('ActionSheet', () => {
 
       const { unmount } = render(<ActionSheet visible={true} items={[{ label: '选项1' }]} onClose={onClose} />);
 
-      // 等待动画完成
       await act(async () => {
         vi.advanceTimersByTime(300);
       });
 
-      // 模拟点击遮罩层来触发onClose事件
-      // 找到overlay元素并触发点击事件
       const overlay = document.querySelector('.t-overlay');
       if (overlay) {
         await act(async () => {
           overlay.dispatchEvent(new MouseEvent('click', { bubbles: true }));
         });
 
-        // 等待动画完成
         await act(async () => {
           vi.advanceTimersByTime(300);
         });
       }
 
-      // 验证onClose被调用
       expect(onClose).toHaveBeenCalledTimes(1);
 
-      // 手动卸载组件以避免清理问题
       unmount();
     });
   });
@@ -305,7 +291,6 @@ describe('ActionSheet', () => {
       const gridElement = document.querySelector('.t-action-sheet__grid');
       expect(gridElement).toBeTruthy();
 
-      // 验证没有items时不会渲染任何GridItem
       const gridItems = document.querySelectorAll('.t-grid-item');
       expect(gridItems.length).toBe(0);
     });
@@ -328,18 +313,16 @@ describe('ActionSheet', () => {
       const gridItems = document.querySelectorAll('.t-grid-item');
       expect(gridItems.length).toBe(items.length);
 
-      // 验证每个item的属性是否正确渲染
       expect(gridItems[0].querySelector('.t-icon-app')).toBeTruthy();
       expect(gridItems[0].querySelector('.t-grid-item__title')?.textContent?.trim()).toBe('选项1');
 
-      // 验证badge是否正确渲染
       expect(gridItems[1].querySelector('.t-badge')).toBeTruthy();
       expect(gridItems[2].querySelector('.t-badge')?.textContent?.trim()).toBe('5');
     });
 
     it(': ActionSheetGrid - onSelected method with correct index calculation', async () => {
       const onSelected = vi.fn();
-      const items = Array(12).fill('选项'); // 创建12个选项，count=4时应该有3页，每页4个选项
+      const items = Array(12).fill('选项');
 
       await act(async () => {
         ActionSheet.show({
@@ -350,7 +333,6 @@ describe('ActionSheet', () => {
         });
       });
 
-      // 模拟点击第2页的第2个选项（索引应该是 4 + 1 = 5）
       const swiperItem = document.querySelector('.t-swiper-item');
       const gridItems = swiperItem?.querySelectorAll('.t-grid-item');
 
@@ -359,14 +341,12 @@ describe('ActionSheet', () => {
           gridItems[0].dispatchEvent(new MouseEvent('click', { bubbles: true }));
         });
 
-        // 验证onSelected被调用且索引正确
         expect(onSelected).toHaveBeenCalledTimes(1);
-        expect(onSelected).toHaveBeenCalledWith('选项', 0); // 第一页第一个选项的索引是0
+        expect(onSelected).toHaveBeenCalledWith('选项', 0);
       }
     });
 
     it(': show with multiple calls', async () => {
-      // 连续调用show，应该只显示最后一个
       await act(async () => {
         ActionSheet.show({
           items: ['选项1'],
@@ -398,7 +378,6 @@ describe('ActionSheet', () => {
 
       expect(onSelected).not.toHaveBeenCalled();
 
-      // 确认正常选项可以触发
       await act(async () => {
         menuItems[0].dispatchEvent(new MouseEvent('click', { bubbles: true }));
       });
