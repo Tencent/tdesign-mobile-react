@@ -151,7 +151,7 @@ const Slider: FC<SliderProps> = (props) => {
     if (isFunction(label)) {
       return label(value);
     }
-    if (label) {
+    if (label && !REGEXP.test(label)) {
       return value;
     }
     if (REGEXP.test(label)) {
