@@ -1,5 +1,5 @@
 import React from 'react';
-import { describe, it, expect, render, vi, fireEvent } from '@test/utils';
+import { describe, it, expect, render, vi, fireEvent, beforeEach, afterEach } from '@test/utils';
 
 import Cascader from '../Cascader';
 
@@ -31,7 +31,7 @@ const data = {
             { value: '110116', label: '怀柔区' },
             { value: '110117', label: '平谷区' },
             { value: '110118', label: '密云区' },
-            { value: '110119', label: '延庆区' },
+            { value: '', label: '' },
           ],
         },
       ],
@@ -68,7 +68,23 @@ const data = {
 };
 
 describe('Cascader', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   describe('props', () => {
+    it(': visible', async () => {
+      const onClose = vi.fn();
+      await render(<Cascader options={data.areaList} onClose={onClose} visible={true} value="110000" />);
+      expect(document.querySelector(`.${prefix}-popup`)).not.toHaveStyle({ display: 'none' });
+      fireEvent.click(document.querySelector('.t-overlay'));
+      expect(onClose).toHaveBeenCalledTimes(1);
+    });
+
     it(': closeBtn', async () => {
       await render(<Cascader options={data.areaList} closeBtn={true} visible={true} value="110000" theme="tab" />);
       expect(document.querySelector(`.${prefix}-icon-close`)).toBeTruthy();
@@ -106,7 +122,7 @@ describe('Cascader', () => {
 
     it(': placeholder', async () => {
       const placeholder = '请选择';
-      await render(<Cascader options={data.areaList} placeholder={placeholder} visible={true} value="" />);
+      await render(<Cascader options={data.areaList} placeholder={placeholder} visible={true} />);
       expect(document.querySelector(`${name}__step-label--active`).innerHTML).toBe(placeholder);
     });
 
@@ -117,13 +133,13 @@ describe('Cascader', () => {
 
     it(': subTitles', async () => {
       const subTitles = ['一级', '二级', '三级'];
-      await render(<Cascader options={data.areaList} subTitles={subTitles} visible={true} value="" theme="tab" />);
+      await render(<Cascader options={data.areaList} subTitles={subTitles} visible={true} theme="tab" />);
       expect(document.querySelector(`${name}__options-title`).innerHTML).toBe(subTitles[0]);
     });
 
     it(': checkStrictly', async () => {
       const onChange = vi.fn();
-      await render(
+      const { rerender } = await render(
         <Cascader
           options={data.areaList}
           onChange={onChange}
@@ -137,15 +153,43 @@ describe('Cascader', () => {
       fireEvent.click(document.querySelector(`${name}__close-btn`));
       expect(onChange).toHaveBeenCalled();
       expect(onChange).toHaveBeenCalledWith('110000', [{ value: '110000', label: '北京市' }]);
+
+      rerender(
+        <Cascader
+          options={[
+            {
+              label: '',
+              value: '',
+            },
+          ]}
+          onChange={onChange}
+          closeBtn={<span style={{ color: '#0052d9' }}>确定</span>}
+          checkStrictly={true}
+          visible={true}
+          value="110000"
+        />,
+      );
+      fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[0]);
+      expect(onChange).toHaveBeenCalledWith('', [{ value: '', label: '' }]);
     });
   });
 
   describe('events', () => {
     it(': onChange', async () => {
       const onChange = vi.fn();
-      await render(<Cascader options={data.areaList} onChange={onChange} visible={true} value="110114" />);
+      const { rerender } = await render(
+        <Cascader options={data.areaList} onChange={onChange} visible={true} value="110114" />,
+      );
+      fireEvent.click(document.querySelectorAll(`${name}__step`)[1]);
       fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[6]);
       expect(onChange).toHaveBeenCalled();
+
+      rerender(<Cascader options={data.areaList} onChange={onChange} visible={true} value="110114" theme="tab" />);
+      fireEvent.click(document.querySelectorAll(`.${prefix}-tabs__item`)[1]);
+      fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[2]);
+      fireEvent.click(document.querySelectorAll(`.${prefix}-tabs__item`)[2]);
+      fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[4]);
+      expect(onChange).toHaveBeenCalledTimes(2);
     });
 
     it(': onPick', async () => {
