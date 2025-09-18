@@ -190,7 +190,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
           {closeBtn === true ? <CloseIcon size={24} /> : parseTNode(closeBtn)}
         </div>
         <div className={`${cascaderClass}__content`}>
-          {labelList.length ? (
+          {labelList.length && (
             <div>
               {theme === 'step' ? (
                 <div className={`${cascaderClass}__steps`}>
@@ -234,7 +234,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
                 />
               ) : null}
             </div>
-          ) : null}
+          )}
           {subTitles[stepIndex] ? (
             <div className={`${cascaderClass}__options-title`}>{subTitles[stepIndex]}</div>
           ) : null}
