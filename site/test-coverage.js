@@ -60,7 +60,7 @@ module.exports = {
   tabBar: { statements: '10%', branches: '0%', functions: '0%', lines: '10.81%' },
   table: { statements: '100%', branches: '90%', functions: '100%', lines: '100%' },
   tabs: { statements: '5.8%', branches: '0%', functions: '0%', lines: '6.33%' },
-  tag: { statements: '100%', branches: '96.87%', functions: '100%', lines: '100%' },
+  tag: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   textarea: { statements: '98.64%', branches: '95%', functions: '93.33%', lines: '100%' },
   toast: { statements: '98.73%', branches: '100%', functions: '94.11%', lines: '98.66%' },
   treeSelect: { statements: '5.4%', branches: '0%', functions: '0%', lines: '5.88%' },
