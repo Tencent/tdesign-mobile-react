@@ -31,7 +31,7 @@ module.exports = {
   input: { statements: '3.57%', branches: '0%', functions: '0%', lines: '3.7%' },
   layout: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   link: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
-  list: { statements: '8%', branches: '0%', functions: '0%', lines: '8.69%' },
+  list: { statements: '92%', branches: '77.77%', functions: '100%', lines: '100%' },
   loading: { statements: '98.43%', branches: '96.07%', functions: '100%', lines: '98.3%' },
   locale: { statements: '74.07%', branches: '62.5%', functions: '83.33%', lines: '75%' },
   message: { statements: '100%', branches: '94.44%', functions: '100%', lines: '100%' },
