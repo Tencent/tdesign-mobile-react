@@ -78,9 +78,6 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
   const [distance, setDistance] = useState(0);
 
   useEffect(() => {
-    if (onChange) {
-      onChange(value);
-    }
     if (isBoolean(value) && !value) {
       setStatus(PullStatusEnum.success);
       setDistance(0);
@@ -115,7 +112,6 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
   }, [run]);
 
   const doRefresh = async () => {
-    if (disabled) return;
     setStatus(PullStatusEnum.loading);
     onChange(true);
     setDistance(pureLoadingHeight);
@@ -174,13 +170,10 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
     const absX = Math.abs(diffX);
     const absY = Math.abs(diffY);
 
-    if (!touchDir && absX < touchThreshold && absY < touchThreshold) {
-      return;
-    }
-    if (!touchDir && absX < absY) {
-      touchDir = -1;
-    } else if (!touchDir && absX >= absY) {
-      touchDir = 1;
+    // simplify the code
+    if (!touchDir) {
+      if (absX < touchThreshold && absY < touchThreshold) return;
+      touchDir = absX < absY ? -1 : 1;
     }
 
     // 左右移动时，不进行后续操作

@@ -9,7 +9,7 @@ import StatusImage from './status';
 export default function ImageDemo() {
   return (
     <>
-      <TDemoHeader title="Image 图片" summary="用于展示图片素材" />
+      <TDemoHeader title="Image 图片" summary="用于展示效果，主要为上下左右居中裁切、拉伸、平铺等方式。" />
       <TDemoBlock title="01 组件类型" padding={true}>
         <BaseImage />
         <PositionImage />

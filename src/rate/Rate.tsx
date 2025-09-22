@@ -13,6 +13,7 @@ import type { TdRateProps } from './type';
 
 export interface RateProps extends TdRateProps, StyledProps {}
 
+const TIPS_HIDE_DELAY = 300;
 const convertToNumber = (str: string | number, defaultValue = 0) => {
   const value = parseFloat(String(str));
   return isNaN(value) ? defaultValue : value;
@@ -133,7 +134,8 @@ const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
     controlRef.current.enableClick = false;
     // 根据记录去修改数据
     setInnerValue(controlRef.current.currentValue);
-    onHideTips();
+    clearTimeout(controlRef.current.timer);
+    controlRef.current.timer = setTimeout(onHideTips, TIPS_HIDE_DELAY) as any as number;
   }, [onHideTips, setInnerValue, disabled]);
 
   const wrapSize = useSize(wrapRef);
@@ -196,7 +198,7 @@ const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
                   setClickTime(Date.now());
                   setCurrentValue(value);
                   onShowTips();
-                  controlRef.current.timer = setTimeout(onHideTips, 3000) as any as number;
+                  controlRef.current.timer = setTimeout(onHideTips, TIPS_HIDE_DELAY) as any as number;
                   setInnerValue(value);
                 }}
               />
@@ -205,7 +207,7 @@ const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
       </div>
       {showText ? <RateText texts={texts} value={isDragging ? currentValue : innerValue} /> : null}
       {/* 增加一个时间戳作为 key 保证每次点击的时候 组件都重新创建 防止重复利用 触发 onClickOutSide */}
-      {tipsVisible && placement && !disabled ? (
+      {tipsVisible && placement && !disabled && (
         <RateTips
           key={clickTime}
           left={tipsLeft}
@@ -254,7 +256,7 @@ const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
             };
           })}
         />
-      ) : null}
+      )}
     </div>
   );
 });
