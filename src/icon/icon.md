@@ -8,8 +8,8 @@
 
 推荐按需引用图标，减少产物的体积。同时，按需引入的图标还支持`任意的粗细调整`和`最多四种颜色填充`功能，具有更好的使用体验。
 
-<div style="background: #ecf2fe; display: flex; align-items: center; line-height: 20px; padding: 14px 24px; border-radius: 3px; color: #555a65;margin:16px 0">
-  打开 <a style="margin: 0 4px" href='/icons'> TDesign 图标独立站点 </a>  查看全部支持的图标。
+<div style={{ background: '#ecf2fe',display: 'flex',alignItems: 'center',lineHeight: '20px',padding: '14px 24px',borderRadius: '3px',color: '#555a65',margin:'16px 0'}}>
+  打开 <a style={{ margin: '0 4px'}} href='/icons'> TDesign 图标独立站点 </a>  查看全部支持的图标。
 </div>
 
 ### 按需引入使用图标
@@ -20,6 +20,7 @@
 
 {{ single }}
 
+
 ### 全量引入使用图标
 
 图标尺寸单位支持多种， 'small', 'medium', 'large', '35px', '3em' 等。
@@ -27,7 +28,6 @@
 点击右侧导航「全部图标」即可查看组件库全部图标。
 
 {{ base }}
-
 ### iconfont 图标
 
 TDesign 支持通过使用 Iconfont 图标，使用时需要单独引入 Iconfont 图标组件。
