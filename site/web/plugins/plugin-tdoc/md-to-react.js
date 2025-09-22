@@ -4,7 +4,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import camelCase from 'camelcase';
 
-import testCoverage from '../test-coverage';
+import testCoverage from '../../../test-coverage';
 
 import { transformSync } from '@babel/core';
 
@@ -231,18 +231,21 @@ function customRender({ source, file, md }) {
   }
 
   // 移动端路由地址
-  const prefix = process.env.NODE_ENV === 'development' ? `/mobile.html` : `/mobile-react/mobile.html`;
+  const prefix = ['development', 'preview'].includes(process.env.NODE_ENV)
+    ? `/mobile.html`
+    : `/mobile-react/mobile.html`;
   mdSegment.mobileUrl = `${prefix}#/${componentName}`;
 
   // 设计指南内容 不展示 design Tab 则不解析
   if (pageData.isComponent && pageData.tdDocTabs.some((item) => item.tab === 'design')) {
-    const designDocPath = path.resolve(__dirname, `../../src/_common/docs/mobile/design/${componentName}.md`);
+    const designDocPath = path.resolve(__dirname, `../../../../src/_common/docs/mobile/design/${componentName}.md`);
+    console.log('designDocPath', designDocPath);
 
     if (fs.existsSync(designDocPath)) {
       const designMd = fs.readFileSync(designDocPath, 'utf-8');
       mdSegment.designMd = md.render.call(md, `${pageData.toc ? '[toc]\n' : ''}${designMd}`).html;
     } else {
-      // console.log(`[vite-plugin-tdoc]: 未找到 ${designDocPath} 文件`);
+      console.log(`[vite-plugin-tdoc]: 未找到 ${designDocPath} 文件`);
     }
   }
 
