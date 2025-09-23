@@ -7,6 +7,7 @@ import camelCase from 'camelcase';
 import testCoverage from '../../../test-coverage';
 
 import { transformSync } from '@babel/core';
+import babelPresetReact from '@babel/preset-react';
 
 export default function mdToReact(options) {
   const mdSegment = customRender(options);
@@ -152,7 +153,7 @@ export default function mdToReact(options) {
     generatorOpts: {
       decoratorsBeforeExport: true,
     },
-    presets: [require('@babel/preset-react')],
+    presets: [babelPresetReact],
   });
 
   return { code: result.code, map: result.map };
