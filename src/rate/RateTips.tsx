@@ -23,7 +23,6 @@ export const RateTips = (props: Props) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useClickAway(onClickOutside, ref);
-
   return (
     <div
       ref={ref}
@@ -33,7 +32,7 @@ export const RateTips = (props: Props) => {
       style={{ left: `${left}px` }}
     >
       <div style={{ display: 'flex' }}>
-        {data.map((item, index) => (
+        {data?.map((item, index) => (
           <div
             key={index}
             className={cx(`${tipClass}-item`, {
