@@ -134,7 +134,7 @@ const Search: FC<SearchProps> = (props) => {
           placeholder={placeholder}
           readOnly={readonly}
           disabled={disabled}
-          onKeyPress={handleSearch}
+          onKeyDown={handleSearch}
           onFocus={handleFocus}
           onBlur={handleBlur}
           onInput={handleInput}
