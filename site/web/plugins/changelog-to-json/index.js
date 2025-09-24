@@ -11,7 +11,7 @@ export default function changelog2Json() {
   return {
     name: 'changelog-to-json',
     configResolved(resolvedConfig) {
-      config = resolvedConfig
+      config = resolvedConfig;
     },
     configureServer(server) {
       // 开发模式时拦截请求
