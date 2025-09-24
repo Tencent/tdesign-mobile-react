@@ -39,7 +39,7 @@ module.exports = {
   noticeBar: { statements: '6.38%', branches: '0%', functions: '0%', lines: '6.52%' },
   overlay: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   picker: { statements: '5.71%', branches: '0%', functions: '0%', lines: '6.28%' },
-  popover: { statements: '5%', branches: '0%', functions: '0%', lines: '5.55%' },
+  popover: { statements: '100%', branches: '96.55%', functions: '100%', lines: '100%' },
   popup: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   progress: { statements: '100%', branches: '97.36%', functions: '100%', lines: '100%' },
   pullDownRefresh: { statements: '100%', branches: '98.43%', functions: '100%', lines: '100%' },
