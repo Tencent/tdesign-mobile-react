@@ -46,9 +46,10 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
 
   useEffect(() => {
     if (parent?.defaultExpandAll) {
-      parent.onPanelChange(value, { e: null });
+      parent.onPanelChange(value, { e: null }, true);
     }
-  }, [parent, value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const renderDefaultIcon = () => {
     if (placement === 'bottom') {
