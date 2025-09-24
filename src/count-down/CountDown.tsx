@@ -37,7 +37,7 @@ const CountDown = forwardRef<CountDownRef, CountDownProps>((props, ref) => {
 
   const countDownClass = usePrefixClass('count-down');
 
-  const { timeText, timeList, start, reset, pause } = useCountDown({
+  const { timeText, timeList, timeData, start, reset, pause } = useCountDown({
     autoStart,
     millisecond,
     time,
@@ -59,7 +59,7 @@ const CountDown = forwardRef<CountDownRef, CountDownProps>((props, ref) => {
 
   const renderContent = () => {
     if (content !== 'default') {
-      return parseTNode(content || children);
+      return parseTNode(content || children, timeData);
     }
 
     return timeList.map(({ digit, unit, match }) => (

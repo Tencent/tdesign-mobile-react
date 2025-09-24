@@ -17,7 +17,16 @@ export function transformTime(time: number, format: string) {
   const minutes = Math.floor((time % 3600000) / 60000); // 分
   const seconds = Math.floor((time % 60000) / 1000); // 秒
   const milliseconds = Math.floor(time % 1000); // 毫秒
-  const obj = { 'd+': days, 'h+': hours, 'H+': hours, 'm+': minutes, 's+': seconds, 'S+': milliseconds };
+  const obj = {
+    'd+': days,
+    'D+': days,
+    'h+': hours,
+    'H+': hours,
+    'm+': minutes,
+    'M+': minutes,
+    's+': seconds,
+    'S+': milliseconds,
+  };
   const timeData: TimeData = { days, hours, minutes, seconds, milliseconds };
   const timeList: TimeItem[] = [];
   let timeText = format;

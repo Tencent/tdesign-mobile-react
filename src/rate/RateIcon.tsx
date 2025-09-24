@@ -56,6 +56,7 @@ export const RateIcon = (props: Props) => {
     <div
       ref={ref}
       onClick={(e) => {
+        e.stopPropagation(); // 阻止事件冒泡，防止触发 RateTips 的 clickoutside
         const dom = ref.current;
         if (!dom) {
           return;
@@ -71,7 +72,7 @@ export const RateIcon = (props: Props) => {
         [`${iconClass}--unselected`]: !isSelected || isHalf,
       })}
     >
-      {isHalf ? (
+      {isHalf && (
         <div
           className={cx(`${iconClass}-left`, {
             [`${iconClass}-left--selected`]: isSelected,
@@ -80,7 +81,7 @@ export const RateIcon = (props: Props) => {
         >
           {iconNode}
         </div>
-      ) : null}
+      )}
 
       {iconNode}
     </div>
