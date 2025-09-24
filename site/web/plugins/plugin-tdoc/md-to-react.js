@@ -239,13 +239,12 @@ function customRender({ source, file, md }) {
   // 设计指南内容 不展示 design Tab 则不解析
   if (pageData.isComponent && pageData.tdDocTabs.some((item) => item.tab === 'design')) {
     const designDocPath = path.resolve(__dirname, `../../../../src/_common/docs/mobile/design/${componentName}.md`);
-    console.log('designDocPath', designDocPath);
 
     if (fs.existsSync(designDocPath)) {
       const designMd = fs.readFileSync(designDocPath, 'utf-8');
       mdSegment.designMd = md.render.call(md, `${pageData.toc ? '[toc]\n' : ''}${designMd}`).html;
     } else {
-      console.log(`[vite-plugin-tdoc]: 未找到 ${designDocPath} 文件`);
+      // console.log(`[vite-plugin-tdoc]: 未找到 ${designDocPath} 文件`);
     }
   }
 
