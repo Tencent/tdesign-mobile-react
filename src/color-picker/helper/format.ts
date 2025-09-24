@@ -13,7 +13,7 @@ export const getCoordinate = (e: TouchEvent, rect: PanelRectType, isFixed?: bool
   };
 };
 
-export const getFormatList = (format: ColorPickerProps['format'], color: Color) => {
+export const getFormatList = (format: ColorPickerProps['format'], color: Color): [string, Array<string | number>] => {
   const FORMAT_MAP = {
     HSV: Object.values(color.getHsva()),
     HSVA: Object.values(color.getHsva()),
@@ -32,9 +32,9 @@ export const getFormatList = (format: ColorPickerProps['format'], color: Color) 
 
   const cur = FORMAT_MAP[format];
   if (cur) {
-    return [...cur.slice(0, cur.length - 1), `${Math.round(color.alpha * 100)}%`];
+    return [format, [...cur.slice(0, cur.length - 1), `${Math.round(color.alpha * 100)}%`]];
   }
-  return FORMAT_MAP.RGB;
+  return ['RGB', FORMAT_MAP.RGB];
 };
 
 export const genSwatchList = (prop: ColorPickerProps['swatchColors']) => {

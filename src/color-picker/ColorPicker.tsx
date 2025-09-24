@@ -21,10 +21,8 @@ export interface ColorPickerProps extends TdColorPickerProps, StyledProps {}
 const ColorPicker: FC<ColorPickerProps> = (props) => {
   const { format, type, enableAlpha, swatchColors, style, value, defaultValue, fixed, onChange, onPaletteBarChange } =
     useDefaultProps(props, colorPickerDefaultProps);
-  const [formatList, setFormatList] = useState([]);
+  const [formatList, setFormatList] = useState<[string, Array<string | number>]>(['', []]);
   const [innerSwatchList, setInnerSwatchList] = useState([]);
-  const [showPrimaryColorPreview] = useState(false);
-  const [previewColor, setPreviewColor] = useState('');
   const [sliderInfo, setSliderInfo] = useState(0);
   const [panelRect, setPanelRect] = useState<PanelRectType>({
     width: SATURATION_PANEL_DEFAULT_WIDTH,
@@ -60,9 +58,7 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
   const getSliderThumbStyle = useCallback(
     ({ value, maxValue }) => {
       const { width } = sliderRect;
-      if (!width) {
-        return;
-      }
+      if (!width) return;
       const left = Math.round((value / maxValue) * 100);
       return {
         left: `${left}%`,
@@ -96,7 +92,6 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
           value: color.current.value,
         }),
       );
-      setPreviewColor(color.current.rgba);
       setFormatList(getFormatList(format, color.current));
     },
     [getSaturationThumbStyle, getSliderThumbStyle],
@@ -163,10 +158,6 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
   }, [value]);
 
   useEffect(() => {
-    setPreviewColor(value);
-  }, [value]);
-
-  useEffect(() => {
     setCoreStyle(format);
   }, [format, setCoreStyle]);
 
@@ -210,13 +201,7 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
     const { x } = coordinate;
     const maxValue = isAlpha ? ALPHA_MAX : HUE_MAX;
 
-    let value = Math.round((x / width) * maxValue * 100) / 100;
-    if (value < 0) {
-      value = 0;
-    }
-    if (value > maxValue) {
-      value = maxValue;
-    }
+    const value = Math.min(maxValue, Math.max(0, Math.round((x / width) * maxValue * 100) / 100));
     handleChangeSlider({ value, isAlpha });
   }
 
@@ -248,8 +233,6 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
         break;
       case 'alpha-slider':
         handleSliderDrag(e, true);
-        break;
-      default:
         break;
     }
   }
@@ -286,12 +269,6 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
   };
 
   const renderPicker = () => {
-    const renderPreviewColorContent = () => (
-      <div className={classNames(`${rootClassName}__sliders-preview`, `${rootClassName}--bg-alpha`)}>
-        <div className={`${rootClassName}__sliders-preview-inner`} style={{ background: previewColor }}></div>
-      </div>
-    );
-
     const renderAlphaContent = () => (
       <div className={classNames(`${rootClassName}__slider-wrapper`, `${rootClassName}__slider-wrapper--alpha-type`)}>
         <div
@@ -336,15 +313,6 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
                   }
                 : { top: `${saturationThumbStyle.top}`, left: `${saturationThumbStyle.left}` }
             }
-            onTouchStart={(e) => {
-              e.stopPropagation();
-            }}
-            onTouchMove={(e) => {
-              e.stopPropagation();
-            }}
-            onTouchEnd={(e) => {
-              e.stopPropagation();
-            }}
           />
         </div>
         <div className={`${rootClassName}__sliders-wrapper`}>
@@ -368,15 +336,14 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
             </div>
             {enableAlpha ? renderAlphaContent() : null}
           </div>
-          {showPrimaryColorPreview ? renderPreviewColorContent() : null}
         </div>
         <div className={`${rootClassName}__format`}>
           <div className={classNames(`${rootClassName}__format-item`, `${rootClassName}__format-item--first`)}>
-            {format}
+            {formatList[0]}
           </div>
           <div className={classNames(`${rootClassName}__format-item`, `${rootClassName}__format-item--second`)}>
             <div className={`${rootClassName}__format-inputs`}>
-              {formatList.map((item, index) => (
+              {formatList[1]?.map((item, index) => (
                 <div
                   key={index}
                   className={classNames(
