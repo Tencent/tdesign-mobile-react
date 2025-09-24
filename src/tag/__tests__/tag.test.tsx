@@ -1,4 +1,4 @@
-import { describe, vi } from '@test/utils';
+import { describe, vi, it, expect } from '@test/utils';
 import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { AppIcon } from 'tdesign-icons-react';
@@ -158,9 +158,12 @@ describe('TagCheck', () => {
     });
 
     it(': checked', () => {
-      const { container } = render(<TagCheck defaultChecked content={['已选中态', '未选中态']}></TagCheck>);
+      const { container, rerender } = render(<TagCheck defaultChecked content={['已选中态', '未选中态']}></TagCheck>);
       const $tagItem = container.querySelector(baseClass) as HTMLElement;
       expect($tagItem.classList.contains(`${baseClass}--checked`));
+
+      rerender(<TagCheck checked={false} content={['已选中态', '未选中态']}></TagCheck>);
+      expect(container.querySelector(`${baseClass}__text`).innerHTML).toBe('未选中态');
     });
 
     it(': closable', () => {
