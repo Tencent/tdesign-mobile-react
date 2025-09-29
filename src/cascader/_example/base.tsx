@@ -69,7 +69,7 @@ export default function BaseDemo() {
 
   const [note, setNote] = useState('请选择地址');
 
-  const [value, setValue] = useState<string | number | undefined>();
+  const [value, setValue] = useState<string | number | undefined>(110105);
 
   return (
     <>
