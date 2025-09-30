@@ -11,8 +11,7 @@ import tdocPlugin from './web/plugins/plugin-tdoc';
 
 const publicPathMap = {
   preview: '/',
-  intranet: '/mobile-react/',
-  production: 'https://static.tdesign.tencent.com/mobile-react/',
+  production: '/mobile-react/',
 };
 
 // Rollup 4+ 的 tree-shaking 策略调整, 这里是为了让样式在站点构建正常
