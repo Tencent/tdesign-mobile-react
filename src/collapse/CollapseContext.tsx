@@ -6,7 +6,11 @@ export interface CollapseContextValue {
   activeValue: CollapseValue | undefined;
   disabled: boolean;
   expandIcon: TNode;
-  onPanelChange: (name: string | number, args: { e: React.MouseEvent<HTMLDivElement> }) => void;
+  onPanelChange: (
+    name: string | number,
+    args: { e: React.MouseEvent<HTMLDivElement> },
+    isDefaultExpandAll?: boolean,
+  ) => void;
   defaultExpandAll: boolean;
 }
 

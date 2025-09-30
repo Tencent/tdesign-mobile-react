@@ -35,7 +35,7 @@ const Popover = forwardRef<PopoverExposeRef, PopoverProps>((props, ref) => {
   } = useDefaultProps<PopoverProps>(props, popoverDefaultProps);
 
   const [currentVisible, setVisible] = useDefault(visible, defaultVisible, onVisibleChange);
-  const [active, setActive] = useState(visible);
+  const [active, setActive] = useState(currentVisible);
   const referenceRef = useRef<HTMLDivElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
   const popperRef = useRef<ReturnType<typeof createPopper> | null>(null);
@@ -84,9 +84,9 @@ const Popover = forwardRef<PopoverExposeRef, PopoverProps>((props, ref) => {
 
     const isHorizontal = horizontal.find((item) => placement.includes(item));
     const isEnd = placement.includes('end');
-    const small = (a: number, b: number) => (a < b ? a : b);
+
     if (isHorizontal) {
-      const padding = isEnd ? small(width + x, popperWidth) : small(windowWidth - x, popperWidth);
+      const padding = isEnd ? Math.min(width + x, popperWidth) : Math.min(windowWidth - x, popperWidth);
       return {
         [isEnd ? 'left' : 'right']: padding - 22,
       };
@@ -153,7 +153,7 @@ const Popover = forwardRef<PopoverExposeRef, PopoverProps>((props, ref) => {
   };
 
   useEffect(() => {
-    setVisible(visible);
+    updateVisible(visible);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 
