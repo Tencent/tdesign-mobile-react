@@ -25,6 +25,28 @@ export interface SwipeCellProps extends TdSwipeCellProps, StyledProps {}
 
 const threshold = '50%';
 
+export const syncOpenedState = (
+  rootRef: React.RefObject<HTMLDivElement>,
+  opened: SwipeCellProps['opened'],
+  getOpenedSide: (opened: SwipeCellProps['opened']) => SideType | undefined,
+  expand: (side: SideType) => void,
+  close: () => void,
+) => {
+  if (!rootRef.current) return;
+
+  const side = getOpenedSide(opened);
+
+  if (side === 'left' || side === 'right') {
+    // 初始化 expanded，等待 dom 加载完，获取 left/right 宽度后无动画设置展开状态
+    // 防止 left/right 为列表时，获取真实宽度有误
+    setTimeout(() => {
+      expand(side);
+    }, 100);
+  } else {
+    close();
+  }
+};
+
 const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) => {
   const props = useDefaultProps<SwipeCellProps>(originProps, swipeCellDefaultProps);
 
@@ -49,10 +71,10 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
       return;
     }
     if (isArray(opened)) {
-      if (open[1] && rightRef.current) {
+      if (opened[1] && rightRef.current) {
         return 'right';
       }
-      if (open[0] && leftRef.current) {
+      if (opened[0] && leftRef.current) {
         return 'left';
       }
     }
@@ -130,7 +152,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
         } else {
           close();
         }
-        window.setTimeout(() => {
+        setTimeout(() => {
           ctx.dragging = false;
         });
       } else {
@@ -156,18 +178,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   }));
 
   useLayoutEffect(() => {
-    if (!rootRef.current) return;
-    const side = getOpenedSide(opened);
-
-    if (['left', 'right'].includes(side)) {
-      // 初始化 expanded，等待 dom 加载完，获取 left/right 宽度后无动画设置展开状态
-      // 防止 left/right 为列表时，获取真实宽度有误
-      setTimeout(() => {
-        expand(side as SideType);
-      }, 100);
-    } else {
-      close();
-    }
+    syncOpenedState(rootRef, opened, getOpenedSide, expand, close);
     // 可以保证expand，close正常执行
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opened, rootRef.current]);
