@@ -479,6 +479,14 @@ export const docs = [
         component: () => import('tdesign-mobile-react/tag/tag.md'),
         componentEn: () => import('tdesign-mobile-react/tag/tag.en-US.md'),
       },
+      {
+        title: 'Watermark 水印',
+        titleEn: 'Watermark',
+        name: 'watermark',
+        path: '/mobile-react/components/watermark',
+        component: () => import('tdesign-mobile-react/watermark/watermark.md'),
+        componentEn: () => import('tdesign-mobile-react/watermark/watermark.en-US.md'),
+      },
     ],
   },
   {
