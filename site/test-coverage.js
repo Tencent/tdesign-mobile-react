@@ -23,7 +23,7 @@ module.exports = {
   footer: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   form: { statements: '2.8%', branches: '0%', functions: '0%', lines: '2.96%' },
   grid: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
-  guide: { statements: '3.46%', branches: '0%', functions: '0%', lines: '3.77%' },
+  guide: { statements: '94.38%', branches: '87.15%', functions: '100%', lines: '96.34%' },
   hooks: { statements: '69.04%', branches: '34.32%', functions: '71.87%', lines: '70%' },
   image: { statements: '97.72%', branches: '100%', functions: '92.3%', lines: '97.61%' },
   imageViewer: { statements: '8.47%', branches: '2.87%', functions: '0%', lines: '8.84%' },
