@@ -13,6 +13,7 @@ closeOnOverlayClick | Boolean | true | \- | N
 destroyOnClose | Boolean | false | \- | N
 footer | TElement | - | Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 items | Array | - | Typescript：`DrawerItem[] ` `interface DrawerItem { title: string; icon?: TNode; }`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts)。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/drawer/type.ts) | N
+overlayProps | Object | {} | Typescript：`OverlayProps`，[Overlay API Documents](./overlay?tab=api)。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/drawer/type.ts) | N
 placement | String | right | options: left/right | N
 showOverlay | Boolean | true | \- | N
 title | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
@@ -62,4 +63,4 @@ Name | Default Value | Description
 --td-drawer-title-color | @text-color-primary | - 
 --td-drawer-title-font-size | 18px | - 
 --td-drawer-title-padding | 24px 16px 8px | - 
---td-drawer-width | 280px | - 
+--td-drawer-width | 280px | -
