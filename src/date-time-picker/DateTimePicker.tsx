@@ -205,22 +205,22 @@ const DateTimePicker: FC<DateTimePickerProps> = (props) => {
     props.onCancel?.({ e: context.e });
   };
 
-  const onPick = (value: Array<PickerValue>, context: PickerContext) => {
-    const { column, index } = context;
-    const type = meaningColumn[column];
-    const val = curDate.set(type as UnitType, parseInt(columns[column][index]?.value, 10));
-
-    setCurDate(rationalize(val));
-    props.onPick?.(rationalize(val).format(props.format));
-  };
+const onPick = (value: Array<PickerValue>, { column, index }: PickerContext) => {
+  const type = meaningColumn[column];
+  const val = curDate.set(type as UnitType, parseInt(columns[column][index]?.value, 10));
+  const next = rationalize(val);
+  setCurDate(next);
+  props.onPick?.(next.format(props.format));
+};
 
   return (
     <Picker
-      className={dateTimePickerClass}
+      className={`${dateTimePickerClass} ${props.className || ''}`.trim()}
+      style={props.style}
       value={valueOfPicker}
       title={props.title}
-      confirm-btn={confirmButtonText}
-      cancel-btn={cancelButtonText}
+      confirmBtn={confirmButtonText}
+      cancelBtn={cancelButtonText}
       columns={columns}
       onConfirm={onConfirm}
       onCancel={onCancel}
