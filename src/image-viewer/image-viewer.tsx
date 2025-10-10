@@ -2,7 +2,7 @@ import React, { MouseEvent, useRef, useEffect } from 'react';
 import { CloseIcon, DeleteIcon } from 'tdesign-icons-react';
 import { CSSTransition } from 'react-transition-group';
 import { CSSTransitionClassNames } from 'react-transition-group/CSSTransition';
-import { TdImageViewerProps, ImageInfo } from './type';
+import { TdImageViewerProps, ImageInfo, closeTrigger } from './type';
 import { StyledProps } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefault from '../_util/useDefault';
@@ -64,11 +64,22 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
   }, [show]);
 
   const imageViewerClass = usePrefixClass('image-viewer');
-  const handleClose = (e: MouseEvent, trigger: 'overlay' | 'close-btn') => {
+  const handleClose = (e: MouseEvent, trigger: closeTrigger) => {
     e.stopPropagation();
     setShow(false);
-    onClose?.({ trigger, visible: false, index });
+    onClose?.({ trigger, visible: false, index: currentIndex });
   };
+
+  // 通过(事件委托)将点击事件绑定到组件根，判断点击目标
+  const handleClick = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === 'IMG') {
+      handleClose(e, 'image');
+    } else {
+      handleClose(e, 'overlay');
+    }
+  };
+
   const handleDelete = () => {
     onDelete?.(currentIndex ?? 0);
   };
@@ -207,8 +218,8 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
       classNames={animationClassNames}
       nodeRef={rootRef}
     >
-      <div ref={rootRef} className={imageViewerClass}>
-        <div className={`${imageViewerClass}__mask`} onClick={(e) => handleClose(e, 'overlay')}></div>
+      <div ref={rootRef} className={imageViewerClass} onClick={handleClick}>
+        <div className={`${imageViewerClass}__mask`}></div>
         <TSwiper
           ref={swiperRootRef}
           autoplay={false}

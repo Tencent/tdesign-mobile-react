@@ -13,13 +13,13 @@ deleteBtn | TNode | false | 是否显示删除操作，前提需要开启页码�
 images | Array | [] | 图片数组。TS 类型：`Array<string \| ImageInfo>` `interface ImageInfo { url: string; align: 'start' \| 'center' \| 'end' }`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/image-viewer/type.ts) | N
 index | Number | 0 | 当前预览图片所在的下标 | N
 defaultIndex | Number | 0 | 当前预览图片所在的下标。非受控属性 | N
-maxZoom | Number | 3 | 【开发中】最大放大比例。TS 类型：`number` | N
+maxZoom | Number | 3 | 【开发中】最大放大比例 | N
 showIndex | Boolean | false | 是否显示页码 | N
 visible | Boolean | false | 隐藏/显示预览 | N
 defaultVisible | Boolean | false | 隐藏/显示预览。非受控属性 | N
-onClose | Function |  | TS 类型：`(context: { trigger: 'overlay' \| 'close-btn', visible: boolean, index: number }) => void`<br/>关闭时触发 | N
+onClose | Function |  | TS 类型：`(context: { trigger: closeTrigger, visible: boolean, index: number }) => void`<br/>关闭时触发。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/image-viewer/type.ts)。<br/>`type closeTrigger = 'image' \| 'overlay' \| 'close-btn'`<br/> | N
 onDelete | Function |  | TS 类型：`(index: number) => void`<br/>点击删除操作按钮时触发 | N
-onIndexChange | Function |  | TS 类型：`(index: number, context: { trigger: 'prev' \| 'next' }) => void`<br/>预览图片切换时触发，`context.prev` 切换到上一张图片，`context.next` 切换到下一张图片 | N
+onIndexChange | Function |  | TS 类型：`(index: number, context: { trigger: 'prev' \| 'next' \| 'current' }) => void`<br/>预览图片切换时触发，`context.prev` 切换到上一张图片，`context.next` 切换到下一张图片 | N
 
 ### CSS Variables
 
