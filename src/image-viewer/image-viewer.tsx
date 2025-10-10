@@ -2,7 +2,7 @@ import React, { MouseEvent, useRef, useEffect } from 'react';
 import { CloseIcon, DeleteIcon } from 'tdesign-icons-react';
 import { CSSTransition } from 'react-transition-group';
 import { CSSTransitionClassNames } from 'react-transition-group/CSSTransition';
-import { TdImageViewerProps, ImageInfo, closeTrigger } from './type';
+import { TdImageViewerProps, ImageInfo, ImageViewerCloseTrigger } from './type';
 import { StyledProps } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefault from '../_util/useDefault';
@@ -64,7 +64,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
   }, [show]);
 
   const imageViewerClass = usePrefixClass('image-viewer');
-  const handleClose = (e: MouseEvent, trigger: closeTrigger) => {
+  const handleClose = (e: MouseEvent, trigger: ImageViewerCloseTrigger) => {
     e.stopPropagation();
     setShow(false);
     onClose?.({ trigger, visible: false, index: currentIndex });

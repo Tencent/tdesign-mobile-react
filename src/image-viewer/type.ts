@@ -55,7 +55,7 @@ export interface TdImageViewerProps {
   /**
    * 关闭时触发
    */
-  onClose?: (context: { trigger: closeTrigger; visible: boolean; index: number }) => void;
+  onClose?: (context: { trigger: ImageViewerCloseTrigger; visible: boolean; index: number }) => void;
   /**
    * 点击删除操作按钮时触发
    */
@@ -71,4 +71,4 @@ export interface ImageInfo {
   align: 'start' | 'center' | 'end';
 }
 
-export type closeTrigger = 'image' | 'overlay' | 'close-btn';
+export type ImageViewerCloseTrigger = 'image' | 'overlay' | 'close-btn';

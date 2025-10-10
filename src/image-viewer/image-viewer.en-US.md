@@ -17,7 +17,7 @@ maxZoom | Number | 3 | \- | N
 showIndex | Boolean | false | \- | N
 visible | Boolean | false | hide or show image viewer | N
 defaultVisible | Boolean | false | hide or show image viewer。uncontrolled property | N
-onClose | Function |  | Typescript：`(context: { trigger: closeTrigger, visible: boolean, index: number }) => void`<br/>[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/image-viewer/type.ts)。<br/>`type closeTrigger = 'image' \| 'overlay' \| 'close-btn'`<br/> | N
+onClose | Function |  | Typescript：`(context: { trigger: ImageViewerCloseTrigger, visible: boolean, index: number }) => void`<br/>[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/image-viewer/type.ts)。<br/>`type ImageViewerCloseTrigger = 'image' \| 'overlay' \| 'close-btn'`<br/> | N
 onDelete | Function |  | Typescript：`(index: number) => void`<br/> | N
 onIndexChange | Function |  | Typescript：`(index: number, context: { trigger: 'prev' \| 'next' \| 'current' }) => void`<br/> | N
 
