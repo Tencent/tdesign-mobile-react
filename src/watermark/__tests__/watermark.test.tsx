@@ -1,5 +1,5 @@
 import React from 'react';
-import { beforeAll, describe, expect, test, vi } from '@test/utils';
+import { beforeAll, beforeEach, describe, expect, test, vi } from '@test/utils';
 import { render } from '@testing-library/react';
 import Watermark from '../Watermark';
 
@@ -24,6 +24,10 @@ describe('Watermark', () => {
       fillText: vi.fn(),
     });
     mockGetCanvasToDataURL.mockReturnValue('test');
+  });
+
+  beforeEach(() => {
+    vi.useFakeTimers();
   });
 
   function renderWatermark(watermark) {
