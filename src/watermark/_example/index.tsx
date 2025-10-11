@@ -42,9 +42,8 @@ export default function Base() {
         <MovingImageDemo />
       </TDemoBlock>
 
-      <TDemoBlock title="02 组件样式">
-        <LayoutDemo />
-      </TDemoBlock>
+      <TDemoBlock title="02 组件样式" />
+      <LayoutDemo />
     </div>
   );
 }

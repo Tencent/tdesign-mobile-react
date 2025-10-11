@@ -3,7 +3,7 @@ import { Watermark } from 'tdesign-mobile-react';
 
 export default function MovingTextWatermark() {
   return (
-    <Watermark watermarkContent={{ text: '©️版权所有' }} movable>
+    <Watermark watermarkContent={{ text: '文字水印' }} movable>
       <div style={{ height: 300 }}></div>
     </Watermark>
   );
