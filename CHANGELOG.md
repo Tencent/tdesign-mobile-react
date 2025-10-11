@@ -10,7 +10,7 @@ spline: explain
 - `Icon`:  
   - `tdesign-icons-vue-next` 发布 `0.6.1` 版本，新增`align-bottom`、`no-result`、`no-result-filled`、 `tree-list`、`wifi-no`、 `wifi-no-filled`、`logo-stackblitz-filled`、`logo-stackblitz`、`logo-wecom-filled` 图标；移除 `video-camera-3`、`video-camera-3-filled`、`list` 图标，此前有依赖以上移除图标升级请注意 ⚠️ @uyarn ([#785](https://github.com/Tencent/tdesign-mobile-react/pull/785))
   - 按需加载方式使用的图标资源支持可变粗细功能，通过`strokeWidth`属性进行配置 @uyarn ([#785](https://github.com/Tencent/tdesign-mobile-react/pull/785))
-  - 按需加载方式使用的图标资源支持多色填充功能，通过strokeColor 和 fillColor 属性进行配置 @uyarn ([#785](https://github.com/Tencent/tdesign-mobile-react/pull/785)
+  - 按需加载方式使用的图标资源支持多色填充功能，通过 `strokeColor` 和 `fillColor` 属性进行配置 @uyarn ([#785](https://github.com/Tencent/tdesign-mobile-react/pull/785)
  - `Watermark`: 新增 `Watermark` 水印组件 @Wesley-0808 ([#804](https://github.com/Tencent/tdesign-mobile-react/pull/804))
 - `ImageViwer`: 修复点击遮罩层 `close` 事件未触发，并补充触发源 `image`，表示点击图片关闭图片预览 @anlyyao ([#811](https://github.com/Tencent/tdesign-mobile-react/pull/811))
 - `Drawer`: 新增 `overlayProps` 属性 @anlyyao ([#809](https://github.com/Tencent/tdesign-mobile-react/pull/809))
