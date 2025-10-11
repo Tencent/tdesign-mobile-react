@@ -41,7 +41,7 @@ export * from './tree-select';
 export * from './upload';
 
 /**
- * 数据展示（19个）
+ * 数据展示（20个）
  */
 export * from './avatar';
 export * from './badge';
@@ -62,6 +62,7 @@ export * from './sticky';
 export * from './swiper';
 export * from './table';
 export * from './tag';
+export * from './watermark';
 
 /**
  * 反馈（13个）
