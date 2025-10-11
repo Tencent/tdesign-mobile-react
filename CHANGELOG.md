@@ -5,6 +5,24 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.20.0 `2025-10-11` 
+### 🚀 Features
+- `Icon`:  
+  - `tdesign-icons-react` 发布 `0.6.1` 版本，新增`align-bottom`、`no-result`、`no-result-filled`、 `tree-list`、`wifi-no`、 `wifi-no-filled`、`logo-stackblitz-filled`、`logo-stackblitz`、`logo-wecom-filled` 图标；移除 `video-camera-3`、`video-camera-3-filled`、`list` 图标，此前有依赖以上移除图标升级请注意 ⚠️ @uyarn ([#785](https://github.com/Tencent/tdesign-mobile-react/pull/785))
+  - 按需加载方式使用的图标资源支持可变粗细功能，通过`strokeWidth`属性进行配置 @uyarn ([#785](https://github.com/Tencent/tdesign-mobile-react/pull/785))
+  - 按需加载方式使用的图标资源支持多色填充功能，通过 `strokeColor` 和 `fillColor` 属性进行配置 @uyarn ([#785](https://github.com/Tencent/tdesign-mobile-react/pull/785)
+ - `Watermark`: 新增 `Watermark` 水印组件 @Wesley-0808 ([#804](https://github.com/Tencent/tdesign-mobile-react/pull/804))
+- `ImageViwer`: 修复点击遮罩层 `close` 事件未触发，并补充触发源 `image`，表示点击图片关闭图片预览 @anlyyao ([#811](https://github.com/Tencent/tdesign-mobile-react/pull/811))
+- `Drawer`: 新增 `overlayProps` 属性 @anlyyao ([#809](https://github.com/Tencent/tdesign-mobile-react/pull/809))
+### 🐞 Bug Fixes
+- `Message`: 修复 `marquee`、`closeBtn` 与 `link` 属性表现异常，更新 `click` 事件参数 @vancece ([#779](https://github.com/Tencent/tdesign-mobile-react/pull/779))
+- `Steps`: 修复 `current` 属性的 `string` 类型和 `number` 类型渲染效果不一致 @ImaginingMaker ([#761](https://github.com/Tencent/tdesign-mobile-react/pull/761))
+- `Rate`: 修复点选时弹框未显示 @lockiechen ([#754](https://github.com/Tencent/tdesign-mobile-react/pull/754))
+- `CountDown`: 修复毫秒不展示以及自动执行的问题 @SinzoL ([#781](https://github.com/Tencent/tdesign-mobile-react/pull/781))
+- `Collapse`: 
+  - 修复 `defaultExpandAll` 属性导致的打开异常问题 @ImaginingMaker ([#775](https://github.com/Tencent/tdesign-mobile-react/pull/775))
+  - 修复 `defaultExpandAll` 与 `expandMutex` 同时传递时的冲突问题 @ImaginingMaker ([#775](https://github.com/Tencent/tdesign-mobile-react/pull/775))
+
 ## 🌈 0.19.1 `2025-08-28` 
 ### 🚀 Features
 - `Tabs`:  支持自动滚动到激活项 @novlan1 ([#693](https://github.com/Tencent/tdesign-mobile-react/pull/693))
