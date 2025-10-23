@@ -34,7 +34,6 @@ Name | Default Value | Description
 -- | -- | --
 --td-grid-bg-color | @bg-color-container | -
 --td-grid-card-radius | @radius-large | -
-less | less | -
 --td-grid-item-description-color | @text-color-placeholder | -
 --td-grid-item-description-font-size | 12px | -
 --td-grid-item-description-line-height | 20px | -

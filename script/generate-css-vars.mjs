@@ -54,7 +54,7 @@ const generateCssVariables = async (componentName) => {
   const fileContents = await Promise.all(validPaths.map((item) => fs.promises.readFile(item, 'utf8')));
 
   fileContents.forEach((file) => {
-    const matchReg = /(?<=var)[\s\S]*?(?=;)/g;
+    const matchReg = /(?<=var)\([\s\S]*?(?=;)/g;
 
     const list = file.match(matchReg)?.sort();
 

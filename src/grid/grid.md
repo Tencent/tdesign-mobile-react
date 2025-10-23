@@ -34,7 +34,6 @@ text | TNode | - | 文本，可以通过 Props 传入文本，也可以自定义
 -- | -- | --
 --td-grid-bg-color | @bg-color-container | -
 --td-grid-card-radius | @radius-large | -
-less | less | -
 --td-grid-item-description-color | @text-color-placeholder | -
 --td-grid-item-description-font-size | 12px | -
 --td-grid-item-description-line-height | 20px | -
