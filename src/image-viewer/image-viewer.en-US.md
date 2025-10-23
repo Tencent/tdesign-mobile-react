@@ -26,10 +26,10 @@ onIndexChange | Function |  | Typescript：`(index: number, context: { trigger: 
 The component provides the following CSS variables, which can be used to customize styles.
 Name | Default Value | Description 
 -- | -- | --
---td-image-viewer-close-margin-left | @spacer-1 | - 
---td-image-viewer-delete-margin-right | @spacer-1 | - 
---td-image-viewer-mask-bg-color | @mask-active | - 
---td-image-viewer-nav-bg-color | #000 | - 
---td-image-viewer-nav-color | @font-white-1 | - 
---td-image-viewer-nav-height | 48px | - 
+--td-image-viewer-close-margin-left | @spacer-1 | -
+--td-image-viewer-delete-margin-right | @spacer-1 | -
+--td-image-viewer-mask-bg-color | @mask-active | -
+--td-image-viewer-nav-bg-color | #000 | -
+--td-image-viewer-nav-color | @font-white-1 | -
+--td-image-viewer-nav-height | 48px | -
 --td-image-viewer-nav-index-font-size | @font-size-base | -
