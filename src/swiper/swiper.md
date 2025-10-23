@@ -42,7 +42,6 @@ type | String | - | 导航器类型，点状(dots)、点条状(dots-bar)、分�
 --td-swiper-border-radius | 8px | -
 --td-swiper-item-left-padding | 6px | -
 --td-swiper-item-right-padding | 6px | -
-less | less | -
 --td-swiper-nav-btn-bg-color | @font-gray-3 | -
 --td-swiper-nav-btn-color | @font-white-1 | -
 --td-swiper-nav-btn-size | 24px | -

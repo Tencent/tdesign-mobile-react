@@ -74,6 +74,7 @@ Name | Default Value | Description
 --td-tag-medium-height | 24px | -
 --td-tag-medium-icon-size | 14px | -
 --td-tag-medium-padding | 8px - 1px | -
+--td-tag-outline-bg-color | @bg-color-container | -
 --td-tag-primary-color | @brand-color | -
 --td-tag-primary-light-color | @brand-color-light | -
 --td-tag-round-border-radius | 999px | -
@@ -86,5 +87,3 @@ Name | Default Value | Description
 --td-tag-success-light-color | @success-color-1 | -
 --td-tag-warning-color | @warning-color | -
 --td-tag-warning-light-color | @warning-color-1 | -
-ant
-@tag-outline-bg-color: var(--td-tag-outline-bg-color | @bg-color-container | -
