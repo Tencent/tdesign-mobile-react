@@ -25,5 +25,5 @@ onOpened | Function |  | Typescript：`() => void`<br/> | N
 The component provides the following CSS variables, which can be used to customize styles.
 Name | Default Value | Description 
 -- | -- | --
---td-overlay-bg-color | @mask-active | - 
+--td-overlay-bg-color | @mask-active | -
 --td-overlay-zindex | 1000 | -
