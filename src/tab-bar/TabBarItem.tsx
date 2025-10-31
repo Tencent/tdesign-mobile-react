@@ -6,7 +6,7 @@ import type { StyledProps } from '../common';
 import type { TdTabBarItemProps } from './type';
 import { TabBarContext } from './TabBarContext';
 import Badge from '../badge';
-import useTabBarCssTransition from './useTabBarCssTransition';
+import useTabBarCssTransition from './hooks/useTabBarCssTransition';
 import parseTNode from '../_util/parseTNode';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
