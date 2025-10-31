@@ -27,6 +27,8 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
 
   const textNode = useRef<HTMLDivElement>(null);
 
+  const menuRef = useRef<HTMLDivElement>(null);
+
   const [iconOnly, setIconOnly] = useState(false);
 
   // 组件每次 render 生成一个临时的当前组件唯一值
@@ -162,7 +164,14 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
         )}
       </div>
 
-      <CSSTransition timeout={200} in={showSubTabBar} classNames={transitionClsNames} mountOnEnter unmountOnExit>
+      <CSSTransition
+        nodeRef={menuRef}
+        timeout={200}
+        in={showSubTabBar}
+        classNames={transitionClsNames}
+        mountOnEnter
+        unmountOnExit
+      >
         <ul role="menu" className={`${tabBarItemClass}__spread`}>
           {subTabBar?.map((child, index) => (
             <div
