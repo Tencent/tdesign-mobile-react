@@ -18,7 +18,7 @@ const defaultBadgeMaxCount = 99;
 
 const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref) => {
   const props = useDefaultProps(originProps, {});
-  const { subTabBar, icon, badgeProps, value, children } = props;
+  const { subTabBar, icon, badgeProps, value, children, className, style } = props;
 
   const hasSubTabBar = useMemo(() => !!subTabBar, [subTabBar]);
   const { defaultIndex, activeValue, updateChild, shape, split, theme, itemCount } = useContext(TabBarContext);
@@ -101,6 +101,7 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
 
   const tabItemCls = cls(
     tabBarItemClass,
+    className,
     {
       [`${tabBarItemClass}--split`]: split,
       [`${tabBarItemClass}--text-only`]: !icon,
@@ -130,7 +131,7 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
     icon && React.cloneElement(icon, { style: { fontSize: iconSize } });
 
   return (
-    <div className={tabItemCls} ref={ref}>
+    <div className={tabItemCls} ref={ref} style={style}>
       <div
         role="tab"
         aria-label="TabBar"
