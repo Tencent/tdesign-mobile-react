@@ -1,5 +1,5 @@
 import React, { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { isNumber, isObject } from 'lodash-es';
+import { isNumber } from 'lodash-es';
 import classNames from 'classnames';
 import { Property } from 'csstype';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -23,7 +23,6 @@ enum SwiperStatus {
   IDLE = 'idle', // 空闲状态
   SWITCHING = 'switching', // 切换状态
   STARTDRAG = 'startdrag', // 开始拖拽
-  ENDDRAG = 'enddrag', // 结束拖拽
 }
 
 // swiper组件的动态style
@@ -113,7 +112,7 @@ const Swiper = forwardRefWithStatics(
         const nav = navigation as SwiperNavigation;
         return nav?.minShowNum ? items.current.length > nav?.minShowNum : true;
       }
-      return isObject(navigation);
+      return typeof navigation === 'string';
     }, [isSwiperNavigation, navigation]);
 
     const isBottomPagination = useMemo(() => {
@@ -475,9 +474,6 @@ const Swiper = forwardRefWithStatics(
         case SwiperStatus.STARTDRAG:
           nextIndex.current = previousIndex.current;
           break;
-        case SwiperStatus.ENDDRAG:
-          setSwiperStatus(SwiperStatus.IDLE);
-          break;
       }
     }, [autoplay, directionAxis, duration, enterIdle, enterSwitching, interval, quitSwitching, swiperStatus]);
 
@@ -573,14 +569,26 @@ const Swiper = forwardRefWithStatics(
 
       if (!enableNavigation) return '';
       if (isSwiperNavigation) {
-        return (
-          <>
-            {controlsNav(navigation as SwiperNavigation)}
-            {typeNav(navigation as SwiperNavigation)}
-          </>
-        );
+        const controls = controlsNav(navigation as SwiperNavigation);
+        const type = typeNav(navigation as SwiperNavigation);
+        if (controls || type) {
+          return (
+            <span
+              className={classNames(
+                swiperNavClass,
+                `${swiperNavClass}--${direction}`,
+                `${swiperNavClass}--${(navigation as SwiperNavigation)?.paginationPosition || 'bottom'}`,
+                `${isBottomPagination && (navigation as SwiperNavigation)?.placement ? `${swiperNavClass}--${(navigation as SwiperNavigation)?.placement} ` : ''}`,
+              )}
+            >
+              {controls}
+              {type}
+            </span>
+          );
+        }
+        return '';
       }
-      return isObject(navigation) ? '' : parseTNode(navigation);
+      return parseTNode(navigation as any);
     };
 
     return (
