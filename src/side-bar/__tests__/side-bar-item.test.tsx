@@ -1,9 +1,9 @@
 import React from 'react';
 import { describe, it, expect, render, vi, fireEvent } from '@test/utils';
 
+import { AppIcon } from 'tdesign-icons-react';
 import SideBar from '../SideBar';
 import SideBarItem from '../SideBarItem';
-import { AppIcon } from 'tdesign-icons-react';
 
 const prefix = 't';
 const name = `.${prefix}-side-bar-item`;
@@ -14,7 +14,7 @@ describe('SideBarItem', () => {
       const { container } = render(
         <SideBar>
           <SideBarItem value={1} label="选项1" />
-        </SideBar>
+        </SideBar>,
       );
       expect(container.querySelector(name)).toBeTruthy();
     });
@@ -23,7 +23,7 @@ describe('SideBarItem', () => {
       const { queryByText } = render(
         <SideBar>
           <SideBarItem value={1} label="测试标签" />
-        </SideBar>
+        </SideBar>,
       );
       expect(queryByText('测试标签')).toBeInTheDocument();
     });
@@ -32,7 +32,7 @@ describe('SideBarItem', () => {
       const { container } = render(
         <SideBar>
           <SideBarItem value={1} label="选项1" icon={<AppIcon />} />
-        </SideBar>
+        </SideBar>,
       );
       expect(container.querySelector(`${name}__icon`)).toBeTruthy();
       expect(container.querySelector('.t-icon-app')).toBeTruthy();
@@ -42,7 +42,7 @@ describe('SideBarItem', () => {
       const { container } = render(
         <SideBar>
           <SideBarItem value={1} label="选项1" disabled />
-        </SideBar>
+        </SideBar>,
       );
       expect(container.querySelector(`${name}--disabled`)).toBeTruthy();
     });
@@ -51,7 +51,7 @@ describe('SideBarItem', () => {
       const { container } = render(
         <SideBar>
           <SideBarItem value={1} label="选项1" badgeProps={{ count: 5 }} />
-        </SideBar>
+        </SideBar>,
       );
       expect(container.querySelector('.t-badge')).toBeTruthy();
     });
@@ -60,7 +60,7 @@ describe('SideBarItem', () => {
       const { container } = render(
         <SideBar>
           <SideBarItem value={1} label="选项1" badgeProps={{ dot: true }} />
-        </SideBar>
+        </SideBar>,
       );
       expect(container.querySelector('.t-badge')).toBeTruthy();
     });
@@ -70,7 +70,7 @@ describe('SideBarItem', () => {
         <SideBar value={1}>
           <SideBarItem value={1} label="选项1" />
           <SideBarItem value={2} label="选项2" />
-        </SideBar>
+        </SideBar>,
       );
       expect(container.querySelector(`${name}--active`)).toBeTruthy();
       expect(container.querySelector(`${name}__line`)).toBeTruthy();
@@ -85,12 +85,12 @@ describe('SideBarItem', () => {
       const { container } = render(
         <SideBar onClick={handleClick}>
           <SideBarItem value={1} label="选项1" />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       const item = container.querySelector(name);
       fireEvent.click(item);
-      
+
       expect(handleClick).toHaveBeenCalledWith(1, '选项1');
     });
 
@@ -99,12 +99,12 @@ describe('SideBarItem', () => {
       const { container } = render(
         <SideBar onClick={handleClick}>
           <SideBarItem value={1} label="选项1" disabled />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       const item = container.querySelector(name);
       fireEvent.click(item);
-      
+
       expect(handleClick).not.toHaveBeenCalled();
     });
 
@@ -114,12 +114,12 @@ describe('SideBarItem', () => {
         <SideBar onChange={handleChange}>
           <SideBarItem value={1} label="选项1" />
           <SideBarItem value={2} label="选项2" />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       const secondItem = container.querySelectorAll(name)[1];
       fireEvent.click(secondItem);
-      
+
       expect(handleChange).toHaveBeenCalledWith(2);
     });
   });
@@ -131,19 +131,19 @@ describe('SideBarItem', () => {
           <SideBarItem value={1} label="选项1" icon={<AppIcon />} />
           <SideBarItem value={2} label="选项2" badgeProps={{ count: 3 }} />
           <SideBarItem value={3} label="选项3" disabled />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       const items = container.querySelectorAll(name);
       expect(items).toHaveLength(3);
-      
+
       // 第一个项目有图标
       expect(items[0].querySelector(`${name}__icon`)).toBeTruthy();
-      
+
       // 第二个项目是活跃状态且有徽章
       expect(items[1].classList.contains(`${prefix}-side-bar-item--active`)).toBeTruthy();
       expect(items[1].querySelector('.t-badge')).toBeTruthy();
-      
+
       // 第三个项目是禁用状态
       expect(items[2].classList.contains(`${prefix}-side-bar-item--disabled`)).toBeTruthy();
     });
@@ -152,16 +152,16 @@ describe('SideBarItem', () => {
       const { rerender } = render(
         <SideBar>
           <SideBarItem value={1} label="选项1" />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       // 重新渲染以测试 useEffect 的清理函数
       rerender(
         <SideBar>
           <SideBarItem value={2} label="选项2" />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       // 组件应该正常渲染
       expect(true).toBe(true);
     });

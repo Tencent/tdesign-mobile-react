@@ -1,5 +1,5 @@
 module.exports = {
-  actionSheet: { statements: '5.26%', branches: '0%', functions: '0%', lines: '5.35%' },
+  actionSheet: { statements: '100%', branches: '96.55%', functions: '100%', lines: '100%' },
   avatar: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   backTop: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   badge: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
@@ -24,9 +24,9 @@ module.exports = {
   form: { statements: '2.8%', branches: '0%', functions: '0%', lines: '2.96%' },
   grid: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   guide: { statements: '3.46%', branches: '0%', functions: '0%', lines: '3.77%' },
-  hooks: { statements: '69.04%', branches: '34.32%', functions: '71.87%', lines: '70%' },
+  hooks: { statements: '70.7%', branches: '44.7%', functions: '73.68%', lines: '70.66%' },
   image: { statements: '97.72%', branches: '100%', functions: '92.3%', lines: '97.61%' },
-  imageViewer: { statements: '8.47%', branches: '2.87%', functions: '0%', lines: '8.84%' },
+  imageViewer: { statements: '8.33%', branches: '2.83%', functions: '0%', lines: '8.69%' },
   indexes: { statements: '95.65%', branches: '69.81%', functions: '100%', lines: '96.94%' },
   input: { statements: '3.57%', branches: '0%', functions: '0%', lines: '3.7%' },
   layout: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
@@ -55,7 +55,7 @@ module.exports = {
   steps: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   sticky: { statements: '67.85%', branches: '30%', functions: '85.71%', lines: '69.09%' },
   swipeCell: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
-  swiper: { statements: '3.77%', branches: '0.9%', functions: '1.4%', lines: '3.89%' },
+  swiper: { statements: '57.55%', branches: '37.1%', functions: '67.6%', lines: '59.74%' },
   switch: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   tabBar: { statements: '10%', branches: '0%', functions: '0%', lines: '10.81%' },
   table: { statements: '100%', branches: '90%', functions: '100%', lines: '100%' },
@@ -65,4 +65,5 @@ module.exports = {
   toast: { statements: '98.73%', branches: '100%', functions: '94.11%', lines: '98.66%' },
   treeSelect: { statements: '5.4%', branches: '0%', functions: '0%', lines: '5.88%' },
   upload: { statements: '4.28%', branches: '0%', functions: '0%', lines: '4.47%' },
+  watermark: { statements: '96%', branches: '74.46%', functions: '100%', lines: '98.59%' },
 };
