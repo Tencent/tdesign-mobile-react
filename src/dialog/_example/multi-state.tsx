@@ -36,6 +36,8 @@ const MultiStateUsage = React.memo(() => {
         文字按钮
       </Button>
       <div className="btn-gap"></div>
+      <div className="diaog-demo__summary">水平基础按钮</div>
+      <div className="btn-gap"></div>
       <Button
         variant="outline"
         size="large"
@@ -53,6 +55,8 @@ const MultiStateUsage = React.memo(() => {
       >
         水平基础按钮
       </Button>
+      <div className="btn-gap"></div>
+      <div className="diaog-demo__summary">垂直基础按钮</div>
       <div className="btn-gap"></div>
       <Button
         variant="outline"
@@ -73,29 +77,7 @@ const MultiStateUsage = React.memo(() => {
         垂直基础按钮
       </Button>
       <div className="btn-gap"></div>
-      <Button
-        variant="outline"
-        size="large"
-        theme="primary"
-        block
-        onClick={() => {
-          setAlertProps({
-            visible: true,
-            title: '对话框标题',
-            content: '告知当前状态、信息和解决方法',
-            buttonLayout: 'vertical',
-            confirmBtn: '确认',
-            cancelBtn: '取消',
-            actions: [
-              { content: '次要按钮', theme: 'light' },
-              { content: '次要按钮', theme: 'light' },
-              { content: '主要按钮', theme: 'primary' },
-            ],
-          });
-        }}
-      >
-        垂直多按钮
-      </Button>
+      <div className="diaog-demo__summary">带关闭按钮的对话框</div>
       <div className="btn-gap"></div>
       <Button
         variant="outline"
@@ -114,7 +96,7 @@ const MultiStateUsage = React.memo(() => {
           });
         }}
       >
-        带关闭按钮
+        带关闭按钮的对话框
       </Button>
       <Dialog
         {...alertProps}
