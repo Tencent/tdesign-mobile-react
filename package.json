@@ -1,6 +1,6 @@
 {
   "name": "tdesign-mobile-react",
-  "version": "0.19.1",
+  "version": "0.20.0",
   "description": "TDesign Component for Mobile React",
   "title": "tdesign-mobile-react",
   "main": "cjs/index.js",
@@ -31,7 +31,6 @@
     "site": "run-s site:build",
     "site:build": "cd site && vite build",
     "site:serve": "cd site && vite preview",
-    "site:intranet": "cd site && vite build --mode intranet",
     "site:preview": "cd site && cross-env NODE_ENV=development vite build --mode preview",
     "postsite:preview": "cp _site/index.html _site/404.html",
     "lint": "eslint --ext .ts,.tsx ./ --max-warnings 0",
@@ -154,7 +153,6 @@
     "rollup-plugin-styles": "^3.14.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.2",
-    "tdesign-icons-view": "^0.3.7",
     "@tdesign/site-components": "^0.17.0",
     "tdesign-theme-generator": "^1.1.8",
     "typescript": "^5.8.3",
@@ -175,7 +173,7 @@
     "lodash-es": "^4.17.21",
     "react-transition-group": "^4.4.2",
     "smoothscroll-polyfill": "^0.4.4",
-    "tdesign-icons-react": "^0.5.1",
+    "tdesign-icons-react": "^0.6.1",
     "tinycolor2": "^1.6.0",
     "validator": "^13.15.15"
   },

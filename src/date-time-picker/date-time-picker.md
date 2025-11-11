@@ -34,4 +34,4 @@ onPick | Function |  | TS 类型：`(value: DateValue) => void`<br/>选中值发
 组件提供了下列 CSS 变量，可用于自定义样式。
 名称 | 默认值 | 描述 
 -- | -- | --
---td-data-time-picker-year-width | 64px | - 
+--td-data-time-picker-year-width | 64px | -

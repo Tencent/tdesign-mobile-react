@@ -10,20 +10,11 @@ import withNativeProps, { NativeProps } from '../_util/withNativeProps';
 import useConfig from '../hooks/useConfig';
 import { TdBackTopProps } from './type';
 import { backTopDefaultProps } from './defaultProps';
-import { canUseDocument } from '../_util/dom';
+import { checkWindow } from '../_util/dom';
 
 export type ThemeList = 'round' | 'half-round' | 'round-dark' | 'half-round-dark';
 
 export type BackTopProps = TdBackTopProps & NativeProps;
-
-export const defaultProps = {
-  fixed: true,
-  icon: 'backtop',
-  target: (() => window) as any,
-  text: '',
-  theme: 'round' as ThemeList,
-  visibilityHeight: 200,
-};
 
 const BackTop: React.FC<BackTopProps> = (props) => {
   const { fixed, icon, target, text, theme, onToTop, visibilityHeight, container } = useDefaultProps(
@@ -37,7 +28,7 @@ const BackTop: React.FC<BackTopProps> = (props) => {
 
   const getBackTopDom = () => {
     if (target) return target();
-    if (canUseDocument) return window.document.documentElement;
+    if (checkWindow()) return window.document.documentElement;
     return null;
   };
   backTopDom.current = getBackTopDom();

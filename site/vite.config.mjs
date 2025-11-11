@@ -4,12 +4,13 @@ import { defineConfig } from 'vite';
 import replace from '@rollup/plugin-replace';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
-import tdocPlugin from './plugin-tdoc';
 import pwaConfig from './pwaConfig';
+
+import changelog2Json from './web/plugins/changelog-to-json';
+import tdocPlugin from './web/plugins/plugin-tdoc';
 
 const publicPathMap = {
   preview: '/',
-  intranet: '/mobile-react/',
   production: 'https://static.tdesign.tencent.com/mobile-react/',
 };
 
@@ -63,6 +64,7 @@ export default ({ mode }) =>
     plugins: [
       react(),
       tdocPlugin(),
+      changelog2Json(),
       VitePWA(pwaConfig),
       disableTreeShakingPlugin(['style/']),
       replace({ __DATE__: new Date().toISOString() }),

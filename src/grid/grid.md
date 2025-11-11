@@ -32,26 +32,25 @@ text | TNode | - | 文本，可以通过 Props 传入文本，也可以自定义
 组件提供了下列 CSS 变量，可用于自定义样式。
 名称 | 默认值 | 描述 
 -- | -- | --
---td-grid-bg-color | @bg-color-container | - 
---td-grid-card-radius | @radius-large | - 
-less | less | - 
---td-grid-item-description-color | @text-color-placeholder | - 
---td-grid-item-description-font-size | 12px | - 
---td-grid-item-description-line-height | 20px | - 
---td-grid-item-description-padding-top | 4px | - 
---td-grid-item-horizontal-text-description-top | 2px | - 
---td-grid-item-horizontal-text-padding-left | 12px | - 
---td-grid-item-hover-bg-color | @bg-color-secondarycontainer | - 
---td-grid-item-image-bg-color | @bg-color-secondarycontainer | - 
---td-grid-item-image-border-radius | @radius-default | - 
---td-grid-item-bg-color | @bg-color-container | - 
---td-grid-item-border-color | @component-stroke | - 
---td-grid-item-horizontal-padding | 16px 0 | - 
---td-grid-item-image-middle-width | 40px | - 
---td-grid-item-image-small-width | 32px | - 
---td-grid-item-image-width | 48px | - 
---td-grid-item-text-color | @text-color-primary | - 
---td-grid-item-text-font-size | 14px | - 
---td-grid-item-text-line-height | 22px | - 
---td-grid-item-text-padding-top | 8px | - 
---td-grid-item-vertical-padding | 16px 0 12px | - 
+--td-grid-bg-color | @bg-color-container | -
+--td-grid-card-radius | @radius-large | -
+--td-grid-item-description-color | @text-color-placeholder | -
+--td-grid-item-description-font-size | 12px | -
+--td-grid-item-description-line-height | 20px | -
+--td-grid-item-description-padding-top | 4px | -
+--td-grid-item-horizontal-text-description-top | 2px | -
+--td-grid-item-horizontal-text-padding-left | 12px | -
+--td-grid-item-hover-bg-color | @bg-color-secondarycontainer | -
+--td-grid-item-image-bg-color | @bg-color-secondarycontainer | -
+--td-grid-item-image-border-radius | @radius-default | -
+--td-grid-item-bg-color | @bg-color-container | -
+--td-grid-item-border-color | @component-stroke | -
+--td-grid-item-horizontal-padding | 16px 0 | -
+--td-grid-item-image-middle-width | 40px | -
+--td-grid-item-image-small-width | 32px | -
+--td-grid-item-image-width | 48px | -
+--td-grid-item-text-color | @text-color-primary | -
+--td-grid-item-text-font-size | 14px | -
+--td-grid-item-text-line-height | 22px | -
+--td-grid-item-text-padding-top | 8px | -
+--td-grid-item-vertical-padding | 16px 0 12px | -

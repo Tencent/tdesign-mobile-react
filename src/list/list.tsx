@@ -60,7 +60,7 @@ const List: React.FC<ListProps> = (props) => {
         {typeof props.asyncLoading === 'string' && ['loading', 'load-more'].includes(props.asyncLoading) && (
           <TLoading
             indicator={props.asyncLoading === 'loading'}
-            text={typeof props.asyncLoading === 'string' ? LOADING_TEXT_MAP[props.asyncLoading] : ''}
+            text={LOADING_TEXT_MAP[props.asyncLoading]}
             className={`${listClass}__loading`}
           />
         )}

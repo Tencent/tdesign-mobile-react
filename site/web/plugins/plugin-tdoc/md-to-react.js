@@ -4,9 +4,10 @@ import path from 'path';
 import matter from 'gray-matter';
 import camelCase from 'camelcase';
 
-import testCoverage from '../test-coverage';
+import testCoverage from '../../../test-coverage';
 
 import { transformSync } from '@babel/core';
+import babelPresetReact from '@babel/preset-react';
 
 export default function mdToReact(options) {
   const mdSegment = customRender(options);
@@ -152,7 +153,7 @@ export default function mdToReact(options) {
     generatorOpts: {
       decoratorsBeforeExport: true,
     },
-    presets: [require('@babel/preset-react')],
+    presets: [babelPresetReact],
   });
 
   return { code: result.code, map: result.map };
@@ -231,12 +232,13 @@ function customRender({ source, file, md }) {
   }
 
   // 移动端路由地址
+  // console.log('process.env', process.env);
   const prefix = process.env.NODE_ENV === 'development' ? `/mobile.html` : `/mobile-react/mobile.html`;
   mdSegment.mobileUrl = `${prefix}#/${componentName}`;
 
   // 设计指南内容 不展示 design Tab 则不解析
   if (pageData.isComponent && pageData.tdDocTabs.some((item) => item.tab === 'design')) {
-    const designDocPath = path.resolve(__dirname, `../../src/_common/docs/mobile/design/${componentName}.md`);
+    const designDocPath = path.resolve(__dirname, `../../../../src/_common/docs/mobile/design/${componentName}.md`);
 
     if (fs.existsSync(designDocPath)) {
       const designMd = fs.readFileSync(designDocPath, 'utf-8');
