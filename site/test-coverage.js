@@ -57,7 +57,7 @@ module.exports = {
   swipeCell: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   swiper: { statements: '57.55%', branches: '37.1%', functions: '67.6%', lines: '59.74%' },
   switch: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
-  tabBar: { statements: '10%', branches: '0%', functions: '0%', lines: '10.81%' },
+  tabBar: { statements: '100%', branches: '93.18%', functions: '100%', lines: '100%' },
   table: { statements: '100%', branches: '90%', functions: '100%', lines: '100%' },
   tabs: { statements: '43.22%', branches: '18.75%', functions: '56%', lines: '45.07%' },
   tag: { statements: '100%', branches: '96.87%', functions: '100%', lines: '100%' },
