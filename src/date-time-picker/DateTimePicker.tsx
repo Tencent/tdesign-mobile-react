@@ -29,8 +29,8 @@ const DateTimePicker: FC<DateTimePickerProps> = (props) => {
 
   const [innerValue, setDateTimePickerValue] = useDefault(props.value, props.defaultValue, props.onChange);
 
-  const confirmButtonText = props.confirmBtn || t(locale.confirm);
-  const cancelButtonText = props.cancelBtn || t(locale.cancel);
+  const confirmButtonText = props.confirmBtn || (t(locale.confirm) as string);
+  const cancelButtonText = props.cancelBtn || (t(locale.cancel) as string);
 
   const start = normalize(props.start, dayjs().subtract(10, 'year'));
   const end = normalize(props.end, dayjs().add(10, 'year'));
@@ -205,13 +205,13 @@ const DateTimePicker: FC<DateTimePickerProps> = (props) => {
     props.onCancel?.({ e: context.e });
   };
 
-const onPick = (value: Array<PickerValue>, { column, index }: PickerContext) => {
-  const type = meaningColumn[column];
-  const val = curDate.set(type as UnitType, parseInt(columns[column][index]?.value, 10));
-  const next = rationalize(val);
-  setCurDate(next);
-  props.onPick?.(next.format(props.format));
-};
+  const onPick = (value: Array<PickerValue>, { column, index }: PickerContext) => {
+    const type = meaningColumn[column];
+    const val = curDate.set(type as UnitType, parseInt(columns[column][index]?.value, 10));
+    const next = rationalize(val);
+    setCurDate(next);
+    props.onPick?.(next.format(props.format));
+  };
 
   return (
     <Picker
