@@ -28,7 +28,7 @@ module.exports = {
   image: { statements: '97.72%', branches: '100%', functions: '92.3%', lines: '97.61%' },
   imageViewer: { statements: '8.33%', branches: '2.83%', functions: '0%', lines: '8.69%' },
   indexes: { statements: '95.65%', branches: '69.81%', functions: '100%', lines: '96.94%' },
-  input: { statements: '3.57%', branches: '0%', functions: '0%', lines: '3.7%' },
+  input: { statements: '100%', branches: '98.18%', functions: '100%', lines: '100%' },
   layout: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   link: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   list: { statements: '92%', branches: '77.77%', functions: '100%', lines: '100%' },

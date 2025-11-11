@@ -60,7 +60,7 @@ describe('Slider', () => {
 
     it(': marks', () => {
       const marks1 = { 0: '0°C', 50: '50°C', 100: '100°C' };
-      const marks2 = { 10: (val) => `${val  }%` };
+      const marks2 = { 10: (val) => `${val}%` };
       const { container: container1 } = render(<Slider marks={marks1} theme="capsule" />);
       const { container: container2 } = render(<Slider marks={marks2} />);
       const scaleItems1 = container1.querySelectorAll(`${name}__scale-item`);

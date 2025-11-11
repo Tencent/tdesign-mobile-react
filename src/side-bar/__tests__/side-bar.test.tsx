@@ -14,7 +14,7 @@ describe('SideBar', () => {
         <SideBar>
           <SideBarItem value={1} label="选项1" />
           <SideBarItem value={2} label="选项2" />
-        </SideBar>
+        </SideBar>,
       );
       expect(container.querySelector(name)).toBeTruthy();
       expect(container.querySelectorAll('.t-side-bar-item')).toHaveLength(2);
@@ -25,7 +25,7 @@ describe('SideBar', () => {
         <SideBar defaultValue={1}>
           <SideBarItem value={1} label="选项1" />
           <SideBarItem value={2} label="选项2" />
-        </SideBar>
+        </SideBar>,
       );
       expect(container.querySelector('.t-side-bar-item--active')).toBeTruthy();
     });
@@ -35,20 +35,20 @@ describe('SideBar', () => {
         <SideBar value={1}>
           <SideBarItem value={1} label="选项1" />
           <SideBarItem value={2} label="选项2" />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       const activeItems = container.querySelectorAll('.t-side-bar-item--active');
       expect(activeItems).toHaveLength(1);
-      
+
       // 更新 value
       rerender(
         <SideBar value={2}>
           <SideBarItem value={1} label="选项1" />
           <SideBarItem value={2} label="选项2" />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       const newActiveItems = container.querySelectorAll('.t-side-bar-item--active');
       expect(newActiveItems).toHaveLength(1);
     });
@@ -61,12 +61,12 @@ describe('SideBar', () => {
         <SideBar onChange={handleChange}>
           <SideBarItem value={1} label="选项1" />
           <SideBarItem value={2} label="选项2" />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       const secondItem = container.querySelectorAll('.t-side-bar-item')[1];
       fireEvent.click(secondItem);
-      
+
       expect(handleChange).toHaveBeenCalledWith(2);
     });
 
@@ -76,12 +76,12 @@ describe('SideBar', () => {
         <SideBar onClick={handleClick}>
           <SideBarItem value={1} label="选项1" />
           <SideBarItem value={2} label="选项2" />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       const firstItem = container.querySelectorAll('.t-side-bar-item')[0];
       fireEvent.click(firstItem);
-      
+
       expect(handleClick).toHaveBeenCalledWith(1, '选项1');
     });
 
@@ -91,12 +91,12 @@ describe('SideBar', () => {
         <SideBar value={1} onChange={handleChange}>
           <SideBarItem value={1} label="选项1" />
           <SideBarItem value={2} label="选项2" />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       const secondItem = container.querySelectorAll('.t-side-bar-item')[1];
       fireEvent.click(secondItem);
-      
+
       expect(handleChange).toHaveBeenCalledWith(2);
     });
 
@@ -106,12 +106,12 @@ describe('SideBar', () => {
         <SideBar defaultValue={1} onChange={handleChange}>
           <SideBarItem value={1} label="选项1" />
           <SideBarItem value={2} label="选项2" />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       const secondItem = container.querySelectorAll('.t-side-bar-item')[1];
       fireEvent.click(secondItem);
-      
+
       expect(handleChange).toHaveBeenCalledWith(2);
     });
   });
@@ -127,7 +127,7 @@ describe('SideBar', () => {
       const { container } = render(
         <SideBar>
           <SideBarItem value={1} label="单个选项" />
-        </SideBar>
+        </SideBar>,
       );
       expect(container.querySelectorAll('.t-side-bar-item')).toHaveLength(1);
     });
@@ -138,15 +138,15 @@ describe('SideBar', () => {
         <SideBar onChange={handleChange}>
           <SideBarItem value="string" label="字符串值" />
           <SideBarItem value={123} label="数字值" />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       const firstItem = container.querySelectorAll('.t-side-bar-item')[0];
       const secondItem = container.querySelectorAll('.t-side-bar-item')[1];
-      
+
       fireEvent.click(firstItem);
       expect(handleChange).toHaveBeenCalledWith('string');
-      
+
       fireEvent.click(secondItem);
       expect(handleChange).toHaveBeenCalledWith(123);
     });
@@ -155,9 +155,9 @@ describe('SideBar', () => {
       const { container } = render(
         <SideBar>
           <SideBarItem value={1} label="选项1" />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       const item = container.querySelector('.t-side-bar-item');
       expect(() => fireEvent.click(item)).not.toThrow();
     });
@@ -166,9 +166,9 @@ describe('SideBar', () => {
       const { container } = render(
         <SideBar>
           <SideBarItem value={1} label="选项1" />
-        </SideBar>
+        </SideBar>,
       );
-      
+
       const item = container.querySelector('.t-side-bar-item');
       expect(() => fireEvent.click(item)).not.toThrow();
     });
