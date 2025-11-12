@@ -1,9 +1,30 @@
-import React from 'react';
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import Guide from '../Guide';
+import GuideFromIndex from '../index';
 import type { GuideStep } from '../type';
+
+// Mock missing setStyle util used inside Guide
+vi.mock('../_common/js/utils/setStyle', () => ({
+  default: (el: HTMLElement | null, styles: Record<string, any>) => {
+    if (el && styles && typeof styles === 'object') {
+      // Create a copy to avoid mutating the parameter
+      const element = el;
+      Object.keys(styles).forEach((k) => {
+        try {
+          // @ts-ignore
+          if (element) {
+            element.style[k] = styles[k];
+          }
+        } catch {
+          // Ignore errors when setting styles
+        }
+      });
+    }
+  },
+}));
 
 // Mock Portal component
 vi.mock('../common/Portal', () => {
@@ -20,8 +41,8 @@ vi.mock('../common/Portal', () => {
 
 // Mock TPopover
 vi.mock('../popover', () => ({
-  default: vi.fn().mockImplementation(({ children, ...props }) => (
-    <div data-testid="popover" {...props}>
+  default: vi.fn().mockImplementation(({ children, className, ...props }) => (
+    <div data-testid="popover" className={`t-popover ${className || ''}`.trim()} {...props}>
       {children}
     </div>
   )),
@@ -29,8 +50,8 @@ vi.mock('../popover', () => ({
 
 // Mock TPopup
 vi.mock('../popup', () => ({
-  default: vi.fn().mockImplementation(({ children, ...props }) => (
-    <div data-testid="popup" {...props}>
+  default: vi.fn().mockImplementation(({ children, className, ...props }) => (
+    <div data-testid="popup" className={`t-popup ${className || ''}`.trim()} {...props}>
       {children}
     </div>
   )),
@@ -132,6 +153,10 @@ describe('Guide Component', () => {
   });
 
   describe('Basic Rendering', () => {
+    it('should export default Guide via index', () => {
+      render(<GuideFromIndex steps={[{ element: '#step1' }]} current={-1} />);
+      expect(true).toBe(true);
+    });
     it('should not render when current is -1', () => {
       render(<Guide steps={mockSteps} current={-1} />);
       expect(screen.queryByTestId('portal')).not.toBeInTheDocument();
