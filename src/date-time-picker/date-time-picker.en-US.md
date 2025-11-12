@@ -34,4 +34,4 @@ onPick | Function |  | Typescript：`(value: DateValue) => void`<br/> | N
 The component provides the following CSS variables, which can be used to customize styles.
 Name | Default Value | Description 
 -- | -- | --
---td-data-time-picker-year-width | 64px | - 
+--td-data-time-picker-year-width | 64px | -

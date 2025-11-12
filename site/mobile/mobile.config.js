@@ -410,5 +410,11 @@ export default {
       name: 'date-time-picker',
       component: () => import('tdesign-mobile-react/date-time-picker/_example/index.tsx'),
     },
+    {
+      title: 'Watermark 水印',
+      titleEn: 'Watermark',
+      name: 'watermark',
+      component: () => import('tdesign-mobile-react/watermark/_example/index.tsx'),
+    },
   ],
 };

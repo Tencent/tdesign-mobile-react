@@ -1,5 +1,5 @@
 import React, { forwardRef, memo, useMemo, useRef } from 'react';
-import cls from 'classnames';
+import classNames from 'classnames';
 import useDefault from '../_util/useDefault';
 import type { StyledProps } from '../common';
 import type { TdTabBarProps } from './type';
@@ -13,9 +13,32 @@ export interface TabBarProps extends TdTabBarProps, StyledProps {}
 
 const TabBar = forwardRef<HTMLDivElement, TabBarProps>((originProps, ref) => {
   const props = useDefaultProps(originProps, tabBarDefaultProps);
-  const { bordered, fixed, onChange, value, defaultValue, safeAreaInsetBottom, shape, split, theme, children } = props;
+  const {
+    className,
+    style,
+    bordered,
+    fixed,
+    onChange,
+    value,
+    defaultValue,
+    safeAreaInsetBottom,
+    shape,
+    split,
+    theme,
+    children,
+  } = props;
 
   const tabBarClass = usePrefixClass('tab-bar');
+  const tabBarClasses = classNames(
+    tabBarClass,
+    className,
+    {
+      [`${tabBarClass}--bordered`]: bordered,
+      [`${tabBarClass}--fixed`]: fixed,
+      [`${tabBarClass}--safe`]: safeAreaInsetBottom,
+    },
+    `${tabBarClass}--${props.shape}`,
+  );
   const [activeValue, onToggleActiveValue] = useDefault(value, defaultValue, onChange);
 
   const defaultIndex = useRef(-1);
@@ -38,19 +61,7 @@ const TabBar = forwardRef<HTMLDivElement, TabBarProps>((originProps, ref) => {
   );
 
   return (
-    <div
-      className={cls(
-        tabBarClass,
-        {
-          [`${tabBarClass}--bordered`]: bordered,
-          [`${tabBarClass}--fixed`]: fixed,
-          [`${tabBarClass}--safe`]: safeAreaInsetBottom,
-        },
-        `${tabBarClass}--${props.shape}`,
-      )}
-      ref={ref}
-      role="tablist"
-    >
+    <div className={tabBarClasses} style={style} ref={ref} role="tablist">
       <TabBarProvider value={memoProviderValues}>{parseTNode(children)}</TabBarProvider>
     </div>
   );

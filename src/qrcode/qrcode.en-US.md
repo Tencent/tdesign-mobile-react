@@ -22,12 +22,11 @@ type | String | canvas | render type。options: canvas/svg | N
 value | String | - | scanned text | N
 onRefresh | Function |  | Typescript：`() => void`<br/>Click the "Click to refresh" callback | N
 
-
 ### CSS Variables
 
 The component provides the following CSS variables, which can be used to customize styles.
 Name | Default Value | Description 
 -- | -- | --
---td-brand-color-hover | --td-brand-color-hover | - 
---td-font-size-title-small | --td-font-size-title-small | - 
---td-success-color | --td-success-color | - 
+--td-brand-color-hover | --td-brand-color-hover | -
+--td-font-size-title-small | --td-font-size-title-small | -
+--td-success-color | --td-success-color | -
