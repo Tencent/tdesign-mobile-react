@@ -30,8 +30,8 @@ onOverlimit | Function |  | Typescript：`(type: 'minus' \| 'plus') => void`<br/
 The component provides the following CSS variables, which can be used to customize styles.
 Name | Default Value | Description 
 -- | -- | --
---td-stepper-border-color | @component-border | - 
---td-stepper-border-radius | @radius-small | - 
---td-stepper-input-color | @text-color-primary | - 
---td-stepper-input-disabled-bg | @bg-color-component-disabled | - 
---td-stepper-input-disabled-color | @text-color-disabled | - 
+--td-stepper-border-color | @component-border | -
+--td-stepper-border-radius | @radius-small | -
+--td-stepper-input-color | @text-color-primary | -
+--td-stepper-input-disabled-bg | @bg-color-component-disabled | -
+--td-stepper-input-disabled-color | @text-color-disabled | -

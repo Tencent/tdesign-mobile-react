@@ -5,6 +5,16 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.20.1 `2025-11-12` 
+### 🚀 Features
+- `Form`: 表单验证 `pattern` 支持 string 类型 @liweijie0812 ([#821](https://github.com/Tencent/tdesign-mobile-react/pull/821))
+### 🐞 Bug Fixes
+- `Form`: 修复错误消息 `max` 和 `min` 英文翻译错误 @liweijie0812([#816](https://github.com/Tencent/tdesign-mobile-react/pull/816))
+- `SwipeCell`: 修复初始化状态判断错误 @RSS1102 ([#810](https://github.com/Tencent/tdesign-mobile-react/pull/810))
+- `TabBar`: 
+  - 解决`TabBar`组件在使用`subTabBar`时点击报错问题 @mikasayw ([#819](https://github.com/Tencent/tdesign-mobile-react/pull/819))
+  - 解决`TabBar`和`TabBarItem`组件的 `className`、`style` 属性失效问题 @mikasayw ([#819](https://github.com/Tencent/tdesign-mobile-react/pull/819))
+
 ## 🌈 0.20.0 `2025-10-11` 
 ### 🚀 Features
 - `Icon`:  

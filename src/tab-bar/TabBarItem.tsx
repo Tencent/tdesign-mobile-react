@@ -6,7 +6,7 @@ import type { StyledProps } from '../common';
 import type { TdTabBarItemProps } from './type';
 import { TabBarContext } from './TabBarContext';
 import Badge from '../badge';
-import useTabBarCssTransition from './useTabBarCssTransition';
+import useTabBarCssTransition from './hooks/useTabBarCssTransition';
 import parseTNode from '../_util/parseTNode';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
@@ -18,7 +18,7 @@ const defaultBadgeMaxCount = 99;
 
 const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref) => {
   const props = useDefaultProps(originProps, {});
-  const { subTabBar, icon, badgeProps, value, children } = props;
+  const { subTabBar, icon, badgeProps, value, children, className, style } = props;
 
   const hasSubTabBar = useMemo(() => !!subTabBar, [subTabBar]);
   const { defaultIndex, activeValue, updateChild, shape, split, theme, itemCount } = useContext(TabBarContext);
@@ -26,6 +26,8 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
   const tabBarItemClass = usePrefixClass('tab-bar-item');
 
   const textNode = useRef<HTMLDivElement>(null);
+
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const [iconOnly, setIconOnly] = useState(false);
 
@@ -101,6 +103,7 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
 
   const tabItemCls = cls(
     tabBarItemClass,
+    className,
     {
       [`${tabBarItemClass}--split`]: split,
       [`${tabBarItemClass}--text-only`]: !icon,
@@ -130,7 +133,7 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
     icon && React.cloneElement(icon, { style: { fontSize: iconSize } });
 
   return (
-    <div className={tabItemCls} ref={ref}>
+    <div className={tabItemCls} ref={ref} style={style}>
       <div
         role="tab"
         aria-label="TabBar"
@@ -161,7 +164,14 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
         )}
       </div>
 
-      <CSSTransition timeout={200} in={showSubTabBar} classNames={transitionClsNames} mountOnEnter unmountOnExit>
+      <CSSTransition
+        nodeRef={menuRef}
+        timeout={200}
+        in={showSubTabBar}
+        classNames={transitionClsNames}
+        mountOnEnter
+        unmountOnExit
+      >
         <ul role="menu" className={`${tabBarItemClass}__spread`}>
           {subTabBar?.map((child, index) => (
             <div

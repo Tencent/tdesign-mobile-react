@@ -26,4 +26,4 @@ onTimeout | Function |  | TS 类型：`() => void`<br/>刷新超时触发 | N
 组件提供了下列 CSS 变量，可用于自定义样式。
 名称 | 默认值 | 描述 
 -- | -- | --
---td-pull-down-refresh-color | @text-color-placeholder | - 
+--td-pull-down-refresh-color | @text-color-placeholder | -
