@@ -10,7 +10,7 @@ import {
   styleContent,
   packageJSONContent,
   tsconfigContent,
-} from './components/codeSandbox/content';
+} from './components/codesandbox/content';
 
 const LazyDemo = lazy(() => import('./Demo'));
 
