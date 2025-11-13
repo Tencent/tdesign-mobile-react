@@ -4,7 +4,7 @@ import { mainJsContent, htmlContent, styleContent, tsconfigContent, packageJSONC
 
 const TypeScriptType = 0;
 
-export default function Codesandbox(props) {
+export default function codeSandbox(props) {
   function onRunOnline() {
     const demoDom = document.querySelector(`td-doc-demo[demo-name='${props.demoName}']`);
     const code = demoDom?.currentRenderCode;
