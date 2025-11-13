@@ -130,6 +130,8 @@ const Guide: FC<GuideProps> = (originProps) => {
 
   // 设置高亮层的位置
   const setHighlightLayerPosition = (highlightLayer: HTMLElement, isReference = false) => {
+    if (!highlightLayer) return;
+
     let { top, left } = getRelativePosition(currentHighlightLayerElm.current);
     let { width, height } = currentHighlightLayerElm.current.getBoundingClientRect();
     const highlightPadding = getCurrentCrossProps('highlightPadding');
@@ -181,7 +183,11 @@ const Guide: FC<GuideProps> = (originProps) => {
       width: '100vw',
     };
 
-    referenceElements.forEach((elem) => setStyle(elem, style));
+    referenceElements.forEach((elem) => {
+      if (elem) {
+        setStyle(elem, style);
+      }
+    });
   };
 
   const showPopoverGuide = () => {
@@ -221,8 +227,12 @@ const Guide: FC<GuideProps> = (originProps) => {
   };
 
   const destroyGuide = () => {
-    highlightLayerRef.current?.parentNode.removeChild(highlightLayerRef.current);
-    overlayLayerRef.current?.parentNode.removeChild(overlayLayerRef.current);
+    if (highlightLayerRef.current?.parentNode) {
+      highlightLayerRef.current.parentNode.removeChild(highlightLayerRef.current);
+    }
+    if (overlayLayerRef.current?.parentNode) {
+      overlayLayerRef.current.parentNode.removeChild(overlayLayerRef.current);
+    }
     removeClass(document.body, LOCK_CLASS);
   };
 
