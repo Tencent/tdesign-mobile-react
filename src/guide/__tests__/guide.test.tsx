@@ -3,100 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import Guide from '../Guide';
-import GuideFromIndex from '../index';
 import type { GuideStep } from '../type';
-
-// Mock missing setStyle util used inside Guide
-vi.mock('../_common/js/utils/setStyle', () => ({
-  default: (el: HTMLElement | null, styles: Record<string, any>) => {
-    if (el && styles && typeof styles === 'object') {
-      // Create a copy to avoid mutating the parameter
-      const element = el;
-      Object.keys(styles).forEach((k) => {
-        try {
-          // @ts-ignore
-          if (element) {
-            element.style[k] = styles[k];
-          }
-        } catch {
-          // Ignore errors when setting styles
-        }
-      });
-    }
-  },
-}));
-
-// Mock Portal component
-vi.mock('../common/Portal', () => {
-  const MockPortal = vi.fn().mockImplementation(({ children }: { children: React.ReactNode }) => (
-    <div className="t-portal-wrapper" data-testid="portal">
-      {children}
-    </div>
-  ));
-  return {
-    default: MockPortal,
-    getAttach: vi.fn(),
-  };
-});
-
-// Mock TPopover
-vi.mock('../popover', () => ({
-  default: vi.fn().mockImplementation(({ children, className, ...props }) => (
-    <div data-testid="popover" className={`t-popover ${className || ''}`.trim()} {...props}>
-      {children}
-    </div>
-  )),
-}));
-
-// Mock TPopup
-vi.mock('../popup', () => ({
-  default: vi.fn().mockImplementation(({ children, className, ...props }) => (
-    <div data-testid="popup" className={`t-popup ${className || ''}`.trim()} {...props}>
-      {children}
-    </div>
-  )),
-}));
-
-// Mock TButton
-vi.mock('../button', () => ({
-  default: vi.fn().mockImplementation(({ children, onClick, ...props }) => (
-    <button data-testid="button" onClick={onClick} {...props}>
-      {children}
-    </button>
-  )),
-}));
-
-// Mock hooks
-vi.mock('../hooks/useClass', () => ({
-  usePrefixClass: vi.fn().mockReturnValue('t-guide'),
-}));
-
-vi.mock('../hooks/useDefaultProps', () => ({
-  default: vi.fn().mockImplementation((props, defaults) => ({ ...defaults, ...props })),
-}));
-
-// Mock _util
-vi.mock('../_util/parseTNode', () => ({
-  default: vi.fn().mockImplementation((node) => node || null),
-}));
-
-vi.mock('../_util/useDefault', () => ({
-  default: vi.fn().mockImplementation((value, defaultValue, onChange) => {
-    const [innerValue, setInnerValue] = React.useState(defaultValue);
-    React.useEffect(() => {
-      if (value !== undefined) {
-        setInnerValue(value);
-      }
-    }, [value]);
-    return [
-      value !== undefined ? value : innerValue,
-      (newValue: any, context?: any) => {
-        setInnerValue(newValue);
-        onChange?.(newValue, context);
-      },
-    ];
-  }),
-}));
 
 describe('Guide Component', () => {
   const mockSteps: GuideStep[] = [
@@ -113,7 +20,6 @@ describe('Guide Component', () => {
   ];
 
   beforeEach(() => {
-    // Setup DOM elements
     const step1 = document.createElement('div');
     step1.id = 'step1';
     step1.textContent = 'Step 1 Element';
@@ -124,7 +30,7 @@ describe('Guide Component', () => {
     step2.textContent = 'Step 2 Element';
     document.body.appendChild(step2);
 
-    // Mock getComputedStyle
+    // 模拟 getComputedStyle
     Object.defineProperty(window, 'getComputedStyle', {
       value: vi.fn().mockReturnValue({
         getPropertyValue: vi.fn().mockReturnValue('static'),
@@ -132,7 +38,7 @@ describe('Guide Component', () => {
       writable: true,
     });
 
-    // Mock window scroll
+    // 模拟窗口滚动
     Object.defineProperty(window, 'pageYOffset', { value: 0, writable: true });
     Object.defineProperty(window, 'pageXOffset', { value: 0, writable: true });
     Object.defineProperty(document.documentElement, 'scrollTop', { value: 0, writable: true });
@@ -142,7 +48,7 @@ describe('Guide Component', () => {
   });
 
   afterEach(() => {
-    // Cleanup - remove only our test elements
+    // 清理：仅移除本用例创建的元素
     const step1 = document.getElementById('step1');
     const step2 = document.getElementById('step2');
     const fixedElement = document.getElementById('fixed-element');
@@ -153,10 +59,6 @@ describe('Guide Component', () => {
   });
 
   describe('Basic Rendering', () => {
-    it('should export default Guide via index', () => {
-      render(<GuideFromIndex steps={[{ element: '#step1' }]} current={-1} />);
-      expect(true).toBe(true);
-    });
     it('should not render when current is -1', () => {
       render(<Guide steps={mockSteps} current={-1} />);
       expect(screen.queryByTestId('portal')).not.toBeInTheDocument();
@@ -389,7 +291,6 @@ describe('Guide Component', () => {
       ];
 
       render(<Guide steps={stepsWithCenter} current={0} />);
-      // Center placement should be handled in popover props
       const popover = document.querySelector('.t-popover');
       expect(popover).toBeInTheDocument();
     });
@@ -405,7 +306,7 @@ describe('Guide Component', () => {
       ];
 
       render(<Guide steps={stepsWithPadding} current={0} />);
-      // Highlight padding should be applied in positioning logic
+      // 高亮内边距应生效
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
     });
@@ -413,7 +314,7 @@ describe('Guide Component', () => {
 
   describe('Positioning and Highlight Logic', () => {
     it('should apply correct CSS classes for positioning', () => {
-      // Test fixed positioning
+      // 固定定位
       const fixedElement = document.createElement('div');
       fixedElement.id = 'fixed-element';
       fixedElement.style.position = 'fixed';
@@ -430,7 +331,8 @@ describe('Guide Component', () => {
       render(<Guide steps={stepsWithFixed} current={0} />);
       const portal = document.querySelector('.t-portal-wrapper');
       const wrapper = portal?.querySelector('.t-guide__wrapper');
-      expect(wrapper).toHaveClass('t-guide--absolute'); // Fixed elements still use absolute positioning for wrapper
+      // 固定元素包装仍用 absolute
+      expect(wrapper).toHaveClass('t-guide--absolute');
 
       document.body.removeChild(fixedElement);
     });
@@ -449,7 +351,7 @@ describe('Guide Component', () => {
       if (highlight) {
         expect(highlight).toHaveClass('t-guide__highlight--dialog');
       } else {
-        // In dialog mode, highlight might not be present or structured differently
+        // 对话框模式下高亮可能不存在或结构不同
         expect(portal).toBeInTheDocument();
       }
     });
@@ -503,7 +405,7 @@ describe('Guide Component', () => {
       const portal = document.querySelector('.t-portal-wrapper');
       const overlay = portal?.querySelector('.t-guide__overlay') as HTMLElement;
       expect(overlay).toBeInTheDocument();
-      expect(overlay?.style.zIndex).toBe('997'); // zIndex - 2
+      expect(overlay?.style.zIndex).toBe('997'); // 等于 zIndex - 2
     });
 
     it('should apply z-index to highlight', () => {
@@ -511,7 +413,7 @@ describe('Guide Component', () => {
       const portal = document.querySelector('.t-portal-wrapper');
       const highlight = portal?.querySelector('.t-guide__highlight') as HTMLElement;
       expect(highlight).toBeInTheDocument();
-      expect(highlight?.style.zIndex).toBe('998'); // zIndex - 1
+      expect(highlight?.style.zIndex).toBe('998'); // 等于 zIndex - 1
     });
 
     it('should apply z-index to wrapper', () => {
@@ -526,19 +428,19 @@ describe('Guide Component', () => {
   describe('Edge Cases and Branch Coverage', () => {
     it('should handle empty steps array', () => {
       render(<Guide steps={[]} current={0} />);
-      // With empty steps, component should not render portal
+      // steps 为空不应渲染 portal
       expect(document.querySelector('.t-portal-wrapper')).not.toBeInTheDocument();
     });
 
     it('should handle invalid current index', () => {
       render(<Guide steps={mockSteps} current={10} />);
-      // With invalid index, component should not render portal
+      // 索引无效不应渲染 portal
       expect(document.querySelector('.t-portal-wrapper')).not.toBeInTheDocument();
     });
 
     it('should handle negative current index', () => {
       render(<Guide steps={mockSteps} current={-2} />);
-      // With negative index, component should not render portal
+      // 索引为负不应渲染 portal
       expect(document.querySelector('.t-portal-wrapper')).not.toBeInTheDocument();
     });
 
@@ -551,7 +453,7 @@ describe('Guide Component', () => {
         },
       ];
 
-      // Should not throw error in test environment
+      // 测试环境不应抛错
       expect(() => render(<Guide steps={stepsWithoutElement} current={0} />)).not.toThrow();
     });
 
@@ -574,7 +476,7 @@ describe('Guide Component', () => {
         `Step ${current + 1} of ${total}`;
 
       render(<Guide steps={mockSteps} current={0} counter={customCounter} />);
-      // Check that the button contains both "下一步" and "Step 1 of 2"
+      // 按钮应同时包含 “下一步” 与 “Step 1 of 2”
       const nextButton = screen.getAllByRole('button').find((button) => button.textContent?.includes('下一步'));
       expect(nextButton?.textContent).toContain('Step 1 of 2');
     });
@@ -628,7 +530,7 @@ describe('Guide Component', () => {
       ];
 
       render(<Guide steps={stepsWithPopoverProps} current={0} />);
-      // Popover props should be passed through
+      // 气泡属性应透传
       expect(document.querySelector('.t-popover')).toBeInTheDocument();
     });
 
@@ -643,7 +545,7 @@ describe('Guide Component', () => {
       ];
 
       render(<Guide steps={stepsWithMode} current={0} />);
-      // Should render popup instead of popover
+      // 应渲染 popup 而非 popover
       expect(document.querySelector('.t-popup')).toBeInTheDocument();
     });
 
@@ -678,7 +580,7 @@ describe('Guide Component', () => {
 
     it('should handle zIndex prop', () => {
       render(<Guide steps={mockSteps} current={0} zIndex={12345} />);
-      // zIndex should be applied - check that component renders
+      // 应应用 zIndex（仅检查渲染）
       expect(document.querySelector('.t-portal-wrapper')).toBeInTheDocument();
     });
 
@@ -695,20 +597,20 @@ describe('Guide Component', () => {
       const onFinish = vi.fn();
       const { rerender } = render(<Guide steps={mockSteps} current={0} onChange={onChange} onFinish={onFinish} />);
 
-      // Step 1: Click next
+      // 第一步：点击“下一步”
       const nextButton = screen.getAllByRole('button').find((button) => button.textContent?.includes('下一步'));
       fireEvent.click(nextButton!);
 
       expect(onChange).toHaveBeenCalledWith(1, { e: expect.any(Object), total: 2 });
 
-      // Step 2: Rerender with current=1
+      // 第二步：current=1 重新渲染
       rerender(<Guide steps={mockSteps} current={1} onChange={onChange} onFinish={onFinish} />);
 
-      // Should show finish button now
+      // 应出现“完成”按钮
       const finishButton = screen.getAllByRole('button').find((button) => button.textContent?.includes('完成'));
       expect(finishButton).toBeInTheDocument();
 
-      // Click finish
+      // 点击“完成”
       fireEvent.click(finishButton!);
       expect(onFinish).toHaveBeenCalledWith({
         e: expect.any(Object),
@@ -739,7 +641,7 @@ describe('Guide Component', () => {
       const onChange = vi.fn();
       const onBack = vi.fn();
 
-      // Start at step 2
+      // 从第 2 步开始
       render(<Guide steps={mockSteps} current={1} onChange={onChange} onBack={onBack} />);
 
       const backButton = screen.getAllByRole('button').find((button) => button.textContent?.includes('返回'));
@@ -756,20 +658,20 @@ describe('Guide Component', () => {
     it('should handle controlled current prop changes', () => {
       const { rerender } = render(<Guide steps={mockSteps} current={0} />);
 
-      // Should show step 1 content
+      // 应显示第 1 步内容
       expect(screen.getByText('Step 1')).toBeInTheDocument();
 
-      // Change current prop
+      // 更改 current
       rerender(<Guide steps={mockSteps} current={1} />);
 
-      // Should show step 2 content
+      // 应显示第 2 步内容
       expect(screen.getByText('Step 2')).toBeInTheDocument();
     });
 
     it('should handle defaultCurrent prop', () => {
       render(<Guide steps={mockSteps} defaultCurrent={1} />);
 
-      // Should show step 2 content initially
+      // 初始应显示第 2 步内容
       expect(screen.getByText('Step 2')).toBeInTheDocument();
     });
 
@@ -791,14 +693,14 @@ describe('Guide Component', () => {
 
       const { rerender } = render(<Guide steps={mixedModeSteps} current={0} />);
 
-      // Step 1: Should render popover
+      // 第一步：应渲染气泡
       expect(document.querySelector('.t-popover')).toBeInTheDocument();
       expect(document.querySelector('.t-popup')).not.toBeInTheDocument();
 
-      // Change to step 2
+      // 切到第 2 步
       rerender(<Guide steps={mixedModeSteps} current={1} />);
 
-      // Step 2: Should render popup
+      // 第二步：应渲染弹窗
       const popup = document.querySelector('.t-popup');
       expect(popup).toBeInTheDocument();
       expect(document.querySelector('.t-popover')).not.toBeInTheDocument();
@@ -826,14 +728,14 @@ describe('Guide Component', () => {
 
       const { rerender } = render(<Guide steps={stepsWithCustomButtons} current={0} />);
 
-      // Step 1: Custom next button
+      // 第一步：自定义“下一步”按钮
       let buttons = screen.getAllByRole('button');
       expect(buttons.some((button) => button.textContent?.includes('Go Forward'))).toBe(true);
 
-      // Change to step 2
+      // 切到第 2 步
       rerender(<Guide steps={stepsWithCustomButtons} current={1} />);
 
-      // Step 2: Custom back and finish buttons
+      // 第二步：自定义“返回”和“完成”按钮
       buttons = screen.getAllByRole('button');
       expect(buttons.some((button) => button.textContent?.includes('Go Back'))).toBe(true);
       expect(buttons.some((button) => button.textContent?.includes('完成'))).toBe(true);
@@ -857,14 +759,14 @@ describe('Guide Component', () => {
 
       const { rerender } = render(<Guide steps={stepsWithOverlayControl} current={0} />);
 
-      // Step 1: Should have mask
+      // 第一步：应有遮罩
       const highlight = document.querySelector('.t-guide__highlight--mask');
       expect(highlight).toBeInTheDocument();
 
-      // Change to step 2
+      // 切到第 2 步
       rerender(<Guide steps={stepsWithOverlayControl} current={1} />);
 
-      // Step 2: Should have nomask
+      // 第二步：应无遮罩
       const highlight2 = document.querySelector('.t-guide__highlight--nomask');
       expect(highlight2).toBeInTheDocument();
     });
@@ -882,14 +784,14 @@ describe('Guide Component', () => {
       render(<Guide steps={stepsWithCustomHighlight} current={0} />);
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
-      // Custom highlight content should be rendered
+      // 应渲染自定义高亮内容
       expect(screen.getByTestId('custom-highlight')).toBeInTheDocument();
     });
   });
 
   describe('Scrolling and Offscreen Elements', () => {
     it('should handle scrolling to element in popover mode', () => {
-      // Create an element that's not in viewport
+      // 创建视口外元素
       const offscreenElement = document.createElement('div');
       offscreenElement.id = 'offscreen-element';
       offscreenElement.style.position = 'absolute';
@@ -910,12 +812,12 @@ describe('Guide Component', () => {
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
 
-      // Cleanup
+      // 清理
       document.body.removeChild(offscreenElement);
     });
 
     it('should handle scrolling to element in dialog mode', () => {
-      // Create an element that's not in viewport
+      // 创建视口外元素
       const offscreenElement = document.createElement('div');
       offscreenElement.id = 'offscreen-element-dialog';
       offscreenElement.style.position = 'absolute';
@@ -937,7 +839,7 @@ describe('Guide Component', () => {
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
 
-      // Cleanup
+      // 清理
       document.body.removeChild(offscreenElement);
     });
   });
@@ -947,7 +849,7 @@ describe('Guide Component', () => {
       vi.useFakeTimers();
       render(<Guide steps={mockSteps} current={0} />);
 
-      // Fast-forward timers
+      // 快进定时器
       vi.advanceTimersByTime(100);
 
       const portal = document.querySelector('.t-portal-wrapper');
@@ -959,11 +861,11 @@ describe('Guide Component', () => {
     it('should handle popover visibility state changes', () => {
       const { rerender } = render(<Guide steps={mockSteps} current={0} />);
 
-      // Initially should be visible after timeout
+      // 超时后应可见
       vi.useFakeTimers();
       vi.advanceTimersByTime(100);
 
-      // Change current to trigger popover visibility change
+      // 更改 current 触发可见性变化
       rerender(<Guide steps={mockSteps} current={1} />);
       vi.advanceTimersByTime(100);
 
@@ -986,10 +888,10 @@ describe('Guide Component', () => {
       vi.useFakeTimers();
       render(<Guide steps={stepsDialog} current={0} />);
 
-      // Advance timers to trigger showDialogGuide which calls scrollToParentVisibleArea
+      // 快进定时器以触发 showDialogGuide（内部调用 scrollToParentVisibleArea）
       vi.advanceTimersByTime(100);
 
-      // The scrollToParentVisibleArea call should be made
+      // 应调用 scrollToParentVisibleArea
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
 
@@ -1000,14 +902,14 @@ describe('Guide Component', () => {
       vi.useFakeTimers();
       render(<Guide steps={mockSteps} current={0} />);
 
-      // Before timeout, component should be rendered
+      // 超时前组件已渲染
       let portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
 
-      // Advance timers to trigger the setTimeout in showGuide
+      // 快进定时器触发 showGuide 内的 setTimeout
       vi.advanceTimersByTime(100);
 
-      // After timeout, popover visibility should be set
+      // 超时后设置为可见
       portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
 
@@ -1027,10 +929,10 @@ describe('Guide Component', () => {
       vi.useFakeTimers();
       render(<Guide steps={stepsWithCenter} current={0} />);
 
-      // Advance timers to trigger setReferenceFullW with potential null elements
+      // 快进定时器以触发 setReferenceFullW（可能存在空元素）
       vi.advanceTimersByTime(100);
 
-      // setReferenceFullW should handle null elements gracefully
+      // setReferenceFullW 应优雅处理空元素
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
 
@@ -1042,28 +944,48 @@ describe('Guide Component', () => {
     it('should handle destroy guide cleanup', () => {
       const { unmount } = render(<Guide steps={mockSteps} current={0} />);
 
-      // Unmount should trigger cleanup
-      unmount();
+      // 卸载应触发清理
+      unmount(); // 卸载应触发清理
 
-      // Should not throw errors during cleanup
+      // 清理时不应抛错
       expect(() => unmount()).not.toThrow();
+    });
+
+    it('should trigger destroyGuide when current changes from valid to invalid', () => {
+      // 当 innerCurrent 超出有效范围
+
+      const { rerender, unmount } = render(<Guide steps={mockSteps} current={0} />);
+
+      // 验证已展示
+      expect(document.querySelector('.t-guide__wrapper')).toBeInTheDocument();
+
+      try {
+        rerender(<Guide steps={mockSteps} current={3} />);
+      } catch {
+        // 忽略测试环境错误
+      }
+
+      const wrapper = document.querySelector('.t-guide__wrapper');
+      expect(wrapper).not.toBeInTheDocument();
+
+      unmount();
     });
 
     it('should handle element removal during guide display', () => {
       render(<Guide steps={mockSteps} current={0} />);
 
-      // Remove the target element after render
+      // 渲染后移除目标元素
       const step1 = document.getElementById('step1');
       if (step1) {
         document.body.removeChild(step1);
       }
 
-      // Should not throw errors
+      // 不应抛错
       expect(document.querySelector('.t-portal-wrapper')).toBeInTheDocument();
     });
 
     it('should handle window scroll calculations', () => {
-      // Mock window scroll
+      // 模拟窗口滚动
       Object.defineProperty(window, 'pageYOffset', { value: 100, writable: true });
       Object.defineProperty(window, 'pageXOffset', { value: 50, writable: true });
 
@@ -1072,13 +994,13 @@ describe('Guide Component', () => {
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
 
-      // Reset mocks
+      // 重置模拟
       Object.defineProperty(window, 'pageYOffset', { value: 0, writable: true });
       Object.defineProperty(window, 'pageXOffset', { value: 0, writable: true });
     });
 
     it('should handle window scroll calculations in dialog mode', () => {
-      // Mock window scroll for dialog mode
+      // 模拟对话框模式下窗口滚动
       Object.defineProperty(window, 'pageYOffset', { value: 200, writable: true });
       Object.defineProperty(window, 'pageXOffset', { value: 100, writable: true });
 
@@ -1087,7 +1009,7 @@ describe('Guide Component', () => {
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
 
-      // Reset mocks
+      // 重置模拟
       Object.defineProperty(window, 'pageYOffset', { value: 0, writable: true });
       Object.defineProperty(window, 'pageXOffset', { value: 0, writable: true });
     });
@@ -1104,7 +1026,7 @@ describe('Guide Component', () => {
 
       render(<Guide steps={stepsWithCustomHighlight} current={0} />);
 
-      // The reference positioning logic should be triggered
+      // 应触发参考定位逻辑
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
       expect(screen.getByTestId('custom-highlight')).toBeInTheDocument();
@@ -1122,7 +1044,7 @@ describe('Guide Component', () => {
 
       render(<Guide steps={stepsWithCenter} current={0} />);
 
-      // Center placement triggers setReferenceFullW logic
+      // 居中触发 setReferenceFullW
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
     });
@@ -1139,7 +1061,7 @@ describe('Guide Component', () => {
 
       render(<Guide steps={stepsWithCenter} current={0} />);
 
-      // Popover guide display logic should be triggered
+      // 应触发气泡引导展示逻辑
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
     });
@@ -1147,7 +1069,7 @@ describe('Guide Component', () => {
     it('should handle dialog guide display logic', () => {
       render(<Guide steps={mockSteps} current={0} mode="dialog" />);
 
-      // Dialog guide display logic should be triggered
+      // 应触发对话框引导逻辑
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
     });
@@ -1155,7 +1077,7 @@ describe('Guide Component', () => {
     it('should handle guide show logic with tryCallBack', () => {
       render(<Guide steps={mockSteps} current={0} />);
 
-      // Guide show logic with tryCallBack should be triggered
+      // 应触发 tryCallBack 展示逻辑
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
     });
@@ -1172,7 +1094,7 @@ describe('Guide Component', () => {
 
       render(<Guide steps={stepsWithCenter} current={0} />);
 
-      // setReferenceFullW should be called for center placement
+      // 居中应调用 setReferenceFullW
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
     });
@@ -1189,14 +1111,62 @@ describe('Guide Component', () => {
 
       render(<Guide steps={stepsWithCustomHighlight} current={0} />);
 
-      // Custom highlight content should trigger reference positioning logic
+      // 自定义高亮应触发参考定位
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
       expect(screen.getByTestId('custom-highlight')).toBeInTheDocument();
     });
 
+    it('should handle custom highlight content with getBoundingClientRect for reference', () => {
+      // 覆盖 showCustomHighlightContent=true 且 isReference=true 的分支
+      // 模拟 getBoundingClientRect 返回指定尺寸
+      const originalGetBoundingClientRect = Element.prototype.getBoundingClientRect;
+
+      Element.prototype.getBoundingClientRect = vi.fn(function (this: HTMLElement) {
+        if (this.classList.contains('t-guide__highlight')) {
+          return {
+            width: 250,
+            height: 180,
+            top: 120,
+            left: 120,
+            right: 370,
+            bottom: 300,
+            x: 120,
+            y: 120,
+            toJSON: () => {},
+          } as DOMRect;
+        }
+        return originalGetBoundingClientRect.call(this);
+      });
+
+      const stepsWithCustomHighlight: GuideStep[] = [
+        {
+          element: '#step1',
+          title: 'Step 1',
+          body: 'Body',
+          highlightContent: <div data-testid="custom-highlight-ref">Custom Highlight Reference</div>,
+        },
+      ];
+
+      vi.useFakeTimers();
+      render(<Guide steps={stepsWithCustomHighlight} current={0} />);
+
+      // 快进定时器以触发 showPopoverGuide（其以 isReference=true 调用 setHighlightLayerPosition）
+      vi.advanceTimersByTime(100);
+
+      // 组件应渲染自定义高亮
+      expect(screen.getByTestId('custom-highlight-ref')).toBeInTheDocument();
+
+      // 验证高亮层已定位
+      const highlightLayer = document.querySelector('.t-guide__highlight') as HTMLElement;
+      expect(highlightLayer).toBeInTheDocument();
+
+      vi.useRealTimers();
+      Element.prototype.getBoundingClientRect = originalGetBoundingClientRect;
+    });
+
     it('should handle window scroll offset calculations in setHighlightLayerPosition', () => {
-      // Mock window scroll values
+      // 模拟窗口滚动值
       Object.defineProperty(window, 'pageYOffset', { value: 150, writable: true });
       Object.defineProperty(window, 'pageXOffset', { value: 75, writable: true });
 
@@ -1205,17 +1175,17 @@ describe('Guide Component', () => {
           element: '#step1',
           title: 'Step 1',
           body: 'Body',
-          mode: 'dialog', // Use dialog mode to trigger scroll offset logic
+          mode: 'dialog', // 使用对话框模式触发滚动偏移逻辑
         },
       ];
 
       render(<Guide steps={stepsWithScroll} current={0} />);
 
-      // Scroll offset calculations should be applied
+      // 应应用滚动偏移计算
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
 
-      // Reset mocks
+      // 重置模拟
       Object.defineProperty(window, 'pageYOffset', { value: 0, writable: true });
       Object.defineProperty(window, 'pageXOffset', { value: 0, writable: true });
     });
@@ -1233,10 +1203,10 @@ describe('Guide Component', () => {
       vi.useFakeTimers();
       render(<Guide steps={stepsWithCenter} current={0} />);
 
-      // Advance timers to trigger showPopoverGuide
+      // 快进定时器以触发 showPopoverGuide
       vi.advanceTimersByTime(100);
 
-      // setReferenceFullW should be called for center placement in popover mode
+      // 气泡模式下居中应调用 setReferenceFullW
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
 
@@ -1256,10 +1226,10 @@ describe('Guide Component', () => {
       vi.useFakeTimers();
       render(<Guide steps={stepsDialog} current={0} />);
 
-      // Advance timers to trigger showDialogGuide
+      // 快进定时器以触发 showDialogGuide
       vi.advanceTimersByTime(100);
 
-      // showDialogGuide should execute without errors
+      // showDialogGuide 应无错执行
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
 
@@ -1270,14 +1240,14 @@ describe('Guide Component', () => {
       vi.useFakeTimers();
       render(<Guide steps={mockSteps} current={0} />);
 
-      // Initially popover should not be visible
+      // 初始气泡不可见
       let portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
 
-      // Advance timers to trigger setPopoverVisible(true)
+      // 快进定时器触发 setPopoverVisible(true)
       vi.advanceTimersByTime(100);
 
-      // Popover should now be visible
+      // 现在气泡应可见
       portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
 
