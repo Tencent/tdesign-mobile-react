@@ -24,7 +24,7 @@ export default function mdToReact(options) {
     import Prismjs from 'prismjs';
     import 'prismjs/components/prism-bash.js';
     import Stackblitz from '@web/components/stackblitz/index.jsx';
-    import Codesandbox from '@web/components/codesandbox/index.jsx';
+    import Codesandbox from '@web/components/codeSandbox/index.jsx';
 
     ${demoCodesDefsStr}
 
