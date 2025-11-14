@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Table, Tag } from 'tdesign-mobile-react';
 import { ErrorCircleFilledIcon, CheckCircleFilledIcon, CloseCircleFilledIcon } from 'tdesign-icons-react';
-import type { TableProps } from 'tdesign-mobile-react';
+import type { BaseTableProps } from 'tdesign-mobile-react';
 
 const classStyles = `
 <style>
@@ -54,7 +54,7 @@ export default function TableStyle() {
     });
   }
 
-  const columns: TableProps['columns'] = [
+  const columns: BaseTableProps['columns'] = [
     { colKey: 'applicant', title: '申请人', width: 100, fixed: 'left' },
     {
       colKey: 'status',

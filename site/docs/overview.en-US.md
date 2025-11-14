@@ -375,6 +375,13 @@ spline: explain
       <p class="name">Tag</p>
     </a>
   </div>
+  <div class="image-wrapper">
+    <a class="item" href="./components/watermark-en">
+      <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-watermark.png" />
+      <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-watermark-dark.png" />
+      <p class="name">Watermark</p>
+    </a>
+  </div>
 </section>
 
 <h3>Feedback<em class="tag">13</em></h3>

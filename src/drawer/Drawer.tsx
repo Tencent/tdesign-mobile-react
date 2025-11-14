@@ -26,6 +26,7 @@ const Drawer: React.FC<DrawerProps> = forwardRef((originProps, ref) => {
     title,
     footer,
     showOverlay,
+    overlayProps,
     zIndex,
     isPlugin,
     closeOnOverlayClick,
@@ -97,6 +98,7 @@ const Drawer: React.FC<DrawerProps> = forwardRef((originProps, ref) => {
       placement={placement}
       destroyOnClose={destroyOnClose}
       showOverlay={showOverlay}
+      overlayProps={overlayProps}
       zIndex={zIndex}
       onVisibleChange={handleOverlayClick}
     >

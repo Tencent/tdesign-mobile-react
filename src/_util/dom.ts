@@ -1,7 +1,9 @@
 import { isFunction, isString } from 'lodash-es';
 
+export const checkWindow = () => !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+
 // 用于判断是否可使用 dom
-export const canUseDocument = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+export const canUseDocument = checkWindow();
 
 /**
  * 获取当前主题下的token色值

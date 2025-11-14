@@ -4,6 +4,13 @@ import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation, useNavigat
 import packageJson from '@/package.json';
 import siteConfig from './site.config';
 import { filterVersions, getRoute } from './utils';
+import {
+  htmlContent,
+  mainJsContent,
+  styleContent,
+  packageJSONContent,
+  tsconfigContent,
+} from './components/codeSandbox/content';
 
 const LazyDemo = lazy(() => import('./Demo'));
 
@@ -44,9 +51,29 @@ function Components() {
   const tdDocAsideRef = useRef();
   const tdDocContentRef = useRef();
   const tdSelectRef = useRef();
-  // const tdDocSearch = useRef();
+  const tdDocSearch = useRef();
 
   const [version] = useState(currentVersion);
+
+  const demoRequestBody = JSON.stringify({
+    files: {
+      'package.json': {
+        content: packageJSONContent,
+      },
+      'public/index.html': {
+        content: htmlContent,
+      },
+      'src/main.tsx': {
+        content: mainJsContent,
+      },
+      'src/index.css': {
+        content: styleContent,
+      },
+      'tsconfig.json': {
+        content: tsconfigContent,
+      },
+    },
+  });
 
   function initHistoryVersions() {
     fetch(registryUrl)
@@ -68,7 +95,7 @@ function Components() {
 
   useEffect(() => {
     tdHeaderRef.current.framework = 'react';
-    // tdDocSearch.current.docsearchInfo = { indexName: 'tdesign_doc_react_mobile' };
+    tdDocSearch.current.docsearchInfo = { indexName: 'tdesign_doc_react_mobile' };
 
     const isEn = window.location.pathname.endsWith('en');
 
@@ -104,8 +131,10 @@ function Components() {
   return (
     <td-doc-layout>
       <td-header ref={tdHeaderRef} slot="header" platform="mobile">
-        {/* 暂时注释，等 algolia 重新更新后可直接放开 */}
-        {/* <td-doc-search slot="search" ref={tdDocSearch} />  */}
+        <div slot="search" style={{ display: 'flex', alignItems: 'center' }}>
+          <td-ai-button style={{ marginRight: '8px' }} framework="mobile-react" demoRequestBody={demoRequestBody} />
+          <td-doc-search ref={tdDocSearch} />
+        </div>
       </td-header>
       <td-doc-aside ref={tdDocAsideRef} title="React for Mobile">
         <td-select ref={tdSelectRef} value={version} slot="extra"></td-select>

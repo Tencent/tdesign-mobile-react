@@ -55,7 +55,7 @@ export interface TdImageViewerProps {
   /**
    * 关闭时触发
    */
-  onClose?: (context: { trigger: 'overlay' | 'close-btn'; visible: boolean; index: number }) => void;
+  onClose?: (context: { trigger: ImageViewerCloseTrigger; visible: boolean; index: number }) => void;
   /**
    * 点击删除操作按钮时触发
    */
@@ -63,10 +63,12 @@ export interface TdImageViewerProps {
   /**
    * 预览图片切换时触发，`context.prev` 切换到上一张图片，`context.next` 切换到下一张图片
    */
-  onIndexChange?: (index: number, context: { trigger: 'prev' | 'next' }) => void;
+  onIndexChange?: (index: number, context: { trigger: 'prev' | 'next' | 'current' }) => void;
 }
 
 export interface ImageInfo {
   url: string;
   align: 'start' | 'center' | 'end';
 }
+
+export type ImageViewerCloseTrigger = 'image' | 'overlay' | 'close-btn';
