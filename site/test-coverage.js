@@ -53,7 +53,7 @@ module.exports = {
   slider: { statements: '97.74%', branches: '96.49%', functions: '100%', lines: '97.68%' },
   stepper: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   steps: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
-  sticky: { statements: '67.85%', branches: '30%', functions: '85.71%', lines: '69.09%' },
+  sticky: { statements: '100%', branches: '90%', functions: '100%', lines: '100%' },
   swipeCell: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   swiper: { statements: '57.55%', branches: '37.1%', functions: '67.6%', lines: '59.74%' },
   switch: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
