@@ -88,7 +88,7 @@
     "@rollup/plugin-node-resolve": "^13.0.4",
     "@rollup/plugin-replace": "^3.0.0",
     "@rollup/plugin-url": "^6.0.0",
-    "@tdesign/site-components": "^0.18.0-alpha.5",
+    "@tdesign/site-components": "^0.18.0-alpha.6",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
