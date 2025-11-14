@@ -34,6 +34,7 @@ export default function renderDemo(md, container) {
             >
               <div slot="action">
                 <Stackblitz demoName="${demoName}" componentName="${componentName}" code={${demoCodeDefName}} />
+                <Codesandbox demoName="${demoName}" componentName="${componentName}" code={${demoCodeDefName}} />
               </div>
             </td-doc-demo>
           `;
