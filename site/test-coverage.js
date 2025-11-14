@@ -9,7 +9,7 @@ module.exports = {
   cell: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   checkbox: { statements: '99.12%', branches: '98.27%', functions: '100%', lines: '100%' },
   collapse: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
-  colorPicker: { statements: '3.03%', branches: '0%', functions: '0%', lines: '3.03%' },
+  colorPicker: { statements: '97.33%', branches: '90.9%', functions: '97.72%', lines: '97.98%' },
   common: { statements: '82.75%', branches: '66.66%', functions: '83.33%', lines: '92%' },
   configProvider: { statements: '54.54%', branches: '0%', functions: '0%', lines: '54.54%' },
   countDown: { statements: '100%', branches: '90%', functions: '100%', lines: '100%' },
