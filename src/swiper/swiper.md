@@ -11,12 +11,13 @@ style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
 animation | String | slide | 轮播切换动画效果类型。可选项：slide | N
 autoplay | Boolean | true | 是否自动播放 | N
 current | Number | 0 | 当前轮播在哪一项（下标） | N
+defaultCurrent | Number | 0 | 当前轮播在哪一项（下标）。非受控属性 | N
 direction | String | horizontal | 轮播滑动方向，包括横向滑动和纵向滑动两个方向。可选项：horizontal/vertical | N
 duration | Number | 300 | 滑动动画时长 | N
 height | String / Number | - | 当使用垂直方向滚动时的高度 | N
 interval | Number | 5000 | 轮播间隔时间 | N
 loop | Boolean | true | 是否循环播放 | N
-navigation | TNode | - | 导航器全部配置。TS 类型：`SwiperNavigation \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+navigation | TNode | true | 导航器全部配置，true 的话使用默认配置。TS 类型：`SwiperNavigation \| TNode \| Boolean`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 nextMargin | String / Number | 0 | 后边距，可用于露出后一项的一小部分。默认单位 `px` | N
 previousMargin | String / Number | 0 | 前边距，可用于露出前一项的一小部分。默认单位 `px` | N
 type | String | default | 样式类型：默认样式、卡片样式。可选项：default/card | N
@@ -55,4 +56,4 @@ less | less | -
 --td-swiper-nav-fraction-font-size | 12px | - 
 --td-swiper-nav-fraction-height | 24px | - 
 --td-swiper-nav-outside-bg | @gray-color-3 | - 
---td-swiper-nav-outside-bg-active | @brand-color-7 | - 
+--td-swiper-nav-outside-bg-active | @brand-color-7 | -
