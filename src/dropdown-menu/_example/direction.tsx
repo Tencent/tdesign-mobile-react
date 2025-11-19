@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DropdownItem, DropdownMenu } from 'tdesign-mobile-react';
 import { ChevronDownIcon } from 'tdesign-icons-react';
 
-const icons = <ChevronDownIcon size="20px" />;
+const icons = <ChevronDownIcon size="24px" />;
 
 const product = {
   value: 'all',
