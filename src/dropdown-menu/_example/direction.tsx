@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { DropdownItem, DropdownMenu } from 'tdesign-mobile-react';
+import { ChevronDownIcon } from 'tdesign-icons-react';
+
+const icons = <ChevronDownIcon size="20px" />;
 
 const product = {
   value: 'all',
@@ -47,6 +50,7 @@ export default function DirectionDemo() {
       <DropdownItem
         options={product.options}
         value={productValue}
+        icon={icons}
         onChange={(value: string) => setProductValue(value)}
       />
       <DropdownItem options={sorter.options} value={sorterValue} onChange={(value: string) => setSorterValue(value)} />
