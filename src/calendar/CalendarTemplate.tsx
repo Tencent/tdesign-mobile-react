@@ -162,9 +162,12 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
       if (props.type === 'range') {
         if (Array.isArray(selectedDate)) {
           const [startDate, endDate] = selectedDate;
+          const compareWithStart = startDate && isSameDate({ year, month, date }, startDate);
+          const compareWithEnd = endDate && isSameDate({ year, month, date }, endDate);
 
-          if (startDate && isSameDate({ year, month, date }, startDate)) return 'start';
-          if (endDate && isSameDate({ year, month, date }, endDate)) return 'end';
+          if (compareWithStart && compareWithEnd && props.allowSameDay) return 'start-end';
+          if (compareWithStart) return 'start';
+          if (compareWithEnd) return 'end';
           if (
             startDate &&
             endDate &&
@@ -248,7 +251,7 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
     switch (props.type) {
       case 'range': {
         if (Array.isArray(selectedDate)) {
-          if (selectedDate.length === 1) {
+          if (selectedDate.length === 1 && selected >= selectedDate[0]) {
             newSelected = selectedDate[0] > selected ? [selected] : [selectedDate[0], selected];
           } else {
             newSelected = [selected];
