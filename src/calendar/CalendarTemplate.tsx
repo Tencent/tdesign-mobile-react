@@ -10,7 +10,7 @@ import classNames from 'classnames';
 
 import parseTNode from '../_util/parseTNode';
 import { Button, ButtonProps } from '../button';
-import { TDateType, CalendarValue } from './type';
+import { TDateType, CalendarValue, TCalendarValue } from './type';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { calendarDefaultProps } from './defaultProps';
@@ -46,27 +46,67 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
   });
   const firstDayOfWeek = props.firstDayOfWeek || 0;
 
-  useEffect(() => {
-    if (Array.isArray(props.value)) {
-      setSelectedDate(props.value?.map((item) => new Date(item)));
-    } else if (props.value) {
-      setSelectedDate(new Date(props.value));
-    } else {
-      setSelectedDate(props.type === 'multiple' ? [new Date()] : new Date());
-    }
-  }, [props.type, props.value]);
-
   const getYearMonthDay = (date: Date) => ({
     year: date.getFullYear(),
     month: date.getMonth(),
     date: date.getDate(),
   });
 
-  const today = new Date();
-  const minDate = props.minDate ? new Date(props.minDate) : today;
-  const maxDate = props.maxDate
-    ? new Date(props.maxDate)
-    : new Date(today.getFullYear(), today.getMonth() + 6, today.getDate());
+  const today = useMemo(() => new Date(), []);
+  const minDate = useMemo(() => (props.minDate ? new Date(props.minDate) : today), [props.minDate, today]);
+  const maxDate = useMemo(
+    () =>
+      props.maxDate ? new Date(props.maxDate) : new Date(today.getFullYear(), today.getMonth() + 6, today.getDate()),
+    [props.maxDate, today],
+  );
+
+  const dateTypeHandler = useMemo(() => {
+    const now = minDate || today;
+
+    const createRangePair = (baseDate: Date): [Date, Date] =>
+      props.allowSameDay ? [baseDate, baseDate] : [baseDate, new Date(baseDate.getTime() + 24 * 3600 * 1000)];
+
+    const convertToDateArray = (value: TCalendarValue[]): Date[] => value.map((item) => new Date(item));
+
+    return {
+      // 初始化空日期
+      initialize: {
+        single: () => now,
+        multiple: () => [now],
+        range: () => createRangePair(now),
+      },
+      // 转换已有值
+      transform: {
+        single: (value: TCalendarValue): Date => new Date(value),
+
+        multiple: (value: TCalendarValue[]): Date[] => {
+          const dates = convertToDateArray(value);
+          return dates.length ? dates : [now];
+        },
+        range: (value: TCalendarValue[]): Date[] => {
+          const dates = convertToDateArray(value);
+          // 传入值为空数组或只有一个值时
+          if (dates.length <= 1) {
+            return createRangePair(dates[0] || now);
+          }
+          return dates;
+        },
+      },
+    };
+  }, [props.allowSameDay, minDate, today]);
+
+  useEffect(() => {
+    if (!props.value) {
+      setSelectedDate(dateTypeHandler.initialize[props.type]?.());
+    } else {
+      const d =
+        props.type === 'single'
+          ? dateTypeHandler.transform.single?.(props.value as TCalendarValue)
+          : dateTypeHandler.transform[props.type]?.(props.value as TCalendarValue[]);
+
+      setSelectedDate(d);
+    }
+  }, [props.type, props.value, dateTypeHandler]);
 
   const days = useMemo(() => {
     const raw = local.weekdays;
@@ -251,13 +291,18 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
     switch (props.type) {
       case 'range': {
         if (Array.isArray(selectedDate)) {
-          if (selectedDate.length === 1 && selected >= selectedDate[0]) {
-            newSelected = selectedDate[0] > selected ? [selected] : [selectedDate[0], selected];
+          if (selectedDate.length === 1) {
+            const firstDate = selectedDate[0];
+            if (selected.getTime() === new Date(firstDate).getTime()) {
+              newSelected = props.allowSameDay ? [firstDate, selected] : [selected];
+            } else if (selected < firstDate) {
+              newSelected = [selected];
+            } else {
+              newSelected = [firstDate, selected];
+            }
           } else {
             newSelected = [selected];
           }
-        } else {
-          newSelected = [selected];
         }
         break;
       }
