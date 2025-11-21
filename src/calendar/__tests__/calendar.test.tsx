@@ -164,7 +164,7 @@ describe('Calendar', () => {
       const minDate = new Date(2022, 0, 1);
       const maxDate = new Date(2022, 1, 1);
 
-      const value = new Date(2022, 0, 15);
+      const value = [new Date(2022, 0, 15)];
       const { rerender } = render(
         <Calendar visible value={value} minDate={minDate} maxDate={maxDate} onSelect={onSelect} />,
       );
@@ -266,7 +266,7 @@ describe('Calendar', () => {
 
     it(':select', () => {
       const onSelect = vi.fn();
-      const value = new Date(2022, 0, 1);
+      const value = [new Date(2022, 0, 1)];
       const minDate = new Date(2022, 0, 1);
       const maxDate = new Date(2022, 1, 1);
 
