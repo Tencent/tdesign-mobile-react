@@ -20,7 +20,7 @@ const Upload: React.FC<UploadProps> = (props) => {
   const [showImageIndex, setShowImageIndex] = useState(0);
   const rootClassName = usePrefixClass('upload');
   const globalConfig = useConfig();
-  const { onPreview, onClickUpload, addContent, accept, children, className, max, multiple, imageProps, preview } =
+  const { onPreview, onClickUpload, addBtn, addContent, accept, className, max, multiple, imageProps, preview } =
     useDefaultProps(props, uploadDefaultProps);
   const { displayFiles, inputRef, disabled, onNormalFileChange, onInnerRemove } = useUpload(props);
   const previewImgs = displayFiles.map((img) => img.url || '');
@@ -78,19 +78,21 @@ const Upload: React.FC<UploadProps> = (props) => {
     );
   };
 
-  const renderContent = () => {
-    const childNode = parseTNode(children);
-    const addContentNode = parseTNode(addContent, {}, <AddIcon size="28" />);
+  const renderAddContent = () => {
+    if (!addBtn) return null;
+
     if (max === 0 || (max > 0 && displayFiles.length < max)) {
-      if (childNode) {
-        return <div onClick={triggerUpload}>{childNode}</div>;
-      }
+      const addBtnNode = parseTNode(addBtn, null, <AddIcon />);
+      const addContentNode = parseTNode(addContent, null, addBtnNode);
+
       return (
         <div className={`${rootClassName}__item ${rootClassName}__item--add`} onClick={triggerUpload}>
           <div className={`${rootClassName}__add-icon`}>{addContentNode}</div>
         </div>
       );
     }
+
+    return null;
   };
 
   const renderDisplayFiles = () =>
@@ -112,7 +114,7 @@ const Upload: React.FC<UploadProps> = (props) => {
   return (
     <div className={containerClassName}>
       {renderDisplayFiles()}
-      {renderContent()}
+      {renderAddContent()}
       <input hidden ref={inputRef} type="file" multiple={multiple} accept={accept} onChange={onNormalFileChange} />
       <ImageViewer visible={showViewer} images={previewImgs} index={showImageIndex} onClose={handleImageViewerClose} />
     </div>
