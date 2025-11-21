@@ -4,11 +4,10 @@ import raf from './raf';
 function isEqual(objA, objB) {
   const keys = Object.keys(objA);
   for (const key of keys) {
-    if (objA[key] !== objB) {
+    if (objA[key] !== objB[key]) {
       return false;
     }
   }
-
   return true;
 }
 
@@ -57,7 +56,7 @@ export function useImageTransform(
   onTransform?: (info: { transform: TransformType; action: TransformAction }) => void,
 ) {
   const frame = useRef(null);
-  const queue = useRef<TransformType[]>([]);
+  const queue = useRef<Partial<TransformType>[]>([]);
   const [transform, setTransform] = useState(initialTransform);
 
   const resetTransform = (action: TransformAction) => {
@@ -84,7 +83,6 @@ export function useImageTransform(
       });
     }
     queue.current.push({
-      ...transform,
       ...newTransform,
     });
   };
