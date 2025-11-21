@@ -61,7 +61,7 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
   );
 
   const dateTypeHandler = useMemo(() => {
-    const now = minDate || today;
+    const now = minDate;
 
     const createRangePair = (baseDate: Date): [Date, Date] =>
       props.allowSameDay ? [baseDate, baseDate] : [baseDate, new Date(baseDate.getTime() + 24 * 3600 * 1000)];
@@ -93,7 +93,7 @@ const CalendarTemplate = forwardRef<HTMLDivElement, CalendarProps>((_props, ref)
         },
       },
     };
-  }, [props.allowSameDay, minDate, today]);
+  }, [props.allowSameDay, minDate]);
 
   useEffect(() => {
     if (!props.value) {
