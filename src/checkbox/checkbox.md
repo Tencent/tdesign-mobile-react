@@ -55,8 +55,7 @@ onChange | Function |  | TS 类型：`(value: T, context: CheckboxGroupChangeCon
 --td-checkbox-border-color | @component-stroke | -
 --td-checkbox-description-color | @text-color-secondary | -
 --td-checkbox-description-disabled-color | @text-color-disabled | -
---td-checkbox-description-line-height | 22px | -
---td-checkbox-font-size | 16px | -
+--td-checkbox-description-font | @font-body-medium | -
 --td-checkbox-icon-checked-color | @brand-color | -
 --td-checkbox-icon-color | var(--td-border-level-2-color, @gray-color-4) | -
 --td-checkbox-icon-disabled-bg-color | @bg-color-component-disabled | -
@@ -67,5 +66,6 @@ onChange | Function |  | TS 类型：`(value: T, context: CheckboxGroupChangeCon
 --td-checkbox-tag-bg-color | @bg-color-component | -
 --td-checkbox-title-color | @text-color-primary | -
 --td-checkbox-title-disabled-color | @text-color-disabled | -
+--td-checkbox-title-font | @font-body-large | -
 --td-checkbox-title-line-height | 24px | -
---td-checkbox-vertical-padding | 16px | -
+--td-checkbox-vertical-padding | @spacer-2 | -

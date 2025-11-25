@@ -49,8 +49,3 @@ Name | Default Value | Description
 --td-dropdown-menu-icon-sizem | 24px | -
 --td-dropdown-body-max-height | 280px | -
 --td-dropdown-menu-bg-color | @bg-color-container | -
---td-tree-bg-color | @bg-color-container | -
---td-tree-item-active-color | @brand-color | -
---td-tree-item-font-size | 16px | -
---td-tree-item-height | 48px | -
---td-tree-root-bg-color | @bg-color-secondarycontainer | -

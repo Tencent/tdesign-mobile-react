@@ -106,7 +106,6 @@ const TabBarItem = forwardRef<HTMLDivElement, TabBarItemProps>((originProps, ref
     className,
     {
       [`${tabBarItemClass}--split`]: split,
-      [`${tabBarItemClass}--text-only`]: !icon,
       [`${tabBarItemClass}--crowded`]: crowded,
     },
     `${tabBarItemClass}--${shape}`,
