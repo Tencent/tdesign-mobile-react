@@ -149,7 +149,7 @@ export default {
       title: 'Cell 单元格',
       titleEn: 'Cell',
       name: 'cell',
-      component: () => import('tdesign-mobile-react/cell/_example/base.tsx'),
+      component: () => import('tdesign-mobile-react/cell/_example/index.tsx'),
     },
     {
       title: 'Upload 上传',
