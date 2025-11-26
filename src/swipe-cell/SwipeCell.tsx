@@ -64,7 +64,14 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
 
   // Helper function to set timers that are tracked for cleanup
   const setTimer = (callback: () => void, delay: number) => {
-    const timerId = setTimeout(callback, delay);
+    const timerId = setTimeout(() => {
+      // Remove completed timer from tracking array
+      const index = timersRef.current.indexOf(timerId);
+      if (index > -1) {
+        timersRef.current.splice(index, 1);
+      }
+      callback();
+    }, delay);
     timersRef.current.push(timerId);
     return timerId;
   };
