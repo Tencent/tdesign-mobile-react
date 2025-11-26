@@ -47,4 +47,4 @@ onSelect | Function |  | TS 类型：`(value: Date) => void`<br/>点击日期时
 --td-calendar-switch-mode-icon-color | @text-color-secondary | -
 --td-calendar-switch-mode-icon-disabled-color | @text-color-disabled | -
 --td-calendar-title-color | @text-color-primary | -
---td-calendar-title-font-size | 18px | -
+--td-calendar-title-font | @font-title-large | -
