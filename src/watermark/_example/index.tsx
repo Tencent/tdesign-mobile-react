@@ -12,7 +12,7 @@ import LayoutDemo from './layout';
 export default function Base() {
   return (
     <div className="tdesign-mobile-demo">
-      <h1 className="title">Watermark 标签</h1>
+      <h1 className="title">Watermark 水印</h1>
       <p className="summary">给页面的某个区域加上水印。</p>
       <TDemoBlock title="01 组件类型" summary="文本水印">
         <BaseDemo />
