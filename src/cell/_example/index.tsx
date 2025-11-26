@@ -10,10 +10,7 @@ import Group from './group';
 export default function Base() {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader
-        title="Cell 单元格"
-        summary="一行内容/功能的垂直排列方式。一行项目左侧为主要内容展示区域，右侧可增加更多操作内容"
-      />
+      <TDemoHeader title="Cell 单元格" summary="用于各个类别行的信息展示。" />
       <TDemoBlock title="01 类型" summary="单行单元格">
         <Single />
       </TDemoBlock>

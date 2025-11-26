@@ -10,7 +10,7 @@ import './style/index.less';
 export default function FooterDemo() {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="Footer 页脚" summary="用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。" />
+      <TDemoHeader title="Footer 页脚" summary="用于展示网站的版权声明、联系信息、重要页面链接和其他相关内容等信息。" />
       <TDemoBlock summary="基础页脚">
         <BaseDemo />
       </TDemoBlock>

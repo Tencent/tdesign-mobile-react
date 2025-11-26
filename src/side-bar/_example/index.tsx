@@ -12,7 +12,7 @@ export default function Base() {
   };
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="SideBar 侧边栏" summary="用于内容分类后的展示切换。" />
+      <TDemoHeader title="SideBar 侧边栏" summary="用于信息分类后的展示切换或锚点，位于页面左侧。" />
       <TDemoBlock title="01 组件类型" summary="侧边导航用法" padding>
         <Button size="large" theme="primary" variant="outline" block onClick={() => handleClick('base')}>
           锚点用法
