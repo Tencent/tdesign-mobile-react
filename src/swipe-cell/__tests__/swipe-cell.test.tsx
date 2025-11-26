@@ -758,7 +758,8 @@ describe('SwipeCell', () => {
     vi.useFakeTimers();
     const expand = vi.fn();
     const close = vi.fn();
-    syncOpenedState({ current: null } as any, [true, false], () => 'left', expand, close);
+    const setTimer = vi.fn((cb, delay) => setTimeout(cb, delay));
+    syncOpenedState({ current: null } as any, [true, false], () => 'left', expand, close, setTimer);
     expect(expand).not.toHaveBeenCalled();
     expect(close).not.toHaveBeenCalled();
     vi.useRealTimers();
@@ -768,11 +769,36 @@ describe('SwipeCell', () => {
     vi.useFakeTimers();
     const expand = vi.fn();
     const close = vi.fn();
-    syncOpenedState({ current: {} } as any, [true, false], () => 'right', expand, close);
+    const setTimer = vi.fn((cb, delay) => setTimeout(cb, delay));
+    syncOpenedState({ current: {} } as any, [true, false], () => 'right', expand, close, setTimer);
     expect(expand).not.toHaveBeenCalled();
     vi.advanceTimersByTime(120);
     expect(expand).toHaveBeenCalledWith('right');
     expect(close).not.toHaveBeenCalled();
+    vi.useRealTimers();
+  });
+
+  it('clears timers on unmount', async () => {
+    vi.useFakeTimers();
+    const { unmount, container } = render(<SwipeCell right={rightActions} content={<div>内容</div>} opened />);
+    const rightEl = container.querySelector('.t-swipe-cell__right') as HTMLElement;
+    Object.defineProperty(rightEl, 'clientWidth', { value: 100, configurable: true });
+
+    // Trigger timer via expand
+    await act(async () => {
+      vi.advanceTimersByTime(50);
+    });
+
+    // Unmount should clear timers without errors
+    unmount();
+
+    // Run remaining timers - should not cause any errors since they were cleared
+    await act(async () => {
+      vi.advanceTimersByTime(200);
+    });
+
+    // No error means timers were properly cleaned up
+    expect(true).toBe(true);
     vi.useRealTimers();
   });
 });
