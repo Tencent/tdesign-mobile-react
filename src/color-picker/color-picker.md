@@ -25,7 +25,6 @@ onPaletteBarChange | Function |  | TS 类型：`(context: { color: ColorObject }
 组件提供了下列 CSS 变量，可用于自定义样式。
 名称 | 默认值 | 描述 
 -- | -- | --
---td-color-picker-border-radius-circle | @radius-circle | -
 --td-color-picker-format-background-color | @gray-color-1 | -
 --td-color-picker-gradient-preview-height | 28px | -
 --td-color-picker-gradient-preview-radius | 3px | -
