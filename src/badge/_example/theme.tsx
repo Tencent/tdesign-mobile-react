@@ -8,21 +8,21 @@ export default function ThemeBadge() {
       <div className="summary">圆形徽标</div>
       <div className="badge-demo">
         <Badge count="2" offset={[-2, -2]}>
-          <NotificationIcon size="24" />
+          <NotificationIcon size={24} />
         </Badge>
       </div>
 
       <div className="summary">方形徽标</div>
       <div className="badge-demo">
         <Badge count="2" shape="square" offset={[-2, -2]}>
-          <NotificationIcon size="24" />
+          <NotificationIcon size={24} />
         </Badge>
       </div>
 
       <div className="summary">气泡徽标</div>
       <div className="badge-demo">
         <Badge count="领积分" shape="bubble">
-          <Button icon={<ShopIcon />} shape="square" size="large" />
+          <Button icon={<ShopIcon size={24} />} shape="square" size="large" />
         </Badge>
       </div>
 
