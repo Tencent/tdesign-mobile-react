@@ -5,6 +5,22 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.21.0 `2025-11-27` 
+### 🚀 Features
+- `Calendar`: 新增 `allowSameDay` 属性，允许 type='range' 场景的起止时间相同 @liweijie0812 ([#829](https://github.com/Tencent/tdesign-mobile-react/pull/829))
+- `Upload`: 
+  - 新增 `addBtn` 属性 @anlyyao ([#830](https://github.com/Tencent/tdesign-mobile-react/pull/830))
+  - 启用 `capture` 属性时跳过文件名重复检测；在 `capture = ''` + 拍照上传场景中，`allowUploadDuplicateFile` 应取 `true` @anlyyao ([#833](https://github.com/Tencent/tdesign-mobile-react/pull/833))
+- `DropdownItem`: 新增 `icon` 属性，支持自定义图标 @anlyyao ([#831](https://github.com/Tencent/tdesign-mobile-react/pull/831))
+### 🐞 Bug Fixes
+- `Calendar`: 修复 `value =[]` 结合 `switch-mode = 'year-month'` 使用时当前月份计算错误 @anlyyao ([#832](https://github.com/Tencent/tdesign-mobile-react/pull/832))
+- `ColorPicker`: 修复组件深色模式背景、边框、文本色错误 @anlyyao ([#834](https://github.com/Tencent/tdesign-mobile-react/pull/834))
+- `BackTop`: 修复文本字重错误 @anlyyao ([common#2339](https://github.com/Tencent/tdesign-common/pull/2339))
+- `Search`: 修复在小屏幕不遵循 `flex:1` 的问题  @LittleTurtle2333 ([common#2268](https://github.com/Tencent/tdesign-common/pull/2268))
+- `Slider`: 修复深色模式下滑轨背景色、滑块禁用态背景色错误 @anlyyao ([common#2331](https://github.com/Tencent/tdesign-common/pull/2331))
+- `Popover`: 修复箭头间距错误   @anlyyao ([#840](https://github.com/Tencent/tdesign-mobile-react/pull/840))
+- `GridItem`: 修复 `column` 为 `0` 时，标题行高错误 @anlyyao ([#840](https://github.com/Tencent/tdesign-mobile-react/pull/840))
+
 ## 🌈 0.20.1 `2025-11-12` 
 ### 🚀 Features
 - `Form`: 表单验证 `pattern` 支持 string 类型 @liweijie0812 ([#821](https://github.com/Tencent/tdesign-mobile-react/pull/821))
