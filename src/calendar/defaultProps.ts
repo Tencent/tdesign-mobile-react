@@ -5,6 +5,7 @@
 import { TdCalendarProps } from './type';
 
 export const calendarDefaultProps: TdCalendarProps = {
+  allowSameDay: false,
   autoClose: true,
   confirmBtn: '',
   firstDayOfWeek: 0,

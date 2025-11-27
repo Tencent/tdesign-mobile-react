@@ -20,6 +20,7 @@ export type ValidateParams = Parameters<TdUploadProps['onValidate']>[0];
 export default function useUpload(props: TdUploadProps) {
   const {
     allowUploadDuplicateFile,
+    capture,
     action,
     disabled,
     autoUpload,
@@ -175,6 +176,7 @@ export default function useUpload(props: TdUploadProps) {
       uploadValue,
       files: [...files],
       allowUploadDuplicateFile,
+      capture,
       max,
       sizeLimit,
       autoUpload,

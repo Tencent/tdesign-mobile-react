@@ -12,7 +12,7 @@ import './style/index.less';
 export default function () {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="Switch 开关" summary="开关用于切换当个设置项的状态，开启、关闭为两个互斥的操作" />
+      <TDemoHeader title="Switch 开关" summary="用于控制某个功能的开启和关闭。" />
       <TDemoBlock title="01 组件类型" summary="基础开关">
         <Base />
       </TDemoBlock>

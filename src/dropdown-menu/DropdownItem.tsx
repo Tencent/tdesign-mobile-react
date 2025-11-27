@@ -3,7 +3,10 @@ import cx from 'classnames';
 import uniqueId from 'lodash-es/uniqueId';
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { CaretDownSmallIcon, CaretUpSmallIcon } from 'tdesign-icons-react';
-import { Button, Checkbox, Popup, RadioGroup } from 'tdesign-mobile-react';
+import Button from '../button';
+import Checkbox from '../checkbox';
+import Popup from '../popup';
+import { RadioGroup } from '../radio';
 import useDefault from '../_util/useDefault';
 import parseTNode from '../_util/parseTNode';
 import CheckboxGroup from '../checkbox/CheckboxGroup';
@@ -37,6 +40,7 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
     onReset,
     footer,
     keys,
+    icon,
   } = useDefaultProps<DropdownItemProps>(props, dropdownItemDefaultProps);
   const { classPrefix } = useConfig();
   const dropdownMenuClass = usePrefixClass('dropdown-menu');
@@ -106,6 +110,33 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
 
   const attach = useCallback(() => itemRef.current || document.body, []);
 
+  const renderIcon = () => {
+    const iconClass = cx(`${dropdownMenuClass}__icon`, {
+      [`${dropdownMenuClass}__icon--active`]: isActived,
+    });
+
+    // 使用自定义图标
+    if (icon) {
+      const isArray = Array.isArray(icon);
+      const isTwoIcons = isArray && icon.length === 2;
+
+      let selectedIcon: DropdownItemProps['icon'];
+      if (isTwoIcons) {
+        selectedIcon = isActived ? icon[0] : icon[1];
+      } else {
+        selectedIcon = isArray ? icon[0] : icon;
+      }
+
+      return <div className={iconClass}>{parseTNode(selectedIcon)}</div>;
+    }
+
+    return direction === 'down' ? (
+      <CaretDownSmallIcon className={iconClass} />
+    ) : (
+      <CaretUpSmallIcon className={iconClass} />
+    );
+  };
+
   return (
     <>
       <div
@@ -125,19 +156,7 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
         }}
       >
         <div className={`${dropdownMenuClass}__title`}>{labelText}</div>
-        {direction === 'down' ? (
-          <CaretDownSmallIcon
-            className={cx(`${dropdownMenuClass}__icon`, {
-              [`${dropdownMenuClass}__icon--active`]: isActived,
-            })}
-          />
-        ) : (
-          <CaretUpSmallIcon
-            className={cx(`${dropdownMenuClass}__icon`, {
-              [`${dropdownMenuClass}__icon--active`]: isActived,
-            })}
-          />
-        )}
+        {renderIcon()}
       </div>
       {isActived ? (
         <div

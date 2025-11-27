@@ -12,7 +12,7 @@ export default function ResultDemo() {
     <>
       {!showResultPage ? (
         <div className="tdesign-mobile-demo">
-          <TDemoHeader title="Result 结果" summary="结果反馈" />
+          <TDemoHeader title="Result 结果" summary="用于反馈不同结果的展示。" />
           <TDemoBlock title="01类型" summary="不同结果反馈">
             <ThemeResult />
           </TDemoBlock>

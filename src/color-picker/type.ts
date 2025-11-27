@@ -62,6 +62,8 @@ export type TypeEnum = 'base' | 'multiple';
 
 export type ColorPickerChangeTrigger = 'palette-hue-bar' | 'palette-alpha-bar' | 'preset';
 
+export type ColorFormat = 'RGB' | 'RGBA' | 'HSL' | 'HSLA' | 'HSB' | 'HSV' | 'HSVA' | 'HEX' | 'CMYK' | 'CSS';
+
 export type ColorPickerTrigger = 'overlay';
 
 export interface ColorObject {

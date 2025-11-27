@@ -4,7 +4,7 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TElement, KeysType } from '../common';
+import { TNode, TElement, KeysType } from '../common';
 
 export interface TdDropdownMenuProps {
   /**
@@ -44,6 +44,10 @@ export interface TdDropdownItemProps {
    * 底部
    */
   footer?: TElement;
+  /**
+   * 自定义菜单子项图标，值为 `undefined` 表示使用默认图标。[面板打开时的图标，面板关闭时的图标]
+   */
+  icon?: TNode | TNode[] | undefined;
   /**
    * 用来定义 value / label / disabled 在 `options` 中对应的字段别名
    */
