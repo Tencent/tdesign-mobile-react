@@ -9,7 +9,7 @@ export default function BaseBadge() {
       <div className="badge-demo">
         <Badge dot className="badge-item" content="消息" />
         <Badge dot offset={[1, -1]} className="badge-item">
-          <NotificationIcon size="24" />
+          <NotificationIcon size={24} />
         </Badge>
         <Badge dot offset={[1, 1]} className="badge-item">
           <Button>按钮</Button>
@@ -20,7 +20,7 @@ export default function BaseBadge() {
       <div className="badge-demo">
         <Badge count="8" content="消息" offset={[-8, 0]} className="badge-item" />
         <Badge count="2" offset={[-2, -2]} className="badge-item">
-          <NotificationIcon size="24" />
+          <NotificationIcon size={24} />
         </Badge>
         <Badge count="8" offset={[2, 2]} className="badge-item">
           <Button>按钮</Button>
@@ -30,7 +30,7 @@ export default function BaseBadge() {
       <div className="summary">自定义徽标</div>
       <div className="badge-demo">
         <Badge count="NEW" offset={[0, 2]}>
-          <Button icon={<NotificationIcon />} shape="square" size="large" />
+          <Button icon={<NotificationIcon size={24} />} shape="square" size="large" />
         </Badge>
       </div>
     </>
