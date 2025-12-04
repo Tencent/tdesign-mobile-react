@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, ActionSheet } from 'tdesign-mobile-react';
-import { EnterIcon, BookIcon, PinIcon, CloudUploadIcon } from 'tdesign-icons-react';
+import { EnterIcon, BookmarkIcon, PinIcon, CloudUploadIcon } from 'tdesign-icons-react';
 
 export default function ListExample() {
   const [alignCenterVisible, setAlignCenterVisible] = useState(false);
@@ -12,7 +12,7 @@ export default function ListExample() {
     },
     {
       label: 'Mark as important',
-      icon: () => <BookIcon />,
+      icon: <BookmarkIcon />,
     },
     {
       label: 'Unsubscribe',
