@@ -128,8 +128,10 @@ describe('ActionSheet', () => {
 
     it(':description - should apply grid theme class', () => {
       const { container } = render(<ActionSheet {...defaultProps} description="Test" theme="grid" />);
-      const description = container.querySelector('.t-action-sheet__description--grid');
+      const description = container.querySelector('.t-action-sheet__description');
+      const grid = container.querySelector('.t-action-sheet--grid');
       expect(description).toBeInTheDocument();
+      expect(grid).toBeInTheDocument();
     });
 
     it(':align - should handle align prop', () => {
