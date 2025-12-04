@@ -41,7 +41,7 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
     onCancel?.(ev);
   };
 
-  const handleSelected = (idx) => {
+  const handleSelected = (idx: number) => {
     const found = items?.[idx];
 
     onSelected?.(found, idx);
@@ -60,12 +60,11 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
       }}
       showOverlay={showOverlay}
     >
-      <div className={cx(`${actionSheetClass}__content`)}>
+      <div className={cx(`${actionSheetClass}__content`, `${actionSheetClass}__content--${align}`)}>
         {description ? (
           <p
             className={cx({
               [`${actionSheetClass}__description`]: true,
-              [`${actionSheetClass}__description--left`]: align === 'left',
               [`${actionSheetClass}__description--grid`]: theme === 'grid',
             })}
           >
