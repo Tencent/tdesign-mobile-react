@@ -9,7 +9,7 @@ import { Button } from '../button';
 import { Badge } from '../badge';
 import { usePrefixClass } from '../hooks/useClass';
 
-type ActionSheetListProps = Pick<ActionSheetProps, 'items' | 'align'> & {
+type ActionSheetListProps = Pick<ActionSheetProps, 'items'> & {
   onSelected?: (idx: number) => void;
 };
 

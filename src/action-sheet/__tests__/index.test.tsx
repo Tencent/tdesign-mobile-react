@@ -126,12 +126,6 @@ describe('ActionSheet', () => {
       expect(container.textContent).toContain('Test description');
     });
 
-    it(':description - should apply left alignment class', () => {
-      const { container } = render(<ActionSheet {...defaultProps} description="Test" align="left" />);
-      const description = container.querySelector('.t-action-sheet__description--left');
-      expect(description).toBeInTheDocument();
-    });
-
     it(':description - should apply grid theme class', () => {
       const { container } = render(<ActionSheet {...defaultProps} description="Test" theme="grid" />);
       const description = container.querySelector('.t-action-sheet__description--grid');

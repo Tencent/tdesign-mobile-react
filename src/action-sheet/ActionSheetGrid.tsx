@@ -8,7 +8,7 @@ import { Grid, GridItem } from '../grid';
 import { Swiper, SwiperProps } from '../swiper';
 import { usePrefixClass } from '../hooks/useClass';
 
-type ActionSheetGridProps = Pick<ActionSheetProps, 'items' | 'align'> & {
+type ActionSheetGridProps = Pick<ActionSheetProps, 'items'> & {
   onSelected?: (idx: number) => void;
   count?: number;
 };
