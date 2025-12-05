@@ -41,7 +41,7 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
     onCancel?.(ev);
   };
 
-  const handleSelected = (idx) => {
+  const handleSelected = (idx: number) => {
     const found = items?.[idx];
 
     onSelected?.(found, idx);
@@ -53,29 +53,22 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
     <Popup
       {...popupProps}
       visible={visible}
-      className={actionSheetClass}
+      className={cx({
+        [`${actionSheetClass}`]: true,
+        [`${actionSheetClass}--${theme}`]: true,
+        [`${actionSheetClass}--${align}`]: true,
+        [`${actionSheetClass}--no-description`]: !description,
+      })}
       placement="bottom"
       onVisibleChange={(value) => {
         setVisible(value, { trigger: 'overlay' });
       }}
       showOverlay={showOverlay}
     >
-      <div className={cx(`${actionSheetClass}__content`)}>
-        {description ? (
-          <p
-            className={cx({
-              [`${actionSheetClass}__description`]: true,
-              [`${actionSheetClass}__description--left`]: align === 'left',
-              [`${actionSheetClass}__description--grid`]: theme === 'grid',
-            })}
-          >
-            {description}
-          </p>
-        ) : null}
-        {theme === 'list' ? <ActionSheetList items={items} align={align} onSelected={handleSelected} /> : null}
-        {theme === 'grid' ? (
-          <ActionSheetGrid items={items} align={align} onSelected={handleSelected} count={count} />
-        ) : null}
+      <div className={`${actionSheetClass}__content`}>
+        {description ? <p className={`${actionSheetClass}__description`}>{description}</p> : null}
+        {theme === 'list' ? <ActionSheetList items={items} onSelected={handleSelected} /> : null}
+        {theme === 'grid' ? <ActionSheetGrid items={items} onSelected={handleSelected} count={count} /> : null}
         {showCancel ? (
           <div className={`${actionSheetClass}__footer`}>
             <div className={`${actionSheetClass}__gap-${theme}`}></div>
