@@ -45,6 +45,7 @@ onCollapsedItemClick | Function |  | TS 类型：`(context: { e: MouseEvent }) =
 --td-avatar-border-width-small | 1px | -
 --td-avatar-circle-border-radius | @radius-circle | -
 --td-avatar-content-color | @brand-color | -
+--td-avatar-group-init-z-index | @avatar-group-init-zIndex | -
 --td-avatar-group-line-spacing | 2px | -
 --td-avatar-group-margin-left-large | -8px | -
 --td-avatar-group-margin-left-medium | -8px | -

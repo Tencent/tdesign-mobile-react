@@ -28,6 +28,12 @@ index | String / Number | - | 索引字符 | N
 组件提供了下列 CSS 变量，可用于自定义样式。
 名称 | 默认值 | 描述 
 -- | -- | --
+--td-indexes-anchor-active-bg-color | @bg-color-container | -
+--td-indexes-anchor-active-color | @brand-color | -
+--td-indexes-anchor-active-font-weight | 600 | -
+--td-indexes-anchor-bg-color | @bg-color-secondarycontainer | -
+--td-indexes-anchor-color | @text-color-primary | -
+--td-indexes-anchor-font | @font-body-medium | -
 --td-indexes-sidebar-active-bg-color | @brand-color | -
 --td-indexes-sidebar-active-color | @text-color-anti | -
 --td-indexes-sidebar-color | @text-color-primary | -
@@ -40,9 +46,3 @@ index | String / Number | - | 索引字符 | N
 --td-indexes-sidebar-tips-font | @font-title-extraLarge | -
 --td-indexes-sidebar-tips-right | 38px | -
 --td-indexes-sidebar-tips-size | 48px | -
---td-indexes-anchor-active-bg-color | @bg-color-container | -
---td-indexes-anchor-active-color | @brand-color | -
---td-indexes-anchor-active-font-weight | 600 | -
---td-indexes-anchor-bg-color | @bg-color-secondarycontainer | -
---td-indexes-anchor-color | @text-color-primary | -
---td-indexes-anchor-font | @font-body-medium | -

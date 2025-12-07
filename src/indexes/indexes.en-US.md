@@ -28,6 +28,12 @@ index | String / Number | - | \- | N
 The component provides the following CSS variables, which can be used to customize styles.
 Name | Default Value | Description 
 -- | -- | --
+--td-indexes-anchor-active-bg-color | @bg-color-container | -
+--td-indexes-anchor-active-color | @brand-color | -
+--td-indexes-anchor-active-font-weight | 600 | -
+--td-indexes-anchor-bg-color | @bg-color-secondarycontainer | -
+--td-indexes-anchor-color | @text-color-primary | -
+--td-indexes-anchor-font | @font-body-medium | -
 --td-indexes-sidebar-active-bg-color | @brand-color | -
 --td-indexes-sidebar-active-color | @text-color-anti | -
 --td-indexes-sidebar-color | @text-color-primary | -
@@ -40,9 +46,3 @@ Name | Default Value | Description
 --td-indexes-sidebar-tips-font | @font-title-extraLarge | -
 --td-indexes-sidebar-tips-right | 38px | -
 --td-indexes-sidebar-tips-size | 48px | -
---td-indexes-anchor-active-bg-color | @bg-color-container | -
---td-indexes-anchor-active-color | @brand-color | -
---td-indexes-anchor-active-font-weight | 600 | -
---td-indexes-anchor-bg-color | @bg-color-secondarycontainer | -
---td-indexes-anchor-color | @text-color-primary | -
---td-indexes-anchor-font | @font-body-medium | -
