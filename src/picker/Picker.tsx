@@ -45,6 +45,7 @@ const Picker: FC<PickerProps> = (props) => {
     cancelBtn,
     confirmBtn,
     renderLabel,
+    swipeDuration,
   } = useDefaultProps(props, pickerDefaultProps);
   const pickerClass = usePrefixClass('picker');
 
@@ -160,6 +161,7 @@ const Picker: FC<PickerProps> = (props) => {
                 value={pickerValue[idx]}
                 renderLabel={renderLabel}
                 onPick={(context) => handlePick(context, idx)}
+                swipeDuration={swipeDuration}
               />
             </div>
           ))}
