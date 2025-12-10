@@ -1,7 +1,7 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import type { CSSProperties } from 'react';
 import { ChevronLeftIcon } from 'tdesign-icons-react';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import { usePrefixClass } from '../hooks/useClass';
 import { StyledProps } from '../common';
 import { TdNavbarProps } from './type';
@@ -26,23 +26,26 @@ const Navbar: React.FC<NavbarProps> = (originProps) => {
     right,
     fixed,
     animation,
+    placeholder,
+    zIndex,
     className,
+    safeAreaInsetTop,
     style,
     onLeftClick,
     onRightClick,
   } = props;
-  const prefix = usePrefixClass('navbar');
+  const prefixClass = usePrefixClass();
+  const navbarClass = usePrefixClass('navbar');
   const animationSuffix = useMemo(() => (animation ? '-animation' : ''), [animation]);
 
-  const cls = useCallback((name?: string) => (name ? `${prefix}__${name}` : prefix), [prefix]);
-
   // 左侧胶囊区域
-  const leftCapsuleContent = useMemo(() => {
-    if (!capsule) {
+  const renderCapsule = () => {
+    const capsuleContent = parseTNode(capsule);
+    if (!capsuleContent) {
       return null;
     }
-    return <div className={cls('capsule')}>{capsule}</div>;
-  }, [capsule, cls]);
+    return <div className={`${navbarClass}__capsule`}>{capsuleContent}</div>;
+  };
 
   const titleChildren = useMemo(() => {
     let titleNode = children || title;
@@ -56,49 +59,70 @@ const Navbar: React.FC<NavbarProps> = (originProps) => {
       }
     }
 
-    return isStringTitle ? <span className={cls('center-title')}>{parseTNode(titleNode)}</span> : parseTNode(titleNode);
-  }, [children, cls, title, titleMaxLength]);
+    return isStringTitle ? (
+      <span className={`${navbarClass}__center-title`}>{parseTNode(titleNode)}</span>
+    ) : (
+      parseTNode(titleNode)
+    );
+  }, [children, navbarClass, title, titleMaxLength]);
 
   // 右侧icon
-  const rightContent = useMemo(
-    () =>
-      right ? (
-        <div className={cls('right')} onClick={onRightClick}>
-          {parseTNode(right)}
-        </div>
-      ) : null,
-    [cls, right, onRightClick],
-  );
+  const renderRight = () =>
+    right ? (
+      <div className={`${navbarClass}__right`} onClick={onRightClick}>
+        {parseTNode(right)}
+      </div>
+    ) : null;
 
   const navClass = useMemo<string>(
     () =>
-      ClassNames(
-        prefix,
-        { [`${prefix}--fixed`]: fixed },
-        visible ? `${prefix}--visible${animationSuffix}` : `${prefix}--hide${animationSuffix}`,
+      classNames(
+        navbarClass,
+        { [`${navbarClass}--fixed`]: fixed, [`${prefixClass}-safe-area-top `]: safeAreaInsetTop },
+        visible ? `${navbarClass}--visible${animationSuffix}` : `${navbarClass}--hide${animationSuffix}`,
       ),
-    [prefix, fixed, visible, animationSuffix],
+    [navbarClass, prefixClass, fixed, visible, animationSuffix, safeAreaInsetTop],
   );
 
   const navStyle = useMemo<CSSProperties>(
     () => ({
-      position: fixed ? 'fixed' : 'relative',
+      zIndex,
       ...style,
     }),
-    [fixed, style],
+    [zIndex, style],
   );
 
+  const renderLeftArrow = () => {
+    if (leftArrow) {
+      return <ChevronLeftIcon className={`${navbarClass}__left-arrow`} />;
+    }
+    return null;
+  };
+
+  const renderLeft = () => (
+    <div className={`${navbarClass}__left`} onClick={onLeftClick}>
+      {renderLeftArrow()}
+      {parseTNode(left)}
+      {renderCapsule()}
+    </div>
+  );
+
+  const renderCenter = () => <div className={`${navbarClass}__center`}>{titleChildren}</div>;
+
+  const renderPlaceholder = () => {
+    if (fixed && placeholder) {
+      return <div className={`${navbarClass}__placeholder`}></div>;
+    }
+    return null;
+  };
+
   return (
-    <div className={ClassNames(navClass, className)} style={navStyle}>
-      {fixed && <div className={cls('placeholder')}></div>}
-      <div className={cls(`content`)}>
-        <div className={cls(`left`)} onClick={onLeftClick}>
-          {leftArrow && <ChevronLeftIcon className={cls('left-arrow')} />}
-          {parseTNode(left)}
-          {leftCapsuleContent}
-        </div>
-        <div className={cls(`center`)}>{titleChildren}</div>
-        {rightContent}
+    <div className={classNames(navClass, className)} style={navStyle}>
+      {renderPlaceholder()}
+      <div className={`${navbarClass}__content`}>
+        {renderLeft()}
+        {renderCenter()}
+        {renderRight()}
       </div>
     </div>
   );
