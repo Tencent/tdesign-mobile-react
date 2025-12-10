@@ -145,7 +145,8 @@ function Components() {
         <td-doc-footer slot="doc-footer" platform="mobile"></td-doc-footer>
       </td-doc-content>
 
-      <td-theme-generator device="mobile" />
+      {/* TODO: device 参数传递无效，待 tdesign-theme-generator 修复 */}
+      {/* <td-theme-generator device="mobile" /> */}
     </td-doc-layout>
   );
 }
