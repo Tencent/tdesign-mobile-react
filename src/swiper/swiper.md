@@ -38,10 +38,10 @@ type | String | - | 导航器类型，点状(dots)、点条状(dots-bar)、分�
 组件提供了下列 CSS 变量，可用于自定义样式。
 名称 | 默认值 | 描述 
 -- | -- | --
---td-swiper-placement-outside-padding | calc(@spacer-1 + @swiper-nav-dot-size) | -
 --td-swiper-border-radius | 8px | -
 --td-swiper-item-left-padding | 6px | -
 --td-swiper-item-right-padding | 6px | -
+--td-swiper-placement-outside-padding | calc(@spacer-1 + @swiper-nav-dot-size) | -
 --td-swiper-nav-btn-bg-color | @font-gray-3 | -
 --td-swiper-nav-btn-color | @font-white-1 | -
 --td-swiper-nav-btn-size | 24px | -
