@@ -25,6 +25,7 @@ onRightClick | Function |  | TS 类型：`() => void`<br/>点击右侧区域时�
 组件提供了下列 CSS 变量，可用于自定义样式。
 名称 | 默认值 | 描述 
 -- | -- | --
+--td-navbar-right | 95px | -
 --td-navbar-bg-color | @bg-color-container | -
 --td-navbar-capsule-border-color | #e3e6ea | -
 --td-navbar-capsule-border-radius | 16px | -
@@ -34,5 +35,4 @@ onRightClick | Function |  | TS 类型：`() => void`<br/>点击右侧区域时�
 --td-navbar-height | 48px | -
 --td-navbar-left-arrow-size | 24px | -
 --td-navbar-padding-top | 0 | -
---td-navbar-right | 95px | -
 --td-navbar-title-font | @font-title-large | -

@@ -20,7 +20,7 @@ theme | String | text | 骨架图风格，有基础、头像组合等两大类�
 组件提供了下列 CSS 变量，可用于自定义样式。
 名称 | 默认值 | 描述 
 -- | -- | --
---td-skeleton-animation-flashed | rgba(90%, 90%, 90%, .3) | -
+--td-skeleton-animation-flashed | rgba(90%, 90%, 90%, 0.3) | -
 --td-skeleton-animation-gradient | @text-color-placeholder | -
 --td-skeleton-bg-color | @bg-color-secondarycontainer | -
 --td-skeleton-circle-border-radius | @radius-circle | -
