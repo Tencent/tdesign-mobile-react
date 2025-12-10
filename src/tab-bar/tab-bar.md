@@ -11,12 +11,14 @@ style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
 bordered | Boolean | true | 是否显示外边框 | N
 children | TNode | - | 标签栏内容。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 fixed | Boolean | true | 是否固定在底部 | N
-safeAreaInsetBottom | Boolean | true | 是否为 iPhoneX 留出底部安全距离 | N
-shape | String | 'normal' | 标签栏的形状。可选项：normal/round | N
+placeholder | Boolean | false | `0.21.1`。固定在底部时是否开启占位 | N
+safeAreaInsetBottom | Boolean | true | 是否开启底部安全区适配 | N
+shape | String | normal | 标签栏的形状。可选项：normal/round | N
 split | Boolean | true | 是否需要分割线 | N
-theme | String | 'normal' | 选项风格。可选项：normal/tag | N
-value | String / Number / Array | undefined | 当前选中标签的索引。TS 类型：`string \| number \| Array<string \| number>` | N
-defaultValue | String / Number / Array | undefined | 当前选中标签的索引。非受控属性。TS 类型：`string \| number \| Array<string \| number>` | N
+theme | String | normal | 选项风格。可选项：normal/tag | N
+value | String / Number / Array | - | 当前选中标签的索引。TS 类型：`string \| number \| Array<string \| number>` | N
+defaultValue | String / Number / Array | - | 当前选中标签的索引。非受控属性。TS 类型：`string \| number \| Array<string \| number>` | N
+zIndex | Number | 1 | 标签栏层级 | N
 onChange | Function |  | TS 类型：`(value: string \| number) => void`<br/>选中标签切换时触发 | N
 
 
