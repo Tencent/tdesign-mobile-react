@@ -78,7 +78,7 @@ const Navbar: React.FC<NavbarProps> = (originProps) => {
     () =>
       classNames(
         navbarClass,
-        { [`${navbarClass}--fixed`]: fixed, [`${prefixClass}-safe-area-top `]: safeAreaInsetTop },
+        { [`${navbarClass}--fixed`]: fixed, [`${prefixClass}-safe-area-top`]: safeAreaInsetTop },
         visible ? `${navbarClass}--visible${animationSuffix}` : `${navbarClass}--hide${animationSuffix}`,
       ),
     [navbarClass, prefixClass, fixed, visible, animationSuffix, safeAreaInsetTop],
