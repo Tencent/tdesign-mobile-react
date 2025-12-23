@@ -15,7 +15,7 @@ count | TNode | 0 | 徽标右上角内容。可以是数字，也可以是文字
 dot | Boolean | false | 是否为红点 | N
 maxCount | Number | 99 | 封顶的数字值 | N
 offset | Array | - | 设置状态点的位置偏移，示例：[-10, 20] 或 ['10em', '8rem']。TS 类型：`Array<string \| number>` | N
-shape | String | circle | 形状。可选项：circle/square/bubble/ribbon | N
+shape | String | circle | 徽标形状，其中 ribbon 和 ribbon-right 等价。可选项：circle/square/bubble/ribbon/ribbon-right/ribbon-left/triangle-right/triangle-left | N
 showZero | Boolean | false | 当数值为 0 时，是否展示徽标 | N
 size | String | medium | 尺寸。可选项：medium/large | N
 
