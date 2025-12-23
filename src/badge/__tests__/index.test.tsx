@@ -53,11 +53,11 @@ describe('Badge', () => {
 
     it(':count', () => {
       const { container } = render(<Badge count={99} />);
-      expect(container.querySelector('.t-badge--basic').innerHTML.trim()).toBe('99');
+      expect(container.querySelector('.t-badge--basic > .t-badge__count').innerHTML.trim()).toBe('99');
       const { container: container2 } = render(<Badge count={() => 33} />);
-      expect(container2.querySelector('.t-badge--basic').innerHTML.trim()).toBe('33');
+      expect(container2.querySelector('.t-badge--basic > .t-badge__count').innerHTML.trim()).toBe('33');
       const { container: container3 } = render(<Badge count={null} />);
-      expect(container3.querySelector('.t-badge--basic')).toBe(null);
+      expect(container3.querySelector('.t-badge--basic > .t-badge__count')).toBe(null);
     });
 
     it(':dot', () => {
@@ -67,21 +67,19 @@ describe('Badge', () => {
 
     it(':maxCount', () => {
       const { container } = render(<Badge count={100} maxCount={99} />);
-      expect(container.querySelector('.t-badge--basic').innerHTML.trim()).toBe('99+');
+      expect(container.querySelector('.t-badge--basic > .t-badge__count').innerHTML.trim()).toBe('99+');
     });
 
     it(':offset', () => {
       const { container } = render(<Badge count={3} offset={[10, 10]} />);
       expect(container.querySelector('.t-badge--basic').getAttribute('style'))
-        .contain('right: 10px;')
+        .contain('left: calc(100% + 10px);')
         .contain('top: 10px;');
       const { container: container1 } = render(<Badge count={3} offset={[]} />);
-      expect(container1.querySelector('.t-badge--basic').getAttribute('style'))
-        .contain('right: 0px;')
-        .contain('top: 0px;');
+      expect(container1.querySelector('.t-badge--basic').getAttribute('style')).toBe(null);
       const { container: container2 } = render(<Badge count={3} offset={['10em', '10rem']} />);
       expect(container2.querySelector('.t-badge--basic').getAttribute('style'))
-        .contain('right: 10em;')
+        .contain('left: calc(100% + 10em);')
         .contain('top: 10rem;');
     });
 
