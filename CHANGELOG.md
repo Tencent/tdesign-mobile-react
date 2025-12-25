@@ -8,7 +8,6 @@ spline: explain
 ## 🌈 0.21.1 `2025-12-25` 
 ### 🚀 Features
 - `ActionSheet`: `item` 属性补充 `description`、`suffixIcon` 字段 @anlyyao ([#845](https://github.com/Tencent/tdesign-mobile-react/pull/845))
-(https://github.com/Tencent/tdesign-common/pull/2355))([#851](https://github.com/Tencent/tdesign-mobile-react/pull/851))
 - `Badge`: @anlyyao ([#855](https://github.com/Tencent/tdesign-mobile-react/pull/855))
   - `shape` 属性新增 `ribbon-right/ribbon-left/triangle-right/triangle-left` 可选项，其中 `ribbon` 与 `ribbon-right` 等效 
   - 优化 `ribbon` 实现，改用 `background: linear-gradient()`，移除伪元素相关样式
@@ -22,7 +21,7 @@ spline: explain
   - `list` 主题最后一项不应设置底边框
 - `Picker`: 修复 `swipeDuration` 属性无效的问题 @Ryan-CW-Code ([#848](https://github.com/Tencent/tdesign-mobile-react/pull/848))
 ### 🚧 Others
-- `feat`: 新增支持`.dark` 类名，丰富切换深色模式的方式 @liweijie0812 ([common#2355]
+- `feat`: 新增支持`.dark` 类名，丰富切换深色模式的方式 @liweijie0812 ([#851](https://github.com/Tencent/tdesign-mobile-react/pull/851))
 
 ## 🌈 0.21.0 `2025-11-27` 
 ### 🚀 Features
@@ -353,3 +352,4 @@ spline: explain
 
 ## 🌈 0.1.0 `2022-06-29` 
 - 首发版本
+
