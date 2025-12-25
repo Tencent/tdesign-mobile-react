@@ -11,14 +11,12 @@ import { usePrefixClass } from '../hooks/useClass';
 
 export interface BadgeProps extends TdBadgeProps, StyledProps {}
 
-const hasUnit = (unit: string) =>
-  unit.indexOf('px') > 0 ||
-  unit.indexOf('rpx') > 0 ||
-  unit.indexOf('em') > 0 ||
-  unit.indexOf('rem') > 0 ||
-  unit.indexOf('%') > 0 ||
-  unit.indexOf('vh') > 0 ||
-  unit.indexOf('vm') > 0;
+const hasUnit = (value: string): boolean => /px|rpx|em|rem|%|vh|vw/.test(value);
+
+const addUnit = (value: string | number): string => {
+  const strValue = value.toString();
+  return hasUnit(strValue) ? strValue : `${value}px`;
+};
 
 const Badge = forwardRef<HTMLDivElement, BadgeProps>((originProps, ref) => {
   const props = useDefaultProps(originProps, badgeDefaultProps);
@@ -27,22 +25,38 @@ const Badge = forwardRef<HTMLDivElement, BadgeProps>((originProps, ref) => {
   const { classPrefix } = useConfig();
   const badgeClass = usePrefixClass('badge');
 
+  const childNode = content || children;
+
   // 徽标自定义样式
   const badgeInnerStyles = useMemo(() => {
-    const mergedStyle: React.CSSProperties = {};
-    if (color) mergedStyle.backgroundColor = color;
-    if (offset && Array.isArray(offset)) {
-      const [right = 0, top = 0]: Array<string | number> = offset;
-      mergedStyle.right = hasUnit(right.toString()) ? right : `${right}px`;
-      mergedStyle.top = hasUnit(top.toString()) ? top : `${top}px`;
+    const styles: React.CSSProperties = {};
+    if (color) styles.backgroundColor = color;
+    const [xOffset = 0, yOffset = 0]: Array<string | number> = offset || [];
+
+    if (xOffset) {
+      styles.left = `calc(100% + ${addUnit(xOffset)})`;
     }
-    return mergedStyle;
+
+    if (yOffset) {
+      styles.top = addUnit(yOffset);
+    }
+
+    return styles;
   }, [color, offset]);
+
+  // 是否使用外层类名
+  const useOuterClass = useMemo(() => {
+    const target = ['ribbon', 'ribbon-right', 'ribbon-left', 'triangle-right', 'triangle-left'];
+    if (content || !target.includes(shape)) {
+      return false;
+    }
+    return !parseTNode(childNode);
+  }, [content, shape, childNode]);
 
   // 徽标外层样式类
   const badgeClasses = classNames(className, {
     [`${badgeClass}`]: true,
-    [`${badgeClass}__ribbon-outer`]: shape === 'ribbon',
+    [`${badgeClass}__${shape}-outer`]: useOuterClass,
   });
 
   // 徽标内层样式类
@@ -78,8 +92,6 @@ const Badge = forwardRef<HTMLDivElement, BadgeProps>((originProps, ref) => {
     return parseTNode(count);
   }, [dot, count, maxCount, showZero]);
 
-  const childNode = content || children;
-
   const readerContent = () => {
     if (typeof content === 'string') {
       return <span className={`${badgeClass}__content-text`}>{content}</span>;
@@ -91,7 +103,7 @@ const Badge = forwardRef<HTMLDivElement, BadgeProps>((originProps, ref) => {
     if (!isShowBadge) return null;
     return (
       <div className={badgeInnerClasses} style={badgeInnerStyles}>
-        {readerCount}
+        <div className={`${badgeClass}__count`}>{readerCount}</div>
       </div>
     );
   };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, ActionSheet } from 'tdesign-mobile-react';
-import { AppIcon } from 'tdesign-icons-react';
+import { EnterIcon, PinIcon, BookmarkIcon, CloudUploadIcon } from 'tdesign-icons-react';
 
 export default function ListExample() {
   const [normalVisible, setNormalVisible] = useState(false);
@@ -10,7 +10,7 @@ export default function ListExample() {
 
   const openByMethod = () => {
     ActionSheet.show({
-      items: ['选项一', '选项二', '选项三', '选项四'],
+      items: ['Move', 'Mark as important', 'Unsubscribe', 'Add to Tasks'],
       onClose() {
         ActionSheet.close();
       },
@@ -45,7 +45,8 @@ export default function ListExample() {
 
       <ActionSheet
         visible={normalVisible}
-        items={['选项一', '选项二', '选项三', '选项四']}
+        cancelText="cancel"
+        items={['Move', 'Mark as important', 'Unsubscribe', 'Add to Tasks']}
         onClose={() => {
           setNormalVisible(false);
         }}
@@ -55,8 +56,9 @@ export default function ListExample() {
       />
       <ActionSheet
         visible={descVisible}
-        description="动作面板描述文字"
-        items={['选项一', '选项二', '选项三', '选项四']}
+        description="Email Settings"
+        cancelText="cancel"
+        items={['Move', 'Mark as important', 'Unsubscribe', 'Add to Tasks']}
         onClose={() => {
           setDescVisible(false);
         }}
@@ -66,23 +68,23 @@ export default function ListExample() {
       />
       <ActionSheet
         visible={iconVisible}
-        description="动作面板描述文字"
+        cancelText="cancel"
         items={[
           {
-            label: '选项一',
-            icon: <AppIcon size={24} />,
+            label: 'Move',
+            icon: <EnterIcon />,
           },
           {
-            label: '选项二',
-            icon: <AppIcon size={24} />,
+            label: 'Mark as important',
+            icon: <BookmarkIcon />,
           },
           {
-            label: '选项三',
-            icon: <AppIcon size={24} />,
+            label: 'Unsubscribe',
+            icon: <PinIcon />,
           },
           {
-            label: '选项四',
-            icon: <AppIcon size={24} />,
+            label: 'Add to Tasks',
+            icon: <CloudUploadIcon />,
           },
         ]}
         onClose={() => {
@@ -94,23 +96,24 @@ export default function ListExample() {
       />
       <ActionSheet
         visible={badgeVisible}
-        description="动作面板描述文字"
+        description="Email Settings"
+        cancelText="cancel"
         items={[
           {
-            label: '选项一',
-            badge: { count: 1 },
-          },
-          {
-            label: '选项二',
+            label: 'Move',
             badge: { dot: true },
           },
           {
-            label: '选项三',
-            badge: { dot: true },
+            label: 'Mark as important',
+            badge: { count: 8, offset: [-6, 2] },
           },
           {
-            label: '选项四',
-            badge: { dot: true },
+            label: 'Unsubscribe',
+            badge: { count: 99, offset: [-6, 2] },
+          },
+          {
+            label: 'Add to Tasks',
+            badge: { count: 1000, offset: [-10, 2] },
           },
         ]}
         onClose={() => {

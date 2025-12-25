@@ -80,9 +80,11 @@ export interface TdActionSheetProps {
 
 export interface ActionSheetItem {
   label: string;
+  description?: string;
   color?: string;
   disabled?: boolean;
   icon?: TNode;
+  suffixIcon?: TNode;
   badge?: BadgeProps;
 }
 

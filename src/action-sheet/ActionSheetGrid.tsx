@@ -8,7 +8,7 @@ import { Grid, GridItem } from '../grid';
 import { Swiper, SwiperProps } from '../swiper';
 import { usePrefixClass } from '../hooks/useClass';
 
-type ActionSheetGridProps = Pick<ActionSheetProps, 'items' | 'align'> & {
+type ActionSheetGridProps = Pick<ActionSheetProps, 'items'> & {
   onSelected?: (idx: number) => void;
   count?: number;
 };
@@ -55,7 +55,7 @@ export function ActionSheetGrid(props: ActionSheetGridProps) {
         {actionItems.map((item, idx1) => (
           <Swiper.SwiperItem key={idx1}>
             <Grid gutter={0} column={gridColumn} style={{ width: '100%' }}>
-              {item.map((it, idx2) => {
+              {item.map((it: ActionSheetItem, idx2: number) => {
                 let label: string;
                 let image: TNode;
                 let badge: ActionSheetItem['badge'];
@@ -71,6 +71,7 @@ export function ActionSheetGrid(props: ActionSheetGridProps) {
                     key={`${idx1}-${idx2}`}
                     image={image}
                     text={label}
+                    description={it.description}
                     badge={badge}
                     // @ts-ignore
                     onClick={() => {

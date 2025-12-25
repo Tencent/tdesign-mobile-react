@@ -1,10 +1,28 @@
 import React, { useState } from 'react';
 import { Button, ActionSheet } from 'tdesign-mobile-react';
+import { EnterIcon, BookmarkIcon, PinIcon, CloudUploadIcon } from 'tdesign-icons-react';
 
 export default function ListExample() {
   const [alignCenterVisible, setAlignCenterVisible] = useState(false);
   const [alignLeftVisible, setAlignLeftVisible] = useState(false);
-
+  const items = [
+    {
+      label: 'Move',
+      icon: () => <EnterIcon />,
+    },
+    {
+      label: 'Mark as important',
+      icon: <BookmarkIcon />,
+    },
+    {
+      label: 'Unsubscribe',
+      icon: <PinIcon />,
+    },
+    {
+      label: 'Add to Tasks',
+      icon: <CloudUploadIcon />,
+    },
+  ];
   return (
     <div className="action-sheet-demo">
       <div className="action-sheet-demo-btns">
@@ -18,8 +36,9 @@ export default function ListExample() {
       <ActionSheet
         align="center"
         visible={alignCenterVisible}
-        description="动作面板描述文字"
-        items={['选项一', '选项二', '选项三', '选项四']}
+        description="Email Settings"
+        cancelText="cancel"
+        items={items}
         onClose={() => {
           setAlignCenterVisible(false);
         }}
@@ -30,8 +49,9 @@ export default function ListExample() {
       <ActionSheet
         align="left"
         visible={alignLeftVisible}
-        description="动作面板描述文字"
-        items={['选项一', '选项二', '选项三', '选项四']}
+        description="Email Settings"
+        cancelText="cancel"
+        items={items}
         onClose={() => {
           setAlignLeftVisible(false);
         }}

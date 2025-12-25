@@ -18,8 +18,8 @@ export default function BaseBadge() {
 
       <div className="summary">数字徽标</div>
       <div className="badge-demo">
-        <Badge count="8" content="消息" offset={[-8, 0]} className="badge-item" />
-        <Badge count="2" offset={[-2, -2]} className="badge-item">
+        <Badge count="8" content="消息" offset={[4, 0]} className="badge-item" />
+        <Badge count="2" offset={[2, -2]} className="badge-item">
           <NotificationIcon size={24} />
         </Badge>
         <Badge count="8" offset={[2, 2]} className="badge-item">

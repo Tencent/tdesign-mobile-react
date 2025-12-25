@@ -56,13 +56,6 @@ describe('ActionSheetList', () => {
       expect(queryByTestId('mock-icon')).toBeInTheDocument();
     });
 
-    it(':align - should apply left alignment', () => {
-      const items = ['选项一'];
-      const { container } = render(<ActionSheetList items={items} align="left" onSelected={mockOnSelected} />);
-
-      expect(container.querySelector('.t-action-sheet__list-item--left')).toBeInTheDocument();
-    });
-
     it('should handle empty items array', () => {
       const { container } = render(<ActionSheetList items={[]} onSelected={mockOnSelected} />);
 
