@@ -23,13 +23,18 @@ export interface TdTabBarProps {
    */
   fixed?: boolean;
   /**
-   * 是否为 iPhoneX 留出底部安全距离
+   * 固定在底部时是否开启占位
+   * @default false
+   */
+  placeholder?: boolean;
+  /**
+   * 是否开启底部安全区适配
    * @default true
    */
   safeAreaInsetBottom?: boolean;
   /**
    * 标签栏的形状
-   * @default 'normal'
+   * @default normal
    */
   shape?: 'normal' | 'round';
   /**
@@ -39,7 +44,7 @@ export interface TdTabBarProps {
   split?: boolean;
   /**
    * 选项风格
-   * @default 'normal'
+   * @default normal
    */
   theme?: 'normal' | 'tag';
   /**
@@ -50,6 +55,11 @@ export interface TdTabBarProps {
    * 当前选中标签的索引，非受控属性
    */
   defaultValue?: string | number | Array<string | number>;
+  /**
+   * 标签栏层级
+   * @default 1
+   */
+  zIndex?: number;
   /**
    * 选中标签切换时触发
    */

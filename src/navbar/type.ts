@@ -31,9 +31,19 @@ export interface TdNavbarProps {
    */
   leftArrow?: boolean;
   /**
+   * 固定在顶部时是否开启占位
+   * @default false
+   */
+  placeholder?: boolean;
+  /**
    * 右侧区域。值为 `string` 表示文本，为其他表示自定义内容
    */
   right?: TNode;
+  /**
+   * 是否开启顶部安全区适配
+   * @default true
+   */
+  safeAreaInsetTop?: boolean;
   /**
    * 页面标题
    */
@@ -47,6 +57,11 @@ export interface TdNavbarProps {
    * @default true
    */
   visible?: boolean;
+  /**
+   * 导航条层级
+   * @default 1
+   */
+  zIndex?: number;
   /**
    * 点击左侧区域时触发
    */

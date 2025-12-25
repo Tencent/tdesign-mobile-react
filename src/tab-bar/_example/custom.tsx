@@ -22,7 +22,7 @@ function TabBarBaseDemo() {
 
   return (
     <div className="demo-tab-bar section-custom">
-      <TabBar value={value} onChange={change}>
+      <TabBar value={value} fixed={false} onChange={change}>
         {list.map((item, i) => (
           <TabBarItem key={item.value || i} icon={item.icon} value={item.value} />
         ))}

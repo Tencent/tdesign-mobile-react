@@ -35,7 +35,7 @@ function TabBarBaseDemo() {
 
   return (
     <div className="demo-tab-bar">
-      <TabBar defaultValue="home" theme="tag" split={false}>
+      <TabBar defaultValue="home" theme="tag" fixed={false} split={false}>
         {list.map((item, i) => (
           <TabBarItem key={item.value || i} value={item.value} subTabBar={item.children}>
             {item.label}
