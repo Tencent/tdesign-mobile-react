@@ -5,6 +5,24 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.21.1 `2025-12-25` 
+### 🚀 Features
+- `ActionSheet`: `item` 属性补充 `description`、`suffixIcon` 字段 @anlyyao ([#845](https://github.com/Tencent/tdesign-mobile-react/pull/845))
+- `Badge`: @anlyyao ([#855](https://github.com/Tencent/tdesign-mobile-react/pull/855))
+  - `shape` 属性新增 `ribbon-right/ribbon-left/triangle-right/triangle-left` 可选项，其中 `ribbon` 与 `ribbon-right` 等效 
+  - 优化 `ribbon` 实现，改用 `background: linear-gradient()`，移除伪元素相关样式
+- `Navbar`: 新增 `placeholder` 属性，默认值为 `false`；新增 `zIndex` 属性，默认值为 `1` @anlyyao ([#852](https://github.com/Tencent/tdesign-mobile-react/pull/852))
+- `TabBar`: 新增 `placeholder` 属性，默认值为 `false`；新增 `zIndex` 属性，默认值为 `1` @anlyyao ([#852](https://github.com/Tencent/tdesign-mobile-react/pull/852))
+### 🐞 Bug Fixes
+- `ActionSheet`: @anlyyao ([#845](https://github.com/Tencent/tdesign-mobile-react/pull/845))
+  - 修复左对齐场景下，子项 `border` 左间距错误
+  - 修复 `grid` 主题，`description` 描述文本行高错误
+  - 修复 `grid` 主题 +  无 `description` 描述文本场景下，顶部间距错误
+  - `list` 主题最后一项不应设置底边框
+- `Picker`: 修复 `swipeDuration` 属性无效的问题 @Ryan-CW-Code ([#848](https://github.com/Tencent/tdesign-mobile-react/pull/848))
+### 🚧 Others
+- `feat`: 新增支持`.dark` 类名，丰富切换深色模式的方式 @liweijie0812 ([#851](https://github.com/Tencent/tdesign-mobile-react/pull/851))
+
 ## 🌈 0.21.0 `2025-11-27` 
 ### 🚀 Features
 - `Calendar`: 新增 `allowSameDay` 属性，允许 type='range' 场景的起止时间相同 @liweijie0812 ([#829](https://github.com/Tencent/tdesign-mobile-react/pull/829))
@@ -334,3 +352,4 @@ spline: explain
 
 ## 🌈 0.1.0 `2022-06-29` 
 - 首发版本
+
