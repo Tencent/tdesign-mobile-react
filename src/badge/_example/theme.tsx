@@ -29,12 +29,18 @@ export default function ThemeBadge() {
       <div className="summary" style={{ marginBottom: '16px' }}>
         角标
       </div>
-      <Cell title="单行标题" note={<Badge count="NEW" offset={[0, 0]} shape="ribbon" />}></Cell>
+      <Cell title="单行标题" note={<Badge count="NEW" offset={[0, 0]} shape="ribbon-left" />}></Cell>
+      <Cell title="单行标题" bordered={false} note={<Badge count="NEW" offset={[0, 0]} shape="ribbon" />}></Cell>
 
       <div className="summary" style={{ marginBottom: '16px' }}>
         三角角标
       </div>
-      <Cell title="单行标题" note={<Badge count="NEW" offset={[0, 0]} shape="triangle-right" />}></Cell>
+      <Cell title="单行标题" note={<Badge count="NEW" offset={[0, 0]} shape="triangle-left" />}></Cell>
+      <Cell
+        title="单行标题"
+        bordered={false}
+        note={<Badge count="NEW" offset={[0, 0]} shape="triangle-right" />}
+      ></Cell>
     </>
   );
 }
