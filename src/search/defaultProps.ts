@@ -8,10 +8,11 @@ export const searchDefaultProps: TdSearchProps = {
   action: '',
   center: false,
   clearable: true,
+  cursorColor: '#0052d9',
   disabled: false,
   focus: false,
   leftIcon: 'search',
   placeholder: '',
-  readonly: false,
+  readonly: undefined,
   shape: 'square',
 };

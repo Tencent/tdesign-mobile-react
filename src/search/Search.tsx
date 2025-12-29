@@ -130,6 +130,7 @@ const Search: FC<SearchProps> = (props) => {
           value={searchValue}
           type="search"
           className={`${inputClasses}`}
+          style={{ '--td-search-cursor-color': props.cursorColor } as React.CSSProperties}
           autoFocus={focus}
           placeholder={placeholder}
           readOnly={readonly}

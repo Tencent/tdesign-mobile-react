@@ -12,12 +12,13 @@ action | TNode | '' | 自定义右侧操作按钮文字。TS 类型：`string \|
 autocompleteOptions | Array | - | 【讨论中】联想词列表，如果不存在或长度为 0 则不显示联想框。可以使用函数 `label` 自定义联想词为任意内容；也可使用插槽 `option` 定义联想词内容，插槽参数为 `{ option: AutocompleteOption; index: number }`。如果 `group` 值为 `true` 则表示当前项为分组标题。TS 类型：`Array<AutocompleteOption>` `type AutocompleteOption = string \| { label: string \| TNode; group?: boolean }`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts)。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/search/type.ts) | N
 center | Boolean | false | 是否居中 | N
 clearable | Boolean | true | 是否启用清除控件 | N
+cursorColor | String | #0052d9 | `0.21.2`。光标颜色 | N
 disabled | Boolean | false | 是否禁用 | N
 focus | Boolean | false | 是否聚焦 | N
 leftIcon | TNode | 'search' | 左侧图标。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 placeholder | String | '' | 占位符 | N
 prefixIcon | TElement | - | 已废弃。前置图标，默认为搜索图标。值为 `null` 时则不显示。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-readonly | Boolean | false | 只读状态 | N
+readonly | Boolean | undefined | 只读状态 | N
 shape | String | 'square' | 搜索框形状。可选项：square/round | N
 suffixIcon | TElement | - | 已废弃。后置图标。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 value | String | - | 值 | N
@@ -39,6 +40,7 @@ onSubmit | Function |  | TS 类型：`(context: { value: string; e: KeyboardEven
 --td-search-bg-color | @bg-color-secondarycontainer | -
 --td-search-clear-icon-color | @text-color-placeholder | -
 --td-search-clear-icon-size | 24px | -
+--td-search-cursor-color | @brand-color | -
 --td-search-font | @font-body-large | -
 --td-search-height | 40px | -
 --td-search-icon-color | @text-color-placeholder | -

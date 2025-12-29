@@ -23,10 +23,20 @@ export interface TdSearchProps {
    */
   center?: boolean;
   /**
+   * 清空图标触发方式，仅在输入框有值时有效
+   * @default always
+   */
+  clearTrigger?: 'always' | 'focus';
+  /**
    * 是否启用清除控件
    * @default true
    */
   clearable?: boolean;
+  /**
+   * 光标颜色
+   * @default #0052d9
+   */
+  cursorColor?: string;
   /**
    * 是否禁用
    * @default false
@@ -49,7 +59,6 @@ export interface TdSearchProps {
   placeholder?: string;
   /**
    * 只读状态
-   * @default false
    */
   readonly?: boolean;
   /**
@@ -69,7 +78,6 @@ export interface TdSearchProps {
   defaultValue?: string;
   /**
    * 点击右侧操作按钮文字时触发
-   * @default ''
    */
   onActionClick?: ({}) => void;
   /**
