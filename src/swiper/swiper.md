@@ -1,7 +1,6 @@
 :: BASE_DOC ::
 
 ## API
-
 ### Swiper Props
 
 名称 | 类型 | 默认值 | 描述 | 必传
@@ -16,7 +15,7 @@ duration | Number | 300 | 滑动动画时长 | N
 height | String / Number | - | 当使用垂直方向滚动时的高度 | N
 interval | Number | 5000 | 轮播间隔时间 | N
 loop | Boolean | true | 是否循环播放 | N
-navigation | TNode | - | 导航器全部配置。TS 类型：`SwiperNavigation \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+navigation | TNode | true | 导航器全部配置，true 的话使用默认配置。TS 类型：`SwiperNavigation \| TNode \| Boolean`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 nextMargin | String / Number | 0 | 后边距，可用于露出后一项的一小部分。默认单位 `px` | N
 previousMargin | String / Number | 0 | 前边距，可用于露出前一项的一小部分。默认单位 `px` | N
 type | String | default | 样式类型：默认样式、卡片样式。可选项：default/card | N
