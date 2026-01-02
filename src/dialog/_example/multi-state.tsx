@@ -36,7 +36,7 @@ const MultiStateUsage = React.memo(() => {
         文字按钮
       </Button>
       <div className="btn-gap"></div>
-      <div className="diaog-demo__summary">水平基础按钮</div>
+      <div className="dialog-demo__summary">水平基础按钮</div>
       <div className="btn-gap"></div>
       <Button
         variant="outline"
@@ -56,7 +56,7 @@ const MultiStateUsage = React.memo(() => {
         水平基础按钮
       </Button>
       <div className="btn-gap"></div>
-      <div className="diaog-demo__summary">垂直基础按钮</div>
+      <div className="dialog-demo__summary">垂直基础按钮</div>
       <div className="btn-gap"></div>
       <Button
         variant="outline"
@@ -77,7 +77,7 @@ const MultiStateUsage = React.memo(() => {
         垂直基础按钮
       </Button>
       <div className="btn-gap"></div>
-      <div className="diaog-demo__summary">带关闭按钮的对话框</div>
+      <div className="dialog-demo__summary">带关闭按钮的对话框</div>
       <div className="btn-gap"></div>
       <Button
         variant="outline"
