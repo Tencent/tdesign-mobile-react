@@ -1,16 +1,16 @@
 :: BASE_DOC ::
 
 ## API
-
 ### Swiper Props
 
 name | type | default | description | required
 -- | -- | -- | -- | --
 className | String | - | className of component | N
-style | Object | - | CSS(Cascading Style Sheets)，Typescript：`React.CSSProperties` | N
+style | Object | - | CSS(Cascading Style Sheets)，Typescript: `React.CSSProperties` | N
 animation | String | slide | options: slide | N
 autoplay | Boolean | true | \- | N
 current | Number | 0 | \- | N
+defaultCurrent | Number | 0 | uncontrolled property | N
 direction | String | horizontal | options: horizontal/vertical | N
 duration | Number | 300 | \- | N
 height | String / Number | - | \- | N

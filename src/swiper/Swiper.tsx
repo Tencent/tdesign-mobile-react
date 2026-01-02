@@ -68,7 +68,7 @@ const Swiper = forwardRefWithStatics(
     const rootDiv = useRef<HTMLDivElement>(null); // 根节点
     const swiperContainer = useRef<HTMLDivElement>(null); // swiper容器节点
     const swiperSource = useRef<SwiperChangeSource>('autoplay'); // swiper变化来源
-    const previousIndex = useRef(current || defaultCurrent || 0); // 上一次轮播页索引
+    const previousIndex = useRef<number>(current ?? defaultCurrent ?? 0); // 上一次轮播页索引
     const nextIndex = useRef(previousIndex.current);
     const items = useRef<SwiperItemReference[]>([]); // swiper子项
     const [itemCount, setItemCount] = useState(0); // 轮播子项数量
@@ -417,7 +417,8 @@ const Swiper = forwardRefWithStatics(
     });
 
     useEffect(() => {
-      // 初始化卡片的位置
+      if (!items.current.length) return;
+
       previousIndex.current = calculateItemIndex(previousIndex.current, items.current.length, loop);
       updateSwiperItemClassName(previousIndex.current, loop);
       setDotIndex(() => previousIndex.current);
@@ -426,11 +427,12 @@ const Swiper = forwardRefWithStatics(
 
     useEffect(() => {
       if (currentIsNull) return;
+      if (!items.current.length) return;
       nextIndex.current = calculateItemIndex(current, items.current.length, loop);
       if (previousIndex.current !== nextIndex.current) {
         enterSwitching(directionAxis);
       }
-    }, [calculateItemIndex, current, directionAxis, enterSwitching, loop, currentIsNull]);
+    }, [calculateItemIndex, current, directionAxis, enterSwitching, loop, currentIsNull, itemCount]);
 
     useEffect(() => {
       onChange?.(previousIndex.current, { source: swiperSource.current });
