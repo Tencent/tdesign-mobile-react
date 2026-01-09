@@ -59,7 +59,7 @@ module.exports = {
   switch: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   tabBar: { statements: '100%', branches: '93.18%', functions: '100%', lines: '100%' },
   table: { statements: '100%', branches: '90%', functions: '100%', lines: '100%' },
-  tabs: { statements: '43.22%', branches: '18.75%', functions: '56%', lines: '45.07%' },
+  tabs: { statements: '99.35%', branches: '97.5%', functions: '100%', lines: '100%' },
   tag: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   textarea: { statements: '98.64%', branches: '95%', functions: '93.33%', lines: '100%' },
   toast: { statements: '98.73%', branches: '100%', functions: '94.11%', lines: '98.66%' },
