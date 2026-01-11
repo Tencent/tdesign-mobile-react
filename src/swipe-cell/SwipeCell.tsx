@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef, useMemo, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef, useMemo, useState, useEffect } from 'react';
 import { isArray, isBoolean } from 'lodash-es';
 import classNames from 'classnames';
 import { useClickAway } from 'ahooks';
@@ -25,6 +25,29 @@ export interface SwipeCellProps extends TdSwipeCellProps, StyledProps {}
 
 const threshold = '50%';
 
+export const syncOpenedState = (
+  rootRef: React.RefObject<HTMLDivElement>,
+  opened: SwipeCellProps['opened'],
+  getOpenedSide: (opened: SwipeCellProps['opened']) => SideType | undefined,
+  expand: (side: SideType) => void,
+  close: () => void,
+  setTimer: (callback: () => void, delay: number) => void,
+) => {
+  if (!rootRef.current) return;
+
+  const side = getOpenedSide(opened);
+
+  if (side === 'left' || side === 'right') {
+    // 初始化 expanded，等待 dom 加载完，获取 left/right 宽度后无动画设置展开状态
+    // 防止 left/right 为列表时，获取真实宽度有误
+    setTimer(() => {
+      expand(side);
+    }, 100);
+  } else {
+    close();
+  }
+};
+
 const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) => {
   const props = useDefaultProps<SwipeCellProps>(originProps, swipeCellDefaultProps);
 
@@ -32,11 +55,35 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   const rootRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const [curSure, setSure] = useState<{
     content: Sure;
     width: number;
     transform: string;
   }>({ content: '', width: 0, transform: 'none' });
+
+  // Helper function to set timers that are tracked for cleanup
+  const setTimer = (callback: () => void, delay: number) => {
+    const timerId = setTimeout(() => {
+      // Remove completed timer from tracking array
+      const index = timersRef.current.indexOf(timerId);
+      if (index > -1) {
+        timersRef.current.splice(index, 1);
+      }
+      callback();
+    }, delay);
+    timersRef.current.push(timerId);
+    return timerId;
+  };
+
+  // Cleanup all timers on unmount
+  useEffect(
+    () => () => {
+      timersRef.current.forEach((timerId) => clearTimeout(timerId));
+      timersRef.current = [];
+    },
+    [],
+  );
 
   const getOpenedSide = (opened) => {
     if (isBoolean(opened)) {
@@ -49,10 +96,10 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
       return;
     }
     if (isArray(opened)) {
-      if (open[1] && rightRef.current) {
+      if (opened[1] && rightRef.current) {
         return 'right';
       }
-      if (open[0] && leftRef.current) {
+      if (opened[0] && leftRef.current) {
         return 'left';
       }
     }
@@ -86,7 +133,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     setX(0);
     onChange();
     if (curSure.content) {
-      setTimeout(() => {
+      setTimer(() => {
         setSure({
           content: '',
           width: 0,
@@ -130,9 +177,9 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
         } else {
           close();
         }
-        window.setTimeout(() => {
+        setTimer(() => {
           ctx.dragging = false;
-        });
+        }, 0);
       } else {
         setX(offsetX);
       }
@@ -156,18 +203,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   }));
 
   useLayoutEffect(() => {
-    if (!rootRef.current) return;
-    const side = getOpenedSide(opened);
-
-    if (['left', 'right'].includes(side)) {
-      // 初始化 expanded，等待 dom 加载完，获取 left/right 宽度后无动画设置展开状态
-      // 防止 left/right 为列表时，获取真实宽度有误
-      setTimeout(() => {
-        expand(side as SideType);
-      }, 100);
-    } else {
-      close();
-    }
+    syncOpenedState(rootRef, opened, getOpenedSide, expand, close, setTimer);
     // 可以保证expand，close正常执行
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opened, rootRef.current]);
@@ -189,12 +225,12 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
         width: getSideOffsetX(side),
         transform: side === 'left' ? 'translateX(-100%)' : 'translateX(100%)',
       });
-      setTimeout(() => {
+      setTimer(() => {
         setSure((current) => ({
           ...current,
           transform: 'none',
         }));
-      });
+      }, 0);
       return;
     }
 

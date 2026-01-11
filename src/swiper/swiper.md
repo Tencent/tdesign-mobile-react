@@ -32,28 +32,27 @@ minShowNum | Number | - | 小于这个数字不会显示导航器 | N
 paginationPosition | String | bottom | 页码信息展示位置。可选项：top-left/top/top-right/bottom-left/bottom/bottom-right/left/right | N
 placement | String | inside | 导航器位置，位于主体的内侧或是外侧。可选项：inside/outside | N
 showControls | Boolean | false | 是否显示两侧的控制按钮 | N
-type | String | - | 导航器类型，点状(dots)、点条状(dots-bar)、分式(fraction)等。TS 类型：`SwiperNavigationType` `type SwiperNavigationType = 'dots' \| 'dots-bar' \| 'fraction'`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/swiper/type.ts) | N
+type | String | dots | 导航器类型，点状(dots)、点条状(dots-bar)、分式(fraction)等。TS 类型：`SwiperNavigationType` `type SwiperNavigationType = 'dots' \| 'dots-bar' \| 'fraction'`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/swiper/type.ts) | N
 
 ### CSS Variables
 
 组件提供了下列 CSS 变量，可用于自定义样式。
 名称 | 默认值 | 描述 
 -- | -- | --
---td-swiper-placement-outside-padding | calc(@spacer-1 + @swiper-nav-dot-size) | - 
---td-swiper-border-radius | 8px | - 
---td-swiper-item-left-padding | 6px | - 
---td-swiper-item-right-padding | 6px | - 
-less | less | - 
---td-swiper-nav-btn-bg-color | @font-gray-3 | - 
---td-swiper-nav-btn-color | @font-white-1 | - 
---td-swiper-nav-btn-size | 24px | - 
---td-swiper-nav-dot-active-color | @font-white-1 | - 
---td-swiper-nav-dot-color | @font-white-2 | - 
---td-swiper-nav-dot-size | 6px | - 
---td-swiper-nav-dots-bar-active-width | 20px | - 
---td-swiper-nav-fraction-bg-color | @font-gray-3 | - 
---td-swiper-nav-fraction-color | @font-white-1 | - 
---td-swiper-nav-fraction-font-size | 12px | - 
---td-swiper-nav-fraction-height | 24px | - 
---td-swiper-nav-outside-bg | @gray-color-3 | - 
---td-swiper-nav-outside-bg-active | @brand-color-7 | -
+--td-swiper-border-radius | 8px | -
+--td-swiper-item-left-padding | 6px | -
+--td-swiper-item-right-padding | 6px | -
+--td-swiper-placement-outside-padding | calc(@spacer-1 + @swiper-nav-dot-size) | -
+--td-swiper-nav-btn-bg-color | @font-gray-3 | -
+--td-swiper-nav-btn-color | @font-white-1 | -
+--td-swiper-nav-btn-size | 24px | -
+--td-swiper-nav-dot-active-color | @font-white-1 | -
+--td-swiper-nav-dot-color | @font-white-2 | -
+--td-swiper-nav-dot-size | 6px | -
+--td-swiper-nav-dots-bar-active-width | 20px | -
+--td-swiper-nav-fraction-bg-color | @font-gray-3 | -
+--td-swiper-nav-fraction-color | @font-white-1 | -
+--td-swiper-nav-fraction-font | @font-body-small | -
+--td-swiper-nav-fraction-height | 24px | -
+--td-swiper-nav-outside-bg | @gray-color-3 | -
+--td-swiper-nav-outside-bg-active | @brand-color | -

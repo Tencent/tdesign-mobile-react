@@ -43,7 +43,7 @@ describe('Avatar', () => {
       const count = 8;
       const { container } = render(<Avatar badgeProps={{ count, offset: [6, 6] }} icon={<UserIcon />} />);
       expect(container.querySelector('.t-badge--basic')).toBeTruthy();
-      expect(container.querySelector('.t-badge--basic').innerHTML.trim()).toBe(`${count}`);
+      expect(container.querySelector('.t-badge--basic > .t-badge__count').innerHTML.trim()).toBe(`${count}`);
     });
 
     it(': size', () => {

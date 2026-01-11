@@ -64,7 +64,10 @@ const Sticky: FC<StickyProps> = (originProps) => {
     };
 
     let isFixed = false;
-    if (disabled) return style;
+    if (disabled) {
+      setContentStyles(style);
+      return;
+    }
     const offsetTopNum = Number(offsetTop);
 
     if (containerRef.current) {

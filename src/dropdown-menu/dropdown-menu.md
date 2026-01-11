@@ -23,6 +23,7 @@ className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
 disabled | Boolean | false | 是否禁用操作项 | N
 footer | TElement | - | 底部。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+icon | TNode | undefined | 自定义菜单子项图标，值为 `undefined` 表示使用默认图标。[面板打开时的图标，面板关闭时的图标]。TS 类型：`TNode \| TNode[] \| undefined`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 keys | Object | - | 用来定义 value / label / disabled 在 `options` 中对应的字段别名。TS 类型：`KeysType`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 label | String | - | 标题 | N
 multiple | Boolean | false | 是否多选 | N
@@ -40,16 +41,11 @@ onReset | Function |  | TS 类型：`(value: DropdownValue) => void`<br/>点击�
 组件提供了下列 CSS 变量，可用于自定义样式。
 名称 | 默认值 | 描述 
 -- | -- | --
---td-dropdown-menu-active-colorm | @brand-color | - 
---td-dropdown-menu-bg-colorm | @bg-color-container | - 
---td-dropdown-menu-colorm | @text-color-primary | - 
---td-dropdown-menu-disabled-colorm | @text-color-disabled | - 
---td-dropdown-menu-font-sizem | 14px | - 
---td-dropdown-menu-icon-sizem | 24px | - 
---td-dropdown-body-max-height | 280px | - 
---td-dropdown-menu-bg-color | @bg-color-container | - 
---td-tree-bg-color | @bg-color-container | - 
---td-tree-item-active-color | @brand-color | - 
---td-tree-item-font-size | 16px | - 
---td-tree-item-height | 48px | - 
---td-tree-root-bg-color | @bg-color-secondarycontainer | - 
+--td-dropdown-menu-active-color | @brand-color | -
+--td-dropdown-menu-background | @bg-color-container | -
+--td-dropdown-menu-color | @text-color-primary | -
+--td-dropdown-menu-disabled-color | @text-color-disabled | -
+--td-dropdown-menu-font | @font-body-medium | -
+--td-dropdown-menu-icon-size | 24px | -
+--td-dropdown-body-max-height | 280px | -
+--td-dropdown-menu-bg-color | @bg-color-container | -

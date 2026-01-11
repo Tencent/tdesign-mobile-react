@@ -15,7 +15,7 @@ import './style/index.less';
 function TabBarMobileDemo() {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="TabBar 标签栏" summary="用于在不同功能模块之间进行快速切换，位于页面底部。"></TDemoHeader>
+      <TDemoHeader title="TabBar 底部标签栏" summary="用于在不同功能模块之间进行快速切换，位于页面底部。"></TDemoHeader>
       <TDemoBlock title="01 组件类型" summary="纯文本标签栏">
         <TextDemo />
       </TDemoBlock>

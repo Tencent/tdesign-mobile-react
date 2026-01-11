@@ -45,8 +45,9 @@ const Popover = forwardRef<PopoverExposeRef, PopoverProps>((props, ref) => {
       classNames({
         [`${popoverClass}__content`]: true,
         [`${popoverClass}--${theme}`]: true,
+        [`${popoverClass}__content--arrow`]: showArrow,
       }),
-    [popoverClass, theme],
+    [popoverClass, theme, showArrow],
   );
 
   const getPopperPlacement = (placement: PopoverProps['placement']): Placement =>
@@ -88,14 +89,14 @@ const Popover = forwardRef<PopoverExposeRef, PopoverProps>((props, ref) => {
     if (isHorizontal) {
       const padding = isEnd ? Math.min(width + x, popperWidth) : Math.min(windowWidth - x, popperWidth);
       return {
-        [isEnd ? 'left' : 'right']: padding - 22,
+        [isEnd ? 'left' : 'right']: padding - 28,
       };
     }
 
     const isVertical = vertical.find((item) => placement.includes(item));
     if (isVertical) {
       return {
-        [isEnd ? 'top' : 'bottom']: popperHeight - 22,
+        [isEnd ? 'top' : 'bottom']: popperHeight - 28,
       };
     }
   };

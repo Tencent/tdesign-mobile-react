@@ -22,6 +22,7 @@ const testConfig: InlineConfig = {
     reportsDirectory: 'test/coverage',
     include: ['src/**/*'],
   },
+  setupFiles: [`./script/test/setup.js`],
 };
 
 export default defineConfig({

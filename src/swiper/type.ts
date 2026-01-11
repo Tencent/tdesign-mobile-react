@@ -103,7 +103,7 @@ export interface SwiperNavigation {
   showControls?: boolean;
   /**
    * 导航器类型，点状(dots)、点条状(dots-bar)、分式(fraction)等
-   * @default ''
+   * @default dots
    */
   type?: SwiperNavigationType;
 }

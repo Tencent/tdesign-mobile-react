@@ -5,6 +5,68 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.21.1 `2025-12-25` 
+### 🚀 Features
+- `ActionSheet`: `item` 属性补充 `description`、`suffixIcon` 字段 @anlyyao ([#845](https://github.com/Tencent/tdesign-mobile-react/pull/845))
+- `Badge`: @anlyyao ([#855](https://github.com/Tencent/tdesign-mobile-react/pull/855))
+  - `shape` 属性新增 `ribbon-right/ribbon-left/triangle-right/triangle-left` 可选项，其中 `ribbon` 与 `ribbon-right` 等效 
+  - 优化 `ribbon` 实现，改用 `background: linear-gradient()`，移除伪元素相关样式
+- `Navbar`: 新增 `placeholder` 属性，默认值为 `false`；新增 `zIndex` 属性，默认值为 `1` @anlyyao ([#852](https://github.com/Tencent/tdesign-mobile-react/pull/852))
+- `TabBar`: 新增 `placeholder` 属性，默认值为 `false`；新增 `zIndex` 属性，默认值为 `1` @anlyyao ([#852](https://github.com/Tencent/tdesign-mobile-react/pull/852))
+### 🐞 Bug Fixes
+- `ActionSheet`: @anlyyao ([#845](https://github.com/Tencent/tdesign-mobile-react/pull/845))
+  - 修复左对齐场景下，子项 `border` 左间距错误
+  - 修复 `grid` 主题，`description` 描述文本行高错误
+  - 修复 `grid` 主题 +  无 `description` 描述文本场景下，顶部间距错误
+  - `list` 主题最后一项不应设置底边框
+- `Picker`: 修复 `swipeDuration` 属性无效的问题 @Ryan-CW-Code ([#848](https://github.com/Tencent/tdesign-mobile-react/pull/848))
+### 🚧 Others
+- `feat`: 新增支持`.dark` 类名，丰富切换深色模式的方式 @liweijie0812 ([#851](https://github.com/Tencent/tdesign-mobile-react/pull/851))
+
+## 🌈 0.21.0 `2025-11-27` 
+### 🚀 Features
+- `Calendar`: 新增 `allowSameDay` 属性，允许 type='range' 场景的起止时间相同 @liweijie0812 ([#829](https://github.com/Tencent/tdesign-mobile-react/pull/829))
+- `Upload`: 
+  - 新增 `addBtn` 属性 @anlyyao ([#830](https://github.com/Tencent/tdesign-mobile-react/pull/830))
+  - 启用 `capture` 属性时跳过文件名重复检测；在 `capture = ''` + 拍照上传场景中，`allowUploadDuplicateFile` 应取 `true` @anlyyao ([#833](https://github.com/Tencent/tdesign-mobile-react/pull/833))
+- `DropdownItem`: 新增 `icon` 属性，支持自定义图标 @anlyyao ([#831](https://github.com/Tencent/tdesign-mobile-react/pull/831))
+### 🐞 Bug Fixes
+- `Calendar`: 修复 `value =[]` 结合 `switch-mode = 'year-month'` 使用时当前月份计算错误 @anlyyao ([#832](https://github.com/Tencent/tdesign-mobile-react/pull/832))
+- `ColorPicker`: 修复组件深色模式背景、边框、文本色错误 @anlyyao ([#834](https://github.com/Tencent/tdesign-mobile-react/pull/834))
+- `BackTop`: 修复文本字重错误 @anlyyao ([common#2339](https://github.com/Tencent/tdesign-common/pull/2339))
+- `Search`: 修复在小屏幕不遵循 `flex:1` 的问题  @LittleTurtle2333 ([common#2268](https://github.com/Tencent/tdesign-common/pull/2268))
+- `Slider`: 修复深色模式下滑轨背景色、滑块禁用态背景色错误 @anlyyao ([common#2331](https://github.com/Tencent/tdesign-common/pull/2331))
+- `Popover`: 修复箭头间距错误   @anlyyao ([#840](https://github.com/Tencent/tdesign-mobile-react/pull/840))
+- `GridItem`: 修复 `column` 为 `0` 时，标题行高错误 @anlyyao ([#840](https://github.com/Tencent/tdesign-mobile-react/pull/840))
+
+## 🌈 0.20.1 `2025-11-12` 
+### 🚀 Features
+- `Form`: 表单验证 `pattern` 支持 string 类型 @liweijie0812 ([#821](https://github.com/Tencent/tdesign-mobile-react/pull/821))
+### 🐞 Bug Fixes
+- `Form`: 修复错误消息 `max` 和 `min` 英文翻译错误 @liweijie0812([#816](https://github.com/Tencent/tdesign-mobile-react/pull/816))
+- `SwipeCell`: 修复初始化状态判断错误 @RSS1102 ([#810](https://github.com/Tencent/tdesign-mobile-react/pull/810))
+- `TabBar`: 
+  - 解决`TabBar`组件在使用`subTabBar`时点击报错问题 @mikasayw ([#819](https://github.com/Tencent/tdesign-mobile-react/pull/819))
+  - 解决`TabBar`和`TabBarItem`组件的 `className`、`style` 属性失效问题 @mikasayw ([#819](https://github.com/Tencent/tdesign-mobile-react/pull/819))
+
+## 🌈 0.20.0 `2025-10-11` 
+### 🚀 Features
+- `Icon`:  
+  - `tdesign-icons-react` 发布 `0.6.1` 版本，新增`align-bottom`、`no-result`、`no-result-filled`、 `tree-list`、`wifi-no`、 `wifi-no-filled`、`logo-stackblitz-filled`、`logo-stackblitz`、`logo-wecom-filled` 图标；移除 `video-camera-3`、`video-camera-3-filled`、`list` 图标，此前有依赖以上移除图标升级请注意 ⚠️ @uyarn ([#785](https://github.com/Tencent/tdesign-mobile-react/pull/785))
+  - 按需加载方式使用的图标资源支持可变粗细功能，通过`strokeWidth`属性进行配置 @uyarn ([#785](https://github.com/Tencent/tdesign-mobile-react/pull/785))
+  - 按需加载方式使用的图标资源支持多色填充功能，通过 `strokeColor` 和 `fillColor` 属性进行配置 @uyarn ([#785](https://github.com/Tencent/tdesign-mobile-react/pull/785)
+ - `Watermark`: 新增 `Watermark` 水印组件 @Wesley-0808 ([#804](https://github.com/Tencent/tdesign-mobile-react/pull/804))
+- `ImageViwer`: 修复点击遮罩层 `close` 事件未触发，并补充触发源 `image`，表示点击图片关闭图片预览 @anlyyao ([#811](https://github.com/Tencent/tdesign-mobile-react/pull/811))
+- `Drawer`: 新增 `overlayProps` 属性 @anlyyao ([#809](https://github.com/Tencent/tdesign-mobile-react/pull/809))
+### 🐞 Bug Fixes
+- `Message`: 修复 `marquee`、`closeBtn` 与 `link` 属性表现异常，更新 `click` 事件参数 @vancece ([#779](https://github.com/Tencent/tdesign-mobile-react/pull/779))
+- `Steps`: 修复 `current` 属性的 `string` 类型和 `number` 类型渲染效果不一致 @ImaginingMaker ([#761](https://github.com/Tencent/tdesign-mobile-react/pull/761))
+- `Rate`: 修复点选时弹框未显示 @lockiechen ([#754](https://github.com/Tencent/tdesign-mobile-react/pull/754))
+- `CountDown`: 修复毫秒不展示以及自动执行的问题 @SinzoL ([#781](https://github.com/Tencent/tdesign-mobile-react/pull/781))
+- `Collapse`: 
+  - 修复 `defaultExpandAll` 属性导致的打开异常问题 @ImaginingMaker ([#775](https://github.com/Tencent/tdesign-mobile-react/pull/775))
+  - 修复 `defaultExpandAll` 与 `expandMutex` 同时传递时的冲突问题 @ImaginingMaker ([#775](https://github.com/Tencent/tdesign-mobile-react/pull/775))
+
 ## 🌈 0.19.1 `2025-08-28` 
 ### 🚀 Features
 - `Tabs`:  支持自动滚动到激活项 @novlan1 ([#693](https://github.com/Tencent/tdesign-mobile-react/pull/693))
@@ -290,3 +352,4 @@ spline: explain
 
 ## 🌈 0.1.0 `2022-06-29` 
 - 首发版本
+

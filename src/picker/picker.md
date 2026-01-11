@@ -31,23 +31,20 @@ onPick | Function |  | TS 类型：`(value: Array<PickerValue>,context: PickerCo
 组件提供了下列 CSS 变量，可用于自定义样式。
 名称 | 默认值 | 描述 
 -- | -- | --
---td-picker-bg-color | @bg-color-container | - 
---td-picker-border-radius | 12px | - 
---td-picker-button-font-size | 16px | - 
---td-picker-cancel-color | @text-color-secondary | - 
---td-picker-confirm-color | @brand-color | - 
---td-picker-group-height | 200px | - 
---td-picker-indicator-bg-color | @bg-color-secondarycontainer | - 
---td-picker-indicator-border-radius | 6px | - 
---td-picker-item-active-color | @text-color-primary | - 
---td-picker-item-color | @text-color-secondary | - 
---td-picker-item-disabled-color | @text-color-disabled | - 
---td-picker-item-height | 40px | - 
---td-picker-item-height | 40px | - 
---td-picker-mask-color-bottom | hsla(0, 0%, 100%, .4) | - 
---td-picker-mask-color-top | hsla(0, 0%, 100%, .92) | - 
---td-picker-title-color | @text-color-primary | - 
---td-picker-title-font-size | 18px | - 
---td-picker-title-font-weight | 600 | - 
---td-picker-title-line-height | 26px | - 
---td-picker-toolbar-height | 58px | - 
+--td-picker-bg-color | @bg-color-container | -
+--td-picker-border-radius | 12px | -
+--td-picker-button-font | @font-body-large | -
+--td-picker-cancel-color | @text-color-secondary | -
+--td-picker-confirm-color | @brand-color | -
+--td-picker-group-height | 200px | -
+--td-picker-indicator-bg-color | @bg-color-secondarycontainer | -
+--td-picker-indicator-border-radius | 6px | -
+--td-picker-item-active-color | @text-color-primary | -
+--td-picker-item-color | @text-color-secondary | -
+--td-picker-item-disabled-color | @text-color-disabled | -
+--td-picker-item-height | 40px | -
+--td-picker-mask-color-bottom | hsla(0, 0%, 100%, 0.4) | -
+--td-picker-mask-color-top | hsla(0, 0%, 100%, 0.92) | -
+--td-picker-title-color | @text-color-primary | -
+--td-picker-title-font | @font-title-large | -
+--td-picker-toolbar-height | 58px | -

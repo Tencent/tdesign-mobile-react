@@ -25,8 +25,8 @@ onFinish | Function |  | Typescript：`() => void`<br/> | N
 The component provides the following CSS variables, which can be used to customize styles.
 Name | Default Value | Description 
 -- | -- | --
---td-countdown-default-color | @text-color-primary | - 
---td-countdown-round-border-radius | @radius-circle | - 
---td-countdown-square-border-radius | @radius-small | - 
---td-countdown-bg-color | @error-color-6 | - 
---td-countdown-round-color | @text-color-anti | - 
+--td-countdown-bg-color | @error-color-6 | -
+--td-countdown-default-color | @text-color-primary | -
+--td-countdown-round-border-radius | @radius-circle | -
+--td-countdown-round-color | @text-color-anti | -
+--td-countdown-square-border-radius | @radius-small | -

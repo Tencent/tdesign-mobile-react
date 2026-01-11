@@ -7,9 +7,10 @@ import { TdTabBarProps } from './type';
 export const tabBarDefaultProps: TdTabBarProps = {
   bordered: true,
   fixed: true,
+  placeholder: false,
   safeAreaInsetBottom: true,
   shape: 'normal',
   split: true,
   theme: 'normal',
-  defaultValue: undefined,
+  zIndex: 1,
 };

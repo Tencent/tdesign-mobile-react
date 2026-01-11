@@ -149,7 +149,7 @@ export default {
       title: 'Cell 单元格',
       titleEn: 'Cell',
       name: 'cell',
-      component: () => import('tdesign-mobile-react/cell/_example/base.tsx'),
+      component: () => import('tdesign-mobile-react/cell/_example/index.tsx'),
     },
     {
       title: 'Upload 上传',
@@ -165,7 +165,7 @@ export default {
       component: () => import('tdesign-mobile-react/skeleton/_example/index.tsx'),
     },
     {
-      title: 'Sticky 吸顶',
+      title: 'Sticky 吸顶容器',
       titleEn: 'Sticky',
       name: 'sticky',
       component: () => import('tdesign-mobile-react/sticky/_example/index.tsx'),
@@ -249,7 +249,7 @@ export default {
       component: () => import('tdesign-mobile-react/side-bar/_example/custom.tsx'),
     },
     {
-      title: 'SwipeCell 滑动单元格',
+      title: 'SwipeCell 滑动操作',
       titleEn: 'SwipeCell',
       name: 'swipe-cell',
       component: () => import('tdesign-mobile-react/swipe-cell/_example/index.tsx'),
@@ -321,7 +321,7 @@ export default {
       component: () => import('tdesign-mobile-react/steps/_example/index.tsx'),
     },
     {
-      title: 'TabBar 标签栏',
+      title: 'TabBar 底部标签栏',
       titleEn: 'TabBar',
       name: 'tab-bar',
       component: () => import('tdesign-mobile-react/tab-bar/_example/mobile.tsx'),
@@ -363,7 +363,7 @@ export default {
       component: () => import('tdesign-mobile-react/table/_example/index.tsx'),
     },
     {
-      title: 'TreeSelect 树形选择',
+      title: 'TreeSelect 树形选择器',
       titleEn: 'TreeSelect',
       name: 'tree-select',
       component: () => import('tdesign-mobile-react/tree-select/_example/index.tsx'),
@@ -409,6 +409,12 @@ export default {
       titleEn: 'DateTimePicker',
       name: 'date-time-picker',
       component: () => import('tdesign-mobile-react/date-time-picker/_example/index.tsx'),
+    },
+    {
+      title: 'Watermark 水印',
+      titleEn: 'Watermark',
+      name: 'watermark',
+      component: () => import('tdesign-mobile-react/watermark/_example/index.tsx'),
     },
   ],
 };

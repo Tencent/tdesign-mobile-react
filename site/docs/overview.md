@@ -105,7 +105,7 @@ spline: explain
     <a class="item" href="./components/tab-bar">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-tabbar.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-tabbar-dark.png" />
-      <p class="name">TabBar 标签栏</p>
+      <p class="name">TabBar 底部标签栏</p>
     </a>
   </div>
   <div class="image-wrapper">
@@ -228,7 +228,7 @@ spline: explain
     <a class="item" href="./components/tree-select">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-treeselect.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-treeselect-dark.png" />
-      <p class="name">TreeSelect 树形选择</p>
+      <p class="name">TreeSelect 树形选择器</p>
     </a>
   </div>
   <div class="image-wrapper">
@@ -240,7 +240,7 @@ spline: explain
   </div>
 </section>
 
-<h3>数据展示<em class="tag">19</em></h3>
+<h3>数据展示<em class="tag">20</em></h3>
 <section class="image-group">
   <div class="image-wrapper">
     <a class="item" href="./components/avatar">
@@ -351,7 +351,7 @@ spline: explain
     <a class="item" href="./components/sticky">
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-sticky.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-sticky-dark.png" />
-      <p class="name">Sticky 吸顶</p>
+      <p class="name">Sticky 吸顶容器</p>
     </a>
   </div>
   <div class="image-wrapper">
@@ -373,6 +373,13 @@ spline: explain
       <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-tag.png" />
       <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-tag-dark.png" />
       <p class="name">Tag 标签</p>
+    </a>
+  </div>
+  <div class="image-wrapper">
+    <a class="item" href="./components/watermark">
+      <img class="__light__" src="https://tdesign.gtimg.com/site/mobile/doc-watermark.png" />
+      <img class="__dark__" src="https://tdesign.gtimg.com/site/mobile/doc-watermark-dark.png" />
+      <p class="name">Watermark 水印</p>
     </a>
   </div>
 </section>

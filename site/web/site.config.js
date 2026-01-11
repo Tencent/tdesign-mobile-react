@@ -161,7 +161,7 @@ export const docs = [
       },
 
       {
-        title: 'TabBar 标签栏',
+        title: 'TabBar 底部标签栏',
         titleEn: 'TabBar',
         name: 'tab-bar',
         path: '/mobile-react/components/tab-bar',
@@ -305,7 +305,7 @@ export const docs = [
         componentEn: () => import('tdesign-mobile-react/textarea/textarea.en-US.md'),
       },
       {
-        title: 'TreeSelect 树形选择',
+        title: 'TreeSelect 树形选择器',
         titleEn: 'TreeSelect',
         name: 'tree-select',
         path: '/mobile-react/components/tree-select',
@@ -448,7 +448,7 @@ export const docs = [
         componentEn: () => import('tdesign-mobile-react/skeleton/skeleton.en-US.md'),
       },
       {
-        title: 'Sticky 吸顶',
+        title: 'Sticky 吸顶容器',
         titleEn: 'Sticky',
         name: 'sticky',
         path: '/mobile-react/components/sticky',
@@ -478,6 +478,14 @@ export const docs = [
         path: '/mobile-react/components/tag',
         component: () => import('tdesign-mobile-react/tag/tag.md'),
         componentEn: () => import('tdesign-mobile-react/tag/tag.en-US.md'),
+      },
+      {
+        title: 'Watermark 水印',
+        titleEn: 'Watermark',
+        name: 'watermark',
+        path: '/mobile-react/components/watermark',
+        component: () => import('tdesign-mobile-react/watermark/watermark.md'),
+        componentEn: () => import('tdesign-mobile-react/watermark/watermark.en-US.md'),
       },
     ],
   },

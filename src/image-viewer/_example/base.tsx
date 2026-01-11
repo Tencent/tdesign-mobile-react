@@ -10,7 +10,12 @@ export default function BaseDemo() {
   const [visible, setVisible] = useState(false);
 
   const onIndexChange = (...args) => {
-    console.log('[onIndexChange]', args);
+    console.log('onIndexChange', args);
+  };
+
+  const handleClose = (...args) => {
+    console.log('onClose', args);
+    setVisible(false);
   };
 
   return (
@@ -19,7 +24,7 @@ export default function BaseDemo() {
         基础图片预览
       </Button>
 
-      <ImageViewer images={images} visible={visible} onClose={() => setVisible(false)} onIndexChange={onIndexChange} />
+      <ImageViewer images={images} visible={visible} onClose={handleClose} onIndexChange={onIndexChange} />
     </div>
   );
 }

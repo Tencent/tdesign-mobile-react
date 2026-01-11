@@ -43,8 +43,8 @@ const GridItem: FC<GridItemProp> = (prop) => {
   }, [column, align]);
 
   const size = useMemo(() => {
-    if (column > 4 || !column) return 'small';
-    return column < 4 ? 'large' : 'middle';
+    if (!column || column === 4) return 'middle';
+    return column > 4 ? 'small' : 'large';
   }, [column]);
 
   const gridItemImage = useMemo(() => {

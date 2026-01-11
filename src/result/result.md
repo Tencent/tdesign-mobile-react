@@ -19,15 +19,13 @@ title | TNode | '' | 标题。TS 类型：`string \| TNode`。[通用类型定�
 组件提供了下列 CSS 变量，可用于自定义样式。
 名称 | 默认值 | 描述 
 -- | -- | --
---td-result-description-color | @text-color-secondary | - 
---td-result-description-font-size | @font-size-base | - 
---td-result-description-line-height | 22px | - 
---td-result-description-margin-top | @spacer | - 
---td-result-icon-default-color | @brand-color | - 
---td-result-icon-error-color | @error-color | - 
---td-result-icon-success-color | @success-color | - 
---td-result-icon-warning-color | @warning-color | - 
---td-result-title-color | @text-color-primary | - 
---td-result-title-font-size | @font-size-xl | - 
---td-result-title-line-height | 28px | - 
---td-result-title-margin-top | @spacer-1 | - 
+--td-result-description-color | @text-color-secondary | -
+--td-result-description-font | @font-body-medium | -
+--td-result-description-margin-top | @spacer | -
+--td-result-icon-default-color | @brand-color | -
+--td-result-icon-error-color | @error-color | -
+--td-result-icon-success-color | @success-color | -
+--td-result-icon-warning-color | @warning-color | -
+--td-result-title-color | @text-color-primary | -
+--td-result-title-font | @font-title-extraLarge | -
+--td-result-title-margin-top | @spacer-1 | -

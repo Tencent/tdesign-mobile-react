@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, ActionSheet } from 'tdesign-mobile-react';
-import { AppIcon } from 'tdesign-icons-react';
+import { EnterIcon, BookmarkIcon, PinIcon, CloudUploadIcon } from 'tdesign-icons-react';
 
 export default function ListExample() {
   const [statusVisible, setStatusVisible] = useState(false);
@@ -15,25 +15,26 @@ export default function ListExample() {
       <ActionSheet
         visible={statusVisible}
         description="列表型选项状态"
+        cancelText="cancel"
         items={[
           {
-            label: '选项一',
-            icon: <AppIcon size={24} />,
+            label: 'Move',
+            icon: <EnterIcon />,
           },
           {
-            label: '选项二',
-            icon: <AppIcon size={24} />,
+            label: 'Mark as important',
+            icon: <BookmarkIcon />,
             color: '#0052D9',
           },
           {
-            label: '选项三',
-            icon: <AppIcon size={24} />,
-            disabled: true,
+            label: 'Unsubscribe',
+            icon: <PinIcon />,
+            color: '#E34D59',
           },
           {
-            label: '选项四',
-            icon: <AppIcon size={24} />,
-            color: '#E34D59',
+            label: 'Add to Tasks',
+            icon: <CloudUploadIcon />,
+            disabled: true,
           },
         ]}
         onClose={() => {

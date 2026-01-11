@@ -24,4 +24,4 @@ onVisibleChange | Function |  | Typescript：`(visible: boolean) => void`<br/> |
 The component provides the following CSS variables, which can be used to customize styles.
 Name | Default Value | Description 
 -- | -- | --
---td-popover-padding | 12px | - 
+--td-popover-padding | 12px | -
