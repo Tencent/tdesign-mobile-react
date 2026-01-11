@@ -8,7 +8,7 @@ import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import { useSwipe } from '../_util/useSwipe';
 import parseTNode from '../_util/parseTNode';
 import { StyledProps } from '../common';
-import { SwiperChangeSource, SwiperNavigation, TdSwiperProps } from './type';
+import { SwiperChangeSource, SwiperNavigation, SwiperNavigationType, TdSwiperProps } from './type';
 import { swiperDefaultProps } from './defaultProps';
 import SwiperItem from './SwiperItem';
 import SwiperContext, { SwiperItemReference } from './SwiperContext';
@@ -107,12 +107,9 @@ const Swiper = forwardRefWithStatics(
         return DEFAULT_SWIPER_NAVIGATION;
       }
       if (typeof navigation === 'object' && navigation !== null) {
-        return {
-          ...DEFAULT_SWIPER_NAVIGATION,
-          ...navigation,
-        } as SwiperNavigation;
+        return { ...DEFAULT_SWIPER_NAVIGATION, ...navigation };
       }
-      return {} as SwiperNavigation;
+      return {};
     }, [navigation]);
 
     // 是否是导航配置
@@ -149,6 +146,7 @@ const Swiper = forwardRefWithStatics(
 
     const intervalTimer = useRef<any>(null); // 轮播计时器
     const durationTimer = useRef<any>(null); // 轮播动画计时器
+    const isMounted = useRef(true); // 组件挂载状态
     const [itemChange, setItemChange] = useState(false); // 是否处于轮播状态
     const [swiperStatus, setSwiperStatus] = useState(SwiperStatus.IDLE); // 轮播状态
     const [swiperStyle, setSwiperStyle] = useState<SwiperStyleState>({
@@ -322,12 +320,14 @@ const Swiper = forwardRefWithStatics(
     // 进入idle状态
     const enterIdle = useCallback((axis: string) => {
       navCtrlActive.current = false;
-      setSwiperStyle((prevState) => ({
-        ...prevState,
-        transition: 'none',
-        transform: `translate${axis}(0)`,
-      }));
-      setSwiperStatus(SwiperStatus.IDLE);
+      if (isMounted.current) {
+        setSwiperStyle((prevState) => ({
+          ...prevState,
+          transition: 'none',
+          transform: `translate${axis}(0)`,
+        }));
+        setSwiperStatus(SwiperStatus.IDLE);
+      }
     }, []);
 
     // 进入切换状态
@@ -343,11 +343,13 @@ const Swiper = forwardRefWithStatics(
         );
         updateSwiperItemClassName(index, loop);
         setDotIndex(() => index);
-        setSwiperStyle((prevState) => ({
-          ...prevState,
-          transition: `transform ${duration}ms`,
-          transform: generateTransform(axis, -step),
-        }));
+        if (isMounted.current) {
+          setSwiperStyle((prevState) => ({
+            ...prevState,
+            transition: `transform ${duration}ms`,
+            transform: generateTransform(axis, -step),
+          }));
+        }
         setSwiperStatus(SwiperStatus.SWITCHING);
       },
       [calculateSwiperItemIndex, duration, loop, updateSwiperItemClassName],
@@ -359,26 +361,34 @@ const Swiper = forwardRefWithStatics(
         previousIndex.current = calculateItemIndex(nextIndex.current, items.current.length, loop);
         updateSwiperItemPosition(axis, previousIndex.current, loop);
         enterIdle(axis);
-        setItemChange((prevState) => !prevState);
+        if (isMounted.current) {
+          setItemChange((prevState) => !prevState);
+        }
       },
       [calculateItemIndex, enterIdle, loop, updateSwiperItemPosition],
     );
 
     // 上一页
-    const goPrev = (source: SwiperChangeSource) => {
-      navCtrlActive.current = true;
-      swiperSource.current = source;
-      nextIndex.current = previousIndex.current - 1;
-      enterSwitching(directionAxis, -1);
-    };
+    const goPrev = useCallback(
+      (source: SwiperChangeSource) => {
+        navCtrlActive.current = true;
+        swiperSource.current = source;
+        nextIndex.current = previousIndex.current - 1;
+        enterSwitching(directionAxis, -1);
+      },
+      [enterSwitching, directionAxis],
+    );
 
     // 下一页
-    const goNext = (source: SwiperChangeSource) => {
-      navCtrlActive.current = true;
-      swiperSource.current = source;
-      nextIndex.current = previousIndex.current + 1;
-      enterSwitching(directionAxis, 1);
-    };
+    const goNext = useCallback(
+      (source: SwiperChangeSource) => {
+        navCtrlActive.current = true;
+        swiperSource.current = source;
+        nextIndex.current = previousIndex.current + 1;
+        enterSwitching(directionAxis, 1);
+      },
+      [enterSwitching, directionAxis],
+    );
 
     const onItemClick = () => {
       onClick?.(previousIndex.current ?? 0);
@@ -454,7 +464,24 @@ const Swiper = forwardRefWithStatics(
       }
     }, [props.height]);
 
+    useEffect(
+      () => () => {
+        isMounted.current = false;
+        if (intervalTimer.current) {
+          clearTimeout(intervalTimer.current);
+          intervalTimer.current = null;
+        }
+        if (durationTimer.current) {
+          clearTimeout(durationTimer.current);
+          durationTimer.current = null;
+        }
+      },
+      [],
+    );
+
     useEffect(() => {
+      if (!isMounted.current) return;
+
       if (intervalTimer.current) {
         clearTimeout(intervalTimer.current);
         intervalTimer.current = null;
@@ -519,23 +546,35 @@ const Swiper = forwardRefWithStatics(
       [props.height],
     );
 
-    const swiperNav = () => {
+    const swiperNav = useMemo(() => {
       // 如果 navigation 为 false，不显示导航
       if (navigation === false) return null;
 
+      // 如果是函数，则调用 parseTNode
+      if (typeof navigation === 'function') {
+        const result = navigation();
+        return parseTNode(result);
+      }
+
+      // 内置导航器配置
+      const navType = navigationConfig?.type as SwiperNavigationType | undefined;
+      const navPaginationPosition = navigationConfig?.paginationPosition as string | undefined;
+      const navPlacement = navigationConfig?.placement as string | undefined;
+      const navShowControls = navigationConfig?.showControls as boolean | undefined;
+
       // dots
       const dots = () => {
-        if (['dots', 'dots-bar'].includes(navigationConfig?.type || '')) {
+        if (navType && ['dots', 'dots-bar'].includes(navType)) {
           return (
             <>
               {items.current.map((_: any, index: number) => (
                 <span
                   key={`page${index}`}
-                  className={classNames(
-                    `${swiperNavClass}__${navigationConfig?.type}-item`,
-                    index === dotIndex ? `${swiperNavClass}__${navigationConfig?.type}-item--active` : '',
-                    `${swiperNavClass}__${navigationConfig?.type}-item--${direction}`,
-                  )}
+                  className={classNames([
+                    `${swiperNavClass}__${navType}-item`,
+                    index === dotIndex ? `${swiperNavClass}__${navType}-item--active` : '',
+                    `${swiperNavClass}__${navType}-item--${direction}`,
+                  ])}
                 />
               ))}
             </>
@@ -545,21 +584,21 @@ const Swiper = forwardRefWithStatics(
 
       // fraction
       const fraction = () => {
-        if (navigationConfig?.type === 'fraction') {
+        if (navType === 'fraction') {
           return <span>{`${(dotIndex ?? 0) + 1}/${items.current.length}`}</span>;
         }
       };
 
       const typeNav = () => {
-        if ('type' in navigationConfig) {
+        if (navType) {
           return (
             <span
-              className={classNames(
+              className={classNames([
                 `${swiperNavClass}--${direction}`,
-                `${swiperNavClass}__${navigationConfig?.type || ''}`,
-                `${swiperNavClass}--${navigationConfig?.paginationPosition || 'bottom'}`,
-                `${isBottomPagination && navigationConfig?.placement ? `${swiperNavClass}--${navigationConfig?.placement} ` : ''}`,
-              )}
+                `${swiperNavClass}__${navType}`,
+                `${swiperNavClass}--${navPaginationPosition || 'bottom'}`,
+                `${isBottomPagination && navPlacement ? `${swiperNavClass}--${navPlacement} ` : ''}`,
+              ])}
             >
               {dots()}
               {fraction()}
@@ -569,7 +608,7 @@ const Swiper = forwardRefWithStatics(
       };
 
       const controlsNav = () => {
-        if (!isVertical && !!navigationConfig?.showControls) {
+        if (!isVertical && navShowControls) {
           return (
             <span className={`${swiperNavClass}__btn`}>
               <span className={`${swiperNavClass}__btn--prev`} onClick={() => goPrev('nav')} />
@@ -589,13 +628,19 @@ const Swiper = forwardRefWithStatics(
         );
       }
 
-      // 如果是函数，则调用 parseTNode
-      if (typeof navigation === 'function') {
-        return parseTNode(navigation);
-      }
-
       return null;
-    };
+    }, [
+      navigation,
+      navigationConfig,
+      enableNavigation,
+      isBottomPagination,
+      dotIndex,
+      direction,
+      isVertical,
+      goPrev,
+      goNext,
+      swiperNavClass,
+    ]);
 
     return (
       <div
@@ -621,7 +666,7 @@ const Swiper = forwardRefWithStatics(
         >
           <SwiperContext.Provider value={memoProviderValues}>{parseTNode(children)}</SwiperContext.Provider>
         </div>
-        {swiperNav()}
+        {swiperNav}
       </div>
     );
   },
