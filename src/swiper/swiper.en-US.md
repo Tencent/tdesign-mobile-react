@@ -1,6 +1,7 @@
 :: BASE_DOC ::
 
 ## API
+
 ### Swiper Props
 
 name | type | default | description | required
@@ -30,7 +31,7 @@ minShowNum | Number | - | \- | N
 paginationPosition | String | bottom | options: top-left/top/top-right/bottom-left/bottom/bottom-right/left/right | N
 placement | String | inside | options: inside/outside | N
 showControls | Boolean | false | \- | N
-type | String | - | Typescript: `SwiperNavigationType` `type SwiperNavigationType = 'dots' \| 'dots-bar' \| 'fraction'`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/swiper/type.ts) | N
+type | String | dots | Navigator types include dots, dots-bar, fraction, etc.。Typescript: `SwiperNavigationType` `type SwiperNavigationType = 'dots' \| 'dots-bar' \| 'fraction'`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/swiper/type.ts) | N
 
 ### CSS Variables
 
