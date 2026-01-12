@@ -138,9 +138,9 @@ const Swiper = forwardRefWithStatics(
         className,
         `${swiperClass}`,
         `${swiperClass}--${type}`,
-        `${isBottomPagination && navPlacement ? `${swiperClass}--${navPlacement}` : ''}`,
+        `${navPlacement ? `${swiperClass}--${navPlacement}` : ''}`,
       ],
-      [swiperClass, type, isBottomPagination, navPlacement, className],
+      [swiperClass, type, navPlacement, className],
     );
 
     const intervalTimer = useRef<any>(null); // 轮播计时器
@@ -370,26 +370,29 @@ const Swiper = forwardRefWithStatics(
     // 上一页
     const goPrev = useCallback(
       (source: SwiperChangeSource) => {
+        if (disabled) return;
         navCtrlActive.current = true;
         swiperSource.current = source;
         nextIndex.current = previousIndex.current - 1;
         enterSwitching(directionAxis, -1);
       },
-      [enterSwitching, directionAxis],
+      [disabled, enterSwitching, directionAxis],
     );
 
     // 下一页
     const goNext = useCallback(
       (source: SwiperChangeSource) => {
+        if (disabled) return;
         navCtrlActive.current = true;
         swiperSource.current = source;
         nextIndex.current = previousIndex.current + 1;
         enterSwitching(directionAxis, 1);
       },
-      [enterSwitching, directionAxis],
+      [disabled, enterSwitching, directionAxis],
     );
 
     const onItemClick = () => {
+      if (disabled) return;
       onClick?.(previousIndex.current ?? 0);
     };
 
@@ -425,7 +428,7 @@ const Swiper = forwardRefWithStatics(
         } else if (threshold < -SWIPE_THRESHOLD) {
           goNext('touch');
         } else {
-          enterSwitching(directionAxis, 0);
+          enterIdle(directionAxis);
         }
       },
     });
@@ -447,6 +450,7 @@ const Swiper = forwardRefWithStatics(
     }, [calculateItemIndex, current, directionAxis, enterSwitching, loop, currentIsNull]);
 
     useEffect(() => {
+      if (disabled) return;
       onChange?.(previousIndex.current, { source: swiperSource.current });
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [itemChange]);
@@ -491,7 +495,7 @@ const Swiper = forwardRefWithStatics(
       }
       switch (swiperStatus) {
         case SwiperStatus.IDLE:
-          if (autoplay) {
+          if (autoplay && !disabled) {
             nextIndex.current = previousIndex.current + 1;
             intervalTimer.current = setTimeout(() => {
               enterSwitching(directionAxis, 1);
@@ -507,7 +511,7 @@ const Swiper = forwardRefWithStatics(
           nextIndex.current = previousIndex.current;
           break;
       }
-    }, [autoplay, directionAxis, duration, enterIdle, enterSwitching, interval, quitSwitching, swiperStatus]);
+    }, [autoplay, directionAxis, duration, enterIdle, enterSwitching, interval, quitSwitching, swiperStatus, disabled]);
 
     const changeProvide = () => {
       if (props.disabled) return;
@@ -546,10 +550,9 @@ const Swiper = forwardRefWithStatics(
       // 如果 navigation 为 false，不显示导航
       if (navigation === false) return null;
 
-      // 如果是函数，则调用 parseTNode
-      if (typeof navigation === 'function') {
-        const result = navigation();
-        return parseTNode(result);
+      // 如果是字符串或函数，则调用 parseTNode
+      if (typeof navigation === 'string' || typeof navigation === 'function') {
+        return parseTNode(navigation);
       }
 
       // 内置导航器配置
