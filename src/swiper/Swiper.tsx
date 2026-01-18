@@ -13,7 +13,6 @@ import { swiperDefaultProps } from './defaultProps';
 import SwiperItem from './SwiperItem';
 import SwiperContext, { SwiperItemReference } from './SwiperContext';
 
-// 导航器默认配置，对齐 Vue 版本
 const DEFAULT_SWIPER_NAVIGATION: SwiperNavigation = {
   paginationPosition: 'bottom',
   placement: 'inside',
@@ -34,7 +33,6 @@ enum SwiperStatus {
   ENDDRAG = 'enddrag', // 结束拖拽
 }
 
-// swiper组件的动态style
 interface SwiperStyleState {
   left?: string;
   right?: string;
@@ -102,20 +100,18 @@ const Swiper = forwardRefWithStatics(
       [props.nextMargin],
     );
 
-    // 导航配置，对齐 Vue 版本逻辑
     const navigationConfig = useMemo<SwiperNavigation>(() => {
-      // 如果 navigation 为 true，直接返回默认配置
       if (navigation === true) {
         return DEFAULT_SWIPER_NAVIGATION;
       }
-      // 如果是对象，则与默认配置合并
       if (typeof navigation === 'object' && navigation !== null) {
+        const navConfig = navigation as SwiperNavigation;
         return {
-          ...DEFAULT_SWIPER_NAVIGATION,
-          ...navigation,
+          paginationPosition: navConfig.paginationPosition ?? 'bottom',
+          placement: navConfig.placement ?? 'inside',
+          ...navConfig,
         } as SwiperNavigation;
       }
-      // 其他情况返回空配置
       return {} as SwiperNavigation;
     }, [navigation]);
 
@@ -125,19 +121,15 @@ const Swiper = forwardRefWithStatics(
       if (!Object.keys(navigationConfig).length) return false;
 
       const { minShowNum } = navigationConfig;
-      // 检查是否满足最小展示数量 (minShowNum)，如果不满足则不显示
       return minShowNum ? itemCount >= minShowNum : true;
     }, [navigationConfig, itemCount]);
 
-    // 是否是导航配置（兼容原有逻辑）
     const isSwiperNavigation = useMemo(() => enableBuiltinNavigation, [enableBuiltinNavigation]);
 
-    // 是否显示导航（兼容原有逻辑）
     const enableNavigation = useMemo(() => {
       if (enableBuiltinNavigation) {
         return true;
       }
-      // 处理自定义 TNode 情况（字符串、函数等）
       return navigation !== false && navigation != null && typeof navigation !== 'object';
     }, [enableBuiltinNavigation, navigation]);
 
@@ -337,7 +329,6 @@ const Swiper = forwardRefWithStatics(
       [calculateItemIndex],
     );
 
-    // 进入idle状态
     const enterIdle = useCallback((axis: string) => {
       navCtrlActive.current = false;
       setSwiperStyle((prevState) => ({
@@ -348,7 +339,6 @@ const Swiper = forwardRefWithStatics(
       setSwiperStatus(SwiperStatus.IDLE);
     }, []);
 
-    // 进入切换状态
     const enterSwitching = useCallback(
       (axis: string, outerStep: number | undefined = undefined) => {
         // 根据nextIndex计算需要定位到的
@@ -371,7 +361,6 @@ const Swiper = forwardRefWithStatics(
       [calculateSwiperItemIndex, duration, loop, updateSwiperItemClassName],
     );
 
-    // 退出切换状态
     const quitSwitching = useCallback(
       (axis: string) => {
         previousIndex.current = calculateItemIndex(nextIndex.current, items.current.length, loop);
@@ -382,7 +371,6 @@ const Swiper = forwardRefWithStatics(
       [calculateItemIndex, enterIdle, loop, updateSwiperItemPosition],
     );
 
-    // 上一页
     const goPrev = (source: SwiperChangeSource) => {
       if (disabled) return;
       navCtrlActive.current = true;
@@ -391,7 +379,6 @@ const Swiper = forwardRefWithStatics(
       enterSwitching(directionAxis, -1);
     };
 
-    // 下一页
     const goNext = (source: SwiperChangeSource) => {
       if (disabled) return;
       navCtrlActive.current = true;
@@ -542,12 +529,9 @@ const Swiper = forwardRefWithStatics(
     );
 
     const swiperNav = () => {
-      // 如果不启用导航，直接返回空
       if (!enableNavigation) return null;
 
-      // 如果启用了内置导航，使用配置渲染
       if (enableBuiltinNavigation) {
-        // dots
         const dots = () => {
           if (['dots', 'dots-bar'].includes(navigationConfig?.type || '')) {
             return (
@@ -567,7 +551,6 @@ const Swiper = forwardRefWithStatics(
           }
         };
 
-        // fraction
         const fraction = () => {
           if (navigationConfig?.type === 'fraction') {
             return <span>{`${(dotIndex ?? 0) + 1}/${items.current.length}`}</span>;

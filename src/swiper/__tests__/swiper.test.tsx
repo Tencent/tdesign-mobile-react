@@ -914,7 +914,7 @@ describe('Swiper', () => {
     expect(container.querySelector(`${swiperNavClass}__btn`)).not.toBeInTheDocument();
   });
 
-  it('merges navigation config with defaults when navigation is object', async () => {
+  it('shows only controls when navigation has showControls without type', async () => {
     mockElementMetrics();
     const { container } = render(
       <Swiper autoplay={false} navigation={{ showControls: true }}>
@@ -923,8 +923,8 @@ describe('Swiper', () => {
       </Swiper>,
     );
 
-    // 应该显示默认的圆点导航（从默认配置合并）
-    expect(container.querySelectorAll(`${swiperNavClass}__dots-item`).length).toBe(2);
+    // 不应该显示圆点导航（用户没有配置 type）
+    expect(container.querySelectorAll(`${swiperNavClass}__dots-item`).length).toBe(0);
     // 应该显示控制按钮（用户配置）
     expect(container.querySelector(`${swiperNavClass}__btn`)).toBeInTheDocument();
   });

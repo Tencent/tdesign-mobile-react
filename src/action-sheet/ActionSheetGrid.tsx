@@ -48,7 +48,7 @@ export function ActionSheetGrid(props: ActionSheetGridProps) {
         autoplay={false}
         className={cx(`${actionSheetClass}__swiper-wrap--base`, pageNum > 1 && `${actionSheetClass}__swiper-wrap`)}
         loop={false}
-        navigation={pageNum > 1 ? { type: 'dots' } : undefined}
+        navigation={pageNum > 1 ? { type: 'dots' } : false}
         direction={direction}
         height={pageNum > 1 ? 208 : 196}
       >
