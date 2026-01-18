@@ -1,5 +1,5 @@
 import React, { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { isNumber, isObject } from 'lodash-es';
+import { isNumber } from 'lodash-es';
 import classNames from 'classnames';
 import { Property } from 'csstype';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -12,6 +12,14 @@ import { SwiperChangeSource, SwiperNavigation, TdSwiperProps } from './type';
 import { swiperDefaultProps } from './defaultProps';
 import SwiperItem from './SwiperItem';
 import SwiperContext, { SwiperItemReference } from './SwiperContext';
+
+// 导航器默认配置，对齐 Vue 版本
+const DEFAULT_SWIPER_NAVIGATION: SwiperNavigation = {
+  paginationPosition: 'bottom',
+  placement: 'inside',
+  showControls: false,
+  type: 'dots',
+};
 
 export interface SwiperProps extends TdSwiperProps, StyledProps {
   children?: React.ReactNode;
@@ -94,52 +102,67 @@ const Swiper = forwardRefWithStatics(
       [props.nextMargin],
     );
 
-    // 是否是导航配置
-    const isSwiperNavigation = useMemo(() => {
-      if (!navigation) return false;
-      const { minShowNum, paginationPosition, placement, showControls, type } = navigation as any;
-      return (
-        minShowNum !== undefined ||
-        paginationPosition !== undefined ||
-        placement !== undefined ||
-        showControls !== undefined ||
-        type !== undefined
-      );
+    // 导航配置，对齐 Vue 版本逻辑
+    const navigationConfig = useMemo<SwiperNavigation>(() => {
+      // 如果 navigation 为 true，直接返回默认配置
+      if (navigation === true) {
+        return DEFAULT_SWIPER_NAVIGATION;
+      }
+      // 如果是对象，则与默认配置合并
+      if (typeof navigation === 'object' && navigation !== null) {
+        return {
+          ...DEFAULT_SWIPER_NAVIGATION,
+          ...navigation,
+        } as SwiperNavigation;
+      }
+      // 其他情况返回空配置
+      return {} as SwiperNavigation;
     }, [navigation]);
 
-    // 是否显示导航
+    // 是否启用内置导航
+    const enableBuiltinNavigation = useMemo(() => {
+      // 如果配置为空（即 navigation 为 false 或 null），则不启用
+      if (!Object.keys(navigationConfig).length) return false;
+
+      const { minShowNum } = navigationConfig;
+      // 检查是否满足最小展示数量 (minShowNum)，如果不满足则不显示
+      return minShowNum ? itemCount >= minShowNum : true;
+    }, [navigationConfig, itemCount]);
+
+    // 是否是导航配置（兼容原有逻辑）
+    const isSwiperNavigation = useMemo(() => enableBuiltinNavigation, [enableBuiltinNavigation]);
+
+    // 是否显示导航（兼容原有逻辑）
     const enableNavigation = useMemo(() => {
-      if (isSwiperNavigation) {
-        const nav = navigation as SwiperNavigation;
-        return nav?.minShowNum ? items.current.length > nav?.minShowNum : true;
+      if (enableBuiltinNavigation) {
+        return true;
       }
-      return isObject(navigation);
-    }, [isSwiperNavigation, navigation]);
+      // 处理自定义 TNode 情况（字符串、函数等）
+      return navigation !== false && navigation != null && typeof navigation !== 'object';
+    }, [enableBuiltinNavigation, navigation]);
 
     const isBottomPagination = useMemo(() => {
       if (!isSwiperNavigation || !enableNavigation) return false;
-      const nav = navigation as SwiperNavigation;
       return (
-        (!nav?.paginationPosition || nav?.paginationPosition === 'bottom') &&
-        (nav?.type === 'dots' || nav?.type === 'dots-bar')
+        (!navigationConfig?.paginationPosition || navigationConfig?.paginationPosition === 'bottom') &&
+        (navigationConfig?.type === 'dots' || navigationConfig?.type === 'dots-bar')
       );
-    }, [enableNavigation, isSwiperNavigation, navigation]);
+    }, [enableNavigation, isSwiperNavigation, navigationConfig]);
 
     // 导航位置
     const navPlacement = useMemo(() => {
       if (!isSwiperNavigation) return undefined;
-      const nav = navigation as SwiperNavigation;
-      return nav.placement;
-    }, [isSwiperNavigation, navigation]);
+      return navigationConfig.placement;
+    }, [isSwiperNavigation, navigationConfig]);
 
     const rootClass = useMemo(
       () => [
         className,
         `${swiperClass}`,
         `${swiperClass}--${type}`,
-        `${isBottomPagination && navPlacement ? `${swiperClass}--${navPlacement}` : ''}`,
+        `${navPlacement ? `${swiperClass}--${navPlacement}` : ''}`,
       ],
-      [swiperClass, type, isBottomPagination, navPlacement, className],
+      [swiperClass, type, navPlacement, className],
     );
 
     const intervalTimer = useRef<any>(null); // 轮播计时器
@@ -361,6 +384,7 @@ const Swiper = forwardRefWithStatics(
 
     // 上一页
     const goPrev = (source: SwiperChangeSource) => {
+      if (disabled) return;
       navCtrlActive.current = true;
       swiperSource.current = source;
       nextIndex.current = previousIndex.current - 1;
@@ -369,6 +393,7 @@ const Swiper = forwardRefWithStatics(
 
     // 下一页
     const goNext = (source: SwiperChangeSource) => {
+      if (disabled) return;
       navCtrlActive.current = true;
       swiperSource.current = source;
       nextIndex.current = previousIndex.current + 1;
@@ -376,6 +401,7 @@ const Swiper = forwardRefWithStatics(
     };
 
     const onItemClick = () => {
+      if (disabled) return;
       onClick?.(previousIndex.current ?? 0);
     };
 
@@ -411,7 +437,7 @@ const Swiper = forwardRefWithStatics(
         } else if (threshold < -SWIPE_THRESHOLD) {
           goNext('touch');
         } else {
-          enterSwitching(directionAxis, 0);
+          enterIdle(directionAxis);
         }
       },
     });
@@ -433,6 +459,7 @@ const Swiper = forwardRefWithStatics(
     }, [calculateItemIndex, current, directionAxis, enterSwitching, loop, currentIsNull]);
 
     useEffect(() => {
+      if (disabled) return;
       onChange?.(previousIndex.current, { source: swiperSource.current });
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [itemChange]);
@@ -460,7 +487,7 @@ const Swiper = forwardRefWithStatics(
       }
       switch (swiperStatus) {
         case SwiperStatus.IDLE:
-          if (autoplay) {
+          if (autoplay && !disabled) {
             nextIndex.current = previousIndex.current + 1;
             intervalTimer.current = setTimeout(() => {
               enterSwitching(directionAxis, 1);
@@ -479,7 +506,7 @@ const Swiper = forwardRefWithStatics(
           setSwiperStatus(SwiperStatus.IDLE);
           break;
       }
-    }, [autoplay, directionAxis, duration, enterIdle, enterSwitching, interval, quitSwitching, swiperStatus]);
+    }, [autoplay, directionAxis, duration, enterIdle, enterSwitching, interval, quitSwitching, swiperStatus, disabled]);
 
     const changeProvide = () => {
       if (props.disabled) return;
@@ -515,72 +542,80 @@ const Swiper = forwardRefWithStatics(
     );
 
     const swiperNav = () => {
-      // dots
-      const dots = (navigation: SwiperNavigation) => {
-        if (['dots', 'dots-bar'].includes(navigation?.type || '')) {
-          return (
-            <>
-              {items.current.map((_: any, index: number) => (
-                <span
-                  key={`page${index}`}
-                  className={classNames(
-                    `${swiperNavClass}__${navigation?.type}-item`,
-                    index === dotIndex ? `${swiperNavClass}__${navigation?.type}-item--active` : '',
-                    `${swiperNavClass}__${navigation?.type}-item--${direction}`,
-                  )}
-                />
-              ))}
-            </>
-          );
-        }
-      };
+      // 如果不启用导航，直接返回空
+      if (!enableNavigation) return null;
 
-      // fraction
-      const fraction = (navigation: SwiperNavigation) => {
-        if (navigation?.type === 'fraction') {
-          return <span>{`${(dotIndex ?? 0) + 1}/${items.current.length}`}</span>;
-        }
-      };
+      // 如果启用了内置导航，使用配置渲染
+      if (enableBuiltinNavigation) {
+        // dots
+        const dots = () => {
+          if (['dots', 'dots-bar'].includes(navigationConfig?.type || '')) {
+            return (
+              <>
+                {items.current.map((_: any, index: number) => (
+                  <span
+                    key={`page${index}`}
+                    className={classNames(
+                      `${swiperNavClass}__${navigationConfig?.type}-item`,
+                      index === dotIndex ? `${swiperNavClass}__${navigationConfig?.type}-item--active` : '',
+                      `${swiperNavClass}__${navigationConfig?.type}-item--${direction}`,
+                    )}
+                  />
+                ))}
+              </>
+            );
+          }
+        };
 
-      const typeNav = (navigation: SwiperNavigation) => {
-        if ('type' in navigation) {
-          return (
-            <span
-              className={classNames(
-                `${swiperNavClass}--${direction}`,
-                `${swiperNavClass}__${navigation?.type || ''}`,
-                `${swiperNavClass}--${navigation?.paginationPosition || 'bottom'}`,
-                `${isBottomPagination && navigation?.placement ? `${swiperNavClass}--${navigation?.placement} ` : ''}`,
-              )}
-            >
-              {dots(navigation)}
-              {fraction(navigation)}
-            </span>
-          );
-        }
-      };
+        // fraction
+        const fraction = () => {
+          if (navigationConfig?.type === 'fraction') {
+            return <span>{`${(dotIndex ?? 0) + 1}/${items.current.length}`}</span>;
+          }
+        };
 
-      const controlsNav = (navigation: SwiperNavigation) => {
-        if (!isVertical && !!navigation?.showControls) {
-          return (
-            <span className={`${swiperNavClass}__btn`}>
-              <span className={`${swiperNavClass}__btn--prev`} onClick={() => goPrev('nav')} />
-              <span className={`${swiperNavClass}__btn--next`} onClick={() => goNext('nav')} />
-            </span>
-          );
-        }
-      };
+        const typeNav = () => {
+          if ('type' in navigationConfig) {
+            return (
+              <span
+                className={classNames(
+                  `${swiperNavClass}--${direction}`,
+                  `${swiperNavClass}__${navigationConfig?.type || ''}`,
+                  `${swiperNavClass}--${navigationConfig?.paginationPosition || 'bottom'}`,
+                  `${isBottomPagination && navigationConfig?.placement ? `${swiperNavClass}--${navigationConfig?.placement} ` : ''}`,
+                )}
+              >
+                {dots()}
+                {fraction()}
+              </span>
+            );
+          }
+        };
 
-      if (!enableNavigation) return '';
-      if (isSwiperNavigation) {
+        const controlsNav = () => {
+          if (!isVertical && !!navigationConfig?.showControls) {
+            return (
+              <span className={`${swiperNavClass}__btn`}>
+                <span className={`${swiperNavClass}__btn--prev`} onClick={() => goPrev('nav')} />
+                <span className={`${swiperNavClass}__btn--next`} onClick={() => goNext('nav')} />
+              </span>
+            );
+          }
+        };
+
         return (
           <>
-            {controlsNav(navigation as SwiperNavigation)}
-            {typeNav(navigation as SwiperNavigation)}
+            {controlsNav()}
+            {typeNav()}
           </>
         );
       }
-      return isObject(navigation) ? '' : parseTNode(navigation);
+
+      // 处理自定义 TNode 情况
+      if (typeof navigation === 'boolean' || (typeof navigation === 'object' && navigation !== null)) {
+        return null;
+      }
+      return parseTNode(navigation as any);
     };
 
     return (
