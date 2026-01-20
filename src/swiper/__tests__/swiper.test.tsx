@@ -59,6 +59,8 @@ describe('Swiper', () => {
       </Swiper>,
     );
 
+    await flushEffects();
+
     expect(container.querySelector(`${swiperClass}`)).toHaveClass('t-swiper--outside');
     expect(container.querySelectorAll(`${swiperNavClass}__dots-item`).length).toBe(3);
     expect(container.querySelector(`${swiperItemClass}--active`)).toBeInTheDocument();
@@ -90,6 +92,8 @@ describe('Swiper', () => {
         <Swiper.SwiperItem>Two</Swiper.SwiperItem>
       </Swiper>,
     );
+
+    await flushEffects();
 
     expect(getByText('1/2')).toBeInTheDocument();
 
@@ -137,6 +141,8 @@ describe('Swiper', () => {
         <Swiper.SwiperItem>Third</Swiper.SwiperItem>
       </Swiper>,
     );
+
+    await flushEffects();
 
     const containerEl = container.querySelector(`${swiperClass}__container--card`)! as HTMLElement;
     expect(containerEl.style.left).toBe('24px');
@@ -236,6 +242,8 @@ describe('Swiper', () => {
       </Swiper>,
     );
 
+    await flushEffects();
+
     const swiperContainer = container.querySelector(`${swiperClass}__container--card`)!;
     const baselineCalls = handleChange.mock.calls.length;
     fireEvent.touchStart(swiperContainer, { touches: [{ clientX: 120, clientY: 0 }] });
@@ -261,6 +269,8 @@ describe('Swiper', () => {
         <Swiper.SwiperItem>Bottom</Swiper.SwiperItem>
       </Swiper>,
     );
+
+    await flushEffects();
 
     const baselineCalls = handleChange.mock.calls.length;
     const swiperContainer = container.querySelector(`${swiperClass}__container--card`)! as HTMLElement;
@@ -441,7 +451,7 @@ describe('Swiper', () => {
       <Swiper
         autoplay={false}
         loop={false}
-        duration={0}
+        duration={10}
         navigation={{ type: 'dots', showControls: true }}
         onChange={handleChange}
       >
@@ -456,7 +466,7 @@ describe('Swiper', () => {
     fireEvent.click(prevBtn);
 
     await act(async () => {
-      await vi.advanceTimersByTimeAsync(18);
+      await vi.advanceTimersByTimeAsync(10);
     });
 
     expect(handleChange.mock.calls.length).toBeGreaterThan(initialCalls);
@@ -498,6 +508,8 @@ describe('Swiper', () => {
         <Swiper.SwiperItem>Another</Swiper.SwiperItem>
       </Swiper>,
     );
+
+    await flushEffects();
 
     expect(container.querySelector(`${swiperClass}__container--card`)).toHaveStyle({ flexDirection: 'column' });
     expect(container.querySelector(`${swiperNavClass}__btn`)).not.toBeInTheDocument(); // controls not shown in vertical
@@ -588,7 +600,8 @@ describe('Swiper', () => {
     );
 
     expect(container.querySelector(`${swiperNavClass}__dots-bar`)).toBeInTheDocument();
-    expect(container.querySelector(`${swiperClass}`)).toHaveClass('t-swiper--inside');
+    // Vue 一致：paginationPosition 不是 bottom 时，不添加 placement class
+    expect(container.querySelector(`${swiperClass}`)).not.toHaveClass('t-swiper--inside');
   });
 
   it('renders fraction navigation with left pagination position', async () => {
@@ -603,7 +616,8 @@ describe('Swiper', () => {
 
     expect(container.querySelector(`${swiperNavClass}__fraction`)).toBeInTheDocument();
     expect(getByText('1/3')).toBeInTheDocument();
-    expect(container.querySelector(`${swiperClass}`)).toHaveClass('t-swiper--outside');
+    // Vue 一致：type 不是 dots/dots-bar 时，不添加 placement class
+    expect(container.querySelector(`${swiperClass}`)).not.toHaveClass('t-swiper--outside');
   });
 
   it('respects minShowNum for navigation visibility', async () => {
@@ -642,6 +656,8 @@ describe('Swiper', () => {
       </Swiper>,
     );
 
+    await flushEffects();
+
     const cardContainer = container.querySelector(`${swiperClass}__container--card`)! as HTMLElement;
     expect(cardContainer.style.left).toBe('10%');
     expect(cardContainer.style.right).toBe('15%');
@@ -678,7 +694,13 @@ describe('Swiper', () => {
     const handleClick = vi.fn();
 
     const { container } = render(
-      <Swiper disabled navigation={{ type: 'dots', showControls: true }} onChange={handleChange} onClick={handleClick}>
+      <Swiper
+        autoplay={false}
+        disabled
+        navigation={{ type: 'dots', showControls: true }}
+        onChange={handleChange}
+        onClick={handleClick}
+      >
         <Swiper.SwiperItem>Disabled 1</Swiper.SwiperItem>
         <Swiper.SwiperItem>Disabled 2</Swiper.SwiperItem>
       </Swiper>,
@@ -738,6 +760,8 @@ describe('Swiper', () => {
       </Swiper>,
     );
 
+    await flushEffects();
+
     await act(async () => {
       await vi.advanceTimersByTimeAsync(200);
     });
@@ -757,7 +781,7 @@ describe('Swiper', () => {
       <Swiper
         autoplay={false}
         loop={false}
-        duration={0}
+        duration={10}
         navigation={{ type: 'dots', showControls: true }}
         onChange={handleChange}
       >
@@ -809,6 +833,8 @@ describe('Swiper', () => {
         <Swiper.SwiperItem>Controlled 3</Swiper.SwiperItem>
       </Swiper>,
     );
+
+    await flushEffects();
 
     expect(document.querySelector(`${swiperItemClass}--active`)).toHaveTextContent('Controlled 1');
 
