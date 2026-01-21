@@ -1,40 +1,41 @@
-import { describe, it, expect } from '@test/utils';
+import { describe, it, expect, afterEach } from '@test/utils';
+import { show, close } from '../ActionSheetMethod';
 
 describe('ActionSheetMethod', () => {
+  afterEach(() => {
+    // 清理每次测试后可能残留的 ActionSheet
+    close();
+  });
+
   describe('module exports', () => {
-    it('should export show and close functions', async () => {
-      const module = await import('../ActionSheetMethod');
-      expect(typeof module.show).toBe('function');
-      expect(typeof module.close).toBe('function');
+    it('should export show and close functions', () => {
+      expect(typeof show).toBe('function');
+      expect(typeof close).toBe('function');
     });
 
-    it('should be able to call show function', async () => {
-      const module = await import('../ActionSheetMethod');
+    it('should be able to call show function', () => {
       expect(() => {
-        module.show({
+        show({
           items: ['Item 1', 'Item 2'],
         });
       }).not.toThrow();
     });
 
-    it('should be able to call close function', async () => {
-      const module = await import('../ActionSheetMethod');
+    it('should be able to call close function', () => {
       expect(() => {
-        module.close();
+        close();
       }).not.toThrow();
     });
 
-    it('should handle show with empty config', async () => {
-      const module = await import('../ActionSheetMethod');
+    it('should handle show with empty config', () => {
       expect(() => {
-        module.show({});
+        show({});
       }).not.toThrow();
     });
 
-    it('should handle show with various config options', async () => {
-      const module = await import('../ActionSheetMethod');
+    it('should handle show with various config options', () => {
       expect(() => {
-        module.show({
+        show({
           items: ['Test Item'],
           theme: 'grid',
           description: 'Test Description',
@@ -43,21 +44,19 @@ describe('ActionSheetMethod', () => {
       }).not.toThrow();
     });
 
-    it('should handle multiple show calls', async () => {
-      const module = await import('../ActionSheetMethod');
+    it('should handle multiple show calls', () => {
       expect(() => {
-        module.show({ items: ['Item 1'] });
-        module.show({ items: ['Item 2'] });
+        show({ items: ['Item 1'] });
+        show({ items: ['Item 2'] });
       }).not.toThrow();
     });
 
-    it('should handle show and close sequence', async () => {
-      const module = await import('../ActionSheetMethod');
+    it('should handle show and close sequence', () => {
       expect(() => {
-        module.show({ items: ['Item 1'] });
-        module.close();
-        module.show({ items: ['Item 2'] });
-        module.close();
+        show({ items: ['Item 1'] });
+        close();
+        show({ items: ['Item 2'] });
+        close();
       }).not.toThrow();
     });
   });
