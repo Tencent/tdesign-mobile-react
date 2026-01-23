@@ -44,9 +44,8 @@ export interface TdUploadProps<T extends UploadFile = UploadFile> {
   beforeUpload?: (file: UploadFile) => boolean | Promise<boolean>;
   /**
    * 图片选取模式，可选值为 camera (直接调起摄像头)
-   * @default ''
    */
-  capture?: string;
+  capture?: string | boolean;
   /**
    * 非拖拽场景，指触发上传的元素，如：“选择文件”。如果是拖拽场景，则是指拖拽区域
    */
