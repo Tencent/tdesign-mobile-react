@@ -7,6 +7,7 @@ import { TdSearchProps } from './type';
 export const searchDefaultProps: TdSearchProps = {
   action: '',
   center: false,
+  clearTrigger: 'always',
   clearable: true,
   cursorColor: '#0052d9',
   disabled: false,
@@ -14,5 +15,6 @@ export const searchDefaultProps: TdSearchProps = {
   leftIcon: 'search',
   placeholder: '',
   readonly: undefined,
+  resultList: [],
   shape: 'square',
 };

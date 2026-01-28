@@ -62,6 +62,11 @@ export interface TdSearchProps {
    */
   readonly?: boolean;
   /**
+   * 预览结果列表
+   * @default []
+   */
+  resultList?: Array<string>;
+  /**
    * 搜索框形状
    * @default 'square'
    */
@@ -91,7 +96,10 @@ export interface TdSearchProps {
    */
   onChange?: (
     value: string,
-    context: { trigger: 'input-change' | 'option-click'; e?: FormEvent<HTMLInputElement> | MouseEvent<HTMLDivElement> },
+    context: {
+      trigger: 'input-change' | 'option-click' | 'clear';
+      e?: FormEvent<HTMLInputElement> | MouseEvent<HTMLDivElement>;
+    },
   ) => void;
   /**
    * 点击清除时触发
