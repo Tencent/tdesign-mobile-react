@@ -1,4 +1,4 @@
-import type { ChangeEvent, CompositionEvent, CSSProperties, FocusEvent, FormEvent, TouchEvent } from 'react';
+import type { ChangeEvent, CompositionEvent, CSSProperties, FocusEvent, InputEvent, TouchEvent } from 'react';
 import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { isFunction } from 'lodash-es';
@@ -111,8 +111,11 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
     inputRef.current?.blur();
   }
 
-  const handleInputValue = (e: FormEvent<HTMLInputElement>) => {
-    const { value } = e.target as HTMLInputElement;
+  const handleInputValue = (
+    e: ChangeEvent<HTMLInputElement> | CompositionEvent<HTMLInputElement> | InputEvent<HTMLInputElement>,
+  ) => {
+    const target = e.currentTarget || (e.target as HTMLInputElement);
+    const { value } = target;
     const { allowInputOverMax, maxcharacter } = props;
 
     // 如果允许超出最大输入限制，直接更新值并返回
@@ -139,12 +142,10 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
     return finalValue;
   };
 
-  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (e: InputEvent<HTMLInputElement>) => {
     const finalValue = handleInputValue(e);
-    // react 中为合成事件，需要通过 nativeEvent 获取原始的事件
-    const nativeEvent = e.nativeEvent as InputEvent;
     // 中文输入的时候 inputType 是 insertCompositionText 所以中文输入的时候禁止触发。
-    if (nativeEvent.isComposing || nativeEvent.inputType === 'insertCompositionText') {
+    if (e.nativeEvent.isComposing || e.nativeEvent.inputType === 'insertCompositionText') {
       composingRef.current = true;
       setComposingValue(finalValue);
       return;
