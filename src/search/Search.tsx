@@ -94,7 +94,7 @@ const Search: FC<SearchProps> = (props) => {
 
   const renderLeftIcon = () => {
     if (leftIcon === 'search') {
-      return <SearchIcon size="24px" />;
+      return <SearchIcon />;
     }
     return parseTNode(leftIcon);
   };
@@ -103,7 +103,7 @@ const Search: FC<SearchProps> = (props) => {
     if (clearable && searchValue) {
       return (
         <div className={`${searchClass}__clear`} onClick={handleClear}>
-          <CloseCircleFilledIcon size="24" />
+          <CloseCircleFilledIcon />
         </div>
       );
     }
