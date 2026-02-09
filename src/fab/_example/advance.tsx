@@ -8,13 +8,7 @@ export default function () {
   };
   return (
     <>
-      <Fab
-        icon={<AddIcon size={24} />}
-        text="按钮文字"
-        draggable="vertical"
-        style={{ right: '16px', bottom: '32px' }}
-        onClick={onClick}
-      />
+      <Fab icon={<AddIcon size={24} />} text="按钮文字" style={{ right: '16px', bottom: '32px' }} onClick={onClick} />
     </>
   );
 }

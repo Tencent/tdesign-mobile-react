@@ -19,7 +19,7 @@ module.exports = {
   drawer: { statements: '98.63%', branches: '100%', functions: '96.42%', lines: '100%' },
   dropdownMenu: { statements: '92.94%', branches: '82.81%', functions: '100%', lines: '92.5%' },
   empty: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
-  fab: { statements: '5.4%', branches: '0%', functions: '0%', lines: '5.4%' },
+  fab: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   footer: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   form: { statements: '2.79%', branches: '0%', functions: '0%', lines: '2.95%' },
   grid: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
