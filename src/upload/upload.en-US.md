@@ -15,7 +15,7 @@ addContent | TNode | - | Typescript: `string \| TNode`。[see more ts definition
 allowUploadDuplicateFile | Boolean | false | allow to upload duplicate name files | N
 autoUpload | Boolean | true | post upload request automatically after files being selected | N
 beforeUpload | Function | - | stop one of files to upload。Typescript: `(file: UploadFile) => boolean \| Promise<boolean>` | N
-capture | String | - | \- | N
+capture | String / Boolean | - | \- | N
 children | TNode | - | to define upload trigger elements if `draggable=false`, to define drag elements if `draggable=true`。Typescript: `string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 data | Object | - | extra request data of uploading. `formatRequest` can redefine all request data。Typescript: `Record<string, any> \| ((files: UploadFile[]) => Record<string, any>)` | N
 disabled | Boolean | undefined | make upload to be disabled | N

@@ -1,4 +1,4 @@
-import type { MouseEvent } from 'react';
+import type { MouseEvent, InputHTMLAttributes } from 'react';
 import React, { useState } from 'react';
 import { AddIcon, CloseCircleIcon, CloseIcon, LoadingIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
@@ -20,8 +20,19 @@ const Upload: React.FC<UploadProps> = (props) => {
   const [showImageIndex, setShowImageIndex] = useState(0);
   const rootClassName = usePrefixClass('upload');
   const globalConfig = useConfig();
-  const { onPreview, onClickUpload, addBtn, addContent, accept, className, max, multiple, imageProps, preview } =
-    useDefaultProps(props, uploadDefaultProps);
+  const {
+    onPreview,
+    onClickUpload,
+    addBtn,
+    addContent,
+    accept,
+    capture,
+    className,
+    max,
+    multiple,
+    imageProps,
+    preview,
+  } = useDefaultProps(props, uploadDefaultProps);
   const { displayFiles, inputRef, disabled, onNormalFileChange, onInnerRemove } = useUpload(props);
   const previewImgs = displayFiles.map((img) => img.url || '');
   const uploadGlobalConfig = globalConfig.upload;
@@ -115,7 +126,15 @@ const Upload: React.FC<UploadProps> = (props) => {
     <div className={containerClassName}>
       {renderDisplayFiles()}
       {renderAddContent()}
-      <input hidden ref={inputRef} type="file" multiple={multiple} accept={accept} onChange={onNormalFileChange} />
+      <input
+        hidden
+        ref={inputRef}
+        type="file"
+        multiple={multiple}
+        accept={accept}
+        capture={capture as InputHTMLAttributes<unknown>['capture']}
+        onChange={onNormalFileChange}
+      />
       <ImageViewer visible={showViewer} images={previewImgs} index={showImageIndex} onClose={handleImageViewerClose} />
     </div>
   );
