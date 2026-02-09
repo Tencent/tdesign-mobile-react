@@ -34,7 +34,7 @@ export default function ListDemo() {
   };
 
   const onLoadData = (isRefresh?) => {
-    if ((listData.current.length >= MAX_DATA_LEN && !isRefresh) || loading.value) {
+    if ((listData.current.length >= MAX_DATA_LEN && !isRefresh) || loading) {
       return;
     }
     setLoading('loading');
