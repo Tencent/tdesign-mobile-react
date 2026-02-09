@@ -26,10 +26,13 @@ const Cascader: React.FC<CascaderProps> = (props) => {
     defaultValue,
     visible,
     title,
+    header,
+    middleContent,
     placeholder,
     theme,
     subTitles,
     options: inputOptions,
+    overlayProps,
     keys,
     checkStrictly,
     closeBtn,
@@ -45,13 +48,14 @@ const Cascader: React.FC<CascaderProps> = (props) => {
 
   // 根据 inputOptions 和 key 重新构建 options
   const options = useMemo(() => {
-    const { label = 'label', value = 'value', children = 'children' } = keys || {};
+    const { label = 'label', value = 'value', children = 'children', disabled = 'disabled' } = keys || {};
 
     const convert = (options: TreeOptionData[]) =>
       options.map((item) => ({
         label: item[label],
         value: item[value],
         children: Array.isArray(item[children]) ? convert(item[children]) : false,
+        disabled: item[disabled],
       }));
 
     return convert(inputOptions);
@@ -168,6 +172,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
     <Popup
       visible={internalVisible}
       placement="bottom"
+      overlayProps={overlayProps}
       onVisibleChange={(visible, trigger) => {
         setInternalVisible(visible);
         onClose?.(trigger);
@@ -189,6 +194,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
         >
           {closeBtn === true ? <CloseIcon size={24} /> : parseTNode(closeBtn)}
         </div>
+        {parseTNode(header)}
         <div className={`${cascaderClass}__content`}>
           {labelList.length && (
             <div>
@@ -235,6 +241,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
               ) : null}
             </div>
           )}
+          {parseTNode(middleContent)}
           {subTitles[stepIndex] ? (
             <div className={`${cascaderClass}__options-title`}>{subTitles[stepIndex]}</div>
           ) : null}
@@ -255,16 +262,23 @@ const Cascader: React.FC<CascaderProps> = (props) => {
                     value={internalSelectedValues[index]}
                     options={curOptions}
                     onChange={(value: string | number) => {
+                      const targetIndex = curOptions.findIndex((item) => item.value === value);
+                      const target = curOptions[targetIndex];
+
                       const selectedValues = [...internalSelectedValues].slice(0, index);
                       selectedValues.push(value);
                       setInternalSelectedValues(selectedValues);
 
                       setStepIndex(index + 1);
 
-                      onPick?.(value, index);
+                      onPick?.({
+                        value,
+                        label: String(target?.label || ''),
+                        index: targetIndex,
+                        level: index,
+                      });
 
-                      const next = curOptions.find((item) => item.value === value);
-                      if (Array.isArray(next?.children)) {
+                      if (Array.isArray(target?.children)) {
                         return;
                       }
 
