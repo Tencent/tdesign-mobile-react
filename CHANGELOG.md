@@ -5,6 +5,20 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.21.2 `2026-02-10` 
+### 🚀 Features
+- `Icon`: 新增 217 个与人工智能、文档、徽标和文件相关的图标 @uyarn([#872](https://github.com/Tencent/tdesign-mobile-react/pull/872))
+- `Cascader`: @anlyyao ([#865](https://github.com/Tencent/tdesign-mobile-react/pull/865))
+  - 新增 `overlayProps`、`header` 和 `middleContent` 属性
+  - 丰富 pick 事件参数为 `({ value, label, index, level })`，其中 `level` 表示选中项所在层级深度、`index` 为选项中的索引 
+- `Search`: 
+  - 新增 `cursorColor` 属性 @anlyyao ([#857](https://github.com/Tencent/tdesign-mobile-react/pull/857))
+  - 新增  `resultList` 和 `clearTrigger` 属性 @anlyyao ([#876](https://github.com/Tencent/tdesign-mobile-react/pull/876))
+### 🐞 Bug Fixes
+- `Popup`: 修复在 `Firefox` 浏览器中的闪烁问题 @anlyyao ([#874](https://github.com/Tencent/tdesign-mobile-react/pull/874))
+- `Search`: 修复通过 `CSS Vars` 修改图标大小无效  @liweijie0812 ([#878](https://github.com/Tencent/tdesign-mobile-react/pull/878))
+- `Upload`: 修复 `capture` 属性无效，并补充 `boolean` 类型 @anlyyao ([#875](https://github.com/Tencent/tdesign-mobile-react/pull/875))
+
 ## 🌈 0.21.1 `2025-12-25` 
 ### 🚀 Features
 - `ActionSheet`: `item` 属性补充 `description`、`suffixIcon` 字段 @anlyyao ([#845](https://github.com/Tencent/tdesign-mobile-react/pull/845))
