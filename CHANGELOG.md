@@ -10,10 +10,10 @@ spline: explain
 - `Icon`: 新增 217 个与人工智能、文档、徽标和文件相关的图标 @uyarn([#872](https://github.com/Tencent/tdesign-mobile-react/pull/872))
 - `Cascader`: @anlyyao ([#865](https://github.com/Tencent/tdesign-mobile-react/pull/865))
   - 新增 `overlayProps`、`header` 和 `middleContent` 属性
-  - 丰富 pick 事件参数为 `({ value, label, index, level })`，其中 `level` 表示选中项所在层级深度、`index` 为选项中的索引 
+  - pick 事件新增 `label` 和 `level` 参数，其中 `level` 表示选中项所在层级深度，`index` 为选项中的索引 
 - `Search`: 
   - 新增 `cursorColor` 属性 @anlyyao ([#857](https://github.com/Tencent/tdesign-mobile-react/pull/857))
-  - 新增  `resultList` 和 `clearTrigger` 属性 @anlyyao ([#876](https://github.com/Tencent/tdesign-mobile-react/pull/876))
+  - 新增 `resultList` 和 `clearTrigger` 属性 @anlyyao ([#876](https://github.com/Tencent/tdesign-mobile-react/pull/876))
 ### 🐞 Bug Fixes
 - `Popup`: 修复在 `Firefox` 浏览器中的闪烁问题 @anlyyao ([#874](https://github.com/Tencent/tdesign-mobile-react/pull/874))
 - `Search`: 修复通过 `CSS Vars` 修改图标大小无效  @liweijie0812 ([#878](https://github.com/Tencent/tdesign-mobile-react/pull/878))
