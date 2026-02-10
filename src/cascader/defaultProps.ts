@@ -5,10 +5,12 @@
 import { TdCascaderProps } from './type';
 
 export const cascaderDefaultProps: TdCascaderProps = {
+  checkStrictly: false,
   closeBtn: true,
   lazy: false,
   loadCompleted: false,
   options: [],
+  overlayProps: {},
   placeholder: '选择选项',
   subTitles: [],
   theme: 'step',

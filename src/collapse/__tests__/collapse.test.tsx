@@ -1,5 +1,5 @@
 import React from 'react';
-import { describe, expect, it, render, fireEvent, vi, beforeEach, afterEach } from '@test/utils';
+import { describe, expect, it, render, fireEvent, vi, beforeEach, afterEach, waitFor } from '@test/utils';
 import { Collapse, CollapsePanel } from 'tdesign-mobile-react';
 
 describe('Collapse', () => {
@@ -199,7 +199,8 @@ describe('Collapse', () => {
       themes.forEach(checkTheme);
     });
 
-    it(':defaultExpandAll', () => {
+    it(':defaultExpandAll', async () => {
+      // 测试 expandMutex=false 时，所有面板都展开
       const { container } = render(
         <Collapse defaultExpandAll expandMutex={false}>
           <CollapsePanel value="0" header="面板1">
@@ -210,15 +211,19 @@ describe('Collapse', () => {
           </CollapsePanel>
         </Collapse>,
       );
-      setTimeout(() => {
-        // 等待组件渲染完成
+
+      // defaultExpandAll 通过 useEffect 触发，需要等待状态更新
+      await waitFor(() => {
         const panels = container.querySelectorAll('.t-collapse-panel');
         expect(panels).toHaveLength(2);
         expect(panels[0]).toHaveClass('t-collapse-panel--active');
         expect(panels[1]).toHaveClass('t-collapse-panel--active');
-      }, 1000);
+      });
+    });
 
-      const { container: container2 } = render(
+    it(':defaultExpandAll with expandMutex', async () => {
+      // 测试 expandMutex=true 时，只有第一个面板展开
+      const { container } = render(
         <Collapse defaultExpandAll expandMutex={true}>
           <CollapsePanel value="0" header="面板1">
             内容1
@@ -228,13 +233,14 @@ describe('Collapse', () => {
           </CollapsePanel>
         </Collapse>,
       );
-      setTimeout(() => {
-        // 等待组件渲染完成
-        const panels = container2.querySelectorAll('.t-collapse-panel');
+
+      // defaultExpandAll 通过 useEffect 触发，需要等待状态更新
+      await waitFor(() => {
+        const panels = container.querySelectorAll('.t-collapse-panel');
         expect(panels).toHaveLength(2);
         expect(panels[0]).toHaveClass('t-collapse-panel--active');
         expect(panels[1]).not.toHaveClass('t-collapse-panel--active');
-      }, 1000);
+      });
     });
   });
 

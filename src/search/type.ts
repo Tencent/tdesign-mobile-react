@@ -23,10 +23,20 @@ export interface TdSearchProps {
    */
   center?: boolean;
   /**
+   * 清空图标触发方式，仅在输入框有值时有效
+   * @default always
+   */
+  clearTrigger?: 'always' | 'focus';
+  /**
    * 是否启用清除控件
    * @default true
    */
   clearable?: boolean;
+  /**
+   * 光标颜色
+   * @default #0052d9
+   */
+  cursorColor?: string;
   /**
    * 是否禁用
    * @default false
@@ -49,9 +59,13 @@ export interface TdSearchProps {
   placeholder?: string;
   /**
    * 只读状态
-   * @default false
    */
   readonly?: boolean;
+  /**
+   * 预览结果列表
+   * @default []
+   */
+  resultList?: Array<string>;
   /**
    * 搜索框形状
    * @default 'square'
@@ -69,7 +83,6 @@ export interface TdSearchProps {
   defaultValue?: string;
   /**
    * 点击右侧操作按钮文字时触发
-   * @default ''
    */
   onActionClick?: ({}) => void;
   /**
@@ -83,7 +96,10 @@ export interface TdSearchProps {
    */
   onChange?: (
     value: string,
-    context: { trigger: 'input-change' | 'option-click'; e?: FormEvent<HTMLInputElement> | MouseEvent<HTMLDivElement> },
+    context: {
+      trigger: 'input-change' | 'option-click' | 'clear';
+      e?: FormEvent<HTMLInputElement> | MouseEvent<HTMLDivElement>;
+    },
   ) => void;
   /**
    * 点击清除时触发

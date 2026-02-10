@@ -102,7 +102,7 @@ describe('Dialog', () => {
       const { rerender } = render(
         <Dialog
           visible
-          actions={[{ content: '按钮1', className: 'test-btn', key: 'btn1' }, <Button key="btn2">按钮2</Button>]}
+          actions={[{ content: '按钮1', className: 'test-btn' }, <Button key="btn2">按钮2</Button>]}
           onClose={onClose}
         />,
       );
@@ -173,8 +173,8 @@ describe('Dialog', () => {
         });
       });
       instance.show();
-      const diaog = document.querySelector(name);
-      expect(diaog).toBeTruthy();
+      const dialog = document.querySelector(name);
+      expect(dialog).toBeTruthy();
 
       const closeBtn = document.querySelector('.t-icon');
       const confirmBtn = document.querySelector('.confirm-btn');
