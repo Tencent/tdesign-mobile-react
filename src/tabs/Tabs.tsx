@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
-import type { FC, HTMLAttributes } from 'react';
+import type { FC } from 'react';
 import Sticky from '../sticky';
 import Badge from '../badge';
 import { TdTabPanelProps, TdTabsProps, TabValue } from './type';
@@ -13,10 +13,11 @@ import { tabsDefaultProps } from './defaultProps';
 import parseTNode from '../_util/parseTNode';
 import useDefault from '../_util/useDefault';
 import TabContext from './context';
-import { Styles } from '../common';
+import { Styles, StyledProps } from '../common';
 
-type TabsHTMLAttrs = Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'style'>;
-export interface TabsProps extends TdTabsProps, TabsHTMLAttrs {}
+export interface TabsProps extends TdTabsProps, StyledProps {
+  children?: React.ReactNode;
+}
 
 const Tabs: FC<TabsProps> = (props) => {
   const {
@@ -224,7 +225,7 @@ const Tabs: FC<TabsProps> = (props) => {
 
   const renderNav = () =>
     itemProps.map((item, index) => {
-      const { badgeProps } = item;
+      const { badgeProps, icon } = item;
       return (
         <div
           key={item.value}
@@ -244,7 +245,8 @@ const Tabs: FC<TabsProps> = (props) => {
                 [`${tabsClass}__item-inner--active`]: theme === 'tag' && item.value === currentValue,
               })}
             >
-              <div>{parseTNode(item.label)}</div>
+              {icon && <div className={`${tabsClass}__icon`}>{parseTNode(icon)}</div>}
+              {parseTNode(item.label)}
             </div>
           </Badge>
           {theme === 'card' && index === currentIndex - 1 && <div className={`${tabsClass}__item-prefix`}></div>}

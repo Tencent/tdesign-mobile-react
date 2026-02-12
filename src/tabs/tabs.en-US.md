@@ -7,23 +7,22 @@
 name | type | default | description | required
 -- | -- | -- | -- | --
 className | String | - | className of component | N
-style | Object | - | CSS(Cascading Style Sheets)，Typescript：`React.CSSProperties` | N
-animation | Object | - | Typescript：`TabAnimation` `type TabAnimation = { duration: number } & Record<string, any>`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tabs/type.ts) | N
+style | Object | - | CSS(Cascading Style Sheets)，Typescript: `React.CSSProperties` | N
+animation | Object | - | Typescript: `TabAnimation` `type TabAnimation = { duration: number } & Record<string, any>`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tabs/type.ts) | N
 bottomLineMode | String | fixed | options: fixed/auto/full | N
-children | TElement | - | Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-list | Array | - | Typescript：`Array<TdTabPanelProps>` | N
+list | Array | - | Typescript: `Array<TdTabPanelProps>` | N
 showBottomLine | Boolean | true | \- | N
 size | String | medium | options: medium/large | N
 spaceEvenly | Boolean | true | \- | N
 sticky | Boolean | false | \- | N
-stickyProps | Object | - | Typescript：`StickyProps`，[Sticky API Documents](./sticky?tab=api)。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tabs/type.ts) | N
+stickyProps | Object | - | Typescript: `StickyProps`，[Sticky API Documents](./sticky?tab=api)。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tabs/type.ts) | N
 swipeable | Boolean | true | \- | N
 theme | String | line | options: line/tag/card | N
-value | String / Number | - | Typescript：`TabValue` `type TabValue = string \| number`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tabs/type.ts) | N
-defaultValue | String / Number | - | uncontrolled property。Typescript：`TabValue` `type TabValue = string \| number`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tabs/type.ts) | N
-onChange | Function |  | Typescript：`(value: TabValue, label: string) => void`<br/> | N
-onClick | Function |  | Typescript：`(value: TabValue, label: string) => void`<br/> | N
-onScroll | Function |  | Typescript：`(scrollTop: number, isFixed: boolean) => void`<br/> | N
+value | String / Number | - | Typescript: `TabValue` `type TabValue = string \| number`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tabs/type.ts) | N
+defaultValue | String / Number | - | uncontrolled property。Typescript: `TabValue` `type TabValue = string \| number`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tabs/type.ts) | N
+onChange | Function |  | Typescript: `(value: TabValue, label: string) => void`<br/> | N
+onClick | Function |  | Typescript: `(value: TabValue, label: string) => void`<br/> | N
+onScroll | Function |  | Typescript: `(scrollTop: number, isFixed: boolean) => void`<br/> | N
 
 
 ### TabPanel Props
@@ -31,14 +30,15 @@ onScroll | Function |  | Typescript：`(scrollTop: number, isFixed: boolean) => 
 name | type | default | description | required
 -- | -- | -- | -- | --
 className | String | - | className of component | N
-style | Object | - | CSS(Cascading Style Sheets)，Typescript：`React.CSSProperties` | N
+style | Object | - | CSS(Cascading Style Sheets)，Typescript: `React.CSSProperties` | N
 badgeProps | Object | - | \- | N
 destroyOnHide | Boolean | true | \- | N
 disabled | Boolean | false | \- | N
-label | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+icon | TElement | - | Typescript: `TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+label | TNode | - | Typescript: `string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 lazy | Boolean | false | Enable tab lazy loading | N
-panel | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-value | String / Number | - | Typescript：`TabValue` | N
+panel | TNode | - | Typescript: `string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+value | String / Number | - | Typescript: `TabValue` | N
 
 ### CSS Variables
 
@@ -47,7 +47,7 @@ Name | Default Value | Description
 -- | -- | --
 --td-tab-border-color | @component-stroke | -
 --td-tab-font | @font-body-medium | -
---td-tab-icon-size | 16px | -
+--td-tab-icon-size | 18px | -
 --td-tab-item-active-color | @brand-color | -
 --td-tab-item-color | @text-color-primary | -
 --td-tab-item-disabled-color | @text-color-disabled | -
