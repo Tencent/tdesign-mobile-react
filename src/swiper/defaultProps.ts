@@ -7,11 +7,11 @@ import { TdSwiperProps } from './type';
 export const swiperDefaultProps: TdSwiperProps = {
   animation: 'slide',
   autoplay: true,
-  current: 0,
   direction: 'horizontal',
   duration: 300,
   interval: 5000,
   loop: true,
+  navigation: true,
   nextMargin: 0,
   previousMargin: 0,
   type: 'default',

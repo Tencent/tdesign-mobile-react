@@ -273,6 +273,7 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
             className={`${rootClassName}__content--vertical`}
             autoplay
             loop
+            navigation={false}
             direction={direction}
             duration={2000}
             touchable={touchable}
