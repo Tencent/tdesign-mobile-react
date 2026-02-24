@@ -12,6 +12,7 @@ export const swiperDefaultProps: TdSwiperProps = {
   duration: 300,
   interval: 5000,
   loop: true,
+  navigation: true,
   nextMargin: 0,
   previousMargin: 0,
   type: 'default',
