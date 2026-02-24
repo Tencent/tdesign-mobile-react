@@ -1,5 +1,5 @@
 import React, { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { isNumber, isObject } from 'lodash-es';
+import { isNumber } from 'lodash-es';
 import classNames from 'classnames';
 import { Property } from 'csstype';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -7,7 +7,7 @@ import { usePrefixClass } from '../hooks/useClass';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import { useSwipe } from '../_util/useSwipe';
 import parseTNode from '../_util/parseTNode';
-import { StyledProps } from '../common';
+import { StyledProps, TNode } from '../common';
 import { SwiperChangeSource, SwiperNavigation, TdSwiperProps } from './type';
 import { swiperDefaultProps } from './defaultProps';
 import SwiperItem from './SwiperItem';
@@ -73,6 +73,14 @@ const Swiper = forwardRefWithStatics(
     const items = useRef<SwiperItemReference[]>([]); // swiper子项
     const [itemCount, setItemCount] = useState(0); // 轮播子项数量
 
+    // 默认导航配置
+    const DEFAULT_SWIPER_NAVIGATION: SwiperNavigation = {
+      paginationPosition: 'bottom',
+      placement: 'inside',
+      showControls: false,
+      type: 'dots',
+    };
+
     const isVertical = useMemo(() => direction === 'vertical', [direction]); // 轮播滑动方向(垂直)
     const directionAxis = useMemo(() => (isVertical ? 'Y' : 'X'), [isVertical]); // 轮播滑动方向轴
 
@@ -96,7 +104,7 @@ const Swiper = forwardRefWithStatics(
 
     // 是否是导航配置
     const isSwiperNavigation = useMemo(() => {
-      if (!navigation) return false;
+      if (!navigation || typeof navigation === 'boolean') return false;
       const { minShowNum, paginationPosition, placement, showControls, type } = navigation as any;
       return (
         minShowNum !== undefined ||
@@ -109,11 +117,14 @@ const Swiper = forwardRefWithStatics(
 
     // 是否显示导航
     const enableNavigation = useMemo(() => {
+      if (navigation === false) return false;
+      if (navigation === true) return true;
       if (isSwiperNavigation) {
         const nav = navigation as SwiperNavigation;
         return nav?.minShowNum ? items.current.length > nav?.minShowNum : true;
       }
-      return isObject(navigation);
+      // TNode 场景：有内容时显示导航，null/undefined 时不显示
+      return !!navigation;
     }, [isSwiperNavigation, navigation]);
 
     const isBottomPagination = useMemo(() => {
@@ -515,6 +526,15 @@ const Swiper = forwardRefWithStatics(
     );
 
     const swiperNav = () => {
+      // 获取实际使用的导航配置
+      const getNavigation = (): SwiperNavigation => {
+        if (navigation === true) return DEFAULT_SWIPER_NAVIGATION;
+        if (isSwiperNavigation) return navigation as SwiperNavigation;
+        return DEFAULT_SWIPER_NAVIGATION;
+      };
+
+      const nav = getNavigation();
+
       // dots
       const dots = (navigation: SwiperNavigation) => {
         if (['dots', 'dots-bar'].includes(navigation?.type || '')) {
@@ -572,15 +592,17 @@ const Swiper = forwardRefWithStatics(
       };
 
       if (!enableNavigation) return '';
-      if (isSwiperNavigation) {
+      if (isSwiperNavigation || navigation === true) {
         return (
           <>
-            {controlsNav(navigation as SwiperNavigation)}
-            {typeNav(navigation as SwiperNavigation)}
+            {controlsNav(nav)}
+            {typeNav(nav)}
           </>
         );
       }
-      return isObject(navigation) ? '' : parseTNode(navigation);
+      // 对于 TNode 类型（函数、React 元素等），通过 parseTNode 渲染
+      // 已经排除了 boolean 和 SwiperNavigation，剩余类型断言为 TNode
+      return parseTNode(navigation as TNode);
     };
 
     return (
