@@ -147,9 +147,9 @@ const Swiper = forwardRefWithStatics(
         className,
         `${swiperClass}`,
         `${swiperClass}--${type}`,
-        `${enableNavigation && navPlacement ? `${swiperClass}--${navPlacement}` : ''}`,
+        `${isBottomPagination && navPlacement ? `${swiperClass}--${navPlacement}` : ''}`,
       ],
-      [swiperClass, type, enableNavigation, navPlacement, className],
+      [swiperClass, type, isBottomPagination, navPlacement, className],
     );
 
     const intervalTimer = useRef<any>(null); // 轮播计时器
