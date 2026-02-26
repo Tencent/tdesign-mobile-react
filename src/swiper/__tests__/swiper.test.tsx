@@ -588,13 +588,15 @@ describe('Swiper', () => {
     );
 
     expect(container.querySelector(`${swiperNavClass}__dots-bar`)).toBeInTheDocument();
-    expect(container.querySelector(`${swiperClass}`)).toHaveClass('t-swiper--inside');
+    // paginationPosition 为 top 时，inside/outside 无意义，外层容器不应有 placement 类名
+    expect(container.querySelector(`${swiperClass}`)).not.toHaveClass('t-swiper--inside');
+    expect(container.querySelector(`${swiperClass}`)).not.toHaveClass('t-swiper--outside');
   });
 
-  it('renders fraction navigation with left pagination position', async () => {
+  it('renders fraction navigation with bottom pagination position', async () => {
     mockElementMetrics();
     const { container, getByText } = render(
-      <Swiper autoplay={false} navigation={{ type: 'fraction', paginationPosition: 'left', placement: 'outside' }}>
+      <Swiper autoplay={false} navigation={{ type: 'fraction', paginationPosition: 'bottom', placement: 'outside' }}>
         <Swiper.SwiperItem>Slide 1</Swiper.SwiperItem>
         <Swiper.SwiperItem>Slide 2</Swiper.SwiperItem>
         <Swiper.SwiperItem>Slide 3</Swiper.SwiperItem>
@@ -603,7 +605,9 @@ describe('Swiper', () => {
 
     expect(container.querySelector(`${swiperNavClass}__fraction`)).toBeInTheDocument();
     expect(getByText('1/3')).toBeInTheDocument();
-    expect(container.querySelector(`${swiperClass}`)).toHaveClass('t-swiper--outside');
+    // fraction 类型不在 isBottomPagination 判断中（只有 dots/dots-bar 算），外层容器不应有 placement 类名
+    expect(container.querySelector(`${swiperClass}`)).not.toHaveClass('t-swiper--inside');
+    expect(container.querySelector(`${swiperClass}`)).not.toHaveClass('t-swiper--outside');
   });
 
   it('respects minShowNum for navigation visibility', async () => {

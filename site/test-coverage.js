@@ -1,5 +1,6 @@
 module.exports = {
   actionSheet: { statements: '98.41%', branches: '89.18%', functions: '100%', lines: '98.36%' },
+  actionSheet: { statements: '98.41%', branches: '89.18%', functions: '100%', lines: '98.36%' },
   avatar: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   backTop: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   badge: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
