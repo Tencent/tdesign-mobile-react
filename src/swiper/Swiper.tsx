@@ -538,6 +538,9 @@ const Swiper = forwardRefWithStatics(
     );
 
     const swiperNav = () => {
+      // 如果不显示导航，直接返回
+      if (!enableNavigation) return '';
+
       // 获取实际使用的导航配置
       const getNavigation = (): SwiperNavigation => {
         if (navigation === true) return DEFAULT_SWIPER_NAVIGATION;
@@ -603,7 +606,6 @@ const Swiper = forwardRefWithStatics(
         }
       };
 
-      if (!enableNavigation) return '';
       if (isSwiperNavigation || navigation === true) {
         return (
           <>
