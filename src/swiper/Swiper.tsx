@@ -13,6 +13,14 @@ import { swiperDefaultProps } from './defaultProps';
 import SwiperItem from './SwiperItem';
 import SwiperContext, { SwiperItemReference } from './SwiperContext';
 
+// 默认导航配置
+const DEFAULT_SWIPER_NAVIGATION: SwiperNavigation = {
+  paginationPosition: 'bottom',
+  placement: 'inside',
+  showControls: false,
+  type: 'dots',
+};
+
 export interface SwiperProps extends TdSwiperProps, StyledProps {
   children?: React.ReactNode;
   touchable?: boolean;
@@ -73,14 +81,6 @@ const Swiper = forwardRefWithStatics(
     const items = useRef<SwiperItemReference[]>([]); // swiper子项
     const [itemCount, setItemCount] = useState(0); // 轮播子项数量
 
-    // 默认导航配置
-    const DEFAULT_SWIPER_NAVIGATION: SwiperNavigation = {
-      paginationPosition: 'bottom',
-      placement: 'inside',
-      showControls: false,
-      type: 'dots',
-    };
-
     const isVertical = useMemo(() => direction === 'vertical', [direction]); // 轮播滑动方向(垂直)
     const directionAxis = useMemo(() => (isVertical ? 'Y' : 'X'), [isVertical]); // 轮播滑动方向轴
 
@@ -115,32 +115,40 @@ const Swiper = forwardRefWithStatics(
       );
     }, [navigation]);
 
+    // 获取实际使用的导航配置
+    const getNavigation = useCallback((): SwiperNavigation => {
+      if (navigation === true) return DEFAULT_SWIPER_NAVIGATION;
+      if (isSwiperNavigation) return { ...DEFAULT_SWIPER_NAVIGATION, ...(navigation as SwiperNavigation) };
+      // navigation 是 truthy 但不是有效配置时（如自定义 TNode），返回空对象
+      return {} as SwiperNavigation;
+    }, [navigation, isSwiperNavigation]);
+
     // 是否显示导航
     const enableNavigation = useMemo(() => {
       if (navigation === false) return false;
       if (navigation === true) return true;
       if (isSwiperNavigation) {
-        const nav = navigation as SwiperNavigation;
+        const nav = getNavigation();
         return nav?.minShowNum ? itemCount >= nav?.minShowNum : true;
       }
       return !!navigation;
-    }, [isSwiperNavigation, navigation, itemCount]);
+    }, [navigation, isSwiperNavigation, getNavigation, itemCount]);
 
     const isBottomPagination = useMemo(() => {
       if (!isSwiperNavigation || !enableNavigation) return false;
-      const nav = navigation as SwiperNavigation;
+      const nav = getNavigation();
       return (
         (!nav?.paginationPosition || nav?.paginationPosition === 'bottom') &&
         (nav?.type === 'dots' || nav?.type === 'dots-bar')
       );
-    }, [enableNavigation, isSwiperNavigation, navigation]);
+    }, [enableNavigation, getNavigation, isSwiperNavigation]);
 
     // 导航位置
     const navPlacement = useMemo(() => {
       if (!isSwiperNavigation) return undefined;
-      const nav = navigation as SwiperNavigation;
-      return nav.placement;
-    }, [isSwiperNavigation, navigation]);
+      const nav = getNavigation();
+      return nav?.placement;
+    }, [getNavigation, isSwiperNavigation]);
 
     const rootClass = useMemo(
       () => [
@@ -540,13 +548,6 @@ const Swiper = forwardRefWithStatics(
     const swiperNav = () => {
       // 如果不显示导航，直接返回
       if (!enableNavigation) return '';
-
-      // 获取实际使用的导航配置
-      const getNavigation = (): SwiperNavigation => {
-        if (navigation === true) return DEFAULT_SWIPER_NAVIGATION;
-        if (isSwiperNavigation) return { ...DEFAULT_SWIPER_NAVIGATION, ...(navigation as SwiperNavigation) };
-        return DEFAULT_SWIPER_NAVIGATION;
-      };
 
       const nav = getNavigation();
 
