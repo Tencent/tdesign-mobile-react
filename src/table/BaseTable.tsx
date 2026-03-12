@@ -12,7 +12,15 @@ import defaultConfig from '../_common/js/global-config/mobile/locale/zh_CN';
 import Loading from '../loading';
 import { baseTableDefaultProps } from './defaultProps';
 import { BaseTableRef, BaseTableProps } from './interface';
-import { formatClassNames, formatRowAttributes, formatRowClassNames } from './utils';
+import {
+  formatClassNames,
+  formatRowAttributes,
+  formatRowClassNames,
+  handleCellSpan,
+  isLastRowInSpan,
+  isFirstColumnInSpan,
+} from './utils';
+import useRowspanAndColspan from './hooks/useRowspanAndColspan';
 
 import type { TdBaseTableProps, BaseTableCol, TableRowData, BaseTableCellParams } from './type';
 
@@ -34,7 +42,11 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
     onRowClick,
     onCellClick,
     onScroll,
+    rowspanAndColspan,
+    rowKey,
   } = useDefaultProps<BaseTableProps>(props, baseTableDefaultProps);
+
+  const { skipSpansMap } = useRowspanAndColspan(data, columns, rowKey, rowspanAndColspan);
 
   const {
     tableLayoutClasses,
@@ -129,6 +141,10 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
       return col.cell(params);
     }
 
+    if (isFunction(col.render)) {
+      return col.render({ ...params, type: 'cell' });
+    }
+
     const r = get(row, col.colKey);
     // 0 和 false 属于正常可用值，不能使用兜底逻辑 cellEmptyContent
     if (![undefined, '', null].includes(r)) return r;
@@ -207,26 +223,41 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
             }}
           >
             {columns?.map((tdItem, tdIdx) => {
+              const params = { row: trItem, col: tdItem, rowIndex: trIdx, colIndex: tdIdx };
+              const cellKey = `${get(trItem, props.rowKey || 'id')}_${tdItem.colKey || tdIdx}`;
+
+              // 处理合并单元格
+              const { skipped, rowspan, colspan } = handleCellSpan(cellKey, skipSpansMap);
+              if (skipped) return null;
+
               const tdStyles = getColumnFixedStyles(tdItem, tdIdx, rowAndColFixedPosition, tableColFixedClasses);
               const customClasses = formatClassNames(tdItem.className, {
                 col: tdItem,
                 colIndex: tdIdx,
-                row: tdItem,
-                rowIndex: tdIdx,
+                row: trItem,
+                rowIndex: trIdx,
                 type: 'td',
               });
+
+              const cellClasses = cx(tdClassName(tdItem, [tdStyles.classes, customClasses]), {
+                // 合并单元格场景：最后一行移除底部边框
+                [tableBaseClass.tdLastRow]: isLastRowInSpan(trIdx, rowspan, props.data?.length),
+                // 合并单元格场景：第一列移除左边框
+                [tableBaseClass.tdFirstCol]: rowspanAndColspan && isFirstColumnInSpan(tdIdx, rowspan),
+              });
+
               return (
                 <td
                   key={tdIdx}
                   style={tdStyles.style}
-                  className={tdClassName(tdItem, [tdStyles.classes, customClasses])}
+                  className={cellClasses}
+                  rowSpan={rowspan}
+                  colSpan={colspan}
                   onClick={($event) => {
                     handleCellClick(trItem, tdItem, trIdx, tdIdx, $event);
                   }}
                 >
-                  <div className={tdItem.ellipsis && ellipsisClasses}>
-                    {renderCell({ row: trItem, col: tdItem, rowIndex: trIdx, colIndex: tdIdx }, cellEmptyContent)}
-                  </div>
+                  <div className={tdItem.ellipsis && ellipsisClasses}>{renderCell(params, cellEmptyContent)}</div>
                 </td>
               );
             })}
