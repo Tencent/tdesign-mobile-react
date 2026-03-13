@@ -1,5 +1,5 @@
 import React, { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { isNumber, isObject } from 'lodash-es';
+import { isNumber } from 'lodash-es';
 import classNames from 'classnames';
 import { Property } from 'csstype';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -7,11 +7,19 @@ import { usePrefixClass } from '../hooks/useClass';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import { useSwipe } from '../_util/useSwipe';
 import parseTNode from '../_util/parseTNode';
-import { StyledProps } from '../common';
+import { StyledProps, TNode } from '../common';
 import { SwiperChangeSource, SwiperNavigation, TdSwiperProps } from './type';
 import { swiperDefaultProps } from './defaultProps';
 import SwiperItem from './SwiperItem';
 import SwiperContext, { SwiperItemReference } from './SwiperContext';
+
+// 默认导航配置
+const DEFAULT_SWIPER_NAVIGATION: SwiperNavigation = {
+  paginationPosition: 'bottom',
+  placement: 'inside',
+  showControls: false,
+  type: 'dots',
+};
 
 export interface SwiperProps extends TdSwiperProps, StyledProps {
   children?: React.ReactNode;
@@ -96,7 +104,7 @@ const Swiper = forwardRefWithStatics(
 
     // 是否是导航配置
     const isSwiperNavigation = useMemo(() => {
-      if (!navigation) return false;
+      if (!navigation || typeof navigation === 'boolean') return false;
       const { minShowNum, paginationPosition, placement, showControls, type } = navigation as any;
       return (
         minShowNum !== undefined ||
@@ -107,30 +115,40 @@ const Swiper = forwardRefWithStatics(
       );
     }, [navigation]);
 
+    // 获取实际使用的导航配置
+    const getNavigation = useCallback((): SwiperNavigation => {
+      if (navigation === true) return DEFAULT_SWIPER_NAVIGATION;
+      if (isSwiperNavigation) return { ...DEFAULT_SWIPER_NAVIGATION, ...(navigation as SwiperNavigation) };
+      // navigation 是 truthy 但不是有效配置时（如自定义 TNode），返回空对象
+      return {} as SwiperNavigation;
+    }, [navigation, isSwiperNavigation]);
+
     // 是否显示导航
     const enableNavigation = useMemo(() => {
+      if (navigation === false) return false;
+      if (navigation === true) return true;
       if (isSwiperNavigation) {
-        const nav = navigation as SwiperNavigation;
-        return nav?.minShowNum ? items.current.length > nav?.minShowNum : true;
+        const nav = getNavigation();
+        return nav?.minShowNum ? itemCount >= nav?.minShowNum : true;
       }
-      return isObject(navigation);
-    }, [isSwiperNavigation, navigation]);
+      return !!navigation;
+    }, [navigation, isSwiperNavigation, getNavigation, itemCount]);
 
     const isBottomPagination = useMemo(() => {
       if (!isSwiperNavigation || !enableNavigation) return false;
-      const nav = navigation as SwiperNavigation;
+      const nav = getNavigation();
       return (
         (!nav?.paginationPosition || nav?.paginationPosition === 'bottom') &&
         (nav?.type === 'dots' || nav?.type === 'dots-bar')
       );
-    }, [enableNavigation, isSwiperNavigation, navigation]);
+    }, [enableNavigation, getNavigation, isSwiperNavigation]);
 
     // 导航位置
     const navPlacement = useMemo(() => {
       if (!isSwiperNavigation) return undefined;
-      const nav = navigation as SwiperNavigation;
-      return nav.placement;
-    }, [isSwiperNavigation, navigation]);
+      const nav = getNavigation();
+      return nav?.placement;
+    }, [getNavigation, isSwiperNavigation]);
 
     const rootClass = useMemo(
       () => [
@@ -351,16 +369,24 @@ const Swiper = forwardRefWithStatics(
     // 退出切换状态
     const quitSwitching = useCallback(
       (axis: string) => {
-        previousIndex.current = calculateItemIndex(nextIndex.current, items.current.length, loop);
-        updateSwiperItemPosition(axis, previousIndex.current, loop);
+        const newIndex = calculateItemIndex(nextIndex.current, items.current.length, loop);
+        const wasNavCtrlActive = navCtrlActive.current;
+        updateSwiperItemPosition(axis, newIndex, loop);
         enterIdle(axis);
-        setItemChange((prevState) => !prevState);
+        // 导航操作或索引变化时触发 onChange
+        if (newIndex !== previousIndex.current || wasNavCtrlActive) {
+          previousIndex.current = newIndex;
+          setItemChange((prevState) => !prevState);
+        } else {
+          previousIndex.current = newIndex;
+        }
       },
       [calculateItemIndex, enterIdle, loop, updateSwiperItemPosition],
     );
 
     // 上一页
     const goPrev = (source: SwiperChangeSource) => {
+      if (disabled) return;
       navCtrlActive.current = true;
       swiperSource.current = source;
       nextIndex.current = previousIndex.current - 1;
@@ -369,6 +395,7 @@ const Swiper = forwardRefWithStatics(
 
     // 下一页
     const goNext = (source: SwiperChangeSource) => {
+      if (disabled) return;
       navCtrlActive.current = true;
       swiperSource.current = source;
       nextIndex.current = previousIndex.current + 1;
@@ -376,6 +403,7 @@ const Swiper = forwardRefWithStatics(
     };
 
     const onItemClick = () => {
+      if (disabled) return;
       onClick?.(previousIndex.current ?? 0);
     };
 
@@ -433,9 +461,10 @@ const Swiper = forwardRefWithStatics(
     }, [calculateItemIndex, current, directionAxis, enterSwitching, loop, currentIsNull]);
 
     useEffect(() => {
+      if (disabled) return;
       onChange?.(previousIndex.current, { source: swiperSource.current });
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [itemChange]);
+    }, [itemChange, disabled]);
 
     useEffect(() => {
       if (props.height) {
@@ -458,6 +487,8 @@ const Swiper = forwardRefWithStatics(
         clearTimeout(durationTimer.current);
         durationTimer.current = null;
       }
+      if (disabled) return;
+
       switch (swiperStatus) {
         case SwiperStatus.IDLE:
           if (autoplay) {
@@ -479,7 +510,7 @@ const Swiper = forwardRefWithStatics(
           setSwiperStatus(SwiperStatus.IDLE);
           break;
       }
-    }, [autoplay, directionAxis, duration, enterIdle, enterSwitching, interval, quitSwitching, swiperStatus]);
+    }, [autoplay, directionAxis, duration, disabled, enterIdle, enterSwitching, interval, quitSwitching, swiperStatus]);
 
     const changeProvide = () => {
       if (props.disabled) return;
@@ -515,6 +546,11 @@ const Swiper = forwardRefWithStatics(
     );
 
     const swiperNav = () => {
+      // 如果不显示导航，直接返回
+      if (!enableNavigation) return '';
+
+      const nav = getNavigation();
+
       // dots
       const dots = (navigation: SwiperNavigation) => {
         if (['dots', 'dots-bar'].includes(navigation?.type || '')) {
@@ -571,16 +607,17 @@ const Swiper = forwardRefWithStatics(
         }
       };
 
-      if (!enableNavigation) return '';
-      if (isSwiperNavigation) {
+      if (isSwiperNavigation || navigation === true) {
         return (
           <>
-            {controlsNav(navigation as SwiperNavigation)}
-            {typeNav(navigation as SwiperNavigation)}
+            {controlsNav(nav)}
+            {typeNav(nav)}
           </>
         );
       }
-      return isObject(navigation) ? '' : parseTNode(navigation);
+      // 对于 TNode 类型（函数、React 元素等），通过 parseTNode 渲染
+      // 已经排除了 boolean 和 SwiperNavigation，剩余类型断言为 TNode
+      return parseTNode(navigation as TNode);
     };
 
     return (
