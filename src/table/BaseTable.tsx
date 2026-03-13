@@ -243,7 +243,7 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
                 // 合并单元格场景：最后一行移除底部边框
                 [tableBaseClass.tdLastRow]: isLastRowInSpan(trIdx, rowspan, props.data?.length),
                 // 合并单元格场景：第一列移除左边框
-                [tableBaseClass.tdFirstCol]: rowspanAndColspan && isFirstColumnInSpan(tdIdx, rowspan),
+                [tableBaseClass.tdFirstCol]: rowspanAndColspan && isFirstColumnInSpan(tdIdx),
               });
 
               return (
