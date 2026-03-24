@@ -5,7 +5,7 @@
  * */
 
 import { StickyProps } from '../sticky';
-import { TNode, TElement } from '../common';
+import type { TNode, TElement } from '../common';
 
 export interface TdTabsProps {
   /**
@@ -36,6 +36,11 @@ export interface TdTabsProps {
    * @default true
    */
   spaceEvenly?: boolean;
+  /**
+   * 是否展示分割线
+   * @default true
+   */
+  split?: boolean;
   /**
    * 是否开启粘性布局
    * @default false
