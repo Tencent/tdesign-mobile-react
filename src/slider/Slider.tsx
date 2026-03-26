@@ -273,9 +273,9 @@ const Slider: FC<SliderProps> = (props) => {
       [`${rootClassName}__range-extreme--min`]: range,
     });
     if (range) {
-      return <text className={textClassName}>{min}</text>;
+      return <div className={textClassName}>{min}</div>;
     }
-    return <text className={textClassName}>{label ? getValue(label, min) : min}</text>;
+    return <div className={textClassName}>{label ? getValue(label, min) : min}</div>;
   };
 
   const renderMaxText = () => {
@@ -283,9 +283,9 @@ const Slider: FC<SliderProps> = (props) => {
       return null;
     }
     if (range) {
-      return <text className={sliderMaxTextClassName}>{max}</text>;
+      return <div className={sliderMaxTextClassName}>{max}</div>;
     }
-    return <text className={sliderMaxTextClassName}>{label ? getValue(label, max) : max}</text>;
+    return <div className={sliderMaxTextClassName}>{label ? getValue(label, max) : max}</div>;
   };
 
   const renderScale = () => {

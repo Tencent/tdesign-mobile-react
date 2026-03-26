@@ -5,8 +5,7 @@
  * */
 
 import { StickyProps } from '../sticky';
-import { TNode } from '../common';
-import { ReactNode } from 'react';
+import type { TNode, TElement } from '../common';
 
 export interface TdTabsProps {
   /**
@@ -18,10 +17,6 @@ export interface TdTabsProps {
    * @default fixed
    */
   bottomLineMode?: 'fixed' | 'auto' | 'full';
-  /**
-   * 组件子元素
-   */
-  children?: ReactNode;
   /**
    * 选项卡列表
    */
@@ -41,6 +36,11 @@ export interface TdTabsProps {
    * @default true
    */
   spaceEvenly?: boolean;
+  /**
+   * 是否展示分割线
+   * @default true
+   */
+  split?: boolean;
   /**
    * 是否开启粘性布局
    * @default false
@@ -97,6 +97,10 @@ export interface TdTabPanelProps {
    * @default false
    */
   disabled?: boolean;
+  /**
+   * 图标
+   */
+  icon?: TElement;
   /**
    * 选项卡名称，可自定义选项卡导航内容
    */

@@ -6,6 +6,7 @@ import ScrollExample from './scroll';
 import StripeExample from './stripe';
 import BorderedExample from './bordered';
 import CustomRowStyleExample from './custom-row-style';
+import RowspanColspanExample from './rowspan-colspan';
 
 export default function Base() {
   return (
@@ -32,6 +33,10 @@ export default function Base() {
 
       <TDemoBlock summary="可自定义样式的表格" padding={true}>
         <CustomRowStyleExample />
+      </TDemoBlock>
+
+      <TDemoBlock summary="带合并单元格的表格" padding={true}>
+        <RowspanColspanExample />
       </TDemoBlock>
     </div>
   );

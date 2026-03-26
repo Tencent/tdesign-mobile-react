@@ -17,14 +17,10 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version-file: .node-version
 
       - run: npm install
 
       - run: npm run build
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
 
       - run: npx pkg-pr-new publish --compact

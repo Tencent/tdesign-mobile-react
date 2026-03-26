@@ -9,6 +9,7 @@ export const tabsDefaultProps: TdTabsProps = {
   showBottomLine: true,
   size: 'medium',
   spaceEvenly: true,
+  split: true,
   sticky: false,
   swipeable: true,
   theme: 'line',
