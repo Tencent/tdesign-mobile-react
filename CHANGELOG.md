@@ -5,6 +5,15 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.21.3 `2026-03-26` 
+### 🚀 Features
+- `Tabs`: 
+  - `TabPanel` 新增 `icon` 属性 @anlyyao ([#885](https://github.com/Tencent/tdesign-mobile-react/pull/885))
+  - 新增 `split` 属性 @anlyyao ([#892](https://github.com/Tencent/tdesign-mobile-react/pull/892))
+### 🐞 Bug Fixes
+- `Silder`: 更正渲染 `min`和 `max` 的 `<text/>` 标签为 `<div/>` @RylanBot ([#889](https://github.com/Tencent/tdesign-mobile-react/pull/889))
+- `Table`: 新增 `rowspanAndColspan` 和 `render` 属性 @anlyyao ([#888](https://github.com/Tencent/tdesign-mobile-react/pull/888))
+
 ## 🌈 0.21.2 `2026-02-10` 
 ### 🚀 Features
 - `Icon`: 新增 217 个与人工智能、文档、徽标和文件相关的图标 @uyarn([#872](https://github.com/Tencent/tdesign-mobile-react/pull/872))
