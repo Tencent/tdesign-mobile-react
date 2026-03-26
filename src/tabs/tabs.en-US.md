@@ -14,6 +14,7 @@ list | Array | - | Typescript: `Array<TdTabPanelProps>` | N
 showBottomLine | Boolean | true | \- | N
 size | String | medium | options: medium/large | N
 spaceEvenly | Boolean | true | \- | N
+split | Boolean | true | \- | N
 sticky | Boolean | false | \- | N
 stickyProps | Object | - | Typescript: `StickyProps`，[Sticky API Documents](./sticky?tab=api)。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/tabs/type.ts) | N
 swipeable | Boolean | true | \- | N

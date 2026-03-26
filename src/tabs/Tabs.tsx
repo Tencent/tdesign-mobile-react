@@ -29,6 +29,7 @@ const Tabs: FC<TabsProps> = (props) => {
     showBottomLine,
     size,
     theme,
+    split,
     stickyProps,
     swipeable,
     onChange,
@@ -258,7 +259,7 @@ const Tabs: FC<TabsProps> = (props) => {
   return (
     <div className={tabsClasses}>
       <Sticky {...stickyProps} onScroll={handlerScroll}>
-        <div className={`${tabsClass}__nav`}>
+        <div className={classnames(`${tabsClass}__nav`, { [`${tabsClass}__nav--split`]: split })}>
           <div
             ref={navScrollRef}
             className={`${tabsClass}__scroll ${tabsClass}__scroll--top ${tabsClass}__scroll--${theme}`}
