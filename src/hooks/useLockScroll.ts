@@ -1,9 +1,8 @@
 import { useEffect, RefObject, useCallback } from 'react';
 import { useTouch } from '../_util/useTouch';
 import getScrollParent from '../_util/getScrollParent';
-import { supportsPassive } from '../_util/supportsPassive';
 
-let totalLockCount = 0;
+const totalLockCount = new Map<string, number>();
 
 // 移植自vant：https://github.com/youzan/vant/blob/HEAD/src/composables/use-lock-scroll.ts
 export function useLockScroll(rootRef: RefObject<HTMLElement>, shouldLock: boolean, componentName: string) {
@@ -37,23 +36,24 @@ export function useLockScroll(rootRef: RefObject<HTMLElement>, shouldLock: boole
 
   const lock = useCallback(() => {
     document.addEventListener('touchstart', touch.start);
-    document.addEventListener('touchmove', onTouchMove, supportsPassive ? { passive: false } : false);
+    document.addEventListener('touchmove', onTouchMove, { passive: false });
 
-    if (!totalLockCount) {
+    if (!totalLockCount.get(BODY_LOCK_CLASS)) {
       document.body.classList.add(BODY_LOCK_CLASS);
     }
 
-    totalLockCount += 1;
+    totalLockCount.set(BODY_LOCK_CLASS, (totalLockCount.get(BODY_LOCK_CLASS) ?? 0) + 1);
   }, [onTouchMove, touch.start, BODY_LOCK_CLASS]);
 
   const unlock = useCallback(() => {
-    if (totalLockCount) {
+    const sum = Array.from(totalLockCount.values()).reduce((acc, val) => acc + val, 0);
+    if (sum) {
       document.removeEventListener('touchstart', touch.start);
       document.removeEventListener('touchmove', onTouchMove);
 
-      totalLockCount -= 1;
+      totalLockCount.set(BODY_LOCK_CLASS, Math.max((totalLockCount.get(BODY_LOCK_CLASS) ?? 0) - 1, 0));
 
-      if (!totalLockCount) {
+      if (!totalLockCount.get(BODY_LOCK_CLASS)) {
         document.body.classList.remove(BODY_LOCK_CLASS);
       }
     }
