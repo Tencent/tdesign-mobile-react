@@ -1,17 +1,18 @@
-import React, { forwardRef, useState, useEffect, useMemo, useRef, useCallback, useImperativeHandle } from 'react';
+import React, { forwardRef, useState, useEffect, useRef, useCallback, useImperativeHandle } from 'react';
 import classNames from 'classnames';
 import parseTNode from '../_util/parseTNode';
 import useDefault from '../_util/useDefault';
-import { getCharacterLength, limitUnicodeMaxLength } from '../_util/helper';
 import calcTextareaHeight from '../_common/js/utils/calcTextareaHeight';
 import { textareaDefaultProps } from './defaultProps';
 import { TdTextareaProps } from './type';
 import { StyledProps } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
+import useLengthLimit from '../hooks/useLengthLimit';
 
 export interface TextareaProps
-  extends Omit<
+  extends
+    Omit<
       React.TextareaHTMLAttributes<HTMLTextAreaElement>,
       'value' | 'defaultValue' | 'onBlur' | 'onChange' | 'onFocus'
     >,
@@ -54,16 +55,12 @@ const Textarea = forwardRef<TextareaRefInterface, TextareaProps>((originProps, r
   const textareaRef: React.RefObject<HTMLTextAreaElement> = useRef(null);
   const wrapperRef: React.RefObject<HTMLDivElement> = useRef(null);
 
-  const textareaLength = useMemo(() => {
-    const realValue = value ?? '';
-    if (typeof maxcharacter !== 'undefined') {
-      const { length = 0 } = getCharacterLength(String(realValue), maxcharacter) as {
-        length: number;
-      };
-      return length;
-    }
-    return String(realValue).length || 0;
-  }, [value, maxcharacter]);
+  const { getValueByLimitNumber, limitNumber } = useLengthLimit({
+    value,
+    maxlength,
+    maxcharacter,
+    allowInputOverMax,
+  });
 
   const textareaPropsNames = Object.keys(otherProps).filter((key) => !/^on[A-Z]/.test(key));
   const textareaProps = textareaPropsNames.reduce(
@@ -112,20 +109,13 @@ const Textarea = forwardRef<TextareaRefInterface, TextareaProps>((originProps, r
   }, [autosize, props.rows]);
 
   const inputValueChangeHandle = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    let { value: newStr } = e.target as HTMLInputElement;
+    const { value: newStr } = e.target as HTMLInputElement;
 
     if (value === newStr) return; // 避免在Firefox中重复触发
 
-    if (!allowInputOverMax && !composingRef.current) {
-      if (maxcharacter && maxcharacter >= 0) {
-        const stringInfo = getCharacterLength(newStr, maxcharacter);
-        newStr = typeof stringInfo === 'object' && stringInfo.characters;
-      } else {
-        newStr = limitUnicodeMaxLength(newStr, Number(maxlength));
-      }
-    }
+    const limitedValue = composingRef.current ? newStr : getValueByLimitNumber(newStr);
 
-    setValue(newStr, { e });
+    setValue(limitedValue, { e });
   };
 
   const handleCompositionStart = (e: React.CompositionEvent<HTMLTextAreaElement>) => {
@@ -163,7 +153,7 @@ const Textarea = forwardRef<TextareaRefInterface, TextareaProps>((originProps, r
     if (!isShowIndicator) {
       return null;
     }
-    return <div className={`${textareaClass}__indicator`}>{`${textareaLength}/${maxcharacter || maxlength}`}</div>;
+    return <div className={`${textareaClass}__indicator`}>{limitNumber}</div>;
   };
 
   return (
