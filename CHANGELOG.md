@@ -5,6 +5,14 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.21.4 `2026-04-09` 
+### 🚀 Features
+- `Indexes`: 新增 `showFullIndex` 属性，表示是否显示完整的索引内容，默认显示首字符 @anlyyao ([#898](https://github.com/Tencent/tdesign-mobile-react/pull/898))
+### 🐞 Bug Fixes
+- `Popup`: 修复多组件同时使用 `preventScrollThrough` 导致页面无法滚动的问题 @anlyyao ([#894](https://github.com/Tencent/tdesign-mobile-react/pull/894))
+- `Indexes`: 修复气泡与右侧索引列表间距错误 @anlyyao ([#898](https://github.com/Tencent/tdesign-mobile-react/pull/898))
+- `Textarea`: 修复 `maxlength` 或 `maxcharacter` 无值时组件无法输入的问题 @anlyyao ([#897](https://github.com/Tencent/tdesign-mobile-react/pull/897))
+
 ## 🌈 0.21.3 `2026-03-26` 
 ### 🚀 Features
 - `Tabs`: 
