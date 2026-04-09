@@ -59,7 +59,7 @@ export default function IndexesDemo({ goHome }) {
           goHome();
         }}
       />
-      <Indexes indexList={indexList} onChange={change} onSelect={select}>
+      <Indexes showFullIndex indexList={indexList} onChange={change} onSelect={select}>
         {list.map((item) => (
           <Fragment key={item.index}>
             <IndexesAnchor index={item.index}>

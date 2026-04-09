@@ -11,6 +11,7 @@ import { popupDefaultProps } from './defaultProps';
 import useDefaultProps from '../hooks/useDefaultProps';
 import parseTNode from '../_util/parseTNode';
 import { usePrefixClass } from '../hooks/useClass';
+import { useLockScroll } from '../hooks/useLockScroll';
 import Portal from '../common/Portal';
 
 export interface PopupProps extends TdPopupProps, NativeProps {}
@@ -47,6 +48,8 @@ const Popup: React.FC<PopupProps> = (props) => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   const [show, setShow] = useDefault<boolean, any>(visible, defaultVisible, onVisibleChange);
+
+  useLockScroll(contentRef, show && preventScrollThrough, name);
 
   const [active, setActive] = useState(show);
 

@@ -153,7 +153,7 @@ describe('Popup', () => {
       render(<Popup visible={true} showOverlay={true} preventScrollThrough={true} />);
 
       const classNames = document.body.className;
-      expect(classNames).toBe('t-overlay--lock');
+      expect(classNames).toBe('t-overlay--lock t-popup--lock');
     });
 
     test(':overlayProps backgroundColor', () => {

@@ -8,7 +8,8 @@
 -- | -- | -- | -- | --
 className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
-indexList | Array | - | 索引字符列表。不传默认 `A-Z`。TS 类型：`(string \| number)[]` | N
+indexList | Array | - | 索引字符列表。不传默认 `A-Z`。TS 类型：`Array<string \| number>` | N
+showFullIndex | Boolean | false | `0.21.4`。是否显示完整的索引内容，默认只显示首字符。TS 类型：`Boolean` | N
 sticky | Boolean | true | 索引是否吸顶，默认为true。TS 类型：`Boolean` | N
 stickyOffset | Number | 0 | 锚点吸顶时与顶部的距离	 | N
 onChange | Function |  | TS 类型：`(index: string \| number) => void`<br/>索引发生变更时触发事件 | N
@@ -26,7 +27,7 @@ index | String / Number | - | 索引字符 | N
 ### CSS Variables
 
 组件提供了下列 CSS 变量，可用于自定义样式。
-名称 | 默认值 | 描述 
+名称 | 默认值 | 描述
 -- | -- | --
 --td-indexes-sidebar-active-bg-color | @brand-color | -
 --td-indexes-sidebar-active-color | @text-color-anti | -
