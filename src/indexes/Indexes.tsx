@@ -26,10 +26,8 @@ interface ChildNodes {
 }
 
 const Indexes: React.FC<IndexesProps> = (props) => {
-  const { indexList, className, style, sticky, stickyOffset, children, onChange, onSelect } = useDefaultProps(
-    props,
-    indexesDefaultProps,
-  );
+  const { indexList, className, style, sticky, stickyOffset, children, onChange, onSelect, showFullIndex } =
+    useDefaultProps(props, indexesDefaultProps);
 
   const indexesClass = usePrefixClass('indexes');
 
@@ -214,24 +212,27 @@ const Indexes: React.FC<IndexesProps> = (props) => {
         ref={indexesRef}
       >
         <div ref={sidebarRef} className={`${indexesClass}__sidebar`}>
-          {indexListMemo.map((listItem) => (
-            <div
-              className={cls(`${indexesClass}__sidebar-item`, {
-                [`${indexesClass}__sidebar-item--active`]: activeSidebar === listItem,
-              })}
-              key={listItem}
-              data-index={listItem}
-              onClick={(e) => {
-                e.preventDefault();
-                handleSidebarItemClick(listItem);
-              }}
-            >
-              {listItem}
-              {showSidebarTip && activeSidebar === listItem && (
-                <div className={`${indexesClass}__sidebar-tips`}>{activeSidebar}</div>
-              )}
-            </div>
-          ))}
+          {indexListMemo.map((listItem) => {
+            const text = showFullIndex ? listItem : String(listItem).charAt(0);
+            return (
+              <div
+                className={cls(`${indexesClass}__sidebar-item`, {
+                  [`${indexesClass}__sidebar-item--active`]: activeSidebar === listItem,
+                })}
+                key={listItem}
+                data-index={listItem}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSidebarItemClick(listItem);
+                }}
+              >
+                {text}
+                {showSidebarTip && activeSidebar === listItem && (
+                  <div className={`${indexesClass}__sidebar-tips`}>{activeSidebar}</div>
+                )}
+              </div>
+            );
+          })}
         </div>
         {parseTNode(children)}
       </div>
