@@ -33,6 +33,7 @@ const inputList = [
   '!src/**/_example',
   '!src/**/*.d.ts',
   '!src/**/__tests__',
+  '!src/**/node_modules',
 ];
 
 const getPlugins = ({
