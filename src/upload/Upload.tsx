@@ -15,6 +15,17 @@ import parseTNode from '../_util/parseTNode';
 
 export interface UploadProps extends TdUploadProps, StyledProps {}
 
+// 用于生成唯一 key
+let globalFileKey = 0;
+const fileKeyMap = new WeakMap<UploadFile, number>();
+const getFileKey = (file: UploadFile): number => {
+  if (!fileKeyMap.has(file)) {
+    globalFileKey += 1;
+    fileKeyMap.set(file, globalFileKey);
+  }
+  return fileKeyMap.get(file)!;
+};
+
 const Upload: React.FC<UploadProps> = (props) => {
   const [showViewer, setShowViewer] = useState(false);
   const [showImageIndex, setShowImageIndex] = useState(0);
@@ -108,7 +119,7 @@ const Upload: React.FC<UploadProps> = (props) => {
 
   const renderDisplayFiles = () =>
     displayFiles.map((file, index) => (
-      <div key={index} className={`${rootClassName}__item`}>
+      <div key={getFileKey(file)} className={`${rootClassName}__item`}>
         {file.url ? (
           <div onClick={(e: MouseEvent) => handlePreview(e, file, index)}>
             <Image className={`${rootClassName}__image`} shape="round" {...imageProps} src={file.url} />
