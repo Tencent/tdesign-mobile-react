@@ -159,6 +159,12 @@ export default {
       component: () => import('tdesign-mobile-react/upload/_example/index.tsx'),
     },
     {
+      title: 'Segmented 分段控制器',
+      titleEn: 'Segmented',
+      name: 'segmented',
+      component: () => import('tdesign-mobile-react/segmented/_example/index.tsx'),
+    },
+    {
       title: 'Skeleton 骨架屏',
       titleEn: 'Skeleton',
       name: 'skeleton',

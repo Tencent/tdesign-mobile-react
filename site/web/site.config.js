@@ -448,6 +448,14 @@ export const docs = [
         componentEn: () => import('tdesign-mobile-react/result/result.en-US.md'),
       },
       {
+        title: 'Segmented 分段控制器',
+        titleEn: 'Segmented',
+        name: 'segmented',
+        path: '/mobile-react/components/segmented',
+        component: () => import('tdesign-mobile-react/segmented/segmented.md'),
+        componentEn: () => import('tdesign-mobile-react/segmented/segmented.en-US.md'),
+      },
+      {
         title: 'Skeleton 骨架屏',
         titleEn: 'Skeleton',
         name: 'skeleton',
