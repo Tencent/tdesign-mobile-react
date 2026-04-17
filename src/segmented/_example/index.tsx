@@ -16,7 +16,7 @@ export default function SegmentedDemo() {
       <TDemoBlock title="" summary="自适应宽度">
         <BlockSegmented />
       </TDemoBlock>
-      <TDemoBlock title="02 组件状态" summary="控制器禁用态">
+      <TDemoBlock title="02 组件状态" summary="控制器状态">
         <DisabledSegmented />
       </TDemoBlock>
     </div>
