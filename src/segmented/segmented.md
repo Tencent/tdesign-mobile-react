@@ -2,7 +2,6 @@
 
 ## API
 
-
 ### Segmented Props
 
 名称 | 类型 | 默认值 | 描述 | 必传
@@ -11,7 +10,7 @@ className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
 block | Boolean | false | 是否撑满父元素宽度 | N
 disabled | Boolean | - | 是否禁用 | N
-options | Object | [] | 数据化配置选项内容。TS 类型：`string[] \| number[] \| SegmentedItem[] ` `interface SegmentedItem { value: string \| number; label?: TNode; icon?: TNode; disabled?: boolean }`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts)。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/segmented/type.ts) | N
+options | Object | [] | 数据化配置选项内容。TS 类型：`string[] \| number[] \| SegmentedItem[] ` `interface SegmentedItem { value: string \| number; label?: string \| TNode; icon?: TNode; disabled?: boolean }`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts)。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/segmented/type.ts) | N
 value | String / Number | - | 当前选中的值 | N
 defaultValue | String / Number | - | 当前选中的值。非受控属性 | N
 onChange | Function |  | TS 类型：`(value: string \| number, selectedOption: SegmentedItem) => void`<br/>选项值发生变化时触发 | N
