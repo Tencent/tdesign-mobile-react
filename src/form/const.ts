@@ -42,15 +42,24 @@ export interface AnalysisValidateResult {
 export interface FormItemContext {
   name: TdFormItemProps['name'];
   resetHandler: () => void;
-  resetField: (resetType?: 'initial' | 'empty') => void;
+  resetField: (resetType?: 'initial' | 'empty' | undefined) => Promise<any>;
   validate: <T extends Data = Data>(
     trigger: ValidateTriggerType,
     showErrorMessage?: boolean,
   ) => Promise<FormItemValidateResult<T>>;
-  validateOnly: <T = Data>(trigger: ValidateTriggerType) => Promise<FormItemValidateResult<T>>;
+  validateOnly: <T extends Data = Data>(trigger: ValidateTriggerType) => Promise<FormItemValidateResult<T>>;
   setValidateMessage: (validateMessage: FormItemValidateMessage[]) => void;
+  getValidateMessage: () => { type: string; message?: string }[];
+  getValue: () => unknown;
+  setValue: (value: any) => void;
+  setField: (fieldData: {
+    value?: unknown;
+    status?: string;
+    validateMessage?: { type?: string; message?: string };
+  }) => void;
   disabled?: boolean;
-  onChange?: (value: any, ...args) => void;
-  onBlur?: (value: any, ...args) => void;
+  readonly?: boolean;
+  onChange?: (value: any, ...args: any[]) => void;
+  onBlur?: (value: any, ...args: any[]) => void;
   value?: any;
 }

@@ -49,6 +49,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     form,
     colon,
     disabled: disabledFromContext,
+    readonly: readonlyFromContext,
     requiredMark: requiredMarkFromContext,
     requiredMarkPosition,
     labelAlign: labelAlignFromContext,
@@ -58,6 +59,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     resetType: resetTypeFromContext,
     rules: rulesFromContext,
     errorMessage,
+    formMapRef,
     onFormItemValueChange,
   } = formContext;
 
@@ -81,10 +83,11 @@ const FormItem: React.FC<FormItemProps> = (props) => {
   const [resetValidating, setResetValidating] = useState(false);
   const [needResetField, setNeedResetField] = useState(false);
   const [freeShowErrorMessage, setFreeShowErrorMessage] = useState<boolean | undefined>(undefined);
-  const [formValue, setFormValue] = useState(lodashGet(form?.store, name));
+  const [formValue, setFormValue] = useState(name ? lodashGet(form?.store, name) : undefined);
   const initialValue = useRef('');
   const hasInit = useRef(false);
   const contextRef = useRef<FormItemContext | null>(null);
+  const formItemRef = useRef<any>(null);
   const rulesMemoStr = useMemo(() => JSON.stringify(rules), [rules]);
   const shouldEmitChangeRef = useRef(false);
 
@@ -186,8 +189,8 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     return style;
   }, [labelWidth, labelAlign]);
 
-  const errorMessages = useMemo<FormErrorMessage>(
-    () => errorMessage ?? globalFormConfig.errorMessage,
+  const errorMessages = useMemo<FormErrorMessage | undefined>(
+    () => errorMessage ?? globalFormConfig?.errorMessage,
     [errorMessage, globalFormConfig],
   );
 
@@ -199,35 +202,39 @@ const FormItem: React.FC<FormItemProps> = (props) => {
   }, []);
 
   const getEmptyValue = useCallback((): ValueType => {
-    const value = lodashGet(form.store, name);
+    const value = name ? lodashGet(form?.store, name) : undefined;
     if (typeof value === 'string') return '';
     if (Array.isArray(value)) return [];
     if (typeof value === 'object') return {};
     return undefined;
-  }, [form.store, name]);
+  }, [form?.store, name]);
 
   const resetField = useCallback(
     async (resetType: 'initial' | 'empty' | undefined = resetTypeFromContext): Promise<any> => {
-      if (!name) {
+      if (!name || !form?.store) {
         return null;
       }
+      let resetValue;
       if (resetType === 'empty') {
-        lodashSet(form.store, name, getEmptyValue());
+        resetValue = getEmptyValue();
+        lodashSet(form.store, name, resetValue);
       } else if (resetType === 'initial') {
-        lodashSet(form.store, name, initialValue.current);
+        resetValue = initialValue.current;
+        lodashSet(form.store, name, resetValue);
       }
+      setFormValue(resetValue);
       if (resetValidating) {
         setNeedResetField(true);
       } else {
         resetHandler();
       }
     },
-    [resetTypeFromContext, name, resetValidating, form.store, getEmptyValue, initialValue, resetHandler],
+    [resetTypeFromContext, name, resetValidating, form?.store, getEmptyValue, resetHandler, initialValue],
   );
 
   const analysisValidateResult = useCallback(
     async (trigger: ValidateTriggerType): Promise<AnalysisValidateResult> => {
-      const value = lodashGet(form.store, name);
+      const value = name ? lodashGet(form?.store, name) : undefined;
       const result: AnalysisValidateResult = {
         successList: [],
         errorList: [],
@@ -241,18 +248,31 @@ const FormItem: React.FC<FormItemProps> = (props) => {
         return result;
       }
       result.allowSetValue = true;
-      result.resultList = await validate(value, result.rules);
+      // 处理自定义校验规则的 context 参数
+      const rulesWithContext = result.rules.map((rule) => {
+        if (rule.validator) {
+          return {
+            ...rule,
+            validator: (val: ValueType) => {
+              const context = { formData: form?.store || {}, name: String(name) };
+              return rule.validator!(val, context);
+            },
+          };
+        }
+        return rule;
+      });
+      result.resultList = await validate(value, rulesWithContext);
       result.errorList = result.resultList
         .filter((item) => item.result !== true)
         .map((item) => {
           const newItem = { ...item };
           Object.keys(newItem).forEach((key) => {
-            if (!newItem.message && errorMessages[key]) {
-              const compiled = lodashTemplate(errorMessages[key]);
+            if (!newItem.message && errorMessages?.[key as keyof FormErrorMessage]) {
+              const compiled = lodashTemplate(errorMessages[key as keyof FormErrorMessage] as string);
               const labelName = isString(label) ? label : name;
               newItem.message = compiled({
                 name: labelName,
-                validate: newItem[key],
+                validate: newItem[key as keyof typeof newItem],
               });
             }
           });
@@ -264,7 +284,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
       ) as SuccessListType[];
       return result;
     },
-    [form.store, name, innerRules, errorMessages, label],
+    [form?.store, name, innerRules, errorMessages, label],
   );
 
   const validateHandler = useCallback(
@@ -292,9 +312,12 @@ const FormItem: React.FC<FormItemProps> = (props) => {
       }
       setResetValidating(false);
 
-      return {
-        [`${name}`]: innerErrorList?.length === 0 ? true : resultList,
-      } as FormItemValidateResult<T>;
+      const result = {} as FormItemValidateResult<T>;
+      if (name !== undefined) {
+        (result as Record<string, boolean | AllValidateResult[]>)[String(name)] =
+          innerErrorList?.length === 0 ? true : resultList;
+      }
+      return result;
     },
     [analysisValidateResult, needResetField, resetHandler, name],
   );
@@ -302,9 +325,12 @@ const FormItem: React.FC<FormItemProps> = (props) => {
   const validateOnly = useCallback(
     async <T extends Data>(trigger: ValidateTriggerType): Promise<FormItemValidateResult<T>> => {
       const { errorList: innerErrorList, resultList } = await analysisValidateResult(trigger);
-      return {
-        [name]: innerErrorList.length === 0 ? true : resultList,
-      } as FormItemValidateResult<T>;
+      const result = {} as FormItemValidateResult<T>;
+      if (name !== undefined && innerErrorList) {
+        (result as Record<string, boolean | AllValidateResult[]>)[String(name)] =
+          innerErrorList.length === 0 ? true : resultList;
+      }
+      return result;
     },
     [analysisValidateResult, name],
   );
@@ -317,12 +343,52 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     setErrorList(validateMessage.map((item) => ({ ...item, result: false })));
   }, []);
 
+  // 获取校验信息
+  const getValidateMessage = useCallback(() => {
+    if (errorList.length === 0) return [];
+    return errorList.map((item) => ({
+      type: item.type || 'error',
+      message: item.message,
+    }));
+  }, [errorList]);
+
+  // 获取当前值
+  const getValue = useCallback(() => (name ? lodashGet(form?.store, name) : undefined), [form?.store, name]);
+
+  // 设置值
+  const setValue = useCallback(
+    (value: any) => {
+      if (name && form?.store) {
+        lodashSet(form.store, name, cloneDeep(value));
+      }
+      setFormValue(value);
+    },
+    [form?.store, name],
+  );
+
+  // 设置字段状态
+  const setField = useCallback(
+    (fieldData: { value?: unknown; status?: string; validateMessage?: { type?: string; message?: string } }) => {
+      const { value, status, validateMessage } = fieldData;
+      if (typeof value !== 'undefined') {
+        setValue(value);
+      }
+      if (status) {
+        // 可以扩展状态处理逻辑
+      }
+      if (validateMessage) {
+        setValidateMessage([validateMessage as FormItemValidateMessage]);
+      }
+    },
+    [setValue, setValidateMessage],
+  );
+
   const handleBlur = useCallback(async () => {
     await validateHandler('blur');
   }, [validateHandler]);
 
   // 创建 context 对象
-  const context: FormItemContext = useMemo(
+  const context = useMemo<FormItemContext>(
     () => ({
       name,
       resetHandler,
@@ -330,17 +396,45 @@ const FormItem: React.FC<FormItemProps> = (props) => {
       validate: validateHandler,
       validateOnly,
       setValidateMessage,
+      getValidateMessage,
+      getValue,
+      setValue,
+      setField,
       value: formValue,
     }),
-    [name, resetHandler, resetField, validateHandler, validateOnly, setValidateMessage, formValue],
+    [
+      name,
+      resetHandler,
+      resetField,
+      validateHandler,
+      validateOnly,
+      setValidateMessage,
+      getValidateMessage,
+      getValue,
+      setValue,
+      setField,
+      formValue,
+    ],
   );
 
+  // 注册到 formMapRef
   useEffect(() => {
-    if (initialValue.current || !name) {
+    if (!name || !formMapRef) return;
+    const nameKey = Array.isArray(name) ? name.join('.') : String(name);
+    const mapRef = formMapRef.current;
+    formItemRef.current = { current: context };
+    mapRef.set(nameKey, formItemRef.current);
+    return () => {
+      mapRef.delete(nameKey);
+    };
+  }, [name, formMapRef, context]);
+
+  useEffect(() => {
+    if (initialValue.current || !name || !form?.store) {
       return;
     }
     initialValue.current = lodashGet(form.store, name);
-  }, [form.store, name]);
+  }, [form?.store, name]);
 
   // 生命周期
   useEffect(() => {
@@ -353,12 +447,13 @@ const FormItem: React.FC<FormItemProps> = (props) => {
         formContext.children = formContext.children.filter((ctx) => ctx !== contextRef.current);
       }
     };
-  }, [context, form.store, formContext, name]);
+  }, [context, formContext]);
 
   // 监听 formValue 变化，触发 onValuesChange
   useEffect(() => {
     if (typeof name === 'undefined' || !shouldEmitChangeRef.current) return;
-    const fieldValue = { [name]: formValue };
+    const fieldValue: Record<string, unknown> = {};
+    fieldValue[String(name)] = formValue;
     onFormItemValueChange?.(fieldValue);
   }, [formValue, name, onFormItemValueChange]);
 
@@ -413,7 +508,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
       <div className={formItemWrapperClasses}>
         <div className={labelClasses} style={labelStyle}>
           <label htmlFor={htmlFor}>{renderLabelContent()}</label>
-          {colon && t(locale.colonText)}
+          {colon && locale?.colonText && t(locale.colonText)}
         </div>
         <div className={contentClasses} style={contentStyle}>
           <div className={contentSlotClasses}>
@@ -424,9 +519,13 @@ const FormItem: React.FC<FormItemProps> = (props) => {
                     ...(children as React.ReactElement<FormItemContext>).props,
                     value: formValue,
                     disabled: disabledFromContext,
+                    readonly: readonlyFromContext,
                     onChange: (value: any, ...args) => {
+                      if (readonlyFromContext) return;
                       const newValue = cloneDeep(value);
-                      lodashSet(form?.store, name, newValue);
+                      if (name && form?.store) {
+                        lodashSet(form.store, name, newValue);
+                      }
                       shouldEmitChangeRef.current = true;
                       setFormValue(newValue);
                       (children as React.ReactElement<FormItemContext>).props?.onChange?.call?.(null, value, ...args);

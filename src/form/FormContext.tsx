@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, MutableRefObject } from 'react';
 import { TdFormProps } from './type';
 import { FormItemContext } from './const';
 import { InternalFormInstance } from './hooks/interface';
@@ -17,6 +17,8 @@ export interface FormContextType {
   children?: FormItemContext[];
   form?: InternalFormInstance;
   disabled?: TdFormProps['disabled'];
+  readonly?: TdFormProps['readonly'];
+  formMapRef?: MutableRefObject<Map<any, any>>;
   onFormItemValueChange: (changedValue: Record<string, unknown>) => void;
 }
 
