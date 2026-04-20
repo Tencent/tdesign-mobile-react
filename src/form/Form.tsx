@@ -246,8 +246,10 @@ const Form = forwardRefWithStatics(
     }
 
     function onFormItemValueChange(changedValue: Record<string, unknown>) {
-      const allFields = formRef.current.getFieldsValue(true);
-      onValuesChange(changedValue, allFields);
+      requestAnimationFrame(() => {
+        const allFields = form.getFieldsValue?.(true) ?? {};
+        onValuesChange(changedValue, allFields);
+      });
     }
 
     return (

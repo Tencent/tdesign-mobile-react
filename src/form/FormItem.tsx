@@ -58,6 +58,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     resetType: resetTypeFromContext,
     rules: rulesFromContext,
     errorMessage,
+    onFormItemValueChange,
   } = formContext;
 
   const {
@@ -85,6 +86,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
   const hasInit = useRef(false);
   const contextRef = useRef<FormItemContext | null>(null);
   const rulesMemoStr = useMemo(() => JSON.stringify(rules), [rules]);
+  const shouldEmitChangeRef = useRef(false);
 
   const shouldShowErrorMessage = useMemo(() => {
     if (isBoolean(freeShowErrorMessage)) return freeShowErrorMessage;
@@ -353,6 +355,13 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     };
   }, [context, form.store, formContext, name]);
 
+  // 监听 formValue 变化，触发 onValuesChange
+  useEffect(() => {
+    if (typeof name === 'undefined' || !shouldEmitChangeRef.current) return;
+    const fieldValue = { [name]: formValue };
+    onFormItemValueChange?.(fieldValue);
+  }, [formValue, name, onFormItemValueChange]);
+
   // 监听规则变化
   useEffect(() => {
     if (!hasInit.current) {
@@ -418,6 +427,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
                     onChange: (value: any, ...args) => {
                       const newValue = cloneDeep(value);
                       lodashSet(form?.store, name, newValue);
+                      shouldEmitChangeRef.current = true;
                       setFormValue(newValue);
                       (children as React.ReactElement<FormItemContext>).props?.onChange?.call?.(null, value, ...args);
                     },

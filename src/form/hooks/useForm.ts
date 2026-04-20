@@ -7,6 +7,10 @@ class FormStore {
   public getForm = (): InternalFormInstance => ({
     isInit: true,
     store: this.store,
+    getFieldsValue: (multiple?: boolean) => {
+      if (multiple) return this.store;
+      return { ...this.store };
+    },
   });
 }
 
