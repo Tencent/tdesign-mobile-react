@@ -14,3 +14,16 @@ options | Object | [] | 数据化配置选项内容。TS 类型：`string[] \| n
 value | String / Number | - | 当前选中的值 | N
 defaultValue | String / Number | - | 当前选中的值。非受控属性 | N
 onChange | Function |  | TS 类型：`(value: string \| number, selectedOption: SegmentedItem) => void`<br/>选项值发生变化时触发 | N
+
+### CSS Variables
+
+组件提供了下列 CSS 变量，可用于自定义样式。
+名称 | 默认值 | 描述 
+-- | -- | --
+--td-segmented-bg-color | @bg-color-component-disabled | -
+--td-segmented-item-active-bg | @bg-color-container | -
+--td-segmented-item-active-color | @brand-color | -
+--td-segmented-item-color | @text-color-primary | -
+--td-segmented-item-disabled-color | @text-color-disabled | -
+--td-segmented-item-label-font | @font-body-medium | -
+--td-segmented-transition | all @anim-duration-base @anim-time-fn-easing | -

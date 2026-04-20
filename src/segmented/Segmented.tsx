@@ -98,7 +98,7 @@ const Segmented: React.FC<SegmentedProps> = (originProps) => {
           >
             <div className={`${segmentedClass}__item-inner`}>
               {item.icon && <span className={`${segmentedClass}__item-icon`}>{parseTNode(item.icon)}</span>}
-              {item.label && <text className={`${segmentedClass}__item-label`}>{parseTNode(item.label)}</text>}
+              {item.label && <span className={`${segmentedClass}__item-label`}>{parseTNode(item.label)}</span>}
             </div>
           </div>
         ))}
