@@ -1,21 +1,23 @@
-import { FieldData, FormValidateMessage, FormResetParams } from '../type';
+import type { FormInstanceFunctions, NamePath } from '../type';
 
 export type Store = Record<string, any>;
-export type NamePath = string | number | Array<string | number>;
 
-export interface InternalFormInstance {
-  isInit?: boolean;
+export type WatchCallBack = (values: Store, namePathList: NamePath) => void;
+
+export interface InternalHooks {
+  notifyWatch: (name: NamePath) => void;
+  registerWatch: (callback: WatchCallBack) => () => void;
+  getPrevStore: () => Store;
+  setPrevStore: (store: Store) => void;
+  flashQueue: () => void;
+  setForm: (form: any) => void;
+}
+
+/**
+ * @internal
+ */
+export interface InternalFormInstance extends FormInstanceFunctions {
+  _init?: boolean;
   store?: Store;
-  getFieldsValue?: (nameList: string[] | boolean) => Store;
-  getFieldValue?: (name: NamePath) => unknown;
-  setFieldsValue?: (data: Record<string, unknown>) => void;
-  setFields?: (fields: FieldData[]) => void;
-  getValidateMessage?: (fields?: Array<string>) => Record<string, any> | void;
-  reset?: (params?: FormResetParams<any>) => void;
-  submit?: (params?: { showErrorMessage?: boolean }) => void;
-  validate?: (params?: any) => Promise<any>;
-  validateOnly?: (params?: any) => Promise<any>;
-  clearValidate?: (fields?: Array<string>) => void;
-  setValidateMessage?: (message: FormValidateMessage<any>) => void;
-  getInternalHooks?: (key: string) => any;
+  getInternalHooks?: (secret: string) => InternalHooks | null;
 }

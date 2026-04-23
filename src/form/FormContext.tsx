@@ -1,6 +1,6 @@
-import { createContext, useContext, MutableRefObject } from 'react';
+import React, { createContext, useContext, MutableRefObject } from 'react';
 import { TdFormProps } from './type';
-import { FormItemContext } from './const';
+import { FormItemInstance } from './const';
 import { InternalFormInstance } from './hooks/interface';
 
 export interface FormContextType {
@@ -9,16 +9,18 @@ export interface FormContextType {
   labelAlign?: TdFormProps['labelAlign'];
   contentAlign?: TdFormProps['contentAlign'];
   colon?: TdFormProps['colon'];
+  initialData?: TdFormProps['initialData'];
   requiredMark?: TdFormProps['requiredMark'];
   requiredMarkPosition?: TdFormProps['requiredMarkPosition'];
+  scrollToFirstError?: TdFormProps['scrollToFirstError'];
   rules?: TdFormProps['rules'];
   errorMessage?: TdFormProps['errorMessage'];
   resetType?: TdFormProps['resetType'];
-  children?: FormItemContext[];
   form?: InternalFormInstance;
   disabled?: TdFormProps['disabled'];
   readonly?: TdFormProps['readonly'];
-  formMapRef?: MutableRefObject<Map<any, any>>;
+  formMapRef?: MutableRefObject<Map<any, React.RefObject<FormItemInstance>>>;
+  floatingFormDataRef?: MutableRefObject<Record<any, any>>;
   onFormItemValueChange: (changedValue: Record<string, unknown>) => void;
 }
 

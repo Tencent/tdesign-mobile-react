@@ -1,30 +1,36 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
 import {
   cloneDeep,
   get as lodashGet,
   isArray,
   isBoolean,
+  isEqual,
   isFunction,
   isNumber,
+  isObject,
   isString,
   set as lodashSet,
   template as lodashTemplate,
 } from 'lodash-es';
 import { ChevronRightIcon } from 'tdesign-icons-react';
 import { validate } from './formModel';
+import { HOOK_MARK } from './hooks/useForm';
 
 import {
   AllValidateResult,
   Data,
+  FieldData,
   FormErrorMessage,
+  FormInstanceFunctions,
   FormItemValidateMessage,
   FormRule,
   ValidateTriggerType,
   ValueType,
   TdFormItemProps,
+  TdFormProps,
 } from './type';
-import { AnalysisValidateResult, ErrorListType, FormItemContext, SuccessListType } from './const';
+import { AnalysisValidateResult, ErrorListType, FormItemInstance, SuccessListType } from './const';
 import { usePrefixClass } from '../hooks/useClass';
 import useConfig from '../hooks/useConfig';
 import { useLocaleReceiver } from '../locale/LocalReceiver';
@@ -32,12 +38,12 @@ import { useFormContext } from './FormContext';
 import { StyledProps } from '../common';
 
 export interface FormItemProps extends TdFormItemProps, StyledProps {
-  children?: React.ReactNode;
+  children?: React.ReactNode | React.ReactNode[] | ((form: FormInstanceFunctions) => React.ReactElement);
 }
 
 export type FormItemValidateResult<T extends Data = Data> = { [key in keyof T]: boolean | AllValidateResult[] };
 
-const FormItem: React.FC<FormItemProps> = (props) => {
+const FormItem = forwardRef<FormItemInstance, FormItemProps>((props, ref) => {
   const [locale, t] = useLocaleReceiver('form');
   const { form: globalFormConfig } = useConfig();
   const formClass = usePrefixClass('form');
@@ -59,7 +65,9 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     resetType: resetTypeFromContext,
     rules: rulesFromContext,
     errorMessage,
+    initialData: initialDataFromContext,
     formMapRef,
+    floatingFormDataRef,
     onFormItemValueChange,
   } = formContext;
 
@@ -67,6 +75,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     arrow = false,
     for: htmlFor = '',
     help,
+    initialData,
     label,
     labelAlign = labelAlignFromContext,
     labelWidth = labelWidthFromContext,
@@ -74,22 +83,56 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     name,
     requiredMark = requiredMarkFromContext,
     rules = [],
+    shouldUpdate,
     showErrorMessage,
     children,
   } = props;
+
+  // 计算默认初始数据：优先级 floatingFormData > FormItem.initialData > Form.initialData > store 中的值
+  const defaultInitialData = useMemo(() => {
+    // 先检查 floatingFormData
+    if (name && floatingFormDataRef?.current) {
+      const floatingValue = lodashGet(floatingFormDataRef.current, name);
+      if (typeof floatingValue !== 'undefined') {
+        return floatingValue;
+      }
+    }
+    // FormItem 自身的 initialData 优先级最高
+    if (typeof initialData !== 'undefined') {
+      return initialData;
+    }
+    // Form 级别的 initialData
+    if (name && initialDataFromContext) {
+      const contextValue = lodashGet(initialDataFromContext, name);
+      if (typeof contextValue !== 'undefined') {
+        return contextValue;
+      }
+    }
+    // store 中的已有值
+    if (name) {
+      return lodashGet(form?.store, name);
+    }
+    return undefined;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [errorList, setErrorList] = useState<ErrorListType[]>([]);
   const [successList, setSuccessList] = useState<SuccessListType[]>([]);
   const [resetValidating, setResetValidating] = useState(false);
   const [needResetField, setNeedResetField] = useState(false);
   const [freeShowErrorMessage, setFreeShowErrorMessage] = useState<boolean | undefined>(undefined);
-  const [formValue, setFormValue] = useState(name ? lodashGet(form?.store, name) : undefined);
-  const initialValue = useRef('');
-  const hasInit = useRef(false);
-  const contextRef = useRef<FormItemContext | null>(null);
-  const formItemRef = useRef<any>(null);
-  const rulesMemoStr = useMemo(() => JSON.stringify(rules), [rules]);
-  const shouldEmitChangeRef = useRef(false);
+  const [formValue, setFormValue] = useState(defaultInitialData);
+  const [, forceUpdate] = useState({}); // 用于 shouldUpdate 强制渲染
+
+  const formItemRef = useRef<FormItemInstance>(null); // 当前 formItem 实例
+  const shouldEmitChangeRef = useRef(false); // onChange 冒泡开关
+  const shouldValidate = useRef(false); // 校验开关
+  const valueRef = useRef(formValue); // 当前最新值
+
+  const snakeName = useMemo(() => {
+    if (name === undefined) return '';
+    return Array.isArray(name) ? name.join('.') : String(name);
+  }, [name]);
 
   const shouldShowErrorMessage = useMemo(() => {
     if (isBoolean(freeShowErrorMessage)) return freeShowErrorMessage;
@@ -194,281 +237,267 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     [errorMessage, globalFormConfig],
   );
 
+  // 更新 form 表单字段（对齐桌面端 updateFormValue）
+  const updateFormValue = (newVal: any, doValidate = true, shouldEmitChange = false) => {
+    const { setPrevStore } = form?.getInternalHooks?.(HOOK_MARK) || {};
+    setPrevStore?.(form?.getFieldsValue?.(true));
+    shouldEmitChangeRef.current = shouldEmitChange;
+    shouldValidate.current = doValidate;
+    valueRef.current = newVal;
+    const fieldValue = name ? lodashGet(form?.store, name) : undefined;
+    if (isEqual(fieldValue, newVal)) return;
+    if (name && form?.store) {
+      lodashSet(form.store, name, newVal);
+    }
+    setFormValue(newVal);
+  };
+
   // 方法定义
-  const resetHandler = useCallback(() => {
+  function resetHandler() {
     setNeedResetField(false);
     setErrorList([]);
     setSuccessList([]);
-  }, []);
+  }
 
-  const getEmptyValue = useCallback((): ValueType => {
+  function getResetValue(resetType: TdFormProps['resetType']): ValueType {
+    if (resetType === 'initial') {
+      return defaultInitialData;
+    }
+    let emptyValue: ValueType;
+    if (Array.isArray(formValue)) {
+      emptyValue = [];
+    } else if (isObject(formValue)) {
+      emptyValue = {};
+    } else if (isString(formValue)) {
+      emptyValue = '';
+    }
+    return emptyValue;
+  }
+
+  function resetField(type?: TdFormProps['resetType']) {
+    if (typeof name === 'undefined') return;
+    const resetType = type || resetTypeFromContext;
+    const resetValue = getResetValue(resetType);
+    // reset 不校验
+    updateFormValue(resetValue, false);
+    if (resetValidating) {
+      setNeedResetField(true);
+    } else {
+      resetHandler();
+    }
+  }
+
+  async function analysisValidateResult(trigger: ValidateTriggerType): Promise<AnalysisValidateResult> {
     const value = name ? lodashGet(form?.store, name) : undefined;
-    if (typeof value === 'string') return '';
-    if (Array.isArray(value)) return [];
-    if (typeof value === 'object') return {};
-    return undefined;
-  }, [form?.store, name]);
-
-  const resetField = useCallback(
-    async (resetType: 'initial' | 'empty' | undefined = resetTypeFromContext): Promise<any> => {
-      if (!name || !form?.store) {
-        return null;
+    const result: AnalysisValidateResult = {
+      successList: [],
+      errorList: [],
+      rules: [],
+      resultList: [],
+      allowSetValue: false,
+    };
+    result.rules = trigger === 'all' ? innerRules : innerRules.filter((item) => (item.trigger || 'change') === trigger);
+    if (innerRules.length && !result.rules?.length) {
+      return result;
+    }
+    result.allowSetValue = true;
+    // 处理自定义校验规则的 context 参数
+    const rulesWithContext = result.rules.map((rule) => {
+      if (rule.validator) {
+        return {
+          ...rule,
+          validator: (val: ValueType) => {
+            const context = { formData: form?.store || {}, name: String(name) };
+            return rule.validator!(val, context);
+          },
+        };
       }
-      let resetValue;
-      if (resetType === 'empty') {
-        resetValue = getEmptyValue();
-        lodashSet(form.store, name, resetValue);
-      } else if (resetType === 'initial') {
-        resetValue = initialValue.current;
-        lodashSet(form.store, name, resetValue);
-      }
-      setFormValue(resetValue);
-      if (resetValidating) {
-        setNeedResetField(true);
-      } else {
-        resetHandler();
-      }
-    },
-    [resetTypeFromContext, name, resetValidating, form?.store, getEmptyValue, resetHandler, initialValue],
-  );
-
-  const analysisValidateResult = useCallback(
-    async (trigger: ValidateTriggerType): Promise<AnalysisValidateResult> => {
-      const value = name ? lodashGet(form?.store, name) : undefined;
-      const result: AnalysisValidateResult = {
-        successList: [],
-        errorList: [],
-        rules: [],
-        resultList: [],
-        allowSetValue: false,
-      };
-      result.rules =
-        trigger === 'all' ? innerRules : innerRules.filter((item) => (item.trigger || 'change') === trigger);
-      if (innerRules.length && !result.rules?.length) {
-        return result;
-      }
-      result.allowSetValue = true;
-      // 处理自定义校验规则的 context 参数
-      const rulesWithContext = result.rules.map((rule) => {
-        if (rule.validator) {
-          return {
-            ...rule,
-            validator: (val: ValueType) => {
-              const context = { formData: form?.store || {}, name: String(name) };
-              return rule.validator!(val, context);
-            },
-          };
-        }
-        return rule;
-      });
-      result.resultList = await validate(value, rulesWithContext);
-      result.errorList = result.resultList
-        .filter((item) => item.result !== true)
-        .map((item) => {
-          const newItem = { ...item };
-          Object.keys(newItem).forEach((key) => {
-            if (!newItem.message && errorMessages?.[key as keyof FormErrorMessage]) {
-              const compiled = lodashTemplate(errorMessages[key as keyof FormErrorMessage] as string);
-              const labelName = isString(label) ? label : name;
-              newItem.message = compiled({
-                name: labelName,
-                validate: newItem[key as keyof typeof newItem],
-              });
-            }
-          });
-          return newItem as ErrorListType;
+      return rule;
+    });
+    result.resultList = await validate(value, rulesWithContext);
+    result.errorList = result.resultList
+      .filter((item) => item.result !== true)
+      .map((item) => {
+        const newItem = { ...item };
+        Object.keys(newItem).forEach((key) => {
+          if (!newItem.message && errorMessages?.[key as keyof FormErrorMessage]) {
+            const compiled = lodashTemplate(errorMessages[key as keyof FormErrorMessage] as string);
+            const labelName = isString(label) ? label : name;
+            newItem.message = compiled({
+              name: labelName,
+              validate: newItem[key as keyof typeof newItem],
+            });
+          }
         });
-      // 仅有自定义校验方法才会存在 successList
-      result.successList = result.resultList.filter(
-        (item) => item.result === true && item.message && item.type === 'success',
-      ) as SuccessListType[];
-      return result;
-    },
-    [form?.store, name, innerRules, errorMessages, label],
-  );
+        return newItem as ErrorListType;
+      });
+    // 仅有自定义校验方法才会存在 successList
+    result.successList = result.resultList.filter(
+      (item) => item.result === true && item.message && item.type === 'success',
+    ) as SuccessListType[];
+    return result;
+  }
 
-  const validateHandler = useCallback(
-    async <T extends Data = Data>(
-      trigger: ValidateTriggerType,
-      showErrorMessage?: boolean,
-    ): Promise<FormItemValidateResult<T>> => {
-      setResetValidating(true);
-      setFreeShowErrorMessage(showErrorMessage);
+  async function validateHandler<T extends Data = Data>(
+    trigger: ValidateTriggerType,
+    showErrorMsg?: boolean,
+  ): Promise<FormItemValidateResult<T>> {
+    setResetValidating(true);
+    setFreeShowErrorMessage(showErrorMsg);
 
-      const {
-        successList: innerSuccessList,
-        errorList: innerErrorList,
-        resultList,
-        allowSetValue,
-      } = await analysisValidateResult(trigger);
+    const {
+      successList: innerSuccessList,
+      errorList: innerErrorList,
+      resultList,
+      allowSetValue,
+    } = await analysisValidateResult(trigger);
 
-      if (allowSetValue) {
-        setSuccessList(innerSuccessList || []);
-        setErrorList(innerErrorList || []);
-      }
-      // 重置处理
-      if (needResetField) {
-        resetHandler();
-      }
-      setResetValidating(false);
+    if (allowSetValue) {
+      setSuccessList(innerSuccessList || []);
+      setErrorList(innerErrorList || []);
+    }
+    // 重置处理
+    if (needResetField) {
+      resetHandler();
+    }
+    setResetValidating(false);
 
-      const result = {} as FormItemValidateResult<T>;
-      if (name !== undefined) {
-        (result as Record<string, boolean | AllValidateResult[]>)[String(name)] =
-          innerErrorList?.length === 0 ? true : resultList;
-      }
-      return result;
-    },
-    [analysisValidateResult, needResetField, resetHandler, name],
-  );
+    const result = {} as FormItemValidateResult<T>;
+    if (name !== undefined) {
+      (result as Record<string, boolean | AllValidateResult[]>)[snakeName] =
+        innerErrorList?.length === 0 ? true : resultList;
+    }
+    return result;
+  }
 
-  const validateOnly = useCallback(
-    async <T extends Data>(trigger: ValidateTriggerType): Promise<FormItemValidateResult<T>> => {
-      const { errorList: innerErrorList, resultList } = await analysisValidateResult(trigger);
-      const result = {} as FormItemValidateResult<T>;
-      if (name !== undefined && innerErrorList) {
-        (result as Record<string, boolean | AllValidateResult[]>)[String(name)] =
-          innerErrorList.length === 0 ? true : resultList;
-      }
-      return result;
-    },
-    [analysisValidateResult, name],
-  );
+  async function validateOnly<T extends Data>(trigger: ValidateTriggerType): Promise<FormItemValidateResult<T>> {
+    const { errorList: innerErrorList, resultList } = await analysisValidateResult(trigger);
+    const result = {} as FormItemValidateResult<T>;
+    if (name !== undefined && innerErrorList) {
+      (result as Record<string, boolean | AllValidateResult[]>)[snakeName] =
+        innerErrorList.length === 0 ? true : resultList;
+    }
+    return result;
+  }
 
-  const setValidateMessage = useCallback((validateMessage: FormItemValidateMessage[]) => {
+  function setValidateMessage(validateMessage: FormItemValidateMessage[]) {
     if (!validateMessage && !isArray(validateMessage)) return;
     if (validateMessage.length === 0) {
       setErrorList([]);
     }
     setErrorList(validateMessage.map((item) => ({ ...item, result: false })));
-  }, []);
+  }
 
-  // 获取校验信息
-  const getValidateMessage = useCallback(() => {
+  function getValidateMessage() {
     if (errorList.length === 0) return [];
     return errorList.map((item) => ({
       type: item.type || 'error',
       message: item.message,
     }));
-  }, [errorList]);
+  }
 
-  // 获取当前值
-  const getValue = useCallback(() => (name ? lodashGet(form?.store, name) : undefined), [form?.store, name]);
+  function setField(field: Omit<FieldData, 'name'>) {
+    const { value, status, validateMessage } = field;
+    if (typeof value !== 'undefined') {
+      // 手动设置 status 则不需要校验，交给用户判断
+      updateFormValue(value, typeof status === 'undefined', true);
+    }
+    if (status) {
+      // 可以扩展状态处理逻辑
+    }
+    if (validateMessage) {
+      setValidateMessage([validateMessage as FormItemValidateMessage]);
+    }
+  }
 
-  // 设置值
-  const setValue = useCallback(
-    (value: any) => {
-      if (name && form?.store) {
-        lodashSet(form.store, name, cloneDeep(value));
-      }
-      setFormValue(value);
-    },
-    [form?.store, name],
-  );
+  // blur 下触发校验
+  function handleItemBlur() {
+    const filterRules = innerRules.filter((item) => item.trigger === 'blur');
+    if (filterRules.length) {
+      validateHandler('blur');
+    }
+  }
 
-  // 设置字段状态
-  const setField = useCallback(
-    (fieldData: { value?: unknown; status?: string; validateMessage?: { type?: string; message?: string } }) => {
-      const { value, status, validateMessage } = fieldData;
-      if (typeof value !== 'undefined') {
-        setValue(value);
-      }
-      if (status) {
-        // 可以扩展状态处理逻辑
-      }
-      if (validateMessage) {
-        setValidateMessage([validateMessage as FormItemValidateMessage]);
-      }
-    },
-    [setValue, setValidateMessage],
-  );
+  // shouldUpdate: 注册自定义更新回调
+  useEffect(() => {
+    if (!shouldUpdate || !form) return;
 
-  const handleBlur = useCallback(async () => {
-    await validateHandler('blur');
-  }, [validateHandler]);
+    const { getPrevStore, registerWatch } = form?.getInternalHooks?.(HOOK_MARK) || {};
 
-  // 创建 context 对象
-  const context = useMemo<FormItemContext>(
-    () => ({
-      name,
-      resetHandler,
-      resetField,
-      validate: validateHandler,
-      validateOnly,
-      setValidateMessage,
-      getValidateMessage,
-      getValue,
-      setValue,
-      setField,
-      value: formValue,
-    }),
-    [
-      name,
-      resetHandler,
-      resetField,
-      validateHandler,
-      validateOnly,
-      setValidateMessage,
-      getValidateMessage,
-      getValue,
-      setValue,
-      setField,
-      formValue,
-    ],
-  );
+    const cancelRegister = registerWatch?.(() => {
+      const currStore = form?.getFieldsValue?.(true) || {};
+      let updateFlag = shouldUpdate as boolean;
+      if (isFunction(shouldUpdate))
+        updateFlag = (shouldUpdate as (prev: any, cur: any) => boolean)(getPrevStore?.(), currStore);
+
+      if (updateFlag) forceUpdate({});
+    });
+
+    return cancelRegister;
+  }, [shouldUpdate, form]);
 
   // 注册到 formMapRef
   useEffect(() => {
-    if (!name || !formMapRef) return;
-    const nameKey = Array.isArray(name) ? name.join('.') : String(name);
+    if (typeof name === 'undefined') return;
+    if (!formMapRef?.current) return;
+
     const mapRef = formMapRef.current;
-    formItemRef.current = { current: context };
-    mapRef.set(nameKey, formItemRef.current);
+
+    // 注册实例
+    mapRef.set(snakeName, formItemRef);
+
+    // 初始化
+    if (typeof defaultInitialData !== 'undefined' && form?.store) {
+      lodashSet(form.store, name, defaultInitialData);
+    }
+    setFormValue(defaultInitialData);
+
     return () => {
-      mapRef.delete(nameKey);
+      mapRef.delete(snakeName);
     };
-  }, [name, formMapRef, context]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [snakeName]);
 
+  // 合并后的 formValue 变化 useEffect（对齐桌面端）
   useEffect(() => {
-    if (initialValue.current || !name || !form?.store) {
-      return;
+    if (typeof name === 'undefined') return;
+
+    // value 变化通知 watch 事件
+    form?.getInternalHooks?.(HOOK_MARK)?.notifyWatch?.(name);
+
+    // 控制是否需要校验
+    if (!shouldValidate.current) return;
+
+    if (shouldEmitChangeRef.current) {
+      const fieldValue: Record<string, unknown> = {};
+      fieldValue[snakeName] = formValue;
+      onFormItemValueChange?.(fieldValue);
     }
-    initialValue.current = lodashGet(form.store, name);
-  }, [form?.store, name]);
 
-  // 生命周期
-  useEffect(() => {
-    if (formContext?.children) {
-      formContext.children.push(context);
+    const filterRules = innerRules.filter((item) => (item.trigger || 'change') === 'change');
+    if (filterRules.length) {
+      validateHandler('change');
     }
-    contextRef.current = context;
-    return () => {
-      if (formContext?.children) {
-        formContext.children = formContext.children.filter((ctx) => ctx !== contextRef.current);
-      }
-    };
-  }, [context, formContext]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formValue, snakeName]);
 
-  // 监听 formValue 变化，触发 onValuesChange
-  useEffect(() => {
-    if (typeof name === 'undefined' || !shouldEmitChangeRef.current) return;
-    const fieldValue: Record<string, unknown> = {};
-    fieldValue[String(name)] = formValue;
-    onFormItemValueChange?.(fieldValue);
-  }, [formValue, name, onFormItemValueChange]);
-
-  // 监听规则变化
-  useEffect(() => {
-    if (!hasInit.current) {
-      // 仅在用户有交互后进行校验
-      if (formValue) {
-        hasInit.current = true;
-      }
-      return;
-    }
-    validateHandler('change');
-    // eslint-disable-next-line
-  }, [formValue, name, rulesMemoStr]);
+  // 暴露 ref 实例方法（对齐桌面端）
+  const instance: FormItemInstance = {
+    name,
+    value: formValue,
+    initialData,
+    getValue: () => cloneDeep(valueRef.current),
+    setValue: (newVal: any) => updateFormValue(newVal, true, true),
+    setField,
+    validate: validateHandler,
+    validateOnly,
+    resetField,
+    setValidateMessage,
+    getValidateMessage,
+    resetValidate: resetHandler,
+  };
+  useImperativeHandle(ref, (): FormItemInstance => instance);
+  useImperativeHandle(formItemRef, (): FormItemInstance => instance);
 
   // 渲染函数
   const renderRightIconContent = () => {
@@ -503,6 +532,10 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     return <div className={formItemExtraClasses}>{extraNode}</div>;
   };
 
+  // 支持函数渲染 children（对齐桌面端）
+  if (isFunction(children))
+    return (children as (form: FormInstanceFunctions) => React.ReactElement)(form as FormInstanceFunctions);
+
   return (
     <div className={formItemRootClasses}>
       <div className={formItemWrapperClasses}>
@@ -512,31 +545,31 @@ const FormItem: React.FC<FormItemProps> = (props) => {
         </div>
         <div className={contentClasses} style={contentStyle}>
           <div className={contentSlotClasses}>
-            {
-              // 受控模式下，children 应该是 input 并传递 value/onChange
-              React.isValidElement(children)
-                ? React.cloneElement(children as React.ReactElement<FormItemContext>, {
-                    ...(children as React.ReactElement<FormItemContext>).props,
-                    value: formValue,
-                    disabled: disabledFromContext,
-                    readonly: readonlyFromContext,
-                    onChange: (value: any, ...args) => {
-                      if (readonlyFromContext) return;
-                      const newValue = cloneDeep(value);
-                      if (name && form?.store) {
-                        lodashSet(form.store, name, newValue);
-                      }
-                      shouldEmitChangeRef.current = true;
-                      setFormValue(newValue);
-                      (children as React.ReactElement<FormItemContext>).props?.onChange?.call?.(null, value, ...args);
-                    },
-                    onBlur: (value: any, ...args: any[]) => {
-                      handleBlur();
-                      (children as React.ReactElement<FormItemContext>).props?.onBlur?.call?.(null, value, ...args);
-                    },
-                  })
-                : children
-            }
+            {React.Children.map(children, (child) => {
+              if (!child) return null;
+
+              // Fragment 或非 React Element 直接返回
+              if (!React.isValidElement(child) || child.type === React.Fragment) return child;
+
+              const childProps = child.props as any;
+
+              return React.cloneElement(child as React.ReactElement<any>, {
+                ...childProps,
+                value: formValue,
+                disabled: disabledFromContext,
+                readOnly: readonlyFromContext,
+                onChange: (value: any, ...args: any[]) => {
+                  if (readonlyFromContext) return;
+                  const newValue = cloneDeep(value);
+                  updateFormValue(newValue, true, true);
+                  childProps?.onChange?.call?.(null, value, ...args);
+                },
+                onBlur: (value: any, ...args: any[]) => {
+                  handleItemBlur();
+                  childProps?.onBlur?.call?.(null, value, ...args);
+                },
+              });
+            })}
           </div>
           {renderHelpNode()}
           {renderExtraNode()}
@@ -545,6 +578,8 @@ const FormItem: React.FC<FormItemProps> = (props) => {
       {renderRightIconContent()}
     </div>
   );
-};
+});
+
+FormItem.displayName = 'FormItem';
 
 export default FormItem;

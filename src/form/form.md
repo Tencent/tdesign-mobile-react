@@ -12,7 +12,9 @@ colon | Boolean | false | 是否在表单标签字段右侧显示冒号 | N
 contentAlign | String | left | 表单内容对齐方式：左对齐、右对齐。可选项：left/right | N
 disabled | Boolean | undefined | 是否禁用整个表单 | N
 errorMessage | Object | - | 表单错误信息配置，示例：`{ idcard: '请输入正确的身份证号码', max: '字符长度不能超过 ${max}' }`。TS 类型：`FormErrorMessage` | N
+form | Object | - | 经 `Form.useForm()` 创建的 form 控制实例。TS 类型：`FormInstanceFunctions` | N
 id | String | undefined | 表单原生的id属性，支持用于配合非表单内的按钮通过form属性来触发表单事件 | N
+initialData | Object | - | 表单初始数据，重置时所需初始数据，优先级小于 FormItem 设置的 initialData | N
 labelAlign | String | right | 表单字段标签对齐方式：左对齐、右对齐、顶部对齐。可选项：left/right/top | N
 labelWidth | String / Number | '81px' | 可以整体设置label标签宽度，默认为81px | N
 preventSubmitDefault | Boolean | true | 是否阻止表单提交默认事件（表单提交默认事件会刷新页面），设置为 `true` 可以避免刷新 | N
@@ -60,12 +62,14 @@ arrow | Boolean | false | 是否显示右侧箭头 | N
 contentAlign | String | - | 表单内容对齐方式，优先级高于 Form.contentAlign。可选项：left/right | N
 for | String | - | label 原生属性 | N
 help | TNode | - | 表单项说明内容。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+initialData | String / Number / Object / Array | - | 表单初始数据，重置时所需初始数据。TS 类型：`InitialData` `type InitialData = any`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/form/type.ts) | N
 label | TNode | '' | 字段标签名称。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 labelAlign | String | - | 表单字段标签对齐方式：左对齐、右对齐、顶部对齐。默认使用 Form 的对齐方式，优先级高于 Form.labelAlign。可选项：left/right/top | N
 labelWidth | String / Number | - | 可以整体设置标签宽度，优先级高于 Form.labelWidth | N
 name | String / Number / Array | - | 表单字段名称。TS 类型：`NamePath` `type NamePath = string \| number \| Array<string \| number>`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/form/type.ts) | N
 requiredMark | Boolean | undefined | 是否显示必填符号（*），优先级高于 Form.requiredMark | N
 rules | Array | - | 表单字段校验规则。TS 类型：`Array<FormRule>` | N
+shouldUpdate | Boolean / Function | false | TS 类型：`boolean \| ((prevValue, curValue) => boolean)` | N
 showErrorMessage | Boolean | undefined | 校验不通过时，是否显示错误提示信息，优先级高于 `Form.showErrorMessage` | N
 
 ### FormRule

@@ -28,9 +28,17 @@ export interface TdFormProps<FormData extends Data = Data> {
    */
   errorMessage?: FormErrorMessage;
   /**
+   * 经 `Form.useForm()` 创建的 form 控制实例
+   */
+  form?: FormInstanceFunctions;
+  /**
    * 表单原生的id属性，支持用于配合非表单内的按钮通过form属性来触发表单事件
    */
   id?: string;
+  /**
+   * 表单初始数据，重置时所需初始数据，优先级小于 FormItem 设置的 initialData
+   */
+  initialData?: object;
   /**
    * 表单字段标签对齐方式：左对齐、右对齐、顶部对齐
    * @default right
@@ -175,6 +183,10 @@ export interface TdFormItemProps {
    */
   help?: TNode;
   /**
+   * 表单初始数据，重置时所需初始数据
+   */
+  initialData?: InitialData;
+  /**
    * 字段标签名称
    * @default ''
    */
@@ -199,6 +211,11 @@ export interface TdFormItemProps {
    * 表单字段校验规则
    */
   rules?: Array<FormRule>;
+  /**
+   * null
+   * @default false
+   */
+  shouldUpdate?: boolean | ((prevValue, curValue) => boolean);
   /**
    * 校验不通过时，是否显示错误提示信息，优先级高于 `Form.showErrorMessage`
    */
@@ -416,6 +433,8 @@ export interface FormValidateParams {
 export type ValidateTriggerType = 'blur' | 'change' | 'submit' | 'all';
 
 export type Data = { [key: string]: any };
+
+export type InitialData = any;
 
 export type NamePath = string | number | Array<string | number>;
 

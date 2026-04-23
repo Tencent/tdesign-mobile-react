@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
-import { InternalFormInstance } from './interface';
+import type { NamePath } from '../type';
+import type { InternalFormInstance, InternalHooks, Store, WatchCallBack } from './interface';
 
 export const HOOK_MARK = 'TD_FORM_INTERNAL_HOOKS';
 
@@ -7,7 +8,9 @@ export type Task = { args: any[]; name: string };
 
 // TODO 后续将所有实例函数迁移到 FormStore 内统一管理
 class FormStore {
-  private store: Record<string, any> = {};
+  private prevStore: Store = {};
+
+  private store: Store = {};
 
   private forceRootUpdate: () => void;
 
@@ -25,10 +28,10 @@ class FormStore {
   };
 
   public getForm = (): InternalFormInstance => ({
-    isInit: true,
+    _init: true,
     store: this.store,
-    getFieldsValue: undefined,
-    getFieldValue: undefined,
+    getFieldsValue: null,
+    getFieldValue: null,
     setFieldsValue: (...args: any[]) => {
       this.taskQueue.push({ args, name: 'setFieldsValue' });
     },
@@ -50,12 +53,32 @@ class FormStore {
     setValidateMessage: (...args: any[]) => {
       this.taskQueue.push({ args, name: 'setValidateMessage' });
     },
-    validate: undefined,
-    validateOnly: undefined,
+    validate: null,
+    validateOnly: null,
     getInternalHooks: this.getInternalHooks,
   });
 
-  private getInternalHooks = (key: string) => {
+  private watchList: WatchCallBack[] = [];
+
+  private registerWatch: InternalHooks['registerWatch'] = (callback) => {
+    this.watchList.push(callback);
+
+    return () => {
+      this.watchList = this.watchList.filter((fn) => fn !== callback);
+    };
+  };
+
+  private notifyWatch = (namePath: NamePath = []) => {
+    if (this.watchList.length) {
+      const values = (this as any).getFieldsValue?.(true) || {};
+
+      this.watchList.forEach((callback) => {
+        callback(values, namePath);
+      });
+    }
+  };
+
+  private getInternalHooks = (key: string): InternalHooks | null => {
     if (key === HOOK_MARK) {
       return {
         setForm: (formInstance: any) => {
@@ -64,6 +87,12 @@ class FormStore {
           });
         },
         flashQueue: this.flashQueue,
+        notifyWatch: this.notifyWatch,
+        registerWatch: this.registerWatch,
+        getPrevStore: () => this.prevStore,
+        setPrevStore: (store: Store) => {
+          this.prevStore = store;
+        },
       };
     }
     return null;
@@ -74,7 +103,8 @@ export default function useForm(form?: InternalFormInstance) {
   const formRef = useRef<InternalFormInstance>(Object.create({}));
   const [, forceUpdate] = useState({});
 
-  if (!formRef.current.isInit) {
+  // eslint-disable-next-line no-underscore-dangle
+  if (!formRef.current._init) {
     if (form) {
       formRef.current = form;
       // Reset store when reopening

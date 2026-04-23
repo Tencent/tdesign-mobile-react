@@ -23,5 +23,6 @@ export const formItemDefaultProps: TdFormItemProps = {
   arrow: false,
   label: '',
   requiredMark: undefined,
+  shouldUpdate: false,
   showErrorMessage: undefined,
 };
