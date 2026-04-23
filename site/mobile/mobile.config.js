@@ -422,5 +422,11 @@ export default {
       name: 'watermark',
       component: () => import('tdesign-mobile-react/watermark/_example/index.tsx'),
     },
+    {
+      title: 'Typography 排版',
+      titleEn: 'Typography',
+      name: 'typography',
+      component: () => import('tdesign-mobile-react/typography/_example/index.tsx'),
+    },
   ],
 };
