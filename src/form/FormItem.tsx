@@ -85,6 +85,8 @@ const FormItem = forwardRef<FormItemInstance, FormItemProps>((props, ref) => {
     rules = [],
     shouldUpdate,
     showErrorMessage,
+    className,
+    style,
     children,
   } = props;
 
@@ -193,6 +195,7 @@ const FormItem = forwardRef<FormItemInstance, FormItemProps>((props, ref) => {
       `${formClass}--${labelAlign || 'right'}`,
       `${formClass}-item__${name}`,
     ],
+    className,
     { [`${formClass}__item-with-help`]: help },
   );
   const formItemWrapperClasses = classNames([`${formItemClass}-wrap`, `${formItemClass}--${labelAlign}`]);
@@ -537,7 +540,7 @@ const FormItem = forwardRef<FormItemInstance, FormItemProps>((props, ref) => {
     return (children as (form: FormInstanceFunctions) => React.ReactElement)(form as FormInstanceFunctions);
 
   return (
-    <div className={formItemRootClasses}>
+    <div className={formItemRootClasses} style={style}>
       <div className={formItemWrapperClasses}>
         <div className={labelClasses} style={labelStyle}>
           <label htmlFor={htmlFor}>{renderLabelContent()}</label>
