@@ -8,7 +8,7 @@ export default function CopyableDemo() {
   return (
     <div>
       <div className="tdesign-mobile-typography-demo tdesign-mobile-typography-demo--border">
-        <TypographyText copyable>This is a copyable text.</TypographyText>
+        <TypographyText copyable>这是一段可复制的文本</TypographyText>
       </div>
       <div className="tdesign-mobile-typography-demo">
         <TypographyText
@@ -19,7 +19,7 @@ export default function CopyableDemo() {
             },
           }}
         >
-          This is a copyable text with custom icon.
+          这是一段带自定义图标的可复制的文本
         </TypographyText>
       </div>
     </div>

@@ -6,8 +6,7 @@ import './style/index.less';
 export default function ThemeDemo() {
   return (
     <div className="tdesign-mobile-typography-demo tdesign-mobile-typography-demo--theme">
-      <TypographyText theme="primary">常规</TypographyText>
-      <TypographyText theme="secondary">主色</TypographyText>
+      <TypographyText theme="primary">主色</TypographyText>
       <TypographyText theme="success">成功</TypographyText>
       <TypographyText theme="warning">警告</TypographyText>
       <TypographyText theme="error">错误</TypographyText>

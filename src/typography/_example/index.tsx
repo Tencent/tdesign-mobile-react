@@ -11,8 +11,11 @@ import EllipsisDemo from './ellipsis';
 export default function TypographyDemo() {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="Typography 排版" summary="用于定义页面中文本的基本格式，包括标题、正文及辅助文本等。" />
-      <TDemoBlock title="01 基础排版" summary="基础文本">
+      <TDemoHeader
+        title="Typography 排版"
+        summary="排版用于文本基础编排和样式，使用排版组件，可以快速完成页面中的文本内容制作，同时配合其他组件完成深色与浅色模式切换等风格统一的需求。"
+      />
+      <TDemoBlock title="组件类型" summary="基础文本">
         <BaseDemo />
       </TDemoBlock>
       <TDemoBlock summary="组合用法">
