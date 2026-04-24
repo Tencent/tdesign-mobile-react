@@ -105,12 +105,12 @@ export const docs = [
         component: () => import('tdesign-mobile-react/link/link.md'),
         componentEn: () => import('tdesign-mobile-react/link/link.en-US.md'),
       },
-      // {
-      //   title: 'Typography 排版',
-      //   name: 'typography',
-      //   path: '/mobile-react/components/typography',
-      //   component: () => import('tdesign-mobile-react/typography/typography.md'),
-      // },
+      {
+        title: 'Typography 排版',
+        name: 'typography',
+        path: '/mobile-react/components/typography',
+        component: () => import('tdesign-mobile-react/typography/typography.md'),
+      },
     ],
   },
   {
