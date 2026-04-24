@@ -5,6 +5,22 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.22.0 `2026-04-24` 
+### 🚀 Features
+- `Segmented`: 新增 `Segmented` 分段控制器组件 @anlyyao ([#902](https://github.com/Tencent/tdesign-mobile-react/pull/902))
+- `Form`: @anlyyao ([#903](https://github.com/Tencent/tdesign-mobile-react/pull/903))
+  - 新增 `readonly`、`form`、`initialData` 属性
+  - `name` 属性新增 `Number`、 `Array` 类型
+  - 为 `FormInstanceFunctions` 组件实例新增 `setFields`、`setFieldsValue`、`getFieldValue`、`getFieldsValue` 等方法 
+  - 新增  `initialData` 和 `shouldUpdate` 属性 
+### 🐞 Bug Fixes
+- `Upload`: 使用稳定唯一的 `key`，确保删除子项后不会错位 @anlyyao ([#901](https://github.com/Tencent/tdesign-mobile-react/pull/901))
+- `Form`:  @anlyyao ([#903](https://github.com/Tencent/tdesign-mobile-react/pull/903))
+  - 修复 `onValuesChange` 事件无效 
+  - 修复 `preventSubmitDefault`、`showErrorMessage` 等属性默认值无效
+  - 修复 `FormInstanceFunctions` 的 `validate()` 校验结果错误
+
+
 ## 🌈 0.21.4 `2026-04-09` 
 ### 🚀 Features
 - `Indexes`: 新增 `showFullIndex` 属性，表示是否显示完整的索引内容，默认显示首字符 @anlyyao ([#898](https://github.com/Tencent/tdesign-mobile-react/pull/898))
