@@ -1,10 +1,11 @@
-import { FormItemValidateResult } from './FormItem';
 import {
   AllValidateResult,
-  Data,
+  FieldData,
   FormItemValidateMessage,
+  FormInstanceFunctions,
   FormRule,
-  TdFormItemProps,
+  NamePath,
+  TdFormProps,
   ValidateResultType,
   ValidateTriggerType,
 } from './type';
@@ -39,18 +40,17 @@ export interface AnalysisValidateResult {
   allowSetValue: boolean;
 }
 
-export interface FormItemContext {
-  name: TdFormItemProps['name'];
-  resetHandler: () => void;
-  resetField: (resetType?: 'initial' | 'empty') => void;
-  validate: <T extends Data = Data>(
-    trigger: ValidateTriggerType,
-    showErrorMessage?: boolean,
-  ) => Promise<FormItemValidateResult<T>>;
-  validateOnly: <T = Data>(trigger: ValidateTriggerType) => Promise<FormItemValidateResult<T>>;
-  setValidateMessage: (validateMessage: FormItemValidateMessage[]) => void;
-  disabled?: boolean;
-  onChange?: (value: any, ...args) => void;
-  onBlur?: (value: any, ...args) => void;
+export interface FormItemInstance {
+  name?: NamePath;
   value?: any;
+  initialData?: any;
+  getValue?: () => any;
+  setValue?: (newVal: any) => void;
+  setField?: (field: Omit<FieldData, 'name'>) => void;
+  validate?: (trigger?: ValidateTriggerType, showErrorMessage?: boolean) => Promise<Record<string, any>>;
+  validateOnly?: (trigger?: ValidateTriggerType) => Promise<Record<string, any>>;
+  resetField?: (type?: TdFormProps['resetType']) => void;
+  setValidateMessage?: (message: FormItemValidateMessage[]) => void;
+  getValidateMessage?: FormInstanceFunctions['getValidateMessage'];
+  resetValidate?: () => void;
 }

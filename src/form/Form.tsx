@@ -1,32 +1,21 @@
-import React, { ForwardedRef, useImperativeHandle, useRef } from 'react';
+import React, { ForwardedRef, useEffect, useImperativeHandle, useRef, useMemo } from 'react';
 import classNames from 'classnames';
-import { isArray, isBoolean, isEmpty, isFunction } from 'lodash-es';
 import noop from '../_util/noop';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
-import {
-  Data,
-  FormInstanceFunctions,
-  FormResetParams,
-  FormValidateMessage,
-  FormValidateParams,
-  FormValidateResult,
-  TdFormProps,
-  ValidateResultList,
-} from './type';
-import { FormResetEvent, FormSubmitEvent, StyledProps } from '../common';
-import FormItem, { FormItemValidateResult } from './FormItem';
-import { formItemDefaultProps } from './defaultProps';
+import { FormInstanceFunctions, TdFormProps } from './type';
+import { StyledProps } from '../common';
+import FormItem from './FormItem';
+import { formDefaultProps } from './defaultProps';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 import useConfig from '../hooks/useConfig';
-import useForm from './hooks/useForm';
+import useForm, { HOOK_MARK } from './hooks/useForm';
+import useWatch from './hooks/useWatch';
+import useInstance from './hooks/useInstance';
 import { FormContext } from './FormContext';
-import { FormItemContext } from './const';
-
-type Result = FormValidateResult<Data>;
 
 export interface FormProps extends TdFormProps, StyledProps {
-  children?: React.ReactElement<FormItemContext>[] | React.ReactElement<FormItemContext>;
+  children?: React.ReactNode;
 }
 
 export const requestSubmit = (target: HTMLFormElement) => {
@@ -52,234 +41,164 @@ const Form = forwardRefWithStatics(
       labelWidth,
       labelAlign,
       colon,
-      requiredMark = globalFormConfig.requiredMark,
-      requiredMarkPosition = globalFormConfig.requiredMarkPosition,
+      initialData,
+      requiredMark = globalFormConfig?.requiredMark,
+      requiredMarkPosition = globalFormConfig?.requiredMarkPosition,
       scrollToFirstError,
       showErrorMessage,
       resetType,
       rules,
-      errorMessage = globalFormConfig.errorMessage,
+      errorMessage = globalFormConfig?.errorMessage,
       preventSubmitDefault,
       disabled,
+      readonly,
       children,
       id,
       onSubmit: onSubmitCustom,
       onValidate,
       onReset: onResetCustom,
       onValuesChange = noop,
-    } = useDefaultProps(props, formItemDefaultProps);
-    const submitParams = useRef<Pick<FormValidateParams, 'showErrorMessage'>>({});
-    const resetParams = useRef<FormResetParams<Data>>({});
+    } = useDefaultProps(props, formDefaultProps);
+
     const formRef = useRef<HTMLFormElement>(null);
-    const [form] = useForm();
+    const formMapRef = useRef(new Map()); // 收集所有包含 name 属性 formItem 实例
+    const floatingFormDataRef = useRef<Record<any, any>>({}); // 储存游离值的 formData
+    const [form] = useForm(props.form); // 内部与外部共享 form 实例，外部不传则内部创建
 
     const formContentClass = classNames(formClass, className);
 
-    useImperativeHandle(ref, () => ({
-      validate,
-      submit,
-      reset,
-      clearValidate,
-      setValidateMessage,
-      validateOnly,
-    }));
+    // 使用 useInstance 获取所有实例方法（对齐桌面端架构）
+    const formInstance = useInstance(
+      {
+        ...props,
+        scrollToFirstError,
+        preventSubmitDefault,
+        onSubmit: onSubmitCustom,
+        onValidate,
+        onReset: onResetCustom,
+        onValuesChange,
+      },
+      formRef,
+      formMapRef,
+      floatingFormDataRef,
+      form,
+      formClass,
+    );
 
-    function needValidate(name: string | number, fields: string[] | undefined) {
-      if (!fields || !isArray(fields)) return true;
-      return fields.indexOf(`${name}`) !== -1;
-    }
+    // 关键：将实例方法同步到 form 对象上，使外部通过 form.getFieldsValue() 等可直接调用
+    useImperativeHandle(ref, () => formInstance as unknown as FormInstanceFunctions);
+    Object.assign(form, formInstance);
+    form?.getInternalHooks?.(HOOK_MARK)?.setForm?.(formInstance);
 
-    function formatValidateResult<T extends Data>(validateResultList: FormItemValidateResult<T>[]) {
-      const result = validateResultList.reduce((r, err) => Object.assign(r || {}, err), {});
-      Object.keys(result).forEach((key) => {
-        if (result[key] === true) {
-          delete result[key];
-        }
-      });
-      return isEmpty(result) ? true : result;
-    }
+    // form 初始化后清空队列
+    useEffect(() => {
+      form?.getInternalHooks?.(HOOK_MARK)?.flashQueue?.();
+    }, [form]);
 
-    async function validate(param?: FormValidateParams): Promise<Result> {
-      const { fields, trigger = 'all', showErrorMessage } = param || {};
-      const list = React.Children.toArray(children)
-        .filter(
-          (child: React.ReactElement<FormItemContext>) =>
-            React.isValidElement(child) &&
-            isFunction(child.props.validate) &&
-            needValidate(String(child.props.name), fields),
-        )
-        .map((child: React.ReactElement<FormItemContext>) => {
-          if (React.isValidElement(child)) {
-            return child.props.validate(trigger, showErrorMessage);
-          }
-          return null;
-        });
-      const arr = await Promise.all(list);
-      const result = formatValidateResult(arr);
-      onValidate?.({
-        validateResult: result,
-      });
-      return result;
-    }
+    // 使用 useMemo 缓存 context 值
+    const formContextValue = useMemo(
+      () => ({
+        disabled,
+        readonly,
+        form,
+        labelWidth,
+        labelAlign,
+        colon,
+        initialData,
+        requiredMark,
+        requiredMarkPosition,
+        scrollToFirstError,
+        errorMessage,
+        showErrorMessage,
+        resetType,
+        rules,
+        formMapRef,
+        floatingFormDataRef,
+        onFormItemValueChange: formInstance.onFormItemValueChange,
+      }),
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [
+        disabled,
+        readonly,
+        form,
+        labelWidth,
+        labelAlign,
+        colon,
+        initialData,
+        requiredMark,
+        requiredMarkPosition,
+        scrollToFirstError,
+        errorMessage,
+        showErrorMessage,
+        resetType,
+        rules,
+      ],
+    );
 
-    // 校验不通过时，滚动到第一个错误表单
-    function scrollTo(selector: string) {
-      const doms = formRef.current.getElementsByClassName(selector);
-      const dom = doms[0];
-      const behavior = scrollToFirstError;
-      if (behavior && dom) {
-        dom.scrollIntoView({ behavior });
-      }
-    }
-
-    function getFirstError(result: Result) {
-      if (isBoolean(result)) {
-        return '';
-      }
-
-      const [firstKey] = Object.keys(result);
-      if (scrollToFirstError) {
-        const tmpClassName = `${formClass}-item__${firstKey}`;
-        scrollTo(tmpClassName);
-      }
-      const resArr = result[firstKey] as ValidateResultList;
-      if (!isArray(resArr)) {
-        return '';
-      }
-      return result?.[Object.keys(result)?.[0]]?.[0]?.message || '';
-    }
-
-    async function validateOnly(params?: Omit<FormValidateParams, 'showErrorMessage'>) {
-      const { fields, trigger = 'all' } = params || {};
-      const list = React.Children.toArray(children)
-        .filter(
-          (child: React.ReactElement<FormItemContext>) =>
-            React.isValidElement(child) &&
-            isFunction(child.props.validateOnly) &&
-            needValidate(String(child.props.name), fields),
-        )
-        .map((child: React.ReactElement<FormItemContext>) => {
-          if (React.isValidElement(child)) {
-            return child.props.validateOnly(trigger);
-          }
-          return null;
-        });
-      const arr = await Promise.all(list);
-      return formatValidateResult(arr);
-    }
-
-    function onSubmit(e?: FormSubmitEvent) {
+    function onResetHandler(e?: React.FormEvent<HTMLFormElement>) {
       if (preventSubmitDefault && e) {
         e.preventDefault();
         e.stopPropagation();
       }
-      validate(submitParams.current).then((r) => {
+      [...formMapRef.current.values()].forEach((formItemRef) => {
+        formItemRef?.current?.resetField?.();
+      });
+      form?.getInternalHooks?.(HOOK_MARK)?.notifyWatch?.([]);
+      form.store = {};
+      floatingFormDataRef.current = {};
+      onResetCustom?.({});
+    }
+
+    function onSubmit(e?: React.FormEvent<HTMLFormElement>) {
+      if (preventSubmitDefault && e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      formInstance.validate().then((r) => {
         const firstError = getFirstError(r);
         onSubmitCustom?.({
           validateResult: r,
           firstError,
         });
       });
-      submitParams.current = undefined;
     }
 
-    async function submit(params?: Pick<FormValidateParams, 'showErrorMessage'>) {
-      submitParams.current = params;
-      requestSubmit(formRef.current);
-    }
-
-    function onReset(e?: FormResetEvent) {
-      if (preventSubmitDefault && e) {
-        e.preventDefault();
-        e.stopPropagation();
+    function getFirstError(result: any) {
+      if (typeof result === 'boolean') {
+        return '';
       }
-      React.Children.toArray(children)
-        .filter(
-          (child: React.ReactElement<FormItemContext>) =>
-            React.isValidElement(child) &&
-            isFunction(child.props.resetField) &&
-            needValidate(String(child.props.name), resetParams.current?.fields as string[]),
-        )
-        .forEach((child: React.ReactElement<FormItemContext>) => {
-          if (React.isValidElement(child)) {
-            child.props.resetField(resetParams.current?.type);
-          }
-        });
-      resetParams.current = undefined;
-      onResetCustom?.({ e });
-    }
-
-    function reset<FormData extends Data>(params?: FormResetParams<FormData>) {
-      (resetParams.current as any) = params;
-      formRef.current.reset();
-    }
-
-    function clearValidate(fields?: Array<string>) {
-      React.Children.toArray(children).forEach((child: React.ReactElement<FormItemContext>) => {
-        if (
-          React.isValidElement(child) &&
-          isFunction(child.props.resetHandler) &&
-          needValidate(String(child.props.name), fields)
-        ) {
-          child.props.resetHandler();
+      const keys = Object.keys(result);
+      const [firstKey] = keys;
+      if (scrollToFirstError && firstKey) {
+        const tmpClassName = `${formClass}-item__${firstKey}`;
+        const doms = formRef.current?.getElementsByClassName(tmpClassName);
+        const dom = doms?.[0];
+        if (dom) {
+          dom.scrollIntoView({ behavior: scrollToFirstError as ScrollBehavior });
         }
-      });
-    }
-
-    function setValidateMessage(validateMessage: FormValidateMessage<FormData>) {
-      const keys = Object.keys(validateMessage);
-      if (!keys.length) return;
-      const list = React.Children.toArray(children)
-        .filter(
-          (child: React.ReactElement<FormItemContext>) =>
-            React.isValidElement(child) &&
-            isFunction(child.props.setValidateMessage) &&
-            keys.includes(`${child.props.name}`),
-        )
-        .map((child: React.ReactElement<FormItemContext>) => {
-          if (React.isValidElement(child)) {
-            return child.props.setValidateMessage(validateMessage[`${child.props.name}`]);
-          }
-          return null;
-        });
-      Promise.all(list);
-    }
-
-    function onFormItemValueChange(changedValue: Record<string, unknown>) {
-      const allFields = formRef.current.getFieldsValue(true);
-      onValuesChange(changedValue, allFields);
+      }
+      const resArr = result[firstKey];
+      if (!Array.isArray(resArr)) {
+        return '';
+      }
+      return resArr?.[0]?.message || '';
     }
 
     return (
-      <FormContext.Provider
-        value={{
-          disabled,
-          form,
-          labelWidth,
-          labelAlign,
-          colon,
-          requiredMark,
-          requiredMarkPosition,
-          errorMessage,
-          showErrorMessage,
-          resetType,
-          rules,
-          onFormItemValueChange,
-        }}
-      >
+      <FormContext.Provider value={formContextValue}>
         <form
           ref={formRef}
           id={id}
           style={style}
           className={formContentClass}
           onSubmit={(e) => onSubmit(e)}
-          onReset={(e) => onReset(e)}
+          onReset={(e) => onResetHandler(e)}
         >
           {children}
         </form>
       </FormContext.Provider>
     );
   },
-  { FormItem },
+  { useForm, useWatch, FormItem },
 );
 export default Form;

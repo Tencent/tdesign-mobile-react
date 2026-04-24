@@ -4,6 +4,7 @@ import { TdFormItemProps, TdFormProps } from './type';
 import './style/index.js';
 
 export * from './type';
+export * from './hooks/interface';
 export type FormProps = TdFormProps;
 export type FormItemProps = TdFormItemProps;
 
