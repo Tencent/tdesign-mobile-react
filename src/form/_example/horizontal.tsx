@@ -1,11 +1,10 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { Button, Form, Input, Radio, RadioGroup, Rate, Stepper, Textarea } from 'tdesign-mobile-react';
 import { BrowseOffIcon } from 'tdesign-icons-react';
 
 const RATE_GAP = 8;
 export default function HorizontalForm({ disabled }) {
   const formRef = useRef(null);
-  const isInit = useRef(false);
   const rules = useMemo(
     () => ({
       name: [{ validator: (val: any) => val?.length === 8, message: '只能输入8个字符英文' }],
@@ -18,14 +17,6 @@ export default function HorizontalForm({ disabled }) {
     }),
     [],
   );
-
-  useEffect(() => {
-    if (isInit.current) {
-      return;
-    }
-    formRef.current?.setValidateMessage(rules);
-    isInit.current = true;
-  }, [rules]);
 
   const onReset = () => {
     console.log('===onReset');
