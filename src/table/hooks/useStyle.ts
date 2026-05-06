@@ -20,7 +20,7 @@ export default function useStyle(
     showColumnShadow?: { left?: boolean; right?: boolean };
   },
 ) {
-  const { bordered, stripe, verticalAlign, height, maxHeight, tableContentWidth, loading } = props;
+  const { bordered, stripe, verticalAlign, height, maxHeight, tableContentWidth, loading, rowspanAndColspan } = props;
 
   const { tableBaseClass, tableAlignClasses, tableColFixedClasses } = useClassName();
 
@@ -31,6 +31,7 @@ export default function useStyle(
       [tableBaseClass.bordered]: bordered,
       [tableBaseClass.striped]: stripe,
       [tableBaseClass.loading]: loading,
+      [tableBaseClass.rowspanAndColspan]: !!rowspanAndColspan,
       [tableBaseClass.headerFixed]: isFixedHeader,
       [tableBaseClass.columnFixed]: isFixedColumn,
       [tableColFixedClasses.leftShadow]: showColumnShadow.left,

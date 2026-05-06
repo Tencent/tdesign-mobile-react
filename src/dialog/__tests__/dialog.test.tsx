@@ -73,7 +73,7 @@ describe('Dialog', () => {
     it(': preventScrollThrough', () => {
       render(<Dialog visible preventScrollThrough content="中间内容" />);
       const classNames = document.body.className;
-      expect(classNames).toBe('t-overlay--lock');
+      expect(classNames).toBe('t-overlay--lock t-popup--lock');
     });
 
     it(': showOverlay', () => {

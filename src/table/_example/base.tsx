@@ -31,8 +31,14 @@ const columns = [
   {
     colKey: 'detail.email',
     title: '标题',
-    cell: () => '内容',
     ellipsis: true,
+    render(context) {
+      const { type } = context;
+      return {
+        title: '标题',
+        cell: '内容',
+      }[type];
+    },
   },
 ];
 

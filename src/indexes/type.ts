@@ -8,7 +8,12 @@ export interface TdIndexesProps {
   /**
    * 索引字符列表。不传默认 `A-Z`
    */
-  indexList?: (string | number)[];
+  indexList?: Array<string | number>;
+  /**
+   * 是否显示完整的索引内容，默认只显示首字符
+   * @default false
+   */
+  showFullIndex?: Boolean;
   /**
    * 索引是否吸顶，默认为true
    * @default true

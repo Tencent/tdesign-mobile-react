@@ -4,4 +4,4 @@
 
 import { TdIndexesProps } from './type';
 
-export const indexesDefaultProps: TdIndexesProps = { sticky: true, stickyOffset: 0 };
+export const indexesDefaultProps: TdIndexesProps = { showFullIndex: false, sticky: true, stickyOffset: 0 };

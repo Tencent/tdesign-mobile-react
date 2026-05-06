@@ -4,6 +4,7 @@ import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import WithTitle from './with-title';
 import CustomClose from './custom-close';
+import Nested from './nested';
 
 import './style/index.less';
 
@@ -133,9 +134,12 @@ export default function Index() {
         <PlacementBottom />
         <PlacementRight />
       </TDemoBlock>
-      <TDemoBlock title="01 组件示例" summary="应用示例" padding={true}>
+      <TDemoBlock title="02 组件示例" summary="应用示例" padding={true}>
         <WithTitle />
         <CustomClose />
+      </TDemoBlock>
+      <TDemoBlock title="03 嵌套弹窗" summary="多层 Popup 嵌套使用" padding={true}>
+        <Nested />
       </TDemoBlock>
     </div>
   );

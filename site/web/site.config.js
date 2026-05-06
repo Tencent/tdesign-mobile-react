@@ -27,6 +27,14 @@ export const docs = [
         component: () => import('@docs/overview.md'),
         componentEn: () => import('@docs/overview.en-US.md'),
       },
+      {
+        title: 'MCP',
+        titleEn: 'MCP',
+        name: 'MCP',
+        path: '/mobile-react/mcp',
+        component: () => import('@common/docs/mcp.md'),
+        componentEn: () => import('@common/docs/mcp.en-US.md'),
+      },
     ],
   },
   {
@@ -438,6 +446,14 @@ export const docs = [
         path: '/mobile-react/components/result',
         component: () => import('tdesign-mobile-react/result/result.md'),
         componentEn: () => import('tdesign-mobile-react/result/result.en-US.md'),
+      },
+      {
+        title: 'Segmented 分段控制器',
+        titleEn: 'Segmented',
+        name: 'segmented',
+        path: '/mobile-react/components/segmented',
+        component: () => import('tdesign-mobile-react/segmented/segmented.md'),
+        componentEn: () => import('tdesign-mobile-react/segmented/segmented.en-US.md'),
       },
       {
         title: 'Skeleton 骨架屏',

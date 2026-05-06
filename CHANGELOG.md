@@ -5,6 +5,39 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.22.0 `2026-04-24` 
+### 🚀 Features
+- `Segmented`: 新增 `Segmented` 分段控制器组件 @anlyyao ([#902](https://github.com/Tencent/tdesign-mobile-react/pull/902))
+- `Form`: @anlyyao ([#903](https://github.com/Tencent/tdesign-mobile-react/pull/903))
+  - 新增 `readonly`、`form`、`initialData` 属性
+  - `name` 属性新增 `Number`、 `Array` 类型
+  - 为 `FormInstanceFunctions` 组件实例新增 `setFields`、`setFieldsValue`、`getFieldValue`、`getFieldsValue` 等方法 
+  - 新增  `initialData` 和 `shouldUpdate` 属性 
+### 🐞 Bug Fixes
+- `Upload`: 使用稳定唯一的 `key`，确保删除子项后不会错位 @anlyyao ([#901](https://github.com/Tencent/tdesign-mobile-react/pull/901))
+- `Form`:  @anlyyao ([#903](https://github.com/Tencent/tdesign-mobile-react/pull/903))
+  - 修复 `onValuesChange` 事件无效 
+  - 修复 `preventSubmitDefault`、`showErrorMessage` 等属性默认值无效
+  - 修复 `FormInstanceFunctions` 的 `validate()` 校验结果错误
+
+
+## 🌈 0.21.4 `2026-04-09` 
+### 🚀 Features
+- `Indexes`: 新增 `showFullIndex` 属性，表示是否显示完整的索引内容，默认显示首字符 @anlyyao ([#898](https://github.com/Tencent/tdesign-mobile-react/pull/898))
+### 🐞 Bug Fixes
+- `Popup`: 修复多组件同时使用 `preventScrollThrough` 导致页面无法滚动的问题 @anlyyao ([#894](https://github.com/Tencent/tdesign-mobile-react/pull/894))
+- `Indexes`: 修复气泡与右侧索引列表间距错误 @anlyyao ([#898](https://github.com/Tencent/tdesign-mobile-react/pull/898))
+- `Textarea`: 修复 `maxlength` 或 `maxcharacter` 无值时组件无法输入的问题 @anlyyao ([#897](https://github.com/Tencent/tdesign-mobile-react/pull/897))
+
+## 🌈 0.21.3 `2026-03-26` 
+### 🚀 Features
+- `Tabs`: 
+  - `TabPanel` 新增 `icon` 属性 @anlyyao ([#885](https://github.com/Tencent/tdesign-mobile-react/pull/885))
+  - 新增 `split` 属性 @anlyyao ([#892](https://github.com/Tencent/tdesign-mobile-react/pull/892))
+### 🐞 Bug Fixes
+- `Silder`: 更正渲染 `min`和 `max` 的 `<text/>` 标签为 `<div/>` @RylanBot ([#889](https://github.com/Tencent/tdesign-mobile-react/pull/889))
+- `Table`: 新增 `rowspanAndColspan` 和 `render` 属性 @anlyyao ([#888](https://github.com/Tencent/tdesign-mobile-react/pull/888))
+
 ## 🌈 0.21.2 `2026-02-10` 
 ### 🚀 Features
 - `Icon`: 新增 217 个与人工智能、文档、徽标和文件相关的图标 @uyarn([#872](https://github.com/Tencent/tdesign-mobile-react/pull/872))

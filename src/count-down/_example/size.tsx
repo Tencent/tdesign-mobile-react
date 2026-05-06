@@ -7,7 +7,7 @@ export default function SizeCountDown() {
   return (
     <>
       <div className="demo-count-down">
-        <text className="demo-count-down-desc"> 时分秒 </text>
+        <div className="demo-count-down-desc"> 时分秒 </div>
         <div className="demo-count-down-content">
           <CountDown size="small" time={time} />
         </div>
@@ -20,7 +20,7 @@ export default function SizeCountDown() {
       </div>
 
       <div className="demo-count-down">
-        <text className="demo-count-down-desc"> 带毫秒 </text>
+        <div className="demo-count-down-desc"> 带毫秒 </div>
         <div className="demo-count-down-content">
           <CountDown size="small" time={time} millisecond />
         </div>
@@ -33,7 +33,7 @@ export default function SizeCountDown() {
       </div>
 
       <div className="demo-count-down">
-        <text className="demo-count-down-desc"> 带方形底 </text>
+        <div className="demo-count-down-desc"> 带方形底 </div>
         <div className="demo-count-down-content">
           <CountDown size="small" time={time} theme="square" />
         </div>
@@ -46,7 +46,7 @@ export default function SizeCountDown() {
       </div>
 
       <div className="demo-count-down">
-        <text className="demo-count-down-desc"> 带圆形底 </text>
+        <div className="demo-count-down-desc"> 带圆形底 </div>
         <div className="demo-count-down-content">
           <CountDown size="small" time={time} theme="round" />
         </div>
@@ -59,7 +59,7 @@ export default function SizeCountDown() {
       </div>
 
       <div className="demo-count-down">
-        <text className="demo-count-down-desc"> 带单位 </text>
+        <div className="demo-count-down-desc"> 带单位 </div>
         <div className="demo-count-down-content">
           <CountDown size="small" time={time} split-with-unit theme="round" />
         </div>
