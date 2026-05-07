@@ -25,7 +25,7 @@ export default function BlockSegmented() {
           block
           options={options}
           value={value}
-          onChange={(value, selectedOption) => {
+          onChange={({ value, selectedOption }) => {
             console.log('onChange:', value, selectedOption);
             setValue(value);
           }}
@@ -36,7 +36,7 @@ export default function BlockSegmented() {
           block
           options={optionsWithIcon}
           value={valueWithIcon}
-          onChange={(value, selectedOption) => {
+          onChange={({ value, selectedOption }) => {
             console.log('onChangeWithIcon:', value, selectedOption);
             setValueWithIcon(value);
           }}

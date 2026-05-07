@@ -26,7 +26,7 @@ export default function BaseSegmented() {
         <Segmented
           options={optionsWithIcon}
           value={valueWithIcon}
-          onChange={(value, selectedOption) => {
+          onChange={({ value, selectedOption }) => {
             console.log('onChangeWithIcon:', value, selectedOption);
             setValueWithIcon(value);
           }}
