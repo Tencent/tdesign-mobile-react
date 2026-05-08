@@ -38,7 +38,7 @@ module.exports = {
   navbar: { statements: '100%', branches: '96.15%', functions: '100%', lines: '100%' },
   noticeBar: { statements: '6.38%', branches: '0%', functions: '0%', lines: '6.52%' },
   overlay: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
-  picker: { statements: '51.71%', branches: '29.09%', functions: '57.31%', lines: '52.51%' },
+  picker: { statements: '99.42%', branches: '96.36%', functions: '98.78%', lines: '100%' },
   popover: { statements: '100%', branches: '96.55%', functions: '100%', lines: '100%' },
   popup: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   progress: { statements: '100%', branches: '97.36%', functions: '100%', lines: '100%' },
