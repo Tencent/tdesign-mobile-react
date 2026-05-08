@@ -66,5 +66,5 @@ module.exports = {
   toast: { statements: '98.73%', branches: '100%', functions: '94.11%', lines: '98.66%' },
   treeSelect: { statements: '5.4%', branches: '0%', functions: '0%', lines: '5.88%' },
   upload: { statements: '7.69%', branches: '0%', functions: '0%', lines: '8.1%' },
-  watermark: { statements: '96%', branches: '74.46%', functions: '100%', lines: '98.59%' },
+  watermark: { statements: '98.66%', branches: '95.74%', functions: '100%', lines: '100%' },
 };
