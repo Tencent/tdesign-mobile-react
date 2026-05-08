@@ -47,7 +47,7 @@ module.exports = {
   radio: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   rate: { statements: '99.3%', branches: '98.98%', functions: '100%', lines: '99.3%' },
   result: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
-  search: { statements: '82.08%', branches: '55.88%', functions: '66.66%', lines: '83.33%' },
+  search: { statements: '100%', branches: '97.05%', functions: '100%', lines: '100%' },
   segmented: { statements: '98.24%', branches: '96.96%', functions: '100%', lines: '100%' },
   sideBar: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   skeleton: { statements: '100%', branches: '95.83%', functions: '100%', lines: '100%' },
