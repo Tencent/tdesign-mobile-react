@@ -16,7 +16,7 @@ export default function DisabledSegmented() {
         <Segmented
           options={optionsWithDisabled}
           value={value}
-          onChange={(value, selectedOption) => {
+          onChange={({ value, selectedOption }) => {
             console.log('onChange:', value, selectedOption);
             setValue(value);
           }}

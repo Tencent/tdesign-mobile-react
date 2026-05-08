@@ -17,7 +17,7 @@ const Segmented: React.FC<SegmentedProps> = (originProps) => {
 
   const segmentedClass = usePrefixClass('segmented');
 
-  const [innerValue, setInnerValue] = useDefault(value, defaultValue, onChange);
+  const [innerValue, setInnerValue] = useDefault(value, defaultValue, undefined);
   const [thumbStyle, setThumbStyle] = useState<React.CSSProperties>({});
 
   const groupRef = useRef<HTMLDivElement>(null);
@@ -73,9 +73,10 @@ const Segmented: React.FC<SegmentedProps> = (originProps) => {
       const item = segmentItems[index];
       if (disabled || !item || item.disabled) return;
       if (index === activeIndex) return;
-      setInnerValue(item.value, item);
+      setInnerValue(item.value);
+      onChange?.({ value: item.value, selectedOption: item });
     },
-    [segmentItems, disabled, activeIndex, setInnerValue],
+    [segmentItems, disabled, activeIndex, setInnerValue, onChange],
   );
 
   return withNativeProps(
