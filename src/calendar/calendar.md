@@ -33,7 +33,7 @@ onSelect | Function |  | TS 类型：`(value: Date) => void`<br/>点击日期时
 ### CSS Variables
 
 组件提供了下列 CSS 变量，可用于自定义样式。
-名称 | 默认值 | 描述 
+名称 | 默认值 | 描述
 -- | -- | --
 --td-calendar-active-color | @brand-color | -
 --td-calendar-bg-color | @bg-color-container | -
