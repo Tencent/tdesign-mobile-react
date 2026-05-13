@@ -19,7 +19,7 @@ onChange | Function |  | Typescript：`(value: TreeSelectValue, level: TreeLevel
 ### CSS Variables
 
 The component provides the following CSS variables, which can be used to customize styles.
-Name | Default Value | Description 
+Name | Default Value | Description
 -- | -- | --
 --td-tree-bg-color | @bg-color-container | -
 --td-tree-colum-text-color | @text-color-primary | -

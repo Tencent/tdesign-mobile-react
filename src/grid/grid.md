@@ -30,7 +30,7 @@ text | TNode | - | 文本，可以通过 Props 传入文本，也可以自定义
 ### CSS Variables
 
 组件提供了下列 CSS 变量，可用于自定义样式。
-名称 | 默认值 | 描述 
+名称 | 默认值 | 描述
 -- | -- | --
 --td-grid-bg-color | @bg-color-container | -
 --td-grid-card-radius | @radius-large | -

@@ -49,7 +49,7 @@ onChange | Function |  | Typescript：`(value: T, context: CheckboxGroupChangeCo
 ### CSS Variables
 
 The component provides the following CSS variables, which can be used to customize styles.
-Name | Default Value | Description 
+Name | Default Value | Description
 -- | -- | --
 --td-checkbox-bg-color | @bg-color-container | -
 --td-checkbox-border-color | @component-stroke | -

@@ -64,7 +64,7 @@ url | String | - | 文件上传成功后的下载/访问地址 | N
 ### CSS Variables
 
 组件提供了下列 CSS 变量，可用于自定义样式。
-名称 | 默认值 | 描述 
+名称 | 默认值 | 描述
 -- | -- | --
 --td-upload-add-bg-color | @bg-color-secondarycontainer | -
 --td-upload-add-color | @text-color-placeholder | -
