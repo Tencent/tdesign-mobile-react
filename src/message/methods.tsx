@@ -21,12 +21,13 @@ function destroy(context: Element, root: Element) {
   }
 }
 
-const createMessage = (props, theme?: MessageThemeList) => {
+const createMessage = (props: MessageActionOptionsType | string, theme?: MessageThemeList) => {
+  const normalizedProps = typeof props === 'string' ? { content: props } : props;
   const config = {
     ...messageDefaultProps,
     visible: true,
     context: isBrowser ? document.body : null,
-    ...props,
+    ...normalizedProps,
   };
   const { context } = config;
   if (!context) {
@@ -52,9 +53,9 @@ const closeAll = () => {
 };
 
 export default {
-  info: (props: MessageActionOptionsType) => createMessage(props, 'info'),
-  success: (props: MessageActionOptionsType) => createMessage(props, 'success'),
-  warning: (props: MessageActionOptionsType) => createMessage(props, 'warning'),
-  error: (props: MessageActionOptionsType) => createMessage(props, 'error'),
+  info: (props: MessageActionOptionsType | string) => createMessage(props, 'info'),
+  success: (props: MessageActionOptionsType | string) => createMessage(props, 'success'),
+  warning: (props: MessageActionOptionsType | string) => createMessage(props, 'warning'),
+  error: (props: MessageActionOptionsType | string) => createMessage(props, 'error'),
   closeAll,
 };
