@@ -4,6 +4,7 @@ import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import BaseDemo from './base';
 import MultipleDemo from './multiple';
 import StatusDemo from './status';
+import ThemeDemo from './theme';
 import CustomDemo from './custom';
 
 export default function () {
@@ -19,7 +20,10 @@ export default function () {
       <TDemoBlock title="02 组件状态" summary="加载状态">
         <StatusDemo />
       </TDemoBlock>
-      <TDemoBlock title="03 样式自定义" summary="单选上传">
+      <TDemoBlock title="03 组件布局" summary="宫格/列表布局">
+        <ThemeDemo />
+      </TDemoBlock>
+      <TDemoBlock title="04 样式自定义" summary="单选上传">
         <CustomDemo />
       </TDemoBlock>
     </div>
