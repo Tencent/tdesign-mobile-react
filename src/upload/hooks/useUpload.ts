@@ -1,9 +1,9 @@
 import type { ChangeEvent, MouseEvent } from 'react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { isString, isFunction } from 'lodash-es';
 import type { InnerProgressContext, OnResponseErrorContext } from '../../_common/js/upload/types';
 import type { SizeLimitObj, TdUploadProps, UploadChangeContext, UploadFile, UploadRemoveContext } from '../type';
-import { getFileList, getFileUrlByFileRaw } from '../../_common/js/upload/utils';
+import { getFileList, IMAGE_REGEXP } from '../../_common/js/upload/utils';
 import {
   formatToUploadFile,
   getDisplayFiles,
@@ -52,6 +52,7 @@ export default function useUpload(props: TdUploadProps) {
   const [sizeOverLimitMessage, setSizeOverLimitMessage] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const xhrReq = useRef<{ files: UploadFile[]; xhrReq: XMLHttpRequest }[]>([]);
+  const objectUrlsRef = useRef<string[]>([]);
 
   const displayFiles = getDisplayFiles({
     multiple,
@@ -60,6 +61,31 @@ export default function useUpload(props: TdUploadProps) {
     autoUpload,
     isBatchUpload: false,
   });
+
+  const isImageFile = (file: UploadFile): boolean => {
+    const fileType = file.raw?.type || file.type || '';
+    const url = file.url || '';
+    return /^image\//.test(fileType) || IMAGE_REGEXP.test(fileType) || IMAGE_REGEXP.test(url);
+  };
+
+  // 为图片文件生成 objectUrl，实现选择后立即回显预览
+  const createObjectUrl = (file: UploadFile): UploadFile => {
+    if (file.raw && isImageFile(file) && !file.url) {
+      const objectUrl = URL.createObjectURL(file.raw);
+      objectUrlsRef.current.push(objectUrl);
+      return { ...file, url: objectUrl };
+    }
+    return file;
+  };
+
+  // 组件卸载时释放生成的 objectUrl
+  useEffect(
+    () => () => {
+      objectUrlsRef.current.forEach((url) => URL.revokeObjectURL(url));
+      objectUrlsRef.current = [];
+    },
+    [],
+  );
 
   const uploadFilePercent = ({ file, percent }: { file: UploadFile; percent: number }) => {
     const index = toUploadFiles.findIndex((item) => item.raw === file.raw);
@@ -147,21 +173,16 @@ export default function useUpload(props: TdUploadProps) {
   const handleNotAutoUpload = (toFiles: UploadFile[]) => {
     const tmpFiles = multiple ? uploadValue.concat(toFiles) : toFiles;
     if (!tmpFiles.length) return;
-    const list = tmpFiles.map(
-      (file) =>
-        new Promise((resolve) => {
-          getFileUrlByFileRaw(file.raw as File).then((url) => {
-            resolve({ ...file, url: file.url || url });
-          });
-        }),
-    );
-    Promise.all(list).then((files) => {
-      setUploadValue(files as UploadFile[], {
-        trigger: 'add',
-        index: uploadValue.length,
-        file: toFiles[0],
-        files: toFiles,
-      });
+    // 使用 URL.createObjectURL 为图片文件生成即时预览 URL
+    const filesWithUrl = tmpFiles.map((file) => {
+      if (file.url) return file;
+      return createObjectUrl(file);
+    });
+    setUploadValue(filesWithUrl as UploadFile[], {
+      trigger: 'add',
+      index: uploadValue.length,
+      file: toFiles[0],
+      files: toFiles,
     });
     setToUploadFiles([]);
   };
@@ -206,7 +227,9 @@ export default function useUpload(props: TdUploadProps) {
           args.fileValidateList,
           getSizeLimitError,
         );
-        const tmpWaitingFiles = autoUpload ? toFiles : [...toUploadFiles].concat(toFiles);
+        // 自动上传模式下，为图片文件生成 objectUrl 以实现选择后立即回显预览
+        const filesWithPreview = autoUpload ? toFiles.map(createObjectUrl) : toFiles;
+        const tmpWaitingFiles = autoUpload ? filesWithPreview : [...toUploadFiles].concat(filesWithPreview);
         setToUploadFiles(tmpWaitingFiles);
         // 文件大小处理
         if (sizeLimitErrors[0]) {
@@ -385,6 +408,7 @@ export default function useUpload(props: TdUploadProps) {
     inputRef,
     disabled,
     xhrReq,
+    isImageFile,
     uploadFilePercent,
     uploadFiles,
     onFileChange,
