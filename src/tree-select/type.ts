@@ -4,7 +4,7 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TreeOptionData, TreeKeysType } from '../common';
+import type { TreeOptionData, TreeKeysType } from '../common';
 
 export interface TdTreeSelectProps<DataOption extends TreeOptionData = TreeOptionData> {
   /**
@@ -13,7 +13,7 @@ export interface TdTreeSelectProps<DataOption extends TreeOptionData = TreeOptio
    */
   height?: string | number;
   /**
-   * 用来定义 `value / label / disabled / children` 在 `data` 数据中对应的字段别名，示例：`{ value: 'key', label: 'name', children: 'list' }`
+   * 用来定义 `value / label / disabled / children` 在 `options` 数据中对应的字段别名，示例：`{ value: 'key', label: 'name', children: 'list' }`
    */
   keys?: TreeKeysType;
   /**
