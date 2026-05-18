@@ -56,7 +56,7 @@ module.exports = {
   steps: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   sticky: { statements: '100%', branches: '90%', functions: '100%', lines: '100%' },
   swipeCell: { statements: '100%', branches: '98.7%', functions: '100%', lines: '100%' },
-  swiper: { statements: '79.65%', branches: '66.06%', functions: '91.54%', lines: '81.81%' },
+  swiper: { statements: '77.03%', branches: '66.06%', functions: '85.91%', lines: '79.22%' },
   switch: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   tabBar: { statements: '96.77%', branches: '87.5%', functions: '100%', lines: '96.55%' },
   table: { statements: '97.8%', branches: '86.25%', functions: '100%', lines: '98.85%' },
@@ -64,7 +64,7 @@ module.exports = {
   tag: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   textarea: { statements: '98.46%', branches: '91.3%', functions: '92.85%', lines: '100%' },
   toast: { statements: '98.73%', branches: '100%', functions: '94.11%', lines: '98.66%' },
-  treeSelect: { statements: '5.4%', branches: '0%', functions: '0%', lines: '5.88%' },
+  treeSelect: { statements: '100%', branches: '95.12%', functions: '100%', lines: '100%' },
   upload: { statements: '98.5%', branches: '96.84%', functions: '94.87%', lines: '98.4%' },
   watermark: { statements: '98.66%', branches: '95.74%', functions: '100%', lines: '100%' },
 };
