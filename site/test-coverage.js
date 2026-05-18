@@ -26,21 +26,15 @@ module.exports = {
   guide: { statements: '99.43%', branches: '94.49%', functions: '100%', lines: '100%' },
   hooks: { statements: '71.42%', branches: '55.48%', functions: '74.5%', lines: '71.49%' },
   image: { statements: '97.72%', branches: '100%', functions: '92.3%', lines: '97.61%' },
-<<<<<<< HEAD
-  imageViewer: { statements: '8.33%', branches: '2.83%', functions: '0%', lines: '8.69%' },
+  imageViewer: { statements: '97.91%', branches: '86.52%', functions: '95.65%', lines: '100%' },
   indexes: { statements: '99.28%', branches: '85.45%', functions: '100%', lines: '100%' },
   input: { statements: '100%', branches: '96.49%', functions: '100%', lines: '100%' },
-=======
-  imageViewer: { statements: '96.25%', branches: '84.39%', functions: '95.65%', lines: '98.69%' },
-  indexes: { statements: '95.65%', branches: '69.81%', functions: '100%', lines: '96.94%' },
-  input: { statements: '3.57%', branches: '0%', functions: '0%', lines: '3.7%' },
->>>>>>> a1edf54 (test:为【ImageViewer】测试覆盖提升与组件功能自查)
   layout: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   link: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   list: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   loading: { statements: '98.43%', branches: '96.07%', functions: '100%', lines: '98.3%' },
   locale: { statements: '74.07%', branches: '62.5%', functions: '83.33%', lines: '75%' },
-  message: { statements: '100%', branches: '94.44%', functions: '100%', lines: '100%' },
+  message: { statements: '100%', branches: '92.1%', functions: '100%', lines: '100%' },
   navbar: { statements: '100%', branches: '96.15%', functions: '100%', lines: '100%' },
   noticeBar: { statements: '97.87%', branches: '86.2%', functions: '96%', lines: '97.82%' },
   overlay: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
@@ -60,15 +54,9 @@ module.exports = {
   slider: { statements: '97.74%', branches: '96.49%', functions: '100%', lines: '97.68%' },
   stepper: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   steps: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
-<<<<<<< HEAD
   sticky: { statements: '100%', branches: '90%', functions: '100%', lines: '100%' },
   swipeCell: { statements: '100%', branches: '98.7%', functions: '100%', lines: '100%' },
-  swiper: { statements: '62.5%', branches: '46.6%', functions: '67.6%', lines: '65.25%' },
-=======
-  sticky: { statements: '67.85%', branches: '30%', functions: '85.71%', lines: '69.09%' },
-  swipeCell: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
-  swiper: { statements: '68.6%', branches: '57.46%', functions: '76.05%', lines: '70.45%' },
->>>>>>> a1edf54 (test:为【ImageViewer】测试覆盖提升与组件功能自查)
+  swiper: { statements: '79.65%', branches: '66.06%', functions: '91.54%', lines: '81.81%' },
   switch: { statements: '100%', branches: '100%', functions: '100%', lines: '100%' },
   tabBar: { statements: '96.77%', branches: '87.5%', functions: '100%', lines: '96.55%' },
   table: { statements: '97.8%', branches: '86.25%', functions: '100%', lines: '98.85%' },
@@ -77,6 +65,6 @@ module.exports = {
   textarea: { statements: '98.46%', branches: '91.3%', functions: '92.85%', lines: '100%' },
   toast: { statements: '98.73%', branches: '100%', functions: '94.11%', lines: '98.66%' },
   treeSelect: { statements: '5.4%', branches: '0%', functions: '0%', lines: '5.88%' },
-  upload: { statements: '7.69%', branches: '0%', functions: '0%', lines: '8.1%' },
+  upload: { statements: '6.71%', branches: '0%', functions: '0%', lines: '7.2%' },
   watermark: { statements: '98.66%', branches: '95.74%', functions: '100%', lines: '100%' },
 };
