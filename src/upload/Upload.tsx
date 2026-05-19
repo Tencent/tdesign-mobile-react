@@ -201,6 +201,7 @@ const Upload: React.FC<UploadProps> = (props) => {
         const isFileItem = !isImageFile(file) && !file.url;
         const showFileContent = isFileItem && file.status !== 'progress' && file.status !== 'fail';
         const showRemoveBtn = resolveRemoveBtn(file, removeBtn);
+        const showDisabledMask = disabled && !isFileItem && file.status !== 'progress' && file.status !== 'fail';
         return (
           <div
             key={getFileKey(file)}
@@ -223,6 +224,7 @@ const Upload: React.FC<UploadProps> = (props) => {
               </div>
             )}
             {renderStatus(file)}
+            {showDisabledMask && <div className={`${rootClassName}__disabled-mask`} />}
             {showRemoveBtn && (
               <CloseIcon
                 className={`${rootClassName}__delete-btn`}
@@ -244,7 +246,12 @@ const Upload: React.FC<UploadProps> = (props) => {
       return <ErrorCircleFilledIcon className={`${rootClassName}__list-item-error-icon`} />;
     }
     if (isImageFile(file) && file.url) {
-      return <Image className={`${rootClassName}__list-item-thumbnail`} shape="round" {...imageProps} src={file.url} />;
+      return (
+        <div style={{ position: 'relative', flexShrink: 0 }}>
+          <Image className={`${rootClassName}__list-item-thumbnail`} shape="round" {...imageProps} src={file.url} />
+          {disabled && <div className={`${rootClassName}__disabled-mask`} />}
+        </div>
+      );
     }
     return <span className={`${rootClassName}__list-item-icon`}>{getFileTypeIcon(file)}</span>;
   };
