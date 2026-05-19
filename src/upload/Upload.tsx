@@ -109,7 +109,14 @@ const Upload: React.FC<UploadProps> = (props) => {
   } = useDefaultProps(props, uploadDefaultProps);
   const { displayFiles, inputRef, disabled, isImageFile, onNormalFileChange, onInnerRemove } = useUpload(props);
   const uploadGlobalConfig = globalConfig.upload;
-  const containerClassName = classNames(rootClassName, `${rootClassName}--${theme || 'grid'}`, className);
+  const containerClassName = classNames(
+    rootClassName,
+    `${rootClassName}--${theme || 'grid'}`,
+    {
+      [`${rootClassName}--disabled`]: disabled,
+    },
+    className,
+  );
 
   const previewImgs = displayFiles.filter((item) => isImageFile(item)).map((item) => item.url || '');
 
