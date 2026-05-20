@@ -5,6 +5,21 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.23.0 `2026-05-20` 
+### 🚀 Features
+- `Typography`: 新增 `Typography` 排版组件 @anlyyao ([#905](https://github.com/Tencent/tdesign-mobile-react/pull/905))
+- `Segmented`: 调整 `change` 事件参数形式 @anlyyao ([#908](https://github.com/Tencent/tdesign-mobile-react/pull/908))
+- `Upload`: @anlyyao ([#919](https://github.com/Tencent/tdesign-mobile-react/pull/919))
+  - 新增 `theme` 属性，支持宫格和列表布局风格 
+  - 选择图片后立即生成预览缩略图，`autoUpload=true` 时上传过程中也能回显图片
+
+### 🐞 Bug Fixes
+- `Button`: 
+  - 修复 `danger` 主题下文本禁用色错误 @anlyyao ([#916](https://github.com/Tencent/tdesign-mobile-react/pull/916))
+  - 修复图标默认大小错误 @anlyyao ([common#2521](https://github.com/Tencent/tdesign-common/pull/2521))([#917](https://github.com/Tencent/tdesign-mobile-react/pull/917))
+- `Message`: 修复 `Message.info/success/warning/error` 直接传入字符串时文案不显示的问题 @anlyyao ([#918](https://github.com/Tencent/tdesign-mobile-react/pull/918))
+- `Upload`: 修复文件禁用态样式错误 @anlyyao ([#922](https://github.com/Tencent/tdesign-mobile-react/pull/922))
+
 ## 🌈 0.22.0 `2026-04-24` 
 ### 🚀 Features
 - `Segmented`: 新增 `Segmented` 分段控制器组件 @anlyyao ([#902](https://github.com/Tencent/tdesign-mobile-react/pull/902))
