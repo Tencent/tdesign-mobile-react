@@ -65,6 +65,7 @@ module.exports = {
   textarea: { statements: '98.46%', branches: '91.3%', functions: '92.85%', lines: '100%' },
   toast: { statements: '98.73%', branches: '100%', functions: '94.11%', lines: '98.66%' },
   treeSelect: { statements: '100%', branches: '95.12%', functions: '100%', lines: '100%' },
-  upload: { statements: '98.5%', branches: '96.84%', functions: '94.87%', lines: '98.4%' },
+  typography: { statements: '99.28%', branches: '96.15%', functions: '100%', lines: '100%' },
+  upload: { statements: '98.51%', branches: '92.23%', functions: '94.87%', lines: '98.41%' },
   watermark: { statements: '98.66%', branches: '95.74%', functions: '100%', lines: '100%' },
 };
