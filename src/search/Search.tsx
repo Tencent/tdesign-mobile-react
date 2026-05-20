@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import type { FC, FormEvent, CompositionEvent, MouseEvent, KeyboardEvent, FocusEvent } from 'react';
+import type { FC, CompositionEvent, MouseEvent, KeyboardEvent, FocusEvent, SyntheticEvent } from 'react';
 import { CloseCircleFilledIcon, SearchIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
 import useDefault from '../_util/useDefault';
@@ -51,17 +51,18 @@ const Search: FC<SearchProps> = (props) => {
     [`${searchClass}--center`]: center,
   });
 
-  const inputValueChangeHandle = (e: FormEvent<HTMLInputElement>) => {
+  const inputValueChangeHandle = (e: SyntheticEvent<HTMLInputElement>) => {
     const { value } = e.target as HTMLInputElement;
     setSearchValue(value, { trigger: 'input-change', e });
   };
 
-  const handleInput = (e: FormEvent<HTMLInputElement>) => {
+  const handleInput = (e: SyntheticEvent<HTMLInputElement>) => {
     setShowResultList(true);
-    if (e instanceof InputEvent) {
+    const { nativeEvent } = e as SyntheticEvent<HTMLInputElement> & { nativeEvent?: Event };
+    if (nativeEvent instanceof InputEvent) {
       // 中文输入的时候inputType是insertCompositionText所以中文输入的时候禁止触发。
-      const checkInputType = e.inputType && e.inputType === 'insertCompositionText';
-      if (e.isComposing || checkInputType) return;
+      const checkInputType = nativeEvent.inputType && nativeEvent.inputType === 'insertCompositionText';
+      if (nativeEvent.isComposing || checkInputType) return;
     }
 
     inputValueChangeHandle(e);

@@ -16,7 +16,7 @@ image | TNode | - | image url, or Image component props, or custom any node you 
 ### CSS Variables
 
 The component provides the following CSS variables, which can be used to customize styles.
-Name | Default Value | Description 
+Name | Default Value | Description
 -- | -- | --
 --td-empty-action-margin-top | @spacer-4 | -
 --td-empty-description-color | @text-color-placeholder | -

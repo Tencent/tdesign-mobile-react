@@ -16,7 +16,7 @@ duration | Number | 300 | \- | N
 height | String / Number | - | \- | N
 interval | Number | 5000 | \- | N
 loop | Boolean | true | \- | N
-navigation | TNode | - | Typescript：`SwiperNavigation \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+navigation | TNode | - | Typescript：`Boolean \| SwiperNavigation \| TNode`。`true` to show default navigation (dots), `false` to hide navigation。`SwiperNavigation \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 nextMargin | String / Number | 0 | \- | N
 previousMargin | String / Number | 0 | \- | N
 type | String | default | options: default/card | N
@@ -36,7 +36,7 @@ type | String | - | Typescript：`SwiperNavigationType` `type SwiperNavigationTy
 ### CSS Variables
 
 The component provides the following CSS variables, which can be used to customize styles.
-Name | Default Value | Description 
+Name | Default Value | Description
 -- | -- | --
 --td-swiper-border-radius | 8px | -
 --td-swiper-item-left-padding | 6px | -

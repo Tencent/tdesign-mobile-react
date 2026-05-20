@@ -5,8 +5,8 @@
  * */
 
 import { ImageProps } from '../image';
-import { PlainObject, TNode } from '../common';
-import { MouseEvent } from 'react';
+import type { PlainObject, TNode } from '../common';
+import type { MouseEvent } from 'react';
 
 export interface TdUploadProps<T extends UploadFile = UploadFile> {
   /**
@@ -121,6 +121,11 @@ export interface TdUploadProps<T extends UploadFile = UploadFile> {
    * 图片文件大小限制，默认单位 KB。可选单位有：`'B' | 'KB' | 'MB' | 'GB'`。示例一：`1000`。示例二：`{ size: 2, unit: 'MB', message: '图片大小不超过 {sizeLimit} MB' }`
    */
   sizeLimit?: number | SizeLimitObj;
+  /**
+   * 组件风格。提供宫格和列表两种布局风格
+   * @default grid
+   */
+  theme?: 'grid' | 'list';
   /**
    * 是否在请求时间超过 300ms 后显示模拟进度。上传进度有模拟进度和真实进度两种。一般大小的文件上传，真实的上传进度只有 0 和 100，不利于交互呈现，因此组件内置模拟上传进度。真实上传进度一般用于大文件上传
    * @default true

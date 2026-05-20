@@ -14,12 +14,13 @@ describe('List', () => {
       const className = 'custom-class';
       const { container } = render(<List className={className} />);
       expect(container.firstChild).toHaveClass(className);
+      expect(container.firstChild).toHaveClass(`${prefix}-list`);
     });
 
     it(': style', () => {
       const style = { backgroundColor: 'red' };
       const { container } = render(<List style={style} />);
-      expect(container.firstChild).toHaveAttribute('style');
+      expect(container.firstChild).toHaveAttribute('style', expect.stringContaining('background-color: red'));
     });
 
     it(': children', () => {
@@ -27,92 +28,64 @@ describe('List', () => {
       expect(container.innerHTML).toContain(listText);
     });
 
-    it(': header', () => {
+    it(': header as string', () => {
       const { container } = render(<List header={headerText} />);
       expect(container.innerHTML).toContain(headerText);
     });
 
-    it(': footer', () => {
+    it(': header as ReactNode', () => {
+      const { container } = render(<List header={<div className="custom-header">{headerText}</div>} />);
+      expect(container.querySelector('.custom-header')).toHaveTextContent(headerText);
+    });
+
+    it(': footer as string', () => {
       const { container } = render(<List footer={footerText} />);
       expect(container.innerHTML).toContain(footerText);
     });
 
-    it(': asyncLoading loading', () => {
+    it(': footer as ReactNode', () => {
+      const { container } = render(<List footer={<div className="custom-footer">{footerText}</div>} />);
+      expect(container.querySelector('.custom-footer')).toHaveTextContent(footerText);
+    });
+
+    it(': asyncLoading="loading" renders TLoading with indicator and "加载中" text', () => {
       const { container } = render(<List asyncLoading="loading" />);
       expect(container.querySelector('.t-loading')).toBeInTheDocument();
       expect(container.querySelector('.t-loading__text')).toHaveTextContent('加载中');
     });
 
-    it(': asyncLoading load-more', () => {
+    it(': asyncLoading="load-more" renders TLoading with "加载更多" text and no indicator', () => {
       const { container } = render(<List asyncLoading="load-more" />);
       expect(container.querySelector('.t-loading')).toBeInTheDocument();
       expect(container.querySelector('.t-loading__text')).toHaveTextContent('加载更多');
     });
 
-    it(': asyncLoading custom node', () => {
-      const customLoading = <div className="custom-loading">自定义加载</div>;
-      const { container } = render(<List>{customLoading}</List>);
-      expect(container.querySelector('.custom-loading')).toBeInTheDocument();
-      expect(container.querySelector('.custom-loading')).toHaveTextContent('自定义加载');
+    it(': asyncLoading invalid string does not render TLoading', () => {
+      const { container } = render(<List asyncLoading={'invalid' as any} />);
+      expect(container.querySelector('.t-loading')).not.toBeInTheDocument();
     });
 
-    it(': TLoading text property from LOADING_TEXT_MAP', () => {
-      const { container } = render(<List asyncLoading="loading" />);
-      const loadingText = container.querySelector('.t-loading__text');
-      expect(loadingText).toHaveTextContent('加载中');
-
-      const { container: loadMoreContainer } = render(<List asyncLoading="load-more" />);
-      const loadMoreText = loadMoreContainer.querySelector('.t-loading__text');
-      expect(loadMoreText).toHaveTextContent('加载更多');
+    it(': asyncLoading non-string value does not render TLoading', () => {
+      const { container } = render(<List asyncLoading={false as any} />);
+      expect(container.querySelector('.t-loading')).not.toBeInTheDocument();
     });
 
-    it(': TLoading text property with type check', () => {
-      const { container: stringContainer } = render(<List asyncLoading="loading" />);
-      const stringText = stringContainer.querySelector('.t-loading__text');
-      expect(stringText).toHaveTextContent('加载中');
-
-      const { container: nonStringContainer } = render(<List asyncLoading={false as any} />);
-      const nonStringText = nonStringContainer.querySelector('.t-loading__text');
-      expect(nonStringText).not.toBeInTheDocument();
+    it(': loading wrapper exists regardless of asyncLoading', () => {
+      const { container } = render(<List />);
+      expect(container.querySelector(`${name}__loading--wrapper`)).toBeInTheDocument();
     });
   });
 
   describe('events', () => {
-    it(': useEffect cleanup with removeEventListener', async () => {
-      const mockElement = document.createElement('div');
-      const mockScrollParent = window;
-
-      vi.doMock('../../_util/getScrollParent', () => ({
-        getScrollParent: vi.fn().mockReturnValue(mockScrollParent),
-      }));
-
-      const addEventListenerSpy = vi.spyOn(mockScrollParent, 'addEventListener');
-      const removeEventListenerSpy = vi.spyOn(mockScrollParent, 'removeEventListener');
-      const useRefSpy = vi.spyOn(React, 'useRef').mockReturnValue({ current: mockElement });
-      const { default: List } = await import('../list');
-      const { unmount } = render(<List />);
-
-      expect(addEventListenerSpy).toHaveBeenCalledWith('scroll', expect.any(Function));
-
-      unmount();
-
-      expect(removeEventListenerSpy).toHaveBeenCalledWith('scroll', expect.any(Function));
-
-      useRefSpy.mockRestore();
-      vi.doMock('../../_util/getScrollParent', () => ({
-        getScrollParent: vi.fn(),
-      }));
-    });
-
-    it(': onLoadMore triggered when asyncLoading is load-more', () => {
+    it(': onLoadMore triggered when asyncLoading is "load-more"', () => {
       const handleLoadMore = vi.fn();
       const { container } = render(<List asyncLoading="load-more" onLoadMore={handleLoadMore} />);
       const loadingWrapper = container.querySelector(`${name}__loading--wrapper`);
       fireEvent.click(loadingWrapper);
-      expect(handleLoadMore).toHaveBeenCalled();
+      expect(handleLoadMore).toHaveBeenCalledTimes(1);
     });
 
-    it(': onLoadMore not triggered when asyncLoading is loading', () => {
+    it(': onLoadMore not triggered when asyncLoading is "loading"', () => {
       const handleLoadMore = vi.fn();
       const { container } = render(<List asyncLoading="loading" onLoadMore={handleLoadMore} />);
       const loadingWrapper = container.querySelector(`${name}__loading--wrapper`);
@@ -120,11 +93,24 @@ describe('List', () => {
       expect(handleLoadMore).not.toHaveBeenCalled();
     });
 
-    it(': onScroll event', () => {
+    it(': onLoadMore not triggered when asyncLoading is empty', () => {
+      const handleLoadMore = vi.fn();
+      const { container } = render(<List onLoadMore={handleLoadMore} />);
+      const loadingWrapper = container.querySelector(`${name}__loading--wrapper`);
+      fireEvent.click(loadingWrapper);
+      expect(handleLoadMore).not.toHaveBeenCalled();
+    });
+
+    it(': onLoadMore not provided does not throw when clicking', () => {
+      const { container } = render(<List asyncLoading="load-more" />);
+      const loadingWrapper = container.querySelector(`${name}__loading--wrapper`);
+      expect(() => fireEvent.click(loadingWrapper)).not.toThrow();
+    });
+
+    it(': onScroll receives bottomDistance and scrollTop', () => {
       const handleScroll = vi.fn();
       render(<List onScroll={handleScroll} />);
 
-      // Mock scroll event
       const scrollEvent = new Event('scroll', { bubbles: true });
       Object.defineProperty(scrollEvent, 'currentTarget', {
         value: {
@@ -136,25 +122,118 @@ describe('List', () => {
       });
 
       window.dispatchEvent(scrollEvent);
-      expect(handleScroll).toHaveBeenCalled();
+      expect(handleScroll).toHaveBeenCalledTimes(1);
+      // bottomDistance = scrollHeight - scrollTop - offsetHeight = 500 - 100 - 200 = 200
+      expect(handleScroll).toHaveBeenCalledWith(200, 100);
     });
 
-    it(': should handle edge cases in scroll logic without errors', () => {
-      expect(() => render(<List onScroll={() => {}} />)).not.toThrow();
+    it(': scroll without onScroll prop should not throw', () => {
+      expect(() => {
+        render(<List />);
+        const scrollEvent = new Event('scroll', { bubbles: true });
+        Object.defineProperty(scrollEvent, 'currentTarget', {
+          value: { scrollTop: 0, offsetHeight: 100, scrollHeight: 100 },
+          enumerable: true,
+        });
+        window.dispatchEvent(scrollEvent);
+      }).not.toThrow();
+    });
+
+    it(': addEventListener called on mount and removeEventListener called on unmount', () => {
+      const addEventListenerSpy = vi.spyOn(window, 'addEventListener');
+      const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
+
+      const { unmount } = render(<List />);
+      expect(addEventListenerSpy).toHaveBeenCalledWith('scroll', expect.any(Function));
+
+      unmount();
+      expect(removeEventListenerSpy).toHaveBeenCalledWith('scroll', expect.any(Function));
+
+      addEventListenerSpy.mockRestore();
+      removeEventListenerSpy.mockRestore();
+    });
+
+    it(': should not bind scroll listener when getScrollParent returns null', async () => {
+      vi.resetModules();
+      vi.doMock('../../_util/getScrollParent', () => ({
+        __esModule: true,
+        default: vi.fn().mockReturnValue(null),
+      }));
+      const { default: ListReimported } = await import('../list');
+      const addEventListenerSpy = vi.spyOn(window, 'addEventListener');
+
+      expect(() => render(<ListReimported />)).not.toThrow();
+      const scrollCalls = addEventListenerSpy.mock.calls.filter((c) => c[0] === 'scroll');
+      expect(scrollCalls.length).toBe(0);
+
+      addEventListenerSpy.mockRestore();
+      vi.doUnmock('../../_util/getScrollParent');
+      vi.resetModules();
+    });
+
+    it(': should early return in useEffect when wrapperRef.current is null', async () => {
+      vi.resetModules();
+      const getScrollParentMock = vi.fn().mockReturnValue(window);
+      vi.doMock('../../_util/getScrollParent', () => ({
+        __esModule: true,
+        default: getScrollParentMock,
+      }));
+      // list.tsx imports `useRef` as a named export from 'react'. Mock the named export
+      // so that wrapperRef.current is locked to null, triggering the early-return branch.
+      vi.doMock('react', async () => {
+        const actual = await vi.importActual<typeof React>('react');
+        return {
+          ...actual,
+          useRef: () => {
+            const refLike: any = {};
+            Object.defineProperty(refLike, 'current', {
+              get() {
+                return null;
+              },
+              set() {
+                /* swallow assignment from React */
+              },
+              configurable: true,
+            });
+            return refLike;
+          },
+        };
+      });
+      const { default: ListReimported } = await import('../list');
+
+      expect(() => render(<ListReimported />)).not.toThrow();
+      expect(getScrollParentMock).not.toHaveBeenCalled();
+
+      vi.doUnmock('react');
+      vi.doUnmock('../../_util/getScrollParent');
+      vi.resetModules();
     });
   });
 
   describe('slots', () => {
-    it(': render all components correctly', () => {
+    it(': render header / children / footer together', () => {
       const { container } = render(
         <List header={headerText} footer={footerText}>
-          <div>{listText}</div>
+          <div className="list-item">{listText}</div>
         </List>,
       );
 
       expect(container.innerHTML).toContain(headerText);
-      expect(container.innerHTML).toContain(listText);
+      expect(container.querySelector('.list-item')).toHaveTextContent(listText);
       expect(container.innerHTML).toContain(footerText);
+    });
+
+    it(': render with header / children / footer and asyncLoading together', () => {
+      const { container } = render(
+        <List header={headerText} footer={footerText} asyncLoading="load-more">
+          <div className="list-item">{listText}</div>
+        </List>,
+      );
+
+      expect(container.innerHTML).toContain(headerText);
+      expect(container.querySelector('.list-item')).toHaveTextContent(listText);
+      expect(container.innerHTML).toContain(footerText);
+      expect(container.querySelector('.t-loading__text')).toHaveTextContent('加载更多');
     });
   });
 });

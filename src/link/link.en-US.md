@@ -25,7 +25,7 @@ onClick | Function |  | Typescript：`(e: MouseEvent) => void`<br/>click event, 
 ### CSS Variables
 
 The component provides the following CSS variables, which can be used to customize styles.
-Name | Default Value | Description 
+Name | Default Value | Description
 -- | -- | --
 --td-link-danger-active-color | @error-color-active | -
 --td-link-danger-color | @error-color | -

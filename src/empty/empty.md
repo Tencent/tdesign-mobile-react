@@ -16,7 +16,7 @@ image | TNode | - | 图片地址。TS 类型：`string \| TNode`。[通用类型
 ### CSS Variables
 
 组件提供了下列 CSS 变量，可用于自定义样式。
-名称 | 默认值 | 描述 
+名称 | 默认值 | 描述
 -- | -- | --
 --td-empty-action-margin-top | @spacer-4 | -
 --td-empty-description-color | @text-color-placeholder | -

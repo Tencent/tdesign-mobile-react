@@ -20,7 +20,7 @@ onToTop | Function |  | TS 类型：`() => void`<br/>点击触发 | N
 ### CSS Variables
 
 组件提供了下列 CSS 变量，可用于自定义样式。
-名称 | 默认值 | 描述 
+名称 | 默认值 | 描述
 -- | -- | --
 --td-back-top-half-round-border-radius | @radius-round | -
 --td-back-top-round-bg-color | @font-white-1 | -

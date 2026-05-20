@@ -15,6 +15,7 @@ export const uploadDefaultProps: TdUploadProps = {
   multiple: false,
   preview: true,
   removeBtn: true,
+  theme: 'grid',
   useMockProgress: true,
   withCredentials: false,
 };

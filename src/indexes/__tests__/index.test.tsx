@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { vi } from 'vitest';
 import { describe, expect, it, render, fireEvent, act } from '@test/utils';
 import { Indexes, IndexesAnchor } from '../index';
+import { IndexesContext } from '../IndexesContext';
 import { CellGroup, Cell } from '../../cell';
 
 const prefix = 't';
@@ -110,6 +111,23 @@ describe('Indexes', () => {
       if ($indexesAnchor) {
         expect($indexesAnchor.style.top).toBe(`${stickyOffset}px`);
       }
+    });
+
+    it(':showFullIndex true should display full index text', () => {
+      const fullList = ['Apple', 'Banana', 'Cherry'];
+      const { container } = render(<Indexes indexList={fullList} showFullIndex={true} />);
+      const $items = container.querySelectorAll(`.${name}__sidebar-item`);
+      expect($items[0].textContent).toBe('Apple');
+      expect($items[1].textContent).toBe('Banana');
+      expect($items[2].textContent).toBe('Cherry');
+    });
+
+    it(':showFullIndex false (default) should display first char only', () => {
+      const fullList = ['Apple', 'Banana'];
+      const { container } = render(<Indexes indexList={fullList} />);
+      const $items = container.querySelectorAll(`.${name}__sidebar-item`);
+      expect($items[0].textContent).toBe('A');
+      expect($items[1].textContent).toBe('B');
     });
 
     it(':className', () => {
@@ -282,7 +300,6 @@ describe('Indexes', () => {
       const { container } = renderIndexes({ onChange: changeFn });
       const $sideBar = container.querySelector<HTMLElement>(`.${name}__sidebar`);
 
-      // 等待组件初始化完成
       await act(async () => {
         await new Promise<void>((resolve) => {
           setTimeout(() => {
@@ -291,7 +308,6 @@ describe('Indexes', () => {
         });
       });
 
-      // 清除初始化时的调用
       changeFn.mockClear();
 
       const mockElement = document.createElement('div');
@@ -302,7 +318,35 @@ describe('Indexes', () => {
         fireEvent.touchMove($sideBar, { touches: [{ clientX: 20, clientY: 50 }] });
       });
 
-      // touchmove 不应该触发新的 change
+      expect(changeFn).not.toHaveBeenCalled();
+    });
+
+    it('should handle touchmove when activeSidebar equals index', async () => {
+      const changeFn = vi.fn();
+      const { container } = renderIndexes({ onChange: changeFn });
+      const $sideBar = container.querySelector<HTMLElement>(`.${name}__sidebar`);
+
+      await act(async () => {
+        await new Promise<void>((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 0);
+        });
+      });
+
+      const $sideBarItems = $sideBar.querySelectorAll<HTMLElement>(`.${name}__sidebar-item`);
+      await act(async () => {
+        fireEvent.click($sideBarItems[0]);
+      });
+
+      changeFn.mockClear();
+
+      document.elementFromPoint = vi.fn(() => $sideBarItems[0]);
+
+      await act(async () => {
+        fireEvent.touchMove($sideBar, { touches: [{ clientX: 20, clientY: 10 }] });
+      });
+
       expect(changeFn).not.toHaveBeenCalled();
     });
 
@@ -328,396 +372,152 @@ describe('Indexes', () => {
       expect($indexesSidebar.length).toBe(2);
     });
 
-    it('should handle betwixt condition when offset is between 0 and height', async () => {
+    it('should not update highlight on scroll when no anchors are rendered', async () => {
+      // 无 IndexesAnchor 子节点时，groupTop 为空，setAnchorOnScroll 立即返回
+      const { container } = render(<Indexes indexList={['A', 'B', 'C']} />);
+      const $indexesContainer = container.firstChild as HTMLElement;
+      Object.defineProperty($indexesContainer, 'scrollTop', {
+        writable: true,
+        value: 0,
+      });
+
+      await act(async () => {
+        fireEvent.scroll($indexesContainer, { target: { scrollTop: 100 } });
+      });
+
+      const $activeItems = container.querySelectorAll(`.${name}__sidebar-item--active`);
+      expect($activeItems.length).toBe(0);
+    });
+
+    it('should apply translate3d transform when anchor is in betwixt range', async () => {
+      const originalGBCR = HTMLDivElement.prototype.getBoundingClientRect;
+      HTMLDivElement.prototype.getBoundingClientRect = function () {
+        if (this.classList.contains(`${name}-anchor`)) {
+          const dataIndex = (this as HTMLElement).dataset.index;
+          const idx = indexList.findIndex((v) => String(v) === dataIndex);
+          return {
+            top: idx * 100,
+            height: 50,
+            left: 0,
+            right: 0,
+            bottom: idx * 100 + 50,
+            width: 0,
+            x: 0,
+            y: idx * 100,
+            toJSON: () => ({}),
+          } as DOMRect;
+        }
+        return originalGBCR.call(this);
+      };
+
       const { container } = renderIndexes({ sticky: true, stickyOffset: 0 });
       const $indexesContainer = container.firstChild as HTMLElement;
 
-      // Mock getBoundingClientRect to control positions
-      const $anchors = container.querySelectorAll(`.${name}-anchor`);
-      $anchors.forEach((anchor, index) => {
-        const mockRect = {
-          top: index * 100,
-          height: 50,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          width: 0,
-        };
-        Object.defineProperty(anchor, 'getBoundingClientRect', {
-          value: vi.fn(() => mockRect as DOMRect),
-          writable: true,
-        });
-      });
-
-      const $indexes = container.querySelector(`.${name}`) as HTMLElement;
-      Object.defineProperty($indexes, 'getBoundingClientRect', {
-        value: vi.fn(
-          () =>
-            ({
-              top: 0,
-              height: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              width: 0,
-            }) as DOMRect,
-        ),
-        writable: true,
-      });
-
       Object.defineProperty($indexesContainer, 'scrollTop', {
         writable: true,
-        value: 0,
-      });
-
-      // Wait for initialization
-      await act(async () => {
-        await new Promise<void>((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 100);
-        });
-      });
-
-      // Scroll to trigger betwixt condition
-      await act(async () => {
-        Object.defineProperty($indexesContainer, 'scrollTop', {
-          writable: true,
-          value: 25, // Between 0 and height (50)
-        });
-        fireEvent.scroll($indexesContainer, { target: { scrollTop: 25 } });
-      });
-
-      const $wrappers = container.querySelectorAll<HTMLElement>(`.${name}-anchor__wrapper`);
-      // Check that transform is applied when betwixt
-      $wrappers.forEach((wrapper) => {
-        if (wrapper.style.transform) {
-          expect(wrapper.style.transform).toContain('translate3d');
-        }
-      });
-    });
-
-    it('should handle index + 1 === curIndex branch (next index styling)', async () => {
-      const { container } = renderIndexes({ sticky: true });
-      const $indexesContainer = container.firstChild as HTMLElement;
-
-      Object.defineProperty($indexesContainer, 'scrollTop', {
-        writable: true,
-        value: 0,
-      });
-
-      await act(async () => {
-        await new Promise<void>((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 100);
-        });
-      });
-
-      // Scroll to position between two anchors to trigger next index branch
-      await act(async () => {
-        Object.defineProperty($indexesContainer, 'scrollTop', {
-          writable: true,
-          value: 150,
-        });
-        fireEvent.scroll($indexesContainer, { target: { scrollTop: 150 } });
-      });
-
-      const $wrappers = container.querySelectorAll<HTMLElement>(`.${name}-anchor__wrapper`);
-      // At least one wrapper should have active class
-      const hasActive = Array.from($wrappers).some((wrapper) =>
-        wrapper.classList.contains(`${name}-anchor__wrapper--active`),
-      );
-      expect(hasActive).toBeTruthy();
-    });
-
-    it('should remove sticky and active classes for non-current indices', async () => {
-      const { container } = renderIndexes({ sticky: true });
-      const $indexesContainer = container.firstChild as HTMLElement;
-
-      Object.defineProperty($indexesContainer, 'scrollTop', {
-        writable: true,
-        value: 0,
-      });
-
-      await act(async () => {
-        await new Promise<void>((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 100);
-        });
-      });
-
-      // Scroll to a specific position
-      await act(async () => {
-        Object.defineProperty($indexesContainer, 'scrollTop', {
-          writable: true,
-          value: 200,
-        });
-        fireEvent.scroll($indexesContainer, { target: { scrollTop: 200 } });
-      });
-
-      const $wrappers = container.querySelectorAll<HTMLElement>(`.${name}-anchor__wrapper`);
-      // Only one wrapper should have active class at a time
-      const activeWrappers = Array.from($wrappers).filter((wrapper) =>
-        wrapper.classList.contains(`${name}-anchor__wrapper--active`),
-      );
-      // Should have at least one active, but not all
-      expect(activeWrappers.length).toBeGreaterThan(0);
-      expect(activeWrappers.length).toBeLessThan($wrappers.length);
-    });
-
-    it('should handle scrollToByIndex with undefined curGroup', async () => {
-      const { container } = renderIndexes();
-      const $indexesContainer = container.firstChild as HTMLElement;
-      const scrollToSpy = vi.fn();
-      Object.defineProperty($indexesContainer, 'scrollTo', {
-        writable: true,
-        value: scrollToSpy,
-      });
-
-      // Try to click on a non-existent index (this should not crash)
-      await act(async () => {
-        // Create a mock sidebar item with invalid index
-        const mockItem = document.createElement('div');
-        mockItem.className = `${name}__sidebar-item`;
-        mockItem.setAttribute('data-index', '999');
-        mockItem.addEventListener('click', (e) => {
-          e.preventDefault();
-        });
-        fireEvent.click(mockItem);
-      });
-
-      // Should not crash even if index doesn't exist
-      expect($indexesContainer).toBeTruthy();
-    });
-
-    it('should handle touchmove when curIndex is undefined', async () => {
-      const changeFn = vi.fn();
-      const { container } = renderIndexes({ onChange: changeFn });
-      const $sideBar = container.querySelector<HTMLElement>(`.${name}__sidebar`);
-
-      await act(async () => {
-        await new Promise<void>((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 0);
-        });
-      });
-
-      changeFn.mockClear();
-
-      // Mock elementFromPoint to return element with invalid index
-      const mockElement = document.createElement('div');
-      mockElement.className = `${name}__sidebar-item`;
-      mockElement.setAttribute('data-index', 'invalid-index');
-      document.elementFromPoint = vi.fn(() => mockElement);
-
-      await act(async () => {
-        fireEvent.touchMove($sideBar, { touches: [{ clientX: 20, clientY: 50 }] });
-      });
-
-      // Should not trigger change for invalid index
-      expect(changeFn).not.toHaveBeenCalled();
-    });
-
-    it('should handle touchmove when activeSidebar equals index', async () => {
-      const changeFn = vi.fn();
-      const { container } = renderIndexes({ onChange: changeFn });
-      const $sideBar = container.querySelector<HTMLElement>(`.${name}__sidebar`);
-
-      await act(async () => {
-        await new Promise<void>((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 0);
-        });
-      });
-
-      // Click first item to set activeSidebar
-      const $sideBarItems = $sideBar.querySelectorAll<HTMLElement>(`.${name}__sidebar-item`);
-      await act(async () => {
-        fireEvent.click($sideBarItems[0]);
-      });
-
-      changeFn.mockClear();
-
-      // Mock elementFromPoint to return same index
-      document.elementFromPoint = vi.fn(() => $sideBarItems[0]);
-
-      await act(async () => {
-        fireEvent.touchMove($sideBar, { touches: [{ clientX: 20, clientY: 10 }] });
-      });
-
-      // Should not trigger change if already active
-      expect(changeFn).not.toHaveBeenCalled();
-    });
-
-    it('should handle curIndex === -1 in setAnchorOnScroll', async () => {
-      const { container } = renderIndexes({ sticky: true });
-      const $indexesContainer = container.firstChild as HTMLElement;
-
-      Object.defineProperty($indexesContainer, 'scrollTop', {
-        writable: true,
-        value: 0,
-      });
-
-      await act(async () => {
-        await new Promise<void>((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 100);
-        });
-      });
-
-      // Scroll to a position that doesn't match any anchor (very large scrollTop)
-      await act(async () => {
-        Object.defineProperty($indexesContainer, 'scrollTop', {
-          writable: true,
-          value: 99999,
-        });
-        fireEvent.scroll($indexesContainer, { target: { scrollTop: 99999 } });
-      });
-
-      // Should not crash, should fall back to first anchor
-      const $activeItems = container.querySelectorAll(`.${name}__sidebar-item--active`);
-      expect($activeItems.length).toBeGreaterThan(0);
-    });
-
-    it('should handle scrollToByIndex when indexesRef.current is null', async () => {
-      // This is hard to test directly, but we can test the edge case
-      const { container } = renderIndexes();
-
-      // The component should handle missing ref gracefully
-      const $sideBarItems = container.querySelectorAll<HTMLElement>(`.${name}__sidebar-item`);
-
-      await act(async () => {
-        fireEvent.click($sideBarItems[0]);
-      });
-
-      // Should not crash
-      expect(container).toBeTruthy();
-    });
-
-    it('should handle scrollToByIndex when curGroup is undefined (curGroup.top ?? 0)', async () => {
-      const { container } = renderIndexes();
-      const $indexesContainer = container.firstChild as HTMLElement;
-      const scrollToSpy = vi.fn();
-      Object.defineProperty($indexesContainer, 'scrollTo', {
-        writable: true,
-        value: scrollToSpy,
-      });
-
-      // Wait for initialization
-      await act(async () => {
-        await new Promise<void>((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 100);
-        });
-      });
-
-      // When clicking on a valid sidebar item, scrollToByIndex is called
-      // If somehow curGroup is undefined (edge case), curGroup.top ?? 0 should use 0
-      // This is tested indirectly through normal operation - the component should handle it gracefully
-      const $sideBarItems = container.querySelectorAll<HTMLElement>(`.${name}__sidebar-item`);
-
-      await act(async () => {
-        fireEvent.click($sideBarItems[0]);
-      });
-
-      // The component should handle the scroll operation gracefully
-      // If curGroup were undefined, scrollTo would be called with 0 as fallback
-      expect(container).toBeTruthy();
-    });
-
-    it('should handle getBoundingClientRect returning falsy (|| { top: 0 })', async () => {
-      const { container } = renderIndexes();
-      const $indexesContainer = container.firstChild as HTMLElement;
-
-      // Mock getBoundingClientRect to return null
-      Object.defineProperty($indexesContainer, 'getBoundingClientRect', {
-        value: vi.fn(() => null),
-        writable: true,
+        value: 80,
         configurable: true,
       });
 
-      // Re-render to trigger useEffect
       await act(async () => {
-        await new Promise<void>((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 100);
-        });
+        fireEvent.scroll($indexesContainer, { target: { scrollTop: 80 } });
       });
 
-      // Should not crash, should use { top: 0 } as fallback
-      expect(container).toBeTruthy();
+      const $wrappers = container.querySelectorAll<HTMLElement>(`.${name}-anchor__wrapper`);
+      const hasNonZeroTransform = Array.from($wrappers).some(
+        (w) => w.style.transform && /translate3d\(\s*0(?:px)?\s*,\s*(?!0px,|0,)/.test(w.style.transform),
+      );
+      expect(hasNonZeroTransform).toBeTruthy();
+
+      HTMLDivElement.prototype.getBoundingClientRect = originalGBCR;
     });
 
-    it('should handle next?.top || Infinity for last element', async () => {
-      const { container } = renderIndexes({ sticky: true });
-
-      // Wait for initialization where totalHeight is calculated
-      await act(async () => {
-        await new Promise<void>((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 100);
-        });
-      });
-
-      // The last element in groupTop should have next as undefined
-      // This triggers next?.top || Infinity branch
-      // We can verify this by checking that the component rendered correctly
-      const $anchors = container.querySelectorAll(`.${name}-anchor`);
-      expect($anchors.length).toBeGreaterThan(0);
-
-      // The component should handle the last element correctly
-      expect(container).toBeTruthy();
-    });
-
-    it('should handle handleSidebarItemClick when onSelect is undefined', async () => {
-      // Render without onSelect prop
-      const { container } = renderIndexes({ onSelect: undefined });
-      const $sideBarItem = container.querySelector<HTMLElement>(`.${name}__sidebar-item`);
-
-      // Should not crash when onSelect is undefined (optional chaining)
-      await act(async () => {
-        fireEvent.click($sideBarItem);
-      });
-
-      // Should still work and show tip
-      const $sidebarTip = container.querySelector(`.${name}__sidebar-tips`);
-      expect($sidebarTip).toBeDefined();
-    });
-
-    it('should handle scrollToByIndex when curGroup.top is undefined', async () => {
-      const { container } = renderIndexes();
+    it('should not apply sticky class when scrollTop equals stickyTop', async () => {
+      const { container } = renderIndexes({ sticky: true, stickyOffset: 100 });
       const $indexesContainer = container.firstChild as HTMLElement;
-      const scrollToSpy = vi.fn();
-      Object.defineProperty($indexesContainer, 'scrollTo', {
+
+      Object.defineProperty($indexesContainer, 'scrollTop', {
         writable: true,
-        value: scrollToSpy,
+        value: 0,
+        configurable: true,
       });
 
       await act(async () => {
         await new Promise<void>((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 100);
+          setTimeout(resolve, 50);
         });
+        fireEvent.scroll($indexesContainer, { target: { scrollTop: 0 } });
       });
 
-      // Click on a valid sidebar item
-      const $sideBarItems = container.querySelectorAll<HTMLElement>(`.${name}__sidebar-item`);
+      const $wrappers = container.querySelectorAll<HTMLElement>(`.${name}-anchor__wrapper`);
+      const hasSticky = Array.from($wrappers).some((w) => w.classList.contains(`${name}-anchor__wrapper--sticky`));
+      expect(hasSticky).toBeFalsy();
+    });
+
+    it('should mark previous anchor as active when current anchor is sticky', async () => {
+      const originalGBCR = HTMLDivElement.prototype.getBoundingClientRect;
+      HTMLDivElement.prototype.getBoundingClientRect = function () {
+        if (this.classList.contains(`${name}-anchor`)) {
+          const dataIndex = (this as HTMLElement).dataset.index;
+          const idx = indexList.findIndex((v) => String(v) === dataIndex);
+          return {
+            top: idx * 100,
+            height: 50,
+            left: 0,
+            right: 0,
+            bottom: idx * 100 + 50,
+            width: 0,
+            x: 0,
+            y: idx * 100,
+            toJSON: () => ({}),
+          } as DOMRect;
+        }
+        return originalGBCR.call(this);
+      };
+
+      const { container } = renderIndexes({ sticky: true, stickyOffset: 0 });
+      const $indexesContainer = container.firstChild as HTMLElement;
+
+      Object.defineProperty($indexesContainer, 'scrollTop', {
+        writable: true,
+        value: 180,
+        configurable: true,
+      });
 
       await act(async () => {
-        fireEvent.click($sideBarItems[0]);
+        fireEvent.scroll($indexesContainer, { target: { scrollTop: 180 } });
       });
 
-      // scrollTo should be called (even if with 0 as fallback)
-      // The component should handle this gracefully
+      const $wrappers = container.querySelectorAll<HTMLElement>(`.${name}-anchor__wrapper`);
+      const activeCount = Array.from($wrappers).filter((w) =>
+        w.classList.contains(`${name}-anchor__wrapper--active`),
+      ).length;
+      expect(activeCount).toBeGreaterThanOrEqual(2);
+
+      HTMLDivElement.prototype.getBoundingClientRect = originalGBCR;
+    });
+
+    it('should ignore null element in IndexesContext.relation', () => {
+      // 通过自定义子组件消费 IndexesContext，直接调用 relation(null, ...)，不应崩溃
+      const ConsumerChild: React.FC = () => {
+        const ctx = React.useContext(IndexesContext);
+        React.useEffect(() => {
+          ctx?.relation(null as unknown as HTMLElement, 'X');
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, []);
+        return null;
+      };
+
+      const { container } = render(
+        <Indexes indexList={['A']}>
+          <ConsumerChild />
+          <IndexesAnchor index="A">
+            <CellGroup>
+              <Cell>Test</Cell>
+            </CellGroup>
+          </IndexesAnchor>
+        </Indexes>,
+      );
       expect(container).toBeTruthy();
     });
   });
