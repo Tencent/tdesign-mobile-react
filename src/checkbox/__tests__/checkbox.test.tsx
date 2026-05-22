@@ -1,13 +1,13 @@
 import React from 'react';
-import { describe, it, expect, render, vi, act } from '@test/utils';
-import { Checkbox, CheckboxGroup, CheckBoxProps } from '../index';
+import { act, describe, expect, it, render, vi } from '@test/utils';
+import { Checkbox, CheckboxGroup, CheckboxProps } from '../index';
 
-type Shape = Extract<CheckBoxProps['icon'], 'circle' | 'rectangle' | 'line'>;
+type Shape = Extract<CheckboxProps['icon'], 'circle' | 'rectangle' | 'line'>;
 
 const prefix = 't';
 const name = `.${prefix}-checkbox`;
 
-const placements = ['left', 'right'] as Array<CheckBoxProps['placement']>;
+const placements = ['left', 'right'] as Array<CheckboxProps['placement']>;
 const iconShapes = ['circle', 'rectangle', 'line'] as Array<Shape>;
 
 describe('Checkbox', () => {
