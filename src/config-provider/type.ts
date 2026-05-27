@@ -6,7 +6,7 @@
 
 import { FormErrorMessage } from '../form';
 import { ImageProps } from '../image';
-import { TNode } from '../common';
+import type { TNode } from '../common';
 
 export interface TdConfigProviderProps {
   /**
@@ -370,9 +370,24 @@ export interface TabBarConfig {
 
 export interface TableConfig {
   /**
+   * 语言配置，过滤功能中，“清空筛选” 描述文本
+   * @default ''
+   */
+  clearFilterResultButtonText?: string;
+  /**
    * 语言配置，“暂无数据” 描述文本
    */
   empty?: TNode;
+  /**
+   * 隐藏排序文本提示
+   * @default false
+   */
+  hideSortTips?: boolean;
+  /**
+   * 语言配置，过滤功能中，过滤条件和结果描述文本，示例：'搜索“{result}”，找到 {count} 条结果'
+   * @default ''
+   */
+  searchResultText?: string;
 }
 
 export interface UploadConfig {
