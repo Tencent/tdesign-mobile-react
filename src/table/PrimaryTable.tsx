@@ -20,12 +20,19 @@ import useDragSort from './hooks/useDragSort';
 import useRowExpand from './hooks/useRowExpand';
 import useTableHeader, { renderTitle } from './hooks/useTableHeader';
 import { primaryTableDefaultProps } from './defaultProps';
+import { tablePaginationDefaultProps } from './tablePaginationDefaultProps';
 import BaseTable from './BaseTable';
 
 const PrimaryTable = forwardRef<PrimaryTableRef, PrimaryTableProps>((props, ref) => {
-  const { className, columns, style } = useDefaultProps<PrimaryTableProps>(props, primaryTableDefaultProps);
+  const {
+    className,
+    columns,
+    style,
+    pagination: originPagination,
+  } = useDefaultProps<PrimaryTableProps>(props, primaryTableDefaultProps);
+  const pagination = useDefaultProps<PaginationProps>(originPagination, tablePaginationDefaultProps);
   const primaryTableRef = useRef(null);
-  const innerPagination = useRef<PaginationProps>(props.pagination);
+  const innerPagination = useRef<PaginationProps>(pagination);
   const { classPrefix, tableDraggableClasses, tableBaseClass, tableSelectedClasses, tableSortClasses } = useClassName();
   const [tDisplayColumns] = useControlled(props, 'displayColumns', props.onDisplayColumnsChange);
   const {

@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import { get, isFunction } from 'lodash-es';
 import cx from 'classnames';
 
@@ -6,45 +6,51 @@ import parseTNode from '../_util/parseTNode';
 import { ClassName } from '../common';
 import useClassName from './hooks/useClassName';
 import useStyle, { formatCSSUnit } from './hooks/useStyle';
-import useFixed, { getRowFixedStyles, getColumnFixedStyles } from './hooks/useFixed';
+import useFixed, { getColumnFixedStyles, getRowFixedStyles } from './hooks/useFixed';
 import useDefaultProps from '../hooks/useDefaultProps';
 import defaultConfig from '../_common/js/global-config/mobile/locale/zh_CN';
 import Loading from '../loading';
 import { baseTableDefaultProps } from './defaultProps';
-import { BaseTableRef, BaseTableProps } from './interface';
+import { BaseTableProps, BaseTableRef } from './interface';
 import {
   formatClassNames,
   formatRowAttributes,
   formatRowClassNames,
   handleCellSpan,
-  isLastRowInSpan,
   isFirstColumnInSpan,
+  isLastRowInSpan,
 } from './utils';
 import useRowspanAndColspan from './hooks/useRowspanAndColspan';
+import usePagination from './hooks/usePagination';
+import { BaseTableCellParams, BaseTableCol, PaginationProps, TableRowData, TdBaseTableProps } from './type';
+import { tablePaginationDefaultProps } from './tablePaginationDefaultProps';
 
-import type { TdBaseTableProps, BaseTableCol, TableRowData, BaseTableCellParams } from './type';
-
-const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
+const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) => {
+  const props = useDefaultProps<BaseTableProps>(originProps, baseTableDefaultProps);
   const {
+    bordered,
+    className,
+    columns,
+    cellEmptyContent,
     data,
     empty,
     height,
     loading,
     loadingProps,
-    columns,
-    bordered,
+    loadingMode,
     maxHeight,
-    tableLayout,
+    pagination: originPagination,
+    rowspanAndColspan,
+    rowKey,
     showHeader,
-    cellEmptyContent,
-    className,
     style,
+    tableLayout,
     onRowClick,
     onCellClick,
     onScroll,
-    rowspanAndColspan,
-    rowKey,
-  } = useDefaultProps<BaseTableProps>(props, baseTableDefaultProps);
+  } = props;
+
+  const pagination = useDefaultProps<PaginationProps>(originPagination, tablePaginationDefaultProps);
 
   const { skipSpansMap } = useRowspanAndColspan(data, columns, rowKey, rowspanAndColspan);
 
@@ -68,6 +74,7 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
     showColumnShadow,
     refreshTable,
     updateColumnFixedShadow,
+    setData,
   } = useFixed(props);
 
   const { tableClasses, tableContentStyles, tableElementStyles } = useStyle(props, {
@@ -92,6 +99,17 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
   const tableElmRef = useRef(null);
 
   const theadRef = useRef(null);
+
+  const paginationRef = useRef(null);
+
+  const { dataSource, isPaginateData, renderPagination } = usePagination({ ...props, pagination }, tableContentRef);
+
+  const newData = isPaginateData ? dataSource : data;
+
+  useEffect(() => {
+    setData(isPaginateData ? dataSource : props.data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.data, dataSource, isPaginateData]);
 
   const colStyle = (colItem: BaseTableCol<TableRowData>) => ({
     width: `${formatCSSUnit(colItem.width || defaultColWidth)}`,
@@ -126,6 +144,36 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
     }
     return cx([className, ...extra]);
   };
+
+  const handleRowClick = (row: TableRowData, rowIndex: number, e: React.MouseEvent<HTMLTableRowElement>) => {
+    onRowClick?.({ row, index: rowIndex, e });
+  };
+
+  const handleCellClick = (
+    row: TableRowData,
+    col: any,
+    rowIndex: number,
+    colIndex: number,
+    e: React.MouseEvent<HTMLTableCellElement>,
+  ) => {
+    if (col.stopPropagation) {
+      e.stopPropagation();
+    }
+    onCellClick?.({ row, col, rowIndex, colIndex, e });
+  };
+
+  const onInnerVirtualScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    updateColumnFixedShadow(target);
+    onScroll?.({ e });
+  };
+
+  useImperativeHandle(ref, () => ({
+    tableElement: tableRef.current,
+    tableHtmlElement: tableElmRef.current,
+    tableContentElement: tableContentRef.current,
+    refreshTable,
+  }));
 
   const renderCell = (
     params: BaseTableCellParams<TableRowData>,
@@ -163,27 +211,35 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
     return thItem?.title;
   };
 
-  const handleRowClick = (row: TableRowData, rowIndex: number, e: React.MouseEvent<HTMLTableRowElement>) => {
-    onRowClick?.({ row, index: rowIndex, e });
-  };
-
-  const handleCellClick = (
-    row: TableRowData,
-    col: any,
-    rowIndex: number,
-    colIndex: number,
-    e: React.MouseEvent<HTMLTableCellElement>,
-  ) => {
-    if (col.stopPropagation) {
-      e.stopPropagation();
-    }
-    onCellClick?.({ row, col, rowIndex, colIndex, e });
-  };
+  const renderTableHeader = () =>
+    showHeader && (
+      <thead ref={theadRef} className={theadClasses}>
+        <tr>
+          {columns?.map((thItem, idx) => {
+            const thStyles = getColumnFixedStyles(thItem, idx, rowAndColFixedPosition, tableColFixedClasses);
+            const customClasses = formatClassNames(thItem.className, {
+              col: thItem,
+              colIndex: idx,
+              row: {},
+              rowIndex: -1,
+              type: 'th',
+            });
+            return (
+              <th key={idx} className={thClassName(thItem, [thStyles.classes, customClasses])} style={thStyles.style}>
+                <div className={(thItem.ellipsisTitle || thItem.ellipsis) && ellipsisClasses}>
+                  {renderTitle(thItem, idx)}
+                </div>
+              </th>
+            );
+          })}
+        </tr>
+      </thead>
+    );
 
   const renderTableBody = () => {
     const renderContentEmpty = empty || defaultConfig?.table?.empty;
 
-    if (!data?.length && renderContentEmpty) {
+    if (!newData?.length && renderContentEmpty) {
       return (
         <tr className={tableBaseClass.emptyRow}>
           <td colSpan={columns?.length}>
@@ -192,12 +248,12 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
         </tr>
       );
     }
-    if (data?.length) {
-      return data?.map((trItem, trIdx) => {
+    if (newData?.length) {
+      return newData?.map((trItem, trIdx) => {
         const trStyles = getRowFixedStyles(
           get(trItem, props.rowKey || 'id'),
           trIdx,
-          props.data?.length || 0,
+          newData?.length || 0,
           props.fixedRows,
           rowAndColFixedPosition,
           tableRowFixedClasses,
@@ -241,7 +297,7 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
 
               const cellClasses = cx(tdClassName(tdItem, [tdStyles.classes, customClasses]), {
                 // 合并单元格场景：最后一行移除底部边框
-                [tableBaseClass.tdLastRow]: isLastRowInSpan(trIdx, rowspan, props.data?.length),
+                [tableBaseClass.tdLastRow]: isLastRowInSpan(trIdx, rowspan, newData?.length),
                 // 合并单元格场景：第一列移除左边框
                 [tableBaseClass.tdFirstCol]: rowspanAndColspan && isFirstColumnInSpan(tdIdx),
               });
@@ -267,19 +323,20 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
     }
   };
 
-  const onInnerVirtualScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLElement;
-    updateColumnFixedShadow(target);
+  const renderLoading = () =>
+    loading && (
+      <div className={`${classPrefix}-table__loading--full`}>
+        <Loading {...loadingProps} />
+      </div>
+    );
 
-    onScroll?.({ e });
-  };
-
-  useImperativeHandle(ref, () => ({
-    tableElement: tableRef.current,
-    tableHtmlElement: tableElmRef.current,
-    tableContentElement: tableContentRef.current,
-    refreshTable,
-  }));
+  const renderPaginationNode = () =>
+    pagination &&
+    loadingMode === 'pagination' && (
+      <div ref={paginationRef} className={tableBaseClass.paginationWrap}>
+        {renderPagination()}
+      </div>
+    );
 
   return (
     <div ref={tableRef} className={cx(tableClasses, className)} style={{ position: 'relative', ...style }}>
@@ -295,40 +352,11 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((props, ref) => {
               <col key={col.colKey} style={colStyle(col)} />
             ))}
           </colgroup>
-          {showHeader && (
-            <thead ref={theadRef} className={theadClasses}>
-              <tr>
-                {columns?.map((thItem, idx) => {
-                  const thStyles = getColumnFixedStyles(thItem, idx, rowAndColFixedPosition, tableColFixedClasses);
-                  const customClasses = formatClassNames(thItem.className, {
-                    col: thItem,
-                    colIndex: idx,
-                    row: {},
-                    rowIndex: -1,
-                    type: 'th',
-                  });
-                  return (
-                    <th
-                      key={idx}
-                      className={thClassName(thItem, [thStyles.classes, customClasses])}
-                      style={thStyles.style}
-                    >
-                      <div className={(thItem.ellipsisTitle || thItem.ellipsis) && ellipsisClasses}>
-                        {renderTitle(thItem, idx)}
-                      </div>
-                    </th>
-                  );
-                })}
-              </tr>
-            </thead>
-          )}
+          {renderTableHeader()}
           <tbody className={tableBaseClass.body}>{renderTableBody()}</tbody>
         </table>
-        {loading && (
-          <div className={`${classPrefix}-table__loading--full`}>
-            <Loading {...loadingProps} />
-          </div>
-        )}
+        {renderLoading()}
+        {renderPaginationNode()}
       </div>
     </div>
   );

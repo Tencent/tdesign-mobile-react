@@ -174,6 +174,12 @@ export default function useClassName() {
       dragSortTh: `${classPrefix}-table__th--drag-sort`,
     },
 
+    tablePaginationClasses: {
+      content: `${classPrefix}-table__pagination-content`,
+      button: `${classPrefix}-table__pagination-content__button`,
+      paginationIndicator: `${classPrefix}-table__pagination-content__indicator`,
+    },
+
     virtualScrollClasses: {
       cursor: `${classPrefix}-table__virtual-scroll-cursor`,
       header: `${classPrefix}-table__virtual-scroll-header`,

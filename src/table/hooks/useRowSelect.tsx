@@ -49,7 +49,7 @@ export default function useRowSelect(
     () => {
       if (reserveSelectedRowOnPaginate) return;
       // 分页变化时，在 onPageChange 中设置 setCurrentPaginateData，PrimaryTable 中
-      const { pageSize, current, defaultPageSize, defaultCurrent } = pagination;
+      const { pageSize, current, defaultPageSize, defaultCurrent } = pagination || {};
       const tPageSize = pageSize || defaultPageSize;
       const tCurrent = current || defaultCurrent;
       const newData = data.slice(tPageSize * (tCurrent - 1), tPageSize * tCurrent);

@@ -10,6 +10,7 @@ export const baseTableDefaultProps: TdBaseTableProps = {
   data: [],
   empty: '',
   loading: undefined,
+  loadingMode: 'pull-refresh',
   rowKey: 'id',
   showHeader: true,
   stripe: false,
@@ -22,7 +23,6 @@ export const primaryTableDefaultProps: Pick<
   | 'columns'
   | 'expandIcon'
   | 'defaultExpandedRowKeys'
-  | 'loadingMode'
   | 'multipleSort'
   | 'reserveSelectedRowOnPaginate'
   | 'defaultSelectedRowKeys'
@@ -31,7 +31,6 @@ export const primaryTableDefaultProps: Pick<
   columns: [],
   expandIcon: true,
   defaultExpandedRowKeys: [],
-  loadingMode: 'pull-refresh',
   multipleSort: false,
   reserveSelectedRowOnPaginate: true,
   defaultSelectedRowKeys: [],

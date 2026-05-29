@@ -56,6 +56,11 @@ export interface TdBaseTableProps<T extends TableRowData = TableRowData> {
    */
   loading?: TNode;
   /**
+   * 数据加载模式
+   * @default pull-refresh
+   */
+  loadingMode?: 'pull-refresh' | 'pagination';
+  /**
    * 透传加载组件全部属性
    */
   loadingProps?: Partial<LoadingProps>;
@@ -256,11 +261,6 @@ export interface TdPrimaryTableProps<T extends TableRowData = TableRowData>
    * 半选状态行。选中行请更为使用 `selectedRowKeys` 控制
    */
   indeterminateSelectedRowKeys?: Array<string | number>;
-  /**
-   * 数据加载模式
-   * @default pull-refresh
-   */
-  loadingMode?: 'pull-refresh' | 'pagination';
   /**
    * 是否支持多列排序
    * @default false

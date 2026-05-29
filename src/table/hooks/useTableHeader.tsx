@@ -21,6 +21,19 @@ export function renderTitle(col: TableColumns[0], index: number) {
   return col.title;
 }
 
+function getThRowspanAndColspan(columns: TableColumns) {
+  // 无多级表头时，不需要计算 span，直接返回空 Map + 原始列作为叶子列
+  return {
+    rowspanAndColspanMap: new Map(),
+    leafColumns: columns,
+  };
+}
+
+function getThList(columns: TableColumns): Array<TableColumns> {
+  // 无多级表头时，只有一行表头
+  return [columns];
+}
+
 export interface UseTableHeaderParams {
   columns: TdBaseTableProps['columns'];
 }
