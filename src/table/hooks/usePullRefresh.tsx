@@ -42,17 +42,19 @@ export default function usePullRefresh(props: TdBaseTableProps, containerRef: Re
    */
   const calculateAccumulatedData = useCallback(
     (current: number, size: number) => {
+      const { total } = pagination;
+      const curTotal = current * size;
       const list = data || [];
-      const shouldPaginate = list.length > size;
+      const shouldPaginate = list.length > size || total > curTotal;
       if (!shouldPaginate) {
         return { newData: list, hasMore: false };
       }
       const end = current * size;
       const newData = list.slice(0, end);
-      const hasMore = end < list.length;
+      const hasMore = end < list.length || total > curTotal;
       return { newData, hasMore };
     },
-    [data],
+    [data, pagination],
   );
 
   // 初始化和 data 变更时重新计算
@@ -207,13 +209,9 @@ export default function usePullRefresh(props: TdBaseTableProps, containerRef: Re
   return {
     dataSource,
     isPaginateData,
-    /** 上拉跟手位移量 (px)，用于 transform: translateY(-offset) */
     pullOffset,
-    /** 是否正在拖拽中，用于控制 CSS transition */
     isPulling,
-    /** 是否正在加载更多数据 */
     isLoadingMore,
-    /** 渲染上拉加载 loading 节点 */
     renderPullRefreshLoading,
   };
 }
