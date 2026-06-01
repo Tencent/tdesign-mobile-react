@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import { get, isFunction } from 'lodash-es';
 import cx from 'classnames';
 
@@ -11,6 +11,7 @@ import useDefaultProps from '../hooks/useDefaultProps';
 import defaultConfig from '../_common/js/global-config/mobile/locale/zh_CN';
 import Loading from '../loading';
 import { baseTableDefaultProps } from './defaultProps';
+import usePullRefresh from './hooks/usePullRefresh';
 import { BaseTableProps, BaseTableRef } from './interface';
 import {
   formatClassNames,
@@ -85,10 +86,12 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
 
   const tableRef = useRef<HTMLDivElement>(null);
 
+  const tableHeaderIsFixed = Boolean(maxHeight || height);
+
   const tableElmClasses = tableLayoutClasses[tableLayout || 'fixed'];
 
   const theadClasses = cx(tableHeaderClasses.header, {
-    [tableHeaderClasses.fixed]: Boolean(maxHeight || height),
+    [tableHeaderClasses.fixed]: tableHeaderIsFixed,
     [tableBaseClass.bordered]: bordered,
   });
 
@@ -102,14 +105,34 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
 
   const paginationRef = useRef(null);
 
-  const { dataSource, isPaginateData, renderPagination } = usePagination({ ...props, pagination }, tableContentRef);
+  const isPullRefreshMode = loadingMode === 'pull-refresh';
 
-  const newData = isPaginateData ? dataSource : data;
+  const {
+    dataSource: paginationDataSource,
+    isPaginateData: isPaginationData,
+    renderPagination,
+  } = usePagination({ ...props, pagination }, tableContentRef);
+
+  const {
+    dataSource: pullRefreshDataSource,
+    isPaginateData: isPullRefreshData,
+    pullOffset,
+    isPulling,
+    renderPullRefreshLoading,
+  } = usePullRefresh({ ...props, pagination }, tableContentRef);
+
+  const getDisplayData = () => {
+    if (isPullRefreshMode) {
+      return isPullRefreshData ? pullRefreshDataSource : data;
+    }
+    return isPaginationData ? paginationDataSource : data;
+  };
+  const newData = getDisplayData();
 
   useEffect(() => {
-    setData(isPaginateData ? dataSource : props.data);
+    setData(newData || props.data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.data, dataSource, isPaginateData]);
+  }, [props.data, newData]);
 
   const colStyle = (colItem: BaseTableCol<TableRowData>) => ({
     width: `${formatCSSUnit(colItem.width || defaultColWidth)}`,
@@ -211,9 +234,19 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
     return thItem?.title;
   };
 
+  const getTableHeaderStyle = () => {
+    if (!isPullRefreshData) {
+      return;
+    }
+    if (tableHeaderIsFixed) {
+      return { zIndex: 2 };
+    }
+    return { position: 'relative', zIndex: 2 };
+  };
+
   const renderTableHeader = () =>
     showHeader && (
-      <thead ref={theadRef} className={theadClasses}>
+      <thead ref={theadRef} className={theadClasses} style={getTableHeaderStyle() as CSSProperties}>
         <tr>
           {columns?.map((thItem, idx) => {
             const thStyles = getColumnFixedStyles(thItem, idx, rowAndColFixedPosition, tableColFixedClasses);
@@ -323,12 +356,22 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
     }
   };
 
-  const renderLoading = () =>
-    loading && (
-      <div className={`${classPrefix}-table__loading--full`}>
+  const renderLoading = () => {
+    // pull-refresh 模式下，loading 由 usePullRefresh hook 内部渲染
+    if (isPullRefreshMode) {
+      return renderPullRefreshLoading();
+    }
+
+    // 非 pull-refresh 模式，使用外部 loading 控制
+    if (!loading) return null;
+
+    // 默认全屏 loading
+    return (
+      <div className={`${classPrefix}-loading--full`}>
         <Loading {...loadingProps} />
       </div>
     );
+  };
 
   const renderPaginationNode = () =>
     pagination &&
@@ -353,7 +396,22 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
             ))}
           </colgroup>
           {renderTableHeader()}
-          <tbody className={tableBaseClass.body}>{renderTableBody()}</tbody>
+          <tbody
+            className={tableBaseClass.body}
+            style={
+              isPullRefreshMode
+                ? {
+                    position: 'relative',
+                    zIndex: 1,
+                    backgroundColor: 'inherit',
+                    transform: pullOffset > 0 ? `translateY(-${pullOffset}px)` : 'translateY(0)',
+                    transition: isPulling ? 'none' : 'transform 0.3s ease',
+                  }
+                : undefined
+            }
+          >
+            {renderTableBody()}
+          </tbody>
         </table>
         {renderLoading()}
         {renderPaginationNode()}
