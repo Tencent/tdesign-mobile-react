@@ -17,6 +17,7 @@ import Sortable from 'sortablejs';
 import log from '@common/js/log/index';
 import { getColumnDataByKey, getColumnIndexByKey } from '@common/js/table/utils';
 import swapDragArrayElement from '@common/js/utils/swapDragArrayElement';
+import { hasClass } from '../../guide/utils/shared';
 import useLatest from '../../hooks/useLatest';
 import useClassName from './useClassName';
 import type { BaseTableColumns, PrimaryTableRef } from '../interface';
@@ -30,15 +31,6 @@ interface DragSortOptions {
 export const EXPANDED_SUFFIX = '__expanded';
 export const DATA_ID_ATTR = 'data-id';
 export const DATA_PARENT_ID_ATTR = 'data-parent-id';
-
-export function hasClass(el: Element, cls: string) {
-  if (!el || !cls) return false;
-  if (cls.indexOf(' ') !== -1) throw new Error('className should not contain space.');
-  if (el.classList) {
-    return el.classList.contains(cls);
-  }
-  return ` ${el.className} `.indexOf(` ${cls} `) > -1;
-}
 
 function useDragSort(props: TdPrimaryTableProps, options: DragSortOptions) {
   const { dragSort, data, onDragSort } = props;
@@ -234,8 +226,10 @@ function useDragSort(props: TdPrimaryTableProps, options: DragSortOptions) {
         const isTargetExpandedParent = hasClass(related, tableExpandClasses.expanded);
         const isTargetExpandedChild = hasClass(related, tableExpandClasses.row);
         // 禁止插在展开父行及其子行之间
-        if (isTargetExpandedParent && willInsertAfter) return false;
-        if (isTargetExpandedChild && !willInsertAfter) return false;
+        if (isTargetExpandedParent && willInsertAfter) {
+          return false;
+        }
+        return !(isTargetExpandedChild && !willInsertAfter);
       },
       onEnd: (evt: SortableEvent) => {
         try {

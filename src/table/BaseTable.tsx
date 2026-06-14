@@ -1,4 +1,4 @@
-import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { get, isFunction } from 'lodash-es';
 import cx from 'classnames';
 
@@ -23,6 +23,7 @@ import {
 } from './utils';
 import useRowspanAndColspan from './hooks/useRowspanAndColspan';
 import usePagination from './hooks/usePagination';
+import useTableHeader from './hooks/useTableHeader';
 import { BaseTableCellParams, BaseTableCol, PaginationProps, TableRowData, TdBaseTableProps } from './type';
 import { tablePaginationDefaultProps } from './tablePaginationDefaultProps';
 
@@ -49,6 +50,7 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
     onRowClick,
     onCellClick,
     onScroll,
+    onLeafColumnsChange,
   } = props;
 
   const pagination = useDefaultProps<PaginationProps>(originPagination, tablePaginationDefaultProps);
@@ -84,6 +86,8 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
     showColumnShadow,
   });
 
+  const { spansAndLeafNodes } = useTableHeader({ columns });
+
   const tableRef = useRef<HTMLDivElement>(null);
 
   const tableHeaderIsFixed = Boolean(maxHeight || height);
@@ -98,6 +102,8 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
   const ellipsisClasses = cx([`${classPrefix}-table__ellipsis`, `${classPrefix}-text-ellipsis`]);
 
   const defaultColWidth = tableLayout === 'fixed' ? '80px' : undefined;
+
+  const [lastLeafColumns, setLastLeafColumns] = useState(props.columns || []);
 
   const tableElmRef = useRef(null);
 
@@ -133,6 +139,15 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
     setData(newData || props.data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.data, newData]);
+
+  useEffect(() => {
+    if (lastLeafColumns.map((t) => t.colKey).join() !== spansAndLeafNodes.leafColumns.map((t) => t.colKey).join()) {
+      onLeafColumnsChange?.(spansAndLeafNodes.leafColumns);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      setLastLeafColumns(spansAndLeafNodes.leafColumns);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [spansAndLeafNodes.leafColumns]);
 
   const colStyle = (colItem: BaseTableCol<TableRowData>) => ({
     width: `${formatCSSUnit(colItem.width || defaultColWidth)}`,

@@ -35,6 +35,7 @@ const PrimaryTable = forwardRef<PrimaryTableRef, PrimaryTableProps>((props, ref)
   const innerPagination = useRef<PaginationProps>(pagination);
   const { classPrefix, tableDraggableClasses, tableBaseClass, tableSelectedClasses, tableSortClasses } = useClassName();
   const [tDisplayColumns] = useControlled(props, 'displayColumns', props.onDisplayColumnsChange);
+  // 行选中功能
   const {
     selectedRowClassNames,
     setCurrentPaginateData,
@@ -45,10 +46,13 @@ const PrimaryTable = forwardRef<PrimaryTableRef, PrimaryTableProps>((props, ref)
   // 排序功能
   const { renderSortIcon } = useSorter(props);
   // 拖拽排序功能
-  const { isRowHandlerDraggable, isRowDraggable, isColDraggable, setDragSortColumns } = useDragSort(props, {
-    primaryTableRef,
-    innerPagination,
-  });
+  const { isRowHandlerDraggable, isRowDraggable, isColDraggable, updateLastRowList, setDragSortColumns } = useDragSort(
+    props,
+    {
+      primaryTableRef,
+      innerPagination,
+    },
+  );
   // 过滤功能
   const { isTableOverflowHidden, renderFilterIcon } = useFilter(props, primaryTableRef);
   // 展开/收起行功能
@@ -181,6 +185,7 @@ const PrimaryTable = forwardRef<PrimaryTableRef, PrimaryTableProps>((props, ref)
 
   const onPrimaryTableScroll: TdBaseTableProps['onScroll'] = (params) => {
     props.onScroll?.(params);
+    updateLastRowList();
   };
 
   const baseTableProps = {
