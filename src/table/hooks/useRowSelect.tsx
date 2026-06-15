@@ -1,6 +1,6 @@
 // 行选中相关功能：单选 + 多选
 
-import React, { ChangeEvent, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { get, intersection, isFunction } from 'lodash-es';
 import { isRowSelectedDisabled } from '@common/js/table/utils';
 import Checkbox, { CheckboxProps } from '../../checkbox';
@@ -24,12 +24,21 @@ export default function useRowSelect(
   props: TdPrimaryTableProps,
   tableSelectedClasses: TableClassName['tableSelectedClasses'],
 ) {
-  const { selectedRowKeys, columns, data, rowKey, indeterminateSelectedRowKeys } = props;
-  const { pagination, reserveSelectedRowOnPaginate } = props;
+  const {
+    selectedRowKeys,
+    columns,
+    data,
+    defaultSelectedRowKeys,
+    rowKey,
+    indeterminateSelectedRowKeys,
+    pagination,
+    reserveSelectedRowOnPaginate,
+    onSelectChange,
+  } = props;
   const [currentPaginateData, setCurrentPaginateData] = useState<TableRowData[]>(data);
   const [selectedRowClassNames, setSelectedRowClassNames] = useState<TdBaseTableProps['rowClassName']>();
-  const [tSelectedRowKeys, setTSelectedRowKeys] = useControlled(props, 'selectedRowKeys', props.onSelectChange, {
-    defaultSelectedRowKeys: props.defaultSelectedRowKeys || [],
+  const [tSelectedRowKeys, setTSelectedRowKeys] = useControlled(props, 'selectedRowKeys', onSelectChange, {
+    defaultSelectedRowKeys,
   });
   const selectColumn = columns.find(({ type }) => ['multiple', 'single'].includes(type));
 
@@ -126,19 +135,12 @@ export default function useRowSelect(
         handleSelectChange(row);
       },
     };
-    // 选中行功能中，点击 checkbox/radio 需阻止事件冒泡，避免触发不必要的 onRowClick
-    const onCheckClick = (__: any, context: { e: ChangeEvent<HTMLDivElement> }) => {
-      const { e } = context;
-      e?.stopPropagation();
-    };
-    if (column.type === 'single') return <Radio {...(selectBoxProps as RadioProps)} onChange={onCheckClick} />;
+    if (column.type === 'single') return <Radio {...(selectBoxProps as RadioProps)} />;
     if (column.type === 'multiple') {
       const isIndeterminate = indeterminateSelectedRowKeys?.length
         ? indeterminateSelectedRowKeys.includes(get(row, rowKey))
         : false;
-      return (
-        <Checkbox indeterminate={isIndeterminate} {...(selectBoxProps as CheckboxProps)} onChange={onCheckClick} />
-      );
+      return <Checkbox indeterminate={isIndeterminate} {...(selectBoxProps as CheckboxProps)} />;
     }
     return null;
   }
@@ -190,7 +192,9 @@ export default function useRowSelect(
 
   function formatToRowSelectColumn(col: PrimaryTableCol) {
     const isSelection = ['multiple', 'single'].includes(col.type);
-    if (!isSelection) return col;
+    if (!isSelection) {
+      return col;
+    }
     return {
       ...col,
       width: col.width || 64,
@@ -201,12 +205,12 @@ export default function useRowSelect(
   }
 
   const onInnerSelectRowClick: TdPrimaryTableProps['onRowClick'] = ({ row, index }) => {
-    const selectedColIndex = props.columns.findIndex((item) => item.colKey === 'row-select');
+    const selectedColIndex = columns.findIndex((item) => item.colKey === 'row-select');
     if (selectedColIndex === -1) return;
     const { disabled } = getRowSelectDisabledData({
       row,
       rowIndex: index,
-      col: props.columns[selectedColIndex],
+      col: columns[selectedColIndex],
       colIndex: selectedColIndex,
     });
     if (disabled) return;
