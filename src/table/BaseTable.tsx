@@ -316,10 +316,11 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
         const trAttributes =
           formatRowAttributes(props.rowAttributes, { row: trItem, rowIndex: trIdx, type: 'body' }) || {};
 
+        const trKey = get(trItem, props.rowKey) ?? trIdx;
         return (
           <tr
             {...trAttributes}
-            key={trIdx}
+            key={trKey}
             style={trStyles.style}
             className={cx([trStyles.classes, customClasses, trAttributes.class])}
             onClick={(ev) => {
