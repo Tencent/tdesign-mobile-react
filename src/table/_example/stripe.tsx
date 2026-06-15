@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TableProps } from 'tdesign-mobile-react';
+import { BaseTableProps, Table } from 'tdesign-mobile-react';
 
 const data = [];
 const total = 20;
@@ -18,7 +18,7 @@ for (let i = 0; i < total; i++) {
   });
 }
 
-const columns: TableProps['columns'] = [
+const columns: BaseTableProps['columns'] = [
   { colKey: 'applicant', title: '标题', fixed: 'left' },
   {
     colKey: 'status',

@@ -8,6 +8,8 @@ import BorderedExample from './bordered';
 import CustomRowStyleExample from './custom-row-style';
 import RowspanColspanExample from './rowspan-colspan';
 import DragSortExample from './drag-sort';
+import LoadingExample from './loading';
+import SelectExample from './select';
 
 export default function Base() {
   return (
@@ -42,6 +44,14 @@ export default function Base() {
 
       <TDemoBlock summary="带拖拽的表格" padding={true}>
         <DragSortExample />
+      </TDemoBlock>
+
+      <TDemoBlock summary="带加载的表格" padding={true}>
+        <LoadingExample />
+      </TDemoBlock>
+
+      <TDemoBlock summary="带选择的表格" padding={true}>
+        <SelectExample />
       </TDemoBlock>
     </div>
   );

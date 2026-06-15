@@ -3,7 +3,7 @@ import { Table } from 'tdesign-mobile-react';
 
 const data = [
   {
-    index: 0,
+    index: 1,
     applicant: '内容1',
     status: '内容2',
     channel: '内容3',
@@ -12,7 +12,7 @@ const data = [
     },
   },
   {
-    index: 1,
+    index: 2,
     applicant: '内容4',
     status: '内容5',
     channel: '内容6',
@@ -21,7 +21,7 @@ const data = [
     },
   },
   {
-    index: 2,
+    index: 3,
     applicant: '内容7',
     status: '内容8',
     channel: '内容9',
@@ -59,24 +59,7 @@ const columns = [
 ];
 
 export default function DragSortExample() {
-  const handleRowClick = (e) => {
-    console.log('row-cliek=====', e);
-  };
-
-  const handleCellClick = (e) => {
-    console.log('cell-cliek1=====', e);
-  };
-
   return (
-    <Table
-      columns={columns}
-      data={data}
-      dragSort="row"
-      cellEmptyContent={'vvv'}
-      rowKey="index"
-      showHeader
-      onCellClick={handleCellClick}
-      onRowClick={handleRowClick}
-    ></Table>
+    <Table columns={columns} data={data} dragSort="row" cellEmptyContent={'vvv'} rowKey="index" showHeader></Table>
   );
 }
