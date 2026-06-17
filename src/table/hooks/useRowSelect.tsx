@@ -2,10 +2,10 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { get, intersection, isFunction } from 'lodash-es';
-import { isRowSelectedDisabled } from '@common/js/table/utils';
 import Checkbox, { CheckboxProps } from '../../checkbox';
 import useControlled from '../../hooks/useControlled';
 import { Radio, RadioProps } from '../../radio';
+import { isRowSelectedDisabled } from '../../_common/js/table/utils';
 import log from '../../_common/js/log';
 import type { ClassName } from '../../common';
 import type {
