@@ -45,12 +45,12 @@ export interface TableFilterControllerProps {
 export default function TableFilterController(props: TableFilterControllerProps) {
   const { tFilterValue, innerFilterValue, tableFilterClasses, isFocusClass, column } = props;
   const triggerElementRef = useRef<HTMLDivElement>(null);
-  const [locale, t] = useLocaleReceiver('table');
+  const [locale] = useLocaleReceiver('table');
   const [filterPopupVisible, setFilterPopupVisible] = useState(false);
   const filterValue = tFilterValue?.[column.colKey];
   const isObjectTrue = typeof filterValue === 'object' && !isEmpty(filterValue);
   const isValueExist = ![null, undefined, ''].includes(filterValue) && typeof filterValue !== 'object';
-  const defaultFilterIcon = t(locale.filterIcon) || <FilterIcon />;
+  const defaultFilterIcon = locale.filterIcon || <FilterIcon />;
 
   const onFilterPopupVisibleChange = (visible: boolean) => {
     setFilterPopupVisible(visible);
