@@ -373,7 +373,7 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
   };
 
   const renderLoading = () => {
-    // pull-refresh 模式下，loading 由 usePullRefresh hook 内部渲染
+    // pull-refresh 模式下，上拉加载 loading 由 usePullRefresh hook 内部渲染
     if (isPullRefreshMode) {
       return renderPullRefreshLoading();
     }
@@ -383,7 +383,17 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
 
     // 默认全屏 loading
     return (
-      <div className={`${classPrefix}-loading--full`}>
+      <div className={`${classPrefix}-table__loading--full`}>
+        <Loading {...loadingProps} />
+      </div>
+    );
+  };
+
+  // 外部传入 loading={true} 时的全屏 loading（pull-refresh 模式下也支持外部控制全屏 loading）
+  const renderFullLoading = () => {
+    if (!loading || !isPullRefreshMode) return null;
+    return (
+      <div className={`${classPrefix}-table__loading--full`}>
         <Loading {...loadingProps} />
       </div>
     );
@@ -430,6 +440,7 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
           </tbody>
         </table>
         {renderLoading()}
+        {renderFullLoading()}
         {renderPaginationNode()}
       </div>
     </div>
