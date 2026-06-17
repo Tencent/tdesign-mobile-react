@@ -158,8 +158,11 @@ newsAriaLabel | String | - | \- | N
 name | type | default | description | required
 -- | -- | -- | -- | --
 clearFilterResultButtonText | String | - | \- | N
+confirmText | String | - | \- | N
 empty | TNode | - | Typescript: `string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+filterIcon | TElement | undefined | Typescript: `TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 hideSortTips | Boolean | false | hide sort tips | N
+resetText | String | - | \- | N
 searchResultText | String | - | \- | N
 
 ### UploadConfig
