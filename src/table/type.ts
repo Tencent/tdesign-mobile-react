@@ -423,11 +423,6 @@ export interface TableColumnFilter {
    */
   list?: Array<OptionData>;
   /**
-   * 选项过滤功能配置，`listFilterConfig=true` 表示使用默认过滤功能和组件风格，`listFilterConfig.filterMethod` 用于自定义过滤方法，其中 `props/className/style` 分别表示透传属性、类名、样式到输入框组件
-   * @default false
-   */
-  listFilterConfig?: boolean | ListFilterConfig;
-  /**
    * 透传 Popup 组件全部属性到筛选器浮层
    */
   popupProps?: PopupProps;
@@ -658,14 +653,6 @@ export interface PrimaryTableRenderParams<T> extends PrimaryTableCellParams<T> {
 export type SortType = 'desc' | 'asc' | 'all';
 
 export type SorterFun<T> = (a: T, b: T) => number;
-
-export interface ListFilterConfig {
-  filterMethod?: (item: OptionData, keyword: string) => boolean;
-  props?: InputProps;
-  className?: string;
-  style?: Styles;
-  slots?: { [key: string]: () => JSX.Element };
-}
 
 export type FilterProps = RadioProps | CheckboxProps | InputProps | { [key: string]: any };
 
