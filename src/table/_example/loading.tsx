@@ -7,6 +7,7 @@ export default function LoadingExample() {
   const total = 9;
   for (let i = 0; i < total; i++) {
     data.push({
+      index: i + 1,
       projName: ['项目名称', '项目名称', '项目名称'][i % 3],
       projTag: ['默认标签', '默认标签', '默认标签'][i % 3],
       options: {
@@ -45,7 +46,7 @@ export default function LoadingExample() {
   ];
   return (
     <div className="loading-example-table">
-      <div className="loading-example-title">下拉加载</div>
+      <div className="loading-example-title">上拉加载</div>
       <Table
         columns={columns}
         data={data}
