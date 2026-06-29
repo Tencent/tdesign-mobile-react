@@ -1,4 +1,13 @@
-import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, {
+  CSSProperties,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { get, isFunction } from 'lodash-es';
 import cx from 'classnames';
 
@@ -127,13 +136,14 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
     renderPullRefreshLoading,
   } = usePullRefresh({ ...props, pagination }, tableContentRef);
 
-  const getDisplayData = () => {
+  const getDisplayData = useCallback(() => {
     if (isPullRefreshMode) {
       return isPullRefreshData ? pullRefreshDataSource : data;
     }
     return isPaginationData ? paginationDataSource : data;
-  };
-  const newData = getDisplayData();
+  }, [data, isPaginationData, isPullRefreshData, isPullRefreshMode, paginationDataSource, pullRefreshDataSource]);
+
+  const newData = useMemo(() => getDisplayData(), [getDisplayData]);
 
   useEffect(() => {
     setData(newData || props.data);
