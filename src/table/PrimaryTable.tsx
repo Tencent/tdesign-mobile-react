@@ -123,7 +123,7 @@ const PrimaryTable = forwardRef<PrimaryTableRef, PrimaryTableProps>((props, ref)
         }
       }
       // 添加排序图标和过滤图标
-      if (item.sorter) {
+      if (item.sorter || item.filter) {
         const titleContent = renderTitle(item, i);
         const { ellipsisTitle } = item;
         item.title = (p) => {

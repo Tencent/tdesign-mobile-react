@@ -1,33 +1,30 @@
-import React, { ReactNode, useMemo } from 'react';
+import React, { MouseEvent, ReactNode, useMemo } from 'react';
 import classNames from 'classnames';
 import { ChevronDownIcon } from 'tdesign-icons-react';
-import { SortType } from './type';
-import { TNode } from '../common';
 import useClassName from './hooks/useClassName';
-import { useLocaleReceiver } from '../locale/LocalReceiver';
+import type { TNode } from '../common';
+import type { SortType } from './type';
 
-export type SortTypeEnums = Array<'desc' | 'asc'>;
+type SortTypeEnums = Array<'desc' | 'asc'>;
 
 export interface SorterButtonProps {
   sortType: SortType;
   sortOrder: string;
   sortIcon: TNode;
   hideSortTips?: boolean;
-  onSortIconClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>, p: { descending: boolean }) => void;
+  onSortIconClick: (e: MouseEvent<HTMLSpanElement>, p: { descending: boolean }) => void;
 }
 
 export default function SorterButton(props: SorterButtonProps) {
   const { sortType = 'all' } = props;
   const { tableSortClasses, negativeRotate180 } = useClassName();
-  const [locale] = useLocaleReceiver('table');
   const allowSortTypes: SortTypeEnums = useMemo(() => (sortType === 'all' ? ['asc', 'desc'] : [sortType]), [sortType]);
   const classes = useMemo(
     () => [tableSortClasses.trigger, { [tableSortClasses.doubleIcon]: allowSortTypes.length > 1 }],
     [allowSortTypes, tableSortClasses],
   );
-
-  const onSortIconClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, direction: string) => {
-    props.onSortIconClick(e, { descending: direction === 'desc' });
+  const onSortIconClick = (e: MouseEvent<HTMLSpanElement>, direction: string) => {
+    props?.onSortIconClick(e, { descending: direction === 'desc' });
   };
 
   function getSortIcon(direction: string, activeClass: string) {
@@ -43,20 +40,17 @@ export default function SorterButton(props: SorterButtonProps) {
       <span
         key={direction}
         className={classNames(sortClassName)}
-        onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => onSortIconClick(e, direction)}
+        onClick={(e: MouseEvent<HTMLSpanElement>) => onSortIconClick(e, direction)}
       >
         {icon as ReactNode}
       </span>
     );
   }
 
-  const renderSortButtonContent = allowSortTypes.map((direction: string) => {
+  const sortButton = allowSortTypes.map((direction: string) => {
     const activeClass = direction === props.sortOrder ? tableSortClasses.iconActive : tableSortClasses.iconDefault;
-    if (props.hideSortTips ?? locale.hideSortTips) {
-      return getSortIcon(direction, activeClass);
-    }
-    return null;
+    return getSortIcon(direction, activeClass);
   });
 
-  return <div className={classNames(classes)}>{renderSortButtonContent}</div>;
+  return <div className={classNames(classes)}>{sortButton}</div>;
 }
