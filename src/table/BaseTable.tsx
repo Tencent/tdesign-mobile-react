@@ -33,8 +33,7 @@ import {
 import useRowspanAndColspan from './hooks/useRowspanAndColspan';
 import usePagination from './hooks/usePagination';
 import useTableHeader from './hooks/useTableHeader';
-import { BaseTableCellParams, BaseTableCol, PaginationProps, TableRowData, TdBaseTableProps } from './type';
-import { tablePaginationDefaultProps } from './tablePaginationDefaultProps';
+import { BaseTableCellParams, BaseTableCol, TableRowData, TdBaseTableProps } from './type';
 
 const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) => {
   const props = useDefaultProps<BaseTableProps>(originProps, baseTableDefaultProps);
@@ -62,7 +61,9 @@ const BaseTable = forwardRef<BaseTableRef, BaseTableProps>((originProps, ref) =>
     onLeafColumnsChange,
   } = props;
 
-  const pagination = useDefaultProps<PaginationProps>(originPagination, tablePaginationDefaultProps);
+  // 保留用户未传 pagination 时为 undefined 的语义（不分页）
+  // 默认值填充由 TablePagination 组件内部处理
+  const pagination = originPagination;
 
   const { skipSpansMap } = useRowspanAndColspan(data, columns, rowKey, rowspanAndColspan);
 

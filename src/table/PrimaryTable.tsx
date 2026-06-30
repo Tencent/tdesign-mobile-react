@@ -20,7 +20,6 @@ import useDragSort from './hooks/useDragSort';
 import useRowExpand from './hooks/useRowExpand';
 import useTableHeader, { renderTitle } from './hooks/useTableHeader';
 import { primaryTableDefaultProps } from './defaultProps';
-import { tablePaginationDefaultProps } from './tablePaginationDefaultProps';
 import BaseTable from './BaseTable';
 
 const PrimaryTable = forwardRef<PrimaryTableRef, PrimaryTableProps>((props, ref) => {
@@ -30,7 +29,9 @@ const PrimaryTable = forwardRef<PrimaryTableRef, PrimaryTableProps>((props, ref)
     style,
     pagination: originPagination,
   } = useDefaultProps<PrimaryTableProps>(props, primaryTableDefaultProps);
-  const pagination = useDefaultProps<PaginationProps>(originPagination, tablePaginationDefaultProps);
+  // 保留用户未传 pagination 时为 undefined 的语义（不分页）
+  // 默认值填充由 TablePagination 组件内部处理
+  const pagination = originPagination;
   const primaryTableRef = useRef(null);
   const innerPagination = useRef<PaginationProps>(pagination);
   const { classPrefix, tableDraggableClasses, tableBaseClass, tableSelectedClasses, tableSortClasses } = useClassName();
