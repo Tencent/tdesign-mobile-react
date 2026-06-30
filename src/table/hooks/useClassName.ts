@@ -2,7 +2,7 @@ import useConfig from '../../hooks/useConfig';
 
 export default function useClassName() {
   const { classPrefix } = useConfig();
-  const classNames = {
+  return {
     classPrefix,
     tableBaseClass: {
       table: `${classPrefix}-table`,
@@ -188,8 +188,6 @@ export default function useClassName() {
     positiveRotate90: `${classPrefix}-positive-rotate-90`,
     negativeRotate180: `${classPrefix}-negative-rotate-180`,
   };
-
-  return classNames;
 }
 
 export type TableClassName = ReturnType<typeof useClassName>;

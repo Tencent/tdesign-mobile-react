@@ -289,14 +289,17 @@ function useDragSort(props: TdPrimaryTableProps, options: DragSortOptions) {
           };
           // currentData is going to be deprecated
           params.currentData = params.newData;
-          // 无论受控还是非受控，都需要先还原 DOM 到拖拽前的顺序
-          // SortableJS 在 onEnd 触发前已经移动了 DOM 节点
-          // 如果不还原，React 基于 virtual DOM diff 更新时会与已被篡改的真实 DOM 冲突，导致位置错乱
-          dragRowInstance.current?.sort(trIdList.current);
 
           if (onDragSortRef.current) {
-            // 受控模式：还原 DOM 后触发回调，外部 setData 更新数据，React 重绘会正确对齐 DOM
+            // 受控模式：还原 DOM 到拖拽前的顺序，再触发回调
+            // 外部 setData 更新数据后 React 重绘会正确对齐 DOM
+            dragRowInstance.current?.sort(trIdList.current);
             onDragSortRef.current(params);
+          } else {
+            // 非受控模式：不还原 DOM，直接让 SortableJS 的 DOM 变更生效
+            // 同步更新内部数据引用和 trIdList，保持后续拖拽正确
+            tData.current = newData;
+            updateLastRowList();
           }
         } finally {
           unlockScrollContainer();
@@ -391,6 +394,14 @@ function useDragSort(props: TdPrimaryTableProps, options: DragSortOptions) {
     }
   };
 
+  // 销毁旧实例，避免重复绑定导致冲突
+  const cleanupSortableInstances = () => {
+    dragRowInstance.current?.destroy();
+    dragRowInstance.current = null;
+    dragColInstance.current?.destroy();
+    dragColInstance.current = null;
+  };
+
   useEffect(() => {
     tData.current = data;
     updateLastRowList();
@@ -405,8 +416,13 @@ function useDragSort(props: TdPrimaryTableProps, options: DragSortOptions) {
   // 注册拖拽事件
   useEffect(() => {
     if (!primaryTableRef.current) return;
+    cleanupSortableInstances();
     registerRowDragEvent(primaryTableRef.current.tableElement);
     registerColDragEvent(primaryTableRef.current.tableHtmlElement);
+
+    return () => {
+      cleanupSortableInstances();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [columns, dragSort, innerPagination]);
 
