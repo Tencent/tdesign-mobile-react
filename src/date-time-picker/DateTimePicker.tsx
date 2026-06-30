@@ -188,6 +188,13 @@ const DateTimePicker: FC<DateTimePickerProps> = (props) => {
 
   const columns = getColumns();
 
+  const formatValue = (date: Dayjs) => {
+    if (props.format === 'time-stamp') {
+      return date.valueOf();
+    }
+    return date.format(props.format);
+  };
+
   const onConfirm = (value: string[]) => {
     const dayObject = value.reduce((map, cur, index) => {
       const type = meaningColumn[index];
@@ -197,8 +204,9 @@ const DateTimePicker: FC<DateTimePickerProps> = (props) => {
       };
     }, {});
     const cur = dayjs(dayObject);
-    props.onConfirm?.(dayjs(cur || curDate).format(props.format));
-    setDateTimePickerValue(dayjs(cur || curDate).format(props.format));
+    const formatted = formatValue(cur || curDate);
+    props.onConfirm?.(formatted);
+    setDateTimePickerValue(formatted);
   };
 
   const onCancel = (context: { e: MouseEvent<HTMLButtonElement> }) => {
@@ -210,7 +218,7 @@ const DateTimePicker: FC<DateTimePickerProps> = (props) => {
     const val = curDate.set(type as UnitType, parseInt(columns[column][index]?.value, 10));
     const next = rationalize(val);
     setCurDate(next);
-    props.onPick?.(next.format(props.format));
+    props.onPick?.(formatValue(next));
   };
 
   return (
