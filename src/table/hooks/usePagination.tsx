@@ -5,7 +5,7 @@ import TablePagination from '../TablePagination';
 
 // 分页功能包含：远程数据排序受控、远程数据排序非受控、本地数据排序受控、本地数据排序非受控 等 4 类功能
 export default function usePagination(props: TdBaseTableProps, tableContentRef: React.RefObject<HTMLDivElement>) {
-  const { pagination, data } = props;
+  const { pagination, data, loadingMode } = props;
   const { classPrefix } = useConfig();
   const [innerPagination, setInnerPagination] = useState<PaginationProps>(props.pagination);
   const [dataSource, setDataSource] = useState<TableRowData[]>([]);
@@ -40,24 +40,24 @@ export default function usePagination(props: TdBaseTableProps, tableContentRef: 
   );
 
   useEffect(() => {
-    setIsPaginateData(!!pagination);
-  }, [pagination]);
+    setIsPaginateData(!!pagination && loadingMode === 'pagination');
+  }, [loadingMode, pagination]);
 
   // 受控情况
   useEffect(() => {
-    if (!pagination || !isControlled) return;
+    if (!pagination || !isControlled || loadingMode !== 'pagination') return;
     const [current, pageSize] = [pagination?.current || 1, pagination?.pageSize ?? 10];
     updateDataSourceAndPaginate(current, pageSize);
     setInnerPagination({ current, pageSize });
-  }, [pagination, isControlled, updateDataSourceAndPaginate]);
+  }, [pagination, isControlled, updateDataSourceAndPaginate, loadingMode]);
 
   // 非受控情况
   useEffect(() => {
-    if (!pagination || isControlled) return;
+    if (!pagination || isControlled || loadingMode !== 'pagination') return;
     const [current, pageSize] = [pagination?.defaultCurrent || 1, pagination?.defaultPageSize ?? 10];
     updateDataSourceAndPaginate(current, pageSize);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isControlled, updateDataSourceAndPaginate]);
+  }, [isControlled, updateDataSourceAndPaginate, loadingMode]);
 
   const renderPagination = () => {
     if (!pagination) return null;

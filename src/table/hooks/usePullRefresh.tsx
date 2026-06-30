@@ -11,7 +11,7 @@ const PULL_REFRESH_DISTANCE = 80;
  * 支持跟手位移效果和 loading 状态
  */
 export default function usePullRefresh(props: TdBaseTableProps, containerRef: React.RefObject<HTMLDivElement | null>) {
-  const { pagination, data, loading, loadingProps } = props;
+  const { pagination, data, loading, loadingProps, loadingMode } = props;
   const { classPrefix } = useConfig();
 
   const [dataSource, setDataSource] = useState<TableRowData[]>([]);
@@ -180,7 +180,13 @@ export default function usePullRefresh(props: TdBaseTableProps, containerRef: Re
   // 绑定触摸事件
   useEffect(() => {
     const container = containerRef.current;
-    if (!container || !pagination) return;
+    if (!container || !pagination || loadingMode !== 'pull-refresh') {
+      return () => {
+        container.removeEventListener('touchstart', handleTouchStart);
+        container.removeEventListener('touchmove', handleTouchMove);
+        container.removeEventListener('touchend', handleTouchEnd);
+      };
+    }
 
     container.addEventListener('touchstart', handleTouchStart, { passive: true });
     container.addEventListener('touchmove', handleTouchMove, { passive: false });
@@ -191,7 +197,7 @@ export default function usePullRefresh(props: TdBaseTableProps, containerRef: Re
       container.removeEventListener('touchmove', handleTouchMove);
       container.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [containerRef, pagination, handleTouchStart, handleTouchMove, handleTouchEnd]);
+  }, [containerRef, pagination, handleTouchStart, handleTouchMove, handleTouchEnd, loadingMode]);
 
   /**
    * 渲染上拉加载 loading
