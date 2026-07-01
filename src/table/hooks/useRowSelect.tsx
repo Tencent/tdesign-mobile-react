@@ -108,6 +108,7 @@ export default function useRowSelect(
         intersectionKeys.length === tSelectedRowKeys.length;
       return (
         <Checkbox
+          icon="rectangle"
           checked={isChecked}
           indeterminate={isIndeterminate}
           disabled={!canSelectedRows.length}
@@ -144,7 +145,7 @@ export default function useRowSelect(
       const isIndeterminate = indeterminateSelectedRowKeys?.length
         ? indeterminateSelectedRowKeys.includes(get(row, rowKey))
         : false;
-      return <Checkbox indeterminate={isIndeterminate} {...(selectBoxProps as CheckboxProps)} />;
+      return <Checkbox icon="rectangle" indeterminate={isIndeterminate} {...(selectBoxProps as CheckboxProps)} />;
     }
     return null;
   }
