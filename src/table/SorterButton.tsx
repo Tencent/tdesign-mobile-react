@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactNode, useMemo } from 'react';
+import React, { MouseEvent, ReactNode, useCallback, useMemo, useRef } from 'react';
 import classNames from 'classnames';
 import { ChevronDownIcon } from 'tdesign-icons-react';
 import useClassName from './hooks/useClassName';
@@ -23,9 +23,16 @@ export default function SorterButton(props: SorterButtonProps) {
     () => [tableSortClasses.trigger, { [tableSortClasses.doubleIcon]: allowSortTypes.length > 1 }],
     [allowSortTypes, tableSortClasses],
   );
-  const onSortIconClick = (e: MouseEvent<HTMLSpanElement>, direction: string) => {
-    props?.onSortIconClick(e, { descending: direction === 'desc' });
-  };
+  const clickSortTimes = useRef(0);
+
+  const onSortIconClick = useCallback(
+    (e: MouseEvent<HTMLSpanElement>) => {
+      clickSortTimes.current += 1;
+      const direction = allowSortTypes[clickSortTimes.current % 2];
+      props?.onSortIconClick(e, { descending: direction === 'desc' });
+    },
+    [allowSortTypes, props],
+  );
 
   function getSortIcon(direction: string, activeClass: string) {
     const defaultIcon = <ChevronDownIcon />;
@@ -37,11 +44,7 @@ export default function SorterButton(props: SorterButtonProps) {
       { [negativeRotate180]: direction === 'asc' },
     ];
     return (
-      <span
-        key={direction}
-        className={classNames(sortClassName)}
-        onClick={(e: MouseEvent<HTMLSpanElement>) => onSortIconClick(e, direction)}
-      >
+      <span key={direction} className={classNames(sortClassName)}>
         {icon as ReactNode}
       </span>
     );
@@ -52,5 +55,9 @@ export default function SorterButton(props: SorterButtonProps) {
     return getSortIcon(direction, activeClass);
   });
 
-  return <div className={classNames(classes)}>{sortButton}</div>;
+  return (
+    <div className={classNames(classes)} onClick={(e: MouseEvent<HTMLSpanElement>) => onSortIconClick(e)}>
+      {sortButton}
+    </div>
+  );
 }
