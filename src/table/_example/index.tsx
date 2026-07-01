@@ -10,6 +10,7 @@ import RowspanColspanExample from './rowspan-colspan';
 import DragSortExample from './drag-sort';
 import LoadingExample from './loading';
 import SelectExample from './select';
+import FilterSortExample from './filter-sort';
 
 export default function Base() {
   return (
@@ -52,6 +53,10 @@ export default function Base() {
 
       <TDemoBlock summary="带选择的表格" padding={true}>
         <SelectExample />
+      </TDemoBlock>
+
+      <TDemoBlock summary="带筛选的表格" padding={true}>
+        <FilterSortExample />
       </TDemoBlock>
     </div>
   );
