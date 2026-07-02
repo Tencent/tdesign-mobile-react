@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, Message, Upload } from 'tdesign-mobile-react';
+import { Message, Upload } from 'tdesign-mobile-react';
+import { CameraIcon } from 'tdesign-icons-react';
 import './style/index.less';
 
 export default function CustomDemo() {
@@ -18,7 +19,7 @@ export default function CustomDemo() {
           action="//service-bv448zsw-1257786608.gz.apigw.tencentcs.com/api/upload-demo"
           addContent={
             <div className="add-content">
-              <Image className="content-img" src="https://tdesign.gtimg.com/mobile/demos/upload3.png" alt="" />
+              <CameraIcon strokeColor="#0152d9" size="32" />
             </div>
           }
           defaultFiles={[]}
@@ -34,7 +35,7 @@ export default function CustomDemo() {
           className="reverse"
           addContent={
             <div className="add-content">
-              <Image className="content-img" src="https://tdesign.gtimg.com/mobile/demos/upload3.png" alt="" />
+              <CameraIcon strokeColor="#0152d9" size="32" />
             </div>
           }
           accept="image/png"
