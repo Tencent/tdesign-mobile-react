@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { DateTimePicker, Cell, Popup } from 'tdesign-mobile-react';
+import './styles/index.less';
 
-export default function DateTimePickerDemo() {
+export default function WithoutTitleDemo() {
   const [visible, setVisible] = useState(false);
-  const [pickerValue, setPickerValue] = useState('2025-07-09');
-  const [pickerValueText, setPickerValueText] = useState('2025-07-09');
+  const [pickerValue, setPickerValue] = useState('2025-07-10');
 
   const onPick = (value: string) => {
     console.log('[onPick]', value);
@@ -20,20 +20,22 @@ export default function DateTimePickerDemo() {
 
   const onConfirm = (value: string) => {
     setVisible(false);
-    setPickerValueText(value);
     setPickerValue(value);
   };
 
+  const onShow = () => {
+    setVisible(true);
+  };
+
   return (
-    <div>
-      <Cell title="选择时间" note={pickerValueText} onClick={() => setVisible(true)} />
+    <div className="without-title-demo">
+      <Cell title="无标题时间选择器" note={pickerValue} onClick={onShow} />
       <Popup visible={visible} placement="bottom">
         <DateTimePicker
           value={pickerValue}
           mode="date"
-          title="选择时间"
-          start="2020-6-30"
-          end="2025-6-30"
+          title=""
+          start="2022-12-12"
           format="YYYY-MM-DD"
           onPick={onPick}
           onChange={onChange}

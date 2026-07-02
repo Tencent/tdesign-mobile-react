@@ -5,7 +5,6 @@
 import { TdDateTimePickerProps } from './type';
 
 export const dateTimePickerDefaultProps: TdDateTimePickerProps = {
-  cancelBtn: '取消',
   format: undefined,
   mode: 'date',
   showWeek: false,

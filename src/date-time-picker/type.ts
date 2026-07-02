@@ -4,13 +4,13 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TElement } from '../common';
-import { MouseEvent } from 'react';
+import type { TElement } from '../common';
+import type { MouseEvent } from 'react';
 
 export interface TdDateTimePickerProps {
   /**
    * 取消按钮文字
-   * @default 取消
+   * @default ''
    */
   cancelBtn?: string;
   /**
@@ -31,7 +31,7 @@ export interface TdDateTimePickerProps {
    */
   footer?: TElement;
   /**
-   * 用于格式化 pick、change、confirm 事件返回的值，全局配置默认为：'YYYY-MM-DD HH:mm:ss' [详细文档](https://day.js.org/docs/en/display/format)
+   * 用于格式化 pick、change、confirm 事件返回的值，全局配置默认为：'YYYY-MM-DD HH:mm:ss'。当值为 'time-stamp' 时，表示事件参数与 v-model 返回毫秒级时间戳数值（number） [详细文档](https://day.js.org/docs/en/display/format)
    */
   format?: string;
   /**

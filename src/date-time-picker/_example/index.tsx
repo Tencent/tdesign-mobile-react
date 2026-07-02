@@ -2,12 +2,13 @@ import React from 'react';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 
-import BaseDemo from './base';
+import BaseDemo from './year-month-date';
 import YearMonthDemo from './year-month';
-import TimeDemo from './time';
-import MinuteDemo from './minute';
-import DateSecondDemo from './date-second';
+import TimeDemo from './hour-minute-second';
+import MinuteDemo from './hour-minute';
+import DateSecondDemo from './date-all';
 import WithTitleDemo from './with-title';
+import WithoutTitleDemo from './without-title';
 import ShowWeekDemo from './show-week';
 
 export default function DateTimePickerDemo() {
@@ -34,6 +35,9 @@ export default function DateTimePickerDemo() {
       </TDemoBlock>
       <TDemoBlock title="02 组件样式" summary="是否带标题">
         <WithTitleDemo />
+      </TDemoBlock>
+      <TDemoBlock>
+        <WithoutTitleDemo />
       </TDemoBlock>
     </div>
   );
