@@ -5,6 +5,16 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.23.1 `2026-07-03` 
+### 🚀 Features
+- `DateTimePicker`: 为 `format` 属性新增 `time-stamp` 可选项，支持时间戳格式 @anlyyao ([#931](https://github.com/Tencent/tdesign-mobile-react/pull/931))
+### 🐞 Bug Fixes
+- `Button`: ⚠️ `--td-button-xx-font-size` 系列变更为 `--td-button-xx-font`；⚠️ 移除 `--td-button-font-weight`，请改用 `--td-button-xx-font`，或者[组件库级别的 css var ](https://github.com/Tencent/tdesign-common/blob/develop/style/mobile/theme/_font.less)调整字号、行高、字重、字体等文本样式 @liweijie0812 ([common#2540](https://github.com/Tencent/tdesign-common/pull/2540))([#928](https://github.com/Tencent/tdesign-mobile-react/pull/928))
+- `PullDownRefresh`: 修复 `onRefresh` 事件重复触发的问题 @anlyyao ([#930](https://github.com/Tencent/tdesign-mobile-react/pull/930))
+- `DateTimePicker`: 修复全局配置 `title` 属性无效 @anlyyao ([#931](https://github.com/Tencent/tdesign-mobile-react/pull/931))
+- `ConfigProvider`: 为 `Upload` 语言包补充 `upload.progress.reloadText` 字段 @dev-soragoto ([common#2576](https://github.com/Tencent/tdesign-common/pull/2576))([#933](https://github.com/Tencent/tdesign-mobile-react/pull/933))
+- `Navbar`: 修复 env(safe-area-inset-top) 非 0 时占位栏高度错误导致底部留白 @anlyyao ([#934](https://github.com/Tencent/tdesign-mobile-react/pull/934))
+
 ## 🌈 0.23.0 `2026-05-20` 
 ### 🚀 Features
 - `Typography`: 新增 `Typography` 排版组件 @anlyyao ([#905](https://github.com/Tencent/tdesign-mobile-react/pull/905))

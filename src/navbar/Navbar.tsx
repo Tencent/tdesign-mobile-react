@@ -78,10 +78,16 @@ const Navbar: React.FC<NavbarProps> = (originProps) => {
     () =>
       classNames(
         navbarClass,
-        { [`${navbarClass}--fixed`]: fixed, [`${prefixClass}-safe-area-top`]: safeAreaInsetTop },
+        { [`${navbarClass}--fixed`]: fixed },
         visible ? `${navbarClass}--visible${animationSuffix}` : `${navbarClass}--hide${animationSuffix}`,
       ),
-    [navbarClass, prefixClass, fixed, visible, animationSuffix, safeAreaInsetTop],
+    [navbarClass, fixed, visible, animationSuffix],
+  );
+
+  // 顶部安全区适配需同时作用于固定导航条与占位元素，保证两者高度一致。避免固定定位的 __content 不继承根元素 padding 而导致占位多预留、露出底部空白
+  const safeAreaTopClass = useMemo<string>(
+    () => (safeAreaInsetTop ? `${prefixClass}-safe-area-top` : ''),
+    [prefixClass, safeAreaInsetTop],
   );
 
   const navStyle = useMemo<CSSProperties>(
@@ -111,7 +117,7 @@ const Navbar: React.FC<NavbarProps> = (originProps) => {
 
   const renderPlaceholder = () => {
     if (fixed && placeholder) {
-      return <div className={`${navbarClass}__placeholder`}></div>;
+      return <div className={classNames(`${navbarClass}__placeholder`, safeAreaTopClass)}></div>;
     }
     return null;
   };
@@ -119,7 +125,7 @@ const Navbar: React.FC<NavbarProps> = (originProps) => {
   return (
     <div className={classNames(navClass, className)} style={navStyle}>
       {renderPlaceholder()}
-      <div className={`${navbarClass}__content`}>
+      <div className={classNames(`${navbarClass}__content`, safeAreaTopClass)}>
         {renderLeft()}
         {renderCenter()}
         {renderRight()}

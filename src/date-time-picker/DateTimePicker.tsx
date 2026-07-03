@@ -29,8 +29,13 @@ const DateTimePicker: FC<DateTimePickerProps> = (props) => {
 
   const [innerValue, setDateTimePickerValue] = useDefault(props.value, props.defaultValue, props.onChange);
 
+  // title 优先级：props.title 显式传入（包括空字符串）即生效，未传时回退到 globalConfig.title
+  const titleText = props.title ?? (t(locale.title) as string);
   const confirmButtonText = props.confirmBtn || (t(locale.confirm) as string);
   const cancelButtonText = props.cancelBtn || (t(locale.cancel) as string);
+
+  // format 优先级：props.format > globalConfig.format > 兜底 'YYYY-MM-DD HH:mm:ss'
+  const format = props.format || (t(locale.format) as string) || 'YYYY-MM-DD HH:mm:ss';
 
   const start = normalize(props.start, dayjs().subtract(10, 'year'));
   const end = normalize(props.end, dayjs().add(10, 'year'));
@@ -188,6 +193,13 @@ const DateTimePicker: FC<DateTimePickerProps> = (props) => {
 
   const columns = getColumns();
 
+  const formatValue = (date: Dayjs) => {
+    if (format === 'time-stamp') {
+      return date.valueOf();
+    }
+    return date.format(format);
+  };
+
   const onConfirm = (value: string[]) => {
     const dayObject = value.reduce((map, cur, index) => {
       const type = meaningColumn[index];
@@ -197,8 +209,9 @@ const DateTimePicker: FC<DateTimePickerProps> = (props) => {
       };
     }, {});
     const cur = dayjs(dayObject);
-    props.onConfirm?.(dayjs(cur || curDate).format(props.format));
-    setDateTimePickerValue(dayjs(cur || curDate).format(props.format));
+    const formatted = formatValue(cur || curDate);
+    props.onConfirm?.(formatted);
+    setDateTimePickerValue(formatted);
   };
 
   const onCancel = (context: { e: MouseEvent<HTMLButtonElement> }) => {
@@ -210,7 +223,7 @@ const DateTimePicker: FC<DateTimePickerProps> = (props) => {
     const val = curDate.set(type as UnitType, parseInt(columns[column][index]?.value, 10));
     const next = rationalize(val);
     setCurDate(next);
-    props.onPick?.(next.format(props.format));
+    props.onPick?.(formatValue(next));
   };
 
   return (
@@ -218,7 +231,7 @@ const DateTimePicker: FC<DateTimePickerProps> = (props) => {
       className={`${dateTimePickerClass} ${props.className || ''}`.trim()}
       style={props.style}
       value={valueOfPicker}
-      title={props.title}
+      title={titleText}
       confirmBtn={confirmButtonText}
       cancelBtn={cancelButtonText}
       columns={columns}
