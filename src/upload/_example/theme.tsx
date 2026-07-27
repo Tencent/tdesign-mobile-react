@@ -202,12 +202,20 @@ export default function ThemeDemo() {
     <>
       <div className="upload-demo">
         <div className="upload-title">宫格布局上传</div>
-        <Upload defaultFiles={gridFiles} multiple max={20} requestMethod={requestMethod} onPreview={onPreview} />
+        <Upload
+          draggable
+          defaultFiles={gridFiles}
+          multiple
+          max={20}
+          requestMethod={requestMethod}
+          onPreview={onPreview}
+        />
       </div>
 
       <div className="upload-demo">
         <div className="upload-title">列表布局上传</div>
         <Upload
+          draggable
           defaultFiles={listFiles}
           theme="list"
           multiple

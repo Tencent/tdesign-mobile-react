@@ -19,6 +19,7 @@ capture | String / Boolean | - | 图片选取模式，可选值为 camera (直�
 children | TNode | - | 非拖拽场景，指触发上传的元素，如：“选择文件”。如果是拖拽场景，则是指拖拽区域。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 data | Object | - | 上传请求所需的额外字段，默认字段有 `file`，表示文件信息。可以添加额外的文件名字段，如：`{file_name: "custom-file-name.txt"}`。`autoUpload=true` 时有效。也可以使用 `formatRequest` 完全自定义上传请求的字段。TS 类型：`Record<string, any> \| ((files: UploadFile[]) => Record<string, any>)` | N
 disabled | Boolean | undefined | 是否禁用组件 | N
+draggable | Boolean | - | 是否支持拖拽排序。。TS 类型：`boolean` | N
 files | Array | [] | 已上传文件列表，同 `value`。TS 类型：`UploadFile`。TS 类型：`Array<T>` | N
 defaultFiles | Array | [] | 已上传文件列表，同 `value`。TS 类型：`UploadFile`。非受控属性。TS 类型：`Array<T>` | N
 format | Function | - | 转换文件 `UploadFile` 的数据结构，可新增或修改 `UploadFile` 的属性，注意不能删除 `UploadFile` 属性。`action` 存在时有效。TS 类型：`(file: File) => UploadFile` | N
@@ -36,8 +37,10 @@ sizeLimit | Number / Object | - | 图片文件大小限制，默认单位 KB。�
 theme | String | grid | `0.23.0`。组件风格。提供宫格和列表两种布局风格。可选项：grid/list | N
 useMockProgress | Boolean | true | 是否在请求时间超过 300ms 后显示模拟进度。上传进度有模拟进度和真实进度两种。一般大小的文件上传，真实的上传进度只有 0 和 100，不利于交互呈现，因此组件内置模拟上传进度。真实上传进度一般用于大文件上传 | N
 withCredentials | Boolean | false | 上传请求时是否携带 cookie | N
-onChange | Function |  | TS 类型：`(value: Array<T>, context: UploadChangeContext) => void`<br/>已上传文件列表发生变化时触发，`trigger` 表示触发本次的来源。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/upload/type.ts)。<br/>`interface UploadChangeContext { e?: MouseEvent \| ProgressEvent; response?: any; trigger: UploadChangeTrigger; index?: number; file?: UploadFile; files?: UploadFile[] }`<br/><br/>`type UploadChangeTrigger = 'add' \| 'remove' \| 'abort' \| 'progress-success' \| 'progress' \| 'progress-fail'`<br/> | N
+onChange | Function |  | TS 类型：`(value: Array<T>, context: UploadChangeContext) => void`<br/>已上传文件列表发生变化时触发，`trigger` 表示触发本次的来源。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/upload/type.ts)。<br/>`interface UploadChangeContext { e?: MouseEvent \| ProgressEvent; response?: any; trigger: UploadChangeTrigger; index?: number; file?: UploadFile; files?: UploadFile[] }`<br/><br/>`type UploadChangeTrigger = 'add' \| 'remove' \| 'abort' \| 'progress-success' \| 'progress' \| 'progress-fail' \| 'sort'`<br/> | N
 onClickUpload | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>点击上传区域时触发 | N
+onDrag | Function |  | TS 类型：`(context: { file: UploadFile; index: number }) => void`<br/>拖拽开始时触发，`context.file` 为拖拽文件 | N
+onDrop | Function |  | TS 类型：`(value: Array<T>) => void`<br/>拖拽结束后触发，返回上传的文件列表（拖拽后的文件顺序） | N
 onFail | Function |  | TS 类型：`(options: UploadFailContext) => void`<br/>上传失败后触发。`response` 指接口响应结果，`response.error` 会作为错误文本提醒。如果希望判定为上传失败，但接口响应数据不包含 `error` 字段，可以使用 `formatResponse` 格式化 `response` 数据结构。如果是多文件多请求上传场景，请到事件 `onOneFileFail` 中查看 `response`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/upload/type.ts)。<br/>`interface UploadFailContext { e?: ProgressEvent; failedFiles: UploadFile[]; currentFiles: UploadFile[]; response?: any; file: UploadFile; XMLHttpRequest?: XMLHttpRequest}`<br/> | N
 onPreview | Function |  | TS 类型：`(options: { file: UploadFile; index: number; e: MouseEvent }) => void`<br/>点击图片预览时触发，文件没有预览 | N
 onProgress | Function |  | TS 类型：`(options: ProgressContext) => void`<br/>上传进度变化时触发，真实进度和模拟进度都会触发。<br/>⚠️ 原始上传请求，小文件的上传进度只有 0 和 100，故而不会触发 `progress` 事件；只有大文件才有真实的中间进度。如果你希望很小的文件也显示上传进度，保证 `useMockProgress=true` 的情况下，设置 `mockProgressDuration` 为更小的值。<br/>参数 `options.type=real` 表示真实上传进度，`options.type=mock` 表示模拟上传进度。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/upload/type.ts)。<br/>`interface ProgressContext { e?: ProgressEvent; file?: UploadFile; currentFiles: UploadFile[]; percent: number; type: UploadProgressType; XMLHttpRequest?: XMLHttpRequest }`<br/><br/>`type UploadProgressType = 'real' \| 'mock'`<br/> | N

@@ -415,5 +415,6 @@ export default function useUpload(props: TdUploadProps) {
     onNormalFileChange,
     onInnerRemove,
     cancelUpload,
+    setUploadValue,
   };
 }
