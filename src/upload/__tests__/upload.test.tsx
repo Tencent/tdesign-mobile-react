@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import { describe, it, expect, render, fireEvent, waitFor } from '@test/utils';
+import { describe, it, expect, render, fireEvent, waitFor, act } from '@test/utils';
 
 import React from 'react';
 import type { UploadFile } from '../type';
@@ -634,6 +634,131 @@ describe('Upload', () => {
       const deleteBtns = container.querySelectorAll(`${name}__delete-btn`);
       // Only b.pdf should have delete button (a.pdf has removeBtn=false)
       expect(deleteBtns.length).toBe(1);
+    });
+  });
+
+  describe('draggable', () => {
+    const dragFiles: UploadFile[] = [
+      { name: 'a.png', url: 'https://example.com/a.png', status: 'success' },
+      { name: 'b.png', url: 'https://example.com/b.png', status: 'success' },
+    ];
+
+    it(': draggable adds draggable class and data-drag-key on items', () => {
+      const { container } = render(<Upload draggable files={dragFiles} />);
+      expect(container.querySelector(`${name}--draggable`)).toBeTruthy();
+      const dragItems = container.querySelectorAll('[data-drag-key]');
+      expect(dragItems.length).toBe(2);
+      dragItems.forEach((el) => {
+        expect(el.getAttribute('data-drag-key')).toBeTruthy();
+      });
+    });
+
+    it(': non-draggable does not render data-drag-key', () => {
+      const { container } = render(<Upload files={dragFiles} />);
+      expect(container.querySelector(`${name}--draggable`)).toBeNull();
+      expect(container.querySelectorAll('[data-drag-key]').length).toBe(0);
+    });
+
+    it(': onDrag fires on long press with file and index', () => {
+      vi.useFakeTimers();
+      const onDrag = vi.fn();
+      const { container } = render(<Upload draggable files={dragFiles} onDrag={onDrag} />);
+      const dragItems = container.querySelectorAll('[data-drag-key]');
+
+      fireEvent.touchStart(dragItems[0], { touches: [{ clientX: 0, clientY: 0 }] });
+      act(() => {
+        vi.advanceTimersByTime(300);
+      });
+
+      expect(onDrag).toHaveBeenCalledTimes(1);
+      const ctx = onDrag.mock.calls[0][0];
+      expect(ctx.index).toBe(0);
+      expect(ctx.file.name).toBe('a.png');
+      vi.useRealTimers();
+    });
+
+    it(': onDrag not fired when finger moves beyond threshold before long press', () => {
+      vi.useFakeTimers();
+      const onDrag = vi.fn();
+      const { container } = render(<Upload draggable files={dragFiles} onDrag={onDrag} />);
+      const dragItems = container.querySelectorAll('[data-drag-key]');
+
+      fireEvent.touchStart(dragItems[0], { touches: [{ clientX: 0, clientY: 0 }] });
+      // 长按定时器触发前手指滑动超过阈值，应判定为滚动而非拖拽
+      fireEvent.touchMove(dragItems[0], { touches: [{ clientX: 50, clientY: 0 }] });
+      act(() => {
+        vi.advanceTimersByTime(300);
+      });
+
+      expect(onDrag).not.toHaveBeenCalled();
+      vi.useRealTimers();
+    });
+
+    it(': onDrag not fired on non-draggable long press', () => {
+      vi.useFakeTimers();
+      const onDrag = vi.fn();
+      const { container } = render(<Upload files={dragFiles} onDrag={onDrag} />);
+      const item = container.querySelector(`${name}__item`) as HTMLElement;
+
+      fireEvent.touchStart(item, { touches: [{ clientX: 0, clientY: 0 }] });
+      act(() => {
+        vi.advanceTimersByTime(300);
+      });
+
+      expect(onDrag).not.toHaveBeenCalled();
+      vi.useRealTimers();
+    });
+
+    it(': onDrop fires with reordered files after drag and release', () => {
+      vi.useFakeTimers();
+      const onDrag = vi.fn();
+      const onDrop = vi.fn();
+      const { container } = render(<Upload draggable files={dragFiles} onDrag={onDrag} onDrop={onDrop} />);
+      const dragEl = container.querySelectorAll('[data-drag-key]')[0];
+
+      // 长按进入拖拽态
+      fireEvent.touchStart(dragEl, { touches: [{ clientX: 0, clientY: 0 }] });
+      act(() => {
+        vi.advanceTimersByTime(300);
+      });
+      expect(onDrag).toHaveBeenCalledTimes(1);
+
+      // 将拖拽项移动到第二个位置，触发重排
+      fireEvent.touchMove(dragEl, { touches: [{ clientX: 1, clientY: 0 }] });
+      act(() => {
+        vi.advanceTimersByTime(50);
+      });
+
+      // 释放，rAF 中提交排序结果并回调 onDrop
+      fireEvent.touchEnd(dragEl, { changedTouches: [{ clientX: 1, clientY: 0 }] });
+      act(() => {
+        vi.advanceTimersByTime(50);
+      });
+
+      expect(onDrop).toHaveBeenCalledTimes(1);
+      const newOrder = (onDrop.mock.calls[0][0] as UploadFile[]).map((f) => f.name);
+      expect(newOrder).toEqual(['b.png', 'a.png']);
+      vi.useRealTimers();
+    });
+
+    it(': onDrop not fired when released without moving', () => {
+      vi.useFakeTimers();
+      const onDrop = vi.fn();
+      const { container } = render(<Upload draggable files={dragFiles} onDrop={onDrop} />);
+      const dragEl = container.querySelectorAll('[data-drag-key]')[0];
+
+      fireEvent.touchStart(dragEl, { touches: [{ clientX: 0, clientY: 0 }] });
+      act(() => {
+        vi.advanceTimersByTime(300);
+      });
+      // 未发生移动直接释放
+      fireEvent.touchEnd(dragEl, { changedTouches: [{ clientX: 0, clientY: 0 }] });
+      act(() => {
+        vi.advanceTimersByTime(50);
+      });
+
+      expect(onDrop).not.toHaveBeenCalled();
+      vi.useRealTimers();
     });
   });
 });
