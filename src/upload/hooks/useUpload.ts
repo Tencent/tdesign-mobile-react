@@ -1,5 +1,5 @@
 import type { ChangeEvent, MouseEvent } from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { isString, isFunction } from 'lodash-es';
 import type { InnerProgressContext, OnResponseErrorContext } from '../../_common/js/upload/types';
 import type { SizeLimitObj, TdUploadProps, UploadChangeContext, UploadFile, UploadRemoveContext } from '../type';
@@ -54,13 +54,17 @@ export default function useUpload(props: TdUploadProps) {
   const xhrReq = useRef<{ files: UploadFile[]; xhrReq: XMLHttpRequest }[]>([]);
   const objectUrlsRef = useRef<string[]>([]);
 
-  const displayFiles = getDisplayFiles({
-    multiple,
-    toUploadFiles,
-    uploadValue,
-    autoUpload,
-    isBatchUpload: false,
-  });
+  const displayFiles = useMemo(
+    () =>
+      getDisplayFiles({
+        multiple,
+        toUploadFiles,
+        uploadValue,
+        autoUpload,
+        isBatchUpload: false,
+      }),
+    [multiple, toUploadFiles, uploadValue, autoUpload],
+  );
 
   const isImageFile = (file: UploadFile): boolean => {
     const fileType = file.raw?.type || file.type || '';

@@ -10,7 +10,6 @@ interface UploadFileWithUid extends UploadFile {
 let globalUidCounter = 0;
 const keySeeds = new Map<string, number>();
 
-// 设置 file 的唯一 id
 function setDragKey(file: UploadFileWithUid, existing: Set<string>): string {
   if (file.__uid) return file.__uid;
 
@@ -97,6 +96,9 @@ export default function useDrag(
   const nativeTouchmoveRef = useRef<((e: TouchEvent) => void) | null>(null);
   const nativeTouchendRef = useRef<((e: TouchEvent) => void) | null>(null);
   const nativeTouchcancelRef = useRef<((e: TouchEvent) => void) | null>(null);
+  // 在途 FLIP 动画的 rAF 句柄与被打了 transform 的元素，用于拖拽结束时结算/取消
+  const flipRafIdsRef = useRef<number[]>([]);
+  const flipElementsRef = useRef<Set<HTMLElement>>(new Set());
 
   // 拖拽开始时的布局参数
   const layoutRef = useRef<{
@@ -148,13 +150,25 @@ export default function useDrag(
     }
   }, []);
 
+  // 结算/取消在途的 FLIP 动画：取消未执行的 rAF，并把已打上 transform 的元素立即复位
+  const cancelFlip = useCallback(() => {
+    flipRafIdsRef.current.forEach((id) => cancelAnimationFrame(id));
+    flipRafIdsRef.current = [];
+    Array.from(flipElementsRef.current).forEach((el) => {
+      el.style.setProperty('transition', '');
+      el.style.setProperty('transform', '');
+    });
+    flipElementsRef.current.clear();
+  }, []);
+
   useEffect(
     () => () => {
       if (longPressTimerRef.current) clearTimeout(longPressTimerRef.current);
       if (dragEndedTimerRef.current) clearTimeout(dragEndedTimerRef.current);
       removeNativeListeners();
+      cancelFlip();
     },
-    [removeNativeListeners],
+    [removeNativeListeners, cancelFlip],
   );
 
   const syncFiles = useCallback(
@@ -170,6 +184,7 @@ export default function useDrag(
 
   const resetState = useCallback(() => {
     removeNativeListeners();
+    cancelFlip();
     updateDragging(false);
     updateDragIndex(-1);
     setCloneVisible(false);
@@ -180,22 +195,19 @@ export default function useDrag(
     cachedItemHeightRef.current = 0;
     longPressTargetRef.current = null;
     layoutRef.current = null;
-  }, [removeNativeListeners, updateDragging, updateDragIndex, updateCloneFile]);
+  }, [removeNativeListeners, cancelFlip, updateDragging, updateDragIndex, updateCloneFile]);
 
   /**
-   * FLIP 位移动画
-   * 在 sortedFiles 变化导致 DOM 重排前，先快照所有 item 的位置（First）；
-   * React 更新 DOM 后（Last），用反向 transform 瞬间"回到"旧位置（Invert），
-   * 再移除 transform 触发 CSS transition 播放到新位置（Play）。
+   * FLIP 位移动画（First-Last-Invert-Play）：仅让「非拖拽项」平滑让位。
+   * 被拖拽项由浮动 clone 表示，其占位节点通过 draggedKey 排除在动画之外
    */
   const flipAnimate = useCallback(
-    (container: Element, beforeRects: Map<string, DOMRect>) => {
-      // Last: 读取 DOM 更新后的新位置
-      requestAnimationFrame(() => {
+    (container: Element, beforeRects: Map<string, DOMRect>, draggedKey: string) => {
+      const outerId = requestAnimationFrame(() => {
         container.querySelectorAll('[data-drag-key]').forEach((el) => {
           const htmlEl = el as HTMLElement;
           const key = htmlEl.dataset.dragKey;
-          if (!key) return;
+          if (!key || key === draggedKey) return;
           const before = beforeRects.get(key);
           if (!before) return;
 
@@ -205,17 +217,20 @@ export default function useDrag(
 
           if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5) return;
 
-          // Invert：瞬间偏移回旧位置
+          // Invert：瞬间偏移回旧位置（记录元素，便于拖拽结束时统一复位）
           htmlEl.style.transition = 'none';
           htmlEl.style.transform = `translate(${dx}px, ${dy}px)`;
+          flipElementsRef.current.add(htmlEl);
 
           // Play：下一帧移除偏移，触发 CSS transition 归零
-          requestAnimationFrame(() => {
+          const innerId = requestAnimationFrame(() => {
             htmlEl.style.transition = MOVE_TRANSITION;
             htmlEl.style.transform = '';
           });
+          flipRafIdsRef.current.push(innerId);
         });
       });
+      flipRafIdsRef.current.push(outerId);
     },
     [MOVE_TRANSITION],
   );
@@ -326,7 +341,6 @@ export default function useDrag(
       props.onDrag?.({ file, index });
 
       // 注册原生非 passive touchmove，确保 preventDefault 可以阻止页面滚动
-      // React 合成事件 touchmove 默认 passive，无法调用 preventDefault
       const nativeTouchmove = (e: TouchEvent) => {
         if (e.cancelable) e.preventDefault();
       };
@@ -435,7 +449,9 @@ export default function useDrag(
       const targetIndex = detectTargetSlot(touch.clientX, touch.clientY);
       if (targetIndex === -1 || targetIndex === dragIndexRef.current) return;
 
-      // FLIP - First：排序前快照 item 位置
+      // 每轮 FLIP 前先结算上一轮的残留 transform，避免污染本轮位置测量
+      cancelFlip();
+
       const container = longPressTargetRef.current?.closest(`.${uploadClass}`);
       const beforeRects = container ? snapshotRects(container) : null;
 
@@ -445,12 +461,11 @@ export default function useDrag(
       updateSortedFiles(newFiles.filter(Boolean));
       updateDragIndex(targetIndex);
 
-      // FLIP - Last/Invert/Play：DOM 更新后执行位移动画
       if (container && beforeRects) {
-        flipAnimate(container, beforeRects);
+        flipAnimate(container, beforeRects, getDragKey(moved as UploadFileWithUid));
       }
     },
-    [uploadClass, detectTargetSlot, updateSortedFiles, updateDragIndex, snapshotRects, flipAnimate],
+    [uploadClass, detectTargetSlot, updateSortedFiles, updateDragIndex, snapshotRects, flipAnimate, cancelFlip],
   );
 
   const onTouchend = useCallback(
@@ -477,6 +492,9 @@ export default function useDrag(
       const dragKey = dragFileSnap ? getDragKey(dragFileSnap) : '';
 
       requestAnimationFrame(() => {
+        // 先结算在途 FLIP，让所有 item 落到最终布局位置，再计算 clone 归位坐标
+        cancelFlip();
+
         const container = longPressTargetRef.current?.closest(`.${uploadClass}`);
         const targetEl = container?.querySelector(`[data-drag-key="${dragKey}"]`) as HTMLElement;
 
@@ -506,7 +524,7 @@ export default function useDrag(
         resetState();
       });
     },
-    [uploadClass, props, setUploadValue, resetState],
+    [uploadClass, props, setUploadValue, resetState, cancelFlip],
   );
 
   const onTouchcancel = useCallback(
