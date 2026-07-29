@@ -182,9 +182,9 @@ export default function usePullRefresh(props: TdBaseTableProps, containerRef: Re
     const container = containerRef.current;
     if (!container || !pagination || loadingMode !== 'pull-refresh') {
       return () => {
-        container.removeEventListener('touchstart', handleTouchStart);
-        container.removeEventListener('touchmove', handleTouchMove);
-        container.removeEventListener('touchend', handleTouchEnd);
+        container?.removeEventListener('touchstart', handleTouchStart);
+        container?.removeEventListener('touchmove', handleTouchMove);
+        container?.removeEventListener('touchend', handleTouchEnd);
       };
     }
 

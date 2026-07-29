@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
+import React, { forwardRef, useCallback, useImperativeHandle, useMemo, useRef } from 'react';
 import classNames from 'classnames';
 import { get } from 'lodash-es';
 import { PrimaryTableProps, PrimaryTableRef } from './interface';
@@ -68,19 +68,19 @@ const PrimaryTable = forwardRef<PrimaryTableRef, PrimaryTableProps>((props, ref)
   const { renderTitleWidthIcon } = useTableHeader({ columns: props.columns });
 
   // 如果想给 TR 添加类名，请在这里补充，不要透传更多额外 Props 到 BaseTable
-  const tRowClassNames = (() => {
+  const tRowClassNames = useMemo(() => {
     const tClassNames = [props.rowClassName, selectedRowClassNames, getExpandedRowClass];
     return tClassNames.filter((v) => v);
-  })();
+  }, [getExpandedRowClass, props.rowClassName, selectedRowClassNames]);
 
   // 如果想给 TR 添加属性，请在这里补充，不要透传更多额外 Props 到 BaseTable
-  const tRowAttributes = (() => {
+  const tRowAttributes = useMemo(() => {
     const tAttributes = [props.rowAttributes];
     if (isRowHandlerDraggable || isRowDraggable) {
       tAttributes.push(({ row }) => ({ 'data-id': get(row, props.rowKey || 'id') }));
     }
     return tAttributes.filter((v) => v);
-  })();
+  }, [isRowDraggable, isRowHandlerDraggable, props.rowAttributes, props.rowKey]);
 
   const primaryTableClasses = useMemo(
     () => ({
@@ -103,58 +103,79 @@ const PrimaryTable = forwardRef<PrimaryTableRef, PrimaryTableProps>((props, ref)
     ...primaryTableRef.current,
   }));
 
-  const getColumns = (columns: PrimaryTableCol<TableRowData>[]) => {
-    const arr: PrimaryTableCol<TableRowData>[] = [];
-    for (let i = 0, len = columns.length; i < len; i++) {
-      let item = { ...columns[i] };
-      // 自定义列显示控制
-      const isDisplayColumn = item.children?.length || tDisplayColumns?.includes(item.colKey);
-      if (!isDisplayColumn && tDisplayColumns) continue;
-      item = formatToRowSelectColumn(item);
-      const { sort } = props;
-      if (item.sorter && props.showSortColumnBgColor) {
-        const sorts = sort instanceof Array ? sort : [sort];
-        const sortedColumn = sorts.find((sort) => sort && sort.sortBy === item.colKey && sort.descending !== undefined);
-        if (sortedColumn) {
-          item.className =
-            item.className instanceof Array
-              ? item.className.concat(tableSortClasses.sortColumn)
-              : [item.className, tableSortClasses.sortColumn];
+  const getColumns = useCallback(
+    (columns: PrimaryTableCol<TableRowData>[]) => {
+      const arr: PrimaryTableCol<TableRowData>[] = [];
+      for (let i = 0, len = columns.length; i < len; i++) {
+        let item = { ...columns[i] };
+        // 自定义列显示控制
+        const isDisplayColumn = item.children?.length || tDisplayColumns?.includes(item.colKey);
+        if (!isDisplayColumn && tDisplayColumns) continue;
+        item = formatToRowSelectColumn(item);
+        const { sort, showSortColumnBgColor } = props;
+        if (item.sorter && showSortColumnBgColor) {
+          const sorts = sort instanceof Array ? sort : [sort];
+          const sortedColumn = sorts.find(
+            (sort) => sort && sort.sortBy === item.colKey && sort.descending !== undefined,
+          );
+          if (sortedColumn) {
+            item.className =
+              item.className instanceof Array
+                ? item.className.concat(tableSortClasses.sortColumn)
+                : [item.className, tableSortClasses.sortColumn];
+          }
+        }
+        // 添加排序图标和过滤图标
+        if (item.sorter || item.filter) {
+          const titleContent = renderTitle(item, i);
+          const { ellipsisTitle } = item;
+          item.title = (p) => {
+            const sortIcon = item.sorter ? renderSortIcon(p) : null;
+            const filterIcon = item.filter ? renderFilterIcon(p) : null;
+            const attach = primaryTableRef.current?.tableContentRef;
+            return renderTitleWidthIcon(
+              [titleContent, sortIcon, filterIcon],
+              p.col,
+              p.colIndex,
+              ellipsisTitle,
+              attach,
+              {
+                classPrefix,
+                ellipsisOverlayClassName: '',
+              },
+            );
+          };
+          item.ellipsisTitle = false;
+        }
+        if (item.children?.length) {
+          item.children = getColumns(item.children);
+        }
+        // 多级表头和自定义列配置特殊逻辑：要么子节点不存在，要么子节点长度大于 1，方便做自定义列配置
+        if (!item.children || item.children?.length) {
+          arr.push(item);
         }
       }
-      // 添加排序图标和过滤图标
-      if (item.sorter || item.filter) {
-        const titleContent = renderTitle(item, i);
-        const { ellipsisTitle } = item;
-        item.title = (p) => {
-          const sortIcon = item.sorter ? renderSortIcon(p) : null;
-          const filterIcon = item.filter ? renderFilterIcon(p) : null;
-          const attach = primaryTableRef.current?.tableContentRef;
-          return renderTitleWidthIcon([titleContent, sortIcon, filterIcon], p.col, p.colIndex, ellipsisTitle, attach, {
-            classPrefix,
-            ellipsisOverlayClassName: '',
-          });
-        };
-        item.ellipsisTitle = false;
-      }
-      if (item.children?.length) {
-        item.children = getColumns(item.children);
-      }
-      // 多级表头和自定义列配置特殊逻辑：要么子节点不存在，要么子节点长度大于 1，方便做自定义列配置
-      if (!item.children || item.children?.length) {
-        arr.push(item);
-      }
-    }
-    return arr;
-  };
+      return arr;
+    },
+    [
+      tDisplayColumns,
+      formatToRowSelectColumn,
+      props,
+      tableSortClasses.sortColumn,
+      renderSortIcon,
+      renderFilterIcon,
+      renderTitleWidthIcon,
+      classPrefix,
+    ],
+  );
 
-  const tColumns = (() => {
+  const tColumns = useMemo(() => {
     const cols = getColumns(columns);
     if (showExpandIconColumn) {
       cols.unshift(getExpandColumn());
     }
     return cols;
-  })();
+  }, [columns, getColumns, getExpandColumn, showExpandIconColumn]);
 
   const onInnerPageChange = (pageInfo: PageInfo, newData: Array<TableRowData>) => {
     innerPagination.current = { ...innerPagination, ...pageInfo };

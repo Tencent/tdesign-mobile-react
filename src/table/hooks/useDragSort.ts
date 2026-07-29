@@ -308,7 +308,6 @@ function useDragSort(props: TdPrimaryTableProps, options: DragSortOptions) {
       ...props.dragSortOptions,
     };
 
-    if (!dragContainer) return;
     try {
       if (isRowDraggable) {
         dragRowInstance.current = new Sortable(dragContainer, { ...baseOptions });

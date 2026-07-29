@@ -42,6 +42,7 @@ const TablePagination: React.FC<PaginationProps> = (originalProps) => {
         disabled={current === 1}
         shape="rectangle"
         size="small"
+        variant="outline"
         onClick={() => handlePageChange(current - 1)}
       >
         上一页
@@ -56,6 +57,7 @@ const TablePagination: React.FC<PaginationProps> = (originalProps) => {
         disabled={current === pageCount}
         shape="rectangle"
         size="small"
+        variant="outline"
         onClick={() => handlePageChange(current + 1)}
       >
         下一页
