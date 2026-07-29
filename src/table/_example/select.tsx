@@ -20,11 +20,11 @@ export default function SelectExample() {
   }
 
   const globalColumns = [
-    { colKey: 'projName', title: '项目名称' },
+    { colKey: 'projName', title: '项目名称', width: 80 },
     {
       colKey: 'projTag',
       title: '项目名称',
-      width: 60,
+      width: 80,
       cell: ({ row }) => (
         <Tag theme="success" variant="light">
           {row.projTag}
@@ -34,6 +34,8 @@ export default function SelectExample() {
     {
       colKey: 'options',
       title: '操作',
+      width: 90,
+      className: 'example-table-options',
       cell: ({ col, row }) => (
         <div className="loading-cell-options">
           <Button theme="primary" variant="text" size="small">
@@ -66,7 +68,7 @@ export default function SelectExample() {
     }
   };
   return (
-    <div className="loading-example-table">
+    <div className="loading-example-table select-example">
       <div className="loading-example-title">单选</div>
       <Table
         showHeader

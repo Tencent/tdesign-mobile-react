@@ -18,11 +18,11 @@ export default function LoadingExample() {
   }
 
   const columns = [
-    { colKey: 'projName', title: '项目名称', ellipsis: true },
+    { colKey: 'projName', title: '项目名称', width: 80, ellipsis: true },
     {
       colKey: 'projTag',
       title: '项目名称',
-      width: 60,
+      width: 80,
       cell: ({ row }) => (
         <Tag theme="success" variant="light">
           {row.projTag}
@@ -32,6 +32,7 @@ export default function LoadingExample() {
     {
       colKey: 'options',
       title: '操作',
+      className: 'example-table-options',
       cell: ({ col, row }) => (
         <div className="loading-cell-options">
           <Button theme="primary" variant="text" size="small">
