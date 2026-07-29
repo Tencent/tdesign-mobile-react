@@ -34,9 +34,10 @@ export default function SorterButton(props: SorterButtonProps) {
     [allowSortTypes, props],
   );
 
-  function getSortIcon(direction: string, activeClass: string) {
+  function getSortIcon(direction: string) {
     const defaultIcon = <ChevronDownIcon />;
     const icon = props.sortIcon || defaultIcon;
+    const activeClass = direction === props.sortOrder ? tableSortClasses.iconActive : tableSortClasses.iconDefault;
     const sortClassName = [
       activeClass,
       tableSortClasses.sortIcon,
@@ -50,10 +51,7 @@ export default function SorterButton(props: SorterButtonProps) {
     );
   }
 
-  const sortButton = allowSortTypes.map((direction: string) => {
-    const activeClass = direction === props.sortOrder ? tableSortClasses.iconActive : tableSortClasses.iconDefault;
-    return getSortIcon(direction, activeClass);
-  });
+  const sortButton = allowSortTypes.map((direction: string) => getSortIcon(direction));
 
   return (
     <div className={classNames(classes)} onClick={(e: MouseEvent<HTMLSpanElement>) => onSortIconClick(e)}>

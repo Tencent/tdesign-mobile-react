@@ -27,7 +27,7 @@ export default function FilterSortExample() {
     // 按照 status 字段进行排序
     sortBy: 'createTime',
     // 是否按照降序进行排序
-    descending: true,
+    descending: false,
   });
   const columns: Array<PrimaryTableCol> = [
     { colKey: 'applicant', title: '申请人', width: 100 },
