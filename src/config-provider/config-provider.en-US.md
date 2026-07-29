@@ -27,6 +27,7 @@ qrcode | Object | - | QRCode global configs。Typescript: `QRCodeConfig` | N
 rate | Object | - | Rate global configs。Typescript: `RateConfig` | N
 tabBar | Object | - | TabBar global configs。Typescript: `TabBarConfig` | N
 table | Object | - | Table global configs。Typescript: `TableConfig` | N
+typography | Object | - | Typography global configs。Typescript: `TypographyConfig` | N
 upload | Object | - | Upload global configs。Typescript: `UploadConfig` | N
 
 ### ActionSheetConfig
@@ -162,8 +163,17 @@ confirmText | String | - | \- | N
 empty | TNode | - | Typescript: `string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 filterIcon | TElement | undefined | Typescript: `TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 hideSortTips | Boolean | false | hide sort tips | N
+pullUpLoadingText | String | - | \- | N
 resetText | String | - | \- | N
 searchResultText | String | - | \- | N
+
+### TypographyConfig
+
+name | type | default | description | required
+-- | -- | -- | -- | --
+collapseText | String | - | collapse text | N
+copiedText | String | - | copied text | N
+expandText | String | - | expand text | N
 
 ### UploadConfig
 

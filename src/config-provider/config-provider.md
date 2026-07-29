@@ -27,6 +27,7 @@ qrcode | Object | - | 二维码全局配置。TS 类型：`QRCodeConfig` | N
 rate | Object | - | 评分全局配置。TS 类型：`RateConfig` | N
 tabBar | Object | - | 标签栏全局配置。TS 类型：`TabBarConfig` | N
 table | Object | - | 表格组件全局配置。TS 类型：`TableConfig` | N
+typography | Object | - | 排版组件全局配置。TS 类型：`TypographyConfig` | N
 upload | Object | - | 上传组件全局配置。TS 类型：`UploadConfig` | N
 
 ### ActionSheetConfig
@@ -162,8 +163,17 @@ confirmText | String | - | 语言配置，“确认” 描述文本 | N
 empty | TNode | - | 语言配置，“暂无数据” 描述文本。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 filterIcon | TElement | undefined | 过滤图标，如果没有配置，会使用组件内置的默认图标。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 hideSortTips | Boolean | false | 隐藏排序文本提示 | N
+pullUpLoadingText | String | - | 语言配置，“加载中...” 描述文本 | N
 resetText | String | - | 语言配置，“重置” 描述文本 | N
 searchResultText | String | - | 语言配置，过滤功能中，过滤条件和结果描述文本，示例：'搜索“{result}”，找到 {count} 条结果' | N
+
+### TypographyConfig
+
+名称 | 类型 | 默认值 | 描述 | 必传
+-- | -- | -- | -- | --
+collapseText | String | - | 语言配置，“收起”描述文本 | N
+copiedText | String | - | 语言配置，“复制成功”描述文本 | N
+expandText | String | - | 语言配置，“展开”描述文本 | N
 
 ### UploadConfig
 

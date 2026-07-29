@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useLocaleReceiver } from 'tdesign-mobile-react/locale/LocalReceiver';
 import useConfig from '../../hooks/useConfig';
 import Loading from '../../loading';
 import type { PageInfo, TableRowData, TdBaseTableProps } from '../type';
@@ -37,6 +38,7 @@ export default function usePullRefresh(props: TdBaseTableProps, containerRef: Re
   // 是否还有更多数据
   const hasMoreRef = useRef<boolean>(true);
 
+  const [locale] = useLocaleReceiver('table');
   /**
    * 计算当前应展示的数据（累积模式：展示第 1 页到第 current 页的所有数据）
    */
@@ -207,7 +209,7 @@ export default function usePullRefresh(props: TdBaseTableProps, containerRef: Re
     if (!isPulling && !isLoadingMore) return null;
     return (
       <div className={`${classPrefix}-table-loading--bottom`}>
-        <Loading text="加载中..." {...loadingProps} loading={true} />
+        <Loading text={locale.pullUpLoadingText} {...loadingProps} loading={true} />
       </div>
     );
   };

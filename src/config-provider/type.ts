@@ -78,6 +78,10 @@ export interface GlobalConfigProvider {
    */
   table?: TableConfig;
   /**
+   * 排版组件全局配置
+   */
+  typography?: TypographyConfig;
+  /**
    * 上传组件全局配置
    */
   upload?: UploadConfig;
@@ -393,6 +397,11 @@ export interface TableConfig {
    */
   hideSortTips?: boolean;
   /**
+   * 语言配置，“加载中...” 描述文本
+   * @default ''
+   */
+  pullUpLoadingText?: string;
+  /**
    * 语言配置，“重置” 描述文本
    * @default ''
    */
@@ -402,6 +411,24 @@ export interface TableConfig {
    * @default ''
    */
   searchResultText?: string;
+}
+
+export interface TypographyConfig {
+  /**
+   * 语言配置，“收起”描述文本
+   * @default ''
+   */
+  collapseText?: string;
+  /**
+   * 语言配置，“复制成功”描述文本
+   * @default ''
+   */
+  copiedText?: string;
+  /**
+   * 语言配置，“展开”描述文本
+   * @default ''
+   */
+  expandText?: string;
 }
 
 export interface UploadConfig {
