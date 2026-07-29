@@ -1,5 +1,6 @@
 import type { MouseEvent, InputHTMLAttributes } from 'react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import {
   AddIcon,
   CloseCircleIcon,
@@ -24,6 +25,7 @@ import Image from '../image';
 import ImageViewer from '../image-viewer';
 import Button from '../button';
 import useUpload from './hooks/useUpload';
+import useDrag from './hooks/useDrag';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 import useConfig from '../hooks/useConfig';
@@ -86,6 +88,16 @@ const resolveRemoveBtn = (file: UploadFile, fallback: TdUploadProps['removeBtn']
   return isBoolean(fileRemoveBtn) ? fileRemoveBtn : fallback;
 };
 
+// 拖拽项通用属性（唯一 key + 触摸事件 + 拖拽中隐藏），grid/list item 共用
+type DragItemProps = {
+  'data-drag-key'?: string;
+  style?: React.CSSProperties;
+  onTouchStart?: (e: React.TouchEvent) => void;
+  onTouchMove?: (e: React.TouchEvent) => void;
+  onTouchEnd?: (e: React.TouchEvent) => void;
+  onTouchCancel?: (e: React.TouchEvent) => void;
+};
+
 const Upload: React.FC<UploadProps> = (props) => {
   const [showViewer, setShowViewer] = useState(false);
   const [showImageIndex, setShowImageIndex] = useState(0);
@@ -106,23 +118,80 @@ const Upload: React.FC<UploadProps> = (props) => {
     preview,
     theme,
     removeBtn,
+    draggable,
   } = useDefaultProps(props, uploadDefaultProps);
-  const { displayFiles, inputRef, disabled, isImageFile, onNormalFileChange, onInnerRemove } = useUpload(props);
+  const { displayFiles, inputRef, disabled, isImageFile, onNormalFileChange, onInnerRemove, setUploadValue } =
+    useUpload(props);
   const uploadGlobalConfig = globalConfig.upload;
+
+  const {
+    dragging,
+    sortedFiles,
+    cloneVisible,
+    cloneStyle,
+    cloneFile,
+    dragIndex,
+    getDragKey,
+    syncFiles,
+    onTouchstart,
+    onTouchmove,
+    onTouchend,
+    onTouchcancel,
+    dragEnded,
+  } = useDrag(props, rootClassName, setUploadValue);
+
   const containerClassName = classNames(
     rootClassName,
     `${rootClassName}--${theme || 'grid'}`,
     {
       [`${rootClassName}--disabled`]: disabled,
+      [`${rootClassName}--draggable`]: draggable,
+      [`${rootClassName}--dragging`]: draggable && dragging,
     },
     className,
   );
+
+  // 非拖拽状态时，同步 displayFiles 到 sortedFiles
+  useEffect(() => {
+    syncFiles(displayFiles);
+  }, [displayFiles, syncFiles]);
 
   const previewImgs = displayFiles.filter((item) => isImageFile(item)).map((item) => item.url || '');
 
   const reachMax = max > 0 && displayFiles.length >= max;
 
+  // 当前展示列表：非拖拽用 displayFiles，拖拽中用排序后的 sortedFiles（与 vue 版本保持一致）
+  const displayList = dragging && sortedFiles.length > 0 ? sortedFiles : displayFiles;
+
+  // 是否为纯文件项（非图片且无预览图）
+  const getIsFileItem = (file: UploadFile) => !isImageFile(file) && !file.url;
+
+  // 当前项是否正在被拖拽
+  const isItemDragging = (index: number) => draggable && dragIndex === index;
+
+  // 拖拽项通用属性：唯一 key + 触摸事件 + 拖拽中隐藏，供 grid/list item 复用
+  const getDragItemProps = (file: UploadFile, index: number): DragItemProps => {
+    if (!draggable) return {};
+    return {
+      'data-drag-key': getDragKey(file),
+      style: isItemDragging(index) ? { opacity: 0 } : undefined,
+      onTouchStart: (e) => onTouchstart(e, index),
+      onTouchMove: onTouchmove,
+      onTouchEnd: onTouchend,
+      onTouchCancel: onTouchcancel,
+    };
+  };
+
+  // 删除文件（grid/list 共用）
+  const handleRemove = (e: MouseEvent, file: UploadFile, index: number) => {
+    e?.stopPropagation?.();
+    onInnerRemove({ e: e as MouseEvent<HTMLDivElement>, file, index });
+  };
+
   const handlePreview = (e: MouseEvent, file: UploadFile, index: number) => {
+    if (dragging) return;
+    // 拖拽刚结束 300ms 内屏蔽误触预览
+    if (dragEnded) return;
     onPreview?.({
       e: e as MouseEvent<HTMLDivElement>,
       file,
@@ -195,11 +264,27 @@ const Upload: React.FC<UploadProps> = (props) => {
     );
   };
 
+  // grid 项主体内容（图片 / 文件内容 + 状态遮罩），grid item 与拖拽 clone 复用
+  const renderGridItemContent = (file: UploadFile) => {
+    const showFileContent = getIsFileItem(file) && file.status !== 'progress' && file.status !== 'fail';
+    return (
+      <>
+        {file.url && <Image className={`${rootClassName}__image`} shape="round" {...imageProps} src={file.url} />}
+        {showFileContent && (
+          <div className={`${rootClassName}__file-content`}>
+            <div className={`${rootClassName}__file-icon`}>{getFileTypeIcon(file)}</div>
+            <div className={`${rootClassName}__file-name`}>{file.name}</div>
+          </div>
+        )}
+        {renderStatus(file)}
+      </>
+    );
+  };
+
   const renderGridLayout = () => (
     <>
-      {displayFiles.map((file, index) => {
-        const isFileItem = !isImageFile(file) && !file.url;
-        const showFileContent = isFileItem && file.status !== 'progress' && file.status !== 'fail';
+      {displayList.map((file, index) => {
+        const isFileItem = getIsFileItem(file);
         const showRemoveBtn = resolveRemoveBtn(file, removeBtn);
         const showDisabledMask = disabled && !isFileItem && file.status !== 'progress' && file.status !== 'fail';
         return (
@@ -207,28 +292,17 @@ const Upload: React.FC<UploadProps> = (props) => {
             key={getFileKey(file)}
             className={classNames(`${rootClassName}__item`, {
               [`${rootClassName}__item--file`]: isFileItem,
+              [`${rootClassName}__item--dragging`]: isItemDragging(index),
             })}
+            onClick={(e: MouseEvent) => handlePreview(e, file, index)}
+            {...getDragItemProps(file, index)}
           >
-            {file.url ? (
-              <div onClick={(e: MouseEvent) => handlePreview(e, file, index)}>
-                <Image className={`${rootClassName}__image`} shape="round" {...imageProps} src={file.url} />
-              </div>
-            ) : null}
-            {showFileContent && (
-              <div
-                className={`${rootClassName}__file-content`}
-                onClick={(e: MouseEvent) => handlePreview(e, file, index)}
-              >
-                <div className={`${rootClassName}__file-icon`}>{getFileTypeIcon(file)}</div>
-                <div className={`${rootClassName}__file-name`}>{file.name}</div>
-              </div>
-            )}
-            {renderStatus(file)}
+            {renderGridItemContent(file)}
             {showDisabledMask && <div className={`${rootClassName}__disabled-mask`} />}
             {showRemoveBtn && (
               <CloseIcon
                 className={`${rootClassName}__delete-btn`}
-                onClick={(e: MouseEvent) => onInnerRemove({ e: e as MouseEvent<HTMLDivElement>, file, index })}
+                onClick={(e: MouseEvent) => handleRemove(e, file, index)}
               />
             )}
           </div>
@@ -268,6 +342,17 @@ const Upload: React.FC<UploadProps> = (props) => {
     return '';
   };
 
+  // list 项主体内容（图标 + 名称 / 副文本），list item 与拖拽 clone 复用
+  const renderListItemContent = (file: UploadFile) => (
+    <>
+      {renderListItemIcon(file)}
+      <div className={`${rootClassName}__list-item-content`}>
+        <div className={`${rootClassName}__list-item-name`}>{file.name}</div>
+        <div className={`${rootClassName}__list-item-size`}>{renderListItemSubText(file)}</div>
+      </div>
+    </>
+  );
+
   const renderListLayout = () => {
     const addBtnNode = parseTNode(addBtn, null, null);
     const addContentNode = parseTNode(addContent, null, null);
@@ -288,33 +373,27 @@ const Upload: React.FC<UploadProps> = (props) => {
     return (
       <>
         {showTrigger && <div className={`${rootClassName}__list-trigger`}>{triggerNode}</div>}
-        {displayFiles.length > 0 && (
+        {displayList.length > 0 && (
           <div className={`${rootClassName}__list`}>
-            {displayFiles.map((file, index) => {
-              const itemClass = classNames(`${rootClassName}__list-item`, {
-                [`${rootClassName}__list-item--fail`]: file.status === 'fail',
-                [`${rootClassName}__list-item--progress`]: file.status === 'progress',
-              });
+            {displayList.map((file, index) => {
               const showRemoveBtn = resolveRemoveBtn(file, removeBtn);
               return (
                 <div
                   key={getFileKey(file)}
-                  className={itemClass}
+                  className={classNames(`${rootClassName}__list-item`, {
+                    [`${rootClassName}__list-item--fail`]: file.status === 'fail',
+                    [`${rootClassName}__list-item--progress`]: file.status === 'progress',
+                    [`${rootClassName}__list-item--dragging`]: isItemDragging(index),
+                  })}
                   onClick={(e: MouseEvent) => handlePreview(e, file, index)}
+                  {...getDragItemProps(file, index)}
                 >
-                  {renderListItemIcon(file)}
-                  <div className={`${rootClassName}__list-item-content`}>
-                    <div className={`${rootClassName}__list-item-name`}>{file.name}</div>
-                    <div className={`${rootClassName}__list-item-size`}>{renderListItemSubText(file)}</div>
-                  </div>
+                  {renderListItemContent(file)}
                   <div className={`${rootClassName}__list-item-action`}>
-                    {showRemoveBtn && (
+                    {showRemoveBtn && !dragging && (
                       <DeleteIcon
                         className={`${rootClassName}__list-item-delete`}
-                        onClick={(e: MouseEvent) => {
-                          e?.stopPropagation?.();
-                          onInnerRemove({ e: e as MouseEvent<HTMLDivElement>, file, index });
-                        }}
+                        onClick={(e: MouseEvent) => handleRemove(e, file, index)}
                       />
                     )}
                   </div>
@@ -325,6 +404,24 @@ const Upload: React.FC<UploadProps> = (props) => {
         )}
       </>
     );
+  };
+
+  const renderDragClone = () => {
+    if (!draggable || !cloneVisible || !cloneFile) return null;
+    const file = cloneFile;
+
+    const node =
+      theme === 'list' ? (
+        <div className={`${rootClassName}__list-item`} style={cloneStyle}>
+          {renderListItemContent(file)}
+        </div>
+      ) : (
+        <div className={classNames(`${rootClassName}__item`, `${rootClassName}__drag-clone`)} style={cloneStyle}>
+          {renderGridItemContent(file)}
+        </div>
+      );
+
+    return ReactDOM.createPortal(node, document.body);
   };
 
   return (
@@ -340,6 +437,7 @@ const Upload: React.FC<UploadProps> = (props) => {
         onChange={onNormalFileChange}
       />
       <ImageViewer visible={showViewer} images={previewImgs} index={showImageIndex} onClose={handleImageViewerClose} />
+      {renderDragClone()}
     </div>
   );
 };
