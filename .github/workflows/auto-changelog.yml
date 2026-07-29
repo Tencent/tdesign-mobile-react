@@ -1,4 +1,4 @@
-name: auto-release-changelog
+name: auto-changelog
 
 on:
   pull_request:
