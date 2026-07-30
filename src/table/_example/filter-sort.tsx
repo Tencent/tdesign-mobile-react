@@ -23,18 +23,14 @@ export default function FilterSortExample() {
   const [filterValue, setFilterValue] = useState<PrimaryTableProps['filterValue']>({
     lastName: [],
   });
-  const [sort, setSort] = useState<TableSort>({
-    // 按照 status 字段进行排序
-    sortBy: 'createTime',
-    // 是否按照降序进行排序
-    descending: false,
-  });
+  const [sort, setSort] = useState<TableSort>();
   const columns: Array<PrimaryTableCol> = [
-    { colKey: 'applicant', title: '申请人', width: 100 },
+    { colKey: 'applicant', title: '申请人', align: 'center' },
     {
       title: '申请状态',
       colKey: 'status',
       width: 120,
+      align: 'center',
       // 单选过滤配置
       filter: {
         type: 'single',
@@ -55,6 +51,7 @@ export default function FilterSortExample() {
       title: '签署方式',
       colKey: 'channel',
       width: 120,
+      align: 'center',
       // 多选过滤配置
       filter: {
         type: 'multiple',
@@ -71,6 +68,8 @@ export default function FilterSortExample() {
     {
       title: 'Email',
       colKey: 'email',
+      width: 180,
+      align: 'center',
       // 输入框过滤配置
       filter: {
         type: 'input',
@@ -85,6 +84,8 @@ export default function FilterSortExample() {
     {
       title: 'Date',
       colKey: 'createTime',
+      width: 100,
+      align: 'center',
       // 用于查看同时存在排序和过滤时的图标显示是否正常
       sorter: true,
     },

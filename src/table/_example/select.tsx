@@ -34,7 +34,7 @@ export default function SelectExample() {
     {
       colKey: 'options',
       title: '操作',
-      width: 90,
+      align: 'center',
       className: 'example-table-options',
       cell: ({ col, row }) => (
         <div className="loading-cell-options">
