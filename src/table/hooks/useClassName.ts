@@ -2,7 +2,7 @@ import useConfig from '../../hooks/useConfig';
 
 export default function useClassName() {
   const { classPrefix } = useConfig();
-  const classNames = {
+  return {
     classPrefix,
     tableBaseClass: {
       table: `${classPrefix}-table`,
@@ -174,6 +174,12 @@ export default function useClassName() {
       dragSortTh: `${classPrefix}-table__th--drag-sort`,
     },
 
+    tablePaginationClasses: {
+      content: `${classPrefix}-table__pagination-content`,
+      button: `${classPrefix}-table__pagination-content__button`,
+      paginationIndicator: `${classPrefix}-table__pagination-content__indicator`,
+    },
+
     virtualScrollClasses: {
       cursor: `${classPrefix}-table__virtual-scroll-cursor`,
       header: `${classPrefix}-table__virtual-scroll-header`,
@@ -182,8 +188,6 @@ export default function useClassName() {
     positiveRotate90: `${classPrefix}-positive-rotate-90`,
     negativeRotate180: `${classPrefix}-negative-rotate-180`,
   };
-
-  return classNames;
 }
 
 export type TableClassName = ReturnType<typeof useClassName>;

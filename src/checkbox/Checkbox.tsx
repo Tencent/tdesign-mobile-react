@@ -1,13 +1,13 @@
-import React, { useContext, useMemo, Ref, forwardRef } from 'react';
+import React, { forwardRef, Ref, useContext, useMemo } from 'react';
 import classNames from 'classnames';
 import {
-  CheckIcon,
-  MinusIcon,
   CheckCircleFilledIcon,
+  CheckIcon,
+  CheckRectangleFilledIcon,
   CircleIcon,
   MinusCircleFilledIcon,
+  MinusIcon,
   MinusRectangleFilledIcon,
-  CheckRectangleFilledIcon,
 } from 'tdesign-icons-react';
 import { TdCheckboxProps } from './type';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
@@ -20,15 +20,15 @@ import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
 import { checkboxDefaultProps } from './defaultProps';
 
-export interface CheckBoxProps extends TdCheckboxProps, StyledProps {}
+export interface CheckboxProps extends TdCheckboxProps, StyledProps {}
 
 export interface CheckContextValue {
-  inject: (props: CheckBoxProps) => CheckBoxProps;
+  inject: (props: CheckboxProps) => CheckboxProps;
 }
 
 export const CheckContext = React.createContext<CheckContextValue>(null);
 
-const Checkbox = forwardRef<HTMLDivElement, CheckBoxProps>((_props, ref) => {
+const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((_props, ref) => {
   const context = useContext(CheckContext);
   const props = useDefaultProps(context ? context.inject(_props) : _props, checkboxDefaultProps);
   const { classPrefix } = useConfig();
@@ -181,6 +181,6 @@ const Checkbox = forwardRef<HTMLDivElement, CheckBoxProps>((_props, ref) => {
 Checkbox.displayName = 'Checkbox';
 
 export default forwardRefWithStatics(
-  (props: CheckBoxProps, ref: Ref<HTMLDivElement>) => <Checkbox ref={ref} {...props} />,
+  (props: CheckboxProps, ref: Ref<HTMLDivElement>) => <Checkbox ref={ref} {...props} />,
   { Group: CheckboxGroup },
 );

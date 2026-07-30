@@ -7,6 +7,10 @@ import StripeExample from './stripe';
 import BorderedExample from './bordered';
 import CustomRowStyleExample from './custom-row-style';
 import RowspanColspanExample from './rowspan-colspan';
+import DragSortExample from './drag-sort';
+import LoadingExample from './loading';
+import SelectExample from './select';
+import FilterSortExample from './filter-sort';
 
 export default function Base() {
   return (
@@ -37,6 +41,22 @@ export default function Base() {
 
       <TDemoBlock summary="带合并单元格的表格" padding={true}>
         <RowspanColspanExample />
+      </TDemoBlock>
+
+      <TDemoBlock summary="带拖拽的表格" padding={true}>
+        <DragSortExample />
+      </TDemoBlock>
+
+      <TDemoBlock summary="带加载的表格" padding={true}>
+        <LoadingExample />
+      </TDemoBlock>
+
+      <TDemoBlock summary="带选择的表格" padding={true}>
+        <SelectExample />
+      </TDemoBlock>
+
+      <TDemoBlock summary="带筛选的表格" padding={true}>
+        <FilterSortExample />
       </TDemoBlock>
     </div>
   );

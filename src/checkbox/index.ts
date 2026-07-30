@@ -3,7 +3,7 @@ import _CheckboxGroup from './CheckboxGroup';
 
 import './style';
 
-export type { CheckBoxProps } from './Checkbox';
+export type { CheckboxProps } from './Checkbox';
 export type { CheckboxGroupProps } from './CheckboxGroup';
 
 export * from './type';
