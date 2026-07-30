@@ -59,6 +59,10 @@ export interface TdUploadProps<T extends UploadFile = UploadFile> {
    */
   disabled?: boolean;
   /**
+   * 是否支持拖拽排序。
+   */
+  draggable?: boolean;
+  /**
    * 已上传文件列表，同 `value`。TS 类型：`UploadFile`
    * @default []
    */
@@ -144,6 +148,14 @@ export interface TdUploadProps<T extends UploadFile = UploadFile> {
    * 点击上传区域时触发
    */
   onClickUpload?: (context: { e: MouseEvent<HTMLElement> }) => void;
+  /**
+   * 拖拽开始时触发，`context.file` 为拖拽文件
+   */
+  onDrag?: (context: { file: UploadFile; index: number }) => void;
+  /**
+   * 拖拽结束后触发，返回上传的文件列表（拖拽后的文件顺序）
+   */
+  onDrop?: (value: Array<T>) => void;
   /**
    * 上传失败后触发。`response` 指接口响应结果，`response.error` 会作为错误文本提醒。如果希望判定为上传失败，但接口响应数据不包含 `error` 字段，可以使用 `formatResponse` 格式化 `response` 数据结构。如果是多文件多请求上传场景，请到事件 `onOneFileFail` 中查看 `response`
    */
@@ -254,7 +266,14 @@ export interface UploadChangeContext {
   files?: UploadFile[];
 }
 
-export type UploadChangeTrigger = 'add' | 'remove' | 'abort' | 'progress-success' | 'progress' | 'progress-fail';
+export type UploadChangeTrigger =
+  | 'add'
+  | 'remove'
+  | 'abort'
+  | 'progress-success'
+  | 'progress'
+  | 'progress-fail'
+  | 'sort';
 
 export interface UploadFailContext {
   e?: ProgressEvent;

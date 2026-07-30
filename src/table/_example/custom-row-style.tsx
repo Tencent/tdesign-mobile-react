@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Table, Tag } from 'tdesign-mobile-react';
-import { ErrorCircleFilledIcon, CheckCircleFilledIcon, CloseCircleFilledIcon } from 'tdesign-icons-react';
 import type { BaseTableProps } from 'tdesign-mobile-react';
+import { Table, Tag } from 'tdesign-mobile-react';
+import { CheckCircleFilledIcon, CloseCircleFilledIcon, ErrorCircleFilledIcon } from 'tdesign-icons-react';
 
 const classStyles = `
 <style>
@@ -83,16 +83,6 @@ export default function TableStyle() {
         }
         return '';
       },
-      attrs: ({ row }) => {
-        if (row.time >= 9) {
-          return {
-            style: {
-              fontWeight: 600,
-              backgroundColor: 'var(--td-warning-color-light)',
-            },
-          };
-        }
-      },
     },
     {
       colKey: 'channel',
@@ -113,7 +103,7 @@ export default function TableStyle() {
     if (rowIndex === 3)
       return {
         title: '超出省略显示',
-        class: 'custom-forth-class-name',
+        className: 'custom-forth-class-name',
       };
     return {};
   };

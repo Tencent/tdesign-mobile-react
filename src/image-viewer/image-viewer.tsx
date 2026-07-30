@@ -223,6 +223,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
         <TSwiper
           ref={swiperRootRef}
           autoplay={false}
+          navigation={false}
           height={'100vh'}
           className={`${imageViewerClass}__content`}
           onChange={onSwiperChange}

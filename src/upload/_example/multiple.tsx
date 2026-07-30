@@ -61,6 +61,7 @@ export default () => {
       <div className="upload-title">多选上传</div>
       <Upload
         multiple
+        draggable
         action="//service-bv448zsw-1257786608.gz.apigw.tencentcs.com/api/upload-demo"
         defaultFiles={files}
         max={10}

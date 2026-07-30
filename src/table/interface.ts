@@ -1,5 +1,5 @@
 import { StyledProps } from '../common';
-import { TdBaseTableProps, TableRowData, BaseTableCol } from './type';
+import { BaseTableCol, TableRowData, TdBaseTableProps, TdPrimaryTableProps } from './type';
 
 export interface BaseTableProps<T extends TableRowData = TableRowData> extends TdBaseTableProps<T>, StyledProps {
   /**
@@ -11,6 +11,8 @@ export interface BaseTableProps<T extends TableRowData = TableRowData> extends T
    */
   thDraggable?: boolean;
 }
+
+export interface PrimaryTableProps<T extends TableRowData = TableRowData> extends TdPrimaryTableProps<T>, StyledProps {}
 
 /**
  * SimpleTable is going to be deprecated, use BaseTableProps instead.
@@ -68,3 +70,5 @@ export interface FixedColumnInfo<T extends TableRowData = TableRowData> {
 export type RowAndColFixedPosition<T extends TableRowData = TableRowData> = Map<string | number, FixedColumnInfo<T>>;
 
 export type TableTreeExpandType = 'expand-all' | 'fold-all' | 'user-reaction-change' | 'props-change';
+
+export type PrimaryTableRef = BaseTableRef

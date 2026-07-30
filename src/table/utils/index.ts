@@ -1,5 +1,12 @@
-import { isFunction, get, isObject } from 'lodash-es';
-import { CellData, RowClassNameParams, TableColumnClassName, TableRowData, TdBaseTableProps } from '../type';
+import { get, isFunction, isObject } from 'lodash-es';
+import {
+  CellData,
+  RowClassNameParams,
+  TableColumnClassName,
+  TableRowData,
+  TdBaseTableProps,
+  TdPrimaryTableProps,
+} from '../type';
 import { ClassName, HTMLElementAttributes } from '../../common';
 import { SkipSpansValue } from '../hooks/useRowspanAndColspan';
 
@@ -149,3 +156,12 @@ export const isLastRowInSpan = (rowIndex: number, rowspan?: number, totalDataLen
  * 在合并单元格场景下，所有行的第一列都应该移除左边框
  */
 export const isFirstColumnInSpan = (colIndex: number): boolean => colIndex === 0;
+
+/**
+ * 是否启用行拖拽
+ */
+export const enableRowDrag = (dragSort: TdPrimaryTableProps['dragSort']) => {
+  if (!dragSort) return false;
+  const validType = ['row', 'row-handler', 'row-handler-col'];
+  return validType.includes(dragSort);
+};

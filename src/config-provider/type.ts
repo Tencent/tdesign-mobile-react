@@ -6,7 +6,7 @@
 
 import { FormErrorMessage } from '../form';
 import { ImageProps } from '../image';
-import { TNode } from '../common';
+import type { TNode, TElement } from '../common';
 
 export interface TdConfigProviderProps {
   /**
@@ -77,6 +77,10 @@ export interface GlobalConfigProvider {
    * 表格组件全局配置
    */
   table?: TableConfig;
+  /**
+   * 排版组件全局配置
+   */
+  typography?: TypographyConfig;
   /**
    * 上传组件全局配置
    */
@@ -370,9 +374,61 @@ export interface TabBarConfig {
 
 export interface TableConfig {
   /**
+   * 语言配置，过滤功能中，“清空筛选” 描述文本
+   * @default ''
+   */
+  clearFilterResultButtonText?: string;
+  /**
+   * 语言配置，“确认” 描述文本
+   * @default ''
+   */
+  confirmText?: string;
+  /**
    * 语言配置，“暂无数据” 描述文本
    */
   empty?: TNode;
+  /**
+   * 过滤图标，如果没有配置，会使用组件内置的默认图标
+   */
+  filterIcon?: TElement;
+  /**
+   * 隐藏排序文本提示
+   * @default false
+   */
+  hideSortTips?: boolean;
+  /**
+   * 语言配置，“加载中...” 描述文本
+   * @default ''
+   */
+  pullUpLoadingText?: string;
+  /**
+   * 语言配置，“重置” 描述文本
+   * @default ''
+   */
+  resetText?: string;
+  /**
+   * 语言配置，过滤功能中，过滤条件和结果描述文本，示例：'搜索“{result}”，找到 {count} 条结果'
+   * @default ''
+   */
+  searchResultText?: string;
+}
+
+export interface TypographyConfig {
+  /**
+   * 语言配置，“收起”描述文本
+   * @default ''
+   */
+  collapseText?: string;
+  /**
+   * 语言配置，“复制成功”描述文本
+   * @default ''
+   */
+  copiedText?: string;
+  /**
+   * 语言配置，“展开”描述文本
+   * @default ''
+   */
+  expandText?: string;
 }
 
 export interface UploadConfig {
