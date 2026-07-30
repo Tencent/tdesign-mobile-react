@@ -5,6 +5,17 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.23.2 `2026-07-30`
+
+### 🚀 Features
+
+- `Table`: 新增 `loadingMode`、`pagination` 等多个属性，支持分页、筛选、排序及可拖拽功能 @slatejack ([#927](https://github.com/Tencent/tdesign-mobile-react/pull/927))
+- `Upload`: 新增 `draggable` 属性，支持拖拽排序 @anlyyao ([#939](https://github.com/Tencent/tdesign-mobile-react/pull/939))
+
+### 🐞 Bug Fixes
+
+- `ImageViewer`: 移除底部的点状导航器 @anlyyao ([#938](https://github.com/Tencent/tdesign-mobile-react/pull/938))
+
 ## 🌈 0.23.1 `2026-07-03`
 
 ### 🚀 Features
