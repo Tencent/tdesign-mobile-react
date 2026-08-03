@@ -1,4 +1,4 @@
-import { PaginationProps } from 'tdesign-mobile-react/table/type';
+import { PaginationProps } from './type';
 
 export const tablePaginationDefaultProps: PaginationProps = {
   defaultCurrent: 1,

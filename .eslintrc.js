@@ -82,7 +82,31 @@ module.exports = {
             message: 'Please use lodash-es instead.',
           },
         ],
+        patterns: [
+          {
+            group: ['tdesign-mobile-react/*'],
+            message: 'Please use relative imports within the package.',
+          },
+        ],
       },
     ],
   },
+  overrides: [
+    {
+      files: ['**/__tests__/**', '**/_example/**', 'site/**'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            paths: [
+              {
+                name: 'lodash',
+                message: 'Please use lodash-es instead.',
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
 };
