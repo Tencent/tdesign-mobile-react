@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useLocaleReceiver } from 'tdesign-mobile-react/locale/LocalReceiver';
+import { useLocaleReceiver } from '../../locale/LocalReceiver';
 import useConfig from '../../hooks/useConfig';
 import Loading from '../../loading';
 import type { PageInfo, TableRowData, TdBaseTableProps } from '../type';
