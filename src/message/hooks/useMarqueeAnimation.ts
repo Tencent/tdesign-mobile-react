@@ -1,7 +1,7 @@
 import { useMemoizedFn, useMount } from 'ahooks';
 import { set } from 'lodash-es';
 import React, { RefObject, useEffect, useMemo, useRef, useState } from 'react';
-import type { MessageMarquee } from 'tdesign-mobile-react/message';
+import type { MessageMarquee } from '../type';
 
 export default function useMarqueeAnimation(
   marquee: boolean | MessageMarquee,
