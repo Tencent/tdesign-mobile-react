@@ -93,7 +93,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/__tests__/**/*.{ts,tsx}', '**/_example/**/*.{ts,tsx}', 'site/**/*.{js,jsx,ts,tsx}'],
+      files: ['**/__tests__/**', '**/_example/**', 'site/**'],
       rules: {
         'no-restricted-imports': [
           'error',
