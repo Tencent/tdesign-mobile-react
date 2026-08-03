@@ -5,6 +5,12 @@ toc: false
 spline: explain
 ---
 
+## 🌈 0.23.3 `2026-08-03`
+
+### 🐞 Bug Fixes
+
+- `Table`: 修复 LocalReceiver 模块解析失败构建错误；修复 `es` 产物中嵌套目录下 `style/css.js` 引用路径错误 @liweijie0812 ([#942](https://github.com/Tencent/tdesign-mobile-react/pull/942))
+
 ## 🌈 0.23.2 `2026-07-30`
 
 ### 🚀 Features
