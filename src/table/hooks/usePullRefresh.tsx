@@ -209,7 +209,7 @@ export default function usePullRefresh(props: TdBaseTableProps, containerRef: Re
     if (!isPulling && !isLoadingMore) return null;
     return (
       <div className={`${classPrefix}-table-loading--bottom`}>
-        <Loading text={locale.pullUpLoadingText} {...loadingProps} loading={true} />
+        <Loading text={locale.loadingText} {...loadingProps} loading={true} />
       </div>
     );
   };
