@@ -191,8 +191,10 @@ export interface BaseTableCol<T extends TableRowData = TableRowData> {
   width?: string | number;
 }
 
-export interface TdPrimaryTableProps<T extends TableRowData = TableRowData>
-  extends Omit<TdBaseTableProps<T>, 'columns' | 'onCellClick'> {
+export interface TdPrimaryTableProps<T extends TableRowData = TableRowData> extends Omit<
+  TdBaseTableProps<T>,
+  'columns' | 'onCellClick'
+> {
   /**
    * 列配置，泛型 T 指表格数据类型
    * @default []
@@ -344,8 +346,10 @@ export interface TdPrimaryTableProps<T extends TableRowData = TableRowData>
   onSortChange?: (sort: TableSort, options: SortOptions<T>) => void;
 }
 
-export interface PrimaryTableCol<T extends TableRowData = TableRowData>
-  extends Omit<BaseTableCol, 'cell' | 'title' | 'render' | 'children'> {
+export interface PrimaryTableCol<T extends TableRowData = TableRowData> extends Omit<
+  BaseTableCol,
+  'cell' | 'title' | 'render' | 'children'
+> {
   /**
    * 自定义单元格渲染，优先级高于 render。泛型 T 指表格数据类型
    */

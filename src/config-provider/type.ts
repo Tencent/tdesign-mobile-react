@@ -397,10 +397,10 @@ export interface TableConfig {
    */
   hideSortTips?: boolean;
   /**
-   * 语言配置，“加载中...” 描述文本
+   * 语言配置，“正在加载中，请稍后” 描述文本
    * @default ''
    */
-  pullUpLoadingText?: string;
+  loadingText?: string;
   /**
    * 语言配置，“重置” 描述文本
    * @default ''
