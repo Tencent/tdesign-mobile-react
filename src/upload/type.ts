@@ -25,7 +25,7 @@ export interface TdUploadProps<T extends UploadFile = UploadFile> {
    */
   addBtn?: boolean;
   /**
-   * 添加按钮内容。值为空，使用默认图标渲染；值为 slot 则表示使用插槽渲染；其他值无效
+   * 添加按钮内容
    */
   addContent?: TNode;
   /**
@@ -267,13 +267,7 @@ export interface UploadChangeContext {
 }
 
 export type UploadChangeTrigger =
-  | 'add'
-  | 'remove'
-  | 'abort'
-  | 'progress-success'
-  | 'progress'
-  | 'progress-fail'
-  | 'sort';
+  'add' | 'remove' | 'abort' | 'progress-success' | 'progress' | 'progress-fail' | 'sort';
 
 export interface UploadFailContext {
   e?: ProgressEvent;
