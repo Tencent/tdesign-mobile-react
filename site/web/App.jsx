@@ -4,13 +4,6 @@ import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation, useNavigat
 import packageJson from '@/package.json';
 import siteConfig from './site.config';
 import { filterVersions, getRoute } from './utils';
-import {
-  htmlContent,
-  mainJsContent,
-  styleContent,
-  packageJSONContent,
-  tsconfigContent,
-} from './components/codeSandbox/content';
 
 const LazyDemo = lazy(() => import('./Demo'));
 
@@ -54,26 +47,6 @@ function Components() {
   const tdDocSearch = useRef();
 
   const [version] = useState(currentVersion);
-
-  const demoRequestBody = JSON.stringify({
-    files: {
-      'package.json': {
-        content: packageJSONContent,
-      },
-      'public/index.html': {
-        content: htmlContent,
-      },
-      'src/main.tsx': {
-        content: mainJsContent,
-      },
-      'src/index.css': {
-        content: styleContent,
-      },
-      'tsconfig.json': {
-        content: tsconfigContent,
-      },
-    },
-  });
 
   function initHistoryVersions() {
     fetch(registryUrl)
@@ -132,7 +105,6 @@ function Components() {
     <td-doc-layout>
       <td-header ref={tdHeaderRef} slot="header" platform="mobile">
         <div slot="search" style={{ display: 'flex', alignItems: 'center' }}>
-          <td-ai-button style={{ marginRight: '8px' }} framework="mobile-react" demoRequestBody={demoRequestBody} />
           <td-doc-search ref={tdDocSearch} />
         </div>
       </td-header>
