@@ -30,6 +30,58 @@ describe('Button', () => {
       const { container } = render(<Button ghost />);
       expect(container.querySelector(`${name}--ghost`)).toBeTruthy();
     });
+    it(': tag', () => {
+      const { container, rerender } = render(<Button content={buttonText} />);
+      expect(container.firstElementChild?.tagName.toLowerCase()).toBe('button');
+
+      rerender(<Button content={buttonText} tag="a" />);
+      expect(container.firstElementChild?.tagName.toLowerCase()).toBe('a');
+
+      rerender(<Button content={buttonText} tag="div" />);
+      expect(container.firstElementChild?.tagName.toLowerCase()).toBe('div');
+    });
+    it(': href', () => {
+      const { container } = render(<Button content={buttonText} href="https://tdesign.tencent.com" />);
+      const buttonDom = container.firstElementChild;
+
+      expect(buttonDom?.tagName.toLowerCase()).toBe('a');
+      expect(buttonDom).toHaveAttribute('href', 'https://tdesign.tencent.com');
+    });
+    it(': form', () => {
+      const { container, rerender } = render(<Button content={buttonText} form="test-form-id" />);
+      const buttonDom = container.firstElementChild;
+
+      expect(buttonDom?.tagName.toLowerCase()).toBe('button');
+      expect(buttonDom).toHaveAttribute('form', 'test-form-id');
+
+      rerender(<Button content={buttonText} tag="div" form="test-form-id" />);
+      expect(container.firstElementChild).not.toHaveAttribute('form');
+    });
+    it('native button: role/type', () => {
+      const { container } = render(<Button content={buttonText} type="submit" />);
+      const buttonDom = container.firstElementChild;
+
+      expect(buttonDom?.tagName.toLowerCase()).toBe('button');
+      expect(buttonDom).not.toHaveAttribute('role');
+      expect(buttonDom).toHaveAttribute('type', 'submit');
+    });
+    it('custom tag: role/type', () => {
+      const { container } = render(<Button content={buttonText} tag="div" type="submit" />);
+      const buttonDom = container.firstElementChild;
+
+      expect(buttonDom?.tagName.toLowerCase()).toBe('div');
+      expect(buttonDom).toHaveAttribute('role', 'button');
+      expect(buttonDom).not.toHaveAttribute('type');
+    });
+    it(': tag disabled', () => {
+      const { container } = render(<Button content={buttonText} tag="a" disabled />);
+      const buttonDom = container.firstElementChild;
+
+      expect(buttonDom?.tagName.toLowerCase()).toBe('a');
+      expect(buttonDom).not.toHaveAttribute('disabled');
+      expect(buttonDom).toHaveAttribute('aria-disabled', 'true');
+      expect(buttonDom).toHaveAttribute('tabindex', '-1');
+    });
     it(': icon', () => {
       const { container } = render(<Button icon={<AppIcon />} />);
       expect(container.querySelector('.t-icon-app')).toBeTruthy();
