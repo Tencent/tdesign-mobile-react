@@ -104803,7 +104803,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -104827,7 +104858,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -104851,7 +104913,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -104875,7 +104968,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -104899,7 +105023,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -104923,7 +105078,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -104947,7 +105133,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -104971,7 +105188,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -104995,7 +105243,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105019,7 +105298,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105043,7 +105353,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105067,7 +105408,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105105,7 +105477,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105129,7 +105532,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105153,7 +105587,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105177,7 +105642,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105201,7 +105697,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105225,7 +105752,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105249,7 +105807,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105273,7 +105862,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105297,7 +105917,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105335,7 +105986,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105359,7 +106041,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105383,7 +106096,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105407,7 +106151,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105431,7 +106206,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105455,7 +106261,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105479,7 +106316,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105503,7 +106371,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105527,7 +106426,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105565,7 +106495,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105589,7 +106550,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105613,7 +106605,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105637,7 +106660,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105661,7 +106715,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105685,7 +106770,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105723,7 +106839,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105747,7 +106894,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105771,7 +106949,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/base.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105911,7 +107120,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105935,7 +107175,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105959,7 +107230,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -105983,7 +107285,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106007,7 +107340,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106031,7 +107395,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106055,7 +107450,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106079,7 +107505,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106103,7 +107560,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106127,7 +107615,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106151,7 +107670,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106175,7 +107725,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106213,7 +107794,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106237,7 +107849,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106261,7 +107904,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106285,7 +107959,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106309,7 +108014,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106333,7 +108069,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106357,7 +108124,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106381,7 +108179,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106405,7 +108234,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106443,7 +108303,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106467,7 +108358,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106491,7 +108413,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106515,7 +108468,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106539,7 +108523,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106563,7 +108578,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106587,7 +108633,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106611,7 +108688,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106635,7 +108743,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106673,7 +108812,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106697,7 +108867,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106721,7 +108922,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106745,7 +108977,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106769,7 +109032,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106793,7 +109087,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106831,7 +109156,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106855,7 +109211,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -106879,7 +109266,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/custom.tsx 1`] = `
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -109823,7 +112241,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -109847,7 +112296,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -109871,7 +112351,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -109895,7 +112406,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -109919,7 +112461,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -109943,7 +112516,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -109967,7 +112571,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -109991,7 +112626,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110015,7 +112681,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110039,7 +112736,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110063,7 +112791,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110087,7 +112846,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110125,7 +112915,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110149,7 +112970,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110173,7 +113025,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110197,7 +113080,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110221,7 +113135,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110245,7 +113190,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110269,7 +113245,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110293,7 +113300,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110317,7 +113355,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110355,7 +113424,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110379,7 +113479,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110403,7 +113534,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110427,7 +113589,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110451,7 +113644,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110475,7 +113699,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110499,7 +113754,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110523,7 +113809,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110547,7 +113864,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110585,7 +113933,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110609,7 +113988,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110633,7 +114043,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110657,7 +114098,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110681,7 +114153,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110705,7 +114208,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110743,7 +114277,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110767,7 +114332,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
@@ -110791,7 +114387,38 @@ exports[`csr snapshot test > csr test src/side-bar/_example/with-icon.tsx 1`] = 
             >
               <div
                 class="t-image t-image--round"
-              />
+              >
+                <div
+                  class="t-image__mask"
+                >
+                  <div
+                    class="t-loading t-loading--center"
+                    style="color: inherit; font-size: 20px;"
+                  >
+                    <div
+                      class="t-loading__dots"
+                      style="animation-duration: 800ms; width: 20px; height: 20px;"
+                    >
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.26666666666666666s;"
+                      />
+                      <div
+                        class="t-loading__dot"
+                        style="animation-duration: 0.8s; animation-delay: 0.5333333333333333s;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="t-image__img t-image--fit-fill t-image--position-center"
+                  src="https://tdesign.gtimg.com/mobile/demos/example2.png"
+                />
+              </div>
             </div>
             <div
               class="t-grid-item__content t-grid-item__content--vertical"
