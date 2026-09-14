@@ -16,8 +16,11 @@ export interface TextareaProps
       React.TextareaHTMLAttributes<HTMLTextAreaElement>,
       'value' | 'defaultValue' | 'onBlur' | 'onChange' | 'onFocus'
     >,
-    TdTextareaProps,
-    StyledProps {}
+    Omit<TdTextareaProps, 'onCompositionstart' | 'onCompositionend'>,
+    StyledProps {
+  onCompositionstart?: (value: string, context: { e: React.CompositionEvent<HTMLTextAreaElement> }) => void;
+  onCompositionend?: (value: string, context: { e: React.CompositionEvent<HTMLTextAreaElement> }) => void;
+}
 
 export interface TextareaRefInterface extends React.RefObject<unknown> {
   currentElement: HTMLDivElement;

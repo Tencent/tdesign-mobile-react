@@ -120,6 +120,25 @@ describe('Search', () => {
       expect(getSearch()).toHaveAttribute('placeholder', customPlaceholder);
     });
 
+    it(': maxlength', () => {
+      const { container } = render(<Search maxlength={5} />);
+      const input = container.querySelector('input') as HTMLInputElement;
+      expect(input.maxLength).toBe(5);
+
+      fireEvent.input(input, { target: { value: '123456' } });
+      expect(input).toHaveValue('12345');
+    });
+
+    it(': maxcharacter', () => {
+      render(<Search maxcharacter={5} />);
+      const input = getSearch();
+      // a(1) b(1) 中(2) d(1) => 5，e 超出后被截断
+      fireEvent.input(input, { target: { value: 'ab中de' } });
+      expect(input).toHaveValue('ab中d');
+      // maxcharacter 时不透传原生 maxlength
+      expect(input).not.toHaveAttribute('maxlength');
+    });
+
     it(': readonly', () => {
       const { container } = render(<Search readonly />);
       expect(container.querySelector(`${name}__input-box`)).toBeTruthy();
@@ -224,6 +243,7 @@ describe('Search', () => {
       const handleChange = vi.fn();
       render(<Search onChange={handleChange} />);
       const search = getSearch();
+      fireEvent.compositionStart(search, { target: { value: '' } });
       // 合成输入结束后应触发 onChange
       fireEvent.compositionEnd(search, { target: { value: '你好' } });
       expect(handleChange).toHaveBeenCalledTimes(1);
@@ -234,13 +254,21 @@ describe('Search', () => {
       const handleChange = vi.fn();
       const { container } = render(<Search resultList={['a', 'b']} onChange={handleChange} />);
       const search = getSearch();
+
+      fireEvent.compositionStart(search, { target: { value: '' } });
       // 构造一个 inputType=insertCompositionText 的 InputEvent，模拟中文输入过程
-      const inputEvent = createEvent.input(search, { inputType: 'insertCompositionText' });
+      const inputEvent = createEvent.input(search, { inputType: 'insertCompositionText', target: { value: '中' } });
       fireEvent(search, inputEvent);
+
       // 中文合成过程中不应该触发 onChange
       expect(handleChange).not.toHaveBeenCalled();
       // 但 resultList 仍应展示
       expect(container.querySelector(`${name}__result-list`)).toBeTruthy();
+      // 输入框在合成态下应显示正在输入的内容
+      expect(search).toHaveValue('中');
+
+      fireEvent.compositionEnd(search, { target: { value: '中' } });
+      expect(handleChange).toHaveBeenCalledWith('中', expect.objectContaining({ trigger: 'input-change' }));
     });
 
     it(': 普通 input 事件(非合成态)正常触发 onChange', () => {
