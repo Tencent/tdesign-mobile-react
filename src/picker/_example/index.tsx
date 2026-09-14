@@ -16,7 +16,7 @@ export default function Base() {
         <BaseDemo />
         <AreaDemo />
       </TDemoBlock>
-      <TDemoBlock title="02 组件样式">
+      <TDemoBlock title="02 组件样式" summary="是否带标题">
         <TitleDemo />
         <CustomHeightDemo />
       </TDemoBlock>

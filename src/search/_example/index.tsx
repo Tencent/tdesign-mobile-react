@@ -16,7 +16,7 @@ export default function RadioDemo() {
       <TDemoBlock title="01 组件类型" summary="基础搜索框">
         <BaseDemo />
       </TDemoBlock>
-      <TDemoBlock summary="输入值后显示取消按钮">
+      <TDemoBlock summary="获取焦点后显示取消按钮">
         <ActionDemo />
       </TDemoBlock>
       <TDemoBlock title="02 组件样式" summary="搜索框形状">

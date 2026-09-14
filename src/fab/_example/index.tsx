@@ -23,10 +23,10 @@ export default function FabDemo() {
     <div className="tdesign-mobile-demo">
       <TDemoHeader
         title="Fab 悬浮按钮"
-        summary="当功能使用图标即可表示清楚时，可使用纯图标悬浮按钮，例如：添加、发布"
+        summary="当功能使用图标即可表意清楚时，可使用纯图标悬浮按钮，例如：添加、发布。"
       />
 
-      <TDemoBlock title="01 类型" summary="纯图标悬浮按钮" padding>
+      <TDemoBlock title="01 组件类型" summary="纯图标悬浮按钮" padding>
         {getButtonNode('base', '纯图标悬浮按钮')}
       </TDemoBlock>
       <TDemoBlock summary="图标加文字悬浮按钮" padding>

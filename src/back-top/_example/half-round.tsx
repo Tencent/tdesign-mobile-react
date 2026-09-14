@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'tdesign-mobile-react';
 
-export default function Base({ onButtonClick }) {
+export default function HalfRound({ onButtonClick }) {
   return (
     <div className="button-group">
       <Button
@@ -10,9 +10,9 @@ export default function Base({ onButtonClick }) {
         size="large"
         variant="outline"
         theme="primary"
-        onClick={() => onButtonClick('round', '顶部')}
+        onClick={() => onButtonClick('half-round', '返回顶部')}
       >
-        圆形返回顶部
+        半圆形返回顶部
       </Button>
     </div>
   );

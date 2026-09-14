@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import { InfoCircleFilledIcon, CheckCircleFilledIcon, ErrorCircleFilledIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
 import { isArray, isObject } from 'lodash-es';
@@ -181,14 +182,15 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
     setTimeout(() => {
       const listDOMWidth = listDOM.current?.getBoundingClientRect().width;
       const itemDOMWidth = itemDOM.current?.getBoundingClientRect().width;
-      if (marquee || itemDOMWidth > listDOMWidth) {
-        updateAnimationFrame({
-          offset: -itemDOMWidth,
-          duration: itemDOMWidth / animationSettingValue.current.scroll.speed,
-          listWidth: listDOMWidth,
-          itemWidth: itemDOMWidth,
-        });
+      if (!listDOMWidth || !itemDOMWidth) {
+        return;
       }
+      updateAnimationFrame({
+        offset: -itemDOMWidth,
+        duration: itemDOMWidth / animationSettingValue.current.scroll.speed,
+        listWidth: listDOMWidth,
+        itemWidth: itemDOMWidth,
+      });
     }, animationSettingValue.current.scroll.delay || 200);
   }
 
@@ -208,15 +210,17 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
       loop: transitionLoop,
     });
 
-    updateAnimationFrame({
-      offset: listWidth,
-      duration: 0,
+    flushSync(() => {
+      updateAnimationFrame({
+        offset: listWidth,
+        duration: 0,
+      });
     });
 
     setTimeout(() => {
       updateAnimationFrame({
         offset: -itemWidth,
-        duration: itemWidth / speed,
+        duration: (itemWidth + listWidth) / speed,
       });
     }, 0);
   }

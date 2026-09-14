@@ -14,7 +14,7 @@ export default function Base() {
     <div className="tdesign-mobile-demo">
       <h1 className="title">Watermark 水印</h1>
       <p className="summary">给页面的某个区域加上水印。</p>
-      <TDemoBlock title="01 组件类型" summary="文本水印">
+      <TDemoBlock title="01 组件类型" summary="文字水印">
         <BaseDemo />
       </TDemoBlock>
 

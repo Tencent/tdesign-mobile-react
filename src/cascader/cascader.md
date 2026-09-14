@@ -1,45 +1,4 @@
----
-title: Cascader 级联选择器
-description: 用于多层级数据选择，主要为树形结构，可展示更多的数据。
-spline: base
-isComponent: true
-toc: false
----
-
-## 代码演示
-
-### 基础用法
-
-::: demo _example/base
-:::
-
-### 选项卡风格
-
-::: demo _example/theme-tab
-:::
-
-## 进阶
-
-### 带初始值
-
-::: demo _example/with-value
-:::
-
-
-### 自定义keys
-
-::: demo _example/keys
-:::
-
-### 使用次级标题
-
-::: demo _example/with-title
-:::
-
-### 选择任意一项
-
-::: demo _example/check-strictly
-:::
+:: BASE_DOC ::
 
 ## API
 

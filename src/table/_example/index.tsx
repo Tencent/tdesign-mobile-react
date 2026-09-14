@@ -27,11 +27,11 @@ export default function Base() {
         <ScrollExample />
       </TDemoBlock>
 
-      <TDemoBlock summary="带斑马纹表格样式" padding={true}>
+      <TDemoBlock summary="带斑马纹表格" padding={true}>
         <StripeExample />
       </TDemoBlock>
 
-      <TDemoBlock summary="带边框表格样式" padding={true}>
+      <TDemoBlock summary="带边框表格" padding={true}>
         <BorderedExample />
       </TDemoBlock>
 

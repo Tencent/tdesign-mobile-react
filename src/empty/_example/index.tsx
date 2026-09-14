@@ -11,7 +11,7 @@ export default function EmptyDemo() {
   return (
     <div className="tdesign-mobile-demo">
       <TDemoHeader title="Empty 空状态" summary="用于空状态时的占位提示。" />
-      <TDemoBlock summary="图标空状态">
+      <TDemoBlock title="组件类型" summary="图标空状态">
         <BaseDemo />
       </TDemoBlock>
       <TDemoBlock summary="自定义图片空状态">

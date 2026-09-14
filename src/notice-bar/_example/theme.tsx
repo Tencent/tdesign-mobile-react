@@ -5,10 +5,25 @@ import './style/index.less';
 export default function ThemeDemo() {
   return (
     <>
-      <NoticeBar className="notice-bar-demo-block" visible theme="info" content="默认状态公告栏默认状态公告栏" />
-      <NoticeBar className="notice-bar-demo-block" visible theme="success" content="成功状态公告栏成功状态公告栏" />
-      <NoticeBar className="notice-bar-demo-block" visible theme="warning" content="警示状态公告栏警示状态公告栏" />
-      <NoticeBar className="notice-bar-demo-block" visible theme="error" content="错误状态公告栏错误状态公告栏" />
+      <div className="demo-section__desc">普通通知</div>
+      <div className="demo-section__content">
+        <NoticeBar visible theme="info" content="这是一条普通的通知信息" />
+      </div>
+
+      <div className="demo-section__desc">成功通知</div>
+      <div className="demo-section__content">
+        <NoticeBar visible theme="success" content="这是一条成功的通知信息" />
+      </div>
+
+      <div className="demo-section__desc">警示通知</div>
+      <div className="demo-section__content">
+        <NoticeBar visible theme="warning" content="这是一条警示的通知信息" />
+      </div>
+
+      <div className="demo-section__desc">错误通知</div>
+      <div className="demo-section__content">
+        <NoticeBar visible theme="error" content="这是一条错误的通知信息" />
+      </div>
     </>
   );
 }
