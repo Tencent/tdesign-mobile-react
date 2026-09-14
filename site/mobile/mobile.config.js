@@ -281,13 +281,13 @@ export default {
     {
       title: 'Collapse 折叠面板',
       titleEn: 'Collapse',
-      name: 'Collapse',
+      name: 'collapse',
       component: () => import('tdesign-mobile-react/collapse/_example/index.tsx'),
     },
     {
       title: 'Stepper 步进器',
       titleEn: 'Stepper',
-      name: 'Stepper',
+      name: 'stepper',
       component: () => import('tdesign-mobile-react/stepper/_example/index.tsx'),
     },
     {
@@ -330,7 +330,7 @@ export default {
       title: 'TabBar 底部标签栏',
       titleEn: 'TabBar',
       name: 'tab-bar',
-      component: () => import('tdesign-mobile-react/tab-bar/_example/mobile.tsx'),
+      component: () => import('tdesign-mobile-react/tab-bar/_example/index.tsx'),
     },
     {
       title: 'Fab 悬浮按钮',
@@ -342,7 +342,7 @@ export default {
       title: 'NoticeBar 公告栏',
       titleEn: 'NoticeBar',
       name: 'notice-bar',
-      component: () => import('tdesign-mobile-react/notice-bar/_example/mobile.tsx'),
+      component: () => import('tdesign-mobile-react/notice-bar/_example/index.tsx'),
     },
     {
       title: 'Result 结果',

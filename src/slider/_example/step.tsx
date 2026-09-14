@@ -25,10 +25,10 @@ export default function StepDemo() {
   };
   return (
     <>
-      <div className="wrapper-base">
+      <div className="wrapper-step">
         <Slider value={value} marks={marksRange} min={5} max={10} step={0.5} onChange={onChange} />
       </div>
-      <div className="wrapper-base">
+      <div className="wrapper-step">
         <Slider range defaultValue={[20, 60]} marks={marks} step={20} />
       </div>
     </>

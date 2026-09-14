@@ -19,7 +19,7 @@ export default function RateDemo() {
     <div className="tdesign-mobile-demo">
       <TDemoHeader title="Rate 评分" summary="用于对某行为/事物进行打分。" />
 
-      <TDemoBlock title="01 类型" summary="实心评分">
+      <TDemoBlock title="01 组件类型" summary="实心评分">
         <BaseDemo />
       </TDemoBlock>
       <TDemoBlock title="" summary="自定义评分">

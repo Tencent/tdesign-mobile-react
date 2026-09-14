@@ -11,8 +11,8 @@ import Size from './size';
 export default function StepperDemo() {
   return (
     <div className="tdesign-mobile-demo stepper-container">
-      <TDemoHeader title="Stepper 步进器" summary="用于数量的增减" />
-      <TDemoBlock title="01 类型" summary="基础步进器">
+      <TDemoHeader title="Stepper 步进器" summary="用于数量的增减。" />
+      <TDemoBlock title="01 组件类型" summary="基础步进器">
         <Base />
       </TDemoBlock>
       <TDemoBlock title="02 组件状态" summary="最大最小状态">
@@ -21,7 +21,7 @@ export default function StepperDemo() {
       <TDemoBlock summary="禁用状态">
         <Status />
       </TDemoBlock>
-      <TDemoBlock title="02 组件样式" summary="步进器样式">
+      <TDemoBlock title="03 组件样式" summary="步进器样式">
         <Theme />
       </TDemoBlock>
       <TDemoBlock summary="步进器尺寸">

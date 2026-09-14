@@ -12,15 +12,15 @@ export default function ColorPickerDemo() {
     <div className="tdesign-mobile-demo">
       <TDemoHeader title="ColorPicker 颜色选择器" summary="用于颜色选择，支持多种格式。" />
 
-      <TDemoBlock title="01 类型" desc="基础颜色选择器">
+      <TDemoBlock title="01 组件类型" summary="基础颜色选择器">
         <Base />
       </TDemoBlock>
 
-      <TDemoBlock desc="带色板的颜色选择器">
+      <TDemoBlock summary="带色板的颜色选择器">
         <Multiple />
       </TDemoBlock>
 
-      <TDemoBlock desc="弹窗形式的颜色选择器">
+      <TDemoBlock summary="弹窗形式的颜色选择器">
         <UsePopup />
       </TDemoBlock>
 
