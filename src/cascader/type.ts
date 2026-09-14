@@ -5,7 +5,7 @@
  * */
 
 import { OverlayProps } from '../overlay';
-import { TNode, TElement, TreeOptionData, TreeKeysType } from '../common';
+import type { TNode, TElement, TreeOptionData, TreeKeysType } from '../common';
 
 export interface TdCascaderProps<CascaderOption extends TreeOptionData = TreeOptionData> {
   /**
@@ -19,6 +19,20 @@ export interface TdCascaderProps<CascaderOption extends TreeOptionData = TreeOpt
    */
   closeBtn?: TNode;
   /**
+   *  自定义过滤函数。返回 true 表示匹配，未设置时使用内置匹配规则：对路径中所有 label 拼接后做大小写不敏感的 includes 匹配
+   */
+  filter?: CascaderFilterFunction;
+  /**
+   * 搜索框占位符描述文本
+   * @default ''
+   */
+  filterPlaceholder?: string;
+  /**
+   * 是否可搜索，开启后顶部会展示一个搜索框
+   * @default false
+   */
+  filterable?: boolean;
+  /**
    * 头部
    */
   header?: TElement;
@@ -27,10 +41,9 @@ export interface TdCascaderProps<CascaderOption extends TreeOptionData = TreeOpt
    */
   keys?: CascaderKeysType;
   /**
-   * 是否异步加载
-   * @default false
+   * 加载子树数据的方法（仅当节点 children 为 true 时生效）
    */
-  lazy?: boolean;
+  load?: (node: CascaderOption) => Promise<Array<CascaderOption>>;
   /**
    * 是否完成异步加载
    * @default false
@@ -51,8 +64,8 @@ export interface TdCascaderProps<CascaderOption extends TreeOptionData = TreeOpt
    */
   overlayProps?: OverlayProps;
   /**
-   * 未选中时的提示文案
-   * @default 选择选项
+   * 未选中时的提示文案。组件内置默认值为：'选择选项'
+   * @default ''
    */
   placeholder?: string;
   /**
@@ -95,6 +108,12 @@ export interface TdCascaderProps<CascaderOption extends TreeOptionData = TreeOpt
    */
   onPick?: (context: { value: string | number; label: string; index: number; level: number }) => void;
 }
+
+export type CascaderFilterFunction<CascaderOption extends TreeOptionData = TreeOptionData> = (
+  keyword: string,
+  option: CascaderOption,
+  path: CascaderOption[],
+) => boolean;
 
 export type CascaderKeysType = TreeKeysType;
 
