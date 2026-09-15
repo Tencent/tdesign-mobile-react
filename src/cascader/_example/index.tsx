@@ -4,6 +4,7 @@ import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import BaseDemo from './base';
 import CheckStrictlyDemo from './check-strictly';
 import KeysDemo from './keys';
+import LazyDemo from './lazy';
 import ThemeTabDemo from './theme-tab';
 import WithTitleDemo from './with-title';
 import WithValueDemo from './with-value';
@@ -28,6 +29,9 @@ export default function CascaderDemo() {
       </TDemoBlock>
       <TDemoBlock summary="使用次级标题">
         <WithTitleDemo />
+      </TDemoBlock>
+      <TDemoBlock summary="异步加载">
+        <LazyDemo />
       </TDemoBlock>
       <TDemoBlock summary="选择任意一项">
         <CheckStrictlyDemo />

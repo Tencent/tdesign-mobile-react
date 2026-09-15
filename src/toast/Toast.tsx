@@ -12,10 +12,11 @@ import { usePrefixClass } from '../hooks/useClass';
 import { useLockScroll } from '../hooks/useLockScroll';
 import useDefaultProps from '../hooks/useDefaultProps';
 import parseTNode from '../_util/parseTNode';
+import { isBrowser } from '../_util/dom';
 
 interface ToastProps extends TdToastProps, StyledProps {
   children?: React.ReactNode;
-  el: React.ReactNode;
+  el: HTMLElement;
 }
 
 const themeIconMap = {
@@ -23,6 +24,11 @@ const themeIconMap = {
   success: <CheckCircleIcon />,
   warning: <ErrorCircleIcon />,
   error: <CloseCircleIcon />,
+};
+
+const topOptions = {
+  top: '25%',
+  bottom: '75%',
 };
 
 const Toast: FC<ToastProps> = (originProps) => {
@@ -45,18 +51,13 @@ const Toast: FC<ToastProps> = (originProps) => {
 
   const { classPrefix } = useConfig();
   const toastClass = usePrefixClass('toast');
-  const iconClasses = classNames([
-    {
-      [`${toastClass}__icon--${direction}`]: direction,
-    },
-  ]);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [toastVisible, setToastVisible] = useState(true);
 
-  const renderIconNode = () => {
-    if (icon) return parseTNode(icon);
-    return themeIconMap[theme];
-  };
-
-  const containerClass = classNames([
+  const iconClasses = classNames({
+    [`${toastClass}__icon--${direction}`]: direction,
+  });
+  const containerClass = classNames(
     `${toastClass}`,
     `${toastClass}__content`,
     `${toastClass}__icon`,
@@ -66,21 +67,10 @@ const Toast: FC<ToastProps> = (originProps) => {
       [`${toastClass}--loading`]: theme === 'loading',
     },
     className,
-  ]);
-  const topOptions = {
-    top: '25%',
-    bottom: '75%',
-  };
-  const computedStyle = { ...style, top: topOptions[placement] ?? '45%' };
-
-  const textClasses = classNames([
-    `${toastClass}__text`,
-    {
-      [`${toastClass}__text--${direction}`]: direction,
-    },
-  ]);
-
-  const contentRef = useRef<HTMLDivElement>(null);
+  );
+  const textClasses = classNames(`${toastClass}__text`, {
+    [`${toastClass}__text--${direction}`]: direction,
+  });
 
   const cssTransitionState = useMessageCssTransition({
     contentRef,
@@ -88,40 +78,27 @@ const Toast: FC<ToastProps> = (originProps) => {
     el,
   });
 
-  const [toastVisible, setToastVisible] = useState<boolean>(true);
-
   useLockScroll(contentRef, toastVisible && preventScrollThrough, toastClass);
 
   useEffect(() => {
-    let timer = null;
-    if (duration) {
-      timer = setTimeout(() => {
-        setToastVisible(false);
-        onClose?.();
-      }, duration);
-    }
+    if (!isBrowser || !duration) return undefined;
+
+    const timer = setTimeout(() => {
+      setToastVisible(false);
+      onClose?.();
+    }, duration);
+
     return () => {
       clearTimeout(timer);
     };
   }, [duration, onClose]);
 
-  const getCustomOverlayProps = () => {
-    const toastOverlayProps = {
-      preventScrollThrough,
-      visible: showOverlay,
-    };
-    return {
-      ...overlayProps,
-      ...toastOverlayProps,
-    };
-  };
-
   return (
     <>
-      {showOverlay && <Overlay {...getCustomOverlayProps()} />}
+      {showOverlay && <Overlay {...overlayProps} preventScrollThrough={preventScrollThrough} visible={showOverlay} />}
       <CSSTransition in={toastVisible} appear {...cssTransitionState.props} unmountOnExit>
-        <div className={containerClass} ref={contentRef} style={computedStyle}>
-          <div className={iconClasses}>{renderIconNode()}</div>
+        <div className={containerClass} ref={contentRef} style={{ ...style, top: topOptions[placement] ?? '45%' }}>
+          <div className={iconClasses}>{icon ? parseTNode(icon) : themeIconMap[theme]}</div>
           {message && <div className={textClasses}>{parseTNode(message)}</div>}
         </div>
       </CSSTransition>

@@ -1,65 +1,65 @@
-import { useRef } from 'react';
+import { RefObject, useRef } from 'react';
 import { unmount } from '../../_util/react-render';
 
 interface UseMessageCssTransitionParams {
-  contentRef: React.MutableRefObject<HTMLDivElement>;
+  contentRef: RefObject<HTMLDivElement>;
   classPrefix: string;
-  el: React.ReactNode;
+  el: HTMLElement;
 }
 
 const useMessageCssTransition = ({ contentRef, classPrefix, el }: UseMessageCssTransitionParams) => {
-  const timerRef = useRef(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const contentEle = contentRef?.current;
+  const handleEnter = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
 
-  const toastAnimationClassPrefix = classPrefix;
-
-  const defaultEvents = {
-    onEnter: handleEnter,
-    onExited: handleExited,
-  };
-
-  function handleEnter() {
-    clearTimeout(timerRef.current);
-    if (contentEle && contentEle.style.display === 'none') {
+    const contentEle = contentRef.current;
+    if (contentEle?.style.display === 'none') {
       contentEle.style.display = 'block';
     }
-  }
+  };
 
-  function handleExited() {
-    // 动画结束后默认删除节点实例
-    if (contentEle) {
-      timerRef.current = setTimeout(() => {
-        if (contentEle && contentEle.style.display === 'block') {
-          contentEle.style.display = 'none';
-        }
-        // 删除createElement创建的div元素
-        if (el instanceof Element) {
-          const unmountResult = unmount(el);
-          if (unmountResult) {
-            (el as any).parentNode?.removeChild(el);
-          }
-        }
-      }, 0);
-    }
-  }
+  const handleExited = () => {
+    const contentEle = contentRef.current;
+    if (!contentEle) return;
+
+    timerRef.current = setTimeout(() => {
+      if (contentEle.style.display === 'block') {
+        contentEle.style.display = 'none';
+      }
+
+      const remove = () => {
+        el.parentNode?.removeChild(el);
+      };
+
+      const unmountResult = unmount(el);
+      if (unmountResult && typeof (unmountResult as Promise<void>).then === 'function') {
+        (unmountResult as Promise<void>).then(remove);
+        return;
+      }
+      remove();
+    }, 0);
+  };
 
   return {
     props: {
       timeout: 200,
       nodeRef: contentRef,
-      ...defaultEvents,
-      // 与公共 className 保持一致
+      onEnter: handleEnter,
+      onExited: handleExited,
       classNames: {
-        appear: `${toastAnimationClassPrefix}-enter ${toastAnimationClassPrefix}-enter-active`,
-        appearActive: `${toastAnimationClassPrefix}-enter-active`,
-        appearDone: `${toastAnimationClassPrefix}-enter-active ${toastAnimationClassPrefix}-enter-to`,
-        enter: `${toastAnimationClassPrefix}-enter ${toastAnimationClassPrefix}-enter-active`,
-        enterActive: `${toastAnimationClassPrefix}-enter-active`,
-        enterDone: `${toastAnimationClassPrefix}-enter-active ${toastAnimationClassPrefix}-enter-to`,
-        exit: `${toastAnimationClassPrefix}-leave ${toastAnimationClassPrefix}-leave-active`,
-        exitActive: `${toastAnimationClassPrefix}-leave-active`,
-        exitDone: `${toastAnimationClassPrefix}-leave-active ${toastAnimationClassPrefix}-leave-to`,
+        appear: `${classPrefix}-enter ${classPrefix}-enter-active`,
+        appearActive: `${classPrefix}-enter-active`,
+        appearDone: `${classPrefix}-enter-active ${classPrefix}-enter-to`,
+        enter: `${classPrefix}-enter ${classPrefix}-enter-active`,
+        enterActive: `${classPrefix}-enter-active`,
+        enterDone: `${classPrefix}-enter-active ${classPrefix}-enter-to`,
+        exit: `${classPrefix}-leave ${classPrefix}-leave-active`,
+        exitActive: `${classPrefix}-leave-active`,
+        exitDone: `${classPrefix}-leave-active ${classPrefix}-leave-to`,
       },
     },
   };
