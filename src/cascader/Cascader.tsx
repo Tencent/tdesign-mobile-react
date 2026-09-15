@@ -7,8 +7,9 @@ import useDefault from '../_util/useDefault';
 import { Popup } from '../popup';
 import { RadioGroup } from '../radio';
 import Tabs from '../tabs';
-import { StyledProps, TNode, TreeOptionData } from '../common';
+import { StyledProps, TreeOptionData } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
+import useConfig from '../hooks/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
 import parseTNode from '../_util/parseTNode';
 import { cascaderDefaultProps } from './defaultProps';
@@ -18,6 +19,7 @@ export interface CascaderProps extends TdCascaderProps, StyledProps {}
 
 const Cascader: React.FC<CascaderProps> = (props) => {
   const cascaderClass = usePrefixClass('cascader');
+  const globalConfig = useConfig();
 
   const {
     className,
@@ -36,136 +38,123 @@ const Cascader: React.FC<CascaderProps> = (props) => {
     keys,
     checkStrictly,
     closeBtn,
+    load,
     onChange,
     onClose,
     onPick,
   } = useDefaultProps<CascaderProps>(props, cascaderDefaultProps);
 
+  const placeholderText = placeholder ?? globalConfig?.cascader?.placeholder;
+
   const [internalValue, setInternalValue] = useDefault(value, defaultValue, onChange);
   const [internalVisible, setInternalVisible] = useDefault(visible, false, () => ({}));
-
   const [internalSelectedValues, setInternalSelectedValues] = useState<CascaderProps['value'][]>([]);
-
-  // 根据 inputOptions 和 key 重新构建 options
-  const options = useMemo(() => {
-    const { label = 'label', value = 'value', children = 'children', disabled = 'disabled' } = keys || {};
-
-    const convert = (options: TreeOptionData[]) =>
-      options.map((item) => ({
-        label: item[label],
-        value: item[value],
-        children: Array.isArray(item[children]) ? convert(item[children]) : false,
-        disabled: item[disabled],
-      }));
-
-    return convert(inputOptions);
-  }, [inputOptions, keys]);
-
-  const getOptionsList = useCallback((options: TreeOptionData[], internalSelectedValues: CascaderProps['value'][]) => {
-    const optionsList: TreeOptionData[][] = [options];
-
-    for (const value of internalSelectedValues) {
-      const lastOptions = last(optionsList);
-      const next = lastOptions.find((item) => item.value === value);
-      if (!next || !Array.isArray(next.children)) {
-        break;
-      }
-      optionsList.push(next.children);
-    }
-
-    return optionsList;
-  }, []);
-
-  const optionsList = useMemo(
-    () => getOptionsList(options, internalSelectedValues),
-    [getOptionsList, options, internalSelectedValues],
-  );
-
   const [stepIndex, setStepIndex] = useState(0);
 
-  const labelList = useMemo(() => {
-    const labelList: {
-      label: TNode;
-      isPlaceholder: boolean;
-    }[] = [];
+  const normalizedKeys = useMemo(
+    () => ({
+      label: keys?.label ?? 'label',
+      value: keys?.value ?? 'value',
+      children: keys?.children ?? 'children',
+      disabled: keys?.disabled ?? 'disabled',
+    }),
+    [keys],
+  );
 
-    optionsList.forEach((options, index) => {
-      const value = internalSelectedValues[index];
-      const target = options.find((item) => item.value === value);
-      if (target) {
-        labelList.push({
-          label: target.label,
-          isPlaceholder: false,
+  const normalizeOptionsByKeys = useCallback(
+    (sourceOptions: TreeOptionData[]) => {
+      const convert = (options: TreeOptionData[]): TreeOptionData[] =>
+        options.map((item) => {
+          const itemChildren = item[normalizedKeys.children];
+          return {
+            data: item,
+            label: item[normalizedKeys.label],
+            value: item[normalizedKeys.value],
+            children: Array.isArray(itemChildren) ? convert(itemChildren) : itemChildren === true,
+            disabled: item[normalizedKeys.disabled],
+          };
         });
-        return;
-      }
 
-      labelList.push({
-        label: placeholder,
-        isPlaceholder: true,
-      });
-    });
+      return convert(sourceOptions);
+    },
+    [normalizedKeys],
+  );
 
-    return labelList;
-  }, [optionsList, internalSelectedValues, placeholder]);
+  const options = useMemo(() => normalizeOptionsByKeys(inputOptions), [inputOptions, normalizeOptionsByKeys]);
+
+  const getOptionsList = useCallback((rootOptions: TreeOptionData[], selectedValues: CascaderProps['value'][]) => {
+    const nextOptionsList: TreeOptionData[][] = [rootOptions];
+
+    for (const selectedValue of selectedValues) {
+      const nextOptions = last(nextOptionsList)?.find((item) => item.value === selectedValue);
+      if (!nextOptions || !Array.isArray(nextOptions.children) || nextOptions.children.length === 0) break;
+      nextOptionsList.push(nextOptions.children);
+    }
+
+    return nextOptionsList;
+  }, []);
+
+  const [optionsList, setOptionsList] = useState<TreeOptionData[][]>([options]);
+
+  const labelList = useMemo(
+    () =>
+      optionsList.map((currentOptions, index) => {
+        const target = currentOptions.find((item) => item.value === internalSelectedValues[index]);
+        return target
+          ? { label: target.label, isPlaceholder: false }
+          : {
+              label: placeholderText,
+              isPlaceholder: true,
+            };
+      }),
+    [optionsList, internalSelectedValues, placeholderText],
+  );
 
   const selectedValuesByInterValue = useMemo(() => {
-    /**
-     * checkStrictly true 从外到内 匹配上就挺 返回整个链路上的value
-     * checkStrictly false 最后一级的 value 匹配时，返回整个链路上的value
-     */
-    const findValues = (options: TreeOptionData[]): CascaderProps['value'][] => {
-      for (const item of options) {
-        if (checkStrictly && item.value === internalValue) {
-          return [item.value];
-        }
+    const findValues = (items: TreeOptionData[]): CascaderProps['value'][] => {
+      for (const item of items) {
+        if (checkStrictly && item.value === internalValue) return [item.value];
 
-        const isLast = !(Array.isArray(item.children) && item.children.length);
-        if (isLast) {
-          if (item.value === internalValue) {
-            return [item.value];
-          }
+        if (!Array.isArray(item.children) || item.children.length === 0) {
+          if (item.value === internalValue) return [item.value];
           continue;
         }
-        const targetValue = findValues(item.children as TreeOptionData[]);
-        if (targetValue.length) {
-          return [item.value, ...targetValue];
-        }
+
+        const childValues = findValues(item.children);
+        if (childValues.length) return [item.value, ...childValues];
       }
       return [];
     };
 
     return findValues(options);
-  }, [options, internalValue, checkStrictly]);
+  }, [checkStrictly, internalValue, options]);
 
-  // 当 selectedValuesByInterValue 深度变化 的时候再控制 selectedValues
   useDeepCompareEffect(() => {
     setInternalSelectedValues(selectedValuesByInterValue);
+    setOptionsList(getOptionsList(options, selectedValuesByInterValue));
     setStepIndex(selectedValuesByInterValue.length);
-  }, [selectedValuesByInterValue]);
+  }, [options, selectedValuesByInterValue, getOptionsList]);
 
   useEffect(() => {
-    const reviseStepIndex = Math.max(Math.min(stepIndex, optionsList.length - 1), 0);
-    if (reviseStepIndex !== stepIndex) {
-      setStepIndex(reviseStepIndex);
-    }
+    const revisedStepIndex = Math.max(Math.min(stepIndex, optionsList.length - 1), 0);
+    if (revisedStepIndex !== stepIndex) setStepIndex(revisedStepIndex);
   }, [optionsList, stepIndex]);
 
-  // 结束了
   const onFinish = useCallback(
     (selectedValues: CascaderProps['value'][]) => {
-      const selectedOptions = [...optionsList].slice(0, selectedValues.length).map((options, index) => {
-        const target = options.find((item) => item.value === selectedValues[index]);
-        const { label = 'label', value = 'value' } = keys || {};
+      const selectedOptions = optionsList.slice(0, selectedValues.length).map((currentOptions, index) => {
+        const target = currentOptions.find((item) => item.value === selectedValues[index]);
         return {
-          [label]: target?.label || '',
-          [value]: target?.value || '',
+          [normalizedKeys.label]: target?.label || '',
+          [normalizedKeys.value]: target?.value || '',
         };
       });
+
       setInternalValue(last(selectedValues), selectedOptions as any);
+      setInternalVisible(false);
       onClose?.('finish');
     },
-    [onClose, optionsList, setInternalValue, keys],
+    [onClose, normalizedKeys, optionsList, setInternalValue, setInternalVisible],
   );
 
   return (
@@ -173,8 +162,8 @@ const Cascader: React.FC<CascaderProps> = (props) => {
       visible={internalVisible}
       placement="bottom"
       overlayProps={overlayProps}
-      onVisibleChange={(visible, trigger) => {
-        setInternalVisible(visible);
+      onVisibleChange={(nextVisible, trigger) => {
+        setInternalVisible(nextVisible);
         onClose?.(trigger);
       }}
     >
@@ -187,7 +176,6 @@ const Cascader: React.FC<CascaderProps> = (props) => {
               onFinish(internalSelectedValues);
               return;
             }
-
             setInternalVisible(false);
             onClose?.('close-btn');
           }}
@@ -196,21 +184,15 @@ const Cascader: React.FC<CascaderProps> = (props) => {
         </div>
         {parseTNode(header)}
         <div className={`${cascaderClass}__content`}>
-          {labelList.length && (
+          {labelList.length > 0 && (
             <div>
               {theme === 'step' ? (
                 <div className={`${cascaderClass}__steps`}>
-                  {labelList.map((labeItem, index) => (
-                    <div
-                      key={index}
-                      className={`${cascaderClass}__step`}
-                      onClick={() => {
-                        setStepIndex(index);
-                      }}
-                    >
+                  {labelList.map((labelItem, index) => (
+                    <div key={index} className={`${cascaderClass}__step`} onClick={() => setStepIndex(index)}>
                       <div
                         className={classNames(`${cascaderClass}__step-dot`, {
-                          [`${cascaderClass}__step-dot--active`]: !labeItem.isPlaceholder,
+                          [`${cascaderClass}__step-dot--active`]: !labelItem.isPlaceholder,
                           [`${cascaderClass}__step-dot--last`]: index === labelList.length - 1,
                         })}
                       />
@@ -219,7 +201,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
                           [`${cascaderClass}__step-label--active`]: index === stepIndex,
                         })}
                       >
-                        {parseTNode(labeItem.label)}
+                        {parseTNode(labelItem.label)}
                       </div>
                       <ChevronRightIcon size={22} className={`${cascaderClass}__step-arrow`} />
                     </div>
@@ -234,8 +216,8 @@ const Cascader: React.FC<CascaderProps> = (props) => {
                   }))}
                   spaceEvenly={false}
                   value={stepIndex}
-                  onChange={(value: number) => {
-                    setStepIndex(value);
+                  onChange={(nextValue: number) => {
+                    setStepIndex(nextValue);
                   }}
                 />
               ) : null}
@@ -252,7 +234,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
               transform: `translateX(-${stepIndex}00vw)`,
             }}
           >
-            {optionsList.map((curOptions, index) => (
+            {optionsList.map((currentOptions, index) => (
               <div className={`${cascaderClass}__options`} key={index}>
                 <div className={`${cascaderClass}-radio-group-${index}`}>
                   <RadioGroup
@@ -260,31 +242,47 @@ const Cascader: React.FC<CascaderProps> = (props) => {
                     icon="line"
                     borderless
                     value={internalSelectedValues[index]}
-                    options={curOptions}
-                    onChange={(value: string | number) => {
-                      const targetIndex = curOptions.findIndex((item) => item.value === value);
-                      const target = curOptions[targetIndex];
+                    options={currentOptions}
+                    onChange={(nextValue: string | number) => {
+                      const targetIndex = currentOptions.findIndex((item) => item.value === nextValue);
+                      const target = currentOptions[targetIndex];
+                      const selectedValues = [...internalSelectedValues.slice(0, index), nextValue];
 
-                      const selectedValues = [...internalSelectedValues].slice(0, index);
-                      selectedValues.push(value);
                       setInternalSelectedValues(selectedValues);
-
-                      setStepIndex(index + 1);
-
                       onPick?.({
-                        value,
+                        value: nextValue,
                         label: String(target?.label || ''),
                         index: targetIndex,
                         level: index,
                       });
 
-                      if (Array.isArray(target?.children)) {
+                      if (target?.children === true && load) {
+                        load({ data: target.data, value: target.value, label: target.label })
+                          .then((loadedChildren) => {
+                            setOptionsList((prev) => [
+                              ...prev.slice(0, index + 1),
+                              normalizeOptionsByKeys(loadedChildren),
+                            ]);
+                            setStepIndex(index + 1);
+                          })
+                          .catch((error) => {
+                            console.error('Load children failed:', error);
+                          });
                         return;
                       }
 
+                      if (target && Array.isArray(target.children) && target.children.length > 0) {
+                        const children = target.children as TreeOptionData[];
+                        setOptionsList((prev) => [...prev.slice(0, index + 1), children]);
+                        setStepIndex(index + 1);
+                        return;
+                      }
+
+                      setOptionsList((prev) => prev.slice(0, index + 1));
+                      setStepIndex(index);
                       onFinish(selectedValues);
                     }}
-                  ></RadioGroup>
+                  />
                 </div>
               </div>
             ))}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { isBrowser } from '../_util/dom';
 import { render } from '../_util/react-render';
 import { MessageThemeList, TdMessageProps } from './type';
 import { messageDefaultProps } from './defaultProps';
@@ -7,8 +8,6 @@ import Message from './Message';
 export interface MessageActionOptionsType extends TdMessageProps {
   context?: Element;
 }
-
-const isBrowser = typeof window !== 'undefined';
 
 const instanceMap: Map<Element, Record<string, Element>> = new Map();
 

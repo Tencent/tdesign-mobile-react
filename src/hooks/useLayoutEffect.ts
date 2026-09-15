@@ -1,6 +1,6 @@
 import { useLayoutEffect, useEffect } from 'react';
-import { canUseDocument } from '../_util/dom';
+import { canUseDOM } from '../_util/dom';
 
-const useIsomorphicLayoutEffect = canUseDocument ? useLayoutEffect : useEffect;
+const useIsomorphicLayoutEffect = canUseDOM() ? useLayoutEffect : useEffect;
 
 export default useIsomorphicLayoutEffect;
