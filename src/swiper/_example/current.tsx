@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Swiper } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function Base() {
   const imageCdn = 'https://tdesign.gtimg.com/mobile/demos';

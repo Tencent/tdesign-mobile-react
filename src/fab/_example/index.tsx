@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Button, Skeleton } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
-import './style/index.less';
 import BaseDemo from './base';
 import TextDemo from './advance';
 import DraggableDemo from './draggable';
 import CollapsibleDemo from './collapsible';
+import './style/index.less';
+import './style/collapsible.less';
 
 export default function FabDemo() {
   const [type, setType] = useState('base');

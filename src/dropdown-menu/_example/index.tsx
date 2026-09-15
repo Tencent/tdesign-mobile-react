@@ -7,6 +7,7 @@ import DirectionDemo from './direction';
 import DisabledDemo from './disabled';
 import MultipleDemo from './multiple';
 import SingleDemo from './single';
+import './style/index.less';
 
 export default function DropdownMenuDemo() {
   return (

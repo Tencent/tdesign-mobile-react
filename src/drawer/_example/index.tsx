@@ -7,6 +7,7 @@ import Plugin from './plugin';
 import Title from './title';
 import Footer from './footer';
 import Placement from './placement';
+import './style/index.less';
 
 export default function Demo() {
   return (

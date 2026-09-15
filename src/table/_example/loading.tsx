@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Table, Tag } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function LoadingExample() {
   const data = [];

@@ -10,6 +10,8 @@ import ScrollDemo from './scrolling';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 
+import './style/index.less';
+
 function MobileDemo() {
   return (
     <div className="tdesign-mobile-demo">

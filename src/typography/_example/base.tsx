@@ -1,8 +1,6 @@
 import React from 'react';
 import { TypographyText } from 'tdesign-mobile-react';
 
-import './style/index.less';
-
 export default function BaseDemo() {
   return (
     <div className="tdesign-mobile-typography-demo">

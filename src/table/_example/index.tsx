@@ -12,6 +12,8 @@ import LoadingExample from './loading';
 import SelectExample from './select';
 import FilterSortExample from './filter-sort';
 
+import './style/index.less';
+
 export default function Base() {
   return (
     <div className="tdesign-mobile-demo">

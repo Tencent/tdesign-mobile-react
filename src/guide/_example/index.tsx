@@ -6,6 +6,9 @@ import NoMask from './no-mask';
 import DialogDemo from './dialog';
 import PopoverDialogDemo from './popover-dialog';
 import CustomPopover from './custom-popover';
+import './style/index.less';
+import './style/dialog-body.less';
+import './style/my-popover.less';
 
 export default function GuideDemo() {
   return (

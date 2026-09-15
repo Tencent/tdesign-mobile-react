@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Guide, Button, Popup, Input, TdGuideProps } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function Demo() {
   const [visible, setVisible] = useState(false);
