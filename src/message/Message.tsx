@@ -12,7 +12,7 @@ import useDefaultProps from '../hooks/useDefaultProps';
 import Link from '../link';
 import { messageDefaultProps } from './defaultProps';
 import useMarqueeAnimation from './hooks/useMarqueeAnimation';
-import useMessageCssTransition from './hooks/useMessageCssTransition';
+import useCssTransition from '../_util/hooks/useCssTransition';
 import type { TdMessageProps } from './type';
 
 export interface MessageProps extends TdMessageProps, StyledProps {
@@ -82,7 +82,7 @@ const Message: React.FC<MessageProps> = (originProps) => {
   const textWrapRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
 
-  const cssTransitionState = useMessageCssTransition({
+  const cssTransitionState = useCssTransition({
     contentRef,
     classPrefix: 'message',
     container: container as HTMLElement,

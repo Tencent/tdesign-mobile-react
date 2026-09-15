@@ -1,13 +1,13 @@
 import { RefObject, useRef } from 'react';
-import { unmount } from '../../_util/react-render';
+import { unmount } from '../react-render';
 
-interface UseMessageCssTransitionParams {
+interface UseCssTransitionParams {
   contentRef: RefObject<HTMLDivElement>;
   classPrefix: string;
-  el: HTMLElement;
+  container: HTMLElement;
 }
 
-const useMessageCssTransition = ({ contentRef, classPrefix, el }: UseMessageCssTransitionParams) => {
+const useCssTransition = ({ contentRef, classPrefix, container }: UseCssTransitionParams) => {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleEnter = () => {
@@ -32,14 +32,15 @@ const useMessageCssTransition = ({ contentRef, classPrefix, el }: UseMessageCssT
       }
 
       const remove = () => {
-        el.parentNode?.removeChild(el);
+        container.parentNode?.removeChild(container);
       };
 
-      const unmountResult = unmount(el);
+      const unmountResult = unmount(container);
       if (unmountResult && typeof (unmountResult as Promise<void>).then === 'function') {
         (unmountResult as Promise<void>).then(remove);
         return;
       }
+
       remove();
     }, 0);
   };
@@ -65,4 +66,4 @@ const useMessageCssTransition = ({ contentRef, classPrefix, el }: UseMessageCssT
   };
 };
 
-export default useMessageCssTransition;
+export default useCssTransition;

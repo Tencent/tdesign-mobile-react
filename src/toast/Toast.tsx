@@ -3,7 +3,7 @@ import { LoadingIcon, CheckCircleIcon, ErrorCircleIcon, CloseCircleIcon } from '
 import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import Overlay from '../overlay';
-import useMessageCssTransition from './hooks/useMessageCssTransition';
+import useCssTransition from '../_util/hooks/useCssTransition';
 import useConfig from '../hooks/useConfig';
 import { TdToastProps } from './type';
 import { StyledProps } from '../common';
@@ -72,10 +72,10 @@ const Toast: FC<ToastProps> = (originProps) => {
     [`${toastClass}__text--${direction}`]: direction,
   });
 
-  const cssTransitionState = useMessageCssTransition({
+  const cssTransitionState = useCssTransition({
     contentRef,
     classPrefix,
-    el,
+    container: el,
   });
 
   useLockScroll(contentRef, toastVisible && preventScrollThrough, toastClass);
