@@ -4,7 +4,7 @@ import { unmount } from '../react-render';
 interface UseCssTransitionParams {
   contentRef: RefObject<HTMLDivElement>;
   classPrefix: string;
-  container: HTMLElement;
+  container?: HTMLElement | null;
 }
 
 const useCssTransition = ({ contentRef, classPrefix, container }: UseCssTransitionParams) => {
@@ -32,6 +32,7 @@ const useCssTransition = ({ contentRef, classPrefix, container }: UseCssTransiti
       }
 
       const remove = () => {
+        if (!container) return;
         container.parentNode?.removeChild(container);
       };
 
