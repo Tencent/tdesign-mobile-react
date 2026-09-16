@@ -75,7 +75,7 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
 
   const isActived = id === activedId;
 
-  // 对齐 Vue：wrapperVisible 控制外层挂载，isShowItems 控制弹层动画（两段式卸载）
+  // wrapperVisible 控制外层挂载，isShowItems 控制弹层动画（两段式卸载）
   const [wrapperVisible, setWrapperVisible] = useState(isActived);
   const [isShowItems, setIsShowItems] = useState(isActived);
 
