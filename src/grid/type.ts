@@ -6,7 +6,7 @@
 
 import { BadgeProps } from '../badge';
 import { ImageProps } from '../image';
-import { TNode } from '../common';
+import type { TNode } from '../common';
 
 export interface TdGridProps {
   /**
