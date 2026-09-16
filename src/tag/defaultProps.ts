@@ -15,7 +15,6 @@ export const tagDefaultProps: TdTagProps = {
 };
 
 export const checkTagDefaultProps: TdCheckTagProps = {
-  defaultChecked: undefined,
   closable: false,
   disabled: false,
   shape: 'square',

@@ -7,19 +7,19 @@
 name | type | default | description | required
 -- | -- | -- | -- | --
 className | String | - | className of component | N
-style | Object | - | CSS(Cascading Style Sheets)，Typescript：`React.CSSProperties` | N
-children | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+style | Object | - | CSS(Cascading Style Sheets)，Typescript: `React.CSSProperties` | N
+children | TNode | - | Typescript: `string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 closable | Boolean | false | \- | N
-content | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+content | TNode | - | Typescript: `string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 disabled | Boolean | false | \- | N
-icon | TElement | undefined | Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+icon | TElement | undefined | Typescript: `TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 maxWidth | String / Number | - | \- | N
 shape | String | square | options: square/round/mark | N
 size | String | medium | options: small/medium/large/extra-large | N
 theme | String | default | options: default/primary/warning/danger/success | N
 variant | String | dark | options: dark/light/outline/light-outline | N
-onClick | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/> | N
-onClose | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/> | N
+onClick | Function |  | Typescript: `(context: { e: MouseEvent }) => void`<br/> | N
+onClose | Function |  | Typescript: `(context: { e: MouseEvent }) => void`<br/> | N
 
 
 ### CheckTag Props
@@ -27,20 +27,20 @@ onClose | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/>
 name | type | default | description | required
 -- | -- | -- | -- | --
 className | String | - | className of component | N
-style | Object | - | CSS(Cascading Style Sheets)，Typescript：`React.CSSProperties` | N
-checked | Boolean | undefined | \- | N
-defaultChecked | Boolean | undefined | uncontrolled property | N
-children | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+style | Object | - | CSS(Cascading Style Sheets)，Typescript: `React.CSSProperties` | N
+checked | Boolean | - | \- | N
+defaultChecked | Boolean | - | uncontrolled property | N
+children | TNode | - | Typescript: `string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 closable | Boolean | false | \- | N
-content | TNode | - | Typescript：`string \| number \| string[] \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+content | TNode | - | Typescript: `string \| number \| string[] \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 disabled | Boolean | false | \- | N
-icon | TElement | - | Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+icon | TElement | - | Typescript: `TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 shape | String | square | options: square/round/mark | N
-size | String | medium | options: small/medium/large。Typescript：`SizeEnum`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+size | String | medium | options: small/medium/large。Typescript: `SizeEnum`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 variant | String | dark | options: dark/light/outline/light-outline | N
-onChange | Function |  | Typescript：`(checked: boolean) => void`<br/> | N
-onClick | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/> | N
-onClose | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/> | N
+onChange | Function |  | Typescript: `(checked: boolean) => void`<br/> | N
+onClick | Function |  | Typescript: `(context: { e: MouseEvent }) => void`<br/> | N
+onClose | Function |  | Typescript: `(context: { e: MouseEvent }) => void`<br/> | N
 
 ### CSS Variables
 
