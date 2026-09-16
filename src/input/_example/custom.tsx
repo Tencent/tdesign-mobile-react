@@ -1,6 +1,5 @@
 import React from 'react';
 import { Input } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function Custom() {
   return (

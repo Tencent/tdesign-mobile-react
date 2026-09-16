@@ -1,8 +1,22 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { ChevronLeftIcon, AddCircleIcon, StarIcon, JumpIcon } from 'tdesign-icons-react';
 import { Fab } from 'tdesign-mobile-react';
-import getScrollParent from '../../_util/getScrollParent';
-import './style/collapsible.less';
+
+const overflowScrollReg = /scroll|auto|overlay/i;
+
+function getScrollParent(el: Element | null | undefined, root: HTMLElement | Window | null | undefined = window) {
+  let node = el;
+
+  while (node && node !== root && node.nodeType === 1) {
+    const { overflowY } = window.getComputedStyle(node);
+    if (overflowScrollReg.test(overflowY)) {
+      return node;
+    }
+    node = node.parentNode as Element;
+  }
+
+  return root;
+}
 
 export default function () {
   const timer = useRef<ReturnType<typeof setTimeout>>(null);

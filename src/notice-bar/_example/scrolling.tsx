@@ -1,6 +1,5 @@
 import React from 'react';
 import { NoticeBar } from 'tdesign-mobile-react';
-import './style/index.less';
 import { SoundIcon } from 'tdesign-icons-react';
 
 export default function Scrolling() {

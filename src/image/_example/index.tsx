@@ -6,6 +6,8 @@ import PositionImage from './position';
 import ShapeImage from './shape';
 import StatusImage from './status';
 
+import './style/index.less';
+
 export default function ImageDemo() {
   return (
     <>

@@ -7,6 +7,8 @@ import StatusDemo from './status';
 import ThemeDemo from './theme';
 import CustomDemo from './custom';
 
+import './style/index.less';
+
 export default function () {
   return (
     <div className="tdesign-mobile-demo" style={{ marginBottom: 16 }}>

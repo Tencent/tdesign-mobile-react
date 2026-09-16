@@ -6,6 +6,7 @@ import TitleDemo from './with-title';
 import CustomHeightDemo from './custom-height';
 
 import './style/index.less';
+import './style/custom-height.less';
 
 export default function Base() {
   return (

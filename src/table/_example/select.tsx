@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button, Table, Tag, TdPrimaryTableProps } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function SelectExample() {
   const [selectRow1, setSelectRow1] = useState<(string | number)[]>([]);

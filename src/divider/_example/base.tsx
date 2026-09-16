@@ -1,8 +1,6 @@
 import React from 'react';
 import { Divider } from 'tdesign-mobile-react';
 
-import './style/index.less';
-
 export default function Base() {
   return (
     <>

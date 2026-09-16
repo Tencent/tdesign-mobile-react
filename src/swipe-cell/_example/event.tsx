@@ -1,6 +1,14 @@
 import React, { useRef } from 'react';
 import { SwipeCell, Cell, Toast, SwipeCellRef } from 'tdesign-mobile-react';
-import TDemoBlock from '../../../site/mobile/components/DemoBlock';
+
+const DemoBlock = ({ summary, children }: { summary?: string; children?: React.ReactNode }) => (
+  <div className="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle">
+    <div className="tdesign-mobile-demo-block__header">
+      <p className="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">{summary}</p>
+    </div>
+    <div className="tdesign-mobile-demo-block__slot">{children}</div>
+  </div>
+);
 
 export default function Demo() {
   const ref = useRef<SwipeCellRef>(null);
@@ -31,7 +39,7 @@ export default function Demo() {
   ];
 
   return (
-    <TDemoBlock summary="带二次确认的操作">
+    <DemoBlock summary="带二次确认的操作">
       <SwipeCell
         ref={ref}
         right={actions}
@@ -39,6 +47,6 @@ export default function Demo() {
         content={<Cell title="带二次确认的操作" note="辅助信息" />}
         opened
       />
-    </TDemoBlock>
+    </DemoBlock>
   );
 }
