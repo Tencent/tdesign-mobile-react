@@ -5,7 +5,8 @@ import TPopup, { PopupProps } from '../popup';
 import TButton, { ButtonProps } from '../button';
 
 import { guideDefaultProps } from './defaultProps';
-import { TdGuideProps, GuideCrossProps } from './type';
+import { TdGuideProps } from './type';
+import { GuideCrossProps } from './interface';
 
 import Portal from '../common/Portal';
 import { SizeEnum, StyledProps } from '../common';
@@ -47,18 +48,7 @@ const DEFAULT_BUTTON_MAP = {
 
 const Guide: FC<GuideProps> = (originProps) => {
   const props = useDefaultProps<GuideProps>(originProps, guideDefaultProps);
-  const {
-    className,
-    style,
-    zIndex,
-    onChange,
-    steps,
-    current,
-    defaultCurrent,
-    hideSkip,
-    hideCounter,
-    finishButtonProps,
-  } = props;
+  const { className, style, zIndex, onChange, steps, current, defaultCurrent, hideSkip, hideBack, hideCounter } = props;
 
   const guideClass = usePrefixClass('guide');
   const LOCK_CLASS = `${guideClass}--lock`;
@@ -361,7 +351,7 @@ const Guide: FC<GuideProps> = (originProps) => {
                 }
               ></TButton>
             )}
-            {isLast && (
+            {isLast && !hideBack && (
               <TButton
                 key="back"
                 className={`${guideClass}__back`}
@@ -380,11 +370,11 @@ const Guide: FC<GuideProps> = (originProps) => {
                 theme="primary"
                 size={buttonSize}
                 variant="base"
-                {...(finishButtonProps ?? {})}
+                {...getCurrentCrossProps('finishButtonProps')}
                 onClick={handleFinish}
                 content={
                   <>
-                    {renderButtonContent(finishButtonProps, DEFAULT_BUTTON_MAP.FINISH)}
+                    {renderButtonContent(getCurrentCrossProps('finishButtonProps'), DEFAULT_BUTTON_MAP.FINISH)}
                     {!hideCounter && renderCounterNode()}
                   </>
                 }
