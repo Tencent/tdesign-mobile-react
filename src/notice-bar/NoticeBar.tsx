@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { isArray, isObject } from 'lodash-es';
 import parseTNode from '../_util/parseTNode';
 import Swiper from '../swiper';
+import type { SwiperProps } from '../swiper';
 import SwiperItem from '../swiper/SwiperItem';
 import { usePrefixClass } from '../hooks/useClass';
 import type { StyledProps } from '../common';
@@ -103,6 +104,7 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
     className,
     content,
     direction,
+    interval,
     marquee,
     operation,
     prefixIcon,
@@ -112,6 +114,7 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
     defaultVisible,
     touchable = false,
     onClick,
+    onChange,
   } = useDefaultProps(props, noticeBarDefaultProps);
 
   const listDOM = useRef<HTMLDivElement | null>(null);
@@ -280,7 +283,9 @@ const NoticeBar: React.FC<NoticeBarProps> = (props) => {
             direction={direction}
             duration={2000}
             touchable={touchable}
-            style={{ height: 'var(--td-notice-bar-height, 22px)' }}
+            height={22}
+            interval={interval}
+            onChange={onChange as SwiperProps['onChange']}
           >
             {content.map((item, index) => (
               <SwiperItem key={index}>
