@@ -7,7 +7,6 @@ import LabelDemo from './label';
 import StepDemo from './step';
 import DisabledDemo from './disabled';
 import CapsuleDemo from './capsule';
-import VerticalDemo from './vertical';
 import './style/index.less';
 
 export default function Base() {
@@ -31,9 +30,6 @@ export default function Base() {
       </TDemoBlock>
       <TDemoBlock title="03 特殊样式" summary="胶囊型滑块">
         <CapsuleDemo />
-      </TDemoBlock>
-      <TDemoBlock summary="垂直模式">
-        <VerticalDemo />
       </TDemoBlock>
     </div>
   );
