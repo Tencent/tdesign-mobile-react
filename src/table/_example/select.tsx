@@ -18,7 +18,7 @@ export default function SelectExample() {
     });
   }
 
-  const globalColumns = [
+  const globalColumns: TdPrimaryTableProps['columns'] = [
     { colKey: 'projName', title: '项目名称', width: 80 },
     {
       colKey: 'projTag',
