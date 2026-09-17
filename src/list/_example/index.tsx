@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
-// import TDemoHeader from '../../../site/mobile/components/DemoHeader';
+import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './style/index.less';
 
 import BaseList from './base.jsx';
@@ -21,11 +21,11 @@ export default function ListDemo() {
       <div className="list-demo">
         {currentTab === 'info' && (
           <div>
-            <h1 className="title">List 列表</h1>
-            <p className="summary">
-              瀑布流滚动加载，用于展示同一类型信息的长列表。当列表即将滚动到底部时，会触发事件并加载更多列表项。
-            </p>
-            <TDemoBlock title="01 类型" summary="基础列表">
+            <TDemoHeader
+              title="List 列表"
+              summary="瀑布流滚动加载，用于展示同一类型信息的长列表。当列表即将滚动到底部时，会触发事件并加载更多列表项。"
+            />
+            <TDemoBlock title="01 组件类型" summary="基础列表">
               <Button size="large" variant="outline" theme="primary" onClick={() => onChangeTab('base')}>
                 {' '}
                 基础列表{' '}

@@ -8,6 +8,7 @@ import MultiLineGaryDemo from './multiLineGray';
 import MovingTextDemo from './movingText';
 import MovingImageDemo from './movingImage';
 import LayoutDemo from './layout';
+import './style/index.less';
 
 export default function Base() {
   return (
