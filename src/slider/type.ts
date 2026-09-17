@@ -62,11 +62,6 @@ export interface TdSliderProps {
    */
   defaultValue?: SliderValue;
   /**
-   * 是否是垂直的滑块（渲染垂直滑块时，默认高度为200px，可通过修改`--td-slider-bar-height`来自定义高度）
-   * @default false
-   */
-  vertical?: boolean;
-  /**
    * 滑块值变化时触发
    */
   onChange?: (value: SliderValue) => void;

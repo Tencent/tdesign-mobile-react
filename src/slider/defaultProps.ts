@@ -14,5 +14,4 @@ export const sliderDefaultProps: TdSliderProps = {
   step: 1,
   theme: 'default',
   defaultValue: 0,
-  vertical: false,
 };
