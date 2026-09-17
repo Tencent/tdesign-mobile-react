@@ -88871,11 +88871,11 @@ exports[`csr snapshot test > csr test src/notice-bar/_example/index.tsx 1`] = `
           >
             <div
               class="t-notice-bar__content--vertical t-swiper t-swiper--default"
-              style="height: 0px; box-sizing: content-box;"
+              style="height: 22px; box-sizing: content-box;"
             >
               <div
                 class="t-swiper__container--card"
-                style="left: 0px; right: 0px; flex-direction: column; transition: none; height: 0px;"
+                style="left: 0px; right: 0px; flex-direction: column; transition: none; height: 22px;"
               >
                 <div
                   class="t-swiper-item t-swiper-item--active"
@@ -89687,11 +89687,11 @@ exports[`csr snapshot test > csr test src/notice-bar/_example/scrolling.tsx 1`] 
     >
       <div
         class="t-notice-bar__content--vertical t-swiper t-swiper--default"
-        style="height: 0px; box-sizing: content-box;"
+        style="height: 22px; box-sizing: content-box;"
       >
         <div
           class="t-swiper__container--card"
-          style="left: 0px; right: 0px; flex-direction: column; transition: none; height: 0px;"
+          style="left: 0px; right: 0px; flex-direction: column; transition: none; height: 22px;"
         >
           <div
             class="t-swiper-item t-swiper-item--active"

@@ -10,7 +10,7 @@ function TabBarBaseDemo() {
   ];
   const [value, setValue] = useState('home');
 
-  const change = (changeValue) => {
+  const change = ({ value: changeValue }) => {
     setValue(changeValue);
     console.log('TabBar 值改变为：', changeValue);
   };

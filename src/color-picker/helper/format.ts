@@ -20,7 +20,6 @@ export const getFormatList = (format: ColorPickerProps['format'], color: Color):
 
     HSL: Object.values(color.getHsla()),
     HSLA: Object.values(color.getHsla()),
-    HSB: Object.values(color.getHsla()),
 
     RGB: Object.values(color.getRgba()),
     RGBA: Object.values(color.getRgba()),
@@ -28,6 +27,7 @@ export const getFormatList = (format: ColorPickerProps['format'], color: Color):
 
     CSS: [color.css, 0],
     HEX: [color.hex, 0],
+    HEX8: [color.hex8, 0],
   };
 
   const cur = FORMAT_MAP[format];

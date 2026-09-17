@@ -88,7 +88,7 @@ url | String / Array | - | 图标地址，地址内容参考[组件内部默认�
 onClick | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>点击时触发 | N
 
 
-### Iconfont Props
+### IconFont Props
 
 名称 | 类型 | 默认值 | 描述 | 必传
 -- | -- | -- | -- | --

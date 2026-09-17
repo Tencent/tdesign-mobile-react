@@ -5,7 +5,7 @@
  * */
 
 import { BadgeProps } from '../badge';
-import { TNode, TElement } from '../common';
+import type { TNode, TElement } from '../common';
 
 export interface TdSideBarProps {
   /**
@@ -13,13 +13,13 @@ export interface TdSideBarProps {
    */
   children?: TNode;
   /**
-   * 选项值。非受控属性
-   */
-  defaultValue?: string | number;
-  /**
    * 选项值
    */
   value?: string | number;
+  /**
+   * 选项值，非受控属性
+   */
+  defaultValue?: string | number;
   /**
    * 选项值发生变化时触发
    */

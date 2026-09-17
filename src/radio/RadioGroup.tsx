@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import classNames from 'classnames';
+import { get as lodashGet } from 'lodash-es';
 import { StyledProps } from '../common';
 import useConfig from '../hooks/useConfig';
 import Radio, { RadioContext, RadioContextValue, RadioProps } from './Radio';
@@ -26,6 +27,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
     className,
     style,
     placement,
+    keys,
   } = props;
   const groupRef = useRef(null);
   const [internalValue, setInternalValue] = useDefault(value, defaultValue, onChange);
@@ -67,9 +69,12 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
         );
       }
       return (
-        <Radio value={option.value} key={index} disabled={option.disabled}>
-          {option.label}
-        </Radio>
+        <Radio
+          value={lodashGet(option, keys?.value ?? 'value')}
+          key={index}
+          disabled={lodashGet(option, keys?.disabled ?? 'disabled')}
+          label={lodashGet(option, keys?.label ?? 'label')}
+        />
       );
     });
   return (

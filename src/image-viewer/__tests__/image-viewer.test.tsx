@@ -115,6 +115,62 @@ describe('ImageViewer', () => {
       expect(container.querySelectorAll(`.${name}__img`).length).toBe(0);
     });
 
+    it(': cover renders custom overlay content', () => {
+      const { container } = render(
+        <ImageViewer images={images} visible cover={<span data-testid="custom-cover">Cover</span>} />,
+      );
+      const cover = query(container, `.${name}__cover`);
+      expect(cover).not.toBeNull();
+      expect(query(container, '[data-testid="custom-cover"]')).not.toBeNull();
+    });
+
+    it(': cover not rendered when not provided', () => {
+      const { container } = render(<ImageViewer images={images} visible />);
+      expect(query(container, `.${name}__cover`)).toBeNull();
+    });
+
+    it(': image custom render receives slot params (src/className/index)', () => {
+      const image = vi.fn((params: any) => (
+        <img data-testid="custom-image" src={params.src} className={params.className} />
+      ));
+      const { container } = render(<ImageViewer images={images} visible image={image as any} />);
+
+      expect(query(container, '[data-testid="custom-image"]')).not.toBeNull();
+      expect(image).toHaveBeenCalledTimes(images.length);
+
+      const params = image.mock.calls[0][0];
+      expect(params.src).toBe(images[0]);
+      expect(params.className).toBe(`${name}__img`);
+      expect(params.index).toBe(0);
+      expect(params.extra).toBeUndefined();
+    });
+
+    it(': image custom render receives extra from ImageInfo', () => {
+      const infoImages = [{ url: images[0], align: 'center' as const, extra: { key: 'value' } }];
+      const image = vi.fn((params: any) => <img data-testid="custom-image" src={params.src} />);
+      render(<ImageViewer images={infoImages} visible image={image as any} />);
+
+      const params = image.mock.calls[0][0];
+      expect(params.extra).toEqual({ key: 'value' });
+    });
+
+    it(': image fallback renders default img when image not provided', () => {
+      const { container } = render(<ImageViewer images={images} visible />);
+      expect(container.querySelectorAll(`.${name}__img`).length).toBe(images.length);
+    });
+
+    it(': loop true renders images', () => {
+      const { container } = render(<ImageViewer images={images} visible loop />);
+      expect(query(container, `.${name}`)).not.toBeNull();
+      expect(container.querySelectorAll(`.${name}__img`).length).toBe(images.length);
+    });
+
+    it(': loop false renders images without error', () => {
+      const { container } = render(<ImageViewer images={images} visible loop={false} />);
+      expect(query(container, `.${name}`)).not.toBeNull();
+      expect(container.querySelectorAll(`.${name}__img`).length).toBe(images.length);
+    });
+
     it(': index controlled', () => {
       const { container } = render(<ImageViewer images={images} visible index={2} showIndex />);
       const indexEl = query(container, `.${name}__nav-index`);

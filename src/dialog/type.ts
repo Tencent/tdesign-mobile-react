@@ -6,8 +6,8 @@
 
 import { ButtonProps } from '../button';
 import { OverlayProps } from '../overlay';
-import { TNode, TElement, Styles } from '../common';
-import { MouseEvent } from 'react';
+import type { TNode, TElement, Styles } from '../common';
+import type { MouseEvent } from 'react';
 
 export interface TdDialogProps {
   /**

@@ -13,7 +13,7 @@ import useConfig from '../hooks/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
 import parseTNode from '../_util/parseTNode';
 import { cascaderDefaultProps } from './defaultProps';
-import { TdCascaderProps } from './type';
+import { CascaderTriggerSource, TdCascaderProps } from './type';
 
 export interface CascaderProps extends TdCascaderProps, StyledProps {}
 
@@ -164,7 +164,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
       overlayProps={overlayProps}
       onVisibleChange={(nextVisible, trigger) => {
         setInternalVisible(nextVisible);
-        onClose?.(trigger);
+        onClose?.(trigger as CascaderTriggerSource);
       }}
     >
       <div className={classNames(cascaderClass, className)} style={style}>
