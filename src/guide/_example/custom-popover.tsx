@@ -47,7 +47,7 @@ export default function Demo() {
       title: '用户引导标题',
       body: '用户引导的说明文案',
       placement: 'center',
-      content: MyPopover as unknown as React.ReactNode,
+      content: MyPopover as unknown as React.ReactElement,
     },
     {
       element: '.custom-popover .label-field',
@@ -55,14 +55,14 @@ export default function Demo() {
       body: '用户引导的说明文案',
       placement: 'bottom',
       highlightPadding: 0,
-      content: MyPopover as unknown as React.ReactNode,
+      content: MyPopover as unknown as React.ReactElement,
     },
     {
       element: '.custom-popover .action',
       title: '用户引导标题',
       body: '用户引导的说明文案',
       placement: 'bottom-right',
-      content: MyPopover as unknown as React.ReactNode,
+      content: MyPopover as unknown as React.ReactElement,
     },
   ];
 

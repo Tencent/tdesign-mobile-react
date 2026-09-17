@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useImperativeHandle, forwardRef } from 'react';
 import classNames from 'classnames';
 import Popup from '../popup';
-import { TdDrawerProps, DrawerItem } from './type';
+import { TdDrawerProps, DrawerItem, DrawerInstance } from './type';
 import parseTNode from '../_util/parseTNode';
 import { StyledProps } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
@@ -13,7 +13,7 @@ export interface DrawerProps extends TdDrawerProps, StyledProps {
   isPlugin?: boolean;
 }
 
-const Drawer: React.FC<DrawerProps> = forwardRef((originProps, ref) => {
+const Drawer = forwardRef<DrawerInstance, DrawerProps>((originProps, ref) => {
   const props = useDefaultProps<DrawerProps>(originProps, drawerDefaultProps);
   const [state, setState] = useSetState<DrawerProps>({ isPlugin: false, ...props });
 

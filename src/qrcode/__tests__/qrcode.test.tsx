@@ -86,7 +86,7 @@ describe('QRCode', () => {
 
     it('passes iconSize correctly to imageSettings for object type', () => {
       const icon = 'https://example.com/icon.png';
-      const iconSize = {};
+      const iconSize = { width: 40, height: 40 };
 
       const { container } = render(
         <QRCode style={{ height: 60, width: 60 }} value="test" type="canvas" icon={icon} iconSize={iconSize} />,
