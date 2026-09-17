@@ -33,7 +33,11 @@ placement | String | left | options: left/right | N
 value | String / Number / Array | undefined | Typescript: `DropdownValue ` `type DropdownValue = string \| number \| Array<DropdownValue>;`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/dropdown-menu/type.ts) | N
 defaultValue | String / Number / Array | undefined | uncontrolled property。Typescript: `DropdownValue ` `type DropdownValue = string \| number \| Array<DropdownValue>;`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/dropdown-menu/type.ts) | N
 onChange | Function |  | Typescript: `(value: DropdownValue) => void`<br/> | N
+onClose | Function |  | Typescript: `() => void`<br/>`0.21.2` | N
+onClosed | Function |  | Typescript: `() => void`<br/>`0.21.2` | N
 onConfirm | Function |  | Typescript: `(value: DropdownValue) => void`<br/> | N
+onOpen | Function |  | Typescript: `() => void`<br/>`0.21.2` | N
+onOpened | Function |  | Typescript: `() => void`<br/>`0.21.2` | N
 onReset | Function |  | Typescript: `(value: DropdownValue) => void`<br/> | N
 
 ### CSS Variables

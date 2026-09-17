@@ -33,7 +33,11 @@ placement | String | left | 复选框和内容相对位置，仅单选菜单栏�
 value | String / Number / Array | undefined | 选中值。TS 类型：`DropdownValue ` `type DropdownValue = string \| number \| Array<DropdownValue>;`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/dropdown-menu/type.ts) | N
 defaultValue | String / Number / Array | undefined | 选中值。非受控属性。TS 类型：`DropdownValue ` `type DropdownValue = string \| number \| Array<DropdownValue>;`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/dropdown-menu/type.ts) | N
 onChange | Function |  | TS 类型：`(value: DropdownValue) => void`<br/>值改变时触发 | N
+onClose | Function |  | TS 类型：`() => void`<br/>`0.21.2`。关闭时触发 | N
+onClosed | Function |  | TS 类型：`() => void`<br/>`0.21.2`。关闭且动画结束后触发 | N
 onConfirm | Function |  | TS 类型：`(value: DropdownValue) => void`<br/>点击确认时触发 | N
+onOpen | Function |  | TS 类型：`() => void`<br/>`0.21.2`。打开时触发 | N
+onOpened | Function |  | TS 类型：`() => void`<br/>`0.21.2`。打开且动画结束后触发 | N
 onReset | Function |  | TS 类型：`(value: DropdownValue) => void`<br/>点击重置时触发 | N
 
 ### CSS Variables

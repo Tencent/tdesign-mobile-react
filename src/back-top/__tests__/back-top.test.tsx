@@ -4,7 +4,7 @@ import React from 'react';
 import { AppIcon } from 'tdesign-icons-react';
 import { useScroll } from 'ahooks';
 import BackTop from '../Backtop';
-import { checkWindow } from '../../_util/dom';
+import { canUseDOM } from '../../_util/dom';
 
 vi.mock('ahooks', async () => {
   const actual = await vi.importActual('ahooks');
@@ -18,7 +18,7 @@ vi.mock('../../_util/dom', async () => {
   const actual = await vi.importActual('../../_util/dom');
   return {
     ...actual,
-    checkWindow: vi.fn(),
+    canUseDOM: vi.fn(),
   };
 });
 
@@ -33,7 +33,7 @@ describe('BackTop', () => {
 
   describe('props', () => {
     test(':target', async () => {
-      (checkWindow as Mock).mockReturnValue(true);
+      (canUseDOM as Mock).mockReturnValue(true);
       document.documentElement.scrollTo = vi.fn();
       const { container } = render(
         <div>
@@ -129,7 +129,7 @@ describe('BackTop', () => {
     });
 
     test('should handle ssr', async () => {
-      (checkWindow as Mock).mockReturnValue(false);
+      (canUseDOM as Mock).mockReturnValue(false);
       render(<BackTop />);
       expect(document.querySelector('.t-back-top')).toBeTruthy();
     });

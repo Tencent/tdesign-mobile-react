@@ -3,6 +3,7 @@ import BaseDemo from './base';
 import ActionDemo from './action';
 import ShapeDemo from './shape';
 import OtherDemo from './other';
+import MaxLengthDemo from './max-length';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 
@@ -16,8 +17,11 @@ export default function RadioDemo() {
       <TDemoBlock title="01 组件类型" summary="基础搜索框">
         <BaseDemo />
       </TDemoBlock>
-      <TDemoBlock summary="输入值后显示取消按钮">
+      <TDemoBlock summary="获取焦点后显示取消按钮">
         <ActionDemo />
+      </TDemoBlock>
+      <TDemoBlock summary="字数限制">
+        <MaxLengthDemo />
       </TDemoBlock>
       <TDemoBlock title="02 组件样式" summary="搜索框形状">
         <ShapeDemo />

@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Color, getColorObject } from '../../_common/js/color-picker';
 import ColorPicker, { ColorPickerProps } from '../index';
-import { ColorFormat, TypeEnum } from '../type';
+import { TypeEnum } from '../type';
 
 const prefix = 't';
 const name = `.${prefix}-color-picker`;
@@ -74,14 +74,15 @@ describe('ColorPicker', () => {
     });
 
     it(': format', () => {
-      const testFormat = (format: string, target: ColorFormat) => {
-        const { container } = renderColorPicker({ format: format as ColorFormat, type: 'multiple' });
+      const testFormat = (format: string, target: string) => {
+        const { container } = renderColorPicker({ format: format as ColorPickerProps['format'], type: 'multiple' });
         const dom = container.querySelector(`${name}__format-item--first`);
         expect(dom.innerHTML).toBe(target);
       };
       testFormat('RGB', 'RGB');
       testFormat('123', 'RGB');
       testFormat('HEX', 'HEX');
+      testFormat('HEX8', 'HEX8');
     });
   });
 

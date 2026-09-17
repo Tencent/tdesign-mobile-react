@@ -9,12 +9,13 @@ import CustomTextDemo from './custom-text';
 import DisabledDemo from './disabled';
 import WithoutPopupDemo from './without-popup';
 import SwitchModeDemo from './switch-mode';
+import LocalTextDemo from './local-text';
 import './style/index.less';
 
 export default function CheckboxDemo() {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="Calendar 日历" summary="按照日历形式展示数据或日期的容器" />
+      <TDemoHeader title="Calendar 日历" summary="按照日历形式展示数据或日期的容器。" />
       <TDemoBlock title="01 组件类型" summary="基础日历">
         <BaseDemo />
       </TDemoBlock>
@@ -39,7 +40,11 @@ export default function CheckboxDemo() {
         <RangeDemo />
       </TDemoBlock>
 
-      <TDemoBlock title="02 组件样式" summary="含不可选的日历">
+      <TDemoBlock title="02 组件样式" summary="国际化">
+        <LocalTextDemo />
+      </TDemoBlock>
+
+      <TDemoBlock summary="含不可选的日历">
         <DisabledDemo />
       </TDemoBlock>
 

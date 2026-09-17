@@ -2,7 +2,6 @@ import { cloneDeep, noop } from 'lodash-es';
 import React, { useRef, useState } from 'react';
 import { Button, Checkbox, DropdownItem, DropdownMenu } from 'tdesign-mobile-react';
 import CheckboxGroup from 'tdesign-mobile-react/checkbox/CheckboxGroup';
-import './style/customized.less';
 
 const chineseNumber = '一二三四五六七八九十'.split('');
 

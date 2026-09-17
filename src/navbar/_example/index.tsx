@@ -15,7 +15,7 @@ export default function Base() {
     <div className="tdesign-mobile-demo">
       <Navbar title="Navbar 导航条" style={{ zIndex: 999 }} leftArrow fixed />
 
-      <TDemoHeader title="Navbar 导航栏" summary="用于不同页面之间切换或者跳转，位于内容区的上方，系统状态栏的下方。" />
+      <TDemoHeader title="NavBar 导航栏" summary="用于不同页面之间切换或者跳转，位于内容区的上方，系统状态栏的下方。" />
       <TDemoBlock title="01 组件类型" summary="基础导航栏">
         <div className="t-navbar-demo">
           <BaseDemo />

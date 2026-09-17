@@ -4,15 +4,10 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TNode, KeysType } from '../common';
-import { ChangeEvent } from 'react';
+import type { TNode, KeysType } from '../common';
+import type { ChangeEvent } from 'react';
 
 export interface TdRadioProps<T = RadioValue> {
-  /**
-   * 已废弃。复选框和内容相对位置
-   * @default left
-   */
-  align?: 'left' | 'right';
   /**
    * 是否允许取消选中
    * @default false
@@ -47,7 +42,6 @@ export interface TdRadioProps<T = RadioValue> {
   content?: TNode;
   /**
    * 是否禁用组件内容（content）触发选中
-   * @default false
    */
   contentDisabled?: boolean;
   /**
@@ -117,7 +111,7 @@ export interface TdRadioGroupProps<T = RadioValue> {
    */
   icon?: 'circle' | 'line' | 'dot' | Array<TNode>;
   /**
-   * 用来定义 value / label 在 `options` 中对应的字段别名
+   * 用来定义 value / label / disabled 在 `options` 中对应的字段别名
    */
   keys?: KeysType;
   /**

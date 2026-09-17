@@ -17,8 +17,9 @@ cursorColor | String | #0052d9 | `0.21.2` | N
 disabled | Boolean | false | \- | N
 focus | Boolean | false | \- | N
 leftIcon | TNode | 'search' | Typescript: `string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+maxcharacter | Number | - | The maximum number of characters that the user can enter. One Chinese character represents two characters in length. Use either `maxcharacter` or `maxlength` | N
+maxlength | String / Number | - | The maximum length of text that the user can enter. One Chinese character is equal to one count length. By default, it is empty, and the input length is not limited. Use either `maxcharacter` or `maxlength` | N
 placeholder | String | '' | \- | N
-prefixIcon | TElement | - | `deprecated`。Typescript: `TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 readonly | Boolean | undefined | \- | N
 resultList | Array | [] | Typescript: `Array<string>` | N
 shape | String | 'square' | options: square/round | N

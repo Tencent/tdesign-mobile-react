@@ -6,8 +6,11 @@ import { TdColorPickerProps } from './type';
 
 export const colorPickerDefaultProps: TdColorPickerProps = {
   clearable: false,
+  colorModes: 'monochrome',
   enableAlpha: false,
+  enableMultipleGradient: true,
   fixed: false,
   format: 'RGB',
+  swatchColors: undefined,
   type: 'base',
 };

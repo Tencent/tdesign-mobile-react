@@ -5,7 +5,7 @@
  * */
 
 import { OverlayProps } from '../overlay';
-import { TNode, TElement, Styles, AttachNode } from '../common';
+import type { TNode, TElement, Styles, AttachNode } from '../common';
 
 export interface TdToastProps {
   /**

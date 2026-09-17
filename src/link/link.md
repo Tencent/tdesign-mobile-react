@@ -2,14 +2,13 @@
 
 ## API
 
-
 ### Link Props
 
 名称 | 类型 | 默认值 | 描述 | 必传
 -- | -- | -- | -- | --
 className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
-children | TNode | - | 链接内容，同 content。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-react/blob/develop/src/common.ts) | N
+children | TNode | - | 链接内容，同 content。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 content | TNode | - | 链接内容。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 disabled | Boolean | undefined | 禁用链接。优先级：Link.disabled > Form.disabled | N
 hover | Boolean | - | 是否开启点击反馈 | N

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Message, Upload } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function BaseDemo() {
   const onValidate = (context: any) => {

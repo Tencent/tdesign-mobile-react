@@ -7,13 +7,14 @@ import Plugin from './plugin';
 import Title from './title';
 import Footer from './footer';
 import Placement from './placement';
+import './style/index.less';
 
 export default function Demo() {
   return (
     <div className="tdesign-mobile-demo">
       <TDemoHeader
         title="Drawer 抽屉"
-        summary="用作一组平行关系页面/内容的切换器，相较于Tab，同屏可展示更多的选项数量。"
+        summary="用作一组平行关系页面/内容的切换器，相较于 Tab，同屏可展示更多的选项数量。"
       />
 
       <TDemoBlock title="01 组件类型" summary="基础抽屉" padding>

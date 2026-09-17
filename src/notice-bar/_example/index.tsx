@@ -10,6 +10,8 @@ import ScrollDemo from './scrolling';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 
+import './style/index.less';
+
 function MobileDemo() {
   return (
     <div className="tdesign-mobile-demo">
@@ -17,7 +19,10 @@ function MobileDemo() {
       <TDemoBlock title="01 组件类型" summary="纯文字的公告栏">
         <BaseDemo />
       </TDemoBlock>
-      <TDemoBlock summary="带图标静态公告栏">
+      <TDemoBlock summary="可滚动的公告栏">
+        <ScrollDemo />
+      </TDemoBlock>
+      <TDemoBlock summary="带图标的公告栏">
         <IconDemo />
       </TDemoBlock>
       <TDemoBlock summary="带关闭的公告栏">
@@ -26,20 +31,14 @@ function MobileDemo() {
       <TDemoBlock summary="带入口的公告栏">
         <Event />
       </TDemoBlock>
-      <TDemoBlock summary="自定样式的公告栏">
+      <TDemoBlock summary="自定义样式的公告栏">
         <CustomDemo />
       </TDemoBlock>
       <TDemoBlock summary="自定义内容的公告栏">
         <Customization />
       </TDemoBlock>
-      <TDemoBlock
-        title="02 组件状态"
-        summary="公告栏类型有普通（info）、警示（warning）、成功（success）、错误（error）"
-      >
+      <TDemoBlock title="02 组件状态">
         <ThemeDemo />
-      </TDemoBlock>
-      <TDemoBlock title="03 可滚动的公告栏" summary="可滚动公告栏有水平 (horizontal) 和垂直 (vertical)">
-        <ScrollDemo />
       </TDemoBlock>
     </div>
   );

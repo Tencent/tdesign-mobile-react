@@ -71,11 +71,17 @@ const TabBar = forwardRef<HTMLDivElement, TabBarProps>((originProps, ref) => {
     [ref],
   );
 
-  const [activeValue, onToggleActiveValue] = useDefault(value, defaultValue, onChange);
+  const [activeValue, setActiveValue] = useDefault(value, defaultValue, undefined);
 
   const defaultIndex = useRef(-1);
 
-  const updateChild = onToggleActiveValue;
+  const updateChild = useCallback(
+    (currentValue: number | string | (number | string)[]) => {
+      setActiveValue(currentValue);
+      onChange?.({ value: currentValue as string | number });
+    },
+    [setActiveValue, onChange],
+  );
 
   const itemCount = React.Children.count(parseTNode(children));
 

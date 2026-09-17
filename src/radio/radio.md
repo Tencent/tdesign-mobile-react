@@ -8,7 +8,6 @@
 -- | -- | -- | -- | --
 className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
-align | String | left | 已废弃。复选框和内容相对位置。可选项：left/right | N
 allowUncheck | Boolean | false | 是否允许取消选中 | N
 block | Boolean | true | 是否为块级元素 | N
 borderless | Boolean | undefined | 是否开启无边框模式 | N
@@ -16,7 +15,7 @@ checked | Boolean | false | 是否选中 | N
 defaultChecked | Boolean | false | 是否选中。非受控属性 | N
 children | TNode | - | 单选内容，同 label。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 content | TNode | - | 单选内容。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-contentDisabled | Boolean | false | 是否禁用组件内容（content）触发选中 | N
+contentDisabled | Boolean | - | 是否禁用组件内容（content）触发选中 | N
 disabled | Boolean | undefined | 是否为禁用态。如果存在父组件 RadioGroup，默认值由 RadioGroup.disabled 控制。优先级：Radio.disabled > RadioGroup.disabled > Form.disabled | N
 icon | String / Array | 'circle' | 自定义选中图标和非选中图标。示例：[选中态图标地址，非选中态图标地址]。使用 String 时，值为 circle 表示填充型图标、值为 line 表示描边型图标、值为 dot 表示圆点图标、值为 'none' 则表示没有图标。TS 类型：`'circle' \| 'line' \| 'dot' \| 'none' \|Array<TNode>`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 label | TNode | - | 主文案。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
@@ -39,7 +38,7 @@ allowUncheck | Boolean | false | 是否允许取消选中 | N
 borderless | Boolean | false | 是否开启无边框模式；优先级低于 Radio | N
 disabled | Boolean | undefined | 是否禁用全部子单选框。优先级：Radio.disabled > RadioGroup.disabled > Form.disabled | N
 icon | String / Array | 'circle' | 自定义选中图标和非选中图标。示例：[选中态图标地址，非选中态图标地址]。使用 String 时，值为 circle 表示填充型图标、值为 line 表示描边型图标、值为 dot 表示圆点图标。TS 类型：`'circle' \| 'line' \| 'dot' \| Array<TNode>`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-keys | Object | - | 用来定义 value / label 在 `options` 中对应的字段别名。TS 类型：`KeysType`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+keys | Object | - | 用来定义 value / label / disabled 在 `options` 中对应的字段别名。TS 类型：`KeysType`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 name | String | - | HTML 元素原生属性 | N
 options | Array | - | 单选组件按钮形式。RadioOption 数据类型为 string 或 number 时，表示 label 和 value 值相同。TS 类型：`Array<RadioOption>` `type RadioOption = string \| number \| RadioOptionObj` `interface RadioOptionObj { label?: string \| TNode; value?: string \| number \| boolean; disabled?: boolean }`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts)。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/radio/type.ts) | N
 placement | String | left | 复选框和内容相对位置。优先级低于 Radio.placement。可选项：left/right | N

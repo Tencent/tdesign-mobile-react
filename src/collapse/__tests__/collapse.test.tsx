@@ -28,27 +28,27 @@ describe('Collapse', () => {
         const panels = container.querySelectorAll('.t-collapse-panel');
 
         if (defaultValue.includes('0')) {
-          expect(panels[0]).toHaveClass('t-collapse-panel--active');
+          expect(panels[0]).toHaveClass('t-collapse-panel--expanded');
         } else {
-          expect(panels[0]).not.toHaveClass('t-collapse-panel--active');
+          expect(panels[0]).not.toHaveClass('t-collapse-panel--expanded');
         }
 
         if (defaultValue.includes('1')) {
-          expect(panels[1]).toHaveClass('t-collapse-panel--active');
+          expect(panels[1]).toHaveClass('t-collapse-panel--expanded');
         } else {
-          expect(panels[1]).not.toHaveClass('t-collapse-panel--active');
+          expect(panels[1]).not.toHaveClass('t-collapse-panel--expanded');
         }
 
         if (defaultValue.includes(0)) {
-          expect(panels[2]).toHaveClass('t-collapse-panel--active');
+          expect(panels[2]).toHaveClass('t-collapse-panel--expanded');
         } else {
-          expect(panels[2]).not.toHaveClass('t-collapse-panel--active');
+          expect(panels[2]).not.toHaveClass('t-collapse-panel--expanded');
         }
 
         if (defaultValue.includes(1)) {
-          expect(panels[3]).toHaveClass('t-collapse-panel--active');
+          expect(panels[3]).toHaveClass('t-collapse-panel--expanded');
         } else {
-          expect(panels[3]).not.toHaveClass('t-collapse-panel--active');
+          expect(panels[3]).not.toHaveClass('t-collapse-panel--expanded');
         }
       }
 
@@ -79,12 +79,12 @@ describe('Collapse', () => {
         const panels = container.querySelectorAll('.t-collapse-panel');
 
         // 检查字符串类型的value
-        expect(panels[0].classList.contains('t-collapse-panel--active')).toBe(value.includes('0'));
-        expect(panels[1].classList.contains('t-collapse-panel--active')).toBe(value.includes('1'));
+        expect(panels[0].classList.contains('t-collapse-panel--expanded')).toBe(value.includes('0'));
+        expect(panels[1].classList.contains('t-collapse-panel--expanded')).toBe(value.includes('1'));
 
         // 检查数字类型的value
-        expect(panels[2].classList.contains('t-collapse-panel--active')).toBe(value.includes(0));
-        expect(panels[3].classList.contains('t-collapse-panel--active')).toBe(value.includes(1));
+        expect(panels[2].classList.contains('t-collapse-panel--expanded')).toBe(value.includes(0));
+        expect(panels[3].classList.contains('t-collapse-panel--expanded')).toBe(value.includes(1));
       }
 
       // 测试每个value情况
@@ -216,8 +216,8 @@ describe('Collapse', () => {
       await waitFor(() => {
         const panels = container.querySelectorAll('.t-collapse-panel');
         expect(panels).toHaveLength(2);
-        expect(panels[0]).toHaveClass('t-collapse-panel--active');
-        expect(panels[1]).toHaveClass('t-collapse-panel--active');
+        expect(panels[0]).toHaveClass('t-collapse-panel--expanded');
+        expect(panels[1]).toHaveClass('t-collapse-panel--expanded');
       });
     });
 
@@ -238,8 +238,8 @@ describe('Collapse', () => {
       await waitFor(() => {
         const panels = container.querySelectorAll('.t-collapse-panel');
         expect(panels).toHaveLength(2);
-        expect(panels[0]).toHaveClass('t-collapse-panel--active');
-        expect(panels[1]).not.toHaveClass('t-collapse-panel--active');
+        expect(panels[0]).toHaveClass('t-collapse-panel--expanded');
+        expect(panels[1]).not.toHaveClass('t-collapse-panel--expanded');
       });
     });
   });
@@ -369,9 +369,9 @@ describe('Collapse', () => {
       expect(onChange).toHaveBeenCalledWith(['test-string'], expect.any(Object));
     });
 
-    it(':should handle non-array activeValue gracefully', () => {
+    it(':should handle non-array expandedValue gracefully', () => {
       const onChange = vi.fn();
-      // 通过传入非数组的 value 来测试 Array.isArray(activeValue) 为 false 的情况
+      // 通过传入非数组的 value 来测试 Array.isArray(expandedValue) 为 false 的情况
       const { container } = render(
         <Collapse value={null as any} onChange={onChange}>
           <CollapsePanel value="1" header="标题一">
@@ -381,7 +381,7 @@ describe('Collapse', () => {
       );
       const panel = container.querySelector('.t-collapse-panel__title');
       fireEvent.click(panel!);
-      // 当 activeValue 不是数组时，onPanelChange 不应该执行任何操作
+      // 当 expandedValue 不是数组时，onPanelChange 不应该执行任何操作
       expect(onChange).not.toHaveBeenCalled();
     });
   });
@@ -526,7 +526,7 @@ describe('CollapsePanel', () => {
       placements.forEach(checkPlacement);
     });
 
-    it(':should render correct icon when placement is top and active', () => {
+    it(':should render correct icon when placement is top and expanded', () => {
       const { container } = render(
         <Collapse defaultValue={['0']}>
           <CollapsePanel value="0" header="面板1" placement="top">
@@ -537,16 +537,16 @@ describe('CollapsePanel', () => {
 
       // 检查面板是否激活
       const panel = container.querySelector('.t-collapse-panel');
-      expect(panel).toHaveClass('t-collapse-panel--active');
+      expect(panel).toHaveClass('t-collapse-panel--expanded');
 
       // 检查图标是否存在（当placement为top且激活时）
       const icon = container.querySelector('.t-collapse-panel__header-icon');
       expect(icon).toBeInTheDocument();
-      expect(panel).toHaveClass('t-collapse-panel--active');
+      expect(panel).toHaveClass('t-collapse-panel--expanded');
       expect(panel).toHaveClass('t-collapse-panel--top');
     });
 
-    it(':should render correct icon when placement is bottom and active', () => {
+    it(':should render correct icon when placement is bottom and expanded', () => {
       const { container } = render(
         <Collapse defaultValue={['0']}>
           <CollapsePanel value="0" header="面板1" placement="bottom">
@@ -557,12 +557,12 @@ describe('CollapsePanel', () => {
 
       // 检查面板是否激活
       const panel = container.querySelector('.t-collapse-panel');
-      expect(panel).toHaveClass('t-collapse-panel--active');
+      expect(panel).toHaveClass('t-collapse-panel--expanded');
 
       // 检查图标是否存在（当placement为bottom且激活时）
       const icon = container.querySelector('.t-collapse-panel__header-icon');
       expect(icon).toBeInTheDocument();
-      expect(panel).toHaveClass('t-collapse-panel--active');
+      expect(panel).toHaveClass('t-collapse-panel--expanded');
       expect(panel).toHaveClass('t-collapse-panel--bottom');
     });
 
@@ -693,15 +693,15 @@ describe('CollapsePanel', () => {
       const header = container.querySelector('.t-cell');
 
       // 初始状态应该是折叠的
-      expect(panel).not.toHaveClass('t-collapse-panel--active');
+      expect(panel).not.toHaveClass('t-collapse-panel--expanded');
 
       // 点击展开
       fireEvent.click(header);
-      expect(panel).toHaveClass('t-collapse-panel--active');
+      expect(panel).toHaveClass('t-collapse-panel--expanded');
 
       // 再次点击折叠
       fireEvent.click(header);
-      expect(panel).not.toHaveClass('t-collapse-panel--active');
+      expect(panel).not.toHaveClass('t-collapse-panel--expanded');
     });
   });
 });

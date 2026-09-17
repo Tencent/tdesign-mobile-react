@@ -23,21 +23,22 @@ const list = [
 const indexList = list.map((item) => item.index);
 
 // 辅助函数：渲染测试组件
-const renderIndexes = (props = {}, childrenList = list) =>
-  render(
-    <Indexes indexList={indexList} {...props}>
-      {childrenList.map((item, index) => (
-        <Fragment key={index}>
-          <IndexesAnchor index={item.index} />
-          <CellGroup>
-            {item.children.map((val, idx) => (
-              <Cell key={idx}>{val}</Cell>
-            ))}
-          </CellGroup>
-        </Fragment>
-      ))}
-    </Indexes>,
-  );
+const createIndexes = (props = {}, childrenList = list) => (
+  <Indexes indexList={indexList} {...props}>
+    {childrenList.map((item, index) => (
+      <Fragment key={index}>
+        <IndexesAnchor index={item.index} />
+        <CellGroup>
+          {item.children.map((val, idx) => (
+            <Cell key={idx}>{val}</Cell>
+          ))}
+        </CellGroup>
+      </Fragment>
+    ))}
+  </Indexes>
+);
+
+const renderIndexes = (props = {}, childrenList = list) => render(createIndexes(props, childrenList));
 
 describe('Indexes', () => {
   describe('props', () => {
@@ -67,6 +68,29 @@ describe('Indexes', () => {
       );
       const $indexesSidebar = container.querySelectorAll(`.${name}__sidebar-item`);
       expect($indexesSidebar.length).toBe(26);
+    });
+
+    it(':current', () => {
+      const { container, rerender } = renderIndexes({ current: 3 });
+      const getActiveItem = () => container.querySelector(`.${name}__sidebar-item--active`);
+
+      expect(getActiveItem()).toHaveAttribute('data-index', '3');
+
+      rerender(createIndexes({ current: 7 }));
+      expect(getActiveItem()).toHaveAttribute('data-index', '7');
+    });
+
+    it(':defaultCurrent', async () => {
+      const { container } = renderIndexes({ defaultCurrent: 5 });
+      const $sideBarItems = container.querySelectorAll<HTMLElement>(`.${name}__sidebar-item`);
+
+      expect(container.querySelector(`.${name}__sidebar-item--active`)).toHaveAttribute('data-index', '5');
+
+      await act(async () => {
+        fireEvent.click($sideBarItems[3]);
+      });
+
+      expect(container.querySelector(`.${name}__sidebar-item--active`)).toHaveAttribute('data-index', '7');
     });
 
     it(':sticky', async () => {

@@ -7,14 +7,16 @@ import StatusDemo from './status';
 import ThemeDemo from './theme';
 import CustomDemo from './custom';
 
+import './style/index.less';
+
 export default function () {
   return (
     <div className="tdesign-mobile-demo" style={{ marginBottom: 16 }}>
-      <TDemoHeader title="Upload上传" summary="用于相册读取或拉起拍照的图片上传功能。" />
-      <TDemoBlock title="01 类型" summary="单选上传图片">
+      <TDemoHeader title="Upload 上传" summary="用于相册读取或拉起拍照的图片上传功能。" />
+      <TDemoBlock title="01 组件类型" summary="单选上传">
         <BaseDemo />
       </TDemoBlock>
-      <TDemoBlock summary="多选上传图片">
+      <TDemoBlock summary="多选上传">
         <MultipleDemo />
       </TDemoBlock>
       <TDemoBlock title="02 组件状态" summary="加载状态">

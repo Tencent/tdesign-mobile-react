@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, NoticeBar } from 'tdesign-mobile-react';
 import { CloseIcon } from 'tdesign-icons-react';
-import './style/index.less';
 
 export default function Customization() {
   return (

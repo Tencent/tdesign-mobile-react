@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import type { SideBarProps, SideBarItemProps } from 'tdesign-mobile-react';
 import { SideBar, SideBarItem, Grid, GridItem } from 'tdesign-mobile-react';
 
-import './style/custom.less';
-
 const image = 'https://tdesign.gtimg.com/mobile/demos/example2.png';
 const items = new Array(12).fill({ label: '标题文字', image });
 

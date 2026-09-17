@@ -21,7 +21,7 @@ export default function () {
         title="Loading 加载"
         summary="用于表示页面或操作的加载状态，给予用户反馈的同时减缓等待的焦虑感，由一个或一组反馈动效组成。"
       />
-      <TDemoBlock title="01 类型" summary="纯图标" padding={true}>
+      <TDemoBlock title="01 组件类型" summary="纯图标" padding={true}>
         <div className="loading-demo--flex">
           <BaseLoading />
         </div>
