@@ -178,7 +178,7 @@ const esmConfig = {
 const libConfig = {
   input: inputList.concat('!src/index-lib.ts'),
   external: externalDeps.concat(externalPeerDeps),
-  plugins: [multiInput()].concat(getPlugins({ extractMultiCss: true })),
+  plugins: [multiInput()].concat(getPlugins()),
   output: {
     banner,
     dir: 'lib/',
