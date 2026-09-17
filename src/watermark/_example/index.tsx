@@ -3,10 +3,10 @@ import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import BaseDemo from './base';
 import ImageDemo from './image';
 import GaryDemo from './gray';
-import MultiLineDemo from './multiLine';
-import MultiLineGaryDemo from './multiLineGray';
-import MovingTextDemo from './movingText';
-import MovingImageDemo from './movingImage';
+import MultiLineDemo from './multi-line';
+import MultiLineGaryDemo from './multi-line-gray';
+import MovingTextDemo from './moving-text';
+import MovingImageDemo from './moving-image';
 import LayoutDemo from './layout';
 import './style/index.less';
 
