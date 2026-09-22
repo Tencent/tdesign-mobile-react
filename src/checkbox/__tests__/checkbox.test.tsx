@@ -324,6 +324,39 @@ describe(': CheckboxGroup', () => {
       expect(container.querySelector(`${name}-group`)).toBeTruthy();
     });
 
+    it(': direction', () => {
+      // 默认 vertical，group 与子组件均带 vertical 修饰类
+      const { container, rerender } = render(<CheckboxGroup options={options} />);
+      expect(container.querySelector(`${name}-group--vertical`)).toBeTruthy();
+      expect(container.querySelector(`${name}-group--horizontal`)).toBeFalsy();
+      expect(container.querySelectorAll(`${name}--vertical`)).toHaveLength(options.length);
+      expect(container.querySelectorAll(`${name}--horizontal`)).toHaveLength(0);
+
+      // vertical -> horizontal
+      rerender(<CheckboxGroup direction="horizontal" options={options} />);
+      expect(container.querySelector(`${name}-group--horizontal`)).toBeTruthy();
+      expect(container.querySelector(`${name}-group--vertical`)).toBeFalsy();
+      expect(container.querySelectorAll(`${name}--horizontal`)).toHaveLength(options.length);
+      expect(container.querySelectorAll(`${name}--vertical`)).toHaveLength(0);
+
+      // horizontal -> vertical
+      rerender(<CheckboxGroup direction="vertical" options={options} />);
+      expect(container.querySelector(`${name}-group--vertical`)).toBeTruthy();
+      expect(container.querySelector(`${name}-group--horizontal`)).toBeFalsy();
+      expect(container.querySelectorAll(`${name}--vertical`)).toHaveLength(options.length);
+      expect(container.querySelectorAll(`${name}--horizontal`)).toHaveLength(0);
+
+      // 受控子项（自身传入 checked）也应从 group 继承 direction 修饰类
+      rerender(
+        <CheckboxGroup direction="horizontal">
+          <Checkbox value="A" label="A" checked={true} />
+          <Checkbox value="B" label="B" checked={false} />
+        </CheckboxGroup>,
+      );
+      expect(container.querySelectorAll(`${name}--horizontal`)).toHaveLength(2);
+      expect(container.querySelectorAll(`${name}--vertical`)).toHaveLength(0);
+    });
+
     it(': max', () => {
       const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
       render(<CheckboxGroup max={1} defaultValue={['A', 'B']} options={options} />);
