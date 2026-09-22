@@ -6,7 +6,7 @@ import parseTNode from '../_util/parseTNode';
 import { usePrefixClass } from '../hooks/useClass';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import useDefault from '../_util/useDefault';
-import type { TdRadioProps } from './type';
+import type { TdRadioProps, TdRadioGroupProps } from './type';
 import type { StyledProps } from '../common';
 import RadioGroup from './RadioGroup';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -16,8 +16,10 @@ export interface RadioProps extends TdRadioProps, StyledProps {
   ref?: Ref<HTMLDivElement>;
 }
 
+export type RadioInjectedProps = RadioProps & { direction?: TdRadioGroupProps['direction'] };
+
 export interface RadioContextValue {
-  inject: (props: RadioProps) => RadioProps;
+  inject: (props: RadioProps) => RadioInjectedProps;
 }
 export const RadioContext = createContext<RadioContextValue>(null);
 
@@ -55,7 +57,8 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
     onChange,
     readonly,
     children,
-  } = useDefaultProps<RadioProps>(props, radioDefaultProps);
+    direction,
+  } = useDefaultProps<RadioInjectedProps>(props, radioDefaultProps);
 
   const [radioChecked, setRadioChecked] = useDefault(checked, defaultChecked, onChange);
 
@@ -109,6 +112,7 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
     `${radioClass}--${placement}`,
     {
       [`${radioClass}--block`]: block,
+      [`${radioClass}--${direction}`]: !!direction,
     },
     className,
   );

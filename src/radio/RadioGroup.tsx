@@ -2,9 +2,11 @@ import React, { useRef } from 'react';
 import classNames from 'classnames';
 import { get as lodashGet } from 'lodash-es';
 import { StyledProps } from '../common';
-import useConfig from '../hooks/useConfig';
 import Radio, { RadioContext, RadioContextValue, RadioProps } from './Radio';
 import useDefault from '../_util/useDefault';
+import useDefaultProps from '../hooks/useDefaultProps';
+import { usePrefixClass } from '../hooks/useClass';
+import { radioGroupDefaultProps } from './defaultProps';
 import type { TdRadioGroupProps } from './type';
 
 export interface RadioGroupProps extends TdRadioGroupProps, StyledProps {
@@ -12,7 +14,7 @@ export interface RadioGroupProps extends TdRadioGroupProps, StyledProps {
 }
 
 const RadioGroup: React.FC<RadioGroupProps> = (props) => {
-  const { classPrefix } = useConfig();
+  const radioGroupClass = usePrefixClass('radio-group');
   const {
     disabled,
     icon,
@@ -27,18 +29,20 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
     className,
     style,
     placement,
+    direction,
     keys,
-  } = props;
+  } = useDefaultProps(props, radioGroupDefaultProps);
   const groupRef = useRef(null);
   const [internalValue, setInternalValue] = useDefault(value, defaultValue, onChange);
 
   const context: RadioContextValue = {
     inject: (radioProps: RadioProps) => {
-      if (typeof radioProps.checked !== 'undefined') {
-        return radioProps;
+      const injectProps = { ...radioProps, direction } as RadioProps;
+      if (typeof injectProps.checked !== 'undefined') {
+        return injectProps;
       }
       return {
-        ...radioProps,
+        ...injectProps,
         checked:
           typeof internalValue !== 'undefined' &&
           typeof radioProps.value !== 'undefined' &&
@@ -78,7 +82,11 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
       );
     });
   return (
-    <div ref={groupRef} style={style} className={classNames(`${classPrefix}-radio-group`, className)}>
+    <div
+      ref={groupRef}
+      style={style}
+      className={classNames(radioGroupClass, `${radioGroupClass}--${direction}`, className)}
+    >
       <RadioContext.Provider value={context}>{options?.length ? renderOptions() : children}</RadioContext.Provider>
     </div>
   );

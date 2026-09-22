@@ -103,6 +103,11 @@ export interface TdCheckboxGroupProps<T = CheckboxGroupValue> {
    */
   borderless?: boolean;
   /**
+   * 复选框按钮排列方式
+   * @default vertical
+   */
+  direction?: 'vertical' | 'horizontal';
+  /**
    * 是否禁用组件。优先级：Form.disabled < CheckboxGroup.disabled < Checkbox.disabled
    */
   disabled?: boolean;

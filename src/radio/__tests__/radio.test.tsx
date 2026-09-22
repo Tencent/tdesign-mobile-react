@@ -247,6 +247,41 @@ describe('RadioGroup', () => {
       expect(targetElTitle.textContent.trim()).toBe('radio');
     });
 
+    it('direction', () => {
+      const options = [1, 2];
+
+      // 默认 vertical，group 与子组件均带 vertical 修饰类
+      const { container, rerender } = render(<RadioGroup options={options} />);
+      expect(container.querySelector(`${name}-group--vertical`)).toBeTruthy();
+      expect(container.querySelector(`${name}-group--horizontal`)).toBeFalsy();
+      expect(container.querySelectorAll(`${name}--vertical`)).toHaveLength(2);
+      expect(container.querySelectorAll(`${name}--horizontal`)).toHaveLength(0);
+
+      // vertical -> horizontal
+      rerender(<RadioGroup direction="horizontal" options={options} />);
+      expect(container.querySelector(`${name}-group--horizontal`)).toBeTruthy();
+      expect(container.querySelector(`${name}-group--vertical`)).toBeFalsy();
+      expect(container.querySelectorAll(`${name}--horizontal`)).toHaveLength(2);
+      expect(container.querySelectorAll(`${name}--vertical`)).toHaveLength(0);
+
+      // horizontal -> vertical
+      rerender(<RadioGroup direction="vertical" options={options} />);
+      expect(container.querySelector(`${name}-group--vertical`)).toBeTruthy();
+      expect(container.querySelector(`${name}-group--horizontal`)).toBeFalsy();
+      expect(container.querySelectorAll(`${name}--vertical`)).toHaveLength(2);
+      expect(container.querySelectorAll(`${name}--horizontal`)).toHaveLength(0);
+
+      // 受控子项（自身传入 checked）也应从 group 继承 direction 修饰类
+      rerender(
+        <RadioGroup direction="horizontal">
+          <Radio value="1" label="1" checked={true} />
+          <Radio value="2" label="2" checked={false} />
+        </RadioGroup>,
+      );
+      expect(container.querySelectorAll(`${name}--horizontal`)).toHaveLength(2);
+      expect(container.querySelectorAll(`${name}--vertical`)).toHaveLength(0);
+    });
+
     it('inject', () => {
       const { container } = render(
         <RadioGroup>
