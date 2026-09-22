@@ -20,6 +20,7 @@ export const radioDefaultProps: TdRadioProps = {
 export const radioGroupDefaultProps: TdRadioGroupProps = {
   allowUncheck: false,
   borderless: false,
+  direction: 'vertical',
   disabled: undefined,
   icon: 'circle',
   placement: 'left',
