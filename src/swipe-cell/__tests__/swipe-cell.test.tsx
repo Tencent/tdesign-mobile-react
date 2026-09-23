@@ -801,4 +801,74 @@ describe('SwipeCell', () => {
     expect(true).toBe(true);
     vi.useRealTimers();
   });
+
+  it('calls onDragstart when drag first', () => {
+    const onDragstart = vi.fn();
+    render(<SwipeCell right={rightActions} content={<div>内容</div>} onDragstart={onDragstart} />);
+    const latest = dragStore[dragStore.length - 1];
+    act(() => {
+      latest.handler({
+        first: true,
+        last: false,
+        offset: [0, 0],
+        lastOffset: [0, 0],
+        velocity: [0, 0],
+        direction: [1, 0],
+      });
+    });
+    expect(onDragstart).toHaveBeenCalledTimes(1);
+  });
+
+  it('calls onDragend when drag last', () => {
+    const onDragend = vi.fn();
+    const { container } = render(<SwipeCell right={rightActions} content={<div>内容</div>} onDragend={onDragend} />);
+    const rightEl = container.querySelector('.t-swipe-cell__right') as HTMLElement;
+    Object.defineProperty(rightEl, 'clientWidth', { value: 100, configurable: true });
+    const latest = dragStore[dragStore.length - 1];
+    act(() => {
+      latest.handler({
+        first: false,
+        last: true,
+        offset: [-60, 0],
+        lastOffset: [0, 0],
+        velocity: [0, 0],
+        direction: [-1, 0],
+      });
+    });
+    expect(onDragend).toHaveBeenCalledTimes(1);
+  });
+
+  it('calls both onDragstart and onDragend in sequence', () => {
+    const onDragstart = vi.fn();
+    const onDragend = vi.fn();
+    render(
+      <SwipeCell right={rightActions} content={<div>内容</div>} onDragstart={onDragstart} onDragend={onDragend} />,
+    );
+    const latest = dragStore[dragStore.length - 1];
+    // first
+    act(() => {
+      latest.handler({
+        first: true,
+        last: false,
+        offset: [0, 0],
+        lastOffset: [0, 0],
+        velocity: [0, 0],
+        direction: [1, 0],
+      });
+    });
+    expect(onDragstart).toHaveBeenCalledTimes(1);
+    expect(onDragend).not.toHaveBeenCalled();
+    // last
+    act(() => {
+      latest.handler({
+        first: false,
+        last: true,
+        offset: [0, 0],
+        lastOffset: [0, 0],
+        velocity: [0, 0],
+        direction: [1, 0],
+      });
+    });
+    expect(onDragend).toHaveBeenCalledTimes(1);
+  });
 });
