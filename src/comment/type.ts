@@ -11,7 +11,7 @@ export interface TdCommentProps {
   /**
    * 操作
    */
-  actions?: Array<CommentAction> | TNode;
+  actions?: Array<CommentActionItem> | TNode;
   /**
    * 作者
    */
@@ -62,8 +62,6 @@ export interface CommentActionItem {
   placement?: ActionPlacement;
   disabled?: boolean;
 }
-
-export type CommentAction = TNode | CommentActionItem;
 
 export type CommentFoldState = 'collapsed' | 'partial' | 'expanded';
 
