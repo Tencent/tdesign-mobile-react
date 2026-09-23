@@ -376,6 +376,14 @@ export const docs = [
         componentEn: () => import('tdesign-mobile-react/count-down/count-down.en-US.md'),
       },
       {
+        title: 'Comment 评论',
+        titleEn: 'Comment',
+        name: 'comment',
+        path: '/mobile-react/components/comment',
+        component: () => import('tdesign-mobile-react/comment/comment.md'),
+        componentEn: () => import('tdesign-mobile-react/comment/comment.en-US.md'),
+      },
+      {
         title: 'Empty 空状态',
         titleEn: 'Empty',
         name: 'empty',
