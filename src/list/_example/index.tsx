@@ -4,9 +4,9 @@ import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './style/index.less';
 
-import BaseList from './base.jsx';
-import ErrTipDemo from './err-tip.jsx';
-import PullRefreshDemo from './pull-refresh.jsx';
+import BaseList from './base';
+import ErrTipDemo from './err-tip';
+import PullRefreshDemo from './pull-refresh';
 
 export default function ListDemo() {
   const [currentTab, setCurrentTab] = useState('info');
