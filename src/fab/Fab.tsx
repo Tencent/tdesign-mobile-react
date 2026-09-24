@@ -70,14 +70,17 @@ const Fab: React.FC<FabProps> = (originProps) => {
   const getSwitchButtonSafeAreaXY = (x: number, y: number) => {
     const bottomThreshold = reconvertUnit(props.yBounds?.[1] ?? 0);
     const topThreshold = reconvertUnit(props.yBounds?.[0] ?? 0);
+    const leftBound = reconvertUnit(props.xBounds?.[0] ?? 0);
+    const rightBound = reconvertUnit(props.xBounds?.[1] ?? 0);
 
     const docWidth = Math.min(window.innerWidth, document.documentElement.clientWidth, screen.width);
     const docHeight = Math.min(window.innerHeight, document.documentElement.clientHeight, screen.height);
 
     const maxY = docHeight - fabButtonSize.height - topThreshold;
-    const maxX = docWidth - fabButtonSize.width;
+    const minX = rightBound;
+    const maxX = docWidth - fabButtonSize.width - leftBound;
 
-    const resultX = Math.max(0, Math.min(maxX, x));
+    const resultX = Math.max(minX, Math.min(maxX, x));
     const resultY = Math.max(bottomThreshold, Math.min(maxY, y));
 
     return [resultX, resultY];
@@ -148,6 +151,29 @@ const Fab: React.FC<FabProps> = (originProps) => {
     });
   };
 
+  const handleMagnet = () => {
+    const docWidth = Math.min(window.innerWidth, document.documentElement.clientWidth, screen.width);
+    const currentRight = switchPosRef.current.x;
+    const currentLeft = docWidth - fabButtonSize.width - currentRight;
+    const leftBound = reconvertUnit(props.xBounds?.[0] ?? 0);
+    const rightBound = reconvertUnit(props.xBounds?.[1] ?? 0);
+
+    if (props.magnet === 'left') {
+      // 固定吸附到左边（right = docWidth - width - leftBound）
+      setSwitchPosition(docWidth - fabButtonSize.width - leftBound, switchPosRef.current.y);
+    } else if (props.magnet === 'right') {
+      // 固定吸附到右边（right = rightBound）
+      setSwitchPosition(rightBound, switchPosRef.current.y);
+    } else if (props.magnet === true) {
+      // 自动判断吸附到左右两侧
+      if (currentLeft < currentRight) {
+        setSwitchPosition(docWidth - fabButtonSize.width - leftBound, switchPosRef.current.y);
+      } else {
+        setSwitchPosition(rightBound, switchPosRef.current.y);
+      }
+    }
+  };
+
   const onTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
     if (!switchPosRef.current.hasMoved) {
       return;
@@ -160,6 +186,11 @@ const Fab: React.FC<FabProps> = (originProps) => {
       hasMoved: false,
     };
     setSwitchPosition(switchPosRef.current.endX, switchPosRef.current.endY);
+
+    // 自动吸附
+    if (props.magnet) {
+      handleMagnet();
+    }
   };
   const defaultContent = (
     <Button
@@ -174,6 +205,10 @@ const Fab: React.FC<FabProps> = (originProps) => {
     </Button>
   );
 
+  const fabClassName = [fabClass, !switchPosRef.current.hasMoved && props.magnet ? `${fabClass}--animation` : '']
+    .filter(Boolean)
+    .join(' ');
+
   const fabStyle = props.draggable
     ? {
         right: `${btnSwitchPos.x}px`,
@@ -187,7 +222,7 @@ const Fab: React.FC<FabProps> = (originProps) => {
   return (
     <div
       ref={fabRef}
-      className={fabClass}
+      className={fabClassName}
       style={fabStyle}
       onClick={onClickHandle}
       onTouchStart={onTouchStart}
