@@ -1,11 +1,12 @@
 import { useDeepCompareEffect } from 'ahooks';
 import classNames from 'classnames';
 import last from 'lodash-es/last';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { CloseIcon, ChevronRightIcon } from 'tdesign-icons-react';
 import useDefault from '../_util/useDefault';
 import { Popup } from '../popup';
 import { RadioGroup } from '../radio';
+import { Search } from '../search';
 import Tabs from '../tabs';
 import { StyledProps, TreeOptionData } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
@@ -13,9 +14,97 @@ import useConfig from '../hooks/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
 import parseTNode from '../_util/parseTNode';
 import { cascaderDefaultProps } from './defaultProps';
-import { CascaderTriggerSource, TdCascaderProps } from './type';
+import { CascaderFilterFunction, CascaderTriggerSource, TdCascaderProps } from './type';
+
+type OptionsType = TreeOptionData[];
+
+type FlatPath = {
+  key: string;
+  path: TreeOptionData[];
+  indexes: number[];
+  labels: string[];
+  text: string;
+  disabled: boolean;
+};
+
+type ResultFragment = { id: number; text: string; highlight: boolean };
+
+type FilterResult = {
+  key: string;
+  indexes: number[];
+  disabled: boolean;
+  fragments: ResultFragment[];
+};
 
 export interface CascaderProps extends TdCascaderProps, StyledProps {}
+
+function flattenPaths(
+  options: OptionsType,
+  keys: { label: string; value: string; children: string; disabled: string },
+): FlatPath[] {
+  const result: FlatPath[] = [];
+
+  const walk = (list: TreeOptionData[], path: TreeOptionData[], indexes: number[]) => {
+    list.forEach((item, idx) => {
+      const nextPath = [...path, item];
+      const nextIndexes = [...indexes, idx];
+      const children = item[keys.children];
+      if (Array.isArray(children) && children.length > 0) {
+        walk(children as TreeOptionData[], nextPath, nextIndexes);
+      } else {
+        const labels = nextPath.map((node) => String(node[keys.label] ?? ''));
+        const text = [labels.join(''), String(item?.text ?? '')].filter(Boolean).join('');
+        result.push({
+          key: nextPath.map((node) => String(node[keys.value] ?? '')).join('/'),
+          path: nextPath,
+          indexes: nextIndexes,
+          labels,
+          text,
+          disabled: nextPath.some((node) => node[keys.disabled]),
+        });
+      }
+    });
+  };
+
+  walk(options || [], [], []);
+  return result;
+}
+
+function buildFragments(labels: string[], keyword: string): ResultFragment[] {
+  const joined = labels.join(' / ');
+  const push = (acc: ResultFragment[], text: string, highlight: boolean) => {
+    if (!text) return;
+    acc.push({ id: acc.length, text, highlight });
+  };
+
+  if (!keyword) return [{ id: 0, text: joined, highlight: false }];
+
+  const fragments: ResultFragment[] = [];
+  const haystack = joined.toLowerCase();
+  const needle = keyword.toLowerCase();
+  let cursor = 0;
+  while (cursor < joined.length) {
+    const hit = haystack.indexOf(needle, cursor);
+    if (hit === -1) {
+      push(fragments, joined.slice(cursor), false);
+      break;
+    }
+    push(fragments, joined.slice(cursor, hit), false);
+    push(fragments, joined.slice(hit, hit + needle.length), true);
+    cursor = hit + needle.length;
+  }
+  return fragments.length ? fragments : [{ id: 0, text: joined, highlight: false }];
+}
+
+function defaultFilter(keyword: string, _option: TreeOptionData, path: TreeOptionData[], labelKey: string): boolean {
+  const lower = keyword.toLowerCase();
+  const joined = path
+    .map((node) => String(node?.[labelKey] ?? ''))
+    .join('')
+    .toLowerCase();
+  const text = String(path[path.length - 1]?.text ?? '').toLowerCase();
+  return joined.includes(lower) || (!!text && text.includes(lower));
+}
 
 const Cascader: React.FC<CascaderProps> = (props) => {
   const cascaderClass = usePrefixClass('cascader');
@@ -39,17 +128,28 @@ const Cascader: React.FC<CascaderProps> = (props) => {
     checkStrictly,
     closeBtn,
     load,
+    filter,
+    filterPlaceholder,
+    filterable,
     onChange,
     onClose,
     onPick,
   } = useDefaultProps<CascaderProps>(props, cascaderDefaultProps);
 
   const placeholderText = placeholder ?? globalConfig?.cascader?.placeholder;
+  const filterPlaceholderText = filterPlaceholder ?? globalConfig?.cascader?.filterPlaceholder;
 
   const [internalValue, setInternalValue] = useDefault(value, defaultValue, onChange);
   const [internalVisible, setInternalVisible] = useDefault(visible, false, () => ({}));
   const [internalSelectedValues, setInternalSelectedValues] = useState<CascaderProps['value'][]>([]);
   const [stepIndex, setStepIndex] = useState(0);
+
+  // 搜索相关状态
+  const [filterKeyword, setFilterKeyword] = useState('');
+  const [filterResults, setFilterResults] = useState<FilterResult[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const filterDebouncedRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const flatPathsRef = useRef<FlatPath[]>([]);
 
   const normalizedKeys = useMemo(
     () => ({
@@ -157,6 +257,132 @@ const Cascader: React.FC<CascaderProps> = (props) => {
     [onClose, normalizedKeys, optionsList, setInternalValue, setInternalVisible],
   );
 
+  // 搜索相关函数
+  const ensureFlatPaths = useCallback(() => {
+    if (flatPathsRef.current.length === 0) {
+      flatPathsRef.current = flattenPaths(inputOptions, normalizedKeys);
+    }
+    return flatPathsRef.current;
+  }, [inputOptions, normalizedKeys]);
+
+  const resetFilter = useCallback(() => {
+    setFilterKeyword('');
+    setFilterResults([]);
+    setIsSearching(false);
+  }, []);
+
+  const applyFilter = useCallback(
+    (rawKeyword: string) => {
+      const keyword = String(rawKeyword ?? '').trim();
+      if (!keyword) {
+        resetFilter();
+        return;
+      }
+
+      const userFilter = filter as CascaderFilterFunction | null;
+      const flat = ensureFlatPaths();
+      const results: FilterResult[] = [];
+
+      flat.forEach((entry: FlatPath) => {
+        const leaf = entry.path[entry.path.length - 1];
+        const matched =
+          typeof userFilter === 'function'
+            ? !!userFilter(keyword, leaf, entry.path)
+            : defaultFilter(keyword, leaf, entry.path, normalizedKeys.label);
+        if (matched) {
+          results.push({
+            key: entry.key,
+            indexes: entry.indexes,
+            disabled: entry.disabled,
+            fragments: buildFragments(entry.labels, keyword),
+          });
+        }
+      });
+
+      setFilterKeyword(rawKeyword);
+      setFilterResults(results);
+      setIsSearching(true);
+    },
+    [filter, normalizedKeys, ensureFlatPaths, resetFilter],
+  );
+
+  const handleFilterChange = useCallback(
+    (value: string) => {
+      if (filterDebouncedRef.current) {
+        clearTimeout(filterDebouncedRef.current);
+      }
+      filterDebouncedRef.current = setTimeout(() => {
+        applyFilter(value);
+      }, 200);
+    },
+    [applyFilter],
+  );
+
+  const handleFilterClear = useCallback(() => {
+    if (filterDebouncedRef.current) {
+      clearTimeout(filterDebouncedRef.current);
+    }
+    resetFilter();
+  }, [resetFilter]);
+
+  const handleFilterResultTap = useCallback(
+    (result: FilterResult) => {
+      if (result.disabled) return;
+
+      const { indexes } = result;
+      const selectedValues: CascaderProps['value'][] = [];
+      const selectedOptions: { [key: string]: any }[] = [];
+      const labelKey = normalizedKeys.label;
+      const valueKey = normalizedKeys.value;
+      const childrenKey = normalizedKeys.children;
+
+      let current: TreeOptionData[] = inputOptions;
+      for (let i = 0; i < indexes.length; i++) {
+        const index = indexes[i];
+        const next = current[index];
+        selectedValues.push(next[valueKey]);
+        selectedOptions.push({
+          [labelKey]: next[labelKey],
+          [valueKey]: next[valueKey],
+        });
+        const children = next[childrenKey];
+        if (Array.isArray(children) && children.length > 0) {
+          current = children as TreeOptionData[];
+        }
+      }
+
+      resetFilter();
+      setInternalValue(last(selectedValues), selectedOptions as any);
+      setInternalVisible(false);
+      onClose?.('finish');
+    },
+    [normalizedKeys, inputOptions, setInternalValue, setInternalVisible, onClose, resetFilter],
+  );
+
+  // 清理防抖定时器
+  useEffect(
+    () => () => {
+      if (filterDebouncedRef.current) {
+        clearTimeout(filterDebouncedRef.current);
+      }
+    },
+    [],
+  );
+
+  // visible 变化时重置搜索状态
+  useEffect(() => {
+    if (!internalVisible) {
+      resetFilter();
+    }
+  }, [internalVisible, resetFilter]);
+
+  // filterable 关闭时重置搜索状态
+  useEffect(() => {
+    if (!filterable && isSearching) {
+      resetFilter();
+    }
+  }, [filterable, isSearching, resetFilter]);
+
   return (
     <Popup
       visible={internalVisible}
@@ -184,109 +410,155 @@ const Cascader: React.FC<CascaderProps> = (props) => {
         </div>
         {parseTNode(header)}
         <div className={`${cascaderClass}__content`}>
-          {labelList.length > 0 && (
-            <div>
-              {theme === 'step' ? (
-                <div className={`${cascaderClass}__steps`}>
-                  {labelList.map((labelItem, index) => (
-                    <div key={index} className={`${cascaderClass}__step`} onClick={() => setStepIndex(index)}>
-                      <div
-                        className={classNames(`${cascaderClass}__step-dot`, {
-                          [`${cascaderClass}__step-dot--active`]: !labelItem.isPlaceholder,
-                          [`${cascaderClass}__step-dot--last`]: index === labelList.length - 1,
-                        })}
+          {/* 搜索框 */}
+          {filterable && (
+            <div className={`${cascaderClass}__filter`}>
+              <Search
+                value={filterKeyword}
+                placeholder={filterPlaceholderText}
+                clearable
+                onChange={handleFilterChange}
+                onClear={handleFilterClear}
+              />
+            </div>
+          )}
+
+          {!isSearching ? (
+            <>
+              {labelList.length > 0 && (
+                <div>
+                  {theme === 'step' ? (
+                    <div className={`${cascaderClass}__steps`}>
+                      {labelList.map((labelItem, index) => (
+                        <div key={index} className={`${cascaderClass}__step`} onClick={() => setStepIndex(index)}>
+                          <div
+                            className={classNames(`${cascaderClass}__step-dot`, {
+                              [`${cascaderClass}__step-dot--active`]: !labelItem.isPlaceholder,
+                              [`${cascaderClass}__step-dot--last`]: index === labelList.length - 1,
+                            })}
+                          />
+                          <div
+                            className={classNames(`${cascaderClass}__step-label`, {
+                              [`${cascaderClass}__step-label--active`]: index === stepIndex,
+                            })}
+                          >
+                            {parseTNode(labelItem.label)}
+                          </div>
+                          <ChevronRightIcon size={22} className={`${cascaderClass}__step-arrow`} />
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
+                  {theme === 'tab' && internalVisible ? (
+                    <Tabs
+                      list={labelList.map((item, index) => ({
+                        label: item.label,
+                        value: index,
+                      }))}
+                      spaceEvenly={false}
+                      value={stepIndex}
+                      onChange={(nextValue: number) => {
+                        setStepIndex(nextValue);
+                      }}
+                    />
+                  ) : null}
+                </div>
+              )}
+              {parseTNode(middleContent)}
+              {subTitles[stepIndex] ? (
+                <div className={`${cascaderClass}__options-title`}>{subTitles[stepIndex]}</div>
+              ) : null}
+              <div
+                className={`${cascaderClass}__options-container`}
+                style={{
+                  width: `${optionsList.length}00vw`,
+                  transform: `translateX(-${stepIndex}00vw)`,
+                }}
+              >
+                {optionsList.map((currentOptions, index) => (
+                  <div className={`${cascaderClass}__options`} key={index}>
+                    <div className={`${cascaderClass}-radio-group-${index}`}>
+                      <RadioGroup
+                        placement="right"
+                        icon="line"
+                        borderless
+                        value={internalSelectedValues[index]}
+                        options={currentOptions}
+                        onChange={(nextValue: string | number) => {
+                          const targetIndex = currentOptions.findIndex((item) => item.value === nextValue);
+                          const target = currentOptions[targetIndex];
+                          const selectedValues = [...internalSelectedValues.slice(0, index), nextValue];
+
+                          setInternalSelectedValues(selectedValues);
+                          onPick?.({
+                            value: nextValue,
+                            label: String(target?.label || ''),
+                            index: targetIndex,
+                            level: index,
+                          });
+
+                          if (target?.children === true && load) {
+                            load({ data: target.data, value: target.value, label: target.label })
+                              .then((loadedChildren) => {
+                                setOptionsList((prev) => [
+                                  ...prev.slice(0, index + 1),
+                                  normalizeOptionsByKeys(loadedChildren),
+                                ]);
+                                setStepIndex(index + 1);
+                              })
+                              .catch((error) => {
+                                console.error('Load children failed:', error);
+                              });
+                            return;
+                          }
+
+                          if (target && Array.isArray(target.children) && target.children.length > 0) {
+                            const children = target.children as TreeOptionData[];
+                            setOptionsList((prev) => [...prev.slice(0, index + 1), children]);
+                            setStepIndex(index + 1);
+                            return;
+                          }
+
+                          setOptionsList((prev) => prev.slice(0, index + 1));
+                          setStepIndex(index);
+                          onFinish(selectedValues);
+                        }}
                       />
-                      <div
-                        className={classNames(`${cascaderClass}__step-label`, {
-                          [`${cascaderClass}__step-label--active`]: index === stepIndex,
-                        })}
-                      >
-                        {parseTNode(labelItem.label)}
-                      </div>
-                      <ChevronRightIcon size={22} className={`${cascaderClass}__step-arrow`} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              {filterResults.length > 0 ? (
+                <div className={`${cascaderClass}__filter-result`}>
+                  {filterResults.map((result) => (
+                    <div
+                      key={result.key}
+                      className={classNames(`${cascaderClass}__filter-result-item`, {
+                        [`${cascaderClass}__filter-result-item--disabled`]: result.disabled,
+                      })}
+                      onClick={() => handleFilterResultTap(result)}
+                    >
+                      {result.fragments.map((frag) => (
+                        <span
+                          key={frag.id}
+                          className={classNames({
+                            [`${cascaderClass}__filter-highlight`]: frag.highlight,
+                          })}
+                        >
+                          {frag.text}
+                        </span>
+                      ))}
                     </div>
                   ))}
                 </div>
-              ) : null}
-              {theme === 'tab' && internalVisible ? (
-                <Tabs
-                  list={labelList.map((item, index) => ({
-                    label: item.label,
-                    value: index,
-                  }))}
-                  spaceEvenly={false}
-                  value={stepIndex}
-                  onChange={(nextValue: number) => {
-                    setStepIndex(nextValue);
-                  }}
-                />
-              ) : null}
-            </div>
+              ) : (
+                <div className={`${cascaderClass}__filter-empty`}>{globalConfig.cascader.empty}</div>
+              )}
+            </>
           )}
-          {parseTNode(middleContent)}
-          {subTitles[stepIndex] ? (
-            <div className={`${cascaderClass}__options-title`}>{subTitles[stepIndex]}</div>
-          ) : null}
-          <div
-            className={`${cascaderClass}__options-container`}
-            style={{
-              width: `${optionsList.length}00vw`,
-              transform: `translateX(-${stepIndex}00vw)`,
-            }}
-          >
-            {optionsList.map((currentOptions, index) => (
-              <div className={`${cascaderClass}__options`} key={index}>
-                <div className={`${cascaderClass}-radio-group-${index}`}>
-                  <RadioGroup
-                    placement="right"
-                    icon="line"
-                    borderless
-                    value={internalSelectedValues[index]}
-                    options={currentOptions}
-                    onChange={(nextValue: string | number) => {
-                      const targetIndex = currentOptions.findIndex((item) => item.value === nextValue);
-                      const target = currentOptions[targetIndex];
-                      const selectedValues = [...internalSelectedValues.slice(0, index), nextValue];
-
-                      setInternalSelectedValues(selectedValues);
-                      onPick?.({
-                        value: nextValue,
-                        label: String(target?.label || ''),
-                        index: targetIndex,
-                        level: index,
-                      });
-
-                      if (target?.children === true && load) {
-                        load({ data: target.data, value: target.value, label: target.label })
-                          .then((loadedChildren) => {
-                            setOptionsList((prev) => [
-                              ...prev.slice(0, index + 1),
-                              normalizeOptionsByKeys(loadedChildren),
-                            ]);
-                            setStepIndex(index + 1);
-                          })
-                          .catch((error) => {
-                            console.error('Load children failed:', error);
-                          });
-                        return;
-                      }
-
-                      if (target && Array.isArray(target.children) && target.children.length > 0) {
-                        const children = target.children as TreeOptionData[];
-                        setOptionsList((prev) => [...prev.slice(0, index + 1), children]);
-                        setStepIndex(index + 1);
-                        return;
-                      }
-
-                      setOptionsList((prev) => prev.slice(0, index + 1));
-                      setStepIndex(index);
-                      onFinish(selectedValues);
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </Popup>
