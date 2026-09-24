@@ -50,6 +50,8 @@ weekdays | Array | - | 星期文本描述，默认值：['日', '一', '二', '�
 
 名称 | 类型 | 默认值 | 描述 | 必传
 -- | -- | -- | -- | --
+empty | String | - | 语言配置，“暂无数据”描述文本 | N
+filterPlaceholder | String | - | 语言配置，“搜索框”占位描述文本 | N
 placeholder | String | - | 语言配置，未选中时的提示文案“选择选项”描述文本 | N
 title | String | - | 语言配置，组件标题“选择地址”描述文本 | N
 

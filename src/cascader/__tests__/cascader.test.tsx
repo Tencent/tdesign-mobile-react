@@ -409,6 +409,134 @@ describe('Cascader', () => {
 
       expect(onClose).toHaveBeenCalledWith('finish');
     });
+
+    it(': filterable', async () => {
+      const filterableOptions = [
+        {
+          label: '北京市',
+          value: '110000',
+          children: [
+            {
+              label: '北京市',
+              value: '110100',
+              children: [
+                { label: '海淀区', value: '110108' },
+                { label: '朝阳区', value: '110105' },
+              ],
+            },
+          ],
+        },
+        {
+          label: '上海市',
+          value: '310000',
+          children: [{ label: '上海市', value: '310100', children: [{ label: '浦东新区', value: '310115' }] }],
+        },
+        {
+          label: '广东省',
+          value: '440000',
+          children: [{ label: '珠海市', value: '440400' }],
+        },
+      ];
+
+      const renderCascader = (overrides = {}) => {
+        const props: CascaderProps = {
+          visible: true,
+          filterable: true,
+          options: filterableOptions,
+          ...overrides,
+        };
+        return render(<Cascader {...props} />);
+      };
+
+      const typeInSearch = (value: string) => {
+        const searchInput = document.querySelector('.t-search input') as HTMLInputElement;
+        fireEvent.input(searchInput, { target: { value } });
+      };
+
+      // renders search input
+      renderCascader();
+      expect(document.querySelector('.t-search')).toBeTruthy();
+
+      // default filter matches full-path label
+      typeInSearch('海');
+      await act(async () => {
+        vi.advanceTimersByTime(300);
+      });
+      const results = document.querySelectorAll(`${name}__filter-result-item`);
+      expect(results.length).toBeGreaterThan(0);
+
+      // shows empty state when no match
+      typeInSearch('xxxxx');
+      await act(async () => {
+        vi.advanceTimersByTime(300);
+      });
+      expect(document.querySelector(`${name}__filter-empty`)).toBeTruthy();
+    });
+
+    it(': filterable - custom filter function', async () => {
+      const filterableOptions = [
+        {
+          label: '北京市',
+          value: '110000',
+          children: [
+            {
+              label: '北京市',
+              value: '110100',
+              children: [{ label: '海淀区', value: '110108' }],
+            },
+          ],
+        },
+        {
+          label: '上海市',
+          value: '310000',
+          children: [{ label: '上海市', value: '310100', children: [{ label: '浦东新区', value: '310115' }] }],
+        },
+      ];
+
+      const customFilter = vi.fn((keyword: string, option: any) => option.label === keyword);
+      render(<Cascader visible filterable options={filterableOptions} filter={customFilter} />);
+
+      const searchInput = document.querySelector('.t-search input') as HTMLInputElement;
+      fireEvent.input(searchInput, { target: { value: '浦东新区' } });
+      await act(async () => {
+        vi.advanceTimersByTime(300);
+      });
+
+      expect(customFilter).toHaveBeenCalled();
+    });
+
+    it(': filterable - selecting result closes cascader', async () => {
+      const filterableOptions = [
+        {
+          label: '北京市',
+          value: '110000',
+          children: [
+            {
+              label: '北京市',
+              value: '110100',
+              children: [{ label: '海淀区', value: '110108' }],
+            },
+          ],
+        },
+      ];
+
+      const onChange = vi.fn();
+      const onClose = vi.fn();
+      render(<Cascader visible filterable options={filterableOptions} onChange={onChange} onClose={onClose} />);
+
+      const searchInput = document.querySelector('.t-search input') as HTMLInputElement;
+      fireEvent.input(searchInput, { target: { value: '海淀' } });
+      await act(async () => {
+        vi.advanceTimersByTime(300);
+      });
+
+      const resultItem = document.querySelector(`${name}__filter-result-item`);
+      expect(resultItem).toBeTruthy();
+
+      fireEvent.click(resultItem);
+      expect(onChange).toHaveBeenCalled();
+      expect(onClose).toHaveBeenCalledWith('finish');
+    });
   });
 
   it(': lazy demo unlocks after loading and allows selection', async () => {
