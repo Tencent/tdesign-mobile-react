@@ -115,11 +115,6 @@ const Comment: React.FC<TdCommentProps> = (props) => {
     );
   };
 
-  const renderReply = () => {
-    const replyContent = reply || children;
-    return <div className={`${rootClassName}__reply`}>{parseTNode(replyContent)}</div>;
-  };
-
   const renderFolds = () => {
     const renderFoldsContent = () => {
       if (curFoldsState === 'collapsed') {
@@ -172,6 +167,21 @@ const Comment: React.FC<TdCommentProps> = (props) => {
     return <div className={`${rootClassName}__folds`}>{renderFoldsContent()}</div>;
   };
 
+  const renderReply = () => {
+    const replyContent = reply || children;
+    return (
+      <div className={`${rootClassName}__reply`}>
+        <div
+          className={`${rootClassName}__reply-body`}
+          style={{ gridTemplateRows: curFoldsState === 'collapsed' ? '0fr' : '1fr' }}
+        >
+          <div className={`${rootClassName}__reply-inner`}>{parseTNode(replyContent)}</div>
+        </div>
+        {renderFolds()}
+      </div>
+    );
+  };
+
   return (
     <div className={`${rootClassName}`}>
       <div className={`${rootClassName}__inner`}>
@@ -183,7 +193,6 @@ const Comment: React.FC<TdCommentProps> = (props) => {
         </div>
       </div>
       {renderReply()}
-      {renderFolds()}
     </div>
   );
 };
