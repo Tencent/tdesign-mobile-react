@@ -13,7 +13,7 @@ children | TNode | - | Typescript: `string \| TNode`。[see more ts definition](
 duration | Number | 300 | \- | N
 preventScrollThrough | Boolean | true | \- | N
 visible | Boolean | false | \- | N
-zIndex | Number | 1000 | \- | N
+zIndex | Number | - | \- | N
 onClick | Function |  | Typescript: `(context: { e: MouseEvent }) => void`<br/> | N
 onClose | Function |  | Typescript: `() => void`<br/> | N
 onClosed | Function |  | Typescript: `() => void`<br/> | N
