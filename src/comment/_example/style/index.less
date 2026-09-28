@@ -1,5 +1,8 @@
 .tdesign-mobile-demo {
   --bg-color-demo: var(--td-bg-color-container);
+  // 禁用按钮点击态样式
+  --td-button-default-text-active-bg-color: transparent;
+  --td-button-default-active-border-color: transparent;
 }
 
 .mobile-comment {
@@ -38,6 +41,10 @@
     }
   }
 
+  &__text {
+    margin-bottom: 4px;
+  }
+
   &__images {
     display: flex;
     gap: 8px;
@@ -63,6 +70,30 @@
       line-height: 18px;
       border-radius: 12px;
       white-space: nowrap;
+    }
+  }
+
+  &__input {
+    display: flex;
+    padding: 12px;
+    gap: 8px;
+    border-radius: 16px;
+    border: 1px solid #DCDCDC;
+    background: #FFFFFF;
+    /* Shadow/Shadow-3 上层投影 */
+    box-shadow: 0 6px 30px 5px rgba(0, 0, 0, 0.05), 0 16px 24px 2px rgba(0, 0, 0, 0.04), 0 8px 10px -5px rgba(0, 0, 0, 0.08);
+    margin-top: 48px;
+
+    &-content {
+      border: none;
+      flex: 1;
+      background: transparent;
+    }
+
+    &-button {
+      --td-button-primary-disabled-bg: #DCDCDC;
+      --td-button-primary-disabled-border-color: transparent;
+      transform: rotate(-90deg);
     }
   }
 }

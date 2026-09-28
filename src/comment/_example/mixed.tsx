@@ -2,11 +2,25 @@ import React, { useState } from 'react';
 import { Button, Comment, Image, ImageViewer, Tag } from 'tdesign-mobile-react';
 import { ThumbUpIcon, Uncomfortable1Icon } from 'tdesign-icons-react';
 
-const images = ['https://tdesign.gtimg.com/mobile/demos/swiper1.png'];
+const images = [
+  'https://tdesign.gtimg.com/mobile/demos/swiper1.png',
+  'https://tdesign.gtimg.com/mobile/demos/swiper1.png',
+  'https://tdesign.gtimg.com/mobile/demos/swiper1.png',
+  'https://tdesign.gtimg.com/mobile/demos/swiper1.png',
+  'https://tdesign.gtimg.com/mobile/demos/swiper1.png',
+  'https://tdesign.gtimg.com/mobile/demos/swiper1.png',
+  'https://tdesign.gtimg.com/mobile/demos/swiper1.png',
+  'https://tdesign.gtimg.com/mobile/demos/swiper1.png',
+  'https://tdesign.gtimg.com/mobile/demos/swiper1.png',
+];
+
+const MAX_SHOW = 3;
 
 export default function ImageDemo() {
   const [visible, setVisible] = useState(false);
   const [viewerIndex, setViewerIndex] = useState(0);
+
+  const showImages = images.slice(0, MAX_SHOW);
 
   const handleImageClick = (index: number) => {
     setViewerIndex(index);
@@ -30,13 +44,19 @@ export default function ImageDemo() {
           </div>
         }
         content={
-          <div className="mobile-comment__images">
-            {images.map((src, index) => (
-              <div key={index} className="mobile-comment__images-item" onClick={() => handleImageClick(index)}>
-                <Image src={src} fit="cover" shape="round" style={{ width: 78, height: 78 }} />
-              </div>
-            ))}
-          </div>
+          <>
+            <div className="mobile-comment__text">这是一段很长很长很长很长很长很长的评论内容。</div>
+            <div className="mobile-comment__images">
+              {showImages.map((src, index) => (
+                <div key={index} className="mobile-comment__images-item" onClick={() => handleImageClick(index)}>
+                  <Image src={src} fit="cover" shape="round" style={{ width: 78, height: 78 }} />
+                  {index === MAX_SHOW - 1 && images.length > MAX_SHOW && (
+                    <div className="mobile-comment__images-badge">共{images.length}张</div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </>
         }
         actions={[
           { placement: 'start', content: <div className="mobile-comment__reply-button">回复</div>, key: 'reply' },

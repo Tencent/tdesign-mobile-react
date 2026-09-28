@@ -3,9 +3,9 @@ import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import Base from './base';
 import Image from './image';
-import Reply from './reply';
+import Mixed from './mixed';
+import Collapse from './collapse';
 import './style/index.less';
-import LongPress from './long-press';
 
 export default function CommentDemo() {
   return (
@@ -20,11 +20,11 @@ export default function CommentDemo() {
       <TDemoBlock summary="图片评论">
         <Image />
       </TDemoBlock>
-      <TDemoBlock summary="回复评论">
-        <Reply />
+      <TDemoBlock summary="文字+图片评论">
+        <Mixed />
       </TDemoBlock>
-      <TDemoBlock title="02 组件状态" summary="评论操作：长按">
-        <LongPress />
+      <TDemoBlock title="02 组件样式" summary="展开+收起">
+        <Collapse />
       </TDemoBlock>
     </div>
   );
