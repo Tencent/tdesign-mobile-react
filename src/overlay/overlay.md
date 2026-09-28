@@ -26,4 +26,4 @@ onOpened | Function |  | TS 类型：`() => void`<br/>遮罩弹出动画效果�
 名称 | 默认值 | 描述
 -- | -- | --
 --td-overlay-bg-color | @mask-active | -
---td-overlay-zindex | 1000 | -
+--td-overlay-zindex | @z-index-overlay | -
