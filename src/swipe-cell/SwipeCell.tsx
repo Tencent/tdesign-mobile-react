@@ -6,7 +6,7 @@ import { useDrag } from '@use-gesture/react';
 import parseTNode from '../_util/parseTNode';
 import nearest from '../_util/nearest';
 import withNativeProps from '../_util/withNativeProps';
-import { TdSwipeCellProps, SwipeActionItem, Sure, SwipeCellInstanceFunctions } from './type';
+import { TdSwipeCellProps, SwipeActionItem, SwipeCellInstanceFunctions, SwipeSource } from './type';
 import { swipeCellDefaultProps } from './defaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -15,11 +15,10 @@ import { Styles, StyledProps, TNode } from '../common';
 
 import './style';
 
-type SideType = 'left' | 'right';
 export interface SwipeCellRef extends SwipeCellInstanceFunctions {
-  expand: (side?: SideType, immediate?: boolean) => void;
+  expand: (side?: SwipeSource, immediate?: boolean) => void;
   close: (immediate?: boolean) => void;
-  showSure: (sure: Sure, onClick?: SwipeActionItem['onClick']) => void;
+  showSure: (sure: string | TNode, onClick?: SwipeActionItem['onClick']) => void;
 }
 
 export interface SwipeCellProps extends TdSwipeCellProps, StyledProps {}
@@ -29,8 +28,8 @@ const threshold = '50%';
 export const syncOpenedState = (
   rootRef: React.RefObject<HTMLDivElement>,
   opened: SwipeCellProps['opened'],
-  getOpenedSide: (opened: SwipeCellProps['opened']) => SideType | undefined,
-  expand: (side: SideType) => void,
+  getOpenedSide: (opened: SwipeCellProps['opened']) => SwipeSource | undefined,
+  expand: (side: SwipeSource) => void,
   close: () => void,
   setTimer: (callback: () => void, delay: number) => void,
 ) => {
@@ -59,10 +58,10 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const sureClearTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [curSure, setSure] = useState<{
-    content: Sure;
+    content: string | TNode;
     width: number;
     transform: string;
-    side?: SideType;
+    side?: SwipeSource;
   }>({ content: '', width: 0, transform: 'none' });
   const sureClickHandlerRef = useRef<SwipeActionItem['onClick']>(undefined);
 
@@ -123,14 +122,14 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const ctx = useMemo(() => ({ dragging: false, lastExpanded: '', initialExpanded: isOpened }), []);
   const swipeCellClass = usePrefixClass('swipe-cell');
-  const onChange = (side?: SideType) => {
+  const onChange = (side?: SwipeSource) => {
     if (side !== ctx.lastExpanded) {
       props.onChange?.(side);
     }
     ctx.lastExpanded = side;
   };
 
-  const getSideOffsetX = (side?: SideType) => {
+  const getSideOffsetX = (side?: SwipeSource) => {
     if (side === 'left' && leftRef.current) {
       return leftRef.current.clientWidth;
     }
@@ -160,13 +159,13 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     }
   };
 
-  const expand = (side: SideType = 'right') => {
+  const expand = (side: SwipeSource = 'right') => {
     const x = getSideOffsetX(side);
     setX(x);
     onChange(side);
   };
 
-  const openSure = (side: SideType, sure: Sure, onClick?: SwipeActionItem['onClick']) => {
+  const openSure = (side: SwipeSource, sure: string | TNode, onClick?: SwipeActionItem['onClick']) => {
     clearSureTimer();
     sureClickHandlerRef.current = onClick;
     setSure({
@@ -261,7 +260,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     ['touchstart'],
   );
 
-  const onActionClick = (action: SwipeActionItem, side: SideType) => {
+  const onActionClick = (action: SwipeActionItem, side: SwipeSource) => {
     if (action.sure) {
       openSure(side, action.sure, () => {
         close();
@@ -278,7 +277,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     if (props.onClick) props.onClick(action, side);
   };
 
-  const renderActions = (actions: SwipeActionItem[] | TNode, side: SideType) => {
+  const renderActions = (actions: SwipeActionItem[] | TNode, side: SwipeSource) => {
     if (isArray(actions)) {
       return actions.map((action: SwipeActionItem, index: number) => {
         const btnClass = classNames([`${swipeCellClass}__content`, action.className || '']);
@@ -302,7 +301,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     return parseTNode(actions);
   };
 
-  const renderSureContent = (side: SideType) => {
+  const renderSureContent = (side: SwipeSource) => {
     if (curSure.content && curSure.side === side) {
       const style: Styles = {
         width: Math.abs(curSure.width),
