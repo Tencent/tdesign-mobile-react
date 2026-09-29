@@ -41,4 +41,4 @@ options | Function | - | 必需。TS 类型：`boolean \| TdLoadingProps`
 --td-loading-line-bg-color | @text-color-primary | -
 --td-loading-text-color | @text-color-primary | -
 --td-loading-text-font | @font-body-small | -
---td-loading-z-index | 3500 | -
+--td-loading-z-index | @z-index-loading | -
