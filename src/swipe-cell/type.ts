@@ -46,6 +46,14 @@ export interface TdSwipeCellProps {
   onDragstart?: () => void;
 }
 
+/** 组件实例方法 */
+export interface SwipeCellInstanceFunctions {
+  /**
+   * 显示二次确认内容的函数。参数: `sure` 表示二次确认的具体内容，同 content; `onClick` 表示点击二次确认内容时执行的回调
+   */
+  showSure?: (sure: string | TNode, onClick?: SwipeActionItem['onClick']) => void;
+}
+
 export interface SwipeActionItem {
   text: string;
   className?: string;

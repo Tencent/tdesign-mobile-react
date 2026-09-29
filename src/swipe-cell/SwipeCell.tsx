@@ -6,7 +6,7 @@ import { useDrag } from '@use-gesture/react';
 import parseTNode from '../_util/parseTNode';
 import nearest from '../_util/nearest';
 import withNativeProps from '../_util/withNativeProps';
-import { TdSwipeCellProps, SwipeActionItem, Sure } from './type';
+import { TdSwipeCellProps, SwipeActionItem, Sure, SwipeCellInstanceFunctions } from './type';
 import { swipeCellDefaultProps } from './defaultProps';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
@@ -16,9 +16,10 @@ import { Styles, StyledProps, TNode } from '../common';
 import './style';
 
 type SideType = 'left' | 'right';
-export interface SwipeCellRef {
+export interface SwipeCellRef extends SwipeCellInstanceFunctions {
   expand: (side?: SideType, immediate?: boolean) => void;
   close: (immediate?: boolean) => void;
+  showSure: (sure: Sure, onClick?: SwipeActionItem['onClick']) => void;
 }
 
 export interface SwipeCellProps extends TdSwipeCellProps, StyledProps {}
@@ -61,6 +62,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     width: number;
     transform: string;
   }>({ content: '', width: 0, transform: 'none' });
+  const sureClickHandlerRef = useRef<SwipeActionItem['onClick']>(undefined);
 
   // Helper function to set timers that are tracked for cleanup
   const setTimer = (callback: () => void, delay: number) => {
@@ -149,6 +151,25 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     onChange(side);
   };
 
+  const openSure = (side: SideType, sure: Sure, onClick?: SwipeActionItem['onClick']) => {
+    sureClickHandlerRef.current = onClick;
+    setSure({
+      content: sure,
+      width: getSideOffsetX(side),
+      transform: side === 'left' ? 'translateX(-100%)' : 'translateX(100%)',
+    });
+    setTimer(() => {
+      setSure((current) => ({
+        ...current,
+        transform: 'none',
+      }));
+    }, 0);
+  };
+
+  const showSure: SwipeCellRef['showSure'] = (sure, onClick) => {
+    openSure(x > 0 ? 'left' : 'right', sure, onClick);
+  };
+
   const bind = useDrag(
     (state) => {
       ctx.dragging = true;
@@ -181,6 +202,9 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
           ctx.dragging = false;
         }, 0);
       } else {
+        if (curSure.content) {
+          setSure({ content: '', width: 0, transform: 'none' });
+        }
         setX(offsetX);
       }
     },
@@ -200,6 +224,7 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   useImperativeHandle(ref, () => ({
     expand,
     close,
+    showSure,
   }));
 
   useLayoutEffect(() => {
@@ -220,17 +245,14 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
 
   const onActionClick = (action: SwipeActionItem, side: SideType) => {
     if (action.sure) {
-      setSure({
-        content: action.sure,
-        width: getSideOffsetX(side),
-        transform: side === 'left' ? 'translateX(-100%)' : 'translateX(100%)',
+      openSure(side, action.sure, () => {
+        close();
+        if (action.onClick) {
+          action.onClick();
+        } else {
+          props.onClick?.(action, side);
+        }
       });
-      setTimer(() => {
-        setSure((current) => ({
-          ...current,
-          transform: 'none',
-        }));
-      }, 0);
       return;
     }
 
@@ -274,7 +296,11 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
         left: 0,
         right: 0,
       };
-      return <div style={{ ...style }}>{parseTNode(curSure.content)}</div>;
+      return (
+        <div style={{ ...style }} onClick={() => sureClickHandlerRef.current?.()}>
+          {parseTNode(curSure.content)}
+        </div>
+      );
     }
     return null;
   };
