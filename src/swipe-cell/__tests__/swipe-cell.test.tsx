@@ -257,6 +257,135 @@ describe('SwipeCell', () => {
     vi.useRealTimers();
   });
 
+  it('ref showSure renders sure content on expanded side and fires onClick on confirm', () => {
+    vi.useFakeTimers();
+    const ref = React.createRef<SwipeCellRef>();
+    const onSureClick = vi.fn();
+    const { container, getByText } = render(<SwipeCell ref={ref} right={rightActions} content={<div>内容</div>} />);
+    const rightEl = container.querySelector('.t-swipe-cell__right') as HTMLElement;
+    Object.defineProperty(rightEl, 'clientWidth', { value: 100, configurable: true });
+    act(() => {
+      ref.current.expand('right');
+    });
+    act(() => {
+      ref.current.showSure('确认删除？', onSureClick);
+    });
+    const overlay = getByText('确认删除？') as HTMLElement;
+    expect(overlay.style.transform).toContain('100%');
+    act(() => {
+      vi.advanceTimersByTime(1);
+    });
+    expect(overlay.style.transform).toBe('none');
+    fireEvent.click(overlay);
+    expect(onSureClick).toHaveBeenCalledTimes(1);
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
+  });
+
+  it('ref showSure picks left side when expanded to left', () => {
+    vi.useFakeTimers();
+    const ref = React.createRef<SwipeCellRef>();
+    const { container, getByText } = render(<SwipeCell ref={ref} left={leftActions} content={<div>内容</div>} />);
+    const leftEl = container.querySelector('.t-swipe-cell__left') as HTMLElement;
+    Object.defineProperty(leftEl, 'clientWidth', { value: 80, configurable: true });
+    act(() => {
+      ref.current.expand('left');
+    });
+    act(() => {
+      ref.current.showSure('确认左侧删除？');
+    });
+    const overlay = getByText('确认左侧删除？') as HTMLElement;
+    expect(overlay.style.transform).toContain('-100%');
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
+  });
+
+  it('ref showSure renders confirmation content only on the active side', () => {
+    vi.useFakeTimers();
+    const ref = React.createRef<SwipeCellRef>();
+    const { container, queryAllByText } = render(
+      <SwipeCell ref={ref} left={leftActions} right={rightActions} content={<div>内容</div>} />,
+    );
+    const rightEl = container.querySelector('.t-swipe-cell__right') as HTMLElement;
+    Object.defineProperty(rightEl, 'clientWidth', { value: 100, configurable: true });
+    act(() => {
+      ref.current.expand('right');
+      ref.current.showSure('确认删除？');
+    });
+
+    expect(queryAllByText('确认删除？')).toHaveLength(1);
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
+  });
+
+  it('keeps newly opened sure content after close and reopen', () => {
+    vi.useFakeTimers();
+    const ref = React.createRef<SwipeCellRef>();
+    const { container, getByText, queryByText } = render(
+      <SwipeCell ref={ref} right={rightActions} content={<div>内容</div>} />,
+    );
+    const rightEl = container.querySelector('.t-swipe-cell__right') as HTMLElement;
+    Object.defineProperty(rightEl, 'clientWidth', { value: 100, configurable: true });
+
+    act(() => {
+      ref.current.expand('right');
+      ref.current.showSure('第一次确认');
+    });
+    expect(getByText('第一次确认')).toBeInTheDocument();
+
+    act(() => {
+      ref.current.close();
+      ref.current.showSure('第二次确认');
+      vi.advanceTimersByTime(300);
+    });
+
+    expect(queryByText('第一次确认')).not.toBeInTheDocument();
+    expect(getByText('第二次确认')).toBeInTheDocument();
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
+  });
+
+  it('clicking sure content from action closes and fires action.onClick', () => {
+    vi.useFakeTimers();
+    const actionOnClick = vi.fn();
+    const action = { text: '删除', sure: '确认删除？', onClick: actionOnClick };
+    const { getByText } = render(<SwipeCell right={[action]} content={<div>内容</div>} opened />);
+    fireEvent.click(getByText('删除'));
+    expect(actionOnClick).not.toHaveBeenCalled();
+    fireEvent.click(getByText('确认删除？'));
+    expect(actionOnClick).toHaveBeenCalledTimes(1);
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
+  });
+
+  it('sure confirm falls back to props.onClick when action.onClick missing', () => {
+    vi.useFakeTimers();
+    const propOnClick = vi.fn();
+    const action = { text: '删除', sure: '确认删除？' };
+    const { getByText } = render(<SwipeCell right={[action]} content={<div>内容</div>} opened onClick={propOnClick} />);
+    fireEvent.click(getByText('删除'));
+    fireEvent.click(getByText('确认删除？'));
+    expect(propOnClick).toHaveBeenCalledWith(action, 'right');
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
+  });
+
+  it('dragging clears visible sure content', () => {
+    vi.useFakeTimers();
+    const { getByText, queryByText } = render(
+      <SwipeCell right={[{ text: '删除', sure: '确认删除？' }]} content={<div>内容</div>} opened />,
+    );
+    fireEvent.click(getByText('删除'));
+    expect(getByText('确认删除？')).toBeInTheDocument();
+    const latest = dragStore[dragStore.length - 1];
+    act(() => {
+      latest.handler({ last: false, offset: [10, 0], lastOffset: [-10, 0], velocity: [0, 0], direction: [1, 0] });
+    });
+    expect(queryByText('确认删除？')).not.toBeInTheDocument();
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
+  });
+
   it('click away closes cell', () => {
     const { getByText, container } = render(
       <div>
