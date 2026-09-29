@@ -57,10 +57,12 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const sureClearTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [curSure, setSure] = useState<{
     content: Sure;
     width: number;
     transform: string;
+    side?: SideType;
   }>({ content: '', width: 0, transform: 'none' });
   const sureClickHandlerRef = useRef<SwipeActionItem['onClick']>(undefined);
 
@@ -78,11 +80,20 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     return timerId;
   };
 
+  const clearSureTimer = () => {
+    if (sureClearTimerRef.current === null) return;
+
+    clearTimeout(sureClearTimerRef.current);
+    timersRef.current = timersRef.current.filter((timerId) => timerId !== sureClearTimerRef.current);
+    sureClearTimerRef.current = null;
+  };
+
   // Cleanup all timers on unmount
   useEffect(
     () => () => {
       timersRef.current.forEach((timerId) => clearTimeout(timerId));
       timersRef.current = [];
+      sureClearTimerRef.current = null;
     },
     [],
   );
@@ -135,13 +146,17 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     setX(0);
     onChange();
     if (curSure.content) {
-      setTimer(() => {
+      clearSureTimer();
+      const timerId = setTimer(() => {
         setSure({
           content: '',
           width: 0,
           transform: 'none',
+          side: undefined,
         });
+        sureClearTimerRef.current = null;
       }, 300);
+      sureClearTimerRef.current = timerId;
     }
   };
 
@@ -152,11 +167,13 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
   };
 
   const openSure = (side: SideType, sure: Sure, onClick?: SwipeActionItem['onClick']) => {
+    clearSureTimer();
     sureClickHandlerRef.current = onClick;
     setSure({
       content: sure,
       width: getSideOffsetX(side),
       transform: side === 'left' ? 'translateX(-100%)' : 'translateX(100%)',
+      side,
     });
     setTimer(() => {
       setSure((current) => ({
@@ -203,7 +220,8 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
         }, 0);
       } else {
         if (curSure.content) {
-          setSure({ content: '', width: 0, transform: 'none' });
+          clearSureTimer();
+          setSure({ content: '', width: 0, transform: 'none', side: undefined });
         }
         setX(offsetX);
       }
@@ -284,8 +302,8 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
     return parseTNode(actions);
   };
 
-  const renderSureContent = () => {
-    if (curSure.content) {
+  const renderSureContent = (side: SideType) => {
+    if (curSure.content && curSure.side === side) {
       const style: Styles = {
         width: Math.abs(curSure.width),
         transition: 'all .3s ease-in-out',
@@ -322,14 +340,14 @@ const SwipeCell = forwardRef<SwipeCellRef, SwipeCellProps>((originProps, ref) =>
       <div className={`${swipeCellClass}__wrapper`} style={{ transform: `translateX(${x}px)` }}>
         {left && (
           <div className={`${swipeCellClass}__left`} ref={leftRef}>
-            {renderSureContent()}
+            {renderSureContent('left')}
             {renderActions(left, 'left')}
           </div>
         )}
         {parseTNode(content)}
         {right && (
           <div className={`${swipeCellClass}__right`} ref={rightRef}>
-            {renderSureContent()}
+            {renderSureContent('right')}
             {renderActions(right, 'right')}
           </div>
         )}
