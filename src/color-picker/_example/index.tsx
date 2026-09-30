@@ -3,7 +3,7 @@ import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import Base from './base';
 import Multiple from './multiple';
-import UsePopup from './usePopup';
+import UsePopup from './use-popup';
 import Format from './format';
 import './style/index.less';
 
