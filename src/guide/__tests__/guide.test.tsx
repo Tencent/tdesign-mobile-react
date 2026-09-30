@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import Guide from '../Guide';
@@ -850,7 +850,9 @@ describe('Guide Component', () => {
       render(<Guide steps={mockSteps} current={0} />);
 
       // 快进定时器
-      vi.advanceTimersByTime(100);
+      act(() => {
+        vi.advanceTimersByTime(100);
+      });
 
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
@@ -863,11 +865,15 @@ describe('Guide Component', () => {
 
       // 超时后应可见
       vi.useFakeTimers();
-      vi.advanceTimersByTime(100);
+      act(() => {
+        vi.advanceTimersByTime(100);
+      });
 
       // 更改 current 触发可见性变化
       rerender(<Guide steps={mockSteps} current={1} />);
-      vi.advanceTimersByTime(100);
+      act(() => {
+        vi.advanceTimersByTime(100);
+      });
 
       const portal = document.querySelector('.t-portal-wrapper');
       expect(portal).toBeInTheDocument();
@@ -889,7 +895,9 @@ describe('Guide Component', () => {
       render(<Guide steps={stepsDialog} current={0} />);
 
       // 快进定时器以触发 showDialogGuide（内部调用 scrollToParentVisibleArea）
-      vi.advanceTimersByTime(100);
+      act(() => {
+        vi.advanceTimersByTime(100);
+      });
 
       // 应调用 scrollToParentVisibleArea
       const portal = document.querySelector('.t-portal-wrapper');
@@ -907,7 +915,9 @@ describe('Guide Component', () => {
       expect(portal).toBeInTheDocument();
 
       // 快进定时器触发 showGuide 内的 setTimeout
-      vi.advanceTimersByTime(100);
+      act(() => {
+        vi.advanceTimersByTime(100);
+      });
 
       // 超时后设置为可见
       portal = document.querySelector('.t-portal-wrapper');
@@ -930,7 +940,9 @@ describe('Guide Component', () => {
       render(<Guide steps={stepsWithCenter} current={0} />);
 
       // 快进定时器以触发 setReferenceFullW（可能存在空元素）
-      vi.advanceTimersByTime(100);
+      act(() => {
+        vi.advanceTimersByTime(100);
+      });
 
       // setReferenceFullW 应优雅处理空元素
       const portal = document.querySelector('.t-portal-wrapper');
@@ -1152,7 +1164,9 @@ describe('Guide Component', () => {
       render(<Guide steps={stepsWithCustomHighlight} current={0} />);
 
       // 快进定时器以触发 showPopoverGuide（其以 isReference=true 调用 setHighlightLayerPosition）
-      vi.advanceTimersByTime(100);
+      act(() => {
+        vi.advanceTimersByTime(100);
+      });
 
       // 组件应渲染自定义高亮
       expect(screen.getByTestId('custom-highlight-ref')).toBeInTheDocument();
@@ -1204,7 +1218,9 @@ describe('Guide Component', () => {
       render(<Guide steps={stepsWithCenter} current={0} />);
 
       // 快进定时器以触发 showPopoverGuide
-      vi.advanceTimersByTime(100);
+      act(() => {
+        vi.advanceTimersByTime(100);
+      });
 
       // 气泡模式下居中应调用 setReferenceFullW
       const portal = document.querySelector('.t-portal-wrapper');
@@ -1227,7 +1243,9 @@ describe('Guide Component', () => {
       render(<Guide steps={stepsDialog} current={0} />);
 
       // 快进定时器以触发 showDialogGuide
-      vi.advanceTimersByTime(100);
+      act(() => {
+        vi.advanceTimersByTime(100);
+      });
 
       // showDialogGuide 应无错执行
       const portal = document.querySelector('.t-portal-wrapper');
@@ -1245,7 +1263,9 @@ describe('Guide Component', () => {
       expect(portal).toBeInTheDocument();
 
       // 快进定时器触发 setPopoverVisible(true)
-      vi.advanceTimersByTime(100);
+      act(() => {
+        vi.advanceTimersByTime(100);
+      });
 
       // 现在气泡应可见
       portal = document.querySelector('.t-portal-wrapper');
