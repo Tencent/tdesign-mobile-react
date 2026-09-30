@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseDemo from './base';
-import MaxLength from './maxLength';
+import MaxLength from './maxlength';
 import Suffix from './suffix';
 import Prefix from './prefix';
 import Special from './special';
