@@ -5,11 +5,18 @@ import { ColorPickerProps } from '../ColorPicker';
 import { PanelRectType } from '../types';
 
 export const getCoordinate = (e: TouchEvent, rect: PanelRectType, isFixed?: boolean) => {
-  const { pageX, pageY, clientY } = e?.changedTouches?.[0] || {};
-  const offsetY = isFixed ? rect.top : (e.target as HTMLElement).offsetTop;
+  const { pageX, pageY, clientX, clientY } = e?.changedTouches?.[0] || {};
+  const left = rect.left || 0;
+  const top = rect.top || 0;
+  if (isFixed) {
+    return {
+      x: Math.min(Math.max(0, clientX - left), rect.width),
+      y: Math.min(Math.max(0, clientY - top), rect.height),
+    };
+  }
   return {
-    x: Math.min(Math.max(0, pageX - rect.left), rect.width),
-    y: Math.min(Math.max(0, (isFixed ? clientY : pageY) - offsetY), rect.height),
+    x: Math.min(Math.max(0, pageX - window.scrollX - left), rect.width),
+    y: Math.min(Math.max(0, pageY - window.scrollY - top), rect.height),
   };
 };
 

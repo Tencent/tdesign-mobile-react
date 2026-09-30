@@ -59,6 +59,14 @@ export interface TdColorPickerProps {
    */
   onChange?: (value: string, context: { color: ColorObject; trigger: ColorPickerChangeTrigger }) => void;
   /**
+   * 选中的色值发生变化时触发，第一个参数 `value` 表示新色值，`context.color` 表示当前调色板控制器的色值，`context.trigger` 表示触发颜色变化的来源
+   */
+  onChange?: (value: string, context: { color: ColorObject; trigger: ColorPickerChangeTrigger }) => void;
+  /**
+   * 调色板控制器的值变化时触发，`context.color` 指调色板控制器的值
+   */
+  onPaletteBarChange?: (context: { color: ColorObject }) => void;
+  /**
    * 调色板控制器的值变化时触发，`context.color` 指调色板控制器的值
    */
   onPaletteBarChange?: (context: { color: ColorObject }) => void;
@@ -69,6 +77,9 @@ export type colorModesEnum = 'monochrome' | 'linear-gradient';
 export type TypeEnum = 'base' | 'multiple';
 
 export type ColorPickerChangeTrigger = 'palette-hue-bar' | 'palette-alpha-bar' | 'preset';
+
+export type ColorPickerChangeTrigger =
+  'palette-hue-bar' | 'palette-alpha-bar' | 'preset' | 'palette-saturation-brightness';
 
 export interface ColorObject {
   alpha: number;
@@ -82,4 +93,21 @@ export interface ColorObject {
   rgb: string;
   rgba: string;
   value: number;
+}
+
+export interface ColorObject {
+  alpha: number;
+  css: string;
+  hex: string;
+  hex8: string;
+  hsl: string;
+  hsla: string;
+  hsv: string;
+  hsva: string;
+  rgb: string;
+  rgba: string;
+  saturation: number;
+  value: number;
+  isGradient: boolean;
+  linearGradient?: string;
 }
