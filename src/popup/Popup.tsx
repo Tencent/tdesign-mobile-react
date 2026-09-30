@@ -73,6 +73,14 @@ const Popup: React.FC<PopupProps> = (props) => {
     [zIndex, active],
   );
 
+  const overlayPropsWithZIndex = useMemo(
+    () => ({
+      ...overlayProps,
+      zIndex: overlayProps?.zIndex ?? zIndex,
+    }),
+    [overlayProps, zIndex],
+  );
+
   const classNames = useMemo<CSSTransitionClassNames>(
     () => ({
       enterActive: placement === 'center' ? 'fade-zoom-enter-active' : `slide-${placement}-enter-active`,
@@ -90,11 +98,12 @@ const Popup: React.FC<PopupProps> = (props) => {
   const node = (
     <>
       <Overlay
+        className={`${name}-zIndex`}
         visible={show && showOverlay}
         onClick={handleOverlayClick}
         preventScrollThrough={preventScrollThrough}
         duration={duration}
-        {...overlayProps}
+        {...overlayPropsWithZIndex}
       />
       <CSSTransition
         in={show}
