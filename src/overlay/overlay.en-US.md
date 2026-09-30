@@ -13,7 +13,7 @@ children | TNode | - | Typescript: `string \| TNode`。[see more ts definition](
 duration | Number | 300 | \- | N
 preventScrollThrough | Boolean | true | \- | N
 visible | Boolean | false | \- | N
-zIndex | Number | 1000 | \- | N
+zIndex | Number | - | \- | N
 onClick | Function |  | Typescript: `(context: { e: MouseEvent }) => void`<br/> | N
 onClose | Function |  | Typescript: `() => void`<br/> | N
 onClosed | Function |  | Typescript: `() => void`<br/> | N
@@ -26,4 +26,4 @@ The component provides the following CSS variables, which can be used to customi
 Name | Default Value | Description
 -- | -- | --
 --td-overlay-bg-color | @mask-active | -
---td-overlay-zindex | 1000 | -
+--td-overlay-zIndex | @z-index-overlay | -
