@@ -1,9 +1,10 @@
-import React, { FC, TouchEvent, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC, TouchEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { usePrefixClass } from '../hooks/useClass';
-import { Color, Coordinate, getColorObject } from '../_common/js/color-picker';
+import { Color, Coordinate, genGradientPoint, getColorObject, gradientColors2string } from '../_common/js/color-picker';
 import {
   DEFAULT_COLOR,
+  DEFAULT_LINEAR_GRADIENT,
   SATURATION_PANEL_DEFAULT_HEIGHT,
   SATURATION_PANEL_DEFAULT_WIDTH,
   SLIDER_DEFAULT_WIDTH,
@@ -11,16 +12,29 @@ import {
 import { PanelRectType } from './types';
 import { genSwatchList, getCoordinate, getFormatList } from './helper/format';
 import type { StyledProps } from '../common';
-import type { TdColorPickerProps, ColorPickerChangeTrigger } from './type';
+import type { GradientColorPoint } from '../_common/js/color-picker/gradient';
+import type { ColorPickerChangeTrigger, TdColorPickerProps, colorModesEnum } from './type';
 import { colorPickerDefaultProps } from './defaultProps';
 import useDefaultProps from '../hooks/useDefaultProps';
-import { ALPHA_MAX, HUE_MAX } from './constants';
+import { ALPHA_MAX, GRADIENT_THUMB_HIT_TOLERANCE, HUE_MAX } from './constants';
 
 export interface ColorPickerProps extends TdColorPickerProps, StyledProps {}
 
 const ColorPicker: FC<ColorPickerProps> = (props) => {
-  const { format, type, enableAlpha, swatchColors, style, value, defaultValue, fixed, onChange, onPaletteBarChange } =
-    useDefaultProps(props, colorPickerDefaultProps);
+  const {
+    format,
+    type,
+    enableAlpha,
+    swatchColors,
+    style,
+    value,
+    defaultValue,
+    fixed,
+    colorModes,
+    enableMultipleGradient,
+    onChange,
+    onPaletteBarChange,
+  } = useDefaultProps(props, colorPickerDefaultProps);
   const [formatList, setFormatList] = useState<[string, Array<string | number>]>(['', []]);
   const [innerSwatchList, setInnerSwatchList] = useState([]);
   const [sliderInfo, setSliderInfo] = useState(0);
@@ -50,8 +64,37 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
   const resizeObserverRef = useRef<ResizeObserver>(null);
   const saturationElementRef = useRef<HTMLDivElement>(null);
   const sliderElementRef = useRef<HTMLDivElement>(null);
+  const gradientElementRef = useRef<HTMLDivElement>(null);
   const hasInit = useRef<boolean>(false);
+  const [, setUpdateId] = useState(0); // 确保渐变点变化后 UI 同步更新
+  const innerModes = useMemo(() => (Array.isArray(colorModes) ? colorModes : [colorModes]), [colorModes]);
+  const supportMonochrome = innerModes.includes('monochrome');
+  const supportGradient = innerModes.includes('linear-gradient');
+
+  const getModeByValue = useCallback(
+    (input?: string): colorModesEnum => {
+      if (!supportGradient) return 'monochrome';
+      if (!supportMonochrome) return 'linear-gradient';
+      return Color.isGradientColor(input) ? 'linear-gradient' : 'monochrome';
+    },
+    [supportMonochrome, supportGradient],
+  );
+
+  // 仅有渐变模式时，纯色入参需兜底为默认渐变色；无入参时按支持的模式取兜底色
+  const getLegalInput = useCallback(
+    (input?: string) => {
+      if (input && getModeByValue(input) === 'linear-gradient' && !Color.isGradientColor(input)) {
+        return DEFAULT_LINEAR_GRADIENT;
+      }
+      return input || (getModeByValue() === 'linear-gradient' ? DEFAULT_LINEAR_GRADIENT : DEFAULT_COLOR);
+    },
+    [getModeByValue],
+  );
+
   const color = useRef<Color>(null);
+  if (!color.current) {
+    color.current = new Color(getLegalInput(value || defaultValue));
+  }
   const isMultiple = type === 'multiple';
   const rootClassName = usePrefixClass('color-picker');
   const contentClassName = classNames(`${rootClassName}__body`, `${rootClassName}__body--${type}`);
@@ -139,10 +182,8 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
 
   useEffect(() => {
     function init() {
-      const innerValue = value || defaultValue;
-      const result = innerValue || DEFAULT_COLOR;
+      const result = getLegalInput(value || defaultValue);
       color.current = new Color(result);
-      color.current.update(result);
       hasInit.current = true;
       getEleRect(format);
     }
@@ -151,11 +192,24 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
       return;
     }
     init();
-  }, [value, defaultValue, format, getEleRect]);
+  }, [value, defaultValue, format, getEleRect, getLegalInput]);
 
   useEffect(() => {
-    color.current = new Color(value || DEFAULT_COLOR);
-  }, [value]);
+    if (!value) {
+      return;
+    }
+    const legalValue = getLegalInput(value);
+    const currentValue = color.current.isGradient
+      ? color.current.linearGradient
+      : color.current.getFormatsColorMap()[format];
+    if (legalValue === currentValue) {
+      return;
+    }
+    color.current.isGradient = getModeByValue(value) === 'linear-gradient';
+    color.current.update(legalValue);
+    setCoreStyle(format);
+    setUpdateId((prev) => prev + 1);
+  }, [value, format, getLegalInput, getModeByValue, setCoreStyle]);
 
   useEffect(() => {
     setCoreStyle(format);
@@ -223,7 +277,77 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
     setCoreStyle(format);
   }
 
-  function handleDiffDrag(dragType: string, e: TouchEvent) {
+  // 渐变轴外面包了一层 padding，宽度与饱和度面板不同，需按轴自身的位置换算
+  function getGradientLeftByCoordinate(e: TouchEvent): number | null {
+    const { clientX } = e?.changedTouches?.[0] || {};
+    if (!Number.isFinite(clientX)) {
+      return null;
+    }
+    const rect = gradientElementRef.current?.getBoundingClientRect();
+    const width = rect?.width || panelRect.width;
+    if (!width) {
+      return null;
+    }
+    const left = rect?.width ? rect.left : panelRect.left;
+    return Math.min(100, Math.max(0, ((clientX - left) / width) * 100));
+  }
+
+  // 按下时命中已有渐变点则选中它，否则在按下位置新增渐变点（受 enableMultipleGradient 控制）
+  function selectGradientPoint(left: number) {
+    const { gradientColors } = color.current;
+    const tolerance = (GRADIENT_THUMB_HIT_TOLERANCE / panelRect.width) * 100;
+    const hitPoint = gradientColors.find((point) => Math.abs(point.left - left) <= tolerance);
+
+    if (hitPoint) {
+      color.current.gradientSelectedId = hitPoint.id;
+      setCoreStyle(format);
+      return;
+    }
+    if (!enableMultipleGradient) {
+      return;
+    }
+
+    const newPoint = genGradientPoint(Math.round(left * 100) / 100, color.current.rgba);
+    color.current.gradientColors = [...gradientColors, newPoint];
+    color.current.gradientSelectedId = newPoint.id;
+    emitColorChange('palette-saturation-brightness');
+    setCoreStyle(format);
+  }
+
+  // 拖动时更新当前选中渐变点的位置
+  function updateGradientSelectedPoint(left: number) {
+    const { gradientColors, gradientSelectedId } = color.current;
+    const index = gradientColors.findIndex((point) => point.id === gradientSelectedId);
+    if (index === -1) {
+      return;
+    }
+    const nextLeft = Math.round(left * 100) / 100;
+    if (gradientColors[index].left === nextLeft) {
+      return;
+    }
+    color.current.gradientColors = gradientColors.map((point, i) =>
+      i === index ? { ...point, left: nextLeft } : point,
+    );
+    emitColorChange('palette-saturation-brightness');
+    setCoreStyle(format);
+  }
+
+  function handleGradientSliderDrag(e: TouchEvent, isStart = false) {
+    if (!color.current.isGradient) {
+      return;
+    }
+    const left = getGradientLeftByCoordinate(e);
+    if (left === null) {
+      return;
+    }
+    if (isStart) {
+      selectGradientPoint(left);
+      return;
+    }
+    updateGradientSelectedPoint(left);
+  }
+
+  function handleDiffDrag(dragType: string, e: TouchEvent, isStart = false) {
     switch (dragType) {
       case 'saturation':
         handleSaturationDrag(e);
@@ -234,10 +358,16 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
       case 'alpha-slider':
         handleSliderDrag(e, true);
         break;
+      case 'gradient-slider':
+        handleGradientSliderDrag(e, isStart);
+        break;
     }
   }
 
   function formatValue() {
+    if (color.current.isGradient) {
+      return color.current.linearGradient;
+    }
     return color.current.getFormatsColorMap()[format] || color.current.css;
   }
 
@@ -250,7 +380,7 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
   }
 
   const onTouchStart = (e: TouchEvent, dragType: string) => {
-    handleDiffDrag(dragType, e);
+    handleDiffDrag(dragType, e, true);
   };
   const onTouchMove = (e: TouchEvent, dragType: string) => {
     handleDiffDrag(dragType, e);
@@ -292,8 +422,52 @@ const ColorPicker: FC<ColorPickerProps> = (props) => {
       </div>
     );
 
+    const renderGradientSlider = () => {
+      const sortedColors = [...color.current.gradientColors].sort((pointA, pointB) => pointA.left - pointB.left);
+      const startColor = sortedColors[0]?.color;
+      const endColor = sortedColors[sortedColors.length - 1]?.color;
+
+      return (
+        <div
+          className={classNames(`${rootClassName}__slider-wrapper`, `${rootClassName}__slider-wrapper--gradient-type`)}
+        >
+          <div
+            className={`${rootClassName}__slider-padding`}
+            style={{
+              background: `linear-gradient(90deg, ${startColor} 0%, ${startColor} 50%, ${endColor} 50%, ${endColor} 100%)`,
+            }}
+          />
+          <div
+            className={`${rootClassName}__slider`}
+            ref={gradientElementRef}
+            onTouchStart={(e) => onTouchStart(e, 'gradient-slider')}
+            onTouchMove={(e) => onTouchMove(e, 'gradient-slider')}
+            onTouchEnd={(e) => onTouchEnd(e, 'gradient-slider')}
+          >
+            <div
+              className={`${rootClassName}__gradient-thumbs`}
+              style={{ background: gradientColors2string({ points: sortedColors, degree: 90 }) }}
+            >
+              {sortedColors.map((point: GradientColorPoint) => (
+                <div
+                  key={point.id}
+                  className={classNames(
+                    `${rootClassName}__thumb`,
+                    `${rootClassName}__thumb--gradient`,
+                    point.id === color.current.gradientSelectedId ? `${rootClassName}__thumb--active` : null,
+                  )}
+                  style={{ left: `${Math.round(point.left * 100) / 100}%`, color: point.color }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    };
+
     const renderMultipleContent = () => (
       <>
+        {color.current.isGradient ? renderGradientSlider() : null}
         <div
           className={`${rootClassName}__saturation`}
           ref={saturationElementRef}

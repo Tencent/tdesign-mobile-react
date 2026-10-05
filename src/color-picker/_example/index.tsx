@@ -5,6 +5,7 @@ import Base from './base';
 import Multiple from './multiple';
 import UsePopup from './use-popup';
 import Format from './format';
+import Gradient from './gradient';
 import './style/index.less';
 
 export default function ColorPickerDemo() {
@@ -26,6 +27,10 @@ export default function ColorPickerDemo() {
 
       <TDemoBlock title="02 组件状态" summary="组件模式选择">
         <Format />
+      </TDemoBlock>
+
+      <TDemoBlock title="03 组件模式" summary="渐变色选择器，点击渐变轴可增加渐变梯度">
+        <Gradient />
       </TDemoBlock>
     </div>
   );
