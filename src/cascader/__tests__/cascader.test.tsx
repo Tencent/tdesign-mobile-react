@@ -1,7 +1,10 @@
 import React from 'react';
-import { describe, it, expect, render, vi, fireEvent, beforeEach, afterEach } from '@test/utils';
+import { describe, it, expect, render, vi, fireEvent, beforeEach, afterEach, act } from '@test/utils';
 
-import Cascader from '../Cascader';
+import ConfigProvider from '../../config-provider';
+import Toast from '../../toast';
+import Cascader, { CascaderProps } from '../Cascader';
+import LoadDemo from '../_example/lazy';
 
 const prefix = 't';
 const name = `.${prefix}-cascader`;
@@ -126,6 +129,26 @@ describe('Cascader', () => {
       expect(document.querySelector(`${name}__step-label--active`).innerHTML).toBe(placeholder);
     });
 
+    it(': placeholder - global config fallback', async () => {
+      const placeholder = '全局占位';
+      await render(
+        <ConfigProvider globalConfig={{ cascader: { placeholder } }}>
+          <Cascader options={data.areaList} visible={true} />
+        </ConfigProvider>,
+      );
+      expect(document.querySelector(`${name}__step-label--active`).innerHTML).toBe(placeholder);
+    });
+
+    it(': placeholder - prop has higher priority', async () => {
+      const placeholder = '组件占位';
+      await render(
+        <ConfigProvider globalConfig={{ cascader: { placeholder: '全局占位' } }}>
+          <Cascader options={data.areaList} placeholder={placeholder} visible={true} />
+        </ConfigProvider>,
+      );
+      expect(document.querySelector(`${name}__step-label--active`).innerHTML).toBe(placeholder);
+    });
+
     it(': theme - step', async () => {
       await render(<Cascader options={data.areaList} visible={true} value="110000" theme="step" />);
       expect(document.querySelector(`${name}__steps`)).toBeTruthy();
@@ -172,6 +195,252 @@ describe('Cascader', () => {
       fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[0]);
       expect(onChange).toHaveBeenCalledWith('', [{ value: '', label: '' }]);
     });
+
+    it(': load', async () => {
+      const option = { value: '110000', label: '北京市', children: true, extra: 'parent' };
+      const children = [
+        { value: '110001', label: '朝阳门街道', children: [] },
+        { value: '110002', label: '建国门街道', children: [] },
+      ];
+      let resolveLoad: (loadedChildren: typeof children) => void;
+      const load = vi.fn<CascaderProps['load']>(
+        () =>
+          new Promise<typeof children>((resolve) => {
+            resolveLoad = resolve;
+          }),
+      );
+      const onPick = vi.fn();
+      const onChange = vi.fn();
+      const onClose = vi.fn();
+
+      render(
+        <Cascader
+          visible
+          options={[option]}
+          load={load}
+          placeholder="请选择"
+          onPick={onPick}
+          onChange={onChange}
+          onClose={onClose}
+        />,
+      );
+
+      expect(load).not.toHaveBeenCalled();
+      fireEvent.click(document.querySelector(`.${prefix}-radio`));
+      expect(load).toHaveBeenCalledExactlyOnceWith({ data: option, value: option.value, label: option.label });
+      expect(load.mock.calls[0][0].data).toBe(option);
+      expect(onPick).toHaveBeenCalledWith({ value: option.value, label: option.label, index: 0, level: 0 });
+      expect(onPick.mock.invocationCallOrder[0]).toBeLessThan(load.mock.invocationCallOrder[0]);
+      expect(document.querySelectorAll(`${name}__options`)).toHaveLength(1);
+      expect(onChange).not.toHaveBeenCalled();
+      expect(onClose).not.toHaveBeenCalled();
+
+      await act(async () => {
+        resolveLoad(children);
+      });
+
+      expect(document.querySelectorAll(`.${prefix}-radio`)).toHaveLength(3);
+      expect(document.querySelectorAll(`${name}__options`)).toHaveLength(2);
+      expect(document.querySelector(`${name}__options-container`)).toHaveStyle({ transform: 'translateX(-100vw)' });
+      expect(document.querySelector(`${name}__step-label--active`)).toHaveTextContent('请选择');
+      expect(option.children).toBe(true);
+      expect(onChange).not.toHaveBeenCalled();
+      expect(onClose).not.toHaveBeenCalled();
+
+      fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[1]);
+      expect(onChange).toHaveBeenCalledExactlyOnceWith('110001', [
+        { value: '110000', label: '北京市' },
+        { value: '110001', label: '朝阳门街道' },
+      ]);
+      expect(onClose).toHaveBeenCalledExactlyOnceWith('finish');
+    });
+
+    it(': load - empty children opens the next step', async () => {
+      const load = vi.fn().mockResolvedValue([]);
+      const onChange = vi.fn();
+      const onClose = vi.fn();
+      render(
+        <Cascader
+          visible
+          options={[{ value: '440300', label: '深圳市', children: true }]}
+          load={load}
+          placeholder="请选择"
+          onChange={onChange}
+          onClose={onClose}
+        />,
+      );
+
+      await act(async () => {
+        fireEvent.click(document.querySelector(`.${prefix}-radio`));
+      });
+
+      expect(document.querySelectorAll(`${name}__options`)).toHaveLength(2);
+      expect(document.querySelectorAll(`${name}__options`)[1].querySelectorAll(`.${prefix}-radio`)).toHaveLength(0);
+      expect(document.querySelector(`${name}__step-label--active`)).toHaveTextContent('请选择');
+      expect(document.querySelector(`${name}__options-container`)).toHaveStyle({ transform: 'translateX(-100vw)' });
+      expect(onChange).not.toHaveBeenCalled();
+      expect(onClose).not.toHaveBeenCalled();
+    });
+
+    it(': load - rejected promise', async () => {
+      const error = new Error('load failed');
+      const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const load = vi.fn().mockRejectedValue(error);
+      const onChange = vi.fn();
+      const onClose = vi.fn();
+
+      try {
+        render(
+          <Cascader
+            visible
+            options={[{ value: '440300', label: '深圳市', children: true }]}
+            load={load}
+            onChange={onChange}
+            onClose={onClose}
+          />,
+        );
+        await act(async () => {
+          fireEvent.click(document.querySelector(`.${prefix}-radio`));
+        });
+
+        expect(consoleError).toHaveBeenCalledWith('Load children failed:', error);
+        expect(document.querySelectorAll(`${name}__options`)).toHaveLength(1);
+        expect(onChange).not.toHaveBeenCalled();
+        expect(onClose).not.toHaveBeenCalled();
+      } finally {
+        consoleError.mockRestore();
+      }
+    });
+
+    it(': load - keys and nested lazy children', async () => {
+      const option = { code: '440000', name: '广东省', items: true, extra: 'province' };
+      const city = { code: '440300', name: '深圳市', items: true, extra: 'city' };
+      const district = { code: '440304', name: '福田区', items: [] };
+      const load = vi.fn().mockResolvedValueOnce([city]).mockResolvedValueOnce([district]);
+      const onChange = vi.fn();
+      render(
+        <Cascader
+          visible
+          options={[option]}
+          keys={{ value: 'code', label: 'name', children: 'items' }}
+          load={load}
+          onChange={onChange}
+        />,
+      );
+
+      await act(async () => {
+        fireEvent.click(document.querySelector(`.${prefix}-radio`));
+      });
+      expect(load).toHaveBeenNthCalledWith(1, { data: option, value: option.code, label: option.name });
+
+      await act(async () => {
+        fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[1]);
+      });
+      expect(load).toHaveBeenNthCalledWith(2, { data: city, value: city.code, label: city.name });
+      expect(document.querySelectorAll(`${name}__options`)).toHaveLength(3);
+      expect(document.querySelector(`${name}__options-container`)).toHaveStyle({ transform: 'translateX(-200vw)' });
+      expect(option.items).toBe(true);
+      expect(city.items).toBe(true);
+
+      fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[2]);
+      expect(onChange).toHaveBeenCalledWith('440304', [
+        { code: '440000', name: '广东省' },
+        { code: '440300', name: '深圳市' },
+        { code: '440304', name: '福田区' },
+      ]);
+    });
+
+    it(': load - switching branches reloads children without caching', async () => {
+      const options = [
+        { value: '440000', label: '广东省', children: true },
+        { value: '110000', label: '北京市', children: [{ value: '110100', label: '北京市' }] },
+      ];
+      const load = vi
+        .fn()
+        .mockResolvedValue([{ value: '440300', label: '深圳市', children: [{ value: '440304', label: '福田区' }] }]);
+      render(<Cascader visible options={options} load={load} theme="tab" />);
+
+      await act(async () => {
+        fireEvent.click(document.querySelector(`.${prefix}-radio`));
+      });
+      fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[2]);
+      expect(document.querySelectorAll(`${name}__options`)).toHaveLength(3);
+
+      fireEvent.click(document.querySelector(`.${prefix}-tabs__item`));
+      fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[1]);
+      expect(document.querySelectorAll(`${name}__options`)).toHaveLength(2);
+      expect(document.querySelectorAll(`.${prefix}-tabs__item`)).toHaveLength(2);
+      expect(document.querySelector(`${name}__options-container`)).toHaveStyle({ transform: 'translateX(-100vw)' });
+
+      fireEvent.click(document.querySelector(`.${prefix}-tabs__item`));
+      await act(async () => {
+        fireEvent.click(document.querySelector(`.${prefix}-radio`));
+      });
+      expect(load).toHaveBeenCalledTimes(2);
+      expect(document.querySelectorAll(`${name}__options`)[1]).toHaveTextContent('深圳市');
+      expect(options[0].children).toBe(true);
+    });
+
+    it(': close when select leaf item', async () => {
+      const onClose = vi.fn();
+
+      await render(
+        <Cascader
+          visible
+          onClose={onClose}
+          options={[
+            {
+              value: '440300',
+              label: '深圳市',
+              children: [
+                {
+                  value: '440304',
+                  label: '福田区',
+                  children: [],
+                },
+              ],
+            },
+          ]}
+        />,
+      );
+
+      fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[0]);
+      fireEvent.click(document.querySelectorAll(`.${prefix}-radio`)[1]);
+
+      expect(onClose).toHaveBeenCalledWith('finish');
+    });
+  });
+
+  it(': lazy demo unlocks after loading and allows selection', async () => {
+    const consoleLog = vi.spyOn(console, 'log').mockImplementation(() => {});
+    const { container } = render(<LoadDemo />);
+
+    try {
+      fireEvent.click(container.querySelector('.t-cell'));
+      await act(async () => {
+        fireEvent.click(document.querySelector('.t-radio'));
+      });
+      expect(document.body).toHaveClass('t-toast--lock', 't-popup--lock', 't-overlay--lock');
+
+      await act(async () => {
+        vi.advanceTimersByTime(500);
+      });
+
+      expect(document.querySelector('.t-toast')).toBeNull();
+      expect(document.body).not.toHaveClass('t-toast--lock');
+      expect(document.body).toHaveClass('t-popup--lock', 't-overlay--lock');
+      const childOptions = document.querySelectorAll(`${name}__options`)[1];
+      expect(childOptions).toHaveTextContent('福田区');
+      fireEvent.click(childOptions.querySelector('.t-radio'));
+      expect(container.querySelector('.t-cell')).toHaveTextContent('深圳市/福田区');
+      expect(document.body).not.toHaveClass('t-popup--lock');
+      expect(document.body).not.toHaveClass('t-overlay--lock');
+    } finally {
+      await act(async () => {
+        Toast.clear();
+      });
+      consoleLog.mockRestore();
+    }
   });
 
   describe('events', () => {

@@ -473,15 +473,17 @@ export default function useDrag(
     (_e: React.TouchEvent) => {
       if (longPressTimerRef.current) clearTimeout(longPressTimerRef.current);
 
-      setDragEnded(true);
-      dragEndedTimerRef.current = setTimeout(() => {
-        setDragEnded(false);
-      }, TIMEOUT_DURATION);
-
+      // 未进入拖拽状态，说明是普通点击（tap），不应屏蔽后续 click 触发的预览
       if (!draggingRef.current) {
         longPressTargetRef.current = null;
         return;
       }
+
+      // 拖拽刚结束，300ms 内置 true，屏蔽误触预览
+      setDragEnded(true);
+      dragEndedTimerRef.current = setTimeout(() => {
+        setDragEnded(false);
+      }, TIMEOUT_DURATION);
 
       if (!hasMovedRef.current) {
         resetState();

@@ -2,8 +2,6 @@ import React from 'react';
 import { Grid, GridItem } from 'tdesign-mobile-react';
 import { ShareIcon, StarIcon, DownloadIcon, EditIcon } from 'tdesign-icons-react';
 
-import './style/index.less';
-
 export default function () {
   return (
     <>

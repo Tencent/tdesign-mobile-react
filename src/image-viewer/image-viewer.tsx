@@ -2,7 +2,7 @@ import React, { MouseEvent, useRef, useEffect } from 'react';
 import { CloseIcon, DeleteIcon } from 'tdesign-icons-react';
 import { CSSTransition } from 'react-transition-group';
 import { CSSTransitionClassNames } from 'react-transition-group/CSSTransition';
-import { TdImageViewerProps, ImageInfo, ImageViewerCloseTrigger } from './type';
+import { TdImageViewerProps, ImageInfo, ImageViewerCloseTrigger, ImageSlotParams } from './type';
 import { StyledProps } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefault from '../_util/useDefault';
@@ -34,6 +34,9 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
     deleteBtn,
     onDelete,
     maxZoom,
+    cover,
+    image,
+    loop,
   } = useDefaultProps<ImageViewerProps>(props, imageViewerDefaultProps);
 
   const [show, setShow] = useDefault<boolean, any>(visible, defaultVisible, noop);
@@ -219,6 +222,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
       nodeRef={rootRef}
     >
       <div ref={rootRef} className={imageViewerClass} onClick={handleClick}>
+        {parseTNode(cover) && <div className={`${imageViewerClass}__cover`}>{parseTNode(cover)}</div>}
         <div className={`${imageViewerClass}__mask`}></div>
         <TSwiper
           ref={swiperRootRef}
@@ -229,6 +233,7 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
           onChange={onSwiperChange}
           current={currentIndex}
           defaultCurrent={currentIndex}
+          loop={loop}
           disabled={isTouching.current || transform.scale !== 1}
         >
           {imageInfoList.map((info, index) => (
@@ -243,22 +248,38 @@ const ImageViewer: React.FC<ImageViewerProps> = (props) => {
               }}
               hostStyle={{ overflow: 'visible' }}
             >
-              <img
-                src={info.image.url}
-                ref={(node) => {
-                  imgRefs.current[index] = node;
-                }}
-                style={{
-                  transform: `matrix(${transform.scale}, 0, 0, ${transform.scale}, ${getRealTransformX()}, ${getRealTransformY(index)})`,
-                  transitionDuration: isTouching ? '0s' : '.3s',
-                }}
-                className={`${imageViewerClass}__img`}
-                onTouchStart={onTouchStart}
-                onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}
-                onTouchCancel={onTouchEnd}
-                onDoubleClick={onDoubleClick}
-              />
+              {(() => {
+                const imageSlotParams: ImageSlotParams = {
+                  src: info.image.url,
+                  index,
+                  extra: info.image.extra,
+                  className: `${imageViewerClass}__img`,
+                  style: `transform: matrix(${transform.scale}, 0, 0, ${transform.scale}, ${getRealTransformX()}, ${getRealTransformY(index)}); transition-duration: ${
+                    isTouching ? '0s' : '.3s'
+                  };`,
+                };
+
+                const defaultImage = (
+                  <img
+                    src={info.image.url}
+                    ref={(node) => {
+                      imgRefs.current[index] = node;
+                    }}
+                    style={{
+                      transform: `matrix(${transform.scale}, 0, 0, ${transform.scale}, ${getRealTransformX()}, ${getRealTransformY(index)})`,
+                      transitionDuration: isTouching ? '0s' : '.3s',
+                    }}
+                    className={`${imageViewerClass}__img`}
+                    onTouchStart={onTouchStart}
+                    onTouchMove={onTouchMove}
+                    onTouchEnd={onTouchEnd}
+                    onTouchCancel={onTouchEnd}
+                    onDoubleClick={onDoubleClick}
+                  />
+                );
+
+                return parseTNode(image, imageSlotParams, defaultImage);
+              })()}
             </TSwiperItem>
           ))}
         </TSwiper>

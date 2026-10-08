@@ -18,7 +18,6 @@ clearable | Boolean | false | show clear icon, clicked to clear input value | N
 cursorColor | String | #0052d9 | \- | N
 disabled | Boolean | undefined | make input to be disabled | N
 enterkeyhint | String | - | attribute of input element, [see here](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/enterkeyhint)。options: enter/done/go/next/previous/search/send | N
-errorMessage | String | - | `deprecated` | N
 extra | TElement | - | Typescript: `TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 format | Function | - | input value formatter, `type=number` does not work. if you need to format number, `InputNumber` Component might be better。Typescript: `InputFormatType` `type InputFormatType = (value: InputValue) => string`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/input/type.ts) | N
 label | TNode | - | text on the left of input。Typescript: `string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
@@ -29,7 +28,6 @@ name | String | - | \- | N
 placeholder | String | undefined | \- | N
 prefixIcon | TElement | - | Typescript: `TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 readonly | Boolean | undefined | \- | N
-size | String | medium | `deprecated`。options: small/medium。Typescript: `'medium' \| 'small'` | N
 spellcheck | Boolean | false | attribute of input element, [see here](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/spellcheck) | N
 status | String | default | options: default/success/warning/error | N
 suffix | TNode | - | suffix content before suffixIcon。Typescript: `string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N

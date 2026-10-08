@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import './style/index.less';
 import { Cell, List } from 'tdesign-mobile-react';
 
 interface ListItem {

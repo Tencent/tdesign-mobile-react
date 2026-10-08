@@ -2,7 +2,6 @@ import type { MouseEvent } from 'react';
 import React from 'react';
 import { Toast, Upload } from 'tdesign-mobile-react';
 import type { RequestMethodResponse, UploadFile } from 'tdesign-mobile-react';
-import './style/index.less';
 
 // 示例图片 URL
 const IMAGE_URL = 'https://tdesign.gtimg.com/mobile/demos/upload6.png';

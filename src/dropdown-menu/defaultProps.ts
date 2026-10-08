@@ -9,7 +9,6 @@ export const dropdownMenuDefaultProps: TdDropdownMenuProps = {
   direction: 'down',
   duration: 200,
   showOverlay: true,
-  zIndex: 11600,
 };
 
 export const dropdownItemDefaultProps: TdDropdownItemProps = {

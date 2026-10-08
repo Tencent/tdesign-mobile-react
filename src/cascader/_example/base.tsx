@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { Cascader, Cell } from 'tdesign-mobile-react';
-import './style/index.less';
 
 const data = {
   areaList: [

@@ -36,7 +36,7 @@ export default function CheckboxDemo() {
       <TDemoBlock summary="非通栏多选样式">
         <CardDemo />
       </TDemoBlock>
-      <TDemoBlock title="04 特殊样式" summary="纵向卡片多选框">
+      <TDemoBlock title="04 组件规格" summary="多选框尺寸规格">
         <SpecialDemo />
       </TDemoBlock>
     </div>

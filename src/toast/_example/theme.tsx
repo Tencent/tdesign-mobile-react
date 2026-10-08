@@ -1,6 +1,14 @@
 import React from 'react';
 import { Toast, Button } from 'tdesign-mobile-react';
-import TDemoBlock from '../../../site/mobile/components/DemoBlock';
+
+const DemoBlock = ({ summary, children }: { summary?: string; children?: React.ReactNode }) => (
+  <div className="tdesign-mobile-demo-block tdesign-mobile-demo-block_subtitle">
+    <div className="tdesign-mobile-demo-block__header">
+      <p className="tdesign-mobile-demo-block__summary tdesign-mobile-demo-block_subtitle">{summary}</p>
+    </div>
+    <div className="tdesign-mobile-demo-block__slot with-padding">{children}</div>
+  </div>
+);
 
 export default function () {
   const successColumn = () => {
@@ -17,23 +25,23 @@ export default function () {
 
   return (
     <div className="toast-demo">
-      <TDemoBlock summary="成功提示" padding>
+      <DemoBlock summary="成功提示">
         <Button block theme="primary" variant="outline" size="large" onClick={successColumn}>
           成功提示
         </Button>
-      </TDemoBlock>
+      </DemoBlock>
 
-      <TDemoBlock summary="警告提示" padding>
+      <DemoBlock summary="警告提示">
         <Button block theme="primary" variant="outline" size="large" onClick={warningColumn}>
           警告提示
         </Button>
-      </TDemoBlock>
+      </DemoBlock>
 
-      <TDemoBlock summary="失败提示" padding>
+      <DemoBlock summary="失败提示">
         <Button block theme="primary" variant="outline" size="large" onClick={errorColumn}>
           失败提示
         </Button>
-      </TDemoBlock>
+      </DemoBlock>
     </div>
   );
 }

@@ -59,7 +59,7 @@ export interface TdUploadProps<T extends UploadFile = UploadFile> {
    */
   disabled?: boolean;
   /**
-   * 是否支持拖拽排序。
+   * 是否支持拖拽排序
    */
   draggable?: boolean;
   /**

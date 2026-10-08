@@ -6,13 +6,13 @@ export default function Size() {
   return (
     <div className="demo-content">
       <Link theme="primary" size="small" suffixIcon={<JumpIcon />}>
-        S号链接
+        S跳转链接
       </Link>
       <Link theme="primary" size="medium" suffixIcon={<JumpIcon />}>
-        M号链接
+        M跳转链接
       </Link>
       <Link theme="primary" size="large" suffixIcon={<JumpIcon />}>
-        L号链接
+        L跳转链接
       </Link>
     </div>
   );

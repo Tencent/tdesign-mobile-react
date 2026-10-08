@@ -2,8 +2,6 @@ import React from 'react';
 import { SmileIcon } from 'tdesign-icons-react';
 import { TypographyText } from 'tdesign-mobile-react';
 
-import './style/index.less';
-
 export default function CopyableDemo() {
   return (
     <div>

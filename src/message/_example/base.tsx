@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { NotificationIcon } from 'tdesign-icons-react';
 import { Button, Message } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function () {
   const [visible, setVisible] = useState(false);

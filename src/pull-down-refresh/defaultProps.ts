@@ -10,5 +10,6 @@ export const pullDownRefreshDefaultProps: TdPullDownRefreshProps = {
   loadingTexts: [],
   maxBarHeight: 80,
   refreshTimeout: 3000,
+  successDuration: 500,
   defaultValue: false,
 };

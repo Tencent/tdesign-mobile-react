@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseDemo from './base';
-import MaxLength from './maxLength';
+import MaxLength from './maxlength';
 import Suffix from './suffix';
 import Prefix from './prefix';
 import Special from './special';
@@ -20,7 +20,7 @@ export default function RadioDemo() {
     <div className="tdesign-mobile-demo">
       <TDemoHeader title="Input 输入框" summary="用于单行文本信息输入。" />
 
-      <TDemoBlock title="01 类型" summary="基础输入框">
+      <TDemoBlock title="01 组件类型" summary="基础输入框">
         <BaseDemo />
       </TDemoBlock>
       <TDemoBlock summary="带字数限制输入框">

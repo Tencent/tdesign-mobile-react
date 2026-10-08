@@ -8,6 +8,8 @@
 -- | -- | -- | -- | --
 className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
+current | String / Number | - | 索引列表的激活项，默认首项 | N
+defaultCurrent | String / Number | - | 索引列表的激活项，默认首项。非受控属性 | N
 indexList | Array | - | 索引字符列表。不传默认 `A-Z`。TS 类型：`Array<string \| number>` | N
 showFullIndex | Boolean | false | `0.21.4`。是否显示完整的索引内容，默认只显示首字符。TS 类型：`Boolean` | N
 sticky | Boolean | true | 索引是否吸顶，默认为true。TS 类型：`Boolean` | N

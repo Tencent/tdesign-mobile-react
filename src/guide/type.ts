@@ -6,12 +6,12 @@
 
 import { ButtonProps } from '../button';
 import { PopoverProps } from '../popover';
-import { TNode, AttachNode } from '../common';
-import { MouseEvent } from 'react';
+import type { TNode, TElement, AttachNode } from '../common';
+import type { MouseEvent } from 'react';
 
 export interface TdGuideProps {
   /**
-   * 透传 返回 的全部属性，示例：`{ content: '返回', theme: 'default' }`
+   * 透传 返回按钮 的全部属性，示例：`{ content: '返回', theme: 'default' }`
    */
   backButtonProps?: ButtonProps;
   /**
@@ -27,9 +27,14 @@ export interface TdGuideProps {
    */
   defaultCurrent?: number;
   /**
-   * 透传 完成 的全部属性，示例：`{ content: '完成', theme: 'primary' }`
+   * 透传 完成按钮 的全部属性，示例：`{ content: '完成', theme: 'primary' }`
    */
   finishButtonProps?: ButtonProps;
+  /**
+   * 是否隐藏返回按钮
+   * @default false
+   */
+  hideBack?: boolean;
   /**
    * 是否隐藏计数
    * @default false
@@ -64,7 +69,7 @@ export interface TdGuideProps {
    */
   skipButtonProps?: ButtonProps;
   /**
-   * 用于定义每个步骤的内容，包括高亮的节点、相对位置和具体的文案内容等。
+   * 用于定义每个步骤的内容，包括高亮的节点、相对位置和具体的文案内容等
    */
   steps?: Array<GuideStep>;
   /**
@@ -102,19 +107,27 @@ export interface GuideStep {
   /**
    * 当前步骤提示框的内容
    */
-  body?: string | TNode;
+  body?: TNode;
+  /**
+   * 自定义内容，同 content
+   */
+  children?: TNode;
   /**
    * 用户自定义引导弹框的内容，一旦存在，此时除 `placement`、`offset`和`element` 外，其它属性全部失效）
    */
-  content?: TNode;
+  content?: TElement;
   /**
    * 高亮的节点。数据类型为 String 时，会被当作选择器处理，进行节点查询。示例：'#tdesign' 或 () => document.querySelector('#tdesign')
    */
   element: AttachNode;
   /**
+   * 透传 完成 的全部属性，示例：`{ content: '完成', theme: 'primary' }`
+   */
+  finishButtonProps?: ButtonProps;
+  /**
    * 用户自定义的高亮框 (仅当 `mode` 为 `popover` 时生效)
    */
-  highlightContent?: TNode;
+  highlightContent?: TElement;
   /**
    * 高亮框的内边距
    */
@@ -152,7 +165,7 @@ export interface GuideStep {
   /**
    * 当前步骤的标题内容
    */
-  title?: string | TNode;
+  title?: TNode;
 }
 
 export type StepPopoverPlacement =
@@ -169,8 +182,3 @@ export type StepPopoverPlacement =
   | 'right-top'
   | 'right-bottom'
   | 'center';
-
-export type GuideCrossProps = Pick<
-  GuideStep,
-  'mode' | 'skipButtonProps' | 'nextButtonProps' | 'backButtonProps' | 'showOverlay' | 'highlightPadding'
->;

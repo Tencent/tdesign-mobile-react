@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Cell, Popup, Picker } from 'tdesign-mobile-react';
-import './style/custom-height.less';
 
 const options = [
   [

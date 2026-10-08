@@ -126,7 +126,7 @@ function PlacementCenter() {
 export default function Index() {
   return (
     <div className="tdesign-mobile-popup-demo">
-      <TDemoHeader title="Popup 弹窗层" summary="由其他控件触发，屏幕滑出或弹出一块自定义内容区域" />
+      <TDemoHeader title="Popup 弹出层" summary="由其他控件触发，屏幕滑出或弹出一块自定义内容区域。" />
       <TDemoBlock title="01 组件类型" summary="基础弹出层" padding={true}>
         <PlacementTop />
         <PlacementLeft />

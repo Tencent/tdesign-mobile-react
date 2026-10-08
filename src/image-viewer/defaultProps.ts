@@ -9,6 +9,7 @@ export const imageViewerDefaultProps: TdImageViewerProps = {
   deleteBtn: false,
   images: [],
   defaultIndex: 0,
+  loop: true,
   maxZoom: 3,
   showIndex: false,
   defaultVisible: false,

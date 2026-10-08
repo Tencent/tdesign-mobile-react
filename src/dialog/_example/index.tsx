@@ -21,7 +21,7 @@ export default function Base() {
       <TDemoBlock summary="确认类对话框" padding={true}>
         <ConfirmUsage />
       </TDemoBlock>
-      <TDemoBlock summary="输入对话框" padding={true}>
+      <TDemoBlock summary="输入类对话框" padding={true}>
         <InputUsage />
       </TDemoBlock>
       <TDemoBlock summary="带图片的对话框" padding={true}>

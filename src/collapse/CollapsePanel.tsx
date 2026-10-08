@@ -1,4 +1,4 @@
-import React, { forwardRef, memo, useCallback, useContext, useEffect, useMemo, useRef } from 'react';
+import React, { forwardRef, memo, useCallback, useContext, useEffect, useMemo } from 'react';
 import cls from 'classnames';
 import { ChevronDownIcon, ChevronUpIcon } from 'tdesign-icons-react';
 import type { StyledProps } from '../common';
@@ -33,16 +33,14 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
 
   const isActive = useMemo(() => !!parent?.activeValue?.includes(value), [parent, value]);
 
-  const handleClick: React.MouseEventHandler<HTMLDivElement> = useCallback(
-    (e) => {
+  const handleClick = useCallback(
+    ({ e }: { e: React.MouseEvent<HTMLDivElement> }) => {
       e?.stopPropagation();
       if (parent?.disabled || disabled) return;
       parent?.onPanelChange(value, { e });
     },
     [parent, value, disabled],
   );
-
-  const headRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (parent?.defaultExpandAll) {
@@ -79,7 +77,7 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
       className={cls({
         [`${collapsePanelClass}`]: true,
         [`${collapsePanelClass}--${placement}`]: true,
-        [`${collapsePanelClass}--active`]: isActive,
+        [`${collapsePanelClass}--expanded`]: isActive,
         [`${collapsePanelClass}--disabled`]: parent?.disabled || disabled,
         [className]: className,
       })}
@@ -87,17 +85,21 @@ const CollapsePanel = forwardRef<HTMLDivElement, CollapsePanelProps>((originProp
         ...style,
       }}
     >
-      <div ref={headRef} className={`${collapsePanelClass}__title`} onClick={handleClick}>
-        <Cell
-          className={cls(`${collapsePanelClass}__header`, `${collapsePanelClass}__header--${placement}`, {
+      <Cell
+        className={cls(
+          `${collapsePanelClass}__title`,
+          `${collapsePanelClass}__header`,
+          `${collapsePanelClass}__header--${placement}`,
+          {
             [`${collapsePanelClass}__header--expanded`]: isActive,
-          })}
-          leftIcon={headerLeftIcon}
-          title={parseTNode(header)}
-          note={parseTNode(headerRightContent)}
-          rightIcon={renderRightIcon()}
-        />
-      </div>
+          },
+        )}
+        leftIcon={headerLeftIcon}
+        title={parseTNode(header)}
+        note={parseTNode(headerRightContent)}
+        rightIcon={renderRightIcon()}
+        onClick={handleClick}
+      />
       <div className={`${collapsePanelClass}__body`} style={{ gridTemplateRows: isActive ? '1fr' : '0fr' }}>
         <div className={`${collapsePanelClass}__inner`}>{PanelContent()}</div>
       </div>

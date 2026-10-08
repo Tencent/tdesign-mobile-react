@@ -1,7 +1,7 @@
-import { canUseDocument } from './dom';
+import { canUseDOM } from './dom';
 
 export const on = ((): any => {
-  if (canUseDocument && document.addEventListener) {
+  if (canUseDOM() && document.addEventListener) {
     return (element: Node, event: string, handler: EventListenerOrEventListenerObject): any => {
       if (element && event && handler) {
         element.addEventListener(event, handler, false);
@@ -16,7 +16,7 @@ export const on = ((): any => {
 })();
 
 export const off = ((): any => {
-  if (canUseDocument && document.removeEventListener) {
+  if (canUseDOM() && document.removeEventListener) {
     return (element: Node, event: string, handler: EventListenerOrEventListenerObject): any => {
       if (element && event) {
         element.removeEventListener(event, handler, false);

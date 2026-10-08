@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { THEME_MODE } from '../_common/js/common';
 import getColorTokenColor from '../_common/js/utils/getColorTokenColor';
 import useMutationObservable from './useMutationObserver';
-import { canUseDocument } from '../_util/dom';
+import { canUseDOM } from '../_util/dom';
 
 const DEFAULT_OPTIONS = {
   debounceTime: 250,
@@ -31,7 +31,7 @@ function useVariables<T extends Record<string, string>>(
 ): Record<keyof T, string> {
   const [, forceUpdate] = useState<Record<string, never>>({});
 
-  if (canUseDocument && !targetElement) {
+  if (canUseDOM() && !targetElement) {
     // eslint-disable-next-line no-param-reassign
     targetElement = document?.documentElement;
   }
@@ -88,7 +88,7 @@ function useVariables<T extends Record<string, string>>(
   );
 
   // @ts-expect-error
-  if (!canUseDocument) return {};
+  if (!canUseDOM()) return {};
 
   return refs;
 }

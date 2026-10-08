@@ -23,12 +23,30 @@ export default function StepDemo() {
   const onChange = (value: number) => {
     setValue(value);
   };
+
+  const onDragend = (value: number | number[], context: { e: React.TouchEvent<HTMLDivElement> }) => {
+    console.log('[onDragend] ', value, context.e);
+  };
+
+  const onDragstart = (context: { e: React.TouchEvent<HTMLDivElement> }) => {
+    console.log('[onDragstart] ', context.e);
+  };
+
   return (
     <>
-      <div className="wrapper-base">
-        <Slider value={value} marks={marksRange} min={5} max={10} step={0.5} onChange={onChange} />
+      <div className="wrapper-step">
+        <Slider
+          value={value}
+          marks={marksRange}
+          min={5}
+          max={10}
+          step={0.5}
+          onChange={onChange}
+          onDragend={onDragend}
+          onDragstart={onDragstart}
+        />
       </div>
-      <div className="wrapper-base">
+      <div className="wrapper-step">
         <Slider range defaultValue={[20, 60]} marks={marks} step={20} />
       </div>
     </>

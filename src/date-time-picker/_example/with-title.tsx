@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { DateTimePicker, Cell, Popup } from 'tdesign-mobile-react';
-import './styles/index.less';
 
 export default function WithTitleDemo() {
   const [visible, setVisible] = useState(false);

@@ -22,7 +22,7 @@ export default function () {
       <TDemoBlock summary="自定义颜色开关">
         <Color />
       </TDemoBlock>
-      <TDemoBlock title="02 状态" summary="加载状态">
+      <TDemoBlock title="02 组件状态" summary="加载状态">
         <Status />
       </TDemoBlock>
       <TDemoBlock title="03 组件样式" summary="开关尺寸">

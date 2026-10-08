@@ -1,7 +1,7 @@
 import { useClickAway } from 'ahooks';
 import cx from 'classnames';
 import uniqueId from 'lodash-es/uniqueId';
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { CaretDownSmallIcon, CaretUpSmallIcon } from 'tdesign-icons-react';
 import Button from '../button';
 import Checkbox from '../checkbox';
@@ -36,7 +36,11 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
     defaultValue,
     onChange,
     multiple,
+    onClose,
+    onClosed,
     onConfirm,
+    onOpen,
+    onOpened,
     onReset,
     footer,
     keys,
@@ -61,7 +65,7 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
 
   const [id] = useState(() => uniqueId());
 
-  const { direction, activedId, onChangeActivedId, showOverlay, zIndex, closeOnClickOverlay } =
+  const { direction, activedId, onChangeActivedId, showOverlay, zIndex, closeOnClickOverlay, duration } =
     useContext(DropdownMenuContext);
 
   const labelText = useMemo(
@@ -70,6 +74,58 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
   );
 
   const isActived = id === activedId;
+
+  // wrapperVisible 控制外层挂载，isShowItems 控制弹层动画（两段式卸载）
+  const [wrapperVisible, setWrapperVisible] = useState(isActived);
+  const [isShowItems, setIsShowItems] = useState(isActived);
+
+  const dropdownItemEventRef = useRef({ onOpen, onClose, onOpened, onClosed });
+  dropdownItemEventRef.current = { onOpen, onClose, onOpened, onClosed };
+
+  const prevActivedRef = useRef(isActived);
+  useLayoutEffect(() => {
+    const prevActived = prevActivedRef.current;
+    prevActivedRef.current = isActived;
+    if (prevActived === isActived) return;
+
+    const {
+      onOpen: handleOpen,
+      onClose: handleClose,
+      onOpened: handleOpened,
+      onClosed: handleClosed,
+    } = dropdownItemEventRef.current;
+    const durationMs = Number(duration);
+
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    if (isActived) {
+      // 展开：先挂载 wrapper，提交后由下一个 effect 触发进入动画
+      handleOpen?.();
+      setWrapperVisible(true);
+      timer = setTimeout(() => {
+        handleOpened?.();
+      }, durationMs);
+    } else {
+      // 收起：先关闭弹层触发退出动画，动画结束后卸载 wrapper
+      handleClose?.();
+      setIsShowItems(false);
+      timer = setTimeout(() => {
+        handleClosed?.();
+        setWrapperVisible(false);
+      }, durationMs);
+    }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [isActived, duration]);
+
+  // wrapper 挂载完成后，再切换弹层 visible 以触发进入动画
+  // 用 useLayoutEffect 在绘制前同步完成挂载 + 动画切换，避免中间帧导致遮罩动画卡顿
+  useLayoutEffect(() => {
+    if (wrapperVisible && isActived) {
+      setIsShowItems(true);
+    }
+  }, [wrapperVisible, isActived]);
 
   const menuItemRef = useRef<HTMLDivElement>(null);
   const itemRef = useRef<HTMLDivElement>(null);
@@ -158,7 +214,7 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
         <div className={`${dropdownMenuClass}__title`}>{labelText}</div>
         {renderIcon()}
       </div>
-      {isActived ? (
+      {wrapperVisible ? (
         <div
           key={id}
           className={cx(dropdownItemClass, className)}
@@ -170,11 +226,12 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
         >
           <Popup
             attach={attach}
-            visible={isActived}
+            visible={isShowItems}
             placement={direction === 'up' ? 'bottom' : 'top'}
             closeOnOverlayClick={closeOnClickOverlay}
             showOverlay={showOverlay}
             zIndex={zIndex}
+            duration={Number(duration)}
             style={{
               position: 'absolute',
               overflow: 'hidden',

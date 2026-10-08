@@ -5,6 +5,7 @@
 import { TdGuideProps } from './type';
 
 export const guideDefaultProps: TdGuideProps = {
+  hideBack: false,
   hideCounter: false,
   hideSkip: false,
   highlightPadding: 8,

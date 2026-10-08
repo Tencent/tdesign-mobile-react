@@ -43,6 +43,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
     children,
     borderless,
     readonly = false,
+    direction,
     keys,
     onChange,
   } = useDefaultProps(props, checkboxGroupDefaultProps);
@@ -88,15 +89,15 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
 
   const context: CheckContextValue = {
     inject: (checkProps) => {
-      // 如果已经受控，则不注入
-      if (typeof checkProps.checked !== 'undefined') {
-        return checkProps;
+      const injectProps = { ...checkProps, direction } as typeof checkProps;
+      if (typeof injectProps.checked !== 'undefined') {
+        return injectProps;
       }
 
-      const { value: checkValue } = checkProps;
+      const { value: checkValue } = injectProps;
 
       return {
-        ...checkProps,
+        ...injectProps,
         name,
         checked: checkProps.checkAll ? checkAllChecked || checkedSet.size !== 0 : checkedSet.has(checkValue),
         indeterminate: checkProps.checkAll ? indeterminate : checkProps.indeterminate,
@@ -171,7 +172,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = (props) => {
     });
 
   return (
-    <div className={classNames(checkboxGroupClass, className)} style={style}>
+    <div className={classNames(checkboxGroupClass, `${checkboxGroupClass}--${direction}`, className)} style={style}>
       {isOptions ? (
         <span>
           <CheckContext.Provider value={context}>{checkboxNode()}</CheckContext.Provider>

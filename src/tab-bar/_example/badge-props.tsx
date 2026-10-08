@@ -11,7 +11,7 @@ function TabBarBaseDemo() {
   ];
   const [value, setValue] = useState('label_1');
 
-  const change = (changeValue) => {
+  const change = ({ value: changeValue }) => {
     setValue(changeValue);
     console.log('TabBar 值改变为：', changeValue);
   };

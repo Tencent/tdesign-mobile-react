@@ -75,7 +75,9 @@ export function render(node: React.ReactElement, container: ContainerType) {
 }
 
 // ========================= Unmount ==========================
-async function modernUnmount(container: ContainerType) {
+async function modernUnmount(container?: ContainerType | null) {
+  if (!container) return;
+
   // Delay to unmount to avoid React 18 sync warning
   return Promise.resolve().then(() => {
     container[MARK]?.unmount();
@@ -85,11 +87,14 @@ async function modernUnmount(container: ContainerType) {
   });
 }
 
-function legacyUnmount(container: ContainerType) {
+function legacyUnmount(container?: ContainerType | null) {
+  if (!container) return;
   unmountComponentAtNode(container);
 }
 
-export async function unmount(container: ContainerType) {
+export async function unmount(container?: ContainerType | null) {
+  if (!container) return;
+
   if (createRoot !== undefined) {
     // Delay to unmount to avoid React 18 sync warning
     return modernUnmount(container);

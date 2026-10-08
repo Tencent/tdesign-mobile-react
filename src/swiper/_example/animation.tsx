@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Swiper, Cell, Switch, Slider } from 'tdesign-mobile-react';
 import type { SwitchValue } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function Base() {
   const imageCdn = 'https://tdesign.gtimg.com/mobile/demos';

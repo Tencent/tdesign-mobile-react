@@ -10,7 +10,6 @@ import {
   UploadFile,
   UploadRemoveContext,
 } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default () => {
   const [files, setFiles] = useState<UploadFile[]>([

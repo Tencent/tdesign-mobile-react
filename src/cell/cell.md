@@ -19,7 +19,7 @@ note | TNode | - | 和标题同行的说明文字。TS 类型：`string \| TNode
 required | Boolean | false | 是否显示表单必填星号 | N
 rightIcon | TElement | - | 最右侧图标。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 title | TNode | - | 标题。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
-onClick | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>右侧内容。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+onClick | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>右侧内容 | N
 
 
 ### CellGroup Props

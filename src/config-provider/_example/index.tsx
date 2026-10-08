@@ -11,10 +11,10 @@ export default function EmptyDemo() {
   return (
     <div className="tdesign-mobile-demo">
       <TDemoHeader
-        title="ConfigProvider 全局配置"
+        title="ConfigProvider 全局特性配置"
         summary="全局特性配置包含各个组件的文本语言配置及其他通用配置，可以减少重复的通用配置。"
       />
-      <TDemoBlock summary="Upload">
+      <TDemoBlock title="01 配置示例" summary="Upload">
         <UploadEn />
       </TDemoBlock>
       <TDemoBlock summary="Table">

@@ -188,33 +188,65 @@ describe('Toast', () => {
   });
 
   describe('event', () => {
-    it(': close', async () => {
+    it(': close and destroy after duration', async () => {
       const onClose = vi.fn();
+      const onDestroy = vi.fn();
       await act(async () => {
         await Toast({
           onClose,
+          onDestroy,
         });
       });
       await act(async () => {
         vi.advanceTimersByTime(2000);
       });
-      expect(onClose).toHaveBeenCalled();
+      expect(onClose).toHaveBeenCalledTimes(1);
+      expect(onDestroy).toHaveBeenCalledTimes(1);
     });
 
-    it(': destroy', async () => {
+    it(': clear triggers close only', async () => {
+      const onClose = vi.fn();
       const onDestroy = vi.fn();
       await act(async () => {
         await Toast({
+          onClose,
           onDestroy,
           message: ' ',
+          duration: 10000,
         });
       });
-      await Toast.clear();
-      expect(onDestroy).toHaveBeenCalled();
+      await act(async () => {
+        Toast.clear();
+      });
+      expect(onClose).toHaveBeenCalledTimes(1);
+      expect(onDestroy).not.toHaveBeenCalled();
     });
   });
 
   describe('method', () => {
+    it.each([0, 10000])(': clear releases the interaction lock with duration %i', async (duration) => {
+      const onDestroy = vi.fn();
+      const onClose = vi.fn();
+      await act(async () => {
+        Toast({ theme: 'loading', preventScrollThrough: true, duration, onDestroy, onClose });
+      });
+      expect(document.body).toHaveClass('t-toast--lock');
+
+      await act(async () => {
+        Toast.clear();
+        Toast.clear();
+      });
+
+      expect(document.querySelector('.t-toast')).toBeNull();
+      expect(document.body).not.toHaveClass('t-toast--lock');
+      expect(onClose).toHaveBeenCalledTimes(1);
+      expect(onDestroy).not.toHaveBeenCalled();
+      await act(async () => {
+        vi.advanceTimersByTime(10000);
+      });
+      expect(onDestroy).not.toHaveBeenCalled();
+    });
+
     it(': method', async () => {
       const testMethod = async (method, target, props) => {
         let handler;

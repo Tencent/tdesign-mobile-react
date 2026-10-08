@@ -20,6 +20,7 @@ export const checkboxDefaultProps: TdCheckboxProps = {
 
 export const checkboxGroupDefaultProps: TdCheckboxGroupProps = {
   borderless: false,
+  direction: 'vertical',
   disabled: undefined,
   max: undefined,
   readonly: undefined,

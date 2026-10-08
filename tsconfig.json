@@ -17,12 +17,14 @@
       "tdesign-mobile-react/*": ["src/*"],
       "tdesign-mobile-react/es/locale/*": ["src/locale/*"],
       "@test/utils": ["test/utils"],
-      "@common/*": ["src/_common/*"],
+      "@common/*": ["src/_common/*"]
     },
     "allowJs": true,
     "checkJs": true,
     "downlevelIteration": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": ["node", "vitest/globals"]
   },
   "include": ["./src", "./global.d.ts"],
   "exclude": ["node_modules", "src/_common", "dist", "lib", "cjs", "esm", "es", "site", "**/*.jsx"],

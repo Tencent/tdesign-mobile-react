@@ -14,7 +14,7 @@ import ShowWeekDemo from './show-week';
 export default function DateTimePickerDemo() {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="DateTimePicker 时间选择器" summary="用于选择一个时间点或者一个时间段" />
+      <TDemoHeader title="DateTimePicker 时间选择器" summary="用于选择一个时间点或者一个时间段。" />
       <TDemoBlock title="01 组件类型" padding={false} summary="年月日选择器">
         <BaseDemo />
       </TDemoBlock>

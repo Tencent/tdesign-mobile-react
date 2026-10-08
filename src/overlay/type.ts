@@ -4,8 +4,8 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TNode } from '../common';
-import { MouseEvent } from 'react';
+import type { TNode } from '../common';
+import type { MouseEvent } from 'react';
 
 export interface TdOverlayProps {
   /**
@@ -33,8 +33,7 @@ export interface TdOverlayProps {
    */
   visible?: boolean;
   /**
-   * 遮罩的层级
-   * @default 1000
+   * 遮罩的层级，默认为 1000
    */
   zIndex?: number;
   /**

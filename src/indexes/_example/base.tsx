@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { ArrowLeftIcon } from 'tdesign-icons-react';
 import { Indexes, IndexesAnchor, CellGroup, Cell } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function IndexesDemo({ goHome }) {
   let height = 0;

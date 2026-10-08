@@ -4,7 +4,7 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TNode } from '../common';
+import type { TNode } from '../common';
 
 export interface TdPopoverProps {
   /**
@@ -43,7 +43,7 @@ export interface TdPopoverProps {
    */
   showArrow?: boolean;
   /**
-   * 弹出气泡主题。
+   * 弹出气泡主题
    * @default dark
    */
   theme?: 'dark' | 'light' | 'brand' | 'success' | 'warning' | 'error';

@@ -3,6 +3,7 @@ import type { FC, CompositionEvent, MouseEvent, KeyboardEvent, FocusEvent, Synth
 import { CloseCircleFilledIcon, SearchIcon } from 'tdesign-icons-react';
 import classNames from 'classnames';
 import useDefault from '../_util/useDefault';
+import useLengthLimit from '../hooks/useLengthLimit';
 import parseTNode from '../_util/parseTNode';
 import useConfig from '../hooks/useConfig';
 import type { TdSearchProps } from './type';
@@ -24,6 +25,8 @@ const Search: FC<SearchProps> = (props) => {
     disabled,
     focus,
     leftIcon,
+    maxcharacter,
+    maxlength,
     placeholder,
     readonly,
     shape,
@@ -38,6 +41,8 @@ const Search: FC<SearchProps> = (props) => {
   } = useDefaultProps(props, searchDefaultProps);
   const [focusState, setFocus] = useState(focus);
   const inputRef = useRef(null);
+  const composingRef = useRef(false);
+  const [composingValue, setComposingValue] = useState('');
   const [searchValue, setSearchValue] = useDefault(value, '', onChange);
   const [showResultList, setShowResultList] = useState(false);
 
@@ -51,18 +56,30 @@ const Search: FC<SearchProps> = (props) => {
     [`${searchClass}--center`]: center,
   });
 
+  const resultMaxLength = !Number.isNaN(Number(maxlength)) ? Number(maxlength) : -1;
+  const { getValueByLimitNumber } = useLengthLimit({
+    value: searchValue,
+    maxlength,
+    maxcharacter,
+  });
+
   const inputValueChangeHandle = (e: SyntheticEvent<HTMLInputElement>) => {
     const { value } = e.target as HTMLInputElement;
-    setSearchValue(value, { trigger: 'input-change', e });
+    setSearchValue(getValueByLimitNumber(value), { trigger: 'input-change', e });
   };
 
   const handleInput = (e: SyntheticEvent<HTMLInputElement>) => {
     setShowResultList(true);
-    const { nativeEvent } = e as SyntheticEvent<HTMLInputElement> & { nativeEvent?: Event };
-    if (nativeEvent instanceof InputEvent) {
-      // 中文输入的时候inputType是insertCompositionText所以中文输入的时候禁止触发。
-      const checkInputType = nativeEvent.inputType && nativeEvent.inputType === 'insertCompositionText';
-      if (nativeEvent.isComposing || checkInputType) return;
+    const { nativeEvent } = e as SyntheticEvent<HTMLInputElement> & {
+      nativeEvent?: Event & { isComposing?: boolean; inputType?: string };
+    };
+
+    const { value } = e.target as HTMLInputElement;
+    // 中文输入的时候 inputType 是 insertCompositionText，因此合成态时仅缓存值，不触发 onChange。
+    const checkInputType = nativeEvent?.inputType && nativeEvent.inputType === 'insertCompositionText';
+    if (composingRef.current || nativeEvent?.isComposing || checkInputType) {
+      setComposingValue(value);
+      return;
     }
 
     inputValueChangeHandle(e);
@@ -84,8 +101,20 @@ const Search: FC<SearchProps> = (props) => {
     onBlur?.({ value: searchValue, e });
   };
 
+  const handleCompositionstart = (e: CompositionEvent) => {
+    composingRef.current = true;
+    const {
+      currentTarget: { value },
+    } = e as CompositionEvent<HTMLInputElement>;
+    setComposingValue(value);
+  };
+
   const handleCompositionend = (e: CompositionEvent) => {
-    inputValueChangeHandle(e as CompositionEvent<HTMLInputElement>);
+    if (composingRef.current) {
+      composingRef.current = false;
+      setComposingValue('');
+      inputValueChangeHandle(e as CompositionEvent<HTMLInputElement>);
+    }
   };
 
   const handleAction = (e: MouseEvent) => {
@@ -145,7 +174,7 @@ const Search: FC<SearchProps> = (props) => {
 
   const handleSelectOption = (item: string, e: MouseEvent<HTMLDivElement>) => {
     setShowResultList(false);
-    setSearchValue(item, { trigger: 'option-click', e });
+    setSearchValue(getValueByLimitNumber(item), { trigger: 'option-click', e });
   };
 
   const renderResultList = () => {
@@ -174,7 +203,7 @@ const Search: FC<SearchProps> = (props) => {
           {renderLeftIcon()}
           <input
             ref={inputRef}
-            value={searchValue}
+            value={composingRef.current ? composingValue : searchValue}
             type="search"
             className={`${inputClasses}`}
             style={
@@ -184,10 +213,12 @@ const Search: FC<SearchProps> = (props) => {
             placeholder={placeholder}
             readOnly={readonly}
             disabled={disabled}
+            maxLength={!maxcharacter && resultMaxLength > 0 ? resultMaxLength : undefined}
             onKeyDown={handleSearch}
             onFocus={handleFocus}
             onBlur={handleBlur}
             onInput={handleInput}
+            onCompositionStart={handleCompositionstart}
             onCompositionEnd={handleCompositionend}
           />
           {renderClear()}

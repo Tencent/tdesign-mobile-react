@@ -178,7 +178,7 @@ const esmConfig = {
 const libConfig = {
   input: inputList.concat('!src/index-lib.ts'),
   external: externalDeps.concat(externalPeerDeps),
-  plugins: [multiInput()].concat(getPlugins({ extractMultiCss: true })),
+  plugins: [multiInput()].concat(getPlugins()),
   output: {
     banner,
     dir: 'lib/',
@@ -219,7 +219,7 @@ const umdConfig = {
     banner,
     format: 'umd',
     exports: 'named',
-    globals: { react: 'React' },
+    globals: { react: 'React', 'react-dom': 'ReactDOM', 'react-dom/client': 'ReactDOM' },
     sourcemap: true,
     file: `dist/${name}.js`,
   },
@@ -239,7 +239,7 @@ const umdMinConfig = {
     banner,
     format: 'umd',
     exports: 'named',
-    globals: { react: 'React' },
+    globals: { react: 'React', 'react-dom': 'ReactDOM', 'react-dom/client': 'ReactDOM' },
     sourcemap: true,
     file: `dist/${name}.min.js`,
   },

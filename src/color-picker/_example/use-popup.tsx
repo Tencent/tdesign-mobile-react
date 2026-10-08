@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ColorObject, ColorPicker, ColorPickerTrigger, Popup } from 'tdesign-mobile-react';
+import { ColorPicker, Popup } from 'tdesign-mobile-react';
+import type { ColorObject, PopupProps } from 'tdesign-mobile-react';
 import Button from 'tdesign-mobile-react/button';
 
 export default function () {
@@ -7,7 +8,7 @@ export default function () {
   const onChange = (value: string) => {
     console.log('change', value);
   };
-  const onClose = (visible: boolean, target: ColorPickerTrigger) => {
+  const onClose: NonNullable<PopupProps['onVisibleChange']> = (visible, target) => {
     console.log('close', visible, target);
     if (!visible) {
       setVisible(false);

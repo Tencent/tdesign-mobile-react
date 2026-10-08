@@ -1,8 +1,6 @@
 import React from 'react';
 import { Grid, GridItem } from 'tdesign-mobile-react';
 
-import './style/index.less';
-
 const imgUrl = 'https://tdesign.gtimg.com/mobile/demos/example1.png';
 
 export default function Bordered() {

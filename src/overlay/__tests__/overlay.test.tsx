@@ -106,6 +106,11 @@ describe('Overlay', () => {
         );
         const overlay = container.querySelector('.t-overlay');
         expect(overlay).toHaveStyle('z-index: 9999');
+
+        // zIndex 无默认值，不传时不应设置 z-index 样式
+        const { container: defaultContainer } = render(<Overlay visible>测试内容</Overlay>);
+        const defaultOverlay = defaultContainer.querySelector('.t-overlay');
+        expect((defaultOverlay as HTMLElement).style.zIndex).toBe('');
       });
     });
 
@@ -190,13 +195,6 @@ describe('Overlay', () => {
         expect(overlay).toHaveStyle(`animation-duration: ${overlayDefaultProps.duration}ms`);
       });
 
-      it('uses default zIndex when not provided', () => {
-        const { container } = render(<Overlay visible>测试内容</Overlay>);
-        const overlay = container.querySelector('.t-overlay');
-        expect(overlay).toBeInTheDocument();
-        expect(overlay).toHaveStyle(`z-index: ${overlayDefaultProps.zIndex}`);
-      });
-
       it('uses default preventScrollThrough when not provided', () => {
         // 保存原始的 document.addEventListener 方法
         const originalAddEventListener = document.addEventListener;
@@ -261,7 +259,6 @@ describe('Overlay', () => {
 
         // 验证所有默认属性都被正确应用
         expect(overlay).toBeInTheDocument();
-        expect(overlay).toHaveStyle(`z-index: ${overlayDefaultProps.zIndex}`);
         expect(overlay).toHaveStyle(`animation-duration: ${overlayDefaultProps.duration}ms`);
 
         // 由于默认 preventScrollThrough 为 true，验证 document.addEventListener 被调用

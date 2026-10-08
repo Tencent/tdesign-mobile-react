@@ -28,8 +28,8 @@ onClose | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>�
 -- | -- | -- | -- | --
 className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
-checked | Boolean | undefined | 标签选中的状态，默认风格（theme=default）才有选中态 | N
-defaultChecked | Boolean | undefined | 标签选中的状态，默认风格（theme=default）才有选中态。非受控属性 | N
+checked | Boolean | - | 标签选中的状态，默认风格（theme=default）才有选中态 | N
+defaultChecked | Boolean | - | 标签选中的状态，默认风格（theme=default）才有选中态。非受控属性 | N
 children | TNode | - | 组件子元素。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 closable | Boolean | false | 标签是否可关闭 | N
 content | TNode | - | 组件子元素；传入数组时：[选中内容，非选中内容]。TS 类型：`string \| number \| string[] \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
@@ -67,18 +67,18 @@ onClose | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>�
 --td-tag-large-font | @font-body-medium | -
 --td-tag-large-icon-size | 16px | -
 --td-tag-large-padding | 2px 7px | -
---td-tag-mark-border-radius | @tag-round-border-radius | -
+--td-tag-mark-border-radius | @radius-round | -
 --td-tag-medium-font | @font-body-small | -
 --td-tag-medium-icon-size | 14px | -
 --td-tag-medium-padding | 1px 7px | -
 --td-tag-outline-bg-color | @bg-color-container | -
 --td-tag-primary-color | @brand-color | -
 --td-tag-primary-light-color | @brand-color-light | -
---td-tag-round-border-radius | 999px | -
+--td-tag-round-border-radius | @radius-round | -
 --td-tag-small-font | @font-body-extraSmall | -
 --td-tag-small-icon-size | 12px | -
 --td-tag-small-padding | 1px 5px | -
---td-tag-square-border-radius | 4px | -
+--td-tag-square-border-radius | @radius-small | -
 --td-tag-success-color | @success-color | -
 --td-tag-success-light-color | @success-color-1 | -
 --td-tag-warning-color | @warning-color | -

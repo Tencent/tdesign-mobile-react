@@ -28,7 +28,7 @@ export default function FormDemo() {
         title="Form 表单"
         summary="用以收集、校验和提交数据，一般由输入框、单选框、复选框、选择器等控件组成。"
       />
-      <TDemoBlock title="01 基础类型" summary="基础表单">
+      <TDemoBlock title="01 组件类型" summary="基础表单">
         <div className="options">
           <div className="button-group">
             <Button

@@ -4,6 +4,7 @@ import { describe, it, expect, render, vi, fireEvent, act, beforeEach, afterEach
 import Picker from '../Picker';
 import PickerClass, { stopPropagation, preventDefault } from '../picker.class';
 import { findIndexOfEnabledOption, getPickerColumns, isMultipleArray, limitNumberInRange } from '../utils';
+import { DEFAULT_WHEEL_CONFIG } from '../constants';
 import type { PickerColumn, PickerColumnItem } from '../type';
 // 引入 index.ts 以覆盖该文件
 import * as PickerExports from '../index';
@@ -446,7 +447,7 @@ describe('picker.class', () => {
       defaultIndex: 0,
       defaultPickerColumns: cityOptions,
       onChange,
-      swipeDuration: 300,
+      wheelConfig: DEFAULT_WHEEL_CONFIG,
       prefixCls: 't',
     });
     expect(picker).toBeDefined();
@@ -494,7 +495,7 @@ describe('picker.class', () => {
       defaultIndex: 0,
       defaultPickerColumns: cityOptions,
       onChange: () => {},
-      swipeDuration: 300,
+      wheelConfig: DEFAULT_WHEEL_CONFIG,
       prefixCls: 't',
     });
     el.dispatchEvent(
@@ -525,7 +526,7 @@ describe('picker.class', () => {
       defaultIndex: 0,
       defaultPickerColumns: cityOptions,
       onChange: () => {},
-      swipeDuration: 0,
+      wheelConfig: { ...DEFAULT_WHEEL_CONFIG, inertiaDuration: 0 },
       prefixCls: 't',
     });
     el.dispatchEvent(
@@ -603,7 +604,7 @@ describe('picker.class', () => {
       defaultIndex: 0,
       defaultPickerColumns: cityOptions,
       onChange: () => {},
-      swipeDuration: 200,
+      wheelConfig: { ...DEFAULT_WHEEL_CONFIG, inertiaDuration: 200 },
       prefixCls: 't',
     });
     // 用 fake raf
@@ -639,7 +640,7 @@ describe('picker.class', () => {
       defaultIndex: 0,
       defaultPickerColumns: [],
       onChange,
-      swipeDuration: 100,
+      wheelConfig: { ...DEFAULT_WHEEL_CONFIG, inertiaDuration: 100 },
       prefixCls: 't',
     });
 
@@ -694,7 +695,7 @@ describe('picker.class', () => {
       defaultPickerColumns: cityOptions,
       onChange: () => {},
     } as any);
-    expect(picker.swipeDuration).toBe(1000);
+    expect(picker.inertiaDuration).toBe(300);
     expect(picker.prefixCls).toBeDefined();
   });
 
@@ -748,7 +749,7 @@ describe('picker.class', () => {
       defaultIndex: 0,
       defaultPickerColumns: cityOptions,
       onChange: () => {},
-      swipeDuration: 100,
+      wheelConfig: { ...DEFAULT_WHEEL_CONFIG, inertiaDuration: 100 },
       prefixCls: 't',
     });
     // 制造 dist===0 条件：offsetY = -(speed/0.005)*sign(distance)
@@ -868,7 +869,7 @@ describe('picker.class', () => {
       defaultIndex: 0,
       defaultPickerColumns: cityOptions,
       onChange,
-      swipeDuration: 100,
+      wheelConfig: { ...DEFAULT_WHEEL_CONFIG, inertiaDuration: 100 },
       prefixCls: 't',
     });
 

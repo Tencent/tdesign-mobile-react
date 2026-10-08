@@ -15,7 +15,7 @@ import ThemeDemo from './theme';
 export default function Base() {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="Button 按钮" summary="按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。" />
+      <TDemoHeader title="Button 按钮" summary="用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。" />
       <TDemoBlock title="01 组件类型" summary="基础按钮">
         <BaseDemo />
       </TDemoBlock>

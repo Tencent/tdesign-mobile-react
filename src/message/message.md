@@ -20,14 +20,9 @@ theme | String | info | 消息组件风格。可选项：info/success/warning/er
 visible | Boolean | false | 是否显示，隐藏时默认销毁组件 | N
 defaultVisible | Boolean | false | 是否显示，隐藏时默认销毁组件。非受控属性 | N
 zIndex | Number | - | 元素层级，样式默认为 5000 | N
-onChange | Function |  | TS 类型：`(visible: boolean) => void`<br/>已废弃。可见性变化时触发 | N
-onClose | Function |  | TS 类型：`(context: { trigger: 'close-click' \| 'duration-end', e?: MouseEvent }) => void`<br/>已废弃。关闭消息时触发。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 onCloseBtnClick | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>当关闭按钮存在时，用户点击关闭按钮触发 | N
-onClosed | Function |  | TS 类型：`() => void`<br/>已废弃。关闭消息并且动画结束后触发 | N
 onDurationEnd | Function |  | TS 类型：`() => void`<br/>计时结束后触发 | N
 onLinkClick | Function |  | TS 类型：`(context: { e: MouseEvent }) => void`<br/>当`link`链接存在时，点击链接文本时触发 | N
-onOpen | Function |  | TS 类型：`() => void`<br/>已废弃。展示Message时触发 | N
-onOpened | Function |  | TS 类型：`() => void`<br/>已废弃。展示Message时并且动画结束后触发 | N
 
 ### CSS Variables
 

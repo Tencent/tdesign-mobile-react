@@ -47,7 +47,7 @@ const Text = forwardRef<HTMLSpanElement, TextProps>((originalProps, ref) => {
     return classNames(list, className);
   }, [prefixCls, disabled, theme, className]);
 
-  /** 文本装饰 - 支持多装饰嵌套，参考移动端 Vue 版 */
+  /** 文本装饰 - 支持多装饰嵌套 */
   const wrapperDecorations = useCallback(
     (content: ReactNode): ReactNode => {
       let currentContent = content;

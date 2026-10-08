@@ -12,6 +12,8 @@ import LoadingExample from './loading';
 import SelectExample from './select';
 import FilterSortExample from './filter-sort';
 
+import './style/index.less';
+
 export default function Base() {
   return (
     <div className="tdesign-mobile-demo">
@@ -27,11 +29,11 @@ export default function Base() {
         <ScrollExample />
       </TDemoBlock>
 
-      <TDemoBlock summary="带斑马纹表格样式" padding={true}>
+      <TDemoBlock summary="带斑马纹表格" padding={true}>
         <StripeExample />
       </TDemoBlock>
 
-      <TDemoBlock summary="带边框表格样式" padding={true}>
+      <TDemoBlock summary="带边框表格" padding={true}>
         <BorderedExample />
       </TDemoBlock>
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Drawer, Button } from 'tdesign-mobile-react';
 import { AppIcon } from 'tdesign-icons-react';
-import './style/index.less';
 
 export default function IconPage() {
   const [openBase, setOpenBase] = useState(false);

@@ -23,7 +23,7 @@ describe('props trim branches: className/style', () => {
   it('should render with className and style (hit trim merge branch)', () => {
     const { container } = render(
       <DateTimePicker
-        mode="datetime"
+        mode={['date', 'second']}
         className="extra-class"
         style={{ color: 'red' }}
         start="2023-01-01 00:00:00"
@@ -39,7 +39,7 @@ describe('props trim branches: className/style', () => {
   it('should render without className and style (hit empty branch)', () => {
     const { container } = render(
       <DateTimePicker
-        mode="datetime"
+        mode={['date', 'second']}
         start="2023-01-01 00:00:00"
         end="2023-12-31 23:59:59"
         defaultValue="2023-06-01 10:20:30"
@@ -68,11 +68,9 @@ describe('cover lines 209-214 falsy branches via Picker mock (no handlers/slots)
     });
 
     const { default: DateTimePickerMocked } = await import('../DateTimePicker');
-
-    // 不传 onConfirm/onCancel/onPick/header/footer，覆盖 209-214 的 undefined 路径
     const { getByText, container } = render(
       <DateTimePickerMocked
-        mode="datetime"
+        mode={['date', 'second']}
         start="2023-01-01 00:00:00"
         end="2023-12-31 23:59:59"
         defaultValue="2023-06-01 10:20:30"
@@ -119,12 +117,12 @@ describe('DateTimePicker', () => {
     });
 
     it(':mode - time', () => {
-      const { container } = render(<DateTimePicker mode="time" />);
+      const { container } = render(<DateTimePicker mode={['hour', 'second']} />);
       expect(container.querySelector('.t-picker')).toBeInTheDocument();
     });
 
     it(':mode - datetime', () => {
-      const { container } = render(<DateTimePicker mode="datetime" />);
+      const { container } = render(<DateTimePicker mode={['date', 'second']} />);
       expect(container.querySelector('.t-picker')).toBeInTheDocument();
     });
 
@@ -173,9 +171,8 @@ describe('DateTimePicker', () => {
       expect(container.querySelector('.t-picker')).toBeInTheDocument();
     });
 
-    it(':customLocale', () => {
-      const customLocale = { confirm: 'OK', cancel: 'Cancel' };
-      const { container } = render(<DateTimePicker customLocale={customLocale} />);
+    it(':confirmBtn/:cancelBtn', () => {
+      const { container } = render(<DateTimePicker confirmBtn="OK" cancelBtn="Cancel" />);
       expect(container.querySelector('.t-picker')).toBeInTheDocument();
     });
 
@@ -252,12 +249,14 @@ describe('DateTimePicker', () => {
   describe('time mode with date calculation (lines 54-55)', () => {
     it('should handle time mode with start date calculation', () => {
       const start = '2023-01-01';
-      const { container } = render(<DateTimePicker mode="time" start={start} defaultValue="10:30:45" />);
+      const { container } = render(<DateTimePicker mode={['hour', 'second']} start={start} defaultValue="10:30:45" />);
       expect(container.querySelector('.t-picker')).toBeInTheDocument();
     });
 
     it('should handle invalid time values in time mode', () => {
-      const { container } = render(<DateTimePicker mode="time" defaultValue="invalid-time" start="2023-01-01" />);
+      const { container } = render(
+        <DateTimePicker mode={['hour', 'second']} defaultValue="invalid-time" start="2023-01-01" />,
+      );
       expect(container.querySelector('.t-picker')).toBeInTheDocument();
     });
   });
@@ -281,7 +280,9 @@ describe('DateTimePicker', () => {
       const start = '2023-01-01 10:30:45';
       const end = '2023-01-01 15:45:30';
 
-      const { container } = render(<DateTimePicker mode="datetime" start={start} end={end} defaultValue={start} />);
+      const { container } = render(
+        <DateTimePicker mode={['date', 'second']} start={start} end={end} defaultValue={start} />,
+      );
       expect(container.querySelector('.t-picker')).toBeInTheDocument();
     });
 
@@ -289,7 +290,9 @@ describe('DateTimePicker', () => {
       const start = '2023-01-01 10:30:45';
       const end = '2023-01-01 10:45:30';
 
-      const { container } = render(<DateTimePicker mode="datetime" start={start} end={end} defaultValue={start} />);
+      const { container } = render(
+        <DateTimePicker mode={['date', 'second']} start={start} end={end} defaultValue={start} />,
+      );
       expect(container.querySelector('.t-picker')).toBeInTheDocument();
     });
 
@@ -297,7 +300,9 @@ describe('DateTimePicker', () => {
       const start = '2023-01-01 10:30:45';
       const end = '2023-01-01 10:30:50';
 
-      const { container } = render(<DateTimePicker mode="datetime" start={start} end={end} defaultValue={start} />);
+      const { container } = render(
+        <DateTimePicker mode={['date', 'second']} start={start} end={end} defaultValue={start} />,
+      );
       expect(container.querySelector('.t-picker')).toBeInTheDocument();
     });
 
@@ -305,7 +310,9 @@ describe('DateTimePicker', () => {
       const start = '10:30:45';
       const end = '15:45:30';
 
-      const { container } = render(<DateTimePicker mode="time" start={start} end={end} defaultValue={start} />);
+      const { container } = render(
+        <DateTimePicker mode={['hour', 'second']} start={start} end={end} defaultValue={start} />,
+      );
       expect(container.querySelector('.t-picker')).toBeInTheDocument();
     });
   });
@@ -370,7 +377,7 @@ describe('DateTimePicker', () => {
     it('should handle all column types with custom steps', () => {
       const { container } = render(
         <DateTimePicker
-          mode="datetime"
+          mode={['date', 'second']}
           steps={{
             year: 2,
             month: 2,
@@ -529,14 +536,18 @@ describe('DateTimePicker', () => {
     it('datetime mode bounded minute when start/end in same hour', () => {
       const start = '2023-01-01 10:15:00';
       const end = '2023-01-01 10:25:00';
-      const { container } = render(<DateTimePicker mode="datetime" start={start} end={end} defaultValue={start} />);
+      const { container } = render(
+        <DateTimePicker mode={['date', 'second']} start={start} end={end} defaultValue={start} />,
+      );
       expect(container.querySelector('.t-picker')).toBeInTheDocument();
     });
 
     it('datetime mode bounded second when start/end in same minute', () => {
       const start = '2023-01-01 10:30:45';
       const end = '2023-01-01 10:30:50';
-      const { container } = render(<DateTimePicker mode="datetime" start={start} end={end} defaultValue={start} />);
+      const { container } = render(
+        <DateTimePicker mode={['date', 'second']} start={start} end={end} defaultValue={start} />,
+      );
       expect(container.querySelector('.t-picker')).toBeInTheDocument();
     });
   });
@@ -552,7 +563,7 @@ describe('DateTimePicker', () => {
         return options;
       });
 
-      render(<DateTimePicker mode="date" showWeek={true} filter={filter} value={new Date(2023, 5, 15)} />);
+      render(<DateTimePicker mode="date" showWeek={true} filter={filter} value="2023-06-15" />);
 
       // filter函数应该被调用
       expect(filter).toHaveBeenCalled();
@@ -568,7 +579,7 @@ describe('DateTimePicker', () => {
         return options;
       });
 
-      render(<DateTimePicker mode="year" filter={filter} value={new Date(2023, 5, 15)} />);
+      render(<DateTimePicker mode="year" filter={filter} value="2023-06-15" />);
 
       // filter函数应该被调用
       expect(filter).toHaveBeenCalled();
@@ -577,12 +588,12 @@ describe('DateTimePicker', () => {
     // 额外的边界条件测试来提高分支覆盖率
     it('should handle edge cases for better branch coverage', () => {
       // 测试没有filter函数的情况
-      const { container: container1 } = render(<DateTimePicker mode="datetime" showWeek={true} />);
+      const { container: container1 } = render(<DateTimePicker mode={['date', 'second']} showWeek={true} />);
       expect(container1.querySelector('.t-picker')).toBeInTheDocument();
 
       // 测试有filter函数但返回原数组的情况
       const filter = vi.fn((type: string, options: any[]) => options);
-      const { container: container2 } = render(<DateTimePicker mode="datetime" filter={filter} />);
+      const { container: container2 } = render(<DateTimePicker mode={['date', 'second']} filter={filter} />);
       expect(container2.querySelector('.t-picker')).toBeInTheDocument();
     });
 
@@ -597,7 +608,7 @@ describe('DateTimePicker', () => {
       render(<DateTimePicker mode="date" filter={filter} />);
 
       // 测试time模式
-      render(<DateTimePicker mode="time" filter={filter} />);
+      render(<DateTimePicker mode={['hour', 'second']} filter={filter} />);
 
       // filter应该被多次调用
       expect(filter).toHaveBeenCalled();
@@ -609,10 +620,10 @@ describe('DateTimePicker', () => {
 
       const { container } = render(
         <DateTimePicker
-          mode="datetime"
+          mode={['date', 'second']}
           renderLabel={renderLabel}
           showWeek={true}
-          value={new Date(2023, 5, 15, 10, 30, 0)}
+          value="2023-06-15 10:30:00"
         />,
       );
 
@@ -653,7 +664,7 @@ describe('cover lines 209-214 via Picker mock', () => {
 
     const { getByText, rerender, queryByText } = render(
       <DateTimePickerMocked
-        mode="datetime"
+        mode={['date', 'second']}
         start="2023-01-01 00:00:00"
         end="2023-12-31 23:59:59"
         defaultValue="2023-06-01 10:20:30"
@@ -681,7 +692,7 @@ describe('cover lines 209-214 via Picker mock', () => {
     // 追加：覆盖 header/footer 与事件回调的“未传”分支（命中 209-214 的另一条路径）
     rerender(
       <DateTimePickerMocked
-        mode="datetime"
+        mode={['date', 'second']}
         start="2023-01-01 00:00:00"
         end="2023-12-31 23:59:59"
         defaultValue="2023-06-01 10:20:30"

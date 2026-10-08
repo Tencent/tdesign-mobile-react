@@ -1,7 +1,6 @@
 import React, { forwardRef, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { StyledProps } from '../common';
 import type { TdSideBarProps } from './type';
-import { sideBarDefaultProps } from './defaultProps';
 import { SideBarProvider } from './SideBarContext';
 import useDefault from '../_util/useDefault';
 import parseTNode from '../_util/parseTNode';
@@ -17,7 +16,7 @@ export interface SideBarProps extends TdSideBarProps, StyledProps {}
  * @returns The rendered SideBar component.
  */
 const SideBar = forwardRef<HTMLDivElement, SideBarProps>((originProps, ref) => {
-  const props = useDefaultProps(originProps, sideBarDefaultProps);
+  const props = useDefaultProps(originProps, {});
   const sideBarClass = usePrefixClass('side-bar');
 
   const { onClick, onChange, children, defaultValue, value } = props;

@@ -6,8 +6,8 @@
 
 import { BadgeProps } from '../badge';
 import { ImageProps } from '../image';
-import { TNode, TElement, ShapeEnum } from '../common';
-import { MouseEvent } from 'react';
+import type { TNode, TElement, ShapeEnum } from '../common';
+import type { MouseEvent } from 'react';
 
 export interface TdAvatarProps {
   /**
