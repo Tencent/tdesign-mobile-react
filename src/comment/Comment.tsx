@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import { isObject } from 'lodash-es';
 import { ChevronDownSIcon, ChevronUpSIcon } from 'tdesign-icons-react';
 import { CommentActionItem, CommentFold, CommentFoldState, TdCommentProps } from './type';
@@ -20,49 +20,59 @@ const DEFAULT_COMMENT_FOLDS: CommentFold = {
   },
 };
 const Comment: React.FC<TdCommentProps> = (props) => {
-  const { actions, author, avatar, content, datetime, folds, reply, children, onActions, onFolds } = props;
-  const commentFolds = folds || DEFAULT_COMMENT_FOLDS;
-  const [curFoldsState, setCurFoldsState] = useState<CommentFoldState>('collapsed');
+  const { actions, author, avatar, content, datetime, folds, defaultFolds, reply, children, onActions, onFolds } =
+    props;
+  const [innerFoldsState, setInnerFoldsState] = useState<CommentFoldState>(defaultFolds?.state || 'collapsed');
   const foldSteps = useRef(0);
   const rootClassName = usePrefixClass('comment');
+
+  const isControlled = folds !== undefined;
+  const commentFolds = folds || defaultFolds || DEFAULT_COMMENT_FOLDS;
+
+  // 受控模式下，当外部 folds.state 变化时同步 foldSteps
+  useEffect(() => {
+    if (!isControlled) {
+      return;
+    }
+    if (folds.state === 'collapsed') {
+      foldSteps.current = 0;
+    } else if (folds.state === 'expanded') {
+      foldSteps.current = (commentFolds.step || 3) - 1;
+    }
+  }, [isControlled, folds?.state, commentFolds.step]);
+
+  // 当前实际使用的折叠状态
+  const curFoldsState: CommentFoldState = isControlled ? folds.state || 'collapsed' : innerFoldsState;
 
   const handleClickActions = (event: MouseEvent, action: CommentActionItem | TNode) => {
     onActions?.({ action, e: event });
   };
+
   const handleClickFold = (event: MouseEvent, isExpand: boolean) => {
     if (!isExpand) {
-      // 收起点击后收起全部仅展示 1 条回复
-      setCurFoldsState('collapsed');
+      // 收起：重置为 collapsed
       foldSteps.current = 0;
+      if (!isControlled) {
+        setInnerFoldsState('collapsed');
+      }
       onFolds?.({
-        fold: {
-          ...commentFolds,
-          state: 'collapsed',
-        },
+        fold: { ...commentFolds, state: 'collapsed' },
         e: event,
       });
       return;
     }
+
+    // 展开：递增步进并计算下一状态
     foldSteps.current += 1;
-    if (foldSteps.current === commentFolds.step - 1) {
-      setCurFoldsState('expanded');
-      onFolds?.({
-        fold: {
-          ...commentFolds,
-          state: 'expanded',
-        },
-        e: event,
-      });
-    } else {
-      setCurFoldsState('partial');
-      onFolds?.({
-        fold: {
-          ...commentFolds,
-          state: 'partial',
-        },
-        e: event,
-      });
+    const nextState: CommentFoldState = foldSteps.current >= (commentFolds.step || 3) - 1 ? 'expanded' : 'partial';
+
+    if (!isControlled) {
+      setInnerFoldsState(nextState);
     }
+    onFolds?.({
+      fold: { ...commentFolds, state: nextState },
+      e: event,
+    });
   };
 
   const renderAvatar = () => {
@@ -125,7 +135,7 @@ const Comment: React.FC<TdCommentProps> = (props) => {
             onClick={(e) => handleClickFold(e as unknown as MouseEvent, true)}
           >
             {commentFolds.content.collapsed as ReactNode}
-            <ChevronDownSIcon />
+            <ChevronDownSIcon size="16px" />
           </div>
         );
       }
@@ -138,14 +148,14 @@ const Comment: React.FC<TdCommentProps> = (props) => {
               onClick={(e) => handleClickFold(e as unknown as MouseEvent, true)}
             >
               {commentFolds.content.partial[0] as ReactNode}
-              <ChevronDownSIcon />
+              <ChevronDownSIcon size="16px" />
             </div>
             <div
               className={`${rootClassName}__folds-item`}
               onClick={(e) => handleClickFold(e as unknown as MouseEvent, false)}
             >
               {commentFolds.content.partial[1] as ReactNode}
-              <ChevronUpSIcon />
+              <ChevronUpSIcon size="16px" />
             </div>
           </>
         );
@@ -157,7 +167,7 @@ const Comment: React.FC<TdCommentProps> = (props) => {
           onClick={(e) => handleClickFold(e as unknown as MouseEvent, false)}
         >
           {commentFolds.content.expanded as ReactNode}
-          <ChevronUpSIcon />
+          <ChevronUpSIcon size="16px" />
         </div>
       );
     };
@@ -186,7 +196,7 @@ const Comment: React.FC<TdCommentProps> = (props) => {
     <div className={`${rootClassName}`}>
       <div className={`${rootClassName}__inner`}>
         {renderAvatar()}
-        <div className={`${rootClassName}__content`}>
+        <div className={`${rootClassName}__detail`}>
           {renderAuthor()}
           {renderContent()}
           {renderFooter()}
