@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { isObject } from 'lodash-es';
 import { ChevronDownSIcon, ChevronUpSIcon } from 'tdesign-icons-react';
 import { CommentActionItem, CommentFold, CommentFoldState, TdCommentProps } from './type';
@@ -24,6 +24,8 @@ const Comment: React.FC<TdCommentProps> = (props) => {
     props;
   const [innerFoldsState, setInnerFoldsState] = useState<CommentFoldState>(defaultFolds?.state || 'collapsed');
   const foldSteps = useRef(0);
+  const replyBodyRef = useRef<HTMLDivElement>(null);
+  const replyInnerRef = useRef<HTMLDivElement>(null);
   const rootClassName = usePrefixClass('comment');
 
   const isControlled = folds !== undefined;
@@ -43,6 +45,29 @@ const Comment: React.FC<TdCommentProps> = (props) => {
 
   // 当前实际使用的折叠状态
   const curFoldsState: CommentFoldState = isControlled ? folds.state || 'collapsed' : innerFoldsState;
+
+  // 首次渲染前同步设置高度，避免闪烁（无动画）
+  useLayoutEffect(() => {
+    const body = replyBodyRef.current;
+    const inner = replyInnerRef.current;
+    if (body && inner) {
+      body.style.height = `${inner.scrollHeight}px`;
+    }
+  }, []);
+
+  // 监听回复区内容高度变化，驱动过渡动画
+  useEffect(() => {
+    const body = replyBodyRef.current;
+    const inner = replyInnerRef.current;
+    if (!body || !inner) return;
+
+    const observer = new ResizeObserver(() => {
+      body.style.height = `${inner.scrollHeight}px`;
+    });
+
+    observer.observe(inner);
+    return () => observer.disconnect();
+  }, []);
 
   const handleClickActions = (event: MouseEvent, action: CommentActionItem | TNode) => {
     onActions?.({ action, e: event });
@@ -181,11 +206,10 @@ const Comment: React.FC<TdCommentProps> = (props) => {
     const replyContent = reply || children;
     return (
       <div className={`${rootClassName}__reply`}>
-        <div
-          className={`${rootClassName}__reply-body`}
-          style={{ gridTemplateRows: curFoldsState === 'collapsed' ? '0fr' : '1fr' }}
-        >
-          <div className={`${rootClassName}__reply-inner`}>{parseTNode(replyContent)}</div>
+        <div ref={replyBodyRef} className={`${rootClassName}__reply-body`}>
+          <div ref={replyInnerRef} className={`${rootClassName}__reply-inner`}>
+            {parseTNode(replyContent)}
+          </div>
         </div>
         {renderFolds()}
       </div>
