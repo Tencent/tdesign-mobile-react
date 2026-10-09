@@ -274,7 +274,11 @@ const Slider: FC<SliderProps> = (props) => {
   };
 
   const onTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
-    draggingRef.current = false;
+    // 多指触摸时任一手指抬起都会触发 touchend，
+    // 仍有手指按住（touches 非空）说明拖动未结束，不应解除滚动阻止
+    if (e.touches.length === 0) {
+      draggingRef.current = false;
+    }
     onDragend?.(innerValue, { e });
   };
 

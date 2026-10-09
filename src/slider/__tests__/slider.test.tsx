@@ -162,6 +162,31 @@ describe('Slider', () => {
       rectSpy.mockRestore();
     });
 
+    it(': multi-touch drag keeps preventing page scroll until last finger lifts', () => {
+      const rectSpy = mockVerticalSliderRect();
+      const { container } = render(<Slider vertical defaultValue={30} />);
+      const dot = container.querySelector(`${name}__dot`) as HTMLElement;
+
+      // 第一根手指按下开始拖动，第二根手指跟进
+      fireEvent.touchStart(dot, { touches: [{ clientY: 200 } as Touch] });
+      fireEvent.touchStart(dot, { touches: [{ clientY: 200 }, { clientY: 250 }] as Touch[] });
+
+      // 抬起第一根手指，第二根仍按住：拖动未结束，touchmove 仍应阻止页面滚动
+      fireEvent.touchEnd(dot, {
+        touches: [{ clientY: 250 } as Touch],
+        changedTouches: [{ clientY: 200 } as Touch],
+      });
+      expect(fireEvent.touchMove(dot, { changedTouches: [{ clientY: 300 } as Touch] })).toBe(false);
+
+      // 最后一根手指抬起后，不应再阻止默认行为
+      fireEvent.touchEnd(dot, {
+        touches: [],
+        changedTouches: [{ clientY: 300 } as Touch],
+      });
+      expect(fireEvent.touchMove(dot, { changedTouches: [{ clientY: 200 } as Touch] })).toBe(true);
+      rectSpy.mockRestore();
+    });
+
     it(': onChange (single slider)', () => {
       const handleChange = vi.fn();
       const { container } = render(<Slider defaultValue={30} onChange={handleChange} />);
