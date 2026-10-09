@@ -19,6 +19,7 @@ step | Number | 1 | 步长 | N
 theme | String | default | 滑块风格。可选项：default/capsule | N
 value | Number / Array | 0 | 滑块值。TS 类型：`SliderValue` `type SliderValue = number \| Array<number>`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/slider/type.ts) | N
 defaultValue | Number / Array | 0 | 滑块值。非受控属性。TS 类型：`SliderValue` `type SliderValue = number \| Array<number>`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/slider/type.ts) | N
+vertical | Boolean | false | 是否是垂直的滑块（渲染垂直滑块时，默认高度为200px，可通过修改`--td-slider-bar-height`来自定义高度） | N
 onChange | Function |  | TS 类型：`(value: SliderValue) => void`<br/>滑块值变化时触发 | N
 onDragend | Function |  | TS 类型：`(value: SliderValue, context: {e: TouchEvent}) => void`<br/>结束拖动时触发 | N
 onDragstart | Function |  | TS 类型：`(context: {e: TouchEvent}) => void`<br/>开始拖动时触发 | N
