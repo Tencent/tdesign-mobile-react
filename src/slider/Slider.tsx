@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import type { MouseEvent, TouchEvent } from 'react';
 import classNames from 'classnames';
 import { cloneDeep, isFunction } from 'lodash-es';
@@ -28,6 +28,7 @@ const Slider: FC<SliderProps> = (props) => {
     marks,
     showExtremeValue,
     label,
+    vertical,
     onChange,
     onDragend,
     onDragstart,
@@ -58,6 +59,7 @@ const Slider: FC<SliderProps> = (props) => {
       [`${rootClassName}--top`]: label || scaleTextArray.length,
       [`${rootClassName}--disabled`]: disabled,
       [`${rootClassName}--range`]: range,
+      [`${rootClassName}--vertical`]: vertical,
     },
     className,
   );
@@ -67,11 +69,28 @@ const Slider: FC<SliderProps> = (props) => {
   });
   const sliderMaxTextClassName = classNames(`${rootClassName}__value`, `${rootClassName}__value--max`);
 
+  const getInitialStyle = useCallback(
+    (theme: 'default' | 'capsule') => {
+      const line = sliderLineRef.current?.getBoundingClientRect() as DOMRect;
+      const halfBlock = Number(BLOCK_SIZE) / 2;
+      const maxRange = vertical ? line.bottom - line.top : line.right - line.left;
+
+      setMaxRange(theme === 'capsule' ? maxRange - BLOCK_SIZE - BORDER_WIDTH : maxRange);
+      initialLeft.current = vertical ? line.top : line.left;
+      initialRight.current = vertical ? line.bottom : line.right;
+      if (theme === 'capsule') {
+        initialLeft.current -= halfBlock;
+        initialRight.current -= halfBlock;
+      }
+    },
+    [vertical],
+  );
+
   useEffect(() => {
     if (theme) {
       getInitialStyle(theme);
     }
-  }, [theme]);
+  }, [getInitialStyle, theme]);
 
   useEffect(() => {
     function setSingleBarWidth(value: number) {
@@ -103,7 +122,7 @@ const Slider: FC<SliderProps> = (props) => {
     const left = (maxRange * (innerValue[0] - min)) / scope;
     const right = (maxRange * (max - innerValue[1])) / scope;
     setLineStyle(left, right);
-  }, [innerValue, max, maxRange, min, range, scope, theme]);
+  }, [innerValue, max, maxRange, min, range, scope, theme, vertical]);
 
   useEffect(() => {
     function handleMask(marks: any) {
@@ -134,20 +153,6 @@ const Slider: FC<SliderProps> = (props) => {
     }
   }, [marks, maxRange, min, scope, theme]);
 
-  function getInitialStyle(theme: 'default' | 'capsule') {
-    const line = sliderLineRef.current?.getBoundingClientRect() as DOMRect;
-    const halfBlock = Number(BLOCK_SIZE) / 2;
-    const maxRange = line.right - line.left;
-
-    setMaxRange(theme === 'capsule' ? maxRange - BLOCK_SIZE - BORDER_WIDTH : maxRange);
-    initialLeft.current = line.left;
-    initialRight.current = line.right;
-    if (theme === 'capsule') {
-      initialLeft.current -= halfBlock;
-      initialRight.current -= halfBlock;
-    }
-  }
-
   const getValue = (label: any, value: any) => {
     const REGEXP = /[$][{value}]{7}/;
     if (isFunction(label)) {
@@ -163,6 +168,17 @@ const Slider: FC<SliderProps> = (props) => {
 
   const convertPosToValue = (posValue: number, isLeft = true) =>
     isLeft ? (posValue / maxRange) * scope + min : max - (posValue / maxRange) * scope;
+
+  const getEventPosition = (e: MouseEvent | TouchEvent, fromStart = true) => {
+    const point = 'changedTouches' in e ? e.changedTouches?.[0] || e.touches?.[0] : e;
+    const position = vertical ? (point?.clientY ?? point?.pageY) : (point?.clientX ?? point?.pageX);
+    if (vertical) {
+      const line = sliderLineRef.current?.getBoundingClientRect();
+      const start = line?.top ?? initialLeft.current;
+      return fromStart ? position - start : (line?.bottom ?? initialRight.current) - position;
+    }
+    return fromStart ? position - initialLeft.current : initialRight.current - position;
+  };
 
   const getPrecision = () => {
     const precisions = [min, max, step].map((item) => {
@@ -192,7 +208,7 @@ const Slider: FC<SliderProps> = (props) => {
       return;
     }
     const halfBlock = props.theme === 'capsule' ? Number(BLOCK_SIZE) / 2 : 0;
-    const currentLeft = e.clientX - initialLeft.current;
+    const currentLeft = getEventPosition(e);
     if (currentLeft < 0 || currentLeft > maxRange + Number(BLOCK_SIZE)) {
       return;
     }
@@ -200,19 +216,23 @@ const Slider: FC<SliderProps> = (props) => {
     const leftDotValue = leftDotRef.current?.getBoundingClientRect() as DOMRect;
     const rightDotValue = rightDotRef.current?.getBoundingClientRect() as DOMRect;
     // 点击处-halfblock 与 leftDot左侧的距离（绝对值）
-    const distanceLeft = Math.abs(e.clientX - leftDotValue.left - halfBlock);
+    const distanceLeft = Math.abs(
+      (vertical ? e.clientY - leftDotValue.top : e.clientX - leftDotValue.left) - halfBlock,
+    );
     // 点击处-halfblock 与 rightDot左侧的距离（绝对值）
-    const distanceRight = Math.abs(rightDotValue.left - e.clientX + halfBlock);
+    const distanceRight = Math.abs(
+      (vertical ? rightDotValue.top - e.clientY : rightDotValue.left - e.clientX) + halfBlock,
+    );
     // 哪个绝对值小就移动哪个Dot
     const isMoveLeft = distanceLeft < distanceRight;
 
     if (isMoveLeft) {
       // 当前leftdot中心 + 左侧偏移量 = 目标左侧中心距离
-      const left = e.clientX - initialLeft.current;
+      const left = getEventPosition(e);
       const leftValue = convertPosToValue(left);
       changeValue([calcByStep(leftValue), innerValue?.[1]]);
     } else {
-      const right = -(e.clientX - initialRight.current);
+      const right = getEventPosition(e, false);
       const rightValue = convertPosToValue(right, false);
       changeValue([innerValue?.[0], calcByStep(rightValue)]);
     }
@@ -226,7 +246,7 @@ const Slider: FC<SliderProps> = (props) => {
     if (!sliderLineRef.current) {
       return;
     }
-    const currentLeft = e.clientX - initialLeft.current;
+    const currentLeft = getEventPosition(e);
     const value = convertPosToValue(currentLeft);
     changeValue(calcByStep(value));
   };
@@ -243,8 +263,8 @@ const Slider: FC<SliderProps> = (props) => {
     if (disabled) {
       return;
     }
-    const { pageX } = e?.changedTouches?.[0] || {};
-    const currentLeft = pageX - initialLeft.current;
+    e.preventDefault();
+    const currentLeft = getEventPosition(e);
     const newData = cloneDeep(innerValue as number[]);
     const leftValue = convertPosToValue(currentLeft);
     newData[0] = calcByStep(leftValue);
@@ -255,10 +275,10 @@ const Slider: FC<SliderProps> = (props) => {
     if (disabled) {
       return;
     }
-    const { pageX } = e?.changedTouches?.[0] || {};
-    const currentRight = -(pageX - initialRight.current);
+    e.preventDefault();
+    const currentRight = getEventPosition(e, vertical);
     const newData = cloneDeep(innerValue as number[]);
-    const rightValue = convertPosToValue(currentRight, false);
+    const rightValue = convertPosToValue(currentRight, vertical);
     newData[1] = calcByStep(rightValue);
     changeValue(newData);
   };
@@ -267,8 +287,8 @@ const Slider: FC<SliderProps> = (props) => {
     if (disabled) {
       return;
     }
-    const { pageX } = e.changedTouches?.[0] || {};
-    const value = convertPosToValue(pageX - initialLeft.current);
+    e.preventDefault();
+    const value = convertPosToValue(getEventPosition(e));
     changeValue(calcByStep(value));
   };
 
@@ -305,7 +325,11 @@ const Slider: FC<SliderProps> = (props) => {
     return scaleArray.map((item, index) => (
       <div
         key={index}
-        style={{ left: item.left, transform: 'translateX(-50%)' }}
+        style={
+          vertical
+            ? { top: item.left, transform: 'translate(-50%, -50%)' }
+            : { left: item.left, transform: 'translateX(-50%)' }
+        }
         className={classNames(
           `${rootClassName}__scale-item`,
           `${rootClassName}__scale-item`,
@@ -334,7 +358,11 @@ const Slider: FC<SliderProps> = (props) => {
       className={classNames(`${rootClassName}__line`, `${rootClassName}__line--${theme}`, {
         [`${rootClassName}__line--disabled`]: disabled,
       })}
-      style={{ left: `${lineLeft}px`, right: `${lineRight}px` }}
+      style={
+        vertical
+          ? { top: `${lineLeft}px`, bottom: `${lineRight}px` }
+          : { left: `${lineLeft}px`, right: `${lineRight}px` }
+      }
     >
       <div
         ref={leftDotRef}
@@ -387,7 +415,7 @@ const Slider: FC<SliderProps> = (props) => {
           [`${rootClassName}__line--disabled`]: disabled,
         },
       )}
-      style={{ width: `${lineBarWidth}px` }}
+      style={vertical ? { height: `${lineBarWidth}px` } : { width: `${lineBarWidth}px` }}
     >
       <div
         className={`${rootClassName}__dot`}
@@ -402,7 +430,7 @@ const Slider: FC<SliderProps> = (props) => {
               [`${rootClassName}__dot-value--sr-only`]: !label,
             })}
           >
-            {getValue(label, value) || innerValue}
+            {getValue(label, innerValue) || innerValue}
           </div>
         ) : null}
         <div className={`${rootClassName}__dot-slider`} />

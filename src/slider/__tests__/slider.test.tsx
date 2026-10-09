@@ -5,6 +5,7 @@ import Slider from '../index';
 
 const prefix = 't';
 const name = `.${prefix}-slider`;
+
 describe('Slider', () => {
   describe('props', () => {
     it(': className', () => {
@@ -99,9 +100,50 @@ describe('Slider', () => {
         expect(sliderBar).toHaveClass(`t-slider__bar--${theme}`);
       });
     });
+
+    it(': vertical', () => {
+      const { container } = render(<Slider vertical />);
+      expect(container.firstChild).toHaveClass(`${prefix}-slider--vertical`);
+    });
   });
 
   describe('event', () => {
+    const mockVerticalSliderRect = () =>
+      vi.spyOn(HTMLDivElement.prototype, 'getBoundingClientRect').mockReturnValue({
+        top: 100,
+        bottom: 500,
+        height: 400,
+        left: 0,
+        right: 4,
+      } as DOMRect);
+
+    it(': vertical touch interaction', () => {
+      const handleChange = vi.fn();
+      const rectSpy = mockVerticalSliderRect();
+      const { container } = render(<Slider vertical defaultValue={30} onChange={handleChange} />);
+      const dot = container.querySelector(`${name}__dot`) as HTMLElement;
+
+      fireEvent.touchMove(dot, {
+        changedTouches: [{ clientY: 300 } as Touch],
+      });
+      rectSpy.mockRestore();
+
+      expect(handleChange).toHaveBeenCalledWith(50);
+    });
+
+    it(': vertical range right dot keeps the correct stepped value while dragging', () => {
+      const handleChange = vi.fn();
+      const rectSpy = mockVerticalSliderRect();
+      const { container } = render(<Slider vertical range step={20} defaultValue={[20, 80]} onChange={handleChange} />);
+      const rightDot = container.querySelector(`${name}__dot--right`) as HTMLElement;
+
+      fireEvent.touchMove(rightDot, {
+        changedTouches: [{ clientY: 260 } as Touch],
+      });
+      rectSpy.mockRestore();
+
+      expect(handleChange).toHaveBeenCalledWith([20, 40]);
+    });
     it(': onChange (single slider)', () => {
       const handleChange = vi.fn();
       const { container } = render(<Slider defaultValue={30} onChange={handleChange} />);
