@@ -30,6 +30,7 @@ export default function VerticalDemo() {
   return (
     <>
       <div className="wrapper-vertical">
+        {/* 单游标垂直滑块 */}
         <Slider
           defaultValue={23}
           label={handleLabel}
@@ -40,12 +41,15 @@ export default function VerticalDemo() {
         />
       </div>
       <div className="wrapper-vertical">
+        {/* 带刻度的双游标垂直滑块 */}
         <Slider defaultValue={rangeValue} marks={marks} step={20} range vertical onChange={onChange} />
       </div>
       <div className="wrapper-vertical">
+        {/* 胶囊型垂直滑块 */}
         <Slider defaultValue={23} label="handleLabel" theme="capsule" vertical onChange={onChange} />
       </div>
       <div className="wrapper-vertical">
+        {/* 带刻度的胶囊型垂直滑块 */}
         <Slider defaultValue={[20, 80]} marks={marks} step={20} range theme="capsule" vertical onChange={onChange} />
       </div>
     </>
