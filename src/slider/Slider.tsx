@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { cloneDeep, isFunction } from 'lodash-es';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
+import useEventListener from '../hooks/useEventListener';
 import useDefault from '../_util/useDefault';
 import { StyledProps } from '../common';
 import { SliderValue, TdSliderProps } from './type';
@@ -48,6 +49,7 @@ const Slider: FC<SliderProps> = (props) => {
   const sliderLineRef = useRef<HTMLDivElement>(null);
   const initialLeft = useRef<number>(0);
   const initialRight = useRef<number>(0);
+  const draggingRef = useRef<boolean>(false);
   const [innerValue, setInnerValue] = useDefault(value, defaultValue, onChange);
   const scope = Number(max) - Number(min);
 
@@ -91,6 +93,19 @@ const Slider: FC<SliderProps> = (props) => {
       getInitialStyle(theme);
     }
   }, [getInitialStyle, theme]);
+
+  // react 合成 touchmove 默认 passive，preventDefault 无效，须以 passive: false 原生监听，
+  // 拖动滑块（尤其是垂直方向）时阻止页面跟随滚动，详见 useEventListener
+  useEventListener(
+    rootRef,
+    'touchmove',
+    (event) => {
+      if (draggingRef.current) {
+        event.preventDefault();
+      }
+    },
+    { passive: false },
+  );
 
   useEffect(() => {
     function setSingleBarWidth(value: number) {
@@ -252,10 +267,14 @@ const Slider: FC<SliderProps> = (props) => {
   };
 
   const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    if (!disabled) {
+      draggingRef.current = true;
+    }
     onDragstart?.({ e });
   };
 
   const onTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
+    draggingRef.current = false;
     onDragend?.(innerValue, { e });
   };
 
@@ -263,7 +282,6 @@ const Slider: FC<SliderProps> = (props) => {
     if (disabled) {
       return;
     }
-    e.preventDefault();
     const currentLeft = getEventPosition(e);
     const newData = cloneDeep(innerValue as number[]);
     const leftValue = convertPosToValue(currentLeft);
@@ -275,7 +293,6 @@ const Slider: FC<SliderProps> = (props) => {
     if (disabled) {
       return;
     }
-    e.preventDefault();
     const currentRight = getEventPosition(e, vertical);
     const newData = cloneDeep(innerValue as number[]);
     const rightValue = convertPosToValue(currentRight, vertical);
@@ -287,7 +304,6 @@ const Slider: FC<SliderProps> = (props) => {
     if (disabled) {
       return;
     }
-    e.preventDefault();
     const value = convertPosToValue(getEventPosition(e));
     changeValue(calcByStep(value));
   };

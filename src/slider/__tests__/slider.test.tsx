@@ -144,6 +144,24 @@ describe('Slider', () => {
 
       expect(handleChange).toHaveBeenCalledWith([20, 40]);
     });
+    it(': touch drag prevents page scroll', () => {
+      const rectSpy = mockVerticalSliderRect();
+      const { container } = render(<Slider vertical defaultValue={30} />);
+      const dot = container.querySelector(`${name}__dot`) as HTMLElement;
+
+      // 未开始拖动时，touchmove 不应阻止默认行为（页面可正常滚动）
+      expect(fireEvent.touchMove(dot, { changedTouches: [{ clientY: 200 } as Touch] })).toBe(true);
+
+      // 拖动过程中，touchmove 应调用 preventDefault，阻止页面跟随滚动
+      fireEvent.touchStart(dot, { touches: [{ clientY: 200 } as Touch] });
+      expect(fireEvent.touchMove(dot, { changedTouches: [{ clientY: 300 } as Touch] })).toBe(false);
+
+      // 拖动结束后，不应再阻止默认行为
+      fireEvent.touchEnd(dot, { changedTouches: [{ clientY: 300 } as Touch] });
+      expect(fireEvent.touchMove(dot, { changedTouches: [{ clientY: 200 } as Touch] })).toBe(true);
+      rectSpy.mockRestore();
+    });
+
     it(': onChange (single slider)', () => {
       const handleChange = vi.fn();
       const { container } = render(<Slider defaultValue={30} onChange={handleChange} />);

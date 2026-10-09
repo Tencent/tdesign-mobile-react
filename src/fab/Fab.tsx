@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useLayoutEffect } from 'react';
+import React, { useRef, useState, useLayoutEffect } from 'react';
 import { reconvertUnit } from '../_util/convertUnit';
 import Button from '../button';
 import { TdFabProps } from './type';
@@ -6,6 +6,7 @@ import { fabDefaultProps } from './defaultProps';
 import { StyledProps } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
+import useEventListener from '../hooks/useEventListener';
 import parseTNode from '../_util/parseTNode';
 
 export interface FabProps extends TdFabProps, StyledProps {
@@ -117,15 +118,7 @@ const Fab: React.FC<FabProps> = (originProps) => {
     setBtnSwitchPos(toChangeData);
   };
 
-  useEffect(() => {
-    const fab = fabRef.current;
-    fab?.addEventListener('touchmove', onTouchMove, { passive: false });
-
-    return () => {
-      fab?.removeEventListener('touchmove', onTouchMove);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.draggable, fabButtonSize.width, fabButtonSize.height]);
+  useEventListener(fabRef, 'touchmove', onTouchMove, { passive: false });
 
   const setSwitchPosition = (switchX: number, switchY: number) => {
     const [newSwitchX, newSwitchY] = getSwitchButtonSafeAreaXY(switchX, switchY);
