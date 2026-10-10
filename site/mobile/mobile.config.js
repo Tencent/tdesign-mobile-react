@@ -428,5 +428,11 @@ export default {
       name: 'typography',
       component: () => import('tdesign-mobile-react/typography/_example/index.tsx'),
     },
+    {
+      title: 'Comment 评论',
+      titleEn: 'Comment',
+      name: 'comment',
+      component: () => import('tdesign-mobile-react/comment/_example/index.tsx'),
+    },
   ],
 };

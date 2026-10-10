@@ -49,6 +49,7 @@ export * from './badge';
 export * from './cell';
 export * from './collapse';
 export * from './count-down';
+export * from './comment';
 export * from './empty';
 export * from './footer';
 export * from './grid';

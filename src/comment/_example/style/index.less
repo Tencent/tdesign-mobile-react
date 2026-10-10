@@ -1,0 +1,105 @@
+.tdesign-mobile-demo {
+  --bg-color-demo: var(--td-bg-color-container);
+  // 禁用按钮点击态样式
+  --td-button-default-text-active-bg-color: transparent;
+  --td-button-default-active-border-color: transparent;
+}
+
+.mobile-comment {
+  box-sizing: border-box;
+
+  &__author {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+
+    &-tag {
+      background-color: transparent !important;
+      border: none;
+      font-size: 12px;
+    }
+  }
+
+  &__reply {
+    &-button {
+      color: rgba(0, 0, 0, .6);
+      font-size: 12px;
+    }
+
+    &-name {
+      color: rgba(0, 0, 0, 0.40);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 22px; /* 157.143% */
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    &-button {
+      padding: 2px;
+      color: rgba(0, 0, 0, .4);
+      font-size: 12px;
+      box-sizing: border-box;
+    }
+  }
+
+  &__text {
+    margin-bottom: 4px;
+  }
+
+  &__images {
+    display: flex;
+    gap: 8px;
+
+    &-item {
+      position: relative;
+      width: 78px;
+      height: 78px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    &-badge {
+      position: absolute;
+      right: 4px;
+      bottom: 4px;
+      padding: 2px 8px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 12px;
+      line-height: 18px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+  }
+
+  &__input {
+    display: flex;
+    padding: 12px;
+    gap: 8px;
+    border-radius: 16px;
+    border: 1px solid #DCDCDC;
+    background: #FFFFFF;
+    /* Shadow/Shadow-3 上层投影 */
+    box-shadow: 0 6px 30px 5px rgba(0, 0, 0, 0.05), 0 16px 24px 2px rgba(0, 0, 0, 0.04), 0 8px 10px -5px rgba(0, 0, 0, 0.08);
+    margin-top: 48px;
+
+    &-content {
+      border: none;
+      flex: 1;
+      background: transparent;
+    }
+
+    &-button {
+      --td-button-primary-disabled-bg: #DCDCDC;
+      --td-button-primary-disabled-border-color: transparent;
+      transform: rotate(-90deg);
+    }
+  }
+}
