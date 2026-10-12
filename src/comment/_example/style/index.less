@@ -14,20 +14,21 @@
     font-size: 12px;
 
     &-tag {
-      background-color: transparent !important;
       border: none;
       font-size: 12px;
+      --td-tag-medium-padding: 0 var(--td-spacer);
+      --td-tag-primary-light-color: transparent;
     }
   }
 
   &__reply {
     &-button {
-      color: rgba(0, 0, 0, .6);
+      color: var(--td-text-color-secondary);
       font-size: 12px;
     }
 
     &-name {
-      color: rgba(0, 0, 0, 0.40);
+      color: var(--td-text-color-secondary);
       font-size: 14px;
       font-weight: 400;
       line-height: 22px; /* 157.143% */
@@ -37,13 +38,14 @@
   &__actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: var(--td-spacer-2);
 
     &-button {
       padding: 2px;
-      color: rgba(0, 0, 0, .4);
+      color: var(--td-text-color-placeholder);
       font-size: 12px;
       box-sizing: border-box;
+      height: var(--td-spacer-3);
     }
   }
 
