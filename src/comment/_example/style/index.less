@@ -55,7 +55,7 @@
 
   &__images {
     display: flex;
-    gap: 8px;
+    gap: var(--td-spacer);
 
     &-item {
       position: relative;
@@ -71,11 +71,11 @@
       position: absolute;
       right: 4px;
       bottom: 4px;
-      padding: 2px 8px;
-      background: rgba(0, 0, 0, 0.6);
-      color: #fff;
-      font-size: 12px;
-      line-height: 18px;
+      padding: 0 var(--td-spacer);
+      background: var(--td-mask-active);
+      color: var(--td-text-color-anti);
+      font-size: var(--td-font-size-xs);
+      line-height: var(--td-line-height-body-extraSmall);
       border-radius: 12px;
       white-space: nowrap;
     }
@@ -84,7 +84,7 @@
   &__input {
     display: flex;
     padding: 12px;
-    gap: 8px;
+    gap: var(--td-spacer);
     border-radius: 16px;
     border: 1px solid #DCDCDC;
     background: #FFFFFF;
