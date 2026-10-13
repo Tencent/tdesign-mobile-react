@@ -4,6 +4,7 @@ import { SendIcon, ThumbUpIcon, Uncomfortable1Icon } from 'tdesign-icons-react';
 
 const REPLY_COUNT = 6; // 回复评论总数
 const MAIN_COMMENT_AUTHOR = 'Name1 名称';
+const SHOW_REPLY_INPUT = false; // 回复输入框待对齐视觉，暂不展示；对齐后改为 true 即可恢复
 
 interface ReplyItem {
   author: string;
@@ -233,29 +234,32 @@ export default function () {
           onFolds={handleUpdateFold}
         />
       </div>
-      <div className="mobile-comment__input">
-        <input
-          ref={inputRef}
-          className="mobile-comment__input-content"
-          placeholder={replyTarget ? `回复${replyTarget}` : '请输入内容'}
-          value={replyValue}
-          onChange={(e) => setReplyValue(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleSubmit();
-            }
-          }}
-        />
-        <Button
-          className="mobile-comment__input-button"
-          disabled={!replyValue}
-          size="small"
-          icon={<SendIcon />}
-          shape="circle"
-          theme="primary"
-          onClick={handleSubmit}
-        />
-      </div>
+      {/* 这是一段有效的示例，待对齐视觉后把 SHOW_REPLY_INPUT 改为 true 即可展示，请勿删除 */}
+      {SHOW_REPLY_INPUT && (
+        <div className="mobile-comment__input">
+          <input
+            ref={inputRef}
+            className="mobile-comment__input-content"
+            placeholder={replyTarget ? `回复${replyTarget}` : '请输入内容'}
+            value={replyValue}
+            onChange={(e) => setReplyValue(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleSubmit();
+              }
+            }}
+          />
+          <Button
+            className="mobile-comment__input-button"
+            disabled={!replyValue}
+            size="small"
+            icon={<SendIcon />}
+            shape="circle"
+            theme="primary"
+            onClick={handleSubmit}
+          />
+        </div>
+      )}
       <ActionSheet
         visible={showActionSheet}
         cancelText="取消"
