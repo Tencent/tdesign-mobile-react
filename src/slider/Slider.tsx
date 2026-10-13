@@ -74,16 +74,13 @@ const Slider: FC<SliderProps> = (props) => {
   const getInitialStyle = useCallback(
     (theme: 'default' | 'capsule') => {
       const line = sliderLineRef.current?.getBoundingClientRect() as DOMRect;
-      const halfBlock = Number(BLOCK_SIZE) / 2;
-      const maxRange = vertical ? line.bottom - line.top : line.right - line.left;
+      const range = vertical ? line.bottom - line.top : line.right - line.left;
 
-      setMaxRange(theme === 'capsule' ? maxRange - BLOCK_SIZE - BORDER_WIDTH : maxRange);
+      // 胶囊型可移动范围 = 轨道全长 - 一个滑块(BLOCK_SIZE) - 边框(BORDER_WIDTH)，对齐 tdesign-mobile-vue
+      setMaxRange(theme === 'capsule' ? range - BLOCK_SIZE - BORDER_WIDTH : range);
+      // 仅记录轨道原始边界作为 getBoundingClientRect 不可用时的兜底，胶囊内边距统一在 getEventPosition 中处理
       initialLeft.current = vertical ? line.top : line.left;
       initialRight.current = vertical ? line.bottom : line.right;
-      if (theme === 'capsule') {
-        initialLeft.current -= halfBlock;
-        initialRight.current -= halfBlock;
-      }
     },
     [vertical],
   );
@@ -184,15 +181,15 @@ const Slider: FC<SliderProps> = (props) => {
   const convertPosToValue = (posValue: number, isLeft = true) =>
     isLeft ? (posValue / maxRange) * scope + min : max - (posValue / maxRange) * scope;
 
-  const getEventPosition = (e: MouseEvent | TouchEvent, fromStart = true) => {
+  // 统一从轨道起点（左/上）计算位置，胶囊型减去半个滑块，两端口径一致。
+  // 对齐 tdesign-mobile-vue 的 getDelta，便于两端后期统一维护。
+  const getEventPosition = (e: MouseEvent | TouchEvent) => {
     const point = 'changedTouches' in e ? e.changedTouches?.[0] || e.touches?.[0] : e;
     const position = vertical ? (point?.clientY ?? point?.pageY) : (point?.clientX ?? point?.pageX);
-    if (vertical) {
-      const line = sliderLineRef.current?.getBoundingClientRect();
-      const start = line?.top ?? initialLeft.current;
-      return fromStart ? position - start : (line?.bottom ?? initialRight.current) - position;
-    }
-    return fromStart ? position - initialLeft.current : initialRight.current - position;
+    const line = sliderLineRef.current?.getBoundingClientRect();
+    const start = (vertical ? line?.top : line?.left) ?? initialLeft.current;
+    const halfBlock = theme === 'capsule' ? Number(BLOCK_SIZE) / 2 : 0;
+    return position - start - halfBlock;
   };
 
   const getPrecision = () => {
@@ -247,8 +244,8 @@ const Slider: FC<SliderProps> = (props) => {
       const leftValue = convertPosToValue(left);
       changeValue([calcByStep(leftValue), innerValue?.[1]]);
     } else {
-      const right = getEventPosition(e, false);
-      const rightValue = convertPosToValue(right, false);
+      const right = getEventPosition(e);
+      const rightValue = convertPosToValue(right);
       changeValue([innerValue?.[0], calcByStep(rightValue)]);
     }
   };
@@ -297,9 +294,9 @@ const Slider: FC<SliderProps> = (props) => {
     if (disabled) {
       return;
     }
-    const currentRight = getEventPosition(e, vertical);
+    const currentRight = getEventPosition(e);
     const newData = cloneDeep(innerValue as number[]);
-    const rightValue = convertPosToValue(currentRight, vertical);
+    const rightValue = convertPosToValue(currentRight);
     newData[1] = calcByStep(rightValue);
     changeValue(newData);
   };
