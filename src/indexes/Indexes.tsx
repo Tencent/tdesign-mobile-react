@@ -4,6 +4,7 @@ import cls from 'classnames';
 import { TdIndexesProps } from './type';
 import { StyledProps } from '../common';
 import useDefaultProps from '../hooks/useDefaultProps';
+import useEventListener from '../hooks/useEventListener';
 import parseTNode from '../_util/parseTNode';
 import { usePrefixClass } from '../hooks/useClass';
 import { indexesDefaultProps } from './defaultProps';
@@ -172,6 +173,9 @@ const Indexes: React.FC<IndexesProps> = (props) => {
     }
   };
 
+  // react 合成 touchmove 默认 passive，preventDefault 需通过原生监听实现，见 useEventListener
+  useEventListener(sidebarRef, 'touchmove', handleSidebarTouchmove, { passive: false });
+
   const relation = (ele: HTMLElement, anchor: string | number) => {
     if (ele) {
       childNodes.current.push({ ele, anchor });
@@ -212,14 +216,8 @@ const Indexes: React.FC<IndexesProps> = (props) => {
       scrollToByIndex(currentIndex);
     }
 
-    // https://github.com/facebook/react/pull/19654
-    // react 中 onTouchMove 等事件默认使用 passive： true，导致无法在listener 中使用 preventDefault()
-    const sideBar = sidebarRef.current;
-    sideBar?.addEventListener('touchmove', handleSidebarTouchmove, { passive: false });
-
     return () => {
       clearTimeout(tipTimer.current);
-      sideBar?.removeEventListener('touchmove', handleSidebarTouchmove);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

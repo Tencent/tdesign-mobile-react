@@ -1,9 +1,10 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import type { MouseEvent, TouchEvent } from 'react';
 import classNames from 'classnames';
 import { cloneDeep, isFunction } from 'lodash-es';
 import { usePrefixClass } from '../hooks/useClass';
 import useDefaultProps from '../hooks/useDefaultProps';
+import useEventListener from '../hooks/useEventListener';
 import useDefault from '../_util/useDefault';
 import { StyledProps } from '../common';
 import { SliderValue, TdSliderProps } from './type';
@@ -28,6 +29,7 @@ const Slider: FC<SliderProps> = (props) => {
     marks,
     showExtremeValue,
     label,
+    vertical,
     onChange,
     onDragend,
     onDragstart,
@@ -47,6 +49,7 @@ const Slider: FC<SliderProps> = (props) => {
   const sliderLineRef = useRef<HTMLDivElement>(null);
   const initialLeft = useRef<number>(0);
   const initialRight = useRef<number>(0);
+  const draggingRef = useRef<boolean>(false);
   const [innerValue, setInnerValue] = useDefault(value, defaultValue, onChange);
   const scope = Number(max) - Number(min);
 
@@ -58,6 +61,7 @@ const Slider: FC<SliderProps> = (props) => {
       [`${rootClassName}--top`]: label || scaleTextArray.length,
       [`${rootClassName}--disabled`]: disabled,
       [`${rootClassName}--range`]: range,
+      [`${rootClassName}--vertical`]: vertical,
     },
     className,
   );
@@ -67,11 +71,38 @@ const Slider: FC<SliderProps> = (props) => {
   });
   const sliderMaxTextClassName = classNames(`${rootClassName}__value`, `${rootClassName}__value--max`);
 
+  const getInitialStyle = useCallback(
+    (theme: 'default' | 'capsule') => {
+      const line = sliderLineRef.current?.getBoundingClientRect() as DOMRect;
+      const range = vertical ? line.bottom - line.top : line.right - line.left;
+
+      // 胶囊型可移动范围 = 轨道全长 - 一个滑块(BLOCK_SIZE) - 边框(BORDER_WIDTH)，对齐 tdesign-mobile-vue
+      setMaxRange(theme === 'capsule' ? range - BLOCK_SIZE - BORDER_WIDTH : range);
+      // 仅记录轨道原始边界作为 getBoundingClientRect 不可用时的兜底，胶囊内边距统一在 getEventPosition 中处理
+      initialLeft.current = vertical ? line.top : line.left;
+      initialRight.current = vertical ? line.bottom : line.right;
+    },
+    [vertical],
+  );
+
   useEffect(() => {
     if (theme) {
       getInitialStyle(theme);
     }
-  }, [theme]);
+  }, [getInitialStyle, theme]);
+
+  // react 合成 touchmove 默认 passive，preventDefault 无效，须以 passive: false 原生监听，
+  // 拖动滑块（尤其是垂直方向）时阻止页面跟随滚动，详见 useEventListener
+  useEventListener(
+    rootRef,
+    'touchmove',
+    (event) => {
+      if (draggingRef.current) {
+        event.preventDefault();
+      }
+    },
+    { passive: false },
+  );
 
   useEffect(() => {
     function setSingleBarWidth(value: number) {
@@ -103,7 +134,7 @@ const Slider: FC<SliderProps> = (props) => {
     const left = (maxRange * (innerValue[0] - min)) / scope;
     const right = (maxRange * (max - innerValue[1])) / scope;
     setLineStyle(left, right);
-  }, [innerValue, max, maxRange, min, range, scope, theme]);
+  }, [innerValue, max, maxRange, min, range, scope, theme, vertical]);
 
   useEffect(() => {
     function handleMask(marks: any) {
@@ -134,20 +165,6 @@ const Slider: FC<SliderProps> = (props) => {
     }
   }, [marks, maxRange, min, scope, theme]);
 
-  function getInitialStyle(theme: 'default' | 'capsule') {
-    const line = sliderLineRef.current?.getBoundingClientRect() as DOMRect;
-    const halfBlock = Number(BLOCK_SIZE) / 2;
-    const maxRange = line.right - line.left;
-
-    setMaxRange(theme === 'capsule' ? maxRange - BLOCK_SIZE - BORDER_WIDTH : maxRange);
-    initialLeft.current = line.left;
-    initialRight.current = line.right;
-    if (theme === 'capsule') {
-      initialLeft.current -= halfBlock;
-      initialRight.current -= halfBlock;
-    }
-  }
-
   const getValue = (label: any, value: any) => {
     const REGEXP = /[$][{value}]{7}/;
     if (isFunction(label)) {
@@ -163,6 +180,17 @@ const Slider: FC<SliderProps> = (props) => {
 
   const convertPosToValue = (posValue: number, isLeft = true) =>
     isLeft ? (posValue / maxRange) * scope + min : max - (posValue / maxRange) * scope;
+
+  // 统一从轨道起点（左/上）计算位置，胶囊型减去半个滑块，两端口径一致。
+  // 对齐 tdesign-mobile-vue 的 getDelta，便于两端后期统一维护。
+  const getEventPosition = (e: MouseEvent | TouchEvent) => {
+    const point = 'changedTouches' in e ? e.changedTouches?.[0] || e.touches?.[0] : e;
+    const position = vertical ? (point?.clientY ?? point?.pageY) : (point?.clientX ?? point?.pageX);
+    const line = sliderLineRef.current?.getBoundingClientRect();
+    const start = (vertical ? line?.top : line?.left) ?? initialLeft.current;
+    const halfBlock = theme === 'capsule' ? Number(BLOCK_SIZE) / 2 : 0;
+    return position - start - halfBlock;
+  };
 
   const getPrecision = () => {
     const precisions = [min, max, step].map((item) => {
@@ -192,7 +220,7 @@ const Slider: FC<SliderProps> = (props) => {
       return;
     }
     const halfBlock = props.theme === 'capsule' ? Number(BLOCK_SIZE) / 2 : 0;
-    const currentLeft = e.clientX - initialLeft.current;
+    const currentLeft = getEventPosition(e);
     if (currentLeft < 0 || currentLeft > maxRange + Number(BLOCK_SIZE)) {
       return;
     }
@@ -200,20 +228,24 @@ const Slider: FC<SliderProps> = (props) => {
     const leftDotValue = leftDotRef.current?.getBoundingClientRect() as DOMRect;
     const rightDotValue = rightDotRef.current?.getBoundingClientRect() as DOMRect;
     // 点击处-halfblock 与 leftDot左侧的距离（绝对值）
-    const distanceLeft = Math.abs(e.clientX - leftDotValue.left - halfBlock);
+    const distanceLeft = Math.abs(
+      (vertical ? e.clientY - leftDotValue.top : e.clientX - leftDotValue.left) - halfBlock,
+    );
     // 点击处-halfblock 与 rightDot左侧的距离（绝对值）
-    const distanceRight = Math.abs(rightDotValue.left - e.clientX + halfBlock);
+    const distanceRight = Math.abs(
+      (vertical ? rightDotValue.top - e.clientY : rightDotValue.left - e.clientX) + halfBlock,
+    );
     // 哪个绝对值小就移动哪个Dot
     const isMoveLeft = distanceLeft < distanceRight;
 
     if (isMoveLeft) {
       // 当前leftdot中心 + 左侧偏移量 = 目标左侧中心距离
-      const left = e.clientX - initialLeft.current;
+      const left = getEventPosition(e);
       const leftValue = convertPosToValue(left);
       changeValue([calcByStep(leftValue), innerValue?.[1]]);
     } else {
-      const right = -(e.clientX - initialRight.current);
-      const rightValue = convertPosToValue(right, false);
+      const right = getEventPosition(e);
+      const rightValue = convertPosToValue(right);
       changeValue([innerValue?.[0], calcByStep(rightValue)]);
     }
   };
@@ -226,16 +258,24 @@ const Slider: FC<SliderProps> = (props) => {
     if (!sliderLineRef.current) {
       return;
     }
-    const currentLeft = e.clientX - initialLeft.current;
+    const currentLeft = getEventPosition(e);
     const value = convertPosToValue(currentLeft);
     changeValue(calcByStep(value));
   };
 
   const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    if (!disabled) {
+      draggingRef.current = true;
+    }
     onDragstart?.({ e });
   };
 
   const onTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
+    // 多指触摸时任一手指抬起都会触发 touchend，
+    // 仍有手指按住（touches 非空）说明拖动未结束，不应解除滚动阻止
+    if (e.touches.length === 0) {
+      draggingRef.current = false;
+    }
     onDragend?.(innerValue, { e });
   };
 
@@ -243,8 +283,7 @@ const Slider: FC<SliderProps> = (props) => {
     if (disabled) {
       return;
     }
-    const { pageX } = e?.changedTouches?.[0] || {};
-    const currentLeft = pageX - initialLeft.current;
+    const currentLeft = getEventPosition(e);
     const newData = cloneDeep(innerValue as number[]);
     const leftValue = convertPosToValue(currentLeft);
     newData[0] = calcByStep(leftValue);
@@ -255,10 +294,9 @@ const Slider: FC<SliderProps> = (props) => {
     if (disabled) {
       return;
     }
-    const { pageX } = e?.changedTouches?.[0] || {};
-    const currentRight = -(pageX - initialRight.current);
+    const currentRight = getEventPosition(e);
     const newData = cloneDeep(innerValue as number[]);
-    const rightValue = convertPosToValue(currentRight, false);
+    const rightValue = convertPosToValue(currentRight);
     newData[1] = calcByStep(rightValue);
     changeValue(newData);
   };
@@ -267,8 +305,7 @@ const Slider: FC<SliderProps> = (props) => {
     if (disabled) {
       return;
     }
-    const { pageX } = e.changedTouches?.[0] || {};
-    const value = convertPosToValue(pageX - initialLeft.current);
+    const value = convertPosToValue(getEventPosition(e));
     changeValue(calcByStep(value));
   };
 
@@ -305,7 +342,11 @@ const Slider: FC<SliderProps> = (props) => {
     return scaleArray.map((item, index) => (
       <div
         key={index}
-        style={{ left: item.left, transform: 'translateX(-50%)' }}
+        style={
+          vertical
+            ? { top: item.left, transform: 'translate(-50%, -50%)' }
+            : { left: item.left, transform: 'translateX(-50%)' }
+        }
         className={classNames(
           `${rootClassName}__scale-item`,
           `${rootClassName}__scale-item`,
@@ -334,7 +375,11 @@ const Slider: FC<SliderProps> = (props) => {
       className={classNames(`${rootClassName}__line`, `${rootClassName}__line--${theme}`, {
         [`${rootClassName}__line--disabled`]: disabled,
       })}
-      style={{ left: `${lineLeft}px`, right: `${lineRight}px` }}
+      style={
+        vertical
+          ? { top: `${lineLeft}px`, bottom: `${lineRight}px` }
+          : { left: `${lineLeft}px`, right: `${lineRight}px` }
+      }
     >
       <div
         ref={leftDotRef}
@@ -387,7 +432,7 @@ const Slider: FC<SliderProps> = (props) => {
           [`${rootClassName}__line--disabled`]: disabled,
         },
       )}
-      style={{ width: `${lineBarWidth}px` }}
+      style={vertical ? { height: `${lineBarWidth}px` } : { width: `${lineBarWidth}px` }}
     >
       <div
         className={`${rootClassName}__dot`}
@@ -402,7 +447,7 @@ const Slider: FC<SliderProps> = (props) => {
               [`${rootClassName}__dot-value--sr-only`]: !label,
             })}
           >
-            {getValue(label, value) || innerValue}
+            {getValue(label, innerValue) || innerValue}
           </div>
         ) : null}
         <div className={`${rootClassName}__dot-slider`} />
