@@ -8,6 +8,7 @@ import pwaConfig from './pwaConfig';
 
 import changelog2Json from './web/plugins/changelog-to-json';
 import tdocPlugin from './web/plugins/plugin-tdoc';
+import generateLlms from './web/plugins/generate-llms';
 
 const publicPathMap = {
   preview: '/',
@@ -65,6 +66,7 @@ export default ({ mode }) =>
       react(),
       tdocPlugin(),
       changelog2Json(),
+      generateLlms(),
       VitePWA(pwaConfig),
       disableTreeShakingPlugin(['style/']),
       replace({ __DATE__: new Date().toISOString() }),
