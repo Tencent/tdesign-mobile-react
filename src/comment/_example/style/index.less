@@ -11,11 +11,10 @@
   &__author {
     display: flex;
     align-items: center;
-    font-size: 12px;
+    font: var(--td-font-body-small);
 
     &-tag {
       border: none;
-      font-size: 12px;
       --td-tag-medium-padding: 0 var(--td-spacer);
       --td-tag-primary-light-color: transparent;
     }
@@ -24,14 +23,12 @@
   &__reply {
     &-button {
       color: var(--td-text-color-secondary);
-      font-size: 12px;
+      font: var(--td-font-body-small);
     }
 
     &-name {
       color: var(--td-text-color-secondary);
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 22px; /* 157.143% */
+      font: var(--td-font-body-medium);
     }
   }
 
@@ -41,9 +38,9 @@
     gap: var(--td-spacer-2);
 
     &-button {
-      padding: 2px;
+      padding: 2px calc(var(--td-spacer) / 4);
       color: var(--td-text-color-placeholder);
-      font-size: 12px;
+      font: var(--td-font-body-small);
       box-sizing: border-box;
       height: var(--td-spacer-3);
     }
