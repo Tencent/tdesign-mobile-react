@@ -28,8 +28,7 @@ export interface TdDropdownMenuProps {
    */
   showOverlay?: boolean;
   /**
-   * 菜单栏 z-index 层级
-   * @default 11600
+   * 菜单栏 z-index 层级，默认为 1600
    */
   zIndex?: number;
 }
@@ -117,7 +116,7 @@ export interface TdDropdownItemProps {
 
 export interface DropdownOption {
   label: string;
-  disabled: boolean;
+  disabled?: boolean;
   value: DropdownValue;
 }
 

@@ -3,7 +3,7 @@ import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import BaseDemo from './base';
 import ThemeDemo from './theme';
-import SizeDemo from './linkSize';
+import SizeDemo from './link-size';
 import UnderlineDemo from './underline';
 import PrefixDemo from './prefix';
 import SuffixDemo from './suffix';

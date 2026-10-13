@@ -1,20 +1,20 @@
 import React from 'react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
+import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import BaseDemo from './base';
 import ImageDemo from './image';
 import GaryDemo from './gray';
-import MultiLineDemo from './multiLine';
-import MultiLineGaryDemo from './multiLineGray';
-import MovingTextDemo from './movingText';
-import MovingImageDemo from './movingImage';
+import MultiLineDemo from './multi-line';
+import MultiLineGaryDemo from './multi-line-gray';
+import MovingTextDemo from './moving-text';
+import MovingImageDemo from './moving-image';
 import LayoutDemo from './layout';
 import './style/index.less';
 
 export default function Base() {
   return (
     <div className="tdesign-mobile-demo">
-      <h1 className="title">Watermark 水印</h1>
-      <p className="summary">给页面的某个区域加上水印。</p>
+      <TDemoHeader title="Watermark 水印" summary="给页面的某个区域加上水印。" />
       <TDemoBlock title="01 组件类型" summary="文字水印">
         <BaseDemo />
       </TDemoBlock>

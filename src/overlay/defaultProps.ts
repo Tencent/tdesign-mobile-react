@@ -4,9 +4,4 @@
 
 import { TdOverlayProps } from './type';
 
-export const overlayDefaultProps: TdOverlayProps = {
-  duration: 300,
-  preventScrollThrough: true,
-  visible: false,
-  zIndex: 1000,
-};
+export const overlayDefaultProps: TdOverlayProps = { duration: 300, preventScrollThrough: true, visible: false };
