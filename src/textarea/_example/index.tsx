@@ -16,7 +16,7 @@ import './style/index.less';
 export default function () {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="Textarea 多行文本框" summary="用于多行文本的输入。" />
+      <TDemoHeader title="Textarea 多行文本框" summary="用于多行文本信息输入。" />
       <TDemoBlock title="01 组件类型" summary="基础多行文本框">
         <Base />
       </TDemoBlock>

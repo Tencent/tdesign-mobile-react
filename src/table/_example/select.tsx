@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button, Table, Tag, TdPrimaryTableProps } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function SelectExample() {
   const [selectRow1, setSelectRow1] = useState<(string | number)[]>([]);
@@ -19,7 +18,7 @@ export default function SelectExample() {
     });
   }
 
-  const globalColumns = [
+  const globalColumns: TdPrimaryTableProps['columns'] = [
     { colKey: 'projName', title: '项目名称', width: 80 },
     {
       colKey: 'projTag',

@@ -264,7 +264,9 @@ describe('Message', () => {
         expect(textEl).toMatchSnapshot();
 
         // Fire transitionend -> snapshot reset state
-        textEl.dispatchEvent(new Event('transitionend'));
+        act(() => {
+          textEl.dispatchEvent(new Event('transitionend'));
+        });
         expect(textEl).toMatchSnapshot();
 
         // Next play after delay (playedCount > 0): snapshot styles applied
@@ -290,7 +292,9 @@ describe('Message', () => {
         expect(textEl).toMatchSnapshot();
 
         // Fire transitionend -> snapshot reset state
-        textEl.dispatchEvent(new Event('transitionend'));
+        act(() => {
+          textEl.dispatchEvent(new Event('transitionend'));
+        });
         expect(textEl).toMatchSnapshot();
 
         // Next play after delay (playedCount > 0): snapshot styles applied

@@ -4,6 +4,9 @@ import { Button } from 'tdesign-mobile-react';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import './style/index.less';
+import './style/base.less';
+import './style/custom.less';
+import './style/switch.less';
 
 export default function Base() {
   const navigate = useNavigate();

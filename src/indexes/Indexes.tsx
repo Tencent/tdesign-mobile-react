@@ -8,6 +8,7 @@ import parseTNode from '../_util/parseTNode';
 import { usePrefixClass } from '../hooks/useClass';
 import { indexesDefaultProps } from './defaultProps';
 import { IndexesProvider } from './IndexesContext';
+import useDefault from '../_util/useDefault';
 
 export interface IndexesProps extends TdIndexesProps, StyledProps {
   children?: React.ReactNode;
@@ -26,10 +27,22 @@ interface ChildNodes {
 }
 
 const Indexes: React.FC<IndexesProps> = (props) => {
-  const { indexList, className, style, sticky, stickyOffset, children, onChange, onSelect, showFullIndex } =
-    useDefaultProps(props, indexesDefaultProps);
+  const {
+    indexList,
+    className,
+    style,
+    sticky,
+    stickyOffset,
+    children,
+    current,
+    defaultCurrent,
+    onChange,
+    onSelect,
+    showFullIndex,
+  } = useDefaultProps(props, indexesDefaultProps);
 
   const indexesClass = usePrefixClass('indexes');
+  const [currentIndex, setCurrentIndex] = useDefault(current, defaultCurrent, undefined);
 
   // 当前高亮index
   const [activeSidebar, setActiveSidebar] = useState<string | number>(null);
@@ -71,6 +84,7 @@ const Indexes: React.FC<IndexesProps> = (props) => {
     if (curIndex === -1) return;
     const curGroup = groupTop.current[curIndex];
     setActiveSidebar(curGroup.anchor);
+    setCurrentIndex(curGroup.anchor);
     if (sticky) {
       const offset = curGroup.top - scrollTop;
       const betwixt = offset < curGroup.height && offset > 0 && scrollTop > stickyTop;
@@ -106,8 +120,10 @@ const Indexes: React.FC<IndexesProps> = (props) => {
 
   const scrollToByIndex = (index: number | string) => {
     const curGroup = groupTop.current.find((item) => item.anchor === index);
-    if (indexesRef.current) {
+    if (indexesRef.current && curGroup) {
       indexesRef.current.scrollTo?.(0, curGroup.top ?? 0);
+      setCurrentIndex(index);
+      setActiveSidebar(index);
     }
   };
 
@@ -177,7 +193,9 @@ const Indexes: React.FC<IndexesProps> = (props) => {
   }, [showSidebarTip, activeSidebar]);
 
   useEffect(() => {
-    onChange?.(activeSidebar);
+    if (activeSidebar !== null) {
+      onChange?.(activeSidebar);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeSidebar]);
 
@@ -190,6 +208,9 @@ const Indexes: React.FC<IndexesProps> = (props) => {
       item.totalHeight = (next?.top || Infinity) - item.top;
     });
     setAnchorOnScroll(0);
+    if (currentIndex !== undefined) {
+      scrollToByIndex(currentIndex);
+    }
 
     // https://github.com/facebook/react/pull/19654
     // react 中 onTouchMove 等事件默认使用 passive： true，导致无法在listener 中使用 preventDefault()
@@ -202,6 +223,13 @@ const Indexes: React.FC<IndexesProps> = (props) => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (currentIndex !== undefined) {
+      scrollToByIndex(currentIndex);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentIndex]);
 
   return (
     <IndexesProvider value={{ relation }}>

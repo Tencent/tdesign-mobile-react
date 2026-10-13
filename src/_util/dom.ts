@@ -1,9 +1,8 @@
 import { isFunction, isString } from 'lodash-es';
 
-export const checkWindow = () => !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+export const isBrowser = typeof window !== 'undefined';
 
-// 用于判断是否可使用 dom
-export const canUseDocument = checkWindow();
+export const canUseDOM = () => !!(isBrowser && window.document && window.document.createElement);
 
 /**
  * 获取当前主题下的token色值
@@ -12,7 +11,7 @@ export const canUseDocument = checkWindow();
  * @returns string
  */
 export function getCurrentPrimaryColor(token: string): string {
-  if (canUseDocument) {
+  if (canUseDOM()) {
     const targetElement = document?.documentElement;
     const styles = getComputedStyle(targetElement);
     return styles.getPropertyValue(token).trim();

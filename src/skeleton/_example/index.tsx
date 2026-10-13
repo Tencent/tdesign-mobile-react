@@ -17,7 +17,7 @@ export default function SkeletonDemo() {
         summary="用于等待加载内容所展示的占位图形组合，有动态效果加载效果，减少用户等待焦虑。"
         padding={true}
       />
-      <TDemoBlock title="01 类型" padding={true}>
+      <TDemoBlock title="01 组件类型" padding={true}>
         <ThemeSkeleton />
       </TDemoBlock>
       <TDemoBlock summary="单元格骨架屏" padding={true}>

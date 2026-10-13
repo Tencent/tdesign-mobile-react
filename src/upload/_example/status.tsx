@@ -1,7 +1,6 @@
 import React from 'react';
 import type { UploadFile } from 'tdesign-mobile-react';
 import { Upload } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function StatusDemo() {
   const files: UploadFile[] = [

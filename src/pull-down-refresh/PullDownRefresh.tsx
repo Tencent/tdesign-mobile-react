@@ -54,6 +54,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
     loadingBarHeight,
     maxBarHeight,
     refreshTimeout,
+    successDuration,
     onRefresh,
     onTimeout,
     value: propsValue,
@@ -137,7 +138,7 @@ const PullDownRefresh: React.FC<PullDownRefreshProps> = (originProps) => {
         setStatus(PullStatusEnum.normal);
         setDistance(0);
         onChange(false);
-      }, 300);
+      }, Number(successDuration));
     }
   };
 

@@ -130,6 +130,40 @@ describe('Slider', () => {
       });
       expect(handleChange).toHaveBeenCalled();
     });
+
+    it(': onDragstart', () => {
+      const onDragstart = vi.fn();
+      const { container } = render(<Slider defaultValue={30} onDragstart={onDragstart} />);
+      const dot = container.querySelector(`${name}__dot`);
+      fireEvent.touchStart(dot, {
+        touches: [{ pageX: 100 } as Touch],
+      });
+      expect(onDragstart).toHaveBeenCalledTimes(1);
+      expect(onDragstart).toHaveBeenCalledWith(expect.objectContaining({ e: expect.any(Object) }));
+    });
+
+    it(': onDragend', () => {
+      const onDragend = vi.fn();
+      const { container } = render(<Slider defaultValue={30} onDragend={onDragend} />);
+      const dot = container.querySelector(`${name}__dot`);
+      fireEvent.touchEnd(dot, {
+        changedTouches: [{ pageX: 100 } as Touch],
+      });
+      expect(onDragend).toHaveBeenCalledTimes(1);
+      expect(onDragend).toHaveBeenCalledWith(30, expect.objectContaining({ e: expect.any(Object) }));
+    });
+
+    it(': onDragend range', () => {
+      const onDragend = vi.fn();
+      const { container } = render(<Slider range defaultValue={[20, 80]} onDragend={onDragend} />);
+      const rightDot = container.querySelector(`${name}__dot--right`);
+      fireEvent.touchEnd(rightDot, {
+        changedTouches: [{ pageX: 100 } as Touch],
+      });
+      expect(onDragend).toHaveBeenCalledTimes(1);
+      expect(onDragend).toHaveBeenCalledWith([20, 80], expect.objectContaining({ e: expect.any(Object) }));
+    });
+
     it(': click handleRangeClick', () => {
       const onChange = vi.fn();
       const { container: container1 } = render(

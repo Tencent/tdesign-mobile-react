@@ -9,7 +9,7 @@ import './style/index.less';
 export default function CountDownDemo() {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="CountDown倒计时" summary="用于实时展示倒计时数值。" />
+      <TDemoHeader title="CountDown 倒计时" summary="用于实时展示倒计时数值。" />
       <TDemoBlock title="01 组件类型" padding={true}>
         <BaseCountDown />
       </TDemoBlock>

@@ -1,5 +1,6 @@
 import { defaultGlobalConfig } from '../config-provider/ConfigContext';
-import { PickerColumn } from './type';
+import { PickerColumn, PickerWheelConfig } from './type';
+import { DEFAULT_WHEEL_CONFIG } from './constants';
 import { KeysType } from '../common';
 import { findIndexOfEnabledOption, limitNumberInRange } from './utils';
 import { reconvertUnit } from '../_util/convertUnit';
@@ -10,7 +11,7 @@ export interface PickerOptions {
   defaultPickerColumns?: PickerColumn;
   el: HTMLElement | HTMLDivElement | HTMLUListElement;
   onChange: (index: number) => void;
-  swipeDuration?: string | number;
+  wheelConfig?: Required<PickerWheelConfig>;
   prefixCls: string;
 }
 
@@ -39,11 +40,6 @@ const quartEaseOut = function (t: number, b: number, c: number, d: number) {
  */
 export const DEFAULT_ITEM_HEIGHT = 40;
 const DEFAULT_HOLDER_HEIGHT = 200;
-const OFFSET_OF_BOUND = 60;
-export const ANIMATION_TIME_LIMIT = 460;
-export const ANIMATION_DISTANCE_LIMIT = 15;
-const ANIMATION_DURATION = 150;
-const DEFAULT_SWIPE_DURATION = 1000;
 
 /**
  * @name picker
@@ -81,9 +77,9 @@ class Picker {
 
   isPicking = false;
 
-  offsetYOfStartBound: number = OFFSET_OF_BOUND;
+  offsetYOfStartBound = 0;
 
-  offsetYOfEndBound: number = -OFFSET_OF_BOUND;
+  offsetYOfEndBound = 0;
 
   offsetY = 0;
 
@@ -99,7 +95,17 @@ class Picker {
 
   indicatorOffset: number;
 
-  swipeDuration?: number | string;
+  inertiaDuration: number;
+
+  bounceDuration: number;
+
+  transitionDuration: number;
+
+  inertiaTimeThreshold: number;
+
+  inertiaDistanceThreshold: number;
+
+  boundOffset: number;
 
   pickerColumns: PickerColumn;
 
@@ -111,7 +117,13 @@ class Picker {
     this.pickerColumns = options.defaultPickerColumns;
     this.options = options;
     this.onChange = options.onChange;
-    this.swipeDuration = options.swipeDuration ?? DEFAULT_SWIPE_DURATION;
+    const wheelConfig = options.wheelConfig ?? DEFAULT_WHEEL_CONFIG;
+    this.inertiaDuration = wheelConfig.inertiaDuration;
+    this.bounceDuration = wheelConfig.bounceDuration;
+    this.transitionDuration = wheelConfig.transitionDuration;
+    this.inertiaTimeThreshold = wheelConfig.inertiaTimeThreshold;
+    this.inertiaDistanceThreshold = wheelConfig.inertiaDistanceThreshold;
+    this.boundOffset = wheelConfig.boundOffset;
     this.prefixCls = options.prefixCls ?? defaultGlobalConfig.classPrefix;
 
     this.init();
@@ -133,7 +145,7 @@ class Picker {
     this.elementItems = Array.from(this.holder?.querySelectorAll('li') || []);
     const itemLen = this.elementItems.length;
     this.offsetYOfEnd = -this.itemHeight * (itemLen - 3);
-    this.offsetYOfEndBound = -(this.itemHeight * (itemLen - 3) + OFFSET_OF_BOUND);
+    this.offsetYOfEndBound = -(this.itemHeight * (itemLen - 3) + this.boundOffset);
   }
 
   /**
@@ -173,8 +185,8 @@ class Picker {
     this.setOffsetY(startOffsetY);
     this.offsetYOfStart = startOffsetY;
     this.offsetYOfEnd = this.indicatorOffset - (itemLen - 1) * this.itemHeight;
-    this.offsetYOfStartBound = this.indicatorOffset + OFFSET_OF_BOUND;
-    this.offsetYOfEndBound = this.indicatorOffset - (itemLen - 1) * this.itemHeight - OFFSET_OF_BOUND;
+    this.offsetYOfStartBound = this.indicatorOffset + this.boundOffset;
+    this.offsetYOfEndBound = this.indicatorOffset - (itemLen - 1) * this.itemHeight - this.boundOffset;
   }
 
   bindEvent(): void {
@@ -228,7 +240,11 @@ class Picker {
     const moveTime = nowTime - this.lastMoveTime;
     const distance = point.pageY - this.lastMoveStart;
     // 超出一定时间不再惯性滚动
-    if (moveTime > ANIMATION_TIME_LIMIT || Math.abs(distance) < ANIMATION_DISTANCE_LIMIT || !this.swipeDuration) {
+    if (
+      moveTime > this.inertiaTimeThreshold ||
+      Math.abs(distance) < this.inertiaDistanceThreshold ||
+      !this.inertiaDuration
+    ) {
       this.stopInertiaMove = false;
       this.endScroll();
       return;
@@ -244,7 +260,7 @@ class Picker {
       this.endScroll();
       return;
     }
-    this.scrollDist(nowTime, this.offsetY, dist, +this.swipeDuration);
+    this.scrollDist(nowTime, this.offsetY, dist, this.inertiaDuration);
   }
 
   /**
@@ -305,7 +321,7 @@ class Picker {
    */
   updateIndex(index: number, options?: any): void {
     const realOptions = {
-      duration: 460,
+      duration: this.transitionDuration,
       isChange: true,
       ...options,
     };
@@ -393,16 +409,16 @@ class Picker {
     if (this.offsetY > this.offsetYOfStartBound) {
       curIndex = 0;
       if (this.list) {
-        this.list.style.transition = `${ANIMATION_DURATION}ms ease-out`;
+        this.list.style.transition = `${this.bounceDuration}ms ease-out`;
       }
     } else if (this.offsetY < this.offsetYOfEndBound) {
       curIndex = this.elementItems.length - 1;
       if (this.list) {
-        this.list.style.transition = `${ANIMATION_DURATION}ms ease-out`;
+        this.list.style.transition = `${this.bounceDuration}ms ease-out`;
       }
     } else {
       if (this.list) {
-        this.list.style.transition = `${ANIMATION_DURATION}ms ease-out`;
+        this.list.style.transition = `${this.bounceDuration}ms ease-out`;
       }
       curIndex = -Math.round((this.offsetY - this.indicatorOffset) / this.itemHeight);
       if (curIndex < 0) curIndex = 0;

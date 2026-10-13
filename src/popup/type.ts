@@ -5,8 +5,8 @@
  * */
 
 import { OverlayProps } from '../overlay';
-import { TNode, AttachNode } from '../common';
-import { MouseEvent } from 'react';
+import type { TNode, AttachNode } from '../common';
+import type { MouseEvent } from 'react';
 
 export interface TdPopupProps {
   /**
@@ -66,7 +66,7 @@ export interface TdPopupProps {
    */
   defaultVisible?: boolean;
   /**
-   * 组件层级，Web 侧样式默认为 5500，移动端和小程序样式默认为 1500
+   * 组件层级，Web 侧样式默认为 5500，移动端默认为 1500，小程序端默认 11500
    */
   zIndex?: number;
   /**
@@ -86,9 +86,9 @@ export interface TdPopupProps {
    */
   onOpened?: () => void;
   /**
-   * 当浮层隐藏或显示时触发
+   * 当浮层隐藏或显示时触发，trigger=document 表示点击弹出层元素触发
    */
   onVisibleChange?: (visible: boolean, trigger: PopupSource) => void;
 }
 
-export type PopupSource = 'close-btn' | 'overlay';
+export type PopupSource = 'close-btn' | 'overlay' | 'document';

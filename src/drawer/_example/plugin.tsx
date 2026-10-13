@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, DrawerPlugin } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function Base() {
   const baseSidebar = [

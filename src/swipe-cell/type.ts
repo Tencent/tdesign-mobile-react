@@ -4,7 +4,7 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { TNode, Styles } from '../common';
+import type { TNode, Styles } from '../common';
 
 export interface TdSwipeCellProps {
   /**
@@ -36,6 +36,14 @@ export interface TdSwipeCellProps {
    * 操作项点击时触发（插槽写法组件不触发，业务侧自定义内容和事件）
    */
   onClick?: (action: SwipeActionItem, source: SwipeSource) => void;
+  /**
+   * 滑动结束事件
+   */
+  onDragend?: () => void;
+  /**
+   * 滑动开始事件
+   */
+  onDragstart?: () => void;
 }
 
 export interface SwipeActionItem {

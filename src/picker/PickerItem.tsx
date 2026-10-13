@@ -2,16 +2,18 @@ import React, { useEffect, useRef, useImperativeHandle, forwardRef, useCallback 
 import { get as lodashGet } from 'lodash-es';
 import cls from 'classnames';
 import { KeysType, StyledProps } from '../common';
-import { PickerColumnItem, PickerValue } from './type';
+import { PickerColumnItem, PickerValue, PickerWheelConfig } from './type';
+import { DEFAULT_WHEEL_CONFIG } from './constants';
 import Picker from './picker.class';
 import { usePrefixClass } from '../hooks/useClass';
 
 export interface PickerItemProps extends StyledProps {
   options?: PickerColumnItem[];
   value?: PickerValue;
-  renderLabel?: (option: PickerColumnItem) => React.ReactNode;
+  option?: (option: PickerColumnItem, index: number) => React.ReactNode;
+  renderLabel?: (item: PickerColumnItem, index: number) => React.ReactNode;
   onPick?: (context: { value: PickerValue; index: number }) => void;
-  swipeDuration?: string | number;
+  wheelConfig?: Required<PickerWheelConfig>;
   keys?: KeysType;
 }
 
@@ -23,7 +25,8 @@ export interface PickerItemExposeRef {
 }
 
 const PickerItem = forwardRef<PickerItemExposeRef, PickerItemProps>((props, ref) => {
-  const { options, value, renderLabel, onPick, swipeDuration = 300, keys } = props;
+  const { options, value, option, renderLabel, onPick, wheelConfig = DEFAULT_WHEEL_CONFIG, keys } = props;
+  const renderOption = option || renderLabel;
   const classPrefix = usePrefixClass();
   const pickerItemClass = usePrefixClass('picker-item');
 
@@ -90,7 +93,7 @@ const PickerItem = forwardRef<PickerItemExposeRef, PickerItemProps>((props, ref)
           keys,
           defaultPickerColumns: options,
           onChange,
-          swipeDuration,
+          wheelConfig,
           prefixCls: classPrefix,
         });
       }
@@ -126,9 +129,9 @@ const PickerItem = forwardRef<PickerItemExposeRef, PickerItemProps>((props, ref)
 
   return (
     <ul ref={rootRef} className={pickerItemClass}>
-      {options.map((option, index) => (
-        <li key={index} className={pickerItemCls(option)}>
-          {renderLabel ? renderLabel(option) : lodashGet(option, keys?.label ?? 'label')}
+      {options.map((item, index) => (
+        <li key={index} className={pickerItemCls(item)}>
+          {renderOption ? renderOption(item, index) : lodashGet(item, keys?.label ?? 'label')}
         </li>
       ))}
     </ul>

@@ -10,5 +10,4 @@ export const pickerDefaultProps: TdPickerProps = {
   confirmBtn: true,
   swipeDuration: 300,
   title: '',
-  visible: false,
 };

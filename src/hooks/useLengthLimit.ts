@@ -29,7 +29,6 @@ export interface UseLengthLimitReturn {
 
 /**
  * 处理输入框长度限制的通用 Hook
- * 参考 tdesign-mobile-vue 的 useLengthLimit 实现
  *
  * @param params 长度限制参数
  * @returns 包含长度限制处理方法和当前长度信息

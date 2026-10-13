@@ -1,6 +1,5 @@
 import React from 'react';
-import { Button, Table, Tag } from 'tdesign-mobile-react';
-import './style/index.less';
+import { Button, Table, Tag, TdPrimaryTableProps } from 'tdesign-mobile-react';
 
 export default function LoadingExample() {
   const data = [];
@@ -17,7 +16,7 @@ export default function LoadingExample() {
     });
   }
 
-  const columns = [
+  const columns: TdPrimaryTableProps['columns'] = [
     { colKey: 'projName', title: '项目名称', width: 80, ellipsis: true },
     {
       colKey: 'projTag',

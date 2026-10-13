@@ -4,6 +4,7 @@ import { AppIcon } from 'tdesign-icons-react';
 
 import Drawer from '../Drawer';
 import { DrawerPlugin } from '../plugin';
+import type { DrawerInstance } from '../type';
 
 describe('Drawer', () => {
   describe('props', () => {
@@ -70,7 +71,7 @@ describe('Drawer', () => {
     });
 
     it('hide', async () => {
-      const drawerRef = createRef();
+      const drawerRef = createRef<DrawerInstance>();
       render(<Drawer ref={drawerRef} isPlugin visible />);
 
       await act(async () => {

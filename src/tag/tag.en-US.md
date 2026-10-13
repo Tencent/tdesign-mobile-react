@@ -7,19 +7,19 @@
 name | type | default | description | required
 -- | -- | -- | -- | --
 className | String | - | className of component | N
-style | Object | - | CSS(Cascading Style Sheets)，Typescript：`React.CSSProperties` | N
-children | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+style | Object | - | CSS(Cascading Style Sheets)，Typescript: `React.CSSProperties` | N
+children | TNode | - | Typescript: `string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 closable | Boolean | false | \- | N
-content | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+content | TNode | - | Typescript: `string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 disabled | Boolean | false | \- | N
-icon | TElement | undefined | Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+icon | TElement | undefined | Typescript: `TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 maxWidth | String / Number | - | \- | N
 shape | String | square | options: square/round/mark | N
 size | String | medium | options: small/medium/large/extra-large | N
 theme | String | default | options: default/primary/warning/danger/success | N
 variant | String | dark | options: dark/light/outline/light-outline | N
-onClick | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/> | N
-onClose | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/> | N
+onClick | Function |  | Typescript: `(context: { e: MouseEvent }) => void`<br/> | N
+onClose | Function |  | Typescript: `(context: { e: MouseEvent }) => void`<br/> | N
 
 
 ### CheckTag Props
@@ -27,20 +27,20 @@ onClose | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/>
 name | type | default | description | required
 -- | -- | -- | -- | --
 className | String | - | className of component | N
-style | Object | - | CSS(Cascading Style Sheets)，Typescript：`React.CSSProperties` | N
-checked | Boolean | undefined | \- | N
-defaultChecked | Boolean | undefined | uncontrolled property | N
-children | TNode | - | Typescript：`string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+style | Object | - | CSS(Cascading Style Sheets)，Typescript: `React.CSSProperties` | N
+checked | Boolean | - | \- | N
+defaultChecked | Boolean | - | uncontrolled property | N
+children | TNode | - | Typescript: `string \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 closable | Boolean | false | \- | N
-content | TNode | - | Typescript：`string \| number \| string[] \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+content | TNode | - | Typescript: `string \| number \| string[] \| TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 disabled | Boolean | false | \- | N
-icon | TElement | - | Typescript：`TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+icon | TElement | - | Typescript: `TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 shape | String | square | options: square/round/mark | N
-size | String | medium | options: small/medium/large。Typescript：`SizeEnum`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+size | String | medium | options: small/medium/large。Typescript: `SizeEnum`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 variant | String | dark | options: dark/light/outline/light-outline | N
-onChange | Function |  | Typescript：`(checked: boolean) => void`<br/> | N
-onClick | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/> | N
-onClose | Function |  | Typescript：`(context: { e: MouseEvent }) => void`<br/> | N
+onChange | Function |  | Typescript: `(checked: boolean) => void`<br/> | N
+onClick | Function |  | Typescript: `(context: { e: MouseEvent }) => void`<br/> | N
+onClose | Function |  | Typescript: `(context: { e: MouseEvent }) => void`<br/> | N
 
 ### CSS Variables
 
@@ -67,18 +67,18 @@ Name | Default Value | Description
 --td-tag-large-font | @font-body-medium | -
 --td-tag-large-icon-size | 16px | -
 --td-tag-large-padding | 2px 7px | -
---td-tag-mark-border-radius | @tag-round-border-radius | -
+--td-tag-mark-border-radius | @radius-round | -
 --td-tag-medium-font | @font-body-small | -
 --td-tag-medium-icon-size | 14px | -
 --td-tag-medium-padding | 1px 7px | -
 --td-tag-outline-bg-color | @bg-color-container | -
 --td-tag-primary-color | @brand-color | -
 --td-tag-primary-light-color | @brand-color-light | -
---td-tag-round-border-radius | 999px | -
+--td-tag-round-border-radius | @radius-round | -
 --td-tag-small-font | @font-body-extraSmall | -
 --td-tag-small-icon-size | 12px | -
 --td-tag-small-padding | 1px 5px | -
---td-tag-square-border-radius | 4px | -
+--td-tag-square-border-radius | @radius-small | -
 --td-tag-success-color | @success-color | -
 --td-tag-success-light-color | @success-color-1 | -
 --td-tag-warning-color | @warning-color | -

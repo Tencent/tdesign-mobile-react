@@ -1,6 +1,5 @@
 import React from 'react';
 import { Image, Result } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function CustomResult() {
   return (

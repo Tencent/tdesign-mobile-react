@@ -19,16 +19,16 @@ function TabBarMobileDemo() {
       <TDemoBlock title="01 组件类型" summary="纯文本标签栏">
         <TextDemo />
       </TDemoBlock>
-      <TDemoBlock summary="图标加文字标签栏">
+      <TDemoBlock summary="图标加文本标签栏">
         <BaseDemo />
       </TDemoBlock>
       <TDemoBlock summary="纯图标标签栏">
         <PureIconDemo />
       </TDemoBlock>
-      <TDemoBlock summary="双层级纯文本标签栏">
+      <TDemoBlock summary="双层级文本标签栏">
         <TextSpreadDemo />
       </TDemoBlock>
-      <TDemoBlock title="01 组件类型" summary="弱选中标签栏">
+      <TDemoBlock title="02 组件样式" summary="弱选中标签栏">
         <BadgePropsDemo />
       </TDemoBlock>
       <TDemoBlock summary="悬浮胶囊标签栏">

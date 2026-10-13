@@ -7,6 +7,7 @@ import BorderedDemo from './bordered';
 import BadgeDemo from './badge';
 import ScrollDemo from './scroll';
 import IconDemo from './icon';
+import MultipleDemo from './multiple';
 import CardDemo from './card';
 
 import './style/index.less';
@@ -21,7 +22,7 @@ export default function GridDemo() {
       <TDemoBlock title="01 组件类型" summary="基础宫格">
         <BaseDemo />
       </TDemoBlock>
-      <TDemoBlock summary="带描述宫格">
+      <TDemoBlock summary="带说明的宫格">
         <DescDemo />
       </TDemoBlock>
       <TDemoBlock summary="带边框宫格">
@@ -35,6 +36,9 @@ export default function GridDemo() {
       </TDemoBlock>
       <TDemoBlock title="02 组件样式" summary="可传图标的宫格">
         <IconDemo />
+      </TDemoBlock>
+      <TDemoBlock summary="通栏宫格">
+        <MultipleDemo />
       </TDemoBlock>
       <TDemoBlock summary="卡片宫格">
         <CardDemo />

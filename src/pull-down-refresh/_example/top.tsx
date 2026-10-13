@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { PullDownRefresh, Skeleton, type SkeletonRowCol } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function Demo() {
   const [value, setValue] = useState(false);

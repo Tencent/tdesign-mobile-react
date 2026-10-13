@@ -1,5 +1,5 @@
 import React from 'react';
-import { describe, it, expect, render, fireEvent, waitFor, vi, cleanup, afterEach } from '@test/utils';
+import { describe, it, expect, render, fireEvent, waitFor, vi, cleanup, afterEach, act } from '@test/utils';
 import QRCode from '../QRCode';
 import { QRCodeSVG } from '../QRCodeSVG';
 
@@ -86,7 +86,7 @@ describe('QRCode', () => {
 
     it('passes iconSize correctly to imageSettings for object type', () => {
       const icon = 'https://example.com/icon.png';
-      const iconSize = {};
+      const iconSize = { width: 40, height: 40 };
 
       const { container } = render(
         <QRCode style={{ height: 60, width: 60 }} value="test" type="canvas" icon={icon} iconSize={iconSize} />,
@@ -250,7 +250,9 @@ describe('QRCodeCanvas - image settings, excavation and crossOrigin (merged)', (
     Object.defineProperty(img, 'naturalWidth', { configurable: true, get: () => 10 });
     Object.defineProperty(img, 'naturalHeight', { configurable: true, get: () => 10 });
 
-    img.dispatchEvent(new Event('load'));
+    act(() => {
+      img.dispatchEvent(new Event('load'));
+    });
 
     await waitFor(() => {
       const alphaSets = calls.globalAlpha || [];

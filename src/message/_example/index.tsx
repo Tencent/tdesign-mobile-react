@@ -9,7 +9,7 @@ import './style/index.less';
 export default function Demo() {
   return (
     <div className="tdesign-mobile-demo">
-      <TDemoHeader title="Message 消息通知" summary="用于轻量级反馈或提示，不会打断用户操作。 " />
+      <TDemoHeader title="Message 消息通知" summary="用于轻量级反馈或提示，不会打断用户操作。" />
       <TDemoBlock title="01 组件类型" summary="消息通知内容为文本、带操作按钮" padding>
         <Base />
       </TDemoBlock>

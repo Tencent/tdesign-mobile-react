@@ -7,6 +7,7 @@ import DirectionDemo from './direction';
 import DisabledDemo from './disabled';
 import MultipleDemo from './multiple';
 import SingleDemo from './single';
+import './style/index.less';
 
 export default function DropdownMenuDemo() {
   return (
@@ -19,16 +20,16 @@ export default function DropdownMenuDemo() {
       <TDemoBlock title="01 组件类型" summary="单选下拉菜单">
         <SingleDemo />
       </TDemoBlock>
-      <TDemoBlock title="" summary="分栏下拉菜单" padding={false}>
+      <TDemoBlock summary="分栏下拉菜单" padding={false}>
         <MultipleDemo />
       </TDemoBlock>
-      <TDemoBlock title="" summary="向上展开" padding={false}>
+      <TDemoBlock summary="向上展开" padding={false}>
         <DirectionDemo />
       </TDemoBlock>
       <TDemoBlock title="02 组件状态" summary="禁用状态">
         <DisabledDemo />
       </TDemoBlock>
-      <TDemoBlock title="" summary="插槽样式" padding={false}>
+      <TDemoBlock summary="插槽样式" padding={false}>
         <CustomizedDemo />
       </TDemoBlock>
 

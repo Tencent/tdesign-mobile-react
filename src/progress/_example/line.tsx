@@ -1,8 +1,6 @@
 import React from 'react';
 import { Progress } from 'tdesign-mobile-react';
 
-import './style/index.less';
-
 export default function Line() {
   return (
     <div className="example-progress">

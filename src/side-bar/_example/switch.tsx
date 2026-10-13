@@ -2,8 +2,6 @@ import React, { useState, useRef } from 'react';
 import type { SideBarProps, SideBarItemProps } from 'tdesign-mobile-react';
 import { SideBar, SideBarItem, Cell, Image } from 'tdesign-mobile-react';
 
-import './style/switch.less';
-
 const image = 'https://tdesign.gtimg.com/mobile/demos/example2.png';
 const items = new Array(12).fill({ label: '标题文字', image }, 0, 12);
 

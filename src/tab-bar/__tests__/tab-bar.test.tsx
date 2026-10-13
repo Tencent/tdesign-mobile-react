@@ -108,6 +108,6 @@ describe('events', () => {
     expect(onChange).toHaveBeenCalledTimes(0);
     fireEvent.click(tabBarItems[1]);
     expect(onChange).toHaveBeenCalledTimes(1);
-    expect(onChange).toHaveBeenCalledWith(expect.any(Number));
+    expect(onChange).toHaveBeenCalledWith({ value: expect.any(Number) });
   });
 });

@@ -13,13 +13,13 @@ export default function ResultDemo() {
       {!showResultPage ? (
         <div className="tdesign-mobile-demo">
           <TDemoHeader title="Result 结果" summary="用于反馈不同结果的展示。" />
-          <TDemoBlock title="01类型" summary="不同结果反馈">
+          <TDemoBlock title="组件类型" summary="基础结果">
             <ThemeResult />
           </TDemoBlock>
           <TDemoBlock title="" summary="自定义结果">
             <CustomResult />
           </TDemoBlock>
-          <TDemoBlock title="" summary="页面位置展示">
+          <TDemoBlock title="" summary="页面示例">
             <div className="padding">
               <Button block size="large" variant="outline" theme="primary" onClick={() => setShowResultPage(true)}>
                 页面位置展示

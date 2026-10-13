@@ -6,6 +6,7 @@ import { TdNoticeBarProps } from './type';
 
 export const noticeBarDefaultProps: TdNoticeBarProps = {
   direction: 'horizontal',
+  interval: 2000,
   marquee: false,
   theme: 'info',
   defaultVisible: false,

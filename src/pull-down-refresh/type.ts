@@ -37,6 +37,11 @@ export interface TdPullDownRefreshProps {
    */
   refreshTimeout?: number;
   /**
+   * 刷新成功提示展示时长，单位 'ms'
+   * @default 500
+   */
+  successDuration?: string | number;
+  /**
    * 组件状态，值为 `true` 表示下拉状态，值为 `false` 表示收起状态
    * @default false
    */

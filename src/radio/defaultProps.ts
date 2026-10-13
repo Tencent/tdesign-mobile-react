@@ -5,12 +5,10 @@
 import { TdRadioProps, TdRadioGroupProps } from './type';
 
 export const radioDefaultProps: TdRadioProps = {
-  align: 'left',
   allowUncheck: false,
   block: true,
   borderless: undefined,
   defaultChecked: false,
-  contentDisabled: false,
   disabled: undefined,
   icon: 'circle',
   maxContentRow: 5,
@@ -22,6 +20,7 @@ export const radioDefaultProps: TdRadioProps = {
 export const radioGroupDefaultProps: TdRadioGroupProps = {
   allowUncheck: false,
   borderless: false,
+  direction: 'vertical',
   disabled: undefined,
   icon: 'circle',
   placement: 'left',

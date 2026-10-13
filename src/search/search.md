@@ -17,8 +17,9 @@ cursorColor | String | #0052d9 | `0.21.2`。光标颜色 | N
 disabled | Boolean | false | 是否禁用 | N
 focus | Boolean | false | 是否聚焦 | N
 leftIcon | TNode | 'search' | 左侧图标。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+maxcharacter | Number | - | 用户最多可以输入的字符个数，一个中文汉字表示两个字符长度。`maxcharacter` 和 `maxlength` 二选一使用 | N
+maxlength | String / Number | - | 用户最多可以输入的文本长度，一个中文等于一个计数长度。默认为空，不限制输入长度。`maxcharacter` 和 `maxlength` 二选一使用 | N
 placeholder | String | '' | 占位符 | N
-prefixIcon | TElement | - | 已废弃。前置图标，默认为搜索图标。值为 `null` 时则不显示。TS 类型：`TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 readonly | Boolean | undefined | 只读状态 | N
 resultList | Array | [] | 预览结果列表。TS 类型：`Array<string>` | N
 shape | String | 'square' | 搜索框形状。可选项：square/round | N

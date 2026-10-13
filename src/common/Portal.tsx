@@ -1,7 +1,7 @@
 import React, { forwardRef, useEffect, useMemo, useImperativeHandle } from 'react';
 import { createPortal } from 'react-dom';
 import { AttachNode, AttachNodeReturnValue } from '../common';
-import { canUseDocument } from '../_util/dom';
+import { canUseDOM } from '../_util/dom';
 import useConfig from '../hooks/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
 
@@ -18,7 +18,7 @@ export interface PortalProps {
 }
 
 export function getAttach(attach: PortalProps['attach'], triggerNode?: HTMLElement): AttachNodeReturnValue {
-  if (!canUseDocument) return null;
+  if (!canUseDOM()) return null;
 
   let el: AttachNodeReturnValue;
   if (typeof attach === 'string') {
@@ -43,7 +43,7 @@ const Portal = forwardRef<HTMLElement, PortalProps>((props, ref) => {
   const { classPrefix } = useConfig();
 
   const container = useMemo(() => {
-    if (!canUseDocument) return null;
+    if (!canUseDOM()) return null;
     const el = document.createElement('div');
     el.className = `${classPrefix}-portal-wrapper`;
     return el;
@@ -60,7 +60,7 @@ const Portal = forwardRef<HTMLElement, PortalProps>((props, ref) => {
 
   useImperativeHandle(ref, () => container);
 
-  return canUseDocument ? createPortal(children, container) : null;
+  return canUseDOM() ? createPortal(children, container) : null;
 });
 
 Portal.displayName = 'Portal';

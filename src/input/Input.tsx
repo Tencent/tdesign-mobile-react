@@ -69,6 +69,7 @@ const Input = forwardRef<InputRefProps, InputProps>((props, ref) => {
     [`${rootClassName}--${align}`]: align !== 'left',
     [`${rootClassName}--${status}`]: status,
     [`${rootClassName}__control--disabled`]: disabled,
+    [`${rootClassName}--password`]: renderType === 'password',
   });
   const rootClasses = classNames(`${rootClassName}`, {
     [`${rootClassName}--layout-${layout}`]: layout,

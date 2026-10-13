@@ -160,7 +160,7 @@ const Upload: React.FC<UploadProps> = (props) => {
 
   const reachMax = max > 0 && displayFiles.length >= max;
 
-  // 当前展示列表：非拖拽用 displayFiles，拖拽中用排序后的 sortedFiles（与 vue 版本保持一致）
+  // 当前展示列表：非拖拽用 displayFiles，拖拽中用排序后的 sortedFiles
   const displayList = dragging && sortedFiles.length > 0 ? sortedFiles : displayFiles;
 
   // 是否为纯文件项（非图片且无预览图）

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Result, ResultProps } from 'tdesign-mobile-react';
-import './style/index.less';
 
 export default function ThemeResult() {
   const resultList: Array<ResultProps> = [

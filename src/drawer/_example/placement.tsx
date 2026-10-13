@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Drawer, Button } from 'tdesign-mobile-react';
-import './style/index.less';
 
 const placementList = [
   { key: 1, value: 'left', text: '左侧抽屉' },

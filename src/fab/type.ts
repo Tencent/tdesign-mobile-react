@@ -5,8 +5,8 @@
  * */
 
 import { ButtonProps } from '../button';
-import { TElement } from '../common';
-import { MouseEvent, TouchEvent } from 'react';
+import type { TElement } from '../common';
+import type { MouseEvent, TouchEvent } from 'react';
 
 export interface TdFabProps {
   /**
@@ -23,10 +23,18 @@ export interface TdFabProps {
    */
   icon?: TElement;
   /**
+   * 是否吸附。`true` 启用左右吸附，`left` 仅吸附到左边，`right` 仅吸附到右边，`false` 不吸附
+   */
+  magnet?: boolean | MagnetEnum;
+  /**
    * 文本内容
    * @default ''
    */
   text?: string;
+  /**
+   * 设置水平方向边界限制，示例：[16, 16] 或 ['16px', 16]
+   */
+  xBounds?: Array<string | number>;
   /**
    * 设置垂直方向边界限制，示例：[48, 48] 或 ['96px', 80]
    */
@@ -46,3 +54,5 @@ export interface TdFabProps {
 }
 
 export type FabDirectionEnum = 'all' | 'vertical' | 'horizontal';
+
+export type MagnetEnum = 'left' | 'right';

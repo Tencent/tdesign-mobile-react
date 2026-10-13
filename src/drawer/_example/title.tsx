@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Drawer, Button } from 'tdesign-mobile-react';
-import './style/index.less';
 
 const titleList = [
   { key: 1, value: '标题', text: '小标题抽屉' },

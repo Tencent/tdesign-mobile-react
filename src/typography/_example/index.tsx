@@ -8,6 +8,8 @@ import ThemeDemo from './theme';
 import CopyableDemo from './copyable';
 import EllipsisDemo from './ellipsis';
 
+import './style/index.less';
+
 export default function TypographyDemo() {
   return (
     <div className="tdesign-mobile-demo">

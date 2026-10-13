@@ -59,7 +59,7 @@ validateOnly | `(params?: Pick<FormValidateParams, 'fields' \| 'trigger'>)` | `P
 className | String | - | 类名 | N
 style | Object | - | 样式，TS 类型：`React.CSSProperties` | N
 arrow | Boolean | false | 是否显示右侧箭头 | N
-contentAlign | String | - | 表单内容对齐方式，优先级高于 Form.contentAlign。可选项：left/right | N
+contentAlign | String | - | 表单内容对齐方式：左对齐、右对齐，优先级高于 Form.contentAlign。可选项：left/right | N
 for | String | - | label 原生属性 | N
 help | TNode | - | 表单项说明内容。TS 类型：`string \| TNode`。[通用类型定义](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 initialData | String / Number / Object / Array | - | 表单初始数据，重置时所需初始数据。TS 类型：`InitialData` `type InitialData = any`。[详细类型定义](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/form/type.ts) | N

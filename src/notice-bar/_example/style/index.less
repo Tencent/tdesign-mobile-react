@@ -4,14 +4,11 @@
 }
 
 .cover-class {
-  background-color: var(--bg-color-demo, #fff);
+  background-color: var(--td-bg-color-page);
 
-  .t-icon {
-    color: var(--td-text-color-primary, rgba(0, 0, 0, .9)) !important;
-  }
-
+  .t-notice-bar__prefix-icon,
   .t-notice-bar__text {
-    color: var(--bg-color-demo, #fff) !important;
+    color: var(--td-text-color-primary, rgba(0, 0, 0, .9));
   }
 }
 
@@ -21,4 +18,17 @@
 
 .notice-bar-demo-block {
   margin-bottom: 16px;
+}
+
+.demo-section__desc {
+  font-size: 14px;
+  color: var(--td-text-color-secondary);
+  margin-top: 8px;
+  line-height: 22px;
+  padding: 0 16px;
+}
+
+.demo-section__content {
+  margin-top: 16px;
+  margin-bottom: 24px;
 }

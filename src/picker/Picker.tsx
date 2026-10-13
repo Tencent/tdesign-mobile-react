@@ -8,9 +8,10 @@ import useDefault from '../_util/useDefault';
 import { NativeProps } from '../_util/withNativeProps';
 import { useLocaleReceiver } from '../locale/LocalReceiver';
 import { pickerDefaultProps } from './defaultProps';
-import { TdPickerProps, PickerColumnItem, PickerValue, PickerColumn } from './type';
+import { TdPickerProps, PickerColumnItem, PickerValue, PickerColumn, PickerWheelConfig } from './type';
+import { DEFAULT_WHEEL_CONFIG } from './constants';
 
-import PickerItem, { type PickerItemExposeRef } from './PickerItem';
+import PickerItem, { type PickerItemExposeRef, type PickerItemProps } from './PickerItem';
 import { getPickerColumns } from './utils';
 import PickerContext from './picker-context';
 
@@ -44,8 +45,10 @@ const Picker: FC<PickerProps> = (props) => {
     onChange,
     cancelBtn,
     confirmBtn,
+    option,
     renderLabel,
     swipeDuration,
+    wheelConfig,
   } = useDefaultProps(props, pickerDefaultProps);
   const pickerClass = usePrefixClass('picker');
 
@@ -62,6 +65,15 @@ const Picker: FC<PickerProps> = (props) => {
   );
   const [curValueArray, setCurValueArray] = useState(value?.map((item) => item) ?? []);
   const pickerItemInstanceArray = useRef<PickerItemExposeRef[]>([]);
+
+  const mergedWheelConfig = useMemo(() => {
+    const userConfig: Partial<PickerWheelConfig> = wheelConfig || {};
+    const merged: Required<PickerWheelConfig> = { ...DEFAULT_WHEEL_CONFIG, ...userConfig };
+    if (swipeDuration !== undefined) {
+      merged.inertiaDuration = Number(swipeDuration);
+    }
+    return merged;
+  }, [wheelConfig, swipeDuration]);
 
   const realColumns = useMemo(() => {
     if (isFunction(columns)) {
@@ -159,9 +171,10 @@ const Picker: FC<PickerProps> = (props) => {
                 }}
                 options={item}
                 value={pickerValue[idx]}
+                option={option as PickerItemProps['option']}
                 renderLabel={renderLabel}
                 onPick={(context) => handlePick(context, idx)}
-                swipeDuration={swipeDuration}
+                wheelConfig={mergedWheelConfig}
               />
             </div>
           ))}

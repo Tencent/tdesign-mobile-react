@@ -29,6 +29,8 @@ const Slider: FC<SliderProps> = (props) => {
     showExtremeValue,
     label,
     onChange,
+    onDragend,
+    onDragstart,
   } = useDefaultProps(props, sliderDefaultProps);
 
   const [scaleArray, setScaleArray] = useState<any[]>([]);
@@ -229,6 +231,14 @@ const Slider: FC<SliderProps> = (props) => {
     changeValue(calcByStep(value));
   };
 
+  const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    onDragstart?.({ e });
+  };
+
+  const onTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
+    onDragend?.(innerValue, { e });
+  };
+
   const onTouchMoveLeft = (e: TouchEvent) => {
     if (disabled) {
       return;
@@ -329,7 +339,10 @@ const Slider: FC<SliderProps> = (props) => {
       <div
         ref={leftDotRef}
         className={classNames(`${rootClassName}__dot`, `${rootClassName}__dot--left`)}
+        onTouchStart={onTouchStart}
         onTouchMove={onTouchMoveLeft}
+        onTouchEnd={onTouchEnd}
+        onTouchCancel={onTouchEnd}
       >
         {label ? (
           <div
@@ -345,7 +358,10 @@ const Slider: FC<SliderProps> = (props) => {
       <div
         ref={rightDotRef}
         className={classNames(`${rootClassName}__dot`, `${rootClassName}__dot--right`)}
+        onTouchStart={onTouchStart}
         onTouchMove={onTouchMoveRight}
+        onTouchEnd={onTouchEnd}
+        onTouchCancel={onTouchEnd}
       >
         {props.label && (
           <div
@@ -373,7 +389,13 @@ const Slider: FC<SliderProps> = (props) => {
       )}
       style={{ width: `${lineBarWidth}px` }}
     >
-      <div className={`${rootClassName}__dot`} onTouchMove={onSingleDotMove}>
+      <div
+        className={`${rootClassName}__dot`}
+        onTouchStart={onTouchStart}
+        onTouchMove={onSingleDotMove}
+        onTouchEnd={onTouchEnd}
+        onTouchCancel={onTouchEnd}
+      >
         {label ? (
           <div
             className={classNames(`${rootClassName}__dot-value`, {

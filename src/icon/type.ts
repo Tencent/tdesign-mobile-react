@@ -4,9 +4,9 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 
-export interface TdIconfontProps {
+export interface TdIconFontProps {
   /**
    * 是否加载组件库内置图标
    * @default true

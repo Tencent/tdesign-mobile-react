@@ -1,6 +1,5 @@
 import React from 'react';
 import { Image } from 'tdesign-mobile-react';
-import './style/index.less';
 
 const imageSrc = 'https://tdesign.gtimg.com/mobile/demos/image.png';
 
