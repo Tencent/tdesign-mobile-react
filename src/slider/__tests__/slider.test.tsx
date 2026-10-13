@@ -5,6 +5,7 @@ import Slider from '../index';
 
 const prefix = 't';
 const name = `.${prefix}-slider`;
+
 describe('Slider', () => {
   describe('props', () => {
     it(': className', () => {
@@ -99,9 +100,93 @@ describe('Slider', () => {
         expect(sliderBar).toHaveClass(`t-slider__bar--${theme}`);
       });
     });
+
+    it(': vertical', () => {
+      const { container } = render(<Slider vertical />);
+      expect(container.firstChild).toHaveClass(`${prefix}-slider--vertical`);
+    });
   });
 
   describe('event', () => {
+    const mockVerticalSliderRect = () =>
+      vi.spyOn(HTMLDivElement.prototype, 'getBoundingClientRect').mockReturnValue({
+        top: 100,
+        bottom: 500,
+        height: 400,
+        left: 0,
+        right: 4,
+      } as DOMRect);
+
+    it(': vertical touch interaction', () => {
+      const handleChange = vi.fn();
+      const rectSpy = mockVerticalSliderRect();
+      const { container } = render(<Slider vertical defaultValue={30} onChange={handleChange} />);
+      const dot = container.querySelector(`${name}__dot`) as HTMLElement;
+
+      fireEvent.touchMove(dot, {
+        changedTouches: [{ clientY: 300 } as Touch],
+      });
+      rectSpy.mockRestore();
+
+      expect(handleChange).toHaveBeenCalledWith(50);
+    });
+
+    it(': vertical range right dot keeps the correct stepped value while dragging', () => {
+      const handleChange = vi.fn();
+      const rectSpy = mockVerticalSliderRect();
+      const { container } = render(<Slider vertical range step={20} defaultValue={[20, 80]} onChange={handleChange} />);
+      const rightDot = container.querySelector(`${name}__dot--right`) as HTMLElement;
+
+      fireEvent.touchMove(rightDot, {
+        changedTouches: [{ clientY: 260 } as Touch],
+      });
+      rectSpy.mockRestore();
+
+      expect(handleChange).toHaveBeenCalledWith([20, 40]);
+    });
+    it(': touch drag prevents page scroll', () => {
+      const rectSpy = mockVerticalSliderRect();
+      const { container } = render(<Slider vertical defaultValue={30} />);
+      const dot = container.querySelector(`${name}__dot`) as HTMLElement;
+
+      // 未开始拖动时，touchmove 不应阻止默认行为（页面可正常滚动）
+      expect(fireEvent.touchMove(dot, { changedTouches: [{ clientY: 200 } as Touch] })).toBe(true);
+
+      // 拖动过程中，touchmove 应调用 preventDefault，阻止页面跟随滚动
+      fireEvent.touchStart(dot, { touches: [{ clientY: 200 } as Touch] });
+      expect(fireEvent.touchMove(dot, { changedTouches: [{ clientY: 300 } as Touch] })).toBe(false);
+
+      // 拖动结束后，不应再阻止默认行为
+      fireEvent.touchEnd(dot, { changedTouches: [{ clientY: 300 } as Touch] });
+      expect(fireEvent.touchMove(dot, { changedTouches: [{ clientY: 200 } as Touch] })).toBe(true);
+      rectSpy.mockRestore();
+    });
+
+    it(': multi-touch drag keeps preventing page scroll until last finger lifts', () => {
+      const rectSpy = mockVerticalSliderRect();
+      const { container } = render(<Slider vertical defaultValue={30} />);
+      const dot = container.querySelector(`${name}__dot`) as HTMLElement;
+
+      // 第一根手指按下开始拖动，第二根手指跟进
+      fireEvent.touchStart(dot, { touches: [{ clientY: 200 } as Touch] });
+      fireEvent.touchStart(dot, { touches: [{ clientY: 200 }, { clientY: 250 }] as Touch[] });
+
+      // 抬起第一根手指，第二根仍按住：拖动未结束，touchmove 仍应阻止页面滚动
+      fireEvent.touchEnd(dot, {
+        touches: [{ clientY: 250 } as Touch],
+        changedTouches: [{ clientY: 200 } as Touch],
+      });
+      expect(fireEvent.touchMove(dot, { changedTouches: [{ clientY: 300 } as Touch] })).toBe(false);
+
+      // 最后一根手指抬起后，不应再阻止默认行为
+      fireEvent.touchEnd(dot, {
+        touches: [],
+        changedTouches: [{ clientY: 300 } as Touch],
+      });
+      expect(fireEvent.touchMove(dot, { changedTouches: [{ clientY: 200 } as Touch] })).toBe(true);
+      rectSpy.mockRestore();
+    });
+
     it(': onChange (single slider)', () => {
       const handleChange = vi.fn();
       const { container } = render(<Slider defaultValue={30} onChange={handleChange} />);
