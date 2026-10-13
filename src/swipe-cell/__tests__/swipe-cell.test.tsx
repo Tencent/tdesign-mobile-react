@@ -318,6 +318,45 @@ describe('SwipeCell', () => {
     vi.useRealTimers();
   });
 
+  it('ref showSure falls back to left side when closed and only left actions exist', () => {
+    vi.useFakeTimers();
+    const ref = React.createRef<SwipeCellRef>();
+    const { getByText } = render(<SwipeCell ref={ref} left={leftActions} content={<div>内容</div>} />);
+    act(() => {
+      ref.current.showSure('确认左侧删除？');
+    });
+    expect(getByText('确认左侧删除？')).toBeInTheDocument();
+    act(() => {
+      vi.advanceTimersByTime(1);
+    });
+    vi.useRealTimers();
+  });
+
+  it('expand to a different side clears visible sure content', () => {
+    vi.useFakeTimers();
+    const ref = React.createRef<SwipeCellRef>();
+    const { container, getByText, queryByText } = render(
+      <SwipeCell ref={ref} left={leftActions} right={rightActions} content={<div>内容</div>} />,
+    );
+    const leftEl = container.querySelector('.t-swipe-cell__left') as HTMLElement;
+    const rightEl = container.querySelector('.t-swipe-cell__right') as HTMLElement;
+    Object.defineProperty(leftEl, 'clientWidth', { value: 80, configurable: true });
+    Object.defineProperty(rightEl, 'clientWidth', { value: 100, configurable: true });
+    act(() => {
+      ref.current.expand('right');
+      ref.current.showSure('确认删除？');
+    });
+    expect(getByText('确认删除？')).toBeInTheDocument();
+    act(() => {
+      ref.current.expand('left');
+    });
+    expect(queryByText('确认删除？')).not.toBeInTheDocument();
+    act(() => {
+      vi.runOnlyPendingTimers();
+    });
+    vi.useRealTimers();
+  });
+
   it('keeps newly opened sure content after close and reopen', () => {
     vi.useFakeTimers();
     const ref = React.createRef<SwipeCellRef>();
