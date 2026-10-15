@@ -19,7 +19,7 @@ export interface TdCommentProps {
   /**
    * 头像
    */
-  avatar?: AvatarProps | TNode;
+  avatar?: String | AvatarProps | TNode;
   /**
    * 子元素内容，同 reply
    */
