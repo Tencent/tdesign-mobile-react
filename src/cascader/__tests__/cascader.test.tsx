@@ -537,6 +537,103 @@ describe('Cascader', () => {
       expect(onChange).toHaveBeenCalled();
       expect(onClose).toHaveBeenCalledWith('finish');
     });
+
+    it(': filterable - checkStrictly matches parent nodes', async () => {
+      const filterableOptions = [
+        {
+          label: '广东省',
+          value: '440000',
+          children: [
+            {
+              label: '深圳市',
+              value: '440300',
+              children: [{ label: '福田区', value: '440304' }],
+            },
+          ],
+        },
+      ];
+
+      const onChange = vi.fn();
+      const onClose = vi.fn();
+      const { rerender } = await render(
+        <Cascader visible filterable checkStrictly options={filterableOptions} onChange={onChange} onClose={onClose} />,
+      );
+
+      const typeInSearch = (value: string) => {
+        const searchInput = document.querySelector('.t-search input') as HTMLInputElement;
+        fireEvent.input(searchInput, { target: { value } });
+      };
+
+      // checkStrictly 下父节点“深圳市”与叶子“福田区”路径均含“深圳”，均可命中
+      typeInSearch('深圳');
+      await act(async () => {
+        vi.advanceTimersByTime(300);
+      });
+      const results = document.querySelectorAll(`${name}__filter-result-item`);
+      expect(results.length).toBe(2);
+
+      // 点击中间父节点结果，selectedOptions 返回从根到该节点的完整路径（与非搜索态一致）
+      fireEvent.click(results[0]);
+      expect(onChange).toHaveBeenCalledWith('440300', [
+        { label: '广东省', value: '440000' },
+        { label: '深圳市', value: '440300' },
+      ]);
+      expect(onClose).toHaveBeenCalledWith('finish');
+
+      // 非 checkStrictly 下仅叶子节点命中，父节点被排除
+      rerender(<Cascader visible filterable checkStrictly={false} options={filterableOptions} />);
+      typeInSearch('深圳');
+      await act(async () => {
+        vi.advanceTimersByTime(300);
+      });
+      const leafOnlyResults = document.querySelectorAll(`${name}__filter-result-item`);
+      expect(leafOnlyResults.length).toBe(1);
+    });
+
+    it(': filterable - selecting lazy node triggers load and exits search', async () => {
+      const option = { value: '440000', label: '广东省', children: true };
+      const children = [
+        { value: '440300', label: '深圳市', children: [] },
+        { value: '440400', label: '珠海市', children: [] },
+      ];
+      const load = vi.fn().mockResolvedValue(children);
+      const onPick = vi.fn();
+      const onChange = vi.fn();
+      const onClose = vi.fn();
+
+      render(
+        <Cascader
+          visible
+          filterable
+          options={[option]}
+          load={load}
+          onPick={onPick}
+          onChange={onChange}
+          onClose={onClose}
+        />,
+      );
+
+      const searchInput = document.querySelector('.t-search input') as HTMLInputElement;
+      fireEvent.input(searchInput, { target: { value: '广东' } });
+      await act(async () => {
+        vi.advanceTimersByTime(300);
+      });
+
+      const resultItem = document.querySelector(`${name}__filter-result-item`);
+      expect(resultItem).toBeTruthy();
+
+      await act(async () => {
+        fireEvent.click(resultItem);
+      });
+
+      expect(onPick).toHaveBeenCalledWith({ value: '440000', label: '广东省', index: 0, level: 0 });
+      expect(load).toHaveBeenCalledWith({ data: option, value: option.value, label: option.label });
+      // 加载完成后退出搜索态，展示加载出的子级
+      expect(document.querySelector(`${name}__filter-result`)).toBeNull();
+      expect(document.querySelectorAll(`${name}__options`)).toHaveLength(2);
+      expect(onChange).not.toHaveBeenCalled();
+      expect(onClose).not.toHaveBeenCalled();
+    });
   });
 
   it(': lazy demo unlocks after loading and allows selection', async () => {

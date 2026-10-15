@@ -12,6 +12,7 @@ import { StyledProps, TreeOptionData } from '../common';
 import { usePrefixClass } from '../hooks/useClass';
 import useConfig from '../hooks/useConfig';
 import useDefaultProps from '../hooks/useDefaultProps';
+import useLatest from '../hooks/useLatest';
 import parseTNode from '../_util/parseTNode';
 import { cascaderDefaultProps } from './defaultProps';
 import { CascaderFilterFunction, CascaderTriggerSource, TdCascaderProps } from './type';
@@ -19,18 +20,16 @@ import { CascaderFilterFunction, CascaderTriggerSource, TdCascaderProps } from '
 type OptionsType = TreeOptionData[];
 
 type FlatPath = {
-  key: string;
   path: TreeOptionData[];
   indexes: number[];
   labels: string[];
-  text: string;
   disabled: boolean;
+  isLeaf: boolean;
 };
 
 type ResultFragment = { id: number; text: string; highlight: boolean };
 
 type FilterResult = {
-  key: string;
   indexes: number[];
   disabled: boolean;
   fragments: ResultFragment[];
@@ -49,19 +48,19 @@ function flattenPaths(
       const nextPath = [...path, item];
       const nextIndexes = [...indexes, idx];
       const children = item[keys.children];
-      if (Array.isArray(children) && children.length > 0) {
+      // checkStrictly 下父节点也可被搜索选中，因此父节点同样生成一条路径并标记 isLeaf
+      const isLeaf = !(Array.isArray(children) && children.length > 0);
+
+      result.push({
+        path: nextPath,
+        indexes: nextIndexes,
+        labels: nextPath.map((node) => String(node[keys.label] ?? '')),
+        disabled: nextPath.some((node) => node[keys.disabled]),
+        isLeaf,
+      });
+
+      if (!isLeaf) {
         walk(children as TreeOptionData[], nextPath, nextIndexes);
-      } else {
-        const labels = nextPath.map((node) => String(node[keys.label] ?? ''));
-        const text = [labels.join(''), String(item?.text ?? '')].filter(Boolean).join('');
-        result.push({
-          key: nextPath.map((node) => String(node[keys.value] ?? '')).join('/'),
-          path: nextPath,
-          indexes: nextIndexes,
-          labels,
-          text,
-          disabled: nextPath.some((node) => node[keys.disabled]),
-        });
       }
     });
   };
@@ -277,6 +276,9 @@ const Cascader: React.FC<CascaderProps> = (props) => {
       const results: FilterResult[] = [];
 
       flatPaths.forEach((entry: FlatPath) => {
+        // 非 checkStrictly 仅保留叶子节点，checkStrictly 时父节点也可被搜索选中
+        if (!checkStrictly && !entry.isLeaf) return;
+
         const leaf = entry.path[entry.path.length - 1];
         const matched =
           typeof userFilter === 'function'
@@ -284,7 +286,6 @@ const Cascader: React.FC<CascaderProps> = (props) => {
             : defaultFilter(keyword, leaf, entry.path, normalizedKeys.label);
         if (matched) {
           results.push({
-            key: entry.key,
             indexes: entry.indexes,
             disabled: entry.disabled,
             fragments: buildFragments(entry.labels, keyword),
@@ -295,8 +296,18 @@ const Cascader: React.FC<CascaderProps> = (props) => {
       setFilterResults(results);
       setIsSearching(true);
     },
-    [filter, normalizedKeys, flatPaths, resetFilter],
+    [filter, normalizedKeys, flatPaths, resetFilter, checkStrictly],
   );
+
+  const applyFilterLatest = useLatest(applyFilter);
+
+  // options 变化时，若处于搜索态，基于最新数据重新过滤，避免结果过期
+  useEffect(() => {
+    if (isSearching) {
+      applyFilter(filterKeyword);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [flatPaths]);
 
   const handleFilterChange = useCallback(
     (value: string) => {
@@ -306,10 +317,10 @@ const Cascader: React.FC<CascaderProps> = (props) => {
         clearTimeout(filterDebouncedRef.current);
       }
       filterDebouncedRef.current = setTimeout(() => {
-        applyFilter(trimmed);
+        applyFilterLatest.current(trimmed);
       }, 200);
     },
-    [applyFilter],
+    [applyFilterLatest],
   );
 
   const handleFilterClear = useCallback(() => {
@@ -338,6 +349,8 @@ const Cascader: React.FC<CascaderProps> = (props) => {
       for (let i = 0; i < indexes.length; i++) {
         const index = indexes[i];
         const next = current[index];
+        // options 可能已变化，索引失效时直接终止，避免访问越界
+        if (!next) return;
         selectedValues.push(next[valueKey]);
         selectedOptions.push({
           [labelKey]: next[labelKey],
@@ -365,6 +378,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
             setInternalSelectedValues(selectedValues);
             setOptionsList((prev) => [...prev.slice(0, finalLevel + 1), normalizeOptionsByKeys(loadedChildren)]);
             setStepIndex(finalLevel + 1);
+            resetFilter();
           })
           .catch((error) => {
             console.error('Load children failed:', error);
