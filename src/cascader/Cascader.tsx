@@ -149,7 +149,6 @@ const Cascader: React.FC<CascaderProps> = (props) => {
   const [filterResults, setFilterResults] = useState<FilterResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const filterDebouncedRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const flatPathsRef = useRef<FlatPath[]>([]);
 
   const normalizedKeys = useMemo(
     () => ({
@@ -258,12 +257,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
   );
 
   // 搜索相关函数
-  const ensureFlatPaths = useCallback(() => {
-    if (flatPathsRef.current.length === 0) {
-      flatPathsRef.current = flattenPaths(inputOptions, normalizedKeys);
-    }
-    return flatPathsRef.current;
-  }, [inputOptions, normalizedKeys]);
+  const flatPaths = useMemo(() => flattenPaths(inputOptions, normalizedKeys), [inputOptions, normalizedKeys]);
 
   const resetFilter = useCallback(() => {
     setFilterKeyword('');
@@ -280,10 +274,9 @@ const Cascader: React.FC<CascaderProps> = (props) => {
       }
 
       const userFilter = filter as CascaderFilterFunction | null;
-      const flat = ensureFlatPaths();
       const results: FilterResult[] = [];
 
-      flat.forEach((entry: FlatPath) => {
+      flatPaths.forEach((entry: FlatPath) => {
         const leaf = entry.path[entry.path.length - 1];
         const matched =
           typeof userFilter === 'function'
@@ -299,20 +292,21 @@ const Cascader: React.FC<CascaderProps> = (props) => {
         }
       });
 
-      setFilterKeyword(rawKeyword);
       setFilterResults(results);
       setIsSearching(true);
     },
-    [filter, normalizedKeys, ensureFlatPaths, resetFilter],
+    [filter, normalizedKeys, flatPaths, resetFilter],
   );
 
   const handleFilterChange = useCallback(
     (value: string) => {
+      const trimmed = String(value ?? '').trim();
+      setFilterKeyword(trimmed);
       if (filterDebouncedRef.current) {
         clearTimeout(filterDebouncedRef.current);
       }
       filterDebouncedRef.current = setTimeout(() => {
-        applyFilter(value);
+        applyFilter(trimmed);
       }, 200);
     },
     [applyFilter],
@@ -327,16 +321,20 @@ const Cascader: React.FC<CascaderProps> = (props) => {
 
   const handleFilterResultTap = useCallback(
     (result: FilterResult) => {
-      if (result.disabled) return;
+      if (result.disabled || result.indexes.length === 0) return;
 
       const { indexes } = result;
-      const selectedValues: CascaderProps['value'][] = [];
-      const selectedOptions: { [key: string]: any }[] = [];
       const labelKey = normalizedKeys.label;
       const valueKey = normalizedKeys.value;
       const childrenKey = normalizedKeys.children;
 
+      // 遍历路径，找到最终节点及其层级
       let current: TreeOptionData[] = inputOptions;
+      let finalNode: TreeOptionData | undefined;
+      let finalLevel = 0;
+      const selectedValues: CascaderProps['value'][] = [];
+      const selectedOptions: { [key: string]: any }[] = [];
+
       for (let i = 0; i < indexes.length; i++) {
         const index = indexes[i];
         const next = current[index];
@@ -345,10 +343,33 @@ const Cascader: React.FC<CascaderProps> = (props) => {
           [labelKey]: next[labelKey],
           [valueKey]: next[valueKey],
         });
+        finalNode = next;
+        finalLevel = i;
+
         const children = next[childrenKey];
         if (Array.isArray(children) && children.length > 0) {
           current = children as TreeOptionData[];
         }
+      }
+
+      onPick?.({
+        value: finalNode[valueKey],
+        label: String(finalNode[labelKey] || ''),
+        index: indexes[indexes.length - 1],
+        level: finalLevel,
+      });
+
+      if (finalNode && finalNode[childrenKey] === true && load) {
+        load({ data: finalNode, value: finalNode[valueKey], label: finalNode[labelKey] })
+          .then((loadedChildren) => {
+            setInternalSelectedValues(selectedValues);
+            setOptionsList((prev) => [...prev.slice(0, finalLevel + 1), normalizeOptionsByKeys(loadedChildren)]);
+            setStepIndex(finalLevel + 1);
+          })
+          .catch((error) => {
+            console.error('Load children failed:', error);
+          });
+        return;
       }
 
       resetFilter();
@@ -356,7 +377,17 @@ const Cascader: React.FC<CascaderProps> = (props) => {
       setInternalVisible(false);
       onClose?.('finish');
     },
-    [normalizedKeys, inputOptions, setInternalValue, setInternalVisible, onClose, resetFilter],
+    [
+      normalizedKeys,
+      inputOptions,
+      setInternalValue,
+      setInternalVisible,
+      onClose,
+      resetFilter,
+      onPick,
+      load,
+      normalizeOptionsByKeys,
+    ],
   );
 
   // 清理防抖定时器
@@ -535,7 +566,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
                 <div className={`${cascaderClass}__filter-result`}>
                   {filterResults.map((result) => (
                     <div
-                      key={result.key}
+                      key={result.indexes.join('-')}
                       className={classNames(`${cascaderClass}__filter-result-item`, {
                         [`${cascaderClass}__filter-result-item--disabled`]: result.disabled,
                       })}
@@ -555,7 +586,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
                   ))}
                 </div>
               ) : (
-                <div className={`${cascaderClass}__filter-empty`}>{globalConfig.cascader.empty}</div>
+                <div className={`${cascaderClass}__filter-empty`}>{globalConfig?.cascader?.empty}</div>
               )}
             </>
           )}
