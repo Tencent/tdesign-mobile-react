@@ -1,6 +1,6 @@
 {
   "name": "tdesign-mobile-react",
-  "version": "1.0.0-beta",
+  "version": "1.0.0",
   "description": "TDesign Component for Mobile React",
   "title": "tdesign-mobile-react",
   "main": "cjs/index.js",
