@@ -26,7 +26,7 @@
     "skipLibCheck": true,
     "types": ["node", "vitest/globals"]
   },
-  "include": ["./src", "./global.d.ts"],
+  "include": ["./src"],
   "exclude": ["node_modules", "src/_common", "dist", "lib", "cjs", "esm", "es", "site", "**/*.jsx"],
   "compileOnSave": false
 }

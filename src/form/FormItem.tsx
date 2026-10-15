@@ -507,7 +507,7 @@ const FormItem = forwardRef<FormItemInstance, FormItemProps>((props, ref) => {
     if (!arrow) {
       return null;
     }
-    return <ChevronRightIcon size="24px" style={{ color: 'rgba(0, 0, 0, .4)' }} />;
+    return <ChevronRightIcon className={`${formItemClass}-arrow`} />;
   };
 
   const renderLabelContent = (): React.ReactNode => {

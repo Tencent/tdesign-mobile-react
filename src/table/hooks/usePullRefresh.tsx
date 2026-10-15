@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocaleReceiver } from '../../locale/LocalReceiver';
 import useConfig from '../../hooks/useConfig';
+import useEventListener from '../../hooks/useEventListener';
 import Loading from '../../loading';
 import type { PageInfo, TableRowData, TdBaseTableProps } from '../type';
 
@@ -179,27 +180,20 @@ export default function usePullRefresh(props: TdBaseTableProps, containerRef: Re
     }
   }, [isLoadingMore]);
 
-  // 绑定触摸事件
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container || !pagination || loadingMode !== 'pull-refresh') {
-      return () => {
-        container?.removeEventListener('touchstart', handleTouchStart);
-        container?.removeEventListener('touchmove', handleTouchMove);
-        container?.removeEventListener('touchend', handleTouchEnd);
-      };
-    }
-
-    container.addEventListener('touchstart', handleTouchStart, { passive: true });
-    container.addEventListener('touchmove', handleTouchMove, { passive: false });
-    container.addEventListener('touchend', handleTouchEnd, { passive: true });
-
-    return () => {
-      container.removeEventListener('touchstart', handleTouchStart);
-      container.removeEventListener('touchmove', handleTouchMove);
-      container.removeEventListener('touchend', handleTouchEnd);
-    };
-  }, [containerRef, pagination, handleTouchStart, handleTouchMove, handleTouchEnd, loadingMode]);
+  // 绑定触摸事件（touchmove 需要 preventDefault，须以 passive: false 原生监听，见 useEventListener）
+  const pullRefreshEnabled = !!pagination && loadingMode === 'pull-refresh';
+  useEventListener(containerRef, 'touchstart', handleTouchStart, {
+    passive: true,
+    enabled: pullRefreshEnabled,
+  });
+  useEventListener(containerRef, 'touchmove', handleTouchMove, {
+    passive: false,
+    enabled: pullRefreshEnabled,
+  });
+  useEventListener(containerRef, 'touchend', handleTouchEnd, {
+    passive: true,
+    enabled: pullRefreshEnabled,
+  });
 
   /**
    * 渲染上拉加载 loading

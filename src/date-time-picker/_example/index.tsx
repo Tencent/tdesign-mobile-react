@@ -10,6 +10,7 @@ import DateSecondDemo from './date-all';
 import WithTitleDemo from './with-title';
 import WithoutTitleDemo from './without-title';
 import ShowWeekDemo from './show-week';
+import StepsDemo from './steps';
 
 export default function DateTimePickerDemo() {
   return (
@@ -32,6 +33,9 @@ export default function DateTimePickerDemo() {
       </TDemoBlock>
       <TDemoBlock summary="年月日带星期选择器">
         <ShowWeekDemo />
+      </TDemoBlock>
+      <TDemoBlock summary="间隔时间选择器">
+        <StepsDemo />
       </TDemoBlock>
       <TDemoBlock title="02 组件样式" summary="是否带标题">
         <WithTitleDemo />

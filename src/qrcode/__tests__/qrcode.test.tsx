@@ -1,5 +1,5 @@
 import React from 'react';
-import { describe, it, expect, render, fireEvent, waitFor, vi, cleanup, afterEach } from '@test/utils';
+import { describe, it, expect, render, fireEvent, waitFor, vi, cleanup, afterEach, act } from '@test/utils';
 import QRCode from '../QRCode';
 import { QRCodeSVG } from '../QRCodeSVG';
 
@@ -250,7 +250,9 @@ describe('QRCodeCanvas - image settings, excavation and crossOrigin (merged)', (
     Object.defineProperty(img, 'naturalWidth', { configurable: true, get: () => 10 });
     Object.defineProperty(img, 'naturalHeight', { configurable: true, get: () => 10 });
 
-    img.dispatchEvent(new Event('load'));
+    act(() => {
+      img.dispatchEvent(new Event('load'));
+    });
 
     await waitFor(() => {
       const alphaSets = calls.globalAlpha || [];

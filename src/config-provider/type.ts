@@ -123,6 +123,16 @@ export interface CalendarConfig {
 
 export interface CascaderConfig {
   /**
+   * 语言配置，“暂无数据”描述文本
+   * @default ''
+   */
+  empty?: string;
+  /**
+   * 语言配置，“搜索框”占位描述文本
+   * @default ''
+   */
+  filterPlaceholder?: string;
+  /**
    * 语言配置，未选中时的提示文案“选择选项”描述文本
    * @default ''
    */

@@ -1,5 +1,5 @@
 import React from 'react';
-import { describe, expect, it, render, fireEvent, vi, beforeEach, afterEach, waitFor } from '@test/utils';
+import { describe, expect, it, render, fireEvent, vi, beforeEach, afterEach, waitFor, act } from '@test/utils';
 import { Collapse, CollapsePanel } from 'tdesign-mobile-react';
 
 describe('Collapse', () => {
@@ -426,7 +426,9 @@ describe('Collapse', () => {
       fireEvent.click(panels[1]);
 
       // 此时应该有一次debounced调用
-      vi.advanceTimersByTime(150);
+      act(() => {
+        vi.advanceTimersByTime(150);
+      });
 
       // 验证最终状态
       expect(onChange).toHaveBeenCalled();
@@ -452,7 +454,9 @@ describe('Collapse', () => {
       fireEvent.click(panels[0]);
 
       // 等待debounce
-      vi.advanceTimersByTime(150);
+      act(() => {
+        vi.advanceTimersByTime(150);
+      });
 
       // 验证行为
       expect(onChange).toHaveBeenCalled();

@@ -3,6 +3,7 @@ import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import BaseDemo from './base';
 import CheckStrictlyDemo from './check-strictly';
+import FilterableDemo from './filterable';
 import KeysDemo from './keys';
 import LazyDemo from './lazy';
 import ThemeTabDemo from './theme-tab';
@@ -35,6 +36,9 @@ export default function CascaderDemo() {
       </TDemoBlock>
       <TDemoBlock summary="选择任意一项">
         <CheckStrictlyDemo />
+      </TDemoBlock>
+      <TDemoBlock summary="支持搜索">
+        <FilterableDemo />
       </TDemoBlock>
     </div>
   );
