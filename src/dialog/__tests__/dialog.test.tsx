@@ -201,12 +201,14 @@ describe('Dialog', () => {
           onClosed,
         });
       });
-      instance.hide();
-
-      setTimeout(() => {
-        expect(document.querySelector(name)).toBeFalsy();
-        expect(onClosed).toHaveBeenCalled();
-      }, 1000);
+      await act(async () => {
+        instance.hide();
+      });
+      await act(async () => {
+        vi.advanceTimersByTime(1000);
+      });
+      expect(document.querySelector(name)).toBeFalsy();
+      expect(onClosed).toHaveBeenCalled();
     });
 
     it(': update', async () => {
@@ -218,10 +220,10 @@ describe('Dialog', () => {
           onCancel: vi.fn(),
         });
       });
-      instance.update({ title: '新标题' });
-      setInterval(() => {
-        expect(document.querySelector(`${name}__header`).textContent).toBe('新标题');
-      }, 1000);
+      await act(async () => {
+        instance.update({ title: '新标题' });
+      });
+      expect(document.querySelector(`${name}__header`).textContent).toBe('新标题');
     });
 
     it(': destroy', async () => {

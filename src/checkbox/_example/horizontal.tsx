@@ -12,11 +12,12 @@ export default function () {
       className="box horizontal"
       defaultValue={['checkbox1', 'checkbox2']}
       borderless
+      direction="horizontal"
       onChange={checkboxGroupChange}
     >
-      <Checkbox block={false} label="多选标题" value="checkbox1" />
-      <Checkbox block={false} label="多选标题" value="checkbox2" />
-      <Checkbox block={false} label="上限四字" value="checkbox3" />
+      <Checkbox label="多选标题" value="checkbox1" />
+      <Checkbox label="多选标题" value="checkbox2" />
+      <Checkbox label="上限四字" value="checkbox3" />
     </Checkbox.Group>
   );
 }

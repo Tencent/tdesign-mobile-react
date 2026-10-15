@@ -1690,7 +1690,7 @@ describe('Form 组件测试', () => {
       expect(() => requestSubmit({} as any)).toThrow('target must be HTMLFormElement');
     });
 
-    it('HTMLFormElement 正常工作', () => {
+    it('HTMLFormElement 正常工作', async () => {
       const { container } = render(
         <Form>
           <FormItem name="test">
@@ -1698,7 +1698,9 @@ describe('Form 组件测试', () => {
           </FormItem>
         </Form>,
       );
-      expect(() => requestSubmit(container.querySelector('form') as HTMLFormElement)).not.toThrow();
+      await act(async () => {
+        expect(() => requestSubmit(container.querySelector('form') as HTMLFormElement)).not.toThrow();
+      });
     });
   });
 
@@ -1804,7 +1806,7 @@ describe('Form 组件测试', () => {
       expect((getByPlaceholderText('name') as HTMLInputElement).value).toBe('delayed');
     });
 
-    it('taskQueue 延迟执行 - setFields/submit/reset/clearValidate/setValidateMessage', () => {
+    it('taskQueue 延迟执行 - setFields/submit/reset/clearValidate/setValidateMessage', async () => {
       const submitFn = vi.fn();
       const TestForm = () => {
         const [form] = Form.useForm();
@@ -1832,6 +1834,7 @@ describe('Form 组件测试', () => {
       };
       render(<TestForm />);
       // taskQueue 方法在 flashQueue 时执行，不崩溃即可
+      await mockDelay();
     });
   });
 
@@ -2490,6 +2493,7 @@ describe('Form 组件测试', () => {
       );
       // 无 onSubmit 时不崩溃
       expect(() => fireEvent.click(getByText('submit'))).not.toThrow();
+      await mockDelay();
     });
 
     it('onReset 不传时 reset 正常工作', async () => {

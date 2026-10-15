@@ -167,7 +167,7 @@ describe('PullDownRefresh', () => {
       expect(container.querySelector(name)).toBeTruthy();
     });
 
-    it(': maxBarHeight with string', () => {
+    it(': maxBarHeight with string', async () => {
       const { container } = render(
         <PullDownRefresh maxBarHeight="10rem">
           <div>content</div>
@@ -177,6 +177,8 @@ describe('PullDownRefresh', () => {
       const track = container.querySelector(`${name}__track`) as HTMLElement;
 
       mockPullDown(track!, 60, 2, 0);
+      // 等待 doRefresh 内的异步状态更新在 act 中完成
+      await act(async () => {});
 
       expect(track).toHaveStyle({ transform: 'translate3d(0, 50px, 0)' });
     });
@@ -366,6 +368,8 @@ describe('PullDownRefresh', () => {
 
       // absX = 0, absY = 60
       mockPullDown(track!, 80, 4, 0);
+      // 等待 doRefresh 内的异步状态更新在 act 中完成
+      await act(async () => {});
 
       expect(mockRefresh).toHaveBeenCalled();
     });
