@@ -16,7 +16,7 @@ spline: explain
 - `NoticeBar`: `onChange` 参数变更，支持监听垂直轮播切换事件 @anlyyao ([#966](https://github.com/Tencent/tdesign-mobile-react/pull/966))
 - `Picker`: 移除无效的 `visible` 属性，`swipeDuration` 标记为废弃，建议使用 `wheelConfig.inertiaDuration` @anlyyao ([#966](https://github.com/Tencent/tdesign-mobile-react/pull/966))
 - `Swiper`: 传入 `current` 时不再强制进入受控模式，默认值改由 `defaultCurrent` 管理 @anlyyao ([#966](https://github.com/Tencent/tdesign-mobile-react/pull/966))
-- `TabBar`: `onChange` 从直接接收选中值调整为接收 `{ value }` @anlyyao ([#966](https://github.com/Tencent/tdesign-mobile-react/pull/966))
+- `TabBar`: `onChange` 从直接接收选中值调整为接收包含 `value` 的对象参数 @anlyyao ([#966](https://github.com/Tencent/tdesign-mobile-react/pull/966))
 
 ### 🚀 Features
 
@@ -30,7 +30,6 @@ spline: explain
 - `CheckboxGroup`: 新增 `direction` 属性，表示复选框按钮排列方式 @anlyyao ([#974](https://github.com/Tencent/tdesign-mobile-react/pull/974))
 - `ColorPicker`: 新增 `HEX8` 颜色格式支持 @anlyyao ([#966](https://github.com/Tencent/tdesign-mobile-react/pull/966))
 - `Comment`: 新增 `Comment` 评论组件 @slatejack ([#978](https://github.com/Tencent/tdesign-mobile-react/pull/978))
-- `Dialog`: plugin 模式移除写死的 zIndex 默认值（原 2500），层级统一由样式表提供（@z-index-popup = 1500） @anlyyao ([#980](https://github.com/Tencent/tdesign-mobile-react/pull/980))
 - `Dropdown`: `DropdownOption` 的 `disabled` 字段改为可选项 @anlyyao ([#987](https://github.com/Tencent/tdesign-mobile-react/pull/987))
 - `DropdownMenu`: 新增 `onOpen`，`onOpened`，`onClose` 与 `onClosed` 属性，弹层动画时长现与 `duration` 配置保持一致 @anlyyao ([#966](https://github.com/Tencent/tdesign-mobile-react/pull/966))
 - `Fab`: 新增 `xBounds` 和 `magnet` 属性 @boomLL ([#979](https://github.com/Tencent/tdesign-mobile-react/pull/979))
@@ -59,7 +58,6 @@ spline: explain
 - `SwipeCell`: 
   - 新增 `onDragstart` 和 `onDragend` 事件 @boomLL ([#977](https://github.com/Tencent/tdesign-mobile-react/pull/977))
   - 支持通过实例方法 `showSure` 展示二次确认内容 @liweijie0812 ([#981](https://github.com/Tencent/tdesign-mobile-react/pull/981))
- - `Overlay`: zIndex 移除内联默认值 1000，层级改由样式表 @z-index-overlay（1000）提供 @anlyyao ([#980](https://github.com/Tencent/tdesign-mobile-react/pull/980))
 
 ### 🐞 Bug Fixes
 
@@ -68,28 +66,29 @@ spline: explain
 - `ConfigProvider`: 
   - `TableConfig`全局配置项 `pullUpLoadingText` 重命名为 `loadingText` @anlyyao ([#945](https://github.com/Tencent/tdesign-mobile-react/pull/945))
   - 修复语言包污染全局默认配置的问题 @anlyyao ([#962](https://github.com/Tencent/tdesign-mobile-react/pull/962))
-- `DropdownMenu`: 规范层级默认值，由 11600 调整为 1600，由样式表提供（@z-index-dropdown-menu = 1600） @anlyyao ([#980](https://github.com/Tencent/tdesign-mobile-react/pull/980))
 - `Form`: 
   - 修复 `FormItem` 中 `arrow` 图标颜色错误 @yzh1002 ([common#2738](https://github.com/Tencent/tdesign-common/pull/2738))
 - `Icon`: 修复 usb 原始图标的图层 ID 错误,在深色模式下渲染错误 @uyarn ([icons#298](https://github.com/Tencent/tdesign-icons/pull/298)) ([#953](https://github.com/Tencent/tdesign-mobile-react/pull/953))
 - `Input`: 修复 `input` 密码框样式错误 @anlyyao ([#988](https://github.com/Tencent/tdesign-mobile-react/pull/988))
-- `Message`: 规范层级默认值，由 15000 调整为 5000，由样式表提供（@z-index-message = 5000） @anlyyao ([#980](https://github.com/Tencent/tdesign-mobile-react/pull/980))
 - `NoticeBar`: 修复横向滚动动画异常与滚动速度不符 @anlyyao ([#962](https://github.com/Tencent/tdesign-mobile-react/pull/962))
- - `Popup`: 规范层级默认值，由 11500 调整为 1500，由样式表提供（@z-index-popup = 1500） @anlyyao ([#980](https://github.com/Tencent/tdesign-mobile-react/pull/980))
 - `Rate`: 修复深色模式下的提示文本颜色 @liweijie0812 ([common#2706](https://github.com/Tencent/tdesign-common/pull/2706))
 - `Search`: 修复搜索框清空图标垂直居中问题 @anlyyao ([common#2663](https://github.com/Tencent/tdesign-common/pull/2663))
 - `Slider`: 修复滑块与进度条错位与胶囊模式滑轨圆角样式错误 @liweijie0812 ([#991](https://github.com/Tencent/tdesign-mobile-react/pull/991))
 - `Tag`: 修复圆角样式值错误 @anlyyao ([common#2716](https://github.com/Tencent/tdesign-common/pull/2716))
 - `Textarea`: 修复 `placeholder` 占位内容字号错误 @anlyyao ([common#2717](https://github.com/Tencent/tdesign-common/pull/2717))
-- `Toast`: 
-  - `clear/destroy` 统一走 `unmount -> remove`，修复锁滚动残留导致的页面“禁用” @anlyyao ([#964](https://github.com/Tencent/tdesign-mobile-react/pull/964))
-  - 规范层级默认值，由 12001 调整为 2000，由样式表提供（@z-index-toast = 2000） @anlyyao ([#980](https://github.com/Tencent/tdesign-mobile-react/pull/980))
+- `Toast`: `clear/destroy` 统一走 `unmount -> remove`，修复锁滚动残留导致的页面“禁用” @anlyyao ([#964](https://github.com/Tencent/tdesign-mobile-react/pull/964))
 - `Upload`: 
   - 修复 `useMockProgress=false` 时真实上传进度不回调的问题 @anlyyao ([common#2690](https://github.com/Tencent/tdesign-common/pull/2690))
   - 修复开启 `preview` 后点击图片无法触发预览及 `onPreview` 事件 @anlyyao ([#961](https://github.com/Tencent/tdesign-mobile-react/pull/961))
 
 ### 📈 Performance
 
+- `Dialog`: plugin 模式移除写死的 zIndex 默认值（原 2500），层级统一由样式表提供（@z-index-popup = 1500） @anlyyao ([#980](https://github.com/Tencent/tdesign-mobile-react/pull/980))
+- `DropdownMenu`: 规范层级默认值，由 11600 调整为 1600，由样式表提供（@z-index-dropdown-menu = 1600） @anlyyao ([#980](https://github.com/Tencent/tdesign-mobile-react/pull/980))
+- `Message`: 规范层级默认值，由 15000 调整为 5000，由样式表提供（@z-index-message = 5000） @anlyyao ([#980](https://github.com/Tencent/tdesign-mobile-react/pull/980))
+- `Overlay`: zIndex 移除内联默认值 1000，层级改由样式表 @z-index-overlay（1000）提供 @anlyyao ([#980](https://github.com/Tencent/tdesign-mobile-react/pull/980))
+- `Popup`: 规范层级默认值，由 11500 调整为 1500，由样式表提供（@z-index-popup = 1500） @anlyyao ([#980](https://github.com/Tencent/tdesign-mobile-react/pull/980))
+- `Toast`: 规范层级默认值，由 12001 调整为 2000，由样式表提供（@z-index-toast = 2000） @anlyyao ([#980](https://github.com/Tencent/tdesign-mobile-react/pull/980))
 - `Style`: 修正灰阶色值。深色主题：`--td-gray-color-11` 由 `#383838` 修正为 `#393939`；浅色主题：`--td-gray-color-3` 由 `#e7e7e7` 修正为 `#e8e8e8`，`--td-gray-color-4` 由 `#dcdcdc` 修正为 `#ddd`，`--td-gray-color-5` 由 `#c5c5c5` 修正为 `#c6c6c6`，`--td-gray-color-11` 由 `#383838` 修正为 `#393939` @anlyyao ([common#2715](https://github.com/Tencent/tdesign-common/pull/2715))
 
 ### Other
