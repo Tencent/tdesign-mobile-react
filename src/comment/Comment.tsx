@@ -1,4 +1,5 @@
 import React, { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import classNames from 'classnames';
 import { isObject } from 'lodash-es';
 import { ChevronDownSIcon, ChevronUpSIcon } from 'tdesign-icons-react';
 import { CommentActionItem, CommentFold, CommentFoldState, TdCommentProps } from './type';
@@ -19,9 +20,22 @@ const DEFAULT_COMMENT_FOLDS: CommentFold = {
     expanded: '收起',
   },
 };
-const Comment: React.FC<TdCommentProps> = (props) => {
-  const { actions, author, avatar, content, datetime, folds, defaultFolds, reply, children, onActions, onFolds } =
-    props;
+const Comment: React.FC<CommentProps> = (props) => {
+  const {
+    className,
+    style,
+    actions,
+    author,
+    avatar,
+    content,
+    datetime,
+    folds,
+    defaultFolds,
+    reply,
+    children,
+    onActions,
+    onFolds,
+  } = props;
   const [innerFoldsState, setInnerFoldsState] = useState<CommentFoldState>(defaultFolds?.state || 'collapsed');
   const foldSteps = useRef(0);
   const replyBodyRef = useRef<HTMLDivElement>(null);
@@ -217,7 +231,7 @@ const Comment: React.FC<TdCommentProps> = (props) => {
   };
 
   return (
-    <div className={`${rootClassName}`}>
+    <div className={classNames(rootClassName, className)} style={style}>
       <div className={`${rootClassName}__inner`}>
         {renderAvatar()}
         <div className={`${rootClassName}__detail`}>
