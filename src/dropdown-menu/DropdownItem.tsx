@@ -45,6 +45,7 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
     footer,
     keys,
     icon,
+    keepLabelActive,
   } = useDefaultProps<DropdownItemProps>(props, dropdownItemDefaultProps);
   const { classPrefix } = useConfig();
   const dropdownMenuClass = usePrefixClass('dropdown-menu');
@@ -74,6 +75,11 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
   );
 
   const isActived = id === activedId;
+
+  const keepLabelActived = useMemo(
+    () => Boolean(multiple && keepLabelActive && Array.isArray(innerValue) && innerValue.length > 0),
+    [multiple, keepLabelActive, innerValue],
+  );
 
   // wrapperVisible 控制外层挂载，isShowItems 控制弹层动画（两段式卸载）
   const [wrapperVisible, setWrapperVisible] = useState(isActived);
@@ -198,7 +204,7 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
       <div
         ref={menuItemRef}
         className={cx(`${dropdownMenuClass}__item`, {
-          [`${dropdownMenuClass}__item--active`]: isActived,
+          [`${dropdownMenuClass}__item--active`]: isActived || keepLabelActived,
           [`${dropdownMenuClass}__item--disabled`]: disabled,
         })}
         onClick={(e) => {
