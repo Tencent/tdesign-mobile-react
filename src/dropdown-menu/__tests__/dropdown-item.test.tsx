@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import { vi, describe, it, expect, afterEach } from 'vitest';
 import DropdownItem from '../DropdownItem';
+import DropdownMenu from '../DropdownMenu';
 import DropdownMenuContext from '../DropdownMenuContext';
 
 vi.mock('lodash-es/uniqueId', () => ({ default: () => 'fixed-id' }));
@@ -180,12 +181,14 @@ describe('DropdownItem', () => {
   });
 
   describe('events / behavior', () => {
-    it('calls onReset when provided and falls back when not provided', async () => {
+    it('resetSelect confirmSelect', async () => {
+      // 重置：以当前选中值回调 onReset
+      // 确定：以当前选中值回调 onConfirm
       const onReset = vi.fn();
       const onConfirm = vi.fn();
       const onChangeActivedId = vi.fn();
 
-      const { getByText, rerender } = render(
+      const { getByText } = render(
         <DropdownMenuContext.Provider
           value={{
             activedId: 'fixed-id',
@@ -199,37 +202,21 @@ describe('DropdownItem', () => {
           <DropdownItem
             options={[{ value: '1', label: 'one', disabled: false }]}
             multiple
+            value={['1']}
             onReset={onReset}
             onConfirm={onConfirm}
           />
         </DropdownMenuContext.Provider>,
       );
 
-      const resetBtn = getByText('重置');
-      const confirmBtn = getByText('确定');
-      fireEvent.click(resetBtn);
-      fireEvent.click(confirmBtn);
-
-      expect(onReset).toHaveBeenCalled();
-      expect(onConfirm).toHaveBeenCalled();
-
-      rerender(
-        <DropdownMenuContext.Provider
-          value={{
-            activedId: 'fixed-id',
-            direction: 'down',
-            onChangeActivedId,
-            showOverlay: true,
-            zIndex: 1,
-            closeOnClickOverlay: true,
-          }}
-        >
-          <DropdownItem options={[{ value: '1', label: 'one', disabled: false }]} multiple />
-        </DropdownMenuContext.Provider>,
-      );
-
+      // 重置：以当前选中值回调 onReset
       fireEvent.click(getByText('重置'));
+      expect(onReset).toHaveBeenCalledWith(['1']);
+
+      // 当前仍有选中项，确定按钮可用，点击触发 onConfirm
       fireEvent.click(getByText('确定'));
+      expect(onConfirm).toHaveBeenCalledWith(['1']);
+      expect(onConfirm).toHaveBeenCalledTimes(1);
     });
 
     it('multiple mode: buttons disabled when modalValue empty then enabled after change', async () => {
@@ -315,6 +302,31 @@ describe('DropdownItem', () => {
       await waitFor(() => {
         expect(onChangeActivedId).toHaveBeenCalled();
       });
+    });
+  });
+
+  describe('keepLabelActive', () => {
+    it('keepLabelActive', () => {
+      // keepLabelActive 仅在 multiple = true 且有选中项时生效，保持标题高亮（含菜单收起态）
+      const options = [
+        { value: 'option_1', label: '选项一', disabled: false },
+        { value: 'option_2', label: '选项二', disabled: false },
+      ];
+      const { container } = render(
+        <DropdownMenu>
+          <DropdownItem label="保持高亮" multiple keepLabelActive options={options} value={['option_1']} />
+          <DropdownItem label="不保持高亮" multiple keepLabelActive={false} options={options} value={['option_1']} />
+          <DropdownItem label="无选中项" multiple keepLabelActive options={options} value={[]} />
+        </DropdownMenu>,
+      );
+
+      const menuLabels = container.querySelectorAll('.t-dropdown-menu__item');
+      // multiple + keepLabelActive + 有选中项 → 收起态保持高亮
+      expect(menuLabels[0].classList.contains('t-dropdown-menu__item--active')).toBe(true);
+      // keepLabelActive = false → 收起态不高亮
+      expect(menuLabels[1].classList.contains('t-dropdown-menu__item--active')).toBe(false);
+      // keepLabelActive = true 但无选中项 → 不高亮
+      expect(menuLabels[2].classList.contains('t-dropdown-menu__item--active')).toBe(false);
     });
   });
 });

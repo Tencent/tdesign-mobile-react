@@ -68,6 +68,9 @@ export default function MultipleDemo() {
         onChange={(value: string[]) => {
           setSingleValue(value);
         }}
+        onReset={() => {
+          setSingleValue([]);
+        }}
       />
       <DropdownItem
         label="双列多选"
@@ -78,6 +81,9 @@ export default function MultipleDemo() {
         onChange={(value: string[]) => {
           setDoubleValue(value);
         }}
+        onReset={() => {
+          setDoubleValue([]);
+        }}
       />
       <DropdownItem
         label="三列多选"
@@ -87,6 +93,9 @@ export default function MultipleDemo() {
         value={tripleValue}
         onChange={(value: string[]) => {
           setTripleValue(value);
+        }}
+        onReset={() => {
+          setTripleValue([]);
         }}
       />
     </DropdownMenu>
