@@ -119,5 +119,7 @@ whitespace | String | - | \- | N
 The component provides the following CSS variables, which can be used to customize styles.
 Name | Default Value | Description
 -- | -- | --
+--td-form-item-arrow-align | center | -
 --td-form-item-arrow-color | @text-color-placeholder | -
---td-form-label-font-size | @font-size-m | -
+--td-form-item-arrow-size | 24px | -
+--td-form-label-font | @font-body-large | -
