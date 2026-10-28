@@ -36,7 +36,7 @@ const initialPhoto: UploadFile[] = [
 const initialData = {
   name: '',
   password: '',
-  gender: '',
+  gender: 'man',
   birth: '',
   place: '',
   age: 3,
@@ -213,7 +213,7 @@ export default function HorizontalForm({ disabled }: { disabled?: boolean }) {
         onReset={onReset}
         onSubmit={onSubmit}
       >
-        <Form.FormItem label="用户名" name="name" help="输入用户名">
+        <Form.FormItem label="用户名" name="name">
           <Input borderless placeholder="请输入内容" />
         </Form.FormItem>
         <Form.FormItem label="密码" name="password">
@@ -226,11 +226,10 @@ export default function HorizontalForm({ disabled }: { disabled?: boolean }) {
             <Radio block={false} name="radio" value="secret" label="保密" />
           </RadioGroup>
         </Form.FormItem>
-        <Form.FormItem arrow label="生日" name="birth" contentAlign="right">
+        <Form.FormItem arrow label="生日" name="birth">
           <Input
             ref={birthInputRef}
             borderless
-            align="right"
             readonly
             placeholder="请输入内容"
             onFocus={() => {
@@ -238,11 +237,10 @@ export default function HorizontalForm({ disabled }: { disabled?: boolean }) {
             }}
           />
         </Form.FormItem>
-        <Form.FormItem arrow label="籍贯" name="place" contentAlign="right">
+        <Form.FormItem arrow label="籍贯" name="place">
           <Input
             ref={placeInputRef}
             borderless
-            align="right"
             readonly
             placeholder="请输入内容"
             onFocus={() => {
@@ -250,10 +248,10 @@ export default function HorizontalForm({ disabled }: { disabled?: boolean }) {
             }}
           />
         </Form.FormItem>
-        <Form.FormItem label="年限" name="age" contentAlign="right">
+        <Form.FormItem label="年限" name="age">
           <Stepper theme="filled" />
         </Form.FormItem>
-        <Form.FormItem label="自我评价" name="description" contentAlign="right">
+        <Form.FormItem label="自我评价" name="description">
           <Rate allowHalf showText={false} gap={RATE_GAP} />
         </Form.FormItem>
         <Form.FormItem label="个人简介" name="resume">
