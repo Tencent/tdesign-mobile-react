@@ -220,8 +220,9 @@ const FormItem = forwardRef<FormItemInstance, FormItemProps>((props, ref) => {
     return type === 'error' ? `${formItemClass}--error` : `${formItemClass}--warning`;
   }, [shouldShowErrorMessage, errorList, formItemClass]);
 
-  const contentClasses = classNames([`${formClass}__controls`, errorClasses]);
+  const contentClasses = classNames([`${formClass}__controls`]);
   const contentSlotClasses = classNames([`${formClass}__controls-content`, `${formClass}__controls--${contentAlign}`]);
+  const formItemTipsClasses = classNames([`${formItemClass}-tips`, errorClasses]);
 
   const contentStyle = useMemo(() => {
     let style = {};
@@ -539,46 +540,55 @@ const FormItem = forwardRef<FormItemInstance, FormItemProps>((props, ref) => {
   if (isFunction(children))
     return (children as (form: FormInstanceFunctions) => React.ReactElement)(form as FormInstanceFunctions);
 
+  const helpNode = renderHelpNode();
+  const extraNodeContent = renderExtraNode();
+
   return (
     <div className={formItemRootClasses} style={style}>
-      <div className={formItemWrapperClasses}>
-        <div className={labelClasses} style={labelStyle}>
-          <label htmlFor={htmlFor}>{renderLabelContent()}</label>
-          {colon && locale?.colonText && t(locale.colonText)}
-        </div>
-        <div className={contentClasses} style={contentStyle}>
-          <div className={contentSlotClasses}>
-            {React.Children.map(children, (child) => {
-              if (!child) return null;
-
-              // Fragment 或非 React Element 直接返回
-              if (!React.isValidElement(child) || child.type === React.Fragment) return child;
-
-              const childProps = child.props as any;
-
-              return React.cloneElement(child as React.ReactElement<any>, {
-                disabled: disabledFromContext,
-                readOnly: readonlyFromContext,
-                ...childProps,
-                value: formValue,
-                onChange: (value: any, ...args: any[]) => {
-                  if (readonlyFromContext) return;
-                  const newValue = cloneDeep(value);
-                  updateFormValue(newValue, true, true);
-                  childProps?.onChange?.call?.(null, value, ...args);
-                },
-                onBlur: (value: any, ...args: any[]) => {
-                  handleItemBlur();
-                  childProps?.onBlur?.call?.(null, value, ...args);
-                },
-              });
-            })}
+      <div className={`${formItemClass}-main`}>
+        <div className={formItemWrapperClasses}>
+          <div className={labelClasses} style={labelStyle}>
+            <label htmlFor={htmlFor}>{renderLabelContent()}</label>
+            {colon && locale?.colonText && t(locale.colonText)}
           </div>
-          {renderHelpNode()}
-          {renderExtraNode()}
+          <div className={contentClasses} style={contentStyle}>
+            <div className={contentSlotClasses}>
+              {React.Children.map(children, (child) => {
+                if (!child) return null;
+
+                // Fragment 或非 React Element 直接返回
+                if (!React.isValidElement(child) || child.type === React.Fragment) return child;
+
+                const childProps = child.props as any;
+
+                return React.cloneElement(child as React.ReactElement<any>, {
+                  disabled: disabledFromContext,
+                  readOnly: readonlyFromContext,
+                  ...childProps,
+                  value: formValue,
+                  onChange: (value: any, ...args: any[]) => {
+                    if (readonlyFromContext) return;
+                    const newValue = cloneDeep(value);
+                    updateFormValue(newValue, true, true);
+                    childProps?.onChange?.call?.(null, value, ...args);
+                  },
+                  onBlur: (value: any, ...args: any[]) => {
+                    handleItemBlur();
+                    childProps?.onBlur?.call?.(null, value, ...args);
+                  },
+                });
+              })}
+            </div>
+          </div>
         </div>
+        {renderRightIconContent()}
       </div>
-      {renderRightIconContent()}
+      {(helpNode || extraNodeContent) && (
+        <div className={formItemTipsClasses} style={contentStyle}>
+          {helpNode}
+          {extraNodeContent}
+        </div>
+      )}
     </div>
   );
 });

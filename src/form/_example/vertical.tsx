@@ -36,7 +36,7 @@ const initialPhoto: UploadFile[] = [
 const initialData = {
   name: '',
   password: '',
-  gender: '',
+  gender: 'man',
   birth: '',
   place: '',
   age: 3,
@@ -212,7 +212,7 @@ export default function VerticalForm({ disabled }: { disabled?: boolean }) {
         onReset={onReset}
         onSubmit={onSubmit}
       >
-        <Form.FormItem label="用户名" name="name" help="输入用户名">
+        <Form.FormItem label="用户名" name="name">
           <Input borderless placeholder="请输入内容" />
         </Form.FormItem>
         <Form.FormItem label="密码" name="password">
