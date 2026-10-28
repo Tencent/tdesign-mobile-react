@@ -4,6 +4,9 @@ import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import HorizontalForm from './horizontal';
 import VerticalForm from './vertical';
+import FormItemHelp from './help';
+import FormRules from './rules';
+import FormAlignment from './alignment';
 import './style/index.less';
 
 export type ArrangementTypes = 1 | 2;
@@ -15,6 +18,8 @@ export const ARRANGEMENT_TYPE: Record<'horizontal' | 'vertical', ArrangementType
 export default function FormDemo() {
   const [arrangement, setArrangement] = useState<ArrangementTypes>(ARRANGEMENT_TYPE.horizontal);
   const [isFormDisabled, setIsFormDisabled] = useState(false);
+
+  const labelAlign = arrangement === ARRANGEMENT_TYPE.horizontal ? 'left' : 'top';
 
   const handleChangeArrangement = (arrangement: ArrangementTypes) => {
     setArrangement(arrangement);
@@ -54,6 +59,24 @@ export default function FormDemo() {
       <TDemoBlock>
         {arrangement === ARRANGEMENT_TYPE.horizontal ? <HorizontalForm disabled={isFormDisabled} /> : null}
         {arrangement === ARRANGEMENT_TYPE.vertical ? <VerticalForm disabled={isFormDisabled} /> : null}
+      </TDemoBlock>
+
+      <TDemoBlock
+        title="02 标签与说明"
+        summary="label / requiredMark / requiredMarkPosition / help / arrow / colon / contentAlign 等 API"
+      >
+        <FormItemHelp labelAlign={labelAlign} />
+      </TDemoBlock>
+
+      <TDemoBlock title="03 校验规则" summary="内置校验规则与提交校验">
+        <FormRules labelAlign={labelAlign} />
+      </TDemoBlock>
+
+      <TDemoBlock
+        title="04 对齐与标记"
+        summary="contentAlign / labelAlign / labelWidth / requiredMark / requiredMarkPosition / showErrorMessage 的不同取值与组合状态"
+      >
+        <FormAlignment labelAlign={labelAlign} />
       </TDemoBlock>
     </div>
   );
