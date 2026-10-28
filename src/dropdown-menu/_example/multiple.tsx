@@ -55,18 +55,22 @@ options.push({
 export default function MultipleDemo() {
   const [singleValue, setSingleValue] = useState(['option_1']);
   const [doubleValue, setDoubleValue] = useState(['option_1', 'option_2']);
-  const [tripleValue, setTripleValue] = useState(['option_1', 'option_2', 'option_3']);
+  const [tripleValue, setTripleValue] = useState([]);
 
   return (
     <DropdownMenu>
       <DropdownItem
         label="单列多选"
+        keepLabelActive
         multiple
         optionsColumns={1}
         options={singleColumnOptions}
         value={singleValue}
         onChange={(value: string[]) => {
           setSingleValue(value);
+        }}
+        onReset={() => {
+          setSingleValue([]);
         }}
       />
       <DropdownItem
@@ -78,15 +82,22 @@ export default function MultipleDemo() {
         onChange={(value: string[]) => {
           setDoubleValue(value);
         }}
+        onReset={() => {
+          setDoubleValue([]);
+        }}
       />
       <DropdownItem
         label="三列多选"
+        keepLabelActive
         multiple
         optionsColumns={3}
         options={tripleColumnsOptions}
         value={tripleValue}
         onChange={(value: string[]) => {
           setTripleValue(value);
+        }}
+        onReset={() => {
+          setTripleValue([]);
         }}
       />
     </DropdownMenu>

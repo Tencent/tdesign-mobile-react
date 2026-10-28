@@ -14,6 +14,7 @@ export const dropdownMenuDefaultProps: TdDropdownMenuProps = {
 export const dropdownItemDefaultProps: TdDropdownItemProps = {
   disabled: false,
   icon: undefined,
+  keepLabelActive: false,
   multiple: false,
   options: [],
   optionsColumns: 1,

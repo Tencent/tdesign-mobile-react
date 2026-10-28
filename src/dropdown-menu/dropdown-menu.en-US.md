@@ -24,6 +24,7 @@ style | Object | - | CSS(Cascading Style Sheets)，Typescript: `React.CSSPropert
 disabled | Boolean | false | \- | N
 footer | TElement | - | Typescript: `TNode`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 icon | TNode | undefined | Typescript: `TNode \| TNode[] \| undefined`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
+keepLabelActive | Boolean | false | `1.0.1` | N
 keys | Object | - | Typescript: `KeysType`。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/blob/develop/src/common.ts) | N
 label | String | - | \- | N
 multiple | Boolean | false | \- | N
