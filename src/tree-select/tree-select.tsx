@@ -95,7 +95,7 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
         <SideBarItem
           key={index}
           label={item.label.toString()}
-          value={item.value}
+          value={item.value as string | number}
           disabled={item.disabled}
         ></SideBarItem>
       ))}
@@ -111,7 +111,7 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
           [`${treeSelectClass}__item--active`]: item.value === innerValue[level],
           [`${treeSelectClass}__item--disabled`]: item.disabled,
         })}
-        onClick={() => handleTreeClick(item.value, level as TreeLevel, item.disabled)}
+        onClick={() => handleTreeClick(item.value as TreeSelectValue, level as TreeLevel, item.disabled)}
       >
         {parseTNode(item.label)}
       </div>
@@ -128,7 +128,7 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
           {treeOption.map((item) => (
             <Checkbox
               key={item.value}
-              value={item.value}
+              value={item.value as string | number}
               maxLabelRow={1}
               icon="line"
               borderless
@@ -146,7 +146,7 @@ const TreeSelect: FC<TreeSelectProps> = (props) => {
           {treeOption.map((item) => (
             <Radio
               key={item.value}
-              value={item.value}
+              value={item.value as string | number}
               icon="line"
               maxLabelRow={1}
               borderless
