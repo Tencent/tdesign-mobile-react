@@ -66,7 +66,7 @@ export const ActionSheet: React.FC<ActionSheetProps> = (props) => {
       showOverlay={showOverlay}
     >
       <div className={`${actionSheetClass}__content`}>
-        {description ? <p className={`${actionSheetClass}__description`}>{description}</p> : null}
+        {description ? <div className={`${actionSheetClass}__description`}>{description}</div> : null}
         {theme === 'list' ? <ActionSheetList items={items} onSelected={handleSelected} /> : null}
         {theme === 'grid' ? <ActionSheetGrid items={items} onSelected={handleSelected} count={count} /> : null}
         {showCancel ? (
