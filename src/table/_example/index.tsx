@@ -5,6 +5,7 @@ import BaseExample from './base';
 import ScrollExample from './scroll';
 import StripeExample from './stripe';
 import BorderedExample from './bordered';
+import EllipsisExample from './ellipsis';
 import CustomRowStyleExample from './custom-row-style';
 import RowspanColspanExample from './rowspan-colspan';
 import DragSortExample from './drag-sort';
@@ -35,6 +36,10 @@ export default function Base() {
 
       <TDemoBlock summary="带边框表格" padding={true}>
         <BorderedExample />
+      </TDemoBlock>
+
+      <TDemoBlock summary="单元格超出省略的表格" padding={true}>
+        <EllipsisExample />
       </TDemoBlock>
 
       <TDemoBlock summary="可自定义样式的表格" padding={true}>
