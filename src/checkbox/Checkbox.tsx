@@ -81,7 +81,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((_props, ref) => {
     let ActiveIcon = indeterminate ? Remove1Icon : Check1Icon;
     if (shape === 'line') ActiveIcon = indeterminate ? MinusIcon : CheckIcon;
     return (
-      <span
+      <div
         className={classNames({
           [`${checkboxClass}__icon-${shape}`]: true,
           [`${checkboxClass}__icon-${shape}--checked`]: shape !== 'line' && isActive,
@@ -89,7 +89,7 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((_props, ref) => {
         })}
       >
         {isActive && <ActiveIcon />}
-      </span>
+      </div>
     );
   };
 

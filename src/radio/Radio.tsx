@@ -92,7 +92,7 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
     const shape = icon === 'line' ? 'line' : 'circle';
     const ActiveIcon = shape === 'line' ? CheckIcon : Check1Icon;
     return (
-      <span
+      <div
         className={classNames({
           [`${radioClass}__icon-${shape}`]: true,
           [`${radioClass}__icon-${shape}--checked`]: shape !== 'line' && radioChecked,
@@ -100,7 +100,7 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
         })}
       >
         {radioChecked && <ActiveIcon />}
-      </span>
+      </div>
     );
   };
 
@@ -153,9 +153,9 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
         }}
       >
         {(label || children) && (
-          <span className={titleClassName} style={{ WebkitLineClamp: maxLabelRow }}>
+          <div className={titleClassName} style={{ WebkitLineClamp: maxLabelRow }}>
             {parseTNode(label) || parseTNode(children)}
-          </span>
+          </div>
         )}
         {content && (
           <div
