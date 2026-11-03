@@ -1,14 +1,6 @@
 import React, { forwardRef, Ref, useContext, useMemo } from 'react';
 import classNames from 'classnames';
-import {
-  CheckCircleFilledIcon,
-  CheckIcon,
-  CheckRectangleFilledIcon,
-  CircleIcon,
-  MinusCircleFilledIcon,
-  MinusIcon,
-  MinusRectangleFilledIcon,
-} from 'tdesign-icons-react';
+import { Check1Icon, Remove1Icon, CheckIcon, MinusIcon } from 'tdesign-icons-react';
 import { TdCheckboxProps, TdCheckboxGroupProps } from './type';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
 import CheckboxGroup from './CheckboxGroup';
@@ -57,62 +49,47 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((_props, ref) => {
   } = props;
   const [internalChecked, setInternalChecked] = useDefault(checked, defaultChecked, onChange);
 
+  const isChecked = useMemo(() => (checkAll ? checked : internalChecked), [internalChecked, checkAll, checked]);
+
+  const isActive = useMemo(() => isChecked || indeterminate, [isChecked, indeterminate]);
+
   const checkboxClassName = classNames(`${classPrefix}-checkbox`, {
     [`${checkboxClass}--${placement}`]: true,
-    [`${checkboxClass}--checked`]: checked,
+    [`${checkboxClass}--checked`]: isChecked,
     [`${checkboxClass}--block`]: block,
     [`${checkboxClass}--${direction}`]: !!direction,
   });
 
-  const isChecked = useMemo(() => (checkAll ? checked : internalChecked), [internalChecked, checkAll, checked]);
-
-  const checkIcons = useMemo(() => {
+  const renderIconContent = () => {
     if (Array.isArray(icon) && icon.length > 1) {
-      return icon.map((i) =>
-        typeof i === 'string' ? <img key={i} className={`${checkboxClass}__icon-image`} src={i}></img> : i,
-      );
+      const selectedIcon = icon[isActive ? 0 : 1];
+      const iconContent =
+        typeof selectedIcon === 'string' ? (
+          <img className={`${checkboxClass}__icon-image`} src={selectedIcon} />
+        ) : (
+          selectedIcon
+        );
+      return parseContentTNode(iconContent, { className: `${checkboxClass}__icon-wrapper` });
     }
-    return [<CheckCircleFilledIcon key="check" />, <CircleIcon key="uncheck" />];
-  }, [checkboxClass, icon]);
+    if (icon !== 'circle' && icon !== true && icon !== 'rectangle' && icon !== 'line' && !Array.isArray(icon)) {
+      return null;
+    }
 
-  const checkIcon = useMemo(() => {
-    if (icon === 'circle' || icon === true) {
-      return indeterminate ? <MinusCircleFilledIcon /> : <CheckCircleFilledIcon />;
-    }
-    if (icon === 'rectangle') {
-      return indeterminate ? <MinusRectangleFilledIcon /> : <CheckRectangleFilledIcon />;
-    }
-    if (icon === 'line') {
-      return indeterminate ? <MinusIcon /> : <CheckIcon />;
-    }
-    return null;
-  }, [icon, indeterminate]);
-
-  const renderIconArray = () => {
-    const className = `${checkboxClass}__icon-wrapper`;
-    if (Array.isArray(icon)) {
-      return parseContentTNode(isChecked ? checkIcons[0] : checkIcons[1], {
-        className,
-      });
-    }
-    if (isChecked) {
-      return parseContentTNode(checkIcon, {
-        className,
-      });
-    }
+    let shape = 'circle';
+    if (icon === 'rectangle') shape = 'rectangle';
+    if (icon === 'line') shape = 'line';
+    let ActiveIcon = indeterminate ? Remove1Icon : Check1Icon;
+    if (shape === 'line') ActiveIcon = indeterminate ? MinusIcon : CheckIcon;
     return (
-      <>
-        {(icon === 'circle' || icon === true || icon === 'rectangle') && (
-          <div
-            className={classNames({
-              [`${checkboxClass}__icon-circle`]: icon === true,
-              [`${checkboxClass}__icon-${icon}`]: typeof icon === 'string',
-              [`${checkboxClass}__icon-${icon}--disabled`]: disabled,
-            })}
-          ></div>
-        )}
-        {icon === 'line' && <div className="placeholder"></div>}
-      </>
+      <div
+        className={classNames({
+          [`${checkboxClass}__icon-${shape}`]: true,
+          [`${checkboxClass}__icon-${shape}--checked`]: shape !== 'line' && isActive,
+          [`${checkboxClass}__icon-${shape}--disabled`]: disabled,
+        })}
+      >
+        {isActive && <ActiveIcon />}
+      </div>
     );
   };
 
@@ -121,11 +98,11 @@ const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>((_props, ref) => {
       className={classNames({
         [`${checkboxClass}__icon`]: true,
         [`${checkboxClass}__icon--${placement}`]: true,
-        [`${checkboxClass}__icon--checked`]: isChecked,
+        [`${checkboxClass}__icon--checked`]: isActive,
         [`${checkboxClass}__icon--disabled`]: disabled,
       })}
     >
-      {renderIconArray()}
+      {renderIconContent()}
     </div>
   );
 
