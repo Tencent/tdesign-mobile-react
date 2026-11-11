@@ -52,6 +52,7 @@ export default function SingleDemo() {
       <DropdownItem
         options={product.options}
         value={productValue}
+        placement="right"
         onChange={(value: string) => {
           setProductValue(value);
         }}
@@ -59,6 +60,7 @@ export default function SingleDemo() {
       <DropdownItem
         options={sorter.options}
         value={sorterValue}
+        placement="right"
         onChange={(value: string) => {
           setSorterValue(value);
         }}
