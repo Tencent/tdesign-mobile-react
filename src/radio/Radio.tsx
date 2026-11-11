@@ -1,7 +1,7 @@
 import React, { createContext, forwardRef, useContext, useRef } from 'react';
-import type { CSSProperties, Ref } from 'react';
+import type { Ref } from 'react';
 import classNames from 'classnames';
-import { CheckIcon, CheckCircleFilledIcon } from 'tdesign-icons-react';
+import { Check1Icon, CheckIcon } from 'tdesign-icons-react';
 import parseTNode from '../_util/parseTNode';
 import { usePrefixClass } from '../hooks/useClass';
 import forwardRefWithStatics from '../_util/forwardRefWithStatics';
@@ -22,13 +22,6 @@ export interface RadioContextValue {
   inject: (props: RadioProps) => RadioInjectedProps;
 }
 export const RadioContext = createContext<RadioContextValue>(null);
-
-const getLimitRow = (row: number): CSSProperties => ({
-  display: '-webkit-box',
-  overflow: 'hidden',
-  WebkitBoxOrient: 'vertical',
-  WebkitLineClamp: row,
-});
 
 const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
   const radioClass = usePrefixClass('radio');
@@ -76,35 +69,39 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
   };
 
   const renderIcon = () => {
-    if (Array.isArray(icon)) {
-      return parseTNode(radioChecked ? icon[0] : (icon[1] ?? null));
+    if (Array.isArray(icon) && icon.length > 1) {
+      return parseTNode(radioChecked ? icon[0] : icon[1]);
     }
-    if (radioChecked) {
-      if (icon === 'circle') {
-        return <CheckCircleFilledIcon className={`${radioClass}__icon-wrap`} />;
-      }
-      if (icon === 'line') {
-        return <CheckIcon className={`${radioClass}__icon-wrap`} />;
-      }
-      if (icon === 'dot') {
-        let dotIconClassName = `${radioClass}__icon-${icon}`;
-        if (disabled) {
-          dotIconClassName += ` ${radioClass}__icon-${icon}--disabled`;
-        }
-        return <div className={dotIconClassName} />;
-      }
-    } else {
-      if (icon === 'circle' || icon === 'dot') {
-        let circleIconClassName = `${radioClass}__icon-circle`;
-        if (disabled) {
-          circleIconClassName += ` ${radioClass}__icon-circle--disabled`;
-        }
-        return <div className={circleIconClassName} />;
-      }
-      if (icon === 'line') {
-        return <div className="placeholder" />;
-      }
+    if (icon === 'none') return null;
+    if (icon !== 'circle' && icon !== 'line' && icon !== 'dot') return null;
+
+    if (icon === 'dot') {
+      return (
+        <div
+          className={classNames({
+            [`${radioClass}__icon-dot`]: true,
+            [`${radioClass}__icon-dot--checked`]: radioChecked,
+            [`${radioClass}__icon-dot--disabled`]: disabled,
+          })}
+        >
+          {radioChecked && <div className={`${radioClass}__icon-dot-inner`} />}
+        </div>
+      );
     }
+
+    const shape = icon === 'line' ? 'line' : 'circle';
+    const ActiveIcon = shape === 'line' ? CheckIcon : Check1Icon;
+    return (
+      <div
+        className={classNames({
+          [`${radioClass}__icon-${shape}`]: true,
+          [`${radioClass}__icon-${shape}--checked`]: shape !== 'line' && radioChecked,
+          [`${radioClass}__icon-${shape}--disabled`]: disabled,
+        })}
+      >
+        {radioChecked && <ActiveIcon />}
+      </div>
+    );
   };
 
   const radioClassName = classNames(
@@ -156,21 +153,23 @@ const Radio = forwardRef((_props: RadioProps, ref: Ref<HTMLDivElement>) => {
         }}
       >
         {(label || children) && (
-          <span className={titleClassName} style={{ WebkitLineClamp: maxLabelRow }}>
+          <div className={titleClassName} style={{ WebkitLineClamp: maxLabelRow }}>
             {parseTNode(label) || parseTNode(children)}
-          </span>
+          </div>
         )}
         {content && (
           <div
-            className={`${radioClass}__description ${disabled && `${radioClass}__description--disabled`}`}
-            style={getLimitRow(maxContentRow)}
+            className={classNames(`${radioClass}__description`, {
+              [`${radioClass}__description--disabled`]: disabled,
+            })}
+            style={{ WebkitLineClamp: maxContentRow }}
           >
             {parseTNode(content)}
           </div>
         )}
       </div>
 
-      {!borderless && block && <div className={`${radioClass}__border ${radioClass}__border--${placement}`}></div>}
+      {!borderless && <div className={`${radioClass}__border ${radioClass}__border--${placement}`}></div>}
     </div>
   );
 });
