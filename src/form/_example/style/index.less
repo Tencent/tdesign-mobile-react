@@ -1,38 +1,6 @@
-.option {
-  margin-bottom: 12px;
-}
-
-.button-group {
-  background-color: var(--bg-color-demo, #fff);;
-  box-sizing: border-box;
-  padding: 8px 4px;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  border-bottom: .5px solid #e7e7e7;
-
-  .t-button {
-    height: 32px;
-    flex: 1;
-
-    &:not(:last-child) {
-      flex: 1;
-      margin-right: 16px;
-    }
+// 同一示例内相邻表单之间的间距
+.form-demo-form {
+  & + & {
+    margin-top: 16px;
   }
-}
-
-.box {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.textarea {
-  width: 100%;
-  height: 100%;
-}
-
-.upload {
-  --td-upload-grid-columns: 3;
 }
