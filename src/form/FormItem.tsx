@@ -292,7 +292,8 @@ const FormItem = forwardRef<FormItemInstance, FormItemProps>((props, ref) => {
   }
 
   async function analysisValidateResult(trigger: ValidateTriggerType): Promise<AnalysisValidateResult> {
-    const value = name ? lodashGet(form?.store, name) : undefined;
+    // 校验值取组件自身 state，避免 reset 清空 form.store 后校验拿到 undefined
+    const value = formValue;
     const result: AnalysisValidateResult = {
       successList: [],
       errorList: [],
