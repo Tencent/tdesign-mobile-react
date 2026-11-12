@@ -3,7 +3,7 @@ import { Cell, Sticky, Switch, TabPanel, Tabs } from 'tdesign-mobile-react';
 import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import TDemoBlock from '../../../site/mobile/components/DemoBlock';
 import BaseForm from './base';
-import StatusForm from './status';
+import HelpForm from './help';
 import RulesForm from './rules';
 import LabelAlign from './label-align';
 import LabelWidth from './label-width';
@@ -26,19 +26,26 @@ export default function FormDemo() {
         summary="用以收集、校验和提交数据，一般由输入框、单选框、复选框、选择器等控件组成。"
       />
       <Sticky>
-        <Tabs value={layout} theme="tag" onChange={(value) => setLayout(String(value))}>
-          <TabPanel value="horizontal" label="水平排布" />
-          <TabPanel value="vertical" label="竖向排布" />
-        </Tabs>
-        <Cell title="禁用态">
-          <Switch value={disabled} onChange={(value) => setDisabled(Boolean(value))} />
-        </Cell>
+        <div className="form-demo-sticky">
+          <Tabs
+            value={layout}
+            theme="tag"
+            stickyProps={{ disabled: true }}
+            onChange={(value) => setLayout(String(value))}
+          >
+            <TabPanel value="horizontal" label="水平排布" />
+            <TabPanel value="vertical" label="竖向排布" />
+          </Tabs>
+          <Cell title="禁用态">
+            <Switch value={disabled} onChange={(value) => setDisabled(Boolean(value))} />
+          </Cell>
+        </div>
       </Sticky>
       <TDemoBlock title="01 组件类型" summary="基础表单">
         <BaseForm labelAlign={labelAlign} disabled={disabled} />
       </TDemoBlock>
       <TDemoBlock title="02 组件状态" summary="提示">
-        <StatusForm labelAlign={labelAlign} disabled={disabled} />
+        <HelpForm labelAlign={labelAlign} disabled={disabled} />
       </TDemoBlock>
       <TDemoBlock summary="校验规则">
         <RulesForm labelAlign={labelAlign} disabled={disabled} />
