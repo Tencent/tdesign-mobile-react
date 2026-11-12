@@ -172,7 +172,7 @@ export default function BaseForm({ labelAlign = 'top', disabled }: BaseFormProps
         form={form}
         initialData={initialData}
         showErrorMessage
-        resetType="initial"
+        resetType="empty"
         labelAlign={labelAlign}
         labelWidth={isHorizontal ? '81px' : undefined}
         scrollToFirstError="auto"
@@ -236,7 +236,6 @@ export default function BaseForm({ labelAlign = 'top', disabled }: BaseFormProps
             multiple
             max={6}
             action={action}
-            defaultFiles={initialPhoto}
             onFail={onFail}
             onProgress={onProgress}
             onPreview={onPreview}

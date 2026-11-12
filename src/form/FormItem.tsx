@@ -43,7 +43,7 @@ export interface FormItemProps extends TdFormItemProps, StyledProps {
 
 export type FormItemValidateResult<T extends Data = Data> = { [key in keyof T]: boolean | AllValidateResult[] };
 
-// FormItem 向子组件注入的受控属性集合（受控属性名动态，故保留字符串索引签名）
+// FormItem 向子组件注入的受控属性集合
 type FormControlInjectableProps = {
   disabled?: boolean;
   readOnly?: boolean;
