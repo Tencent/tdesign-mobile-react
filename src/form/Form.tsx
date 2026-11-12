@@ -204,4 +204,5 @@ const Form = forwardRefWithStatics(
   },
   { useForm, useWatch, FormItem },
 );
+Form.displayName = 'Form';
 export default Form;
