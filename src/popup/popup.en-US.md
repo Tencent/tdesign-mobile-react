@@ -12,6 +12,7 @@ closeBtn | TNode | - | Typescript: `boolean \| TNode`。[see more ts definition]
 closeOnOverlayClick | Boolean | true | \- | N
 destroyOnClose | Boolean | false | \- | N
 duration | Number | 240 | \- | N
+maxWidth | String / Number | - | Maximum width of top and bottom popups. Centers the popup horizontally when set. Numbers are in pixels; CSS length strings are supported. Omitting this prop preserves the existing layout | N
 overlayProps | Object | {} | Typescript: `OverlayProps`，[Overlay API Documents](./overlay?tab=api)。[see more ts definition](https://github.com/Tencent/tdesign-mobile-react/tree/develop/src/popup/type.ts) | N
 placement | String | top | options: top/left/right/bottom/center | N
 preventScrollThrough | Boolean | true | \- | N

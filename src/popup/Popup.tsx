@@ -25,6 +25,7 @@ const Popup: React.FC<PopupProps> = (props) => {
   const {
     children,
     placement,
+    maxWidth,
     showOverlay,
     visible,
     defaultVisible,
@@ -64,13 +65,16 @@ const Popup: React.FC<PopupProps> = (props) => {
     setShow(false, PopupSourceEnum.CLOSEBTN);
   };
 
+  const hasMaxWidth = ['top', 'bottom'].includes(placement) && maxWidth !== undefined && maxWidth !== null;
+
   const contentStyle = useMemo<React.CSSProperties>(
     () => ({
       zIndex,
       display: active ? null : 'none',
       animationFillMode: 'forwards',
+      ...(hasMaxWidth ? { maxWidth } : {}),
     }),
-    [zIndex, active],
+    [zIndex, active, hasMaxWidth, maxWidth],
   );
 
   const overlayPropsWithZIndex = useMemo(
@@ -125,7 +129,11 @@ const Popup: React.FC<PopupProps> = (props) => {
       >
         {withNativeProps(
           props,
-          <div ref={contentRef} className={classnames([name, `${name}--${placement}`])} style={contentStyle}>
+          <div
+            ref={contentRef}
+            className={classnames(name, `${name}--${placement}`, { [`${name}--with-max-width`]: hasMaxWidth })}
+            style={contentStyle}
+          >
             {closeBtnNode}
             {parseTNode(children)}
           </div>,
