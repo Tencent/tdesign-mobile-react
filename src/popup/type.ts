@@ -4,9 +4,9 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { OverlayProps } from '../overlay';
-import type { TNode, AttachNode } from '../common';
 import type { MouseEvent } from 'react';
+import type { OverlayProps } from '../overlay';
+import type { TNode, AttachNode } from '../common';
 
 export interface TdPopupProps {
   /**
