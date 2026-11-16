@@ -30,16 +30,16 @@ export default function Base() {
         <ScrollExample />
       </TDemoBlock>
 
-      <TDemoBlock summary="带斑马纹表格" padding={true}>
+      <TDemoBlock title="02 组件状态" summary="单元格超出省略的表格" padding={true}>
+        <EllipsisExample />
+      </TDemoBlock>
+
+      <TDemoBlock title="03 组件样式" summary="带斑马纹表格" padding={true}>
         <StripeExample />
       </TDemoBlock>
 
       <TDemoBlock summary="带边框表格" padding={true}>
         <BorderedExample />
-      </TDemoBlock>
-
-      <TDemoBlock summary="单元格超出省略的表格" padding={true}>
-        <EllipsisExample />
       </TDemoBlock>
 
       <TDemoBlock summary="可自定义样式的表格" padding={true}>

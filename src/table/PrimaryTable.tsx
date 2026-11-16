@@ -145,7 +145,6 @@ const PrimaryTable = forwardRef<PrimaryTableRef, PrimaryTableProps>((props, ref)
               attach,
               {
                 classPrefix,
-                ellipsisOverlayClassName: '',
               },
             );
           };

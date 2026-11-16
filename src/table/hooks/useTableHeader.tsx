@@ -54,7 +54,6 @@ export default function useTableHeader({ columns }: UseTableHeaderParams) {
     attach: HTMLElement,
     extra?: {
       classPrefix: string;
-      ellipsisOverlayClassName: string;
     },
   ) => {
     const classes = {
@@ -72,7 +71,6 @@ export default function useTableHeader({ columns }: UseTableHeaderParams) {
               popupContent={resolved.content ?? title}
               popupProps={resolved.props}
               classPrefix={extra?.classPrefix}
-              overlayClassName={extra?.ellipsisOverlayClassName}
             >
               {title}
             </TEllipsis>
