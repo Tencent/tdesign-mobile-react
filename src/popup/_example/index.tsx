@@ -5,7 +5,6 @@ import TDemoHeader from '../../../site/mobile/components/DemoHeader';
 import WithTitle from './with-title';
 import CustomClose from './custom-close';
 import Nested from './nested';
-import MaxWidth from './max-width';
 
 import './style/index.less';
 
@@ -141,9 +140,6 @@ export default function Index() {
       </TDemoBlock>
       <TDemoBlock title="03 嵌套弹窗" summary="多层 Popup 嵌套使用" padding={true}>
         <Nested />
-      </TDemoBlock>
-      <TDemoBlock title="04 宽屏适配" summary="自定义最大宽度" padding={true}>
-        <MaxWidth />
       </TDemoBlock>
     </div>
   );
