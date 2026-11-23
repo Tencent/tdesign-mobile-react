@@ -4,9 +4,9 @@
  * 该文件为脚本自动生成文件，请勿随意修改。如需修改请联系 PMC
  * */
 
-import { OverlayProps } from '../overlay';
-import type { TNode, AttachNode } from '../common';
 import type { MouseEvent } from 'react';
+import type { OverlayProps } from '../overlay';
+import type { TNode, AttachNode } from '../common';
 
 export interface TdPopupProps {
   /**
@@ -37,6 +37,10 @@ export interface TdPopupProps {
    * @default 240
    */
   duration?: number;
+  /**
+   * 弹出层最大宽度，仅顶部和底部弹出场景有效。
+   */
+  maxWidth?: string | number;
   /**
    * 遮罩层的属性，透传至 overlay
    * @default {}
