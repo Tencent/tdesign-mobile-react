@@ -39,8 +39,8 @@ describe('Checkbox', () => {
 
     it(': indeterminate', () => {
       const shapeToIconIdMap = {
-        circle: 'minus-circle-filled',
-        rectangle: 'minus-rectangle-filled',
+        circle: 'remove-1',
+        rectangle: 'remove-1',
         line: 'minus',
       };
 
@@ -101,8 +101,8 @@ describe('Checkbox', () => {
     describe(': icon', () => {
       it(': icon', () => {
         const shapeToIconIdMap = {
-          circle: 'check-circle-filled',
-          rectangle: 'check-rectangle-filled',
+          circle: 'check-1',
+          rectangle: 'check-1',
           line: 'check',
         };
 
@@ -140,7 +140,7 @@ describe('Checkbox', () => {
       it(': icon array with single element', () => {
         const singleIcon = 'https://tdesign.gtimg.com/mobile/demos/checkbox.png';
         const { container } = render(<Checkbox icon={[singleIcon]} checked={false} />);
-        expect(container.querySelector('.t-checkbox__icon-wrapper').tagName).toBe('svg');
+        expect(container.querySelector('.t-checkbox__icon-circle')).toBeTruthy();
       });
     });
 
@@ -168,7 +168,7 @@ describe('Checkbox', () => {
       });
 
       const { container } = render(<Checkbox disabled icon="line" />);
-      expect(container.querySelector('.placeholder')).toBeTruthy();
+      expect(container.querySelector(`${name}__icon-line--disabled`)).toBeTruthy();
     });
   });
 
@@ -426,7 +426,7 @@ describe(': CheckboxGroup', () => {
       // 当部分选中时，全选checkbox应该是indeterminate状态
       const checkAllCheckbox = container.querySelector(name);
       expect(checkAllCheckbox).toHaveClass('t-checkbox--checked');
-      expect(checkAllCheckbox.querySelector('.t-icon-minus-circle-filled')).toBeTruthy();
+      expect(checkAllCheckbox.querySelector('.t-icon-remove-1')).toBeTruthy();
     });
 
     it(': checkAll with some items checked', () => {

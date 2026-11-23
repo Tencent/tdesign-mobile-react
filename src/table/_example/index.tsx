@@ -5,6 +5,7 @@ import BaseExample from './base';
 import ScrollExample from './scroll';
 import StripeExample from './stripe';
 import BorderedExample from './bordered';
+import EllipsisExample from './ellipsis';
 import CustomRowStyleExample from './custom-row-style';
 import RowspanColspanExample from './rowspan-colspan';
 import DragSortExample from './drag-sort';
@@ -29,11 +30,15 @@ export default function Base() {
         <ScrollExample />
       </TDemoBlock>
 
-      <TDemoBlock summary="带斑马纹表格" padding={true}>
+      <TDemoBlock title="02 组件状态" summary="单元格超出省略的表格" padding={true}>
+        <EllipsisExample />
+      </TDemoBlock>
+
+      <TDemoBlock title="03 组件样式" summary="带斑马纹表格样式" padding={true}>
         <StripeExample />
       </TDemoBlock>
 
-      <TDemoBlock summary="带边框表格" padding={true}>
+      <TDemoBlock summary="带边框表格样式" padding={true}>
         <BorderedExample />
       </TDemoBlock>
 
@@ -57,7 +62,7 @@ export default function Base() {
         <SelectExample />
       </TDemoBlock>
 
-      <TDemoBlock summary="带筛选的表格" padding={true}>
+      <TDemoBlock summary="带筛选排序的表格" padding={true}>
         <FilterSortExample />
       </TDemoBlock>
     </div>

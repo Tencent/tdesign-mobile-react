@@ -6,6 +6,7 @@ import { CloseIcon, ChevronRightIcon } from 'tdesign-icons-react';
 import useDefault from '../_util/useDefault';
 import { Popup } from '../popup';
 import { RadioGroup } from '../radio';
+import type { RadioOption } from '../radio';
 import { Search } from '../search';
 import Tabs from '../tabs';
 import { StyledProps, TreeOptionData } from '../common';
@@ -219,7 +220,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
         }
 
         const childValues = findValues(item.children);
-        if (childValues.length) return [item.value, ...childValues];
+        if (childValues.length) return [item.value as CascaderProps['value'], ...childValues];
       }
       return [];
     };
@@ -528,7 +529,7 @@ const Cascader: React.FC<CascaderProps> = (props) => {
                         icon="line"
                         borderless
                         value={internalSelectedValues[index]}
-                        options={currentOptions}
+                        options={currentOptions as RadioOption[]}
                         onChange={(nextValue: string | number) => {
                           const targetIndex = currentOptions.findIndex((item) => item.value === nextValue);
                           const target = currentOptions[targetIndex];

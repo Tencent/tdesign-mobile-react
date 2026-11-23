@@ -2,8 +2,10 @@ import React, { ReactNode, useEffect, useLayoutEffect, useRef, useState } from '
 import classNames from 'classnames';
 import { isObject } from 'lodash-es';
 import { ChevronDownSIcon, ChevronUpSIcon } from 'tdesign-icons-react';
-import { CommentActionItem, CommentFold, CommentFoldState, TdCommentProps } from './type';
+import { CommentActionItem, CommentFold, CommentFoldState, LongPressEvent, TdCommentProps } from './type';
 import { usePrefixClass } from '../hooks/useClass';
+import { useLongPress } from '../hooks/useLongPress';
+import { useLocaleReceiver } from '../locale/LocalReceiver';
 import Avatar, { AvatarProps } from '../avatar';
 import parseTNode, { parseContentTNode } from '../_util/parseTNode';
 import { StyledProps, TNode } from '../common';
@@ -14,11 +16,6 @@ const DEFAULT_COMMENT_FOLDS: CommentFold = {
   state: 'collapsed',
   total: 0,
   step: 3,
-  content: {
-    collapsed: '展开回复',
-    partial: ['展开更多回复', '收起'], // [主文案, 副文案]
-    expanded: '收起',
-  },
 };
 const Comment: React.FC<CommentProps> = (props) => {
   const {
@@ -35,15 +32,31 @@ const Comment: React.FC<CommentProps> = (props) => {
     children,
     onActions,
     onFolds,
+    onLongPress,
   } = props;
   const [innerFoldsState, setInnerFoldsState] = useState<CommentFoldState>(defaultFolds?.state || 'collapsed');
   const foldSteps = useRef(0);
   const replyBodyRef = useRef<HTMLDivElement>(null);
   const replyInnerRef = useRef<HTMLDivElement>(null);
   const rootClassName = usePrefixClass('comment');
+  const [locale] = useLocaleReceiver('comment');
+
+  const { isLongPressed, handlers: longPressHandlers } = useLongPress({
+    onLongPress: (e) => {
+      onLongPress?.({ e: e as LongPressEvent });
+    },
+  });
 
   const isControlled = folds !== undefined;
   const commentFolds = folds || defaultFolds || DEFAULT_COMMENT_FOLDS;
+
+  // 折叠/展开文案，优先使用业务传入的 content，其次回退到全局国际化配置
+  const userContent = commentFolds.content || {};
+  const foldsContent = {
+    collapsed: userContent.collapsed ?? locale.collapsedText,
+    partial: userContent.partial ?? [locale.expandMoreText, locale.collapseText],
+    expanded: userContent.expanded ?? locale.collapseText,
+  };
 
   // 受控模式下，当外部 folds.state 变化时同步 foldSteps
   useEffect(() => {
@@ -151,8 +164,8 @@ const Comment: React.FC<CommentProps> = (props) => {
           ));
       return (
         <>
-          <div className={`${rootClassName}-block`}>{renderLeftPlacement()}</div>
-          <div className={`${rootClassName}-block`}>{renderRightPlacement()}</div>
+          <div className={`${rootClassName}__actions-block`}>{renderLeftPlacement()}</div>
+          <div className={`${rootClassName}__actions-block`}>{renderRightPlacement()}</div>
         </>
       );
     };
@@ -173,27 +186,28 @@ const Comment: React.FC<CommentProps> = (props) => {
             className={`${rootClassName}__folds-item`}
             onClick={(e) => handleClickFold(e as unknown as MouseEvent, true)}
           >
-            {commentFolds.content.collapsed as ReactNode}
+            {foldsContent.collapsed as ReactNode}
             <ChevronDownSIcon size="16px" />
           </div>
         );
       }
       if (curFoldsState === 'partial') {
         // 半展开
+        const partialContent = foldsContent.partial;
         return (
           <>
             <div
               className={`${rootClassName}__folds-item`}
               onClick={(e) => handleClickFold(e as unknown as MouseEvent, true)}
             >
-              {commentFolds.content.partial[0] as ReactNode}
+              {(Array.isArray(partialContent) ? partialContent[0] : partialContent) as ReactNode}
               <ChevronDownSIcon size="16px" />
             </div>
             <div
               className={`${rootClassName}__folds-item`}
               onClick={(e) => handleClickFold(e as unknown as MouseEvent, false)}
             >
-              {commentFolds.content.partial[1] as ReactNode}
+              {(Array.isArray(partialContent) ? partialContent[1] : null) as ReactNode}
               <ChevronUpSIcon size="16px" />
             </div>
           </>
@@ -205,7 +219,7 @@ const Comment: React.FC<CommentProps> = (props) => {
           className={`${rootClassName}__folds-item`}
           onClick={(e) => handleClickFold(e as unknown as MouseEvent, false)}
         >
-          {commentFolds.content.expanded as ReactNode}
+          {foldsContent.expanded as ReactNode}
           <ChevronUpSIcon size="16px" />
         </div>
       );
@@ -232,7 +246,12 @@ const Comment: React.FC<CommentProps> = (props) => {
 
   return (
     <div className={classNames(rootClassName, className)} style={style}>
-      <div className={`${rootClassName}__inner`}>
+      <div
+        className={classNames(`${rootClassName}__inner`, {
+          [`${rootClassName}__inner--long-press`]: isLongPressed,
+        })}
+        {...longPressHandlers}
+      >
         {renderAvatar()}
         <div className={`${rootClassName}__detail`}>
           {renderAuthor()}
@@ -244,5 +263,7 @@ const Comment: React.FC<CommentProps> = (props) => {
     </div>
   );
 };
+
+Comment.displayName = 'Comment';
 
 export default Comment;

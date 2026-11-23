@@ -45,6 +45,7 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
     footer,
     keys,
     icon,
+    keepLabelActive,
   } = useDefaultProps<DropdownItemProps>(props, dropdownItemDefaultProps);
   const { classPrefix } = useConfig();
   const dropdownMenuClass = usePrefixClass('dropdown-menu');
@@ -74,6 +75,11 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
   );
 
   const isActived = id === activedId;
+
+  const keepLabelActived = useMemo(
+    () => Boolean(multiple && keepLabelActive && Array.isArray(innerValue) && innerValue.length > 0),
+    [multiple, keepLabelActive, innerValue],
+  );
 
   // wrapperVisible 控制外层挂载，isShowItems 控制弹层动画（两段式卸载）
   const [wrapperVisible, setWrapperVisible] = useState(isActived);
@@ -164,6 +170,12 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
     }
   }, [isActived, innerValue]);
 
+  useEffect(() => {
+    if (disabled && isActived) {
+      onChangeActivedId('');
+    }
+  }, [disabled, isActived, onChangeActivedId]);
+
   const attach = useCallback(() => itemRef.current || document.body, []);
 
   const renderIcon = () => {
@@ -198,7 +210,7 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
       <div
         ref={menuItemRef}
         className={cx(`${dropdownMenuClass}__item`, {
-          [`${dropdownMenuClass}__item--active`]: isActived,
+          [`${dropdownMenuClass}__item--active`]: isActived || keepLabelActived,
           [`${dropdownMenuClass}__item--disabled`]: disabled,
         })}
         onClick={(e) => {
@@ -255,6 +267,7 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
                       <CheckboxGroup
                         value={modalValue as (string | number)[]}
                         onChange={(value) => {
+                          if (disabled) return;
                           setModalValue(value as (string | number)[]);
                         }}
                         className={`${dropdownItemClass}__checkbox-group`}
@@ -282,6 +295,7 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
                         placement={placement}
                         value={modalValue as string | number}
                         onChange={(value: string | number) => {
+                          if (disabled) return;
                           setModalValue(value);
                           setInnerValue(value);
                           onChangeActivedId('');
@@ -299,6 +313,7 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
                       theme="light"
                       className={`${dropdownItemClass}__footer-btn ${dropdownItemClass}__reset-btn`}
                       onClick={() => {
+                        if (disabled) return;
                         if (typeof onReset === 'function') {
                           onReset(modalValue);
                         } else {
@@ -313,6 +328,7 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
                       theme="primary"
                       className={`${dropdownItemClass}__footer-btn ${dropdownItemClass}__confirm-btn`}
                       onClick={() => {
+                        if (disabled) return;
                         if (typeof onConfirm === 'function') {
                           onConfirm(modalValue);
                         } else {

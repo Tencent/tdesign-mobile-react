@@ -89,12 +89,12 @@ describe('Radio', () => {
         {
           description: 'circle (checked)',
           props: { icon: 'circle', defaultChecked: true },
-          selector: '.t-icon-check-circle-filled',
+          selector: '.t-icon-check-1',
         },
         {
           description: 'line (unchecked)',
           props: { icon: 'line' },
-          selector: `${name}__icon--left .placeholder`,
+          selector: `${name}__icon-line`,
         },
         {
           description: 'line (checked)',
@@ -104,7 +104,7 @@ describe('Radio', () => {
         {
           description: 'dot (unchecked)',
           props: { icon: 'dot' },
-          selector: `${name}__icon-circle`,
+          selector: `${name}__icon-dot`,
         },
         {
           description: 'dot (checked)',
@@ -144,7 +144,7 @@ describe('Radio', () => {
       const disabledIconArray = ['dot', 'circle'] as const;
       disabledIconArray.forEach((iconItem) => {
         const { container: containerDisabled } = render(<Radio icon={iconItem} disabled />);
-        expect(containerDisabled.querySelector(`${name}__icon-circle--disabled`)).toBeTruthy();
+        expect(containerDisabled.querySelector(`${name}__icon-${iconItem}--disabled`)).toBeTruthy();
       });
     });
 
