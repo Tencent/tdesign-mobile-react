@@ -277,7 +277,7 @@ const Slider: FC<SliderProps> = (props) => {
     if (e.touches.length === 0) {
       draggingRef.current = false;
     }
-    onDragend?.(innerValue, { e });
+    onDragend?.(trimValue(innerValue, { min, max, range }), { e });
   };
 
   const onTouchMoveLeft = (e: TouchEvent) => {
